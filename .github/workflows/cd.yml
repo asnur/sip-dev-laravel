@@ -21,5 +21,7 @@ jobs:
           port: 22
           script: |
             cd /var/www/html/sip-dev-laravel
+            chown -R $USER:www-data storage
+            chmod -R 775 storage
             git pull origin master
             composer install
