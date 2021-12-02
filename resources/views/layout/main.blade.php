@@ -245,7 +245,7 @@
 
                             <!-- Search Web -->
                             <div class="for_web input-group input-group-md mb-1">
-                                <input type="search" id="example-search-input"
+                                <input type="search" id="cari_wilayah"
                                     class="form-control tombol_search py-2 border-right-0 border"
                                     placeholder="Cari nama jalan ...">
 
@@ -257,44 +257,7 @@
 
                                 <!-- Dummy -->
                                 <ul class="wm-search__dropdown" role="listbox">
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.182039999,106.822804382" data-wilayah="GAMBIR">
-                                        <i class="fa fa-map-marker" style="font-size: 15px;"></i> JL. M.H. THAMRIN,
-                                        GAMBIR, GAMBIR, JAKARTA
-                                        PUSAT
-                                    </li>
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.180450453,106.824284249" data-wilayah="GAMBIR">
-                                        <i class="fa fa-map-marker" style="font-size: 15px;"></i> JL. MEDAN MERDEKA
-                                        SELATAN, GAMBIR, GAMBIR,
-                                        JAKARTA PUSAT
-                                    </li>
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.176746644,106.833446891" data-wilayah="GAMBIR">
-                                        <i class="fa fa-map-marker" style="font-size: 15px;"></i> JL. PEJAMBON III,
-                                        GAMBIR, GAMBIR, JAKARTA
-                                        PUSAT
-                                    </li>
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.175597773,106.820942965" data-wilayah="GAMBIR">
-                                        <i class="fa fa-map-marker" style="font-size: 15px;"></i> JL. MUSEUM, GAMBIR,
-                                        GAMBIR, JAKARTA PUSAT
-                                    </li>
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.16785782,106.821058385" data-wilayah="GAMBIR"><i
-                                            class="fa fa-map-marker" style="font-size: 15px;"></i>
-                                        JL. MAJAPAHIT, GAMBIR, GAMBIR, JAKARTA PUSAT
-                                    </li>
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.17101686,106.82723848" data-wilayah="GAMBIR"><i
-                                            class="fa fa-map-marker" style="font-size: 15px;"></i>
-                                        JL. VETERAN II, GAMBIR, GAMBIR, JAKARTA PUSAT
-                                    </li>
-                                    <li class="wm-li-result wilayah-select text_all"
-                                        data-kordinat="-6.180445647,106.82014413" data-wilayah="GAMBIR"><i
-                                            class="fa fa-map-marker" style="font-size: 15px;"></i>
-                                        JL. BUDI KEMULIAAN, GAMBIR, GAMBIR, JAKARTA
-                                        PUSAT</li>
+
                                 </ul>
 
 
@@ -1165,7 +1128,7 @@
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('assets/js/jquery-3.3.1.slim.min.js') }}" rel="preload"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
