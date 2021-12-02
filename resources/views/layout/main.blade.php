@@ -25,6 +25,9 @@
 
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css"
         type="text/css">
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+        type="text/css">
 
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
@@ -276,9 +279,8 @@
 
 
                 <!-- Checkbox -->
-                <div class="layout_checkbox for_web">
-
-                    <div class="form-check">
+                <div class="layout_checkbox for_web" id="menus">
+                    {{-- <div class="form-check">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
                                 <input type="checkbox" class="form-check-input" id="checkbox1">
@@ -330,7 +332,7 @@
                                     Kantor</label>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- End Checkbox -->
@@ -1091,18 +1093,22 @@
     <div class="detail_omzet">
         <div class="container">
             <div class="text_all">
-                {{-- <div><span class="details_omzet" style="background-color: rgb(255, 237, 160);"></span><span>0-4M</span>
+                <div><span class="details_omzet"
+                        style="background-color: rgb(255, 237, 160);"></span><span>0-4M</span>
                 </div>
-                <div><span class="details_omzet" style="background-color: rgb(255, 230, 117);"></span><span>5M-8M</span>
+                <div><span class="details_omzet"
+                        style="background-color: rgb(255, 230, 117);"></span><span>5M-8M</span>
                 </div>
-                <div><span class="details_omzet" style="background-color: rgb(255, 223, 82);"></span><span>9M-12M</span>
+                <div><span class="details_omzet"
+                        style="background-color: rgb(255, 223, 82);"></span><span>9M-12M</span>
                 </div>
                 <div><span class="details_omzet"
                         style="background-color: rgb(255, 214, 31);"></span><span>13M-16M</span></div>
-                <div><span class="details_omzet" style="background-color: rgb(224, 183, 0);"></span><span>17M-20M</span>
+                <div><span class="details_omzet"
+                        style="background-color: rgb(224, 183, 0);"></span><span>17M-20M</span>
                 </div>
                 <div><span class="details_omzet" style="background-color: rgb(202, 165, 2);"></span><span>&gt;
-                        20M</span></div> --}}
+                        20M</span></div>
             </div>
         </div>
     </div>
@@ -1141,6 +1147,7 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
 </body>
 
