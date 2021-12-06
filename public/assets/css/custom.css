@@ -131,7 +131,7 @@
 .btn_hide_side_bar {
     position: absolute;
     left: 29.9%;
-    top: 20.1rem;
+    top: 50vh;
     cursor: pointer;
     z-index: 999;
     height: 60px;

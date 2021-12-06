@@ -91,9 +91,9 @@ map.on("style.load", function () {
         lngs = lngs.slice(0, -7);
         // lat = lats;
         // long = lngs;
-        // $(".inf-kordinat").html(
-        //     `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
-        // );
+        $(".inf-kordinat").html(
+            `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
+        );
 
         // $('#btnKonsultasi').attr('href', `mailto:asnurramdhani12@gmail.com?subject=Konsultasi%20Daerah&body=Saya%20Ingin%20Konsultasi%20Mengenai%20Daerah%20Pada%20Titik%20${lat},${long}`);
     });
@@ -407,6 +407,96 @@ map.on("mouseleave", "investasi_dot", () => {
     $(".inves").css("width", "");
 });
 
+map.on(clickEvent, "wilayah_fill", function (e) {
+    var dt = e.features[0].properties;
+    // console.log(dt);
+    $("#radiusSlide").show();
+    $(".container_menu.for_web").show();
+    $(".tab-content.for_web").show();
+    $("hr.for_web").show();
+    $(".btn_hide_side_bar.for_web").show();
+    $(
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-subblok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdh"
+    ).html("-");
+
+    getEksisting(e);
+    getNJOP(e);
+    getPersilBPN(e);
+
+    const larea = dt["luas-area"] / 10000;
+
+    // Chart
+    new Chart(document.getElementById("pie-chart"), {
+        type: "pie",
+        data: {
+            labels: ["Produksi", "Perdagangan", "Jasa"],
+            datasets: [
+                {
+                    label: "Kelurahan",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                    data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
+                },
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+            },
+        },
+    });
+
+    new Chart(document.getElementById("bar-chart-grouped"), {
+        type: "bar",
+        data: {
+            labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
+            datasets: [
+                {
+                    label: "Data Usia",
+                    backgroundColor: "#3e95cd",
+                    data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
+                },
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Usia",
+            },
+        },
+    });
+
+    $(".inf-iumk").html(dt.Jumlah);
+    $(".inf-omzet").html(separatorNum(dt["Total omzet"]));
+    $(".inf-pen-05").html(dt.P1 + " %");
+    $(".inf-pen-610").html(dt.P2 + " %");
+    $(".inf-pen-1115").html(dt.P3 + " %");
+    $(".inf-pen-1620").html(dt.P4 + " %");
+    $(".inf-pen-20").html(dt.P5 + " %");
+    $(".inf-pen-na").html(dt.P6 + " %");
+    $(".inf-kelurahan").html(dt.Kelurahan);
+    $(".inf-kecamatan").html(dt.Kecamatan);
+    $(".inf-kota").html(dt.Kota);
+    $(".inf-luasarea").html(larea.toFixed(2) + " ha");
+    $(".inf-kepadatan").html(
+        separatorNum(dt["Kepadatan-Penduduk"]) + " jiwa/km2"
+    );
+    $(".inf-rasio").html(dt.gini);
+});
+
+map.on(clickEvent, "zoning_fill", function (e) {
+    var dt = e.features[0].properties;
+    console.log(dt);
+    $(".inf-zona").html(dt.Zona);
+    $(".inf-subzona").html(dt["Sub Zona"] + "-" + dt.Hirarki);
+    $(".inf-blok").html(dt["Kode Blok"]);
+    $(".inf-subblok").html(dt["Sub Blok"]);
+    $(".inf-cdtpz").html(dt["CD TPZ"]);
+    $(".inf-tpz").html(dt.TPZ);
+    $(".inf-kdb").html(dt.KDB);
+    $(".inf-kdh").html(dt.KDH);
+    $(".inf-klb").html(dt.KLB);
+});
+
 function getIumk(e) {
     const dt = e.features[0].properties;
     $.ajax({
@@ -442,57 +532,278 @@ function addImageIumk(imgSource, destination) {
     $(destination).append(img);
     $(destination).show();
 }
-
-// Chart
-new Chart(document.getElementById("pie-chart"), {
-    type: "pie",
-    data: {
-        labels: ["Kel A", "Kel B", "Kel C"],
-        datasets: [
-            {
-                label: "Kelurahan",
-                backgroundColor: [
-                    "#3e95cd",
-                    "#8e5ea2",
-                    "#3cba9f",
-                    "#e8c3b9",
-                    "#c45850",
-                ],
-                data: [478, 267, 734],
-            },
-        ],
-    },
-    options: {
-        title: {
-            display: true,
+function getEksisting(e) {
+    // $("#dtEksistingBot").html("");
+    var htmlPopupLayer = "";
+    $.ajax({
+        url: `${url}/eksisting/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        contentType: false,
+        processData: false,
+        cache: false,
+        beforeSend: function () {
+            // $('.map-loading').show()
         },
-    },
-});
-
-new Chart(document.getElementById("bar-chart-grouped"), {
-    type: "bar",
-    data: {
-        labels: ["1900", "1950", "1999", "2050"],
-        datasets: [
-            {
-                label: "Kecamatan A",
-                backgroundColor: "#3e95cd",
-                data: [133, 221, 783, 478],
-            },
-            {
-                label: "Kecamatan B",
-                backgroundColor: "#8e5ea2",
-                data: [832, 447, 175, 534],
-            },
-        ],
-    },
-    options: {
-        title: {
-            display: true,
-            text: "Jumlah",
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            if (dtResp.features != null) {
+                const prop = dtResp.features[0].properties;
+                $(".inf-eksisting").html(prop.Kegiatan);
+                //   eksisting = `
+                //   <div class="col-sm-12">
+                //   <div class="row">
+                //         <div class="col-sm-12 font-weight-bold">Persil Tanah</div>
+                //         <div class="col-sm-4">Lahan Eksisting</div>
+                //         <div class="col-sm-8">${prop.Kegiatan}</div>
+                //       </div>
+                //     </div>
+                //     </tbody>
+                //   </table>
+                //   `;
+            }
         },
-    },
-});
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+}
+function getNJOP(e) {
+    // $("#dtNJOPBot").html("");
+    var htmlPopupLayer = "";
+    $.ajax({
+        url: `${url}/njop/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        contentType: false,
+        processData: false,
+        cache: false,
+        beforeSend: function () {
+            // $('.map-loading').show()
+        },
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            const prop = dtResp.features[0].properties;
+            if (dtResp.features != null) {
+                $(".inf-harganjop").html(
+                    `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
+                        prop.Max
+                    )} per m&sup2;`
+                );
+            }
+
+            // hrg_min = separatorNum(prop.Min);
+            // hrg_max = separatorNum(prop.Max);
+
+            // harga += `
+            //   <div class="col-sm-12">
+            //     <div class="row">
+            //       <div class="col-sm-4">Harga</div>
+            //       <div class="col-sm-8">Rp. ${hrg_min} - ${hrg_max}</dic>
+            //     </div>
+            //   </div>
+            // `;
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+}
+function getPersilBPN(e) {
+    // $("#dtBpnBot").html("");
+    var htmlPopupLayer = "";
+    $.ajax({
+        url: `${url}/bpn/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        contentType: false,
+        processData: false,
+        cache: false,
+        beforeSend: function () {
+            // $('.map-loading').show()
+        },
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            if (dtResp.features != null) {
+                const prop = dtResp.features[0].properties;
+                $(".inf-tipehak").html(prop.Tipe);
+                $(".inf-luasbpn").html(separatorNum(prop.Luas) + " m&sup2;");
+                //   bpn = `
+                //     <div class="col-sm-12">
+                //       <div class="row">
+                //         <div class="col-sm-4">Tipe Hak</div>
+                //         <div class="col-sm-8">${prop.Tipe}</div>
+                //         <div class="col-sm-4">Luas</div>
+                //         <div class="col-sm-8">${separatorNum(prop.Luas)} m&sup2;</div>
+                //         <div class="col-sm-4">Harga</div>
+                //         <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
+                //       </div>
+                //     </div>
+                //   `;
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+}
+function getRadius(e) {
+    var tblRadData = "";
+    var getRadVal = $("#ControlRange").val();
+    $.ajax({
+        url: `${url}/lon/${e.lngLat.lng}/lat/${e.lngLat.lat}/rad/${getRadVal}`,
+        method: "get",
+        contentType: false,
+        processData: false,
+        cache: false,
+        beforeSend: function () {
+            // $('.map-loading').show()
+            // $("#forDataRad").html("");
+            // $("#tabListFasilitas").html("");
+        },
+        success: function (dt) {
+            // var getrad = [];
+            var dtResp = JSON.parse(dt);
+            //     fasilitas = `
+            //     <div class="col-sm-12 mt-4 mb-5">
+            //       <div class="row">
+            //         <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
+            //             getRadVal / 1000
+            //         } Km
+            //         </div>
+            // `;
+
+            if (cat.length == dtResp.features.length) {
+                cat = [];
+                $("#tabListFasilitas").html("");
+            }
+            cat = [];
+
+            for (var i in dtResp.features) {
+                const dtpar = dtResp.features[i];
+                const props = dtpar.properties;
+                const geo = dtpar.geometry;
+                cat.push({
+                    name: props.Kategori,
+                    fasilitas: props.Name,
+                    jarak: geo.Distance,
+                });
+            }
+
+            function groupBy(collection, property) {
+                var i = 0,
+                    val,
+                    index,
+                    values = [],
+                    result = [];
+                for (var i = 0; i < collection.length; i++) {
+                    val = collection[i][property];
+                    index = values.indexOf(val);
+                    if (index > -1) result[index].push(collection[i]);
+                    else {
+                        values.push(val);
+                        result.push([collection[i]]);
+                    }
+                }
+                return result;
+            }
+
+            var obj = groupBy(cat, "name");
+            var menuTab = "";
+            var tabFasilitas = "";
+            for (var as in obj) {
+                const dt = obj[as];
+
+                menuTab += `<div class="row row_mid_judul2">
+                <div class="col-md-12 flex-column">
+                    <button type="button"
+                        class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
+                        data-toggle="collapse" data-target="#collapsePoiOne" aria-expanded="true"
+                        aria-controls="collapsePoiOne">
+                        <b class="text_all_mobile">${dt[0].name}</b>
+                    </button>
+                </div>
+            </div>`;
+
+                tabFasilitas = `
+        <div class="tab-pane fade ${clst}" id="fas${as}" role="tabpanel" aria-labelledby="${as}-tab">
+          <ul class="list-group list-group-flush">
+  
+          </ul>
+        </div>`;
+                // console.log(dt);
+
+                //         fasilitas += `
+                //         <div class="col-sm-4">${dt[0].name}</div>
+                //         <div class="col-sm-8">
+                //   `;
+
+                $(".tabListFasilitas").append(tabFasilitas);
+                for (var az in dt) {
+                    const dta = dt[az];
+                    // var from = turf.point([e.lngLat.lng, e.lngLat.lat])
+                    // var to = turf.point(dta.coordinates[0])
+                    // var options = {
+                    //   units: 'kilometers'
+                    // }
+                    // var distance = turf.distance(from, to, options)
+                    // console.log(dta);
+                    var distance = dta.jarak;
+                    const linya = `<li class="list-group-item listgroup-cust d-flex justify-content-between align-items-center">${
+                        dta.fasilitas
+                    }
+              <span class="badge badge-primary badge-pill">${
+                  Math.round(distance) / 1000
+              } km</span>
+            </li>`;
+
+                    fasilitas += `
+                  <div class="row">
+                    <div class="col-sm-8">${dta.fasilitas}</div>
+                    <div class="col-sm-4">${
+                        Math.round(distance) / 1000
+                    } km</div>
+                  </div>
+            `;
+
+                    $("#fas" + as + " ul").append(linya);
+                }
+                fasilitas += `</div>`;
+            }
+
+            fasilitas += `
+        </div>
+        </div>
+        `;
+
+            // console.log(fasilitas);
+
+            $("#v-pills-tab").html(leftTab);
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+    // var htmlPopupRad = `<div class="col-3 pl-0">
+    //                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    //                     </div>
+    //                   </div>
+    //                   <div class="col-9 pl-0 pr-0">
+    //                   <div class="tab-content" id="tabListFasilitas">
+    //                   </div>`;
+
+    $(".dtRadiusBot").html(htmlPopupRad);
+    $(".infoLokasi").show();
+}
 
 //Cari Wilayah
 

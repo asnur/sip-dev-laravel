@@ -365,21 +365,15 @@
 
 
                 <!-- Range Inputs -->
-                <div class="form-group for_web w-100 mt-3 mb-0 ml-2" id="radiusSlide">
-                    <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
-                    <label class="font-weight-bold font_range_input" id="OutputControlRange">0 Km</label>
 
-                    <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange" min="500"
-                        max="3000" step="500" value="1000">
-                </div>
                 <!-- End Range Inputs -->
 
 
                 <!-- Bahasa -->
-                <div class="text-right text_all for_web margin_language">
+                {{-- <div class="text-right text_all for_web margin_language">
                     <a href="#" title="Menggunakan Bahasa Indonesia">Bahasa</a> | <a href="en"
                         title="Menggunakan Bahasa Inggris">English</a>
-                </div>
+                </div> --}}
                 <!-- End Bahasa-->
 
 
@@ -540,7 +534,7 @@
                                     <label class="text_all_mobile">Koordinat</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>-6427374984, 1009843234a</p>
+                                    <p class="inf-kordinat">-</p>
                                 </div>
                             </div>
 
@@ -549,7 +543,7 @@
                                     <label class="text_all_mobile">Kelurahan</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>Jati Padang</p>
+                                    <p class="inf-kelurahan">-</p>
                                 </div>
                             </div>
 
@@ -558,7 +552,7 @@
                                     <label class="text_all_mobile">Kecamatan</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>Pasar Minggu</p>
+                                    <p class="inf-kecamatan">-</p>
                                 </div>
                             </div>
 
@@ -568,7 +562,7 @@
                                     <label class="text_all_mobile">Wilayah</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>Jakarta Selatan</p>
+                                    <p class="inf-kota">-</p>
                                 </div>
                             </div>
 
@@ -577,7 +571,7 @@
                                     <label class="text_all_mobile">Luas</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>400 hektar</p>
+                                    <p class="inf-luasarea">-</p>
                                 </div>
                             </div>
 
@@ -586,7 +580,7 @@
                                     <label class="text_all_mobile">Kepadatan</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>1500 jiwa/km2</p>
+                                    <p class="inf-kepadatan">-</p>
                                 </div>
                             </div>
 
@@ -595,11 +589,11 @@
                                     <label class="text_all_mobile">Rasio Gini</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>0,41</p>
+                                    <p class="inf-rasio">-</p>
                                 </div>
                             </div>
 
-                            <div class="d-flex space_text row_mid_text">
+                            {{-- <div class="d-flex space_text row_mid_text">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
                                     <label class="text_all_mobile">UMR</label>
                                 </div>
@@ -620,7 +614,7 @@
                                     <span>43210</span>
 
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -636,7 +630,7 @@
                                     <label class="text_all_mobile">Pelaku Usaha</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>373 <span>orang</span></p>
+                                    <p><span class="inf-iumk">-</span> <span>orang</span></p>
                                 </div>
                             </div>
 
@@ -645,7 +639,7 @@
                                     <label class="text_all_mobile">Total Omset</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p>3.685.675.000 <span>per bulan</span></p>
+                                    <p><span class="inf-omzet">-</span> <span>per bulan</span></p>
                                 </div>
                             </div>
 
@@ -671,35 +665,35 @@
                                     <label>0 - 5 juta</label>
                                 </div>
                                 <div class="text_all col_info">
-                                    <label> 4.593 Orang</label>
+                                    <label class="inf-pen-05">-</label>
                                 </div>
 
                                 <div class="text_all">
                                     <label>6 - 10 Juta</label>
                                 </div>
                                 <div class="text_all col_info">
-                                    <label>2.045 Orang</label>
+                                    <label class="inf-pen-610">-</label>
                                 </div>
 
                                 <div class="text_all">
                                     <label>11 - 15 Juta</label>
                                 </div>
                                 <div class="text_all col_info">
-                                    <label>1.233 Orang</label>
+                                    <label class="inf-pen-1115">-</label>
                                 </div>
 
                                 <div class="text_all">
                                     <label>16 - 20 Juta</label>
                                 </div>
                                 <div class="text_all col_info">
-                                    <label>1.497 Orang</label>
+                                    <label class="inf-pen-1620">-</label>
                                 </div>
 
                                 <div class="text_all">
                                     <label>> 20 Juta</label>
                                 </div>
                                 <div class="text_all col_info">
-                                    <label>124 Orang</label>
+                                    <label class="inf-pen-20">-</label>
                                 </div>
 
 
@@ -707,7 +701,7 @@
                                     <label>> N/A</label>
                                 </div>
                                 <div class="text_all col_info">
-                                    <label>3.866 Orang</label>
+                                    <label class="inf-pen-na">-</label>
                                 </div>
 
 
@@ -727,21 +721,12 @@
                         <div class="container">
                             <p class="card-title mt-2 text-center font-weight-bold judul_utama">Zonasi</p>
 
-                            <div class="d-flex space_judul row_mid_judul">
-                                <div class="col-md-5 text_all">
-                                    <label class="text_all_mobile">Nama Usaha</label>
-                                </div>
-                                <div class="col-md-7 text_all">
-                                    <p>LA FROZEN FOOD</p>
-                                </div>
-                            </div>
-
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
                                     <label class="text_all_mobile">Zona</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>Zona Perumahan KDB Sedang-Tinggi</p>
+                                    <p class="inf-zona">-</p>
                                 </div>
                             </div>
 
@@ -750,10 +735,27 @@
                                     <label class="text_all_mobile">Sub Zona</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>R.5</p>
+                                    <p class="inf-subzona">-</p>
                                 </div>
                             </div>
 
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kode Blok</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-blok">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Sub Blok</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-subblok">-</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -766,7 +768,7 @@
                                     <label class="text_all_mobile">Lahan Eksisting</label>
                                 </div>
                                 <div class="col-md-7 text_all">
-                                    <p>Rumah Besar</p>
+                                    <p class="inf-eksisting">-</p>
                                 </div>
                             </div>
 
@@ -775,7 +777,7 @@
                                     <label class="text_all_mobile">Perkiraan Harga</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>Rp.5.000.000,- s/d Rp.10.000.000,-&nbsp;&nbsp;<span>/m²</span></p>
+                                    <p class="inf-harganjop">-</p>
                                 </div>
                             </div>
 
@@ -784,7 +786,7 @@
                                     <label class="text_all_mobile">Tipe Hak</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>Hak Pakai</p>
+                                    <p class="inf-tipehak">-</p>
                                 </div>
                             </div>
 
@@ -793,26 +795,7 @@
                                     <label class="text_all_mobile">Luas</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>11.755<span>/m²</span></p>
-                                </div>
-                            </div>
-
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kode Blok</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p>43</span></p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Sub Blok</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p>43</span></p>
+                                    <p class="inf-luasbpn">-</p>
                                 </div>
                             </div>
 
@@ -821,7 +804,7 @@
                                     <label class="text_all_mobile">TPZ</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>43</span></p>
+                                    <p class="inf-tpz"></p>
                                 </div>
                             </div>
 
@@ -830,7 +813,7 @@
                                     <label class="text_all_mobile">CD TPZ</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>43</span></p>
+                                    <p class="inf-cdtpz">-</p>
                                 </div>
                             </div>
 
@@ -839,7 +822,7 @@
                                     <label class="text_all_mobile">KDH</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>43</span></p>
+                                    <p class="inf-kdh">-</p>
                                 </div>
                             </div>
 
@@ -848,7 +831,7 @@
                                     <label class="text_all_mobile">KLB</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p>1,2</span></p>
+                                    <p class="inf-klb"></p>
                                 </div>
                             </div>
 
@@ -859,8 +842,15 @@
                     <div class="tab-pane " id="pills-poi" role="tabpanel" aria-labelledby="poi-tab">
                         <div class="container">
                             <p class="card-title mt-2 text-center font-weight-bold judul_utama">POI</p>
+                            <div class="form-group for_web w-100 mt-3 mb-0 ml-2" id="radiusSlide">
+                                <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
+                                <label class="font-weight-bold font_range_input" id="OutputControlRange">0 Km</label>
 
-                            <div class="accordion" id="PoiCollabse">
+                                <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange"
+                                    min="500" max="3000" step="500" value="1000">
+                            </div>
+                            <br>
+                            <div class="accordion tabListFasilitas" id="PoiCollabse">
                                 <div class="row row_mid_judul2">
                                     <div class="col-md-12 flex-column">
                                         <button type="button"
@@ -901,93 +891,6 @@
                                                 <span class="PoiCollabse_konten_mobile">0.715 km</span>
                                             </li>
 
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="row row_mid_judul">
-                                    <div class="col-md-12 flex-column">
-                                        <button type="button"
-                                            class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
-                                            data-toggle="collapse" data-target="#collapsePoiTwo" aria-expanded="true"
-                                            aria-controls="collapsePoiTwo">
-                                            <b class="text_all_mobile">Sekolah</b>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div id="collapsePoiTwo" class="collapse show" aria-labelledby="headingOne"
-                                    data-parent="#PoiCollabse">
-                                    <div class="card-body text_poi2 row_mid_judul">
-                                        <ul class="list-group list-group-flush PoiCollabse_mobile">
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                SMP Siaga
-                                                <span class="PoiCollabse_konten_mobile">0.185 km</span>
-                                            </li>
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                SMP Pejaten
-                                                <span class="PoiCollabse_konten_mobile">0.575 km</span>
-                                            </li>
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                SMA Siaga Raya
-                                                <span class="PoiCollabse_konten_mobile">0.641 km</span>
-                                            </li>
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                SMA Sawo Manilla
-                                                <span class="PoiCollabse_konten_mobile">0.715 km</span>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="row row_mid_judul">
-                                    <div class="col-md-12 flex-column">
-                                        <button type="button"
-                                            class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
-                                            data-toggle="collapse" data-target="#collapsePoiThre" aria-expanded="true"
-                                            aria-controls="collapsePoiThre">
-                                            <b class="text_all_mobile">Hotel</b>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div id="collapsePoiThre" class="collapse show" aria-labelledby="headingOne"
-                                    data-parent="#PoiCollabse">
-                                    <div class="card-body text_poi2 row_mid_judul">
-                                        <ul class="list-group list-group-flush PoiCollabse_mobile">
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                Wisma Siaga
-                                                <span class="PoiCollabse_konten_mobile">0.185 km</span>
-                                            </li>
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                Hotel Pejaten
-                                                <span class="PoiCollabse_konten_mobile">0.575 km</span>
-                                            </li>
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                Hotel Siaga Raya
-                                                <span class="PoiCollabse_konten_mobile">0.641 km</span>
-                                            </li>
-
-                                            <li
-                                                class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                Wisma Sawo Manilla
-                                                <span class="PoiCollabse_konten_mobile">0.715 km</span>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
