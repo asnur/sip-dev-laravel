@@ -1,5 +1,6 @@
 var url = "http://103.146.202.108:3000";
 var kilometer = $("#ControlRange").val() / 1000;
+let popUpHarga;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -8,7 +9,31 @@ $(document).on("input change", "#ControlRange", function () {
     $("#OutputControlRange").html(kilometer + " Km");
 });
 
+const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false,
+});
+var $window = $(window);
+var delay = (function () {
+    var timer = 0;
+    return function (callback, ms) {
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+
+function handleImgError() {
+    $("#imgCardIUMK").hide();
+}
+
 // $(".wm-search__dropdown").hide();
+$("#radiusSlide").hide();
+$(".container_menu.for_web").hide();
+$(".tab-content.for_web").hide();
+$("hr.for_web").hide();
+$(".btn_hide_side_bar.for_web").hide();
+$(".detail_omzet").hide();
+$(".detail_jumlah").hide();
 
 var selector = ".menu_active .tombol_menu";
 
@@ -47,6 +72,14 @@ map.addControl(draw);
 map.on("draw.create");
 map.on("draw.delete");
 map.on("draw.update");
+
+map.loadImage(
+    `/assets/gambar/baseline_directions_subway_black_24dp.png`,
+    function (error, image) {
+        if (error) throw error;
+        map.addImage("point", image);
+    }
+);
 
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
@@ -110,6 +143,305 @@ map.on("style.load", function () {
         },
     });
 });
+
+map.on("load", function () {
+    // getSektorKBLI();
+
+    const layers = ["0-4M", "5M-8M", "9M-12M", "13M-16M", "17M-20M", "> 20M"];
+    const colors = [
+        "#ffeda0",
+        "#ffe675",
+        "#ffdf52",
+        "#ffd61f",
+        "#e0b700",
+        "#caa502",
+    ];
+
+    // create legend
+    const legend = document.getElementById("legends");
+
+    layers.forEach((layer, i) => {
+        const color = colors[i];
+        const item = document.createElement("div");
+        const key = document.createElement("span");
+        key.className = "legend-key";
+        key.style.backgroundColor = color;
+
+        const value = document.createElement("span");
+        value.innerHTML = `${layer}`;
+        item.appendChild(key);
+        item.appendChild(value);
+        legend.appendChild(item);
+    });
+
+    map.on("mousemove", ({ point }) => {
+        const states = map.queryRenderedFeatures(point, {
+            layers: ["wilayahindex_fill"],
+        });
+        document.getElementById("pd").innerHTML = states.length
+            ? `<div>Kelurahan : ${
+                  states[0].properties.Kelurahan
+              }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
+                  states[0].properties["Total omzet"]
+              )}</strong></em></p>`
+            : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+    });
+
+    map.on("dblclick", (e) => {
+        const states = map.queryRenderedFeatures(e.point, {
+            layers: ["wilayahindex_fill"],
+        });
+        // map.flyTo({
+        //   center: e.lngLat
+        // });
+        // actQ = geocoder.query(states[0].properties.Kelurahan)
+        // addSourceLayer(actQ.inputString)
+    });
+
+    map.on(clickEvent, (e) => {
+        // map.flyTo({
+        //   center: e.lngLat,
+        // zoom: 14
+        // });
+    });
+});
+
+map.on("mouseenter", "wilayah_fill", function () {
+    map.getCanvas().style.cursor = "default";
+});
+map.on("mouseleave", "wilayah_fill", function () {
+    map.getCanvas().style.cursor = "default";
+});
+
+map.on("mouseenter", "iumk_fill", (e) => {
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    const nosk = dt["Nomor SK"];
+    const splitsk = nosk.split("/");
+    const noskfix =
+        splitsk[0] + "/**/*****************/*/*****/**/" + splitsk[6];
+    const content = `<div class="card">
+    <div class="imgcard-container">
+      <img src="#" class="card-img-top" id="imgCardIUMK" alt="${dt["Nama Usaha"]}" style="height: 160px;object-fit: cover;display:none;">
+    </div>
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama Usaha"]}</h6>
+      <div style="line-height: 1.2;">
+        <span class="d-block"><b>Pemilik Usaha :</b> ${dt["Pemilik Usaha"]}</span>
+        <span class="d-block"><b>No. SK :</b> ${noskfix}</span>
+        <span class="d-block"><b>Jenis Usaha :</b> ${dt["Jenis Usaha"]}</span>
+        <span class="d-block"><b>Tenaga Kerja :</b> ${dt["Tenaga Kerja"]} Orang</span></div>
+      </div>
+    </div>`;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+    delay(function () {
+        getIumk(e);
+    }, 500);
+});
+
+map.on("mouseleave", "iumk_fill", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+});
+
+map.on(clickEvent, "sewa_fill", function (e) {
+    map.getCanvas().style.cursor = "pointer";
+    var dt = e.features[0].properties;
+
+    var windowsize = $window.width();
+    if (windowsize < 768) {
+        const content = `<div class="card">
+      <div class="imgcard-container">
+        <img src="#" class="card-img-top" id="imgCardIUMK" alt="${
+            dt["Nama Usaha"]
+        }" style="height: 160px;object-fit: cover;display:none;">
+      </div>
+      <div class="card-body p-2">
+        <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
+        <div style="line-height: 1.2;">
+          <span class="d-block"><b>Harga Sewa :</b> Rp ${separatorNum(
+              dt["Sewa"]
+          )}/m&sup2; per tahun</span>
+          <span class="d-block"><b>Alamat :</b> ${dt["Alamat"]}</span>
+          <span class="d-block"><b>Koordinat :</b> <a href="" target="_blank" title="Klik disini untuk lihat di Google Maps">${
+              dt["Lat"]
+          }, ${dt["Long"]}</a></span>
+        </div>
+      </div>`;
+
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+        popup.setLngLat(coordinates).setHTML(content).addTo(map);
+    } else {
+        var win = window.open(
+            `https://www.google.com/maps/search/%09${dt["Lat"]},${dt["Long"]}`,
+            "_blank"
+        );
+        if (win) {
+            //Browser has allowed it to be opened
+            win.focus();
+        } else {
+            //Browser has blocked it
+            alert("Please allow popups for this website");
+        }
+    }
+});
+
+map.on("mouseenter", "sewa_fill", (e) => {
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="imgcard-container">
+      <img src="http://jakpintas.dpmptsp-dki.com/rent/${
+          dt["Foto"]
+      }" class="card-img-top" style="height: 160px;object-fit: cover;">
+    </div>
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
+      <div style="line-height: 1.2;">
+        <span class="d-block"><b>Harga Sewa :</b> Rp ${separatorNum(
+            dt["Sewa"]
+        )}/m&sup2; per tahun</span>
+        <span class="d-block"><b>Alamat :</b> ${dt["Alamat"]}</span>
+        <span class="d-block"><b>Koordinat :</b> <a href="" target="_blank" title="Klik disini untuk lihat di Google Maps">${
+            dt["Lat"]
+        }, ${dt["Long"]}</a></span>
+      </div>
+    </div>`;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+});
+
+map.on("mouseleave", "sewa_fill", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+});
+
+map.on("mouseenter", "investasi_fill", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.lngLat;
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
+        
+        
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    $(".mapboxgl-popup-content").addClass("inves");
+    $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "investasi_fill", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+map.on("mouseenter", "investasi_line", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates[0];
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
+      <div style="line-height: 1.2;">
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    $(".mapboxgl-popup-content").addClass("inves");
+    $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "investasi_line", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+map.on("mouseenter", "investasi_dot", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
+      <div style="line-height: 1.2;">
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    $(".mapboxgl-popup-content").addClass("inves");
+    $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "investasi_dot", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+
+function getIumk(e) {
+    const dt = e.features[0].properties;
+    $.ajax({
+        url: `https://iumk.perizinan-dev.com/api/getWithKoordinat`,
+        method: "post",
+        headers: {
+            AUTHCODE: "9ee2f95d62b9f67f58ec288b1599cf9c",
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data: {
+            lat: dt.Lat,
+            lng: dt.Long,
+        },
+        beforeSend: function () {},
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            setTimeout(() => {
+                // const img = document.getElementById('imgCardIUMK')
+                // img.src = dtResp.data[0].file_foto_usaha
+                addImageIumk(dtResp.data[0].file_foto_usaha, "#imgCardIUMK");
+            }, 500);
+        },
+        error: function (error) {
+            console.log(error);
+        },
+    });
+}
+function addImageIumk(imgSource, destination) {
+    var img = $("#imgCardIUMK")
+        .on("error", handleImgError)
+        .attr("src", imgSource);
+    $(destination).append(img);
+    $(destination).show();
+}
 
 // Chart
 new Chart(document.getElementById("pie-chart"), {
@@ -558,6 +890,7 @@ function onOffLayers() {
             label.htmlFor = id;
             label.className = "form-check-label";
             label.innerHTML = textCnt[i];
+            div.classList.add("text_all");
             div.appendChild(label);
 
             var mapLayer = map.getLayer(id);
@@ -614,18 +947,22 @@ function onOffLayers() {
                                 "green"
                             );
                             $(".mapboxgl-popup-content").css("color", "white");
-                            $(
-                                ".mapboxgl-popup-anchor-top .mapboxgl-popup-tip,.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip"
-                            ).css("border-bottom-color", "green");
-                            $(
-                                ".mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip"
-                            ).css("border-top-color", "green");
-                            $(
-                                ".mapboxgl-popup-anchor-left .mapboxgl-popup-tip"
-                            ).css("border-right-color", "green");
-                            $(
-                                ".mapboxgl-popup-anchor-right .mapboxgl-popup-tip"
-                            ).css("border-left-color", "green");
+                            $(".mapboxgl-popup-tip").css(
+                                "border-top-color",
+                                "green"
+                            );
+                            $(".mapboxgl-popup-tip").css(
+                                "border-bottom-color",
+                                "green"
+                            );
+                            // $(".mapboxgl-popup-tip").css(
+                            //     "border-left-color",
+                            //     "green"
+                            // );
+                            // $(".mapboxgl-popup-tip").css(
+                            //     "border-right-color",
+                            //     "green"
+                            // );
                         }
                     }
                 } else {
@@ -656,6 +993,15 @@ function onOffLayers() {
                     ).remove();
                 }
             });
+            $("#wilayahindex_fill").on("change", function () {
+                if ($(this).prop("checked") == true) {
+                    $(".detail_omzet").show();
+                    $(".detail_jumlah").show();
+                } else {
+                    $(".detail_omzet").hide();
+                    $(".detail_jumlah").hide();
+                }
+            });
         }
     }
 }
@@ -669,7 +1015,7 @@ $(document).on("click", ".wilayah-select", function () {
     $("#cari_wilayah").val(text);
 
     popUpHarga = [];
-    // popUpHarga = getDataSewa(kel);
+    popUpHarga = getDataSewa(kel);
     console.log(coor.split(","));
     var coord = coor.split(",");
 
@@ -677,8 +1023,35 @@ $(document).on("click", ".wilayah-select", function () {
     addSourceLayer(kel);
 });
 
+// onOffLayers();
+
+function separatorNum(val) {
+    if (typeof val === "undefined" || val === null || val === "null") {
+        return null;
+    }
+    val = parseFloat(val);
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function getDataSewa(kel) {
+    var data = [];
+    setTimeout(function () {
+        $.ajax({
+            url: `${url}/sewa/${kel}`,
+            method: "GET",
+            dataType: "json",
+            success: function (e) {
+                // console.log(e);
+                data.push(e);
+            },
+        });
+    }, 1000);
+
+    return data;
+}
+
 $(
-    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl"
+    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
 
 $(document).on("click", "#investasi_fill", function () {

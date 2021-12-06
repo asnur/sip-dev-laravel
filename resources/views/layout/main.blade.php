@@ -280,6 +280,32 @@
 
                 <!-- Checkbox -->
                 <div class="layout_checkbox for_web" id="menus">
+
+
+                    {{-- <div class="form-check wilayah_fill" style="display: none;"><input id="wilayah_fill"
+                            name="wilayah_fill" disabled="true" class="form-check-input mt-1" type="checkbox"><label
+                            for="wilayah_fill" class="form-check-label text_all">Wilayah</label></div>
+                    <div class="form-check zoning_fill"><input id="zoning_fill" name="zoning_fill"
+                            class="form-check-input mt-1" type="checkbox"><label for="zoning_fill"
+                            class="form-check-label text_all">Peta Zonasi</label></div>
+                    <div class="form-check investasi_fill"><input id="investasi_fill" name="investasi_fill"
+                            class="form-check-input mt-1" type="checkbox"><label for="investasi_fill"
+                            class="form-check-label text_all">Proyek Potensial</label></div>
+                    <div class="form-check sewa_fill"><input id="sewa_fill" name="sewa_fill"
+                            class="form-check-input mt-1" type="checkbox"><label for="sewa_fill"
+                            class="form-check-label text_all">Harga Sewa Kantor</label></div>
+                    <div class="form-check wilayahindex_fill"><input id="wilayahindex_fill" name="wilayahindex_fill"
+                            class="form-check-input mt-1" type="checkbox"><label for="wilayahindex_fill"
+                            class="form-check-label text_all">Total Omzet Usaha Mikro Kecil</label></div>
+                    <div class="form-check iumk_fill"><input id="iumk_fill" name="iumk_fill"
+                            class="form-check-input mt-1" type="checkbox"><label for="iumk_fill"
+                            class="form-check-label text_all">Sebaran Usaha Mikro Kecil</label></div>
+                    <div class="form-check investasi_dot" style="display: none;"><input id="investasi_dot"
+                            name="investasi_dot" class="form-check-input mt-1" type="checkbox"><label
+                            for="investasi_dot" class="form-check-label text_all">Investasi2</label></div>
+                    <div class="form-check investasi_line" style="display: none;"><input id="investasi_line"
+                            name="investasi_line" class="form-check-input mt-1" type="checkbox"><label
+                            for="investasi_line" class="form-check-label text_all">Investasi3</label></div> --}}
                     {{-- <div class="form-check">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
@@ -1086,29 +1112,22 @@
     </div>
 
     <!-- Peta -->
-    <div id='map' style='width: 100%; height: 100%; position: fixed;'></div>
+    <div id='map' style='width: 100%; height: 100%; position: fixed;'>
+    </div>
+    {{-- <div class="detail_omzet" id="legends"></div>
+    <div class="detail_jumlah" id="features">
+        <strong class="border-bottom">Detail Omzet</strong>
+        <div id="pd">
+            <p></p>
+        </div>
+    </div> --}}
     <!-- End Peta -->
 
     <!-- Detail Omzet -->
     <div class="detail_omzet">
         <div class="container">
-            <div class="text_all">
-                <div><span class="details_omzet"
-                        style="background-color: rgb(255, 237, 160);"></span><span>0-4M</span>
-                </div>
-                <div><span class="details_omzet"
-                        style="background-color: rgb(255, 230, 117);"></span><span>5M-8M</span>
-                </div>
-                <div><span class="details_omzet"
-                        style="background-color: rgb(255, 223, 82);"></span><span>9M-12M</span>
-                </div>
-                <div><span class="details_omzet"
-                        style="background-color: rgb(255, 214, 31);"></span><span>13M-16M</span></div>
-                <div><span class="details_omzet"
-                        style="background-color: rgb(224, 183, 0);"></span><span>17M-20M</span>
-                </div>
-                <div><span class="details_omzet" style="background-color: rgb(202, 165, 2);"></span><span>&gt;
-                        20M</span></div>
+            <div class="text_all" id="legends">
+
             </div>
         </div>
     </div>
@@ -1119,11 +1138,7 @@
         <div class="container">
             <span class="text_all font-weight-bold">Detail Omzet</span>
 
-            <div class="text_all">
-                <div>Kelurahan : Menteng</div>
-                <p class="mb-0">
-                    <span><em>Rp 5.110.507.000</em></span>
-                </p>
+            <div class="text_all" id="pd">
             </div>
 
         </div>
