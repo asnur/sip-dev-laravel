@@ -32,8 +32,18 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
-    <!-- custom -->
+
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}"> --}}
+
+     @if (isMobileDevice())
+    <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
+    @else
+        <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    @endif
+
 
 </head>
 
@@ -238,11 +248,15 @@
                                         </div>
                                     </span>
 
-                                    <input type="text" class="input" placeholder="Cari kelurahan disini...">
+                                    <input type="text" class="input" id="cari_wilayah_mobile" placeholder="Cari kelurahan disini...">
 
                                     <span class="btn-search">
                                         <i class="ri-user-fill"></i>
                                     </span>
+
+                                    <div class="wm-search__dropdown">
+                                        <ul class="wm-search__dropdown" role="listbox"></ul>
+                                    </div>
 
                                 </div>
                             </div>

@@ -88,7 +88,7 @@ map.loadImage(
 
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
-        // console.log(e);
+        console.log(e);
         const coornya = e.lngLat;
         var lats = coornya.lat.toString();
         var lngs = coornya.lng.toString();
@@ -179,17 +179,19 @@ map.on("load", function () {
         legend.appendChild(item);
     });
 
-    map.on("mousemove", ({ point }) => {
+    map.on("mousemove", ({
+        point
+    }) => {
         const states = map.queryRenderedFeatures(point, {
             layers: ["wilayahindex_fill"],
         });
-        document.getElementById("pd").innerHTML = states.length
-            ? `<div>Kelurahan : ${
+        document.getElementById("pd").innerHTML = states.length ?
+            `<div>Kelurahan : ${
                   states[0].properties.Kelurahan
               }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
                   states[0].properties["Total omzet"]
-              )}</strong></em></p>`
-            : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+              )}</strong></em></p>` :
+            `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
     });
 
     map.on("dblclick", (e) => {
@@ -341,8 +343,8 @@ map.on("mouseenter", "investasi_fill", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
-        
-        
+
+
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -368,7 +370,7 @@ map.on("mouseenter", "investasi_line", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -394,7 +396,7 @@ map.on("mouseenter", "investasi_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -437,13 +439,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         type: "pie",
         data: {
             labels: ["Produksi", "Perdagangan", "Jasa"],
-            datasets: [
-                {
-                    label: "Kelurahan",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-                    data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
-                },
-            ],
+            datasets: [{
+                label: "Kelurahan",
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
+            }, ],
         },
         options: {
             title: {
@@ -456,13 +456,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         type: "bar",
         data: {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
-            datasets: [
-                {
-                    label: "Data Usia",
-                    backgroundColor: "#3e95cd",
-                    data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
-                },
-            ],
+            datasets: [{
+                label: "Data Usia",
+                backgroundColor: "#3e95cd",
+                data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
+            }, ],
         },
         options: {
             title: {
@@ -533,6 +531,7 @@ function getIumk(e) {
         },
     });
 }
+
 function addImageIumk(imgSource, destination) {
     var img = $("#imgCardIUMK")
         .on("error", handleImgError)
@@ -540,6 +539,7 @@ function addImageIumk(imgSource, destination) {
     $(destination).append(img);
     $(destination).show();
 }
+
 function getEksisting(e) {
     // $("#dtEksistingBot").html("");
     var htmlPopupLayer = "";
@@ -578,6 +578,7 @@ function getEksisting(e) {
         },
     });
 }
+
 function getNJOP(e) {
     // $("#dtNJOPBot").html("");
     var htmlPopupLayer = "";
@@ -621,6 +622,7 @@ function getNJOP(e) {
         },
     });
 }
+
 function getPersilBPN(e) {
     // $("#dtBpnBot").html("");
     var htmlPopupLayer = "";
@@ -661,6 +663,7 @@ function getPersilBPN(e) {
         },
     });
 }
+
 function getRadius(e) {
     var tblRadData = "";
     var getRadVal = $("#ControlRange").val();
@@ -1201,13 +1204,11 @@ function onOffLayers() {
                         var infoHarga = popUpHarga[0].features;
                         var checkBox = document.getElementById("sewa_fill");
                         for (
-                            let index = 0;
-                            index < popUpHarga[0].features.length;
-                            index++
+                            let index = 0; index < popUpHarga[0].features.length; index++
                         ) {
                             const pop = new mapboxgl.Popup({
-                                closeButton: false,
-                            })
+                                    closeButton: false,
+                                })
                                 .setLngLat(
                                     infoHarga[index]["geometry"]["coordinates"]
                                 )
