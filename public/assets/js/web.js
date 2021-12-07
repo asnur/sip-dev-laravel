@@ -1,12 +1,15 @@
 var url = "http://103.146.202.108:3000";
 var kilometer = $("#ControlRange").val() / 1000;
 let popUpHarga;
+var setAttrClick;
+var cat = [];
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
 $(document).on("input change", "#ControlRange", function () {
     var kilometer = $(this).val() / 1000;
     $("#OutputControlRange").html(kilometer + " Km");
+    getRadius(setAttrClick);
 });
 
 const popup = new mapboxgl.Popup({
@@ -67,11 +70,11 @@ const draw = new MapboxDraw({
 });
 map.addControl(new mapboxgl.NavigationControl());
 
-map.addControl(draw);
+// map.addControl(draw);
 
-map.on("draw.create");
-map.on("draw.delete");
-map.on("draw.update");
+// map.on("draw.create");
+// map.on("draw.delete");
+// map.on("draw.update");
 
 map.loadImage(
     `/assets/gambar/baseline_directions_subway_black_24dp.png`,
@@ -409,6 +412,7 @@ map.on("mouseleave", "investasi_dot", () => {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
+    setAttrClick = e;
     // console.log(dt);
     $("#radiusSlide").show();
     $(".container_menu.for_web").show();
@@ -422,6 +426,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     getEksisting(e);
     getNJOP(e);
     getPersilBPN(e);
+    getRadius(e);
 
     const larea = dt["luas-area"] / 10000;
 
@@ -490,11 +495,11 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-subzona").html(dt["Sub Zona"] + "-" + dt.Hirarki);
     $(".inf-blok").html(dt["Kode Blok"]);
     $(".inf-subblok").html(dt["Sub Blok"]);
-    $(".inf-cdtpz").html(dt["CD TPZ"]);
-    $(".inf-tpz").html(dt.TPZ);
-    $(".inf-kdb").html(dt.KDB);
-    $(".inf-kdh").html(dt.KDH);
-    $(".inf-klb").html(dt.KLB);
+    $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
+    $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
+    $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
+    $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
+    $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
 });
 
 function getIumk(e) {
@@ -668,21 +673,9 @@ function getRadius(e) {
             // $("#tabListFasilitas").html("");
         },
         success: function (dt) {
-            // var getrad = [];
             var dtResp = JSON.parse(dt);
-            //     fasilitas = `
-            //     <div class="col-sm-12 mt-4 mb-5">
-            //       <div class="row">
-            //         <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
-            //             getRadVal / 1000
-            //         } Km
-            //         </div>
-            // `;
+            var htmlContent = "";
 
-            if (cat.length == dtResp.features.length) {
-                cat = [];
-                $("#tabListFasilitas").html("");
-            }
             cat = [];
 
             for (var i in dtResp.features) {
@@ -715,76 +708,45 @@ function getRadius(e) {
             }
 
             var obj = groupBy(cat, "name");
-            var menuTab = "";
-            var tabFasilitas = "";
             for (var as in obj) {
                 const dt = obj[as];
 
-                menuTab += `<div class="row row_mid_judul2">
-                <div class="col-md-12 flex-column">
-                    <button type="button"
-                        class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
-                        data-toggle="collapse" data-target="#collapsePoiOne" aria-expanded="true"
-                        aria-controls="collapsePoiOne">
-                        <b class="text_all_mobile">${dt[0].name}</b>
-                    </button>
-                </div>
-            </div>`;
+                htmlContent += `
+                    <div class="row row_mid_judul2">
+                    <div class="col-md-12 flex-column">
+                        <button type="button"
+                            class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
+                            data-toggle="collapse" data-target="#${dt[0].name}" aria-expanded="true"
+                            aria-controls="collapsePoiOne">
+                            <b class="text_all_mobile">${dt[0].name}</b>
+                        </button>
+                    </div>
+                    </div>
+                    <div id="${dt[0].name}" class="collapse show" aria-labelledby="headingOne" data-parent="#PoiCollabse">
+                        <div class="card-body text_poi2 row_mid_judul">
+                            <ul class="list-group list-group-flush PoiCollabse_mobile">
+                `;
 
-                tabFasilitas = `
-        <div class="tab-pane fade ${clst}" id="fas${as}" role="tabpanel" aria-labelledby="${as}-tab">
-          <ul class="list-group list-group-flush">
-  
-          </ul>
-        </div>`;
-                // console.log(dt);
+                // console.log(dt[0].name);
 
-                //         fasilitas += `
-                //         <div class="col-sm-4">${dt[0].name}</div>
-                //         <div class="col-sm-8">
-                //   `;
-
-                $(".tabListFasilitas").append(tabFasilitas);
                 for (var az in dt) {
                     const dta = dt[az];
-                    // var from = turf.point([e.lngLat.lng, e.lngLat.lat])
-                    // var to = turf.point(dta.coordinates[0])
-                    // var options = {
-                    //   units: 'kilometers'
-                    // }
-                    // var distance = turf.distance(from, to, options)
-                    // console.log(dta);
-                    var distance = dta.jarak;
-                    const linya = `<li class="list-group-item listgroup-cust d-flex justify-content-between align-items-center">${
+                    htmlContent += `
+                    <li class="listgroup-cust d-flex justify-content-between align-items-center text_all"> ${
                         dta.fasilitas
-                    }
-              <span class="badge badge-primary badge-pill">${
-                  Math.round(distance) / 1000
-              } km</span>
-            </li>`;
-
-                    fasilitas += `
-                  <div class="row">
-                    <div class="col-sm-8">${dta.fasilitas}</div>
-                    <div class="col-sm-4">${
-                        Math.round(distance) / 1000
-                    } km</div>
-                  </div>
-            `;
-
-                    $("#fas" + as + " ul").append(linya);
+                    } <span class="PoiCollabse_konten_mobile">${
+                        Math.round(dta.jarak) / 1000
+                    } km</span>
+                    </li>
+                    `;
+                    // console.log(dta.fasilitas, dta.jarak);
                 }
-                fasilitas += `</div>`;
+
+                htmlContent += `</ul>
+                </div>
+            </div>`;
             }
-
-            fasilitas += `
-        </div>
-        </div>
-        `;
-
-            // console.log(fasilitas);
-
-            $("#v-pills-tab").html(leftTab);
+            $(".tabListFasilitas").html(htmlContent);
         },
         error: function (error) {
             console.log(error);
@@ -801,8 +763,8 @@ function getRadius(e) {
     //                   <div class="tab-content" id="tabListFasilitas">
     //                   </div>`;
 
-    $(".dtRadiusBot").html(htmlPopupRad);
-    $(".infoLokasi").show();
+    // $(".dtRadiusBot").html(htmlPopupRad);
+    // $(".infoLokasi").show();
 }
 
 //Cari Wilayah

@@ -7,6 +7,14 @@
     font-family: "Roboto", sans-serif;
 }
 
+.mapboxgl-ctrl-group {
+    position: absolute;
+    border-radius: 4px;
+    background: #fff;
+    bottom: -48vh;
+    right: 10px;
+}
+
 /* .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {

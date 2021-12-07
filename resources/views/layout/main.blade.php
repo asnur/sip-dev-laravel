@@ -851,7 +851,7 @@
                             </div>
                             <br>
                             <div class="accordion tabListFasilitas" id="PoiCollabse">
-                                <div class="row row_mid_judul2">
+                                {{-- <div class="row row_mid_judul2">
                                     <div class="col-md-12 flex-column">
                                         <button type="button"
                                             class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
@@ -893,7 +893,7 @@
 
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
