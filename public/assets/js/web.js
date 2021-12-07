@@ -12,6 +12,8 @@ $(document).on("input change", "#ControlRange", function () {
     getRadius(setAttrClick);
 });
 
+$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+
 const popup = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false,
@@ -500,6 +502,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
+    dropDownKegiatan(dt["Sub Zona"]);
 });
 
 function getIumk(e) {
@@ -1321,6 +1324,23 @@ function getDataSewa(kel) {
     }, 1000);
 
     return data;
+}
+
+function dropDownKegiatan(subzona) {
+    $.ajax({
+        url: `http://103.146.202.108:4000/kblia2/${subzona}`,
+        dataType: "json",
+        success: function (e) {
+            $("#kegiatanRuang").html("");
+            var htmlContent = "";
+            var data = e.features[0].properties;
+            for (i in data) {
+                // console.log(data[i]["Kegiatan Ruang"]);
+                htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
+            }
+            $("#kegiatanRuang").html(htmlContent);
+        },
+    });
 }
 
 $(

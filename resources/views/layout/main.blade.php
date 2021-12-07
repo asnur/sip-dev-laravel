@@ -1,3 +1,4 @@
+@dd(isMobileDevice())
 <!doctype html>
 <html lang="en">
 
@@ -28,6 +29,9 @@
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
         type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
@@ -902,7 +906,7 @@
                         <div class="container">
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Kode KBLI</p>
 
-                            <div class="d-flex ml-1">
+                            {{-- <div class="d-flex ml-1">
                                 <div class="col-md-5 text_all">
                                     <label class="text_all_mobile">Cari berdasarkan</label>
                                 </div>
@@ -942,32 +946,43 @@
                                 <div class="col-md-7 text_all ml-5">
                                     <textarea name="" id="" cols="23" rows="2"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="d-flex ml-1 margin_cari_kodelbli_mobile">
-                                <div class="col-md-4 text_all">
-                                    <label class="text_all_mobile">Lokasi Usaha</label>
+                                <div class="col-md-6 text_all">
+                                    <label class="text_all_mobile">Kegiatan Ruang</label>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                        <select class="form-control ml-2">
-                                            <option>Skala1</option>
-                                            <option>Skala2</option>
+                                        <select class="form-control text_all" id="kegiatanRuang" style="z-index: 9999">
+
                                         </select>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
-                                <div class="col-md-4 text_all">
-                                    <label class="text_all_mobile">Skala Usaha</label>
+                                <div class="col-md-6 text_all">
+                                    <label class="text_all_mobile">Skala</label>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                        <select class="form-control ml-2">
-                                            <option>Skala1</option>
-                                            <option>Skala2</option>
+                                        <select class="form-control" id="skala">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
+                                <div class="col-md-6 text_all">
+                                    <label class="text_all_mobile">kegiatan Kewenangan</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                        <select class="form-control" id="kegiatanKewenangan">
+
                                         </select>
                                     </div>
                                 </div>
@@ -1059,6 +1074,7 @@
 
     <!-- <script src="assets/js/bootstrap.min.js" rel="preload"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
