@@ -976,7 +976,7 @@
 
                             <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
                                 <div class="col-md-6 text_all">
-                                    <label class="text_all_mobile">kegiatan Kewenangan</label>
+                                    <label class="text_all_mobile">Kegiatan Kewenangan</label>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group input-group-sm cari_kodekbli_option_mobile">
@@ -996,14 +996,8 @@
                                         <th class="text_all text-center">ITBX</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text_all text-center" style="width:30%;">13472</td>
-                                        <td class="text_all text-center">Perdagangan Kue Basah</td>
-                                        <td class="text_all text-center">Menengah</td>
-                                        <td class="text_all text-center">Bersyarat</td>
+                                <tbody class="dtKBLI">
 
-                                    </tr>
                                 </tbody>
                             </table>
 

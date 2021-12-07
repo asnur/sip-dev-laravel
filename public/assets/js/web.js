@@ -3,6 +3,7 @@ var kilometer = $("#ControlRange").val() / 1000;
 let popUpHarga;
 var setAttrClick;
 var cat = [];
+var data_kbli;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -503,6 +504,16 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
     dropDownKegiatan(dt["Sub Zona"]);
+    $("#kegiatanRuang").change(function () {
+        $("#skala").html("");
+        var sel = $(this).select2("val");
+        // console.log(sel);
+        DropdownSkala(dt["Sub Zona"], sel);
+        $("#skala").change(function () {
+            var skala = $(this).select2("val");
+            dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+        });
+    });
 });
 
 function getIumk(e) {
@@ -1332,7 +1343,10 @@ function dropDownKegiatan(subzona) {
         dataType: "json",
         success: function (e) {
             $("#kegiatanRuang").html("");
+            $("#skala").html("");
+            $("#kegiatanKewenangan").html("");
             var htmlContent = "";
+            htmlContent += `<option>Pilih...</option>`;
             var data = e.features[0].properties;
             for (i in data) {
                 // console.log(data[i]["Kegiatan Ruang"]);
@@ -1342,6 +1356,133 @@ function dropDownKegiatan(subzona) {
         },
     });
 }
+
+function DropdownSkala(zonasi, sel) {
+    var resHTML = "";
+    $("#kegiatanKewenangan").html("");
+    $.ajax({
+        url: `${url}/kblib2/${zonasi}/${sel}`,
+        method: "get",
+        dataType: "json",
+        success: function (res) {
+            if (res.features != null) {
+                const prop = res.features[0].properties;
+                var jmlh = [];
+                resHTML += "<option>Pilih....</option>";
+                resHTML += "<optgroup label='Modal'>";
+                for (var i in prop) {
+                    if (prop[i]["Skala"] == "MIKRO") {
+                        jmlh[0] = {
+                            skala: "MIKRO",
+                            jmlh_modal: "< Rp 1 Milyar",
+                            jml_omzet: "< Rp 2 Miliyar",
+                        };
+                    } else if (prop[i]["Skala"] == "KECIL") {
+                        jmlh[1] = {
+                            skala: "KECIL",
+                            jmlh_modal: "Rp 1-5 Milyar",
+                            jml_omzet: "Rp 2-15 Miliyar",
+                        };
+                    } else if (prop[i]["Skala"] == "MENENGAH") {
+                        jmlh[2] = {
+                            skala: "MENENGAH",
+                            jmlh_modal: "Rp 5-10 Milyar",
+                            jml_omzet: "Rp 15-50 Miliyar",
+                        };
+                    } else {
+                        jmlh[3] = {
+                            skala: "BESAR",
+                            jmlh_modal: "> Rp 10 Milyar",
+                            jml_omzet: "> Rp 50 Miliyar",
+                        };
+                    }
+                    // resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+                }
+
+                for (var i in jmlh) {
+                    resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jmlh_modal}</option>`;
+                }
+                resHTML += "</optgroup><optgroup label='Omzet'>";
+
+                for (var i in jmlh) {
+                    resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jml_omzet}</option>`;
+                }
+                // for (var i in prop) {
+                //   if (prop[i]['Skala'] == "MIKRO") {
+                //       jmlh = '< Rp 2 Milyar'
+                //   }else if (prop[i]['Skala'] == "KECIL") {
+                //       jmlh = 'Rp 2-5 Milyar'
+                //   }else if (prop[i]['Skala'] == "MENENGAH") {
+                //     jmlh = 'Rp 15-50 Milyar'
+                //   }else{
+                //     jmlh = '> Rp 50 Milyar'
+                //   }
+                //   resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+                // }
+
+                resHTML += "</optgroup>";
+
+                // console.log(jmlh);
+
+                $("#skala").html(resHTML);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+            // alert('data tidak ada')
+        },
+    });
+}
+
+function dropDownKegiatanKewenangan(zonasi, sel, skala) {
+    $.ajax({
+        url: `${url}/kblic2/${zonasi}/${sel}/${skala}`,
+        method: "get",
+        dataType: "json",
+        success: function (res) {
+            var resHTML = "";
+            if (res.features != null) {
+                const prop = res.features[0].properties;
+                data_kbli = res.features[0].properties;
+                resHTML += "<option>Pilih....</option>";
+                for (var i in prop) {
+                    resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
+                }
+
+                $("#kegiatanKewenangan").html(resHTML);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+            // alert('data tidak ada')
+        },
+    });
+}
+
+$(document).on("change", "#kegiatanKewenangan", function () {
+    const dis = $(this);
+    selSektor = dis.val();
+    var index = dis.data("index");
+    $(".dtKBLI").html("");
+    // console.log(data_kbli);
+    var tblSel = "";
+    tblSel += `
+      <tr>
+        <td class="text_all" style="vertical-align: top;"><a href="https://oss.go.id/informasi/kbli-kode?kode=G&kbli=${data_kbli[selSektor]["Kode KBLI"]}" target="_blank">${data_kbli[selSektor]["Kode KBLI"]}</a></td>
+        <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Kegiatan"]}</td>
+        <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Resiko"]}</td>
+        <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Status"]}</td>
+      </tr>
+      <br>
+      <tr>
+        <td class="text_all font-weight-bold" colspan="4"><br>Ketentuan ITBX</td>
+      </tr>
+      <tr>
+        <td class="text_all" class="bg-white" colspan="4">${data_kbli[selSektor]["Substansi"]}</td>
+      </tr>
+      `;
+    $(".dtKBLI").html(tblSel);
+});
 
 $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
