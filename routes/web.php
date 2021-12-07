@@ -17,7 +17,7 @@ use App\Http\Controllers\MenuController;
 
 Route::get('/', function () {
     return view('layout.main');
-});
+})->name('home');
 
 Route::post('/getresolustion', function () {
 });

@@ -38,7 +38,7 @@
         <div class="d-flex">
             <div class="col-md-1">
 
-                <a href="{{'/'}}" class="badge badge-primary margin_new_menu_icon">
+                <a href="{{route('home')}}" class="badge badge-primary margin_new_menu_icon">
                     <span class="material-icons">
                         arrow_back
                     </span>
