@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,10 @@ Route::get('/', function () {
 
 Route::post('/getresolustion', function () {
 });
+
+Route::get('/lokasi', [MenuController::class, 'lokasi']);
+Route::get('/ekonomi', [MenuController::class, 'ekonomi']);
+Route::get('/kode-kbli', [MenuController::class, 'kode_kbli']);
+Route::get('/persil', [MenuController::class, 'persil']);
+Route::get('/poi', [MenuController::class, 'poi']);
+Route::get('/zonasi', [MenuController::class, 'zonasi']);
