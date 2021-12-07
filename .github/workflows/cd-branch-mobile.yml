@@ -1,9 +1,9 @@
-name: cd
+name: cd-branch-mobile
 
 on:
   push:
     branches:
-      - master
+      - mobile
 
 jobs:
   cd:
@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /var/www/html/sip-dev-laravel
+            cd /var/www/html/mobile/sip-dev-laravel
             chown -R $USER:www-data storage
             chmod -R 775 storage
             git pull origin master
