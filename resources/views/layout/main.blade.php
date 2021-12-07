@@ -482,7 +482,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="lokasi-tab" href="/lokasi" role="tab" aria-controls="pills-lokasi"
+                                    id="lokasi-tab" href="{{ route('lokasi') }}" role="tab" aria-controls="pills-lokasi"
                                     aria-selected="true"><i class="fa fa-map-marker"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Lokasi</label>
@@ -490,7 +490,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="ekonomi-tab" href="/ekonomi" role="tab" aria-controls="pills-ekonomi"
+                                    id="ekonomi-tab" href="{{ route('ekonomi') }}" role="tab" aria-controls="pills-ekonomi"
                                     aria-selected="false"><i class="ri-funds-box-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
@@ -498,7 +498,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="zonasi-tab" href="/zonasi" role="tab" aria-controls="pills-zonasi"
+                                    id="zonasi-tab" href="{{ route('zonasi') }}" role="tab" aria-controls="pills-zonasi"
                                     aria-selected="false"><i class="ri-map-2-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Zonasi</label>
@@ -506,7 +506,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="persil-tab" href="/persil" role="tab" aria-controls="pills-persil"
+                                    id="persil-tab" href="{{ route('persil') }}" role="tab" aria-controls="pills-persil"
                                     aria-selected="false"><i class="ri-home-4-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Persil</label>
@@ -514,7 +514,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
-                                    href="/poi" role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                    href="{{ route('poi') }}" role="tab" aria-controls="pills-poi" aria-selected="false"><i
                                         class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">POI</label>
@@ -522,7 +522,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" href="/kode-kbli" role="tab" aria-controls="pills-kblikeg"
+                                    id="kblikeg-tab" href="{{ route('kode_kbli') }}" role="tab" aria-controls="pills-kblikeg"
                                     aria-selected="false"><i class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">Kode KBLI</label>
