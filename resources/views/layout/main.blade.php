@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div style="margin-top: 5%;">
-                        <p><span class="TextHead font-weight-bold">Peta Perijinan dan Investasi</span></p>
+                        <p><span class="TextHead font-weight-bold">Peta Perizinan dan Investasi</span></p>
                     </div>
                 </div>
             </div>
@@ -319,12 +319,57 @@
                         </ul>
                     </div>
 
-                    <div class="form-check wilayahindex_fill mb-2">
+                    <div class="form-check wilayahindex_fill">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
                                 <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="wilayahindex_fill">Total Omzet Usaha Mikro Kecil</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check sewa_fill d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="checkbox" class="form-check-input" id="sewa_fill">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="sewa_fill">Harga Sewa Kantor</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check iumk_fill d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="checkbox" class="form-check-input" id="iumk_fill">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="iumk_fill">Sebaran Usaha Mikro Kecil</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check investasi_fill d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="checkbox" class="form-check-input" id="investasi_fill">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="investasi_fill">Proyek</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check investasi_dot d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="checkbox" class="form-check-input" id="investasi_dot">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="investasi_dot">Proyek</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check investasi_line d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="checkbox" class="form-check-input" id="investasi_line">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="investasi_line">Proyek</label>
                             </li>
                         </ul>
                     </div>
@@ -492,7 +537,7 @@
                 <hr class="for_web">
 
                 <!-- Mengatur Isi Konten Menu Web -->
-                <div class="tab-content for_web mb" id="pills-tabContent">
+                <div class="tab-content for_web mb-5" id="pills-tabContent">
 
                     <div class="tab-pane active" id="pills-lokasi" role="tabpanel" aria-labelledby="lokasi-tab">
                         <div class="container">
@@ -687,7 +732,7 @@
                     </div>
 
                     <div class="tab-pane" id="pills-zonasi" role="tabpanel" aria-labelledby="zonasi-tab">
-                        <div class="container mb-5">
+                        <div class="container" style="margin-bottom: 100px">
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Zonasi</p>
 
                             <div class="d-flex space_text row_mid_text">
@@ -791,7 +836,15 @@
                                     <label class="text_all_mobile">KLB</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p class="inf-klb"></p>
+                                    <p class="inf-klb">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-12 text_all">
+                                    <label class="text_all_mobile inf-gsb">
+                                        -
+                                    </label>
                                 </div>
                             </div>
 
@@ -981,6 +1034,41 @@
 
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
+        <div class="container p-2" id="btn-titik" style="position:absolute; right:0; z-index:999; width:67%">
+            <button class="btn btn-sm"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            apartment
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                    </div>
+                </div>
+            </button>
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            storefront
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                    </div>
+                </div>
+            </button>
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            home_repair_service
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                    </div>
+                </div>
+            </button>
+        </div>
     </div>
     {{-- <div class="detail_omzet" id="legends"></div>
     <div class="detail_jumlah" id="features">

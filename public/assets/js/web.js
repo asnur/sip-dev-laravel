@@ -13,6 +13,8 @@ $(document).on("input change", "#ControlRange", function () {
     getRadius(setAttrClick);
 });
 
+$("#btn-titik").hide();
+
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
 const popup = new mapboxgl.Popup({
@@ -426,7 +428,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdh"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdh, .inf-gsb"
     ).html("-");
 
     getEksisting(e);
@@ -519,7 +521,23 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
-    console.log(dt);
+    var gsb = "";
+    // console.log(dt);
+    if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
+        gsb = `
+        <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
+        <ol style="margin-top:-15px">
+          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≤ 12m, Maka GSB: Sebesar 0,5 Kali Lebar Rencana Jalan Dari Sisi Terdekat Rencana Jalan;</li>
+          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar 12m – 26m, Maka GSB: 8m Dari Sisi Terdekat Rencana Jalan;</li>
+          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≥ 26m, Maka GSB: 10m Dari Sisi Terdekat Rencana Jalan;</li>
+          <li style="margin-left:-25px">Jalan Eksisting Tanpa Rencana, Maka GSB: 2m Dari Sisi Terdekat Jalan Eksisting.</li>
+        </ol>
+        `;
+    } else {
+        gsb = `
+        <p>Ketentuan GSB Bangunan Ditiadakan dan Diganti Dengan Pedestrian.</p>
+        `;
+    }
     $(".inf-zona").html(dt.Zona);
     $(".inf-subzona").html(dt["Sub Zona"] + " - " + dt.Hirarki);
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
@@ -528,6 +546,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
+    $(".inf-gsb").html(gsb);
     dropDownKegiatan(dt["Sub Zona"]);
     $("#kegiatanRuang").change(function () {
         $("#skala").html("");
@@ -965,28 +984,28 @@ function addSourceLayer(item) {
         const dt = api[i];
         if (map.getLayer(dt + "_fill")) {
             map.removeLayer(dt + "_fill");
-            $("#menus").html("");
+            // $("#menus").html("");
             $(".lblLayer").hide();
             $(".closeCollapse").hide();
             $("#radiusSlide").hide();
         }
         if (map.getLayer(dt + "_dot")) {
             map.removeLayer(dt + "_dot");
-            $("#menus").html("");
+            // $("#menus").html("");
             $(".lblLayer").hide();
             $(".closeCollapse").hide();
             $("#radiusSlide").hide();
         }
         if (map.getLayer(dt + "_line")) {
             map.removeLayer(dt + "_line");
-            $("#menus").html("");
+            // $("#menus").html("");
             $(".lblLayer").hide();
             $(".closeCollapse").hide();
             $("#radiusSlide").hide();
         }
         if (map.getSource(dt)) {
             map.removeSource(dt);
-            $("#menus").html("");
+            // $("#menus").html("");
             $(".lblLayer").hide();
             $(".closeCollapse").hide();
             $("#radiusSlide").hide();
@@ -1207,6 +1226,7 @@ function onOffLayers() {
         }
     });
 
+    //Peta Zonasi
     if ($("#zoning_fill").prop("checked") == true) {
         showLayer("zoning_fill");
     } else {
@@ -1218,6 +1238,76 @@ function onOffLayers() {
             showLayer("zoning_fill");
         } else {
             hideLayer("zoning_fill");
+        }
+    });
+
+    //Sebaran Usaha mikro kecil
+    $("#iumk_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("iumk_fill");
+        } else {
+            hideLayer("iumk_fill");
+        }
+    });
+
+    //Harga Sewa Kantor
+    $("#sewa_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("sewa_fill");
+            var infoHarga = popUpHarga[0].features;
+            for (
+                let index = 0;
+                index < popUpHarga[0].features.length;
+                index++
+            ) {
+                const pop = new mapboxgl.Popup({
+                    closeButton: false,
+                })
+                    .setLngLat(infoHarga[index]["geometry"]["coordinates"])
+                    .setHTML(
+                        `Rp. ${separatorNum(
+                            infoHarga[index]["properties"]["Sewa"]
+                        )}`
+                    )
+                    .addTo(map);
+
+                $(".mapboxgl-popup-content").css("background", "green");
+                $(".mapboxgl-popup-content").css("color", "white");
+                $(".mapboxgl-popup-tip").css("border-top-color", "green");
+                $(".mapboxgl-popup-tip").css("border-bottom-color", "green");
+            }
+            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
+                "display",
+                ""
+            );
+        } else {
+            hideLayer("sewa_fill");
+            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        }
+    });
+
+    //proyek_potensial
+    $("#investasi_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("investasi_fill");
+        } else {
+            hideLayer("investasi_fill");
+        }
+    });
+
+    $("#investasi_dot").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("investasi_dot");
+        } else {
+            hideLayer("investasi_dot");
+        }
+    });
+
+    $("#investasi_line").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("investasi_line");
+        } else {
+            hideLayer("investasi_line");
         }
     });
 
@@ -1361,6 +1451,7 @@ function onOffLayers() {
 
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
+    $("#btn-titik").show();
 
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");
@@ -1558,4 +1649,16 @@ $(document).on("click", "#investasi_fill", function () {
     $("#investasi_dot").trigger("click");
     $("#investasi_line").trigger("click");
     // console.log("aaa");
+});
+
+$("#sewa_kantor").click(function () {
+    $("#sewa_fill").trigger("click");
+});
+
+$("#iumk").click(function () {
+    $("#iumk_fill").trigger("click");
+});
+
+$("#proyek").click(function () {
+    $("#investasi_fill").trigger("click");
 });
