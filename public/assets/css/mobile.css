@@ -6,7 +6,7 @@
 
 
 /* Layar Mobile*/
-@media (min-width: 280px) and (max-width: 767.98px) {
+@media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
     .for_web {
@@ -494,7 +494,7 @@
 
 
 /* Layar Ipad */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 767px) and (max-width: 1024px) {
     /* START FOR MOBILE */
 
     .for_web {

@@ -23,5 +23,5 @@ jobs:
             cd /var/www/html/mobile/sip-dev-laravel
             chown -R $USER:www-data storage
             chmod -R 775 storage
-            git pull origin master
+            git pull origin mobile
             composer install

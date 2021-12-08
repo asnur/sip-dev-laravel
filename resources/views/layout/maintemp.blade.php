@@ -20,12 +20,11 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    @if (isMobileDevice())
-    <link rel="stylesheet" href="{{asset('assets/css/mobile.css')}}">
-    @else
-        <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-    @endif
 
+
+    <!-- custom -->
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/mobile.css')}}">
 
 
 </head>
