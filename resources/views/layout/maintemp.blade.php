@@ -24,6 +24,8 @@
 
     <!-- custom -->
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/mobile.css')}}">
+
 
 </head>
 
@@ -40,7 +42,7 @@
 
                 <a href="{{route('home')}}" class="badge badge-primary margin_new_menu_icon">
                     <span class="material-icons">
-                        arrow_back
+                        arrow_back_ios
                     </span>
                 </a>
 

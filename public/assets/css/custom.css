@@ -490,7 +490,7 @@ input[type="range"]::-moz-range-progress {
     border: 1px #dcdcdc solid;
 }
 
-@media (min-width: 579px) {
+@media (min-width: 1025px) {
     .for_mobile {
         display: none;
     }

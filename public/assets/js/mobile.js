@@ -51,7 +51,7 @@ map.on("style.load", function () {
             "fill-outline-color": "red",
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
 
     }, );

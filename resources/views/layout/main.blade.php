@@ -28,9 +28,6 @@
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
         type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
 
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
@@ -248,7 +245,9 @@
                                         </div>
                                     </span>
 
-                                    <input type="text" class="input" id="cari_wilayah_mobile" placeholder="Cari kelurahan disini...">
+
+
+                                    <input type="search" class="input tombol_search" id="cari_wilayah_mobile" placeholder="Cari kelurahan disini...">
 
                                     <span class="btn-search">
                                         <i class="ri-user-fill"></i>
@@ -257,6 +256,8 @@
                                     <div class="wm-search__dropdown">
                                         <ul class="wm-search__dropdown" role="listbox"></ul>
                                     </div>
+
+
 
                                 </div>
                             </div>
@@ -469,7 +470,7 @@
                 <!-- Mengatur Menu Mobile -->
                 <div class="container container_menu for_mobile">
 
-                    <div style="margin-top: -6%;" class="text-center">
+                    <div class="text-center garis_pemisah_mobile">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path d="M5 11h14v2H5z" fill="rgba(211,211,211,1)" />

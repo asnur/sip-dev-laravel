@@ -2,7 +2,7 @@
 @section('kode_kbli')
 
        <!-- Content -->
-       <div class="container margin_conten_permenu">
+       <div class="container ">
 
         <div class="d-flex ml-1">
             <div class="col-md-5 text_all_permenu">

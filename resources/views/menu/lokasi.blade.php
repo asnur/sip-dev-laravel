@@ -1,6 +1,6 @@
 @extends('layout.maintemp')
-@section('lokasi')
 
+@section('lokasi')
 
     <div class="container margin_conten_permenu">
 
@@ -92,7 +92,6 @@
         </div>
 
     </div>
-
 
     @endsection
 
