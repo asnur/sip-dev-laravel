@@ -30,10 +30,6 @@
         type="text/css">
 
 
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}"> --}}
-
      @if (isMobileDevice())
     <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
     @else
