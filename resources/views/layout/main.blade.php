@@ -309,59 +309,25 @@
                     <div class="form-check investasi_line" style="display: none;"><input id="investasi_line"
                             name="investasi_line" class="form-check-input mt-1" type="checkbox"><label
                             for="investasi_line" class="form-check-label text_all">Investasi3</label></div> --}}
-                    {{-- <div class="form-check">
+                    <div class="form-check zoning_fill">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="checkbox1">
+                                <input type="checkbox" class="form-check-input" id="zoning_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="checkbox1">Wilayah</label>
+                                    for="zoning_fill">Peta Zonasi</label>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="form-check">
+                    <div class="form-check wilayahindex_fill mb-2">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="checkbox2">
+                                <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="checkbox2">Total Omzet Per
-                                    Kelurahan</label>
+                                    for="wilayahindex_fill">Total Omzet Usaha Mikro Kecil</label>
                             </li>
                         </ul>
                     </div>
-
-                    <div class="form-check">
-                        <ul class="list-group list-group-flush">
-                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="checkbox3">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="checkbox3">Rencana
-                                    Kota</label>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="form-check">
-                        <ul class="list-group list-group-flush">
-                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="checkbox4">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="checkbox4">Sebaran Usaha
-                                    Mikro Kecil</label>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="form-check mb-2">
-                        <ul class="list-group list-group-flush">
-                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="checkbox4">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="checkbox4">Harga Sewa
-                                    Kantor</label>
-                            </li>
-                        </ul>
-                    </div> --}}
 
                 </div>
                 <!-- End Checkbox -->
@@ -526,7 +492,7 @@
                 <hr class="for_web">
 
                 <!-- Mengatur Isi Konten Menu Web -->
-                <div class="tab-content for_web" id="pills-tabContent">
+                <div class="tab-content for_web mb" id="pills-tabContent">
 
                     <div class="tab-pane active" id="pills-lokasi" role="tabpanel" aria-labelledby="lokasi-tab">
                         <div class="container">

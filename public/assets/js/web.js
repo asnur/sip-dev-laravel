@@ -88,6 +88,7 @@ map.loadImage(
 );
 
 map.on("style.load", function () {
+    // onOffLayers();
     map.on(clickEvent, function (e) {
         // console.log(e);
         const coornya = e.lngLat;
@@ -210,6 +211,8 @@ map.on("load", function () {
         // zoom: 14
         // });
     });
+
+    // onOffLayers();
 });
 
 map.on("mouseenter", "wilayah_fill", function () {
@@ -1039,7 +1042,7 @@ function addLayers() {
             "fill-opacity": 1,
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
     });
 
@@ -1160,163 +1163,200 @@ function switchLayer(layer) {
 }
 
 function onOffLayers() {
-    var toggleableLayerIds = [
-        "wilayah_fill",
-        "zoning_fill",
-        "investasi_fill",
-        "sewa_fill",
-        "wilayahindex_fill",
-        "iumk_fill",
-        "investasi_dot",
-        "investasi_line",
-    ];
-    var textCnt = [
-        "Wilayah",
-        "Peta Zonasi",
-        "Proyek Potensial",
-        "Harga Sewa Kantor",
-        "Total Omzet Usaha Mikro Kecil",
-        "Sebaran Usaha Mikro Kecil",
-        "Investasi2",
-        "Investasi3",
-    ];
+    // var toggleableLayerIds = [
+    //     "wilayah_fill",
+    //     "zoning_fill",
+    //     "investasi_fill",
+    //     "sewa_fill",
+    //     "wilayahindex_fill",
+    //     "iumk_fill",
+    //     "investasi_dot",
+    //     "investasi_line",
+    // ];
+    // var textCnt = [
+    //     "Wilayah",
+    //     "Peta Zonasi",
+    //     "Proyek Potensial",
+    //     "Harga Sewa Kantor",
+    //     "Total Omzet Usaha Mikro Kecil",
+    //     "Sebaran Usaha Mikro Kecil",
+    //     "Investasi2",
+    //     "Investasi3",
+    // ];
+
+    //Wilayah
+    if ($("#wilayahindex_fill").prop("checked") == true) {
+        showLayer("wilayahindex_fill");
+        $(".detail_omzet").show();
+        $(".detail_jumlah").show();
+    } else {
+        hideLayer("wilayahindex_fill");
+        $(".detail_omzet").hide();
+        $(".detail_jumlah").hide();
+    }
+
+    $("#wilayahindex_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("wilayahindex_fill");
+            $(".detail_omzet").show();
+            $(".detail_jumlah").show();
+        } else {
+            hideLayer("wilayahindex_fill");
+            $(".detail_omzet").hide();
+            $(".detail_jumlah").hide();
+        }
+    });
+
+    if ($("#zoning_fill").prop("checked") == true) {
+        showLayer("zoning_fill");
+    } else {
+        hideLayer("zoning_fill");
+    }
+
+    $("#zoning_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("zoning_fill");
+        } else {
+            hideLayer("zoning_fill");
+        }
+    });
 
     // $("#menus").append("<label class='font-weight-bold'>Aktivasi</label>");
-    for (var i = 0; i < toggleableLayerIds.length; i++) {
-        var id = toggleableLayerIds[i];
-        if (!document.getElementById(id)) {
-            var div = document.createElement("div");
-            div.className = "form-check " + id;
+    // for (var i = 0; i < toggleableLayerIds.length; i++) {
+    //     var id = toggleableLayerIds[i];
+    //     if (!document.getElementById(id)) {
+    //         var div = document.createElement("div");
+    //         div.className = "form-check " + id;
 
-            var link = document.createElement("input");
-            link.id = id;
-            link.name = id;
-            if (textCnt[i] == "Wilayah") {
-                link.setAttribute("disabled", true);
-            }
-            link.className = "form-check-input mt-1";
-            link.type = "checkbox";
-            // link.value = id
-            div.append(link);
+    //         var link = document.createElement("input");
+    //         link.id = id;
+    //         link.name = id;
+    //         if (textCnt[i] == "Wilayah") {
+    //             link.setAttribute("disabled", true);
+    //         }
+    //         link.className = "form-check-input mt-1";
+    //         link.type = "checkbox";
+    //         // link.value = id
+    //         div.append(link);
 
-            var label = document.createElement("label");
-            label.htmlFor = id;
-            label.className = "form-check-label";
-            label.innerHTML = textCnt[i];
-            div.classList.add("text_all");
-            div.appendChild(label);
+    //         var label = document.createElement("label");
+    //         label.htmlFor = id;
+    //         label.className = "form-check-label";
+    //         label.innerHTML = textCnt[i];
+    //         div.classList.add("text_all");
+    //         div.appendChild(label);
 
-            var mapLayer = map.getLayer(id);
-            // console.log(mapLayer.visibility);
+    //         var mapLayer = map.getLayer(id);
+    //         // console.log(mapLayer.visibility);
 
-            if (mapLayer.visibility == "visible") {
-                link.checked = true;
-            } else {
-                link.checked = false;
-            }
+    //         if (mapLayer.visibility == "visible") {
+    //             link.checked = true;
+    //         } else {
+    //             link.checked = false;
+    //         }
 
-            link.addEventListener("change", function (e) {
-                var clickedLayer = this.id;
-                e.preventDefault();
-                e.stopPropagation();
-                var pop = new mapboxgl.Popup({
-                    closeButton: false,
-                    closeOnClick: false,
-                });
-                var visibility = map.getLayoutProperty(
-                    clickedLayer,
-                    "visibility"
-                );
-                var popUp = new mapboxgl.Popup();
-                if (visibility == "visible") {
-                    hideLayer(clickedLayer);
-                    popUp.remove();
-                } else if (visibility == "none") {
-                    showLayer(clickedLayer);
-                    if (this.id == "sewa_fill") {
-                        // console.log(popUpHarga);
-                        var infoHarga = popUpHarga[0].features;
-                        var checkBox = document.getElementById("sewa_fill");
-                        for (
-                            let index = 0;
-                            index < popUpHarga[0].features.length;
-                            index++
-                        ) {
-                            const pop = new mapboxgl.Popup({
-                                closeButton: false,
-                            })
-                                .setLngLat(
-                                    infoHarga[index]["geometry"]["coordinates"]
-                                )
-                                .setHTML(
-                                    `Rp. ${separatorNum(
-                                        infoHarga[index]["properties"]["Sewa"]
-                                    )}`
-                                )
-                                .addTo(map);
+    //         link.addEventListener("change", function (e) {
+    //             var clickedLayer = this.id;
+    //             e.preventDefault();
+    //             e.stopPropagation();
+    //             var pop = new mapboxgl.Popup({
+    //                 closeButton: false,
+    //                 closeOnClick: false,
+    //             });
+    //             var visibility = map.getLayoutProperty(
+    //                 clickedLayer,
+    //                 "visibility"
+    //             );
+    //             var popUp = new mapboxgl.Popup();
+    //             if (visibility == "visible") {
+    //                 hideLayer(clickedLayer);
+    //                 popUp.remove();
+    //             } else if (visibility == "none") {
+    //                 showLayer(clickedLayer);
+    //                 if (this.id == "sewa_fill") {
+    //                     // console.log(popUpHarga);
+    //                     var infoHarga = popUpHarga[0].features;
+    //                     var checkBox = document.getElementById("sewa_fill");
+    //                     for (
+    //                         let index = 0;
+    //                         index < popUpHarga[0].features.length;
+    //                         index++
+    //                     ) {
+    //                         const pop = new mapboxgl.Popup({
+    //                             closeButton: false,
+    //                         })
+    //                             .setLngLat(
+    //                                 infoHarga[index]["geometry"]["coordinates"]
+    //                             )
+    //                             .setHTML(
+    //                                 `Rp. ${separatorNum(
+    //                                     infoHarga[index]["properties"]["Sewa"]
+    //                                 )}`
+    //                             )
+    //                             .addTo(map);
 
-                            $(".mapboxgl-popup-content").css(
-                                "background",
-                                "green"
-                            );
-                            $(".mapboxgl-popup-content").css("color", "white");
-                            $(".mapboxgl-popup-tip").css(
-                                "border-top-color",
-                                "green"
-                            );
-                            $(".mapboxgl-popup-tip").css(
-                                "border-bottom-color",
-                                "green"
-                            );
-                            // $(".mapboxgl-popup-tip").css(
-                            //     "border-left-color",
-                            //     "green"
-                            // );
-                            // $(".mapboxgl-popup-tip").css(
-                            //     "border-right-color",
-                            //     "green"
-                            // );
-                        }
-                    }
-                } else {
-                    $(this).prop("checked", false);
-                    // alert("nda ada");
-                }
-            });
+    //                         $(".mapboxgl-popup-content").css(
+    //                             "background",
+    //                             "green"
+    //                         );
+    //                         $(".mapboxgl-popup-content").css("color", "white");
+    //                         $(".mapboxgl-popup-tip").css(
+    //                             "border-top-color",
+    //                             "green"
+    //                         );
+    //                         $(".mapboxgl-popup-tip").css(
+    //                             "border-bottom-color",
+    //                             "green"
+    //                         );
+    //                         // $(".mapboxgl-popup-tip").css(
+    //                         //     "border-left-color",
+    //                         //     "green"
+    //                         // );
+    //                         // $(".mapboxgl-popup-tip").css(
+    //                         //     "border-right-color",
+    //                         //     "green"
+    //                         // );
+    //                     }
+    //                 }
+    //             } else {
+    //                 $(this).prop("checked", false);
+    //                 // alert("nda ada");
+    //             }
+    //         });
 
-            $("#menus").append(div);
-            $("#menus").show();
-            $("#radiusSlide").show();
-            $(".wilayah_fill").css("display", "none");
-            $("#iumk_fill").prop("checked", false);
-            $("#sewa_fill").prop("checked", false);
-            $("#wilayahindex_fill").prop("checked", false);
-            $(".investasi_dot").css("display", "none");
-            $(".investasi_line").css("display", "none");
-            $("#sewa_fill").on("change", function () {
-                if ($(this).prop("checked") == true) {
-                    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
-                        "display",
-                        ""
-                    );
-                    // console.log("remove");
-                } else {
-                    $(
-                        "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
-                    ).remove();
-                }
-            });
-            $("#wilayahindex_fill").on("change", function () {
-                if ($(this).prop("checked") == true) {
-                    $(".detail_omzet").show();
-                    $(".detail_jumlah").show();
-                } else {
-                    $(".detail_omzet").hide();
-                    $(".detail_jumlah").hide();
-                }
-            });
-        }
-    }
+    //         $("#menus").append(div);
+    //         $("#menus").show();
+    //         $("#radiusSlide").show();
+    //         $(".wilayah_fill").css("display", "none");
+    //         $("#iumk_fill").prop("checked", false);
+    //         $("#sewa_fill").prop("checked", false);
+    //         $("#wilayahindex_fill").prop("checked", false);
+    //         $(".investasi_dot").css("display", "none");
+    //         $(".investasi_line").css("display", "none");
+    //         $("#sewa_fill").on("change", function () {
+    //             if ($(this).prop("checked") == true) {
+    //                 $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
+    //                     "display",
+    //                     ""
+    //                 );
+    //                 // console.log("remove");
+    //             } else {
+    //                 $(
+    //                     "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
+    //                 ).remove();
+    //             }
+    //         });
+    //         $("#wilayahindex_fill").on("change", function () {
+    //             if ($(this).prop("checked") == true) {
+    //                 $(".detail_omzet").show();
+    //                 $(".detail_jumlah").show();
+    //             } else {
+    //                 $(".detail_omzet").hide();
+    //                 $(".detail_jumlah").hide();
+    //             }
+    //         });
+    //     }
+    // }
 }
 
 $(document).on("click", ".wilayah-select", function () {
