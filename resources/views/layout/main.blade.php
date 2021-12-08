@@ -652,8 +652,8 @@
                             </div>
 
                             <div class="d-flex margin_chartline_ekonomi_mobile">
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 offset-2 mt-4">
-                                    <canvas id="bar-chart-grouped" width="90" height="150"></canvas>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                                    <canvas id="bar-chart-grouped" width="90" height="120"></canvas>
                                 </div>
                             </div>
 
@@ -721,8 +721,8 @@
                     </div>
 
                     <div class="tab-pane" id="pills-zonasi" role="tabpanel" aria-labelledby="zonasi-tab">
-                        <div class="container">
-                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Zonasi</p>
+                        <div class="container mb-5">
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Zonasi</p>
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
@@ -744,19 +744,10 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kode Blok</label>
+                                    <label class="text_all_mobile">Kode Blok/Subblok</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-blok">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Sub Blok</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-subblok">-</p>
                                 </div>
                             </div>
                         </div>

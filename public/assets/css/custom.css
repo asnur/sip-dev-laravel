@@ -225,7 +225,7 @@
 
 .flex_container li {
     margin: 3px;
-    flex: 0 1 calc(19% - 8px);
+    flex: 0 1 calc(15% - 18px);
 }
 
 .space_judul {

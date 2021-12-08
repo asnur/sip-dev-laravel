@@ -423,7 +423,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-subblok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdh"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdh"
     ).html("-");
 
     getEksisting(e);
@@ -459,16 +459,39 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
             datasets: [
                 {
-                    label: "Data Usia",
                     backgroundColor: "#3e95cd",
                     data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
                 },
             ],
         },
         options: {
-            title: {
-                display: true,
-                text: "Usia",
+            // title: {
+            //     display: true,
+            //     text: ["Usia", "Jumlah"],
+            //     position: ["bottom", "left"],
+            // },
+            legend: {
+                display: false,
+            },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Jumlah",
+                            padding: 20,
+                        },
+                    },
+                ],
+                xAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Usia",
+                            padding: 20,
+                        },
+                    },
+                ],
             },
         },
     });
@@ -495,9 +518,8 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     console.log(dt);
     $(".inf-zona").html(dt.Zona);
-    $(".inf-subzona").html(dt["Sub Zona"] + "-" + dt.Hirarki);
-    $(".inf-blok").html(dt["Kode Blok"]);
-    $(".inf-subblok").html(dt["Sub Blok"]);
+    $(".inf-subzona").html(dt["Sub Zona"] + " - " + dt.Hirarki);
+    $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
     $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
@@ -746,11 +768,15 @@ function getRadius(e) {
                 for (var az in dt) {
                     const dta = dt[az];
                     htmlContent += `
-                    <li class="listgroup-cust d-flex justify-content-between align-items-center text_all"> ${
-                        dta.fasilitas
-                    } <span class="PoiCollabse_konten_mobile">${
-                        Math.round(dta.jarak) / 1000
-                    } km</span>
+                    <li style="list-style:none" class="listgroup-cust align-items-center text_all"> 
+                        <div class="row">
+                            <div class="col-md-8 text_all">
+                            ${dta.fasilitas}
+                            </div>
+                            <div class="col-md-4 text-right">
+                            <span>${Math.round(dta.jarak) / 1000} km</span>
+                            </div>
+                        </div>
                     </li>
                     `;
                     // console.log(dta.fasilitas, dta.jarak);
