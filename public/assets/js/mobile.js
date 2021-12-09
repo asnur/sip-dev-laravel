@@ -12,7 +12,7 @@ $(
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
-// $(".container.container_menu.for_mobile").hide();
+$(".container.container_menu.for_mobile").hide();
 
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
