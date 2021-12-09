@@ -223,10 +223,10 @@
     font-size: 1.2rem;
 }
 
-.flex_container li {
+/* .flex_container li {
     margin: 3px;
-    flex: 0 1 calc(15% - 18px);
-}
+    flex: 0 1 calc(19% - 8px);
+} */
 
 .space_judul {
     margin-top: 11px;
