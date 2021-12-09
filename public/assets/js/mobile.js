@@ -77,19 +77,19 @@ map.on("style.load", function () {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
-    lokasi(dt);
     console.log(e.features[0].properties);
+    lokasi(dt);
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
-    // console.log(e.features[0].properties);
+    console.log(e.features[0].properties);
     $(".container.container_menu.for_mobile").show();
 });
 
 function lokasi(e) {
     var data = e;
     $.ajax({
-        url: "http://localhost:8000/setLokasi",
+        url: "/setLokasi",
         method: "post",
         data: {
             _token: CSRF_TOKEN,
@@ -102,7 +102,7 @@ function lokasi(e) {
 function koordinat(e) {
     var data = e;
     $.ajax({
-        url: "http://localhost:8000/setKordinat",
+        url: "/setKordinat",
         method: "post",
         data: {
             _token: CSRF_TOKEN,

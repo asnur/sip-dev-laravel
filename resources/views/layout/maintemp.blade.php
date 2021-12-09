@@ -75,45 +75,59 @@
 
     <!-- CHART -->
     <script>
-        new Chart(document.getElementById("pie-chart"), {
-            type: 'pie',
-            data: {
-                labels: ["Kel A", "Kel B", "Kel C"],
-                datasets: [{
-                    label: "Kelurahan",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                    data: [478, 267, 734]
-                }]
-            },
-            options: {
-                title: {
-                    display: true
-                }
-            }
-        });
+        // new Chart(document.getElementById("pie-chart"), {
+        //     type: "pie",
+        //     data: {
+        //         labels: ["Produksi", "Perdagangan", "Jasa"],
+        //         datasets: [{
+        //             label: "Kelurahan",
+        //             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+        //             data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
+        //         }, ],
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //         },
+        //     },
+        // });
 
-
-        new Chart(document.getElementById("bar-chart-grouped"), {
-            type: 'bar',
-            data: {
-                labels: ["1900", "1950", "1999", "2050"],
-                datasets: [{
-                    label: "Kecamatan A",
-                    backgroundColor: "#3e95cd",
-                    data: [133, 221, 783, 478]
-                }, {
-                    label: "Kecamatan B",
-                    backgroundColor: "#8e5ea2",
-                    data: [832, 447, 175, 534]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Jumlah'
-                }
-            }
-        });
+        // new Chart(document.getElementById("bar-chart-grouped"), {
+        //     type: "bar",
+        //     data: {
+        //         labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
+        //         datasets: [{
+        //             backgroundColor: "#3e95cd",
+        //             data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
+        //         }, ],
+        //     },
+        //     options: {
+        //         // title: {
+        //         //     display: true,
+        //         //     text: ["Usia", "Jumlah"],
+        //         //     position: ["bottom", "left"],
+        //         // },
+        //         legend: {
+        //             display: false,
+        //         },
+        //         scales: {
+        //             yAxes: [{
+        //                 scaleLabel: {
+        //                     display: true,
+        //                     labelString: "Jumlah",
+        //                     padding: 20,
+        //                 },
+        //             }, ],
+        //             xAxes: [{
+        //                 scaleLabel: {
+        //                     display: true,
+        //                     labelString: "Usia",
+        //                     padding: 20,
+        //                 },
+        //             }, ],
+        //         },
+        //     },
+        // });
     </script>
 
 
