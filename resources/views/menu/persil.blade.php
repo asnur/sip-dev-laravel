@@ -9,7 +9,7 @@
                 <label class="text_all_mobile_permenu">Lahan Eksisting</label>
             </div>
             <div class="col-md-7 text_all_permenu">
-                <p>Rumah Besar</p>
+                <p class="inf-eksisting">-</p>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                 <label class="text_all_mobile_permenu">Tipe Hak</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>Hak Pakai</p>
+                <p class="inf-tipehak">-</p>
             </div>
         </div>
 
@@ -37,26 +37,7 @@
                 <label class="text_all_mobile_permenu">Luas</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>11.755<span>/m²</span></p>
-            </div>
-        </div>
-
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all_permenu">
-                <label class="text_all_mobile_permenu">Kode Blok</label>
-            </div>
-            <div class="col-lg-7 text_all_permenu">
-                <p>43</span></p>
-            </div>
-        </div>
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all_permenu">
-                <label class="text_all_mobile_permenu">Sub Blok</label>
-            </div>
-            <div class="col-lg-7 text_all_permenu">
-                <p>43</span></p>
+                <p class="inf-luasbpn">-</p>
             </div>
         </div>
 
@@ -65,7 +46,7 @@
                 <label class="text_all_mobile_permenu">TPZ</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>43</span></p>
+                <p>{{ $data_zonasi['TPZ'] }}</p>
             </div>
         </div>
 
@@ -74,7 +55,7 @@
                 <label class="text_all_mobile_permenu">CD TPZ</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>43</span></p>
+                <p>{{ $data_zonasi['CD TPZ'] }}</p>
             </div>
         </div>
 
@@ -83,7 +64,7 @@
                 <label class="text_all_mobile_permenu">KDH</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>43</span></p>
+                <p>{{ $data_zonasi['KDH'] }}</p>
             </div>
         </div>
 
@@ -92,7 +73,15 @@
                 <label class="text_all_mobile_permenu">KLB</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>1,2</span></p>
+                <p>{{ $data_zonasi['KLB'] }}</p>
+            </div>
+        </div>
+
+        <div class="d-flex space_text row_mid_text">
+            <div class="col-lg-12 text_all_permenu">
+                @if ($data_zonasi['CD TPZ'] == ' ' || $data_zonasi['CD TPZ'] !== 'g')
+
+                @endif
             </div>
         </div>
 
@@ -100,4 +89,4 @@
     </div>
 
 
-    @endsection
+@endsection

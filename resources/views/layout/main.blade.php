@@ -490,7 +490,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="ekonomi-tab" href="{{ route('ekonomi') }}" role="tab"
+                                    id="ekonomi-tab" href="{{ route('ekonomi') }}" target="_blank" role="tab"
                                     aria-controls="pills-ekonomi" aria-selected="false"><i
                                         class="ri-funds-box-fill"></i></a>
                                 <br>
@@ -499,7 +499,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="zonasi-tab" href="{{ route('zonasi') }}" role="tab"
+                                    id="zonasi-tab" href="{{ route('zonasi') }}" target="_blank\" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-map-2-fill"></i></a>
                                 <br>
@@ -508,7 +508,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="persil-tab" href="{{ route('persil') }}" role="tab"
+                                    id="persil-tab" href="{{ route('persil') }}" target="_blank" role="tab"
                                     aria-controls="pills-persil" aria-selected="false"><i
                                         class="ri-home-4-fill"></i></a>
                                 <br>
@@ -1103,6 +1103,8 @@
         <script>
             var setLokasi = "{{ route('setLokasi') }}"
             var setKordinat = "{{ route('setKordinat') }}"
+            var setZonasi = "{{ route('setZonasi') }}"
+            var setEksisting = "{{ route('setEksisting') }}"
         </script>
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else

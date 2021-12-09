@@ -34,8 +34,18 @@ Route::post('/setLokasi', function (Request $request) {
     $data = $request->input('lokasi');
     return $request->session()->put('lokasi', $data);
 })->name('setLokasi');
+
 Route::post('/setKordinat', function (Request $request) {
     $data = $request->input('kordinat');
-    // return $data;
     return $request->session()->put('kordinat', $data);
 })->name('setKordinat');
+
+Route::post('/setZonasi', function (Request $request) {
+    $data = $request->input('zona');
+    return $request->session()->put('zona', $data);
+})->name('setZonasi');
+
+Route::post('/setEksisting', function (Request $request) {
+    $data = $request->input('eksisting');
+    return $request->session()->put('eksisting', $data);
+})->name('setEksisting');

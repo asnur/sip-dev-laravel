@@ -1,3 +1,8 @@
+@php
+$uri_path = $_SERVER['REQUEST_URI'];
+$uri_parts = explode('/', $uri_path);
+$request_url = end($uri_parts);
+@endphp
 <!doctype html>
 <html lang="en">
 
@@ -71,64 +76,162 @@
 
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+    <script>
+        var url = "http://103.146.202.108:3000"
+
+        function separatorNum(val) {
+            if (typeof val === "undefined" || val === null || val === "null") {
+                return null;
+            }
+            val = parseFloat(val);
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    </script>
 
     <!-- CHART -->
-    <script>
-        // new Chart(document.getElementById("pie-chart"), {
-        //     type: "pie",
-        //     data: {
-        //         labels: ["Produksi", "Perdagangan", "Jasa"],
-        //         datasets: [{
-        //             label: "Kelurahan",
-        //             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-        //             data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
-        //         }, ],
-        //     },
-        //     options: {
-        //         title: {
-        //             display: true,
-        //         },
-        //     },
-        // });
+    @if ($request_url == 'ekonomi')
+        <script>
+            var Produksi = "{{ @$data_lokasi['Produksi'] }}"
+            var Perdagangan = "{{ @$data_lokasi['Perdagangan'] }}"
+            var Jasa = "{{ @$data_lokasi['Jasa'] }}"
+            var U1 = "{{ @$data_lokasi['U1'] }}"
+            var U2 = "{{ @$data_lokasi['U2'] }}"
+            var U3 = "{{ @$data_lokasi['U3'] }}"
+            var U4 = "{{ @$data_lokasi['U4'] }}"
+            var U5 = "{{ @$data_lokasi['U5'] }}"
+            new Chart(document.getElementById("pie-chart"), {
+                type: "pie",
+                data: {
+                    labels: ["Produksi", "Perdagangan", "Jasa"],
+                    datasets: [{
+                        label: "Kelurahan",
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                        data: [Produksi, Perdagangan, Jasa],
+                    }, ],
+                },
+                options: {
+                    title: {
+                        display: true,
+                    },
+                },
+            });
 
-        // new Chart(document.getElementById("bar-chart-grouped"), {
-        //     type: "bar",
-        //     data: {
-        //         labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
-        //         datasets: [{
-        //             backgroundColor: "#3e95cd",
-        //             data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
-        //         }, ],
-        //     },
-        //     options: {
-        //         // title: {
-        //         //     display: true,
-        //         //     text: ["Usia", "Jumlah"],
-        //         //     position: ["bottom", "left"],
-        //         // },
-        //         legend: {
-        //             display: false,
-        //         },
-        //         scales: {
-        //             yAxes: [{
-        //                 scaleLabel: {
-        //                     display: true,
-        //                     labelString: "Jumlah",
-        //                     padding: 20,
-        //                 },
-        //             }, ],
-        //             xAxes: [{
-        //                 scaleLabel: {
-        //                     display: true,
-        //                     labelString: "Usia",
-        //                     padding: 20,
-        //                 },
-        //             }, ],
-        //         },
-        //     },
-        // });
-    </script>
+            new Chart(document.getElementById("bar-chart-grouped"), {
+                type: "bar",
+                data: {
+                    labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
+                    datasets: [{
+                        backgroundColor: "#3e95cd",
+                        data: [U1, U2, U3, U4, U5],
+                    }, ],
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Jumlah",
+                                padding: 20,
+                            },
+                        }, ],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Usia",
+                                padding: 20,
+                            },
+                        }, ],
+                    },
+                },
+            });
+        </script>
+    @endif
+
+    @if ($request_url == 'persil')
+        <script>
+            var lat = "{{ @$data_kordinat[0] }}"
+            var lng = "{{ @$data_kordinat[1] }}"
+
+
+            $.ajax({
+                url: `${url}/eksisting/${lng}/${lat}`,
+                method: "get",
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function() {
+                    // $('.map-loading').show()
+                },
+                success: function(dt) {
+                    const dtResp = JSON.parse(dt);
+                    if (dtResp.features != null) {
+                        const prop = dtResp.features[0].properties;
+
+                        $(".inf-eksisting").html(prop.Kegiatan);
+                        //   eksisting = `
+                //   <div class="col-sm-12">
+                //   <div class="row">
+                //         <div class="col-sm-12 font-weight-bold">Persil Tanah</div>
+                //         <div class="col-sm-4">Lahan Eksisting</div>
+                //         <div class="col-sm-8">${prop.Kegiatan}</div>
+                //       </div>
+                //     </div>
+                //     </tbody>
+                //   </table>
+                //   `;
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function(e) {
+                    // $('.map-loading').hide()
+                },
+            });
+
+            $.ajax({
+                url: `${url}/bpn/${lng}/${lat}`,
+                method: "get",
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function() {
+                    // $('.map-loading').show()
+                },
+                success: function(dt) {
+                    const dtResp = JSON.parse(dt);
+                    if (dtResp.features != null) {
+                        const prop = dtResp.features[0].properties;
+                        $(".inf-tipehak").html(prop.Tipe);
+                        $(".inf-luasbpn").html(separatorNum(prop.Luas) + " m&sup2;");
+                        //   bpn = `
+                //     <div class="col-sm-12">
+                //       <div class="row">
+                //         <div class="col-sm-4">Tipe Hak</div>
+                //         <div class="col-sm-8">${prop.Tipe}</div>
+                //         <div class="col-sm-4">Luas</div>
+                //         <div class="col-sm-8">${separatorNum(prop.Luas)} m&sup2;</div>
+                //         <div class="col-sm-4">Harga</div>
+                //         <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
+                //       </div>
+                //     </div>
+                //   `;
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+                complete: function(e) {
+                    // $('.map-loading').hide()
+                },
+            });
+        </script>
+    @endif
 
 
 

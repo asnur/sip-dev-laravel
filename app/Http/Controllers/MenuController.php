@@ -13,9 +13,10 @@ class MenuController extends Controller
         return view('menu.lokasi', ["title" => "Info Lokasi", "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
     }
 
-    public function ekonomi()
+    public function ekonomi(Request $request)
     {
-        return view('menu.ekonomi', ["title" => "Ekonomi"]);
+        $data_lokasi = $request->session()->get('lokasi');
+        return view('menu.ekonomi', ["title" => "Ekonomi", "data_lokasi" => $data_lokasi]);
     }
 
     public function kode_kbli()
@@ -23,9 +24,11 @@ class MenuController extends Controller
         return view('menu.kode-kbli', ["title" => "Kode KBLI"]);
     }
 
-    public function persil()
+    public function persil(Request $request)
     {
-        return view('menu.persil', ["title" => "Persil"]);
+        $data_kordinat = $request->session()->get('kordinat');
+        $data_zonasi = $request->session()->get('zona');
+        return view('menu.persil', ["title" => "Persil", "data_kordinat" => $data_kordinat, "data_zonasi" => $data_zonasi]);
     }
 
     public function poi()
@@ -33,8 +36,9 @@ class MenuController extends Controller
         return view('menu.poi', ["title" => "POI"]);
     }
 
-    public function zonasi()
+    public function zonasi(Request $request)
     {
-        return view('menu.zonasi', ["title" => "Zonasi"]);
+        $data_zonasi = $request->session()->get('zona');
+        return view('menu.zonasi', ["title" => "Zonasi", "data_zonasi" => $data_zonasi]);
     }
 }

@@ -82,7 +82,9 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
+    var dt = e.features[0].properties;
     console.log(e.features[0].properties);
+    zonasi(dt);
     $(".container.container_menu.for_mobile").show();
 });
 
@@ -109,8 +111,21 @@ function koordinat(e) {
             kordinat: data,
         },
         success: function (e) {
-            console.log(e);
+            // console.log(e);
         },
+    });
+}
+
+function zonasi(e) {
+    var data = e;
+    $.ajax({
+        url: setZonasi,
+        method: "post",
+        data: {
+            _token: CSRF_TOKEN,
+            zona: data,
+        },
+        success: function (e) {},
     });
 }
 
