@@ -332,6 +332,7 @@
     }
 
     .flex_container {
+        margin-top: -5%;
         display: flex;
         flex-flow: row wrap;
         text-align: center;
@@ -491,6 +492,7 @@
 
     .garis_pemisah_mobile {
         margin-top: -1%;
+        margin-left: -5%;
     }
 }
 
