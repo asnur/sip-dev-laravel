@@ -33,9 +33,9 @@ Route::get('/zonasi', [MenuController::class, 'zonasi'])->name('zonasi');
 Route::post('/setLokasi', function (Request $request) {
     $data = $request->input('lokasi');
     return $request->session()->put('lokasi', $data);
-});
+})->name('setLokasi');
 Route::post('/setKordinat', function (Request $request) {
     $data = $request->input('kordinat');
     // return $data;
     return $request->session()->put('kordinat', $data);
-});
+})->name('setKordinat');

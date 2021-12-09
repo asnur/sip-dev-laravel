@@ -89,7 +89,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
 function lokasi(e) {
     var data = e;
     $.ajax({
-        url: "/setLokasi",
+        url: setLokasi,
         method: "post",
         data: {
             _token: CSRF_TOKEN,
@@ -102,7 +102,7 @@ function lokasi(e) {
 function koordinat(e) {
     var data = e;
     $.ajax({
-        url: "/setKordinat",
+        url: setKordinat,
         method: "post",
         data: {
             _token: CSRF_TOKEN,

@@ -1100,6 +1100,10 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
     @if (isMobileDevice())
+        <script>
+            var setLokasi = "{{ route('setLokasi') }}"
+            var setKordinat = "{{ route('setKordinat') }}"
+        </script>
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
