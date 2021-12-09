@@ -12,7 +12,7 @@ $(
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
-$(".container.container_menu.for_mobile").hide();
+// $(".container.container_menu.for_mobile").hide();
 
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
@@ -28,6 +28,7 @@ map.on("style.load", function () {
     const el = document.createElement("div");
     el.className = "marker";
     var marker = new mapboxgl.Marker(el);
+
     function add_marker(event) {
         var coordinates = event.lngLat;
         marker.setLngLat(coordinates).addTo(map);
