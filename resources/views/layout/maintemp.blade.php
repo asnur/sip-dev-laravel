@@ -23,8 +23,11 @@
 
 
     <!-- custom -->
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
+    @if (isMobileDevice())
+        <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    @endif
 
 
 </head>
