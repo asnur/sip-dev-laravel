@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
-
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +28,14 @@ Route::get('/kode-kbli', [MenuController::class, 'kode_kbli'])->name('kode_kbli'
 Route::get('/persil', [MenuController::class, 'persil'])->name('persil');
 Route::get('/poi', [MenuController::class, 'poi'])->name('poi');
 Route::get('/zonasi', [MenuController::class, 'zonasi'])->name('zonasi');
+
+//set data for mobile
+Route::post('/setLokasi', function (Request $request) {
+    $data = $request->input('lokasi');
+    return $request->session()->put('lokasi', $data);
+});
+Route::post('/setKordinat', function (Request $request) {
+    $data = $request->input('kordinat');
+    // return $data;
+    return $request->session()->put('kordinat', $data);
+});

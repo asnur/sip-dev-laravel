@@ -4,6 +4,14 @@
     font-family: "Roboto", sans-serif;
 }
 
+.marker {
+    background-image: url("/assets/gambar/location-pin.png");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 /* Layar Mobile*/
 @media (min-width: 280px) and (max-width: 766.98px) {
@@ -438,8 +446,6 @@
         display: none;
     }
 
-
-
     .wm-search__dropdown,
     .wm-search__selected {
         box-sizing: border-box;
@@ -486,12 +492,7 @@
     .garis_pemisah_mobile {
         margin-top: -1%;
     }
-
-
-
-
 }
-
 
 /* Layar Ipad */
 @media (min-width: 767px) and (max-width: 1024px) {
@@ -927,8 +928,6 @@
         display: none;
     }
 
-
-
     .wm-search__dropdown,
     .wm-search__selected {
         box-sizing: border-box;
@@ -975,5 +974,4 @@
     .garis_pemisah_mobile {
         margin-top: -1%;
     }
-
 }

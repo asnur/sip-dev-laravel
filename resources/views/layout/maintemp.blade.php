@@ -12,19 +12,19 @@
     <link rel="icon" href="../assets/gambar/favicon.ico">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('assets/bootstrap/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
 
     <!-- Icon -->
-    <link rel="stylesheet" href="{{asset('assets/css/remix-icon/remixicon.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/remix-icon/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 
     <!-- custom -->
-    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/mobile.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
 
 
 </head>
@@ -40,7 +40,7 @@
         <div class="d-flex">
             <div class="col-md-1">
 
-                <a href="{{route('home')}}" class="badge badge-primary margin_new_menu_icon">
+                <a onclick="window.close()" class="badge badge-primary margin_new_menu_icon">
                     <span class="material-icons">
                         arrow_back_ios
                     </span>
@@ -48,7 +48,7 @@
 
             </div>
 
-            <div class="col-md-9 margin_new_menu">{{$title}}</div>
+            <div class="col-md-9 margin_new_menu">{{ $title }}</div>
 
         </div>
 
@@ -68,7 +68,7 @@
 
 
 
-    <script src="{{asset('assets/js/Chart.min.js')}}"></script>
+    <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
 
     <!-- CHART -->
     <script>

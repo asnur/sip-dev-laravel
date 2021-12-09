@@ -1,34 +1,53 @@
-// function FungsiShow() {
-
-//     var x = document.getElementById("ShowDataMobile");
-//     if (x.style.display === "none") {
-//         x.style.display = "block";
-//     } else {
-//         x.style.display = "show";
-//     }
-// }
-
 var url = "http://103.146.202.108:3000";
-
+var clickEvent = "touchstart";
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/menthoelsr/ckp6i54ay22u818lrq15ffcnr",
 });
+$(
+    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
+).css("visibility", "hidden");
+
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
+
+$(".container.container_menu.for_mobile").hide();
 
 map.on("style.load", function () {
+    map.on(clickEvent, function (e) {
+        // console.log(e);
+        const coornya = e.lngLat;
+        var lats = coornya.lat.toString();
+        var lngs = coornya.lng.toString();
+        lats = lats.slice(0, -7);
+        lngs = lngs.slice(0, -7);
+        var cord = [lats, lngs];
+        koordinat(cord);
+    });
+    const el = document.createElement("div");
+    el.className = "marker";
+    var marker = new mapboxgl.Marker(el);
+    function add_marker(event) {
+        var coordinates = event.lngLat;
+        marker.setLngLat(coordinates).addTo(map);
+    }
+    map.on(clickEvent, add_marker);
 
-    map.addSource('mobile_index', {
+    map.addSource("wilayahindex", {
         type: "geojson",
         data: `${url}/choro`,
     });
 
+    map.addSource("mobile_index", {
+        type: "geojson",
+        data: `${url}/choro`,
+    });
 
     map.addLayer({
-        'id': 'mobile_index-fill',
-        'type': 'fill',
-        'source': 'mobile_index',
+        id: "mobile_index-fill",
+        type: "fill",
+        source: "mobile_index",
         paint: {
             "fill-color": [
                 "interpolate",
@@ -53,14 +72,47 @@ map.on("style.load", function () {
         layout: {
             visibility: "none",
         },
-
-    }, );
+    });
 });
 
-map.on('click', 'mobile_index-fill', function (e) {
-    console.log(e);
+map.on(clickEvent, "wilayah_fill", function (e) {
+    var dt = e.features[0].properties;
+    lokasi(dt);
+    console.log(e.features[0].properties);
 });
 
+map.on(clickEvent, "zoning_fill", function (e) {
+    // console.log(e.features[0].properties);
+    $(".container.container_menu.for_mobile").show();
+});
+
+function lokasi(e) {
+    var data = e;
+    $.ajax({
+        url: "http://localhost:8000/setLokasi",
+        method: "post",
+        data: {
+            _token: CSRF_TOKEN,
+            lokasi: data,
+        },
+        success: function (e) {},
+    });
+}
+
+function koordinat(e) {
+    var data = e;
+    $.ajax({
+        url: "http://localhost:8000/setKordinat",
+        method: "post",
+        data: {
+            _token: CSRF_TOKEN,
+            kordinat: data,
+        },
+        success: function (e) {
+            console.log(e);
+        },
+    });
+}
 
 //Cari Wilayah
 
@@ -255,7 +307,7 @@ function addSourceLayer(item) {
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
     // $('').show()
-    onOffLayers();
+    // onOffLayers();
 }
 
 //add layer
@@ -401,16 +453,13 @@ function addLayers() {
     });
 }
 
-
-
-
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
 
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");
     const text = $(this).text();
-    $("#cari_wilayah").val(text);
+    $("#cari_wilayah_mobile").val(text);
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);

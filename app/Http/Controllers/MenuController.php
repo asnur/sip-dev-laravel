@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function lokasi()
+    public function lokasi(Request $request)
     {
-        return view('menu.lokasi', ["title" => "Info Lokasi"]);
+        $data_kordinat = $request->session()->get('kordinat');
+        $data_lokasi = $request->session()->get('lokasi');
+        return view('menu.lokasi', ["title" => "Info Lokasi", "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
     }
 
     public function ekonomi()

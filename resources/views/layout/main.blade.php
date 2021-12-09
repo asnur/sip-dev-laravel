@@ -28,13 +28,14 @@
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
         type="text/css">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
-     @if (isMobileDevice())
-    <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
+    @if (isMobileDevice())
+        <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
     @else
         <!-- custom -->
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     @endif
 
 
@@ -243,7 +244,8 @@
 
 
 
-                                    <input type="search" class="input tombol_search" id="cari_wilayah_mobile" placeholder="Cari kelurahan disini...">
+                                    <input type="search" class="input tombol_search" id="cari_wilayah_mobile"
+                                        placeholder="Cari kelurahan disini...">
 
                                     <span class="btn-search">
                                         <i class="ri-user-fill"></i>
@@ -479,48 +481,53 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="lokasi-tab" href="{{ route('lokasi') }}" role="tab" aria-controls="pills-lokasi"
-                                    aria-selected="true"><i class="fa fa-map-marker"></i></a>
+                                    id="lokasi-tab" href="{{ route('lokasi') }}" target="_blank" role="tab"
+                                    aria-controls="pills-lokasi" aria-selected="true"><i
+                                        class="fa fa-map-marker"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Lokasi</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="ekonomi-tab" href="{{ route('ekonomi') }}" role="tab" aria-controls="pills-ekonomi"
-                                    aria-selected="false"><i class="ri-funds-box-fill"></i></a>
+                                    id="ekonomi-tab" href="{{ route('ekonomi') }}" role="tab"
+                                    aria-controls="pills-ekonomi" aria-selected="false"><i
+                                        class="ri-funds-box-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="zonasi-tab" href="{{ route('zonasi') }}" role="tab" aria-controls="pills-zonasi"
-                                    aria-selected="false"><i class="ri-map-2-fill"></i></a>
+                                    id="zonasi-tab" href="{{ route('zonasi') }}" role="tab"
+                                    aria-controls="pills-zonasi" aria-selected="false"><i
+                                        class="ri-map-2-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Zonasi</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="persil-tab" href="{{ route('persil') }}" role="tab" aria-controls="pills-persil"
-                                    aria-selected="false"><i class="ri-home-4-fill"></i></a>
+                                    id="persil-tab" href="{{ route('persil') }}" role="tab"
+                                    aria-controls="pills-persil" aria-selected="false"><i
+                                        class="ri-home-4-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Persil</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
-                                    href="{{ route('poi') }}" role="tab" aria-controls="pills-poi" aria-selected="false"><i
-                                        class="fa fa-crosshairs"></i></a>
+                                    href="{{ route('poi') }}" role="tab" aria-controls="pills-poi"
+                                    aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">POI</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" href="{{ route('kode_kbli') }}" role="tab" aria-controls="pills-kblikeg"
-                                    aria-selected="false"><i class="ri-user-search-fill"></i></a>
+                                    id="kblikeg-tab" href="{{ route('kode_kbli') }}" role="tab"
+                                    aria-controls="pills-kblikeg" aria-selected="false"><i
+                                        class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">Kode KBLI</label>
                             </li>
