@@ -1,15 +1,9 @@
 var url = "http://103.146.202.108:3000";
-var url_pusdatin = "https://api-jakevo.jakarta.go.id";
 var kilometer = $("#ControlRange").val() / 1000;
 let popUpHarga;
 var setAttrClick;
 var cat = [];
 var data_kbli;
-var data = {
-    grant_type: "client_credentials",
-    client_id: "93bfc2b1-2b67-4c3c-b162-d96b4dda37aa",
-    client_secret: "PDREezaxjqyANDMKQMp1Uiu53c3RZICyvfqTwbeY",
-};
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -18,14 +12,8 @@ $(document).on("input change", "#ControlRange", function () {
     $("#OutputControlRange").html(kilometer + " Km");
     getRadius(setAttrClick);
 });
-var token;
 
-$.post(`${url_pusdatin}/oauth/token`, data).done(function (e) {
-    token = e.access_token;
-    localStorage.setItem("token", token);
-});
-
-// $("#btn-titik").hide();
+$("#btn-titik").hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
@@ -1508,16 +1496,9 @@ function getDataSewa(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${url_pusdatin}/kbli/${subzona}`,
+        url: `${url}/kblia2/${subzona}`,
+        method: "get",
         dataType: "json",
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers":
-                "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
-            "Access-Control-Allow-Methods":
-                "POST, GET, OPTIONS, PUT, DELETE, PATCH",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
         success: function (e) {
             $("#kegiatanRuang").html("");
             $("#skala").html("");

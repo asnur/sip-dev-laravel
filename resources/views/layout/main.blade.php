@@ -1073,52 +1073,49 @@
             </button>
         </div>
         <div class="container p-2 dropdown" style="position:absolute; right:0; z-index:999; width:9%">
-            <button class="btn btn-sm" id="dropdownMenuButton" data-toggle="dropdown">
+            <button class="btn btn-sm">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
                         <span class="material-icons text-white">
                             apps
                         </span>
                     </div>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                    {{-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
                         aria-labelledby="dropdownMenuButton" style="width: 330px">
                         <div class="row p-3">
                             <div class="col-md-4 text-center d-flex align-items-center">
-                                <a href="https://dpmptsp-dki.com" target="_blank"
+                                <a href="https://oss.go.id" target="_blank"
                                     style="font-size: 13px; text-decoration:none"
                                     class="text-dark font-weight-bold"><img
                                         src="{{ asset('assets/gambar/OSS.png') }}" class="w-75">OSS</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                <a href="https://dpmptsp-jkt.com" target="_blank"
+                                    style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
                                         src="{{ asset('assets/gambar/ptsp_logo.png') }}" class="w-75">Pesan
                                     AJIB</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                                    style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                <a href="https://simbg.pu.go.id/" target="_blank"
+                                    style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/simbg.png') }}">SIMBG</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
+                                    style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}">JakartaSatu</a>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </button>
             <button class="btn btn-sm">
