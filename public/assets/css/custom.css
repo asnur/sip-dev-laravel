@@ -223,10 +223,18 @@
     font-size: 1.2rem;
 }
 
-/* .flex_container li {
-    margin: 3px;
-    flex: 0 1 calc(19% - 8px);
-} */
+.flex_container ul {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    /* margin: 3px; */
+    /* flex: 0 5 calc(19% - 8px); */
+}
+
+.flex_container ul li {
+    /* border: 1px #000 solid; */
+    text-align: center;
+    padding: 10px;
+}
 
 .space_judul {
     margin-top: 11px;

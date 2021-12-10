@@ -5,8 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peta Perijinan dan Investasi DKI Jakarta</title>
+    @if (isMobileDevice())
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @endif
+    <title>Peta Perizinan dan Investasi DKI Jakarta</title>
 
     <link rel="icon" href="assets/gambar/favicon.ico">
 
@@ -34,6 +36,7 @@
 
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    {{-- <meta name="Access-Control-Allow-Headers" value="Content-Type" /> --}}
 
 </head>
 
@@ -312,7 +315,7 @@
                     <div class="form-check zoning_fill">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="zoning_fill">
+                                <input type="checkbox" class="form-check-input" checked id="zoning_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="zoning_fill">Peta Zonasi</label>
                             </li>
@@ -401,7 +404,7 @@
 
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            <li class="nav-item">
                                 <a class="active btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="lokasi-tab" data-toggle="pill" href="#pills-lokasi" role="tab"
                                     aria-controls="pills-lokasi" aria-selected="true"><i
@@ -410,7 +413,7 @@
                                 <label class="size_menu size_menu_mobile">Lokasi</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            <li class="nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="ekonomi-tab" data-toggle="pill" href="#pills-ekonomi" role="tab"
                                     aria-controls="pills-ekonomi" aria-selected="false"><i
@@ -419,7 +422,7 @@
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="zonasi-tab" data-toggle="pill" href="#pills-zonasi" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
@@ -428,7 +431,7 @@
                                 <label class="size_menu size_menu_mobile">Zonasi</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="persil-tab" data-toggle="pill" href="#pills-persil" role="tab"
                                     aria-controls="pills-persil" aria-selected="false"><i
@@ -437,7 +440,7 @@
                                 <label class="size_menu size_menu_mobile">Persil</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
                                     data-toggle="pill" href="#pills-poi" role="tab" aria-controls="pills-poi"
                                     aria-selected="false"><i class="fa fa-crosshairs"></i></a>
@@ -445,7 +448,7 @@
                                 <label class="size_menu size_menu_mobile">POI</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            <li class="nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="kblikeg-tab" data-toggle="pill" href="#pills-kblikeg" role="tab"
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
@@ -1065,6 +1068,64 @@
                             home_repair_service
                         </span>
                         <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div class="container p-2 dropdown" style="position:absolute; right:0; z-index:999; width:9%">
+            <button class="btn btn-sm" id="dropdownMenuButton" data-toggle="dropdown">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-white">
+                            apps
+                        </span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                    {{-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
+                        aria-labelledby="dropdownMenuButton" style="width: 330px">
+                        <div class="row p-3">
+                            <div class="col-md-4 text-center d-flex align-items-center">
+                                <a href="https://dpmptsp-dki.com" target="_blank"
+                                    style="font-size: 13px; text-decoration:none"
+                                    class="text-dark font-weight-bold"><img
+                                        src="{{ asset('assets/gambar/OSS.png') }}" class="w-75">OSS</a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img
+                                        src="{{ asset('assets/gambar/ptsp_logo.png') }}" class="w-75">Pesan
+                                    AJIB</a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-75"
+                                        src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-75"
+                                        src="{{ asset('assets/gambar/simbg.png') }}">SIMBG</a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" style="font-size: 13px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-75"
+                                        src="{{ asset('assets/gambar/jakarta1_logo.png') }}">JakartaSatu</a>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </button>
+            <button class="btn btn-sm">
+                <div class="container">
+                    <div class="row">
+                        <i class="ri-user-fill bg-primary p-1 text-white"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
                     </div>
                 </div>
             </button>
