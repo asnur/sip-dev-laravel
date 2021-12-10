@@ -13,7 +13,7 @@ $(document).on("input change", "#ControlRange", function () {
     getRadius(setAttrClick);
 });
 
-$("#btn-titik").hide();
+$("#btn-titik, #more-apps").hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
@@ -1451,7 +1451,7 @@ function onOffLayers() {
 
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
-    $("#btn-titik").show();
+    $("#btn-titik, #more-apps").show();
 
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");

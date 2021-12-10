@@ -1072,7 +1072,7 @@
                 </div>
             </button>
         </div>
-        <div class="container p-2 dropdown" style="position:absolute; right:0; z-index:999; width:9%">
+        <div class="container p-2 dropdown" id="more-apps" style="position:absolute; right:0; z-index:999; width:9%">
             <button class="btn btn-sm">
                 <div class="container">
                     <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
