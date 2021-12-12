@@ -29,9 +29,16 @@ $(document).on("input change", "#ControlRange", function () {
     getRadius(setAttrClick);
 });
 
-$("#btn-titik, #more-apps, #btn-print").hide();
+$("#btn-titik, #btn-print").hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+
+var layerList = document.getElementById("menu");
+var inputs = layerList.getElementsByTagName("input");
+
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
 
 const popup = new mapboxgl.Popup({
     closeButton: false,
@@ -1673,7 +1680,7 @@ function onOffLayers() {
 
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
-    $("#btn-titik, #more-apps").show();
+    $("#btn-titik").show();
 
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");

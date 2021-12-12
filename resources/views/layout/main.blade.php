@@ -1087,7 +1087,8 @@
                 </div>
             </button>
         </div>
-        <div class="container p-2 dropdown" id="more-apps" style="position:absolute; right:0; z-index:999; width:9%">
+        <div class="container p-2 dropdown" id="more-apps"
+            style="position:absolute; right:-15px; z-index:999; width:9%">
             <button class="btn btn-sm">
                 <div class="container">
                     <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
@@ -1141,6 +1142,49 @@
                     </div>
                 </div>
             </button>
+        </div>
+        <div style="z-index: 999; position: absolute; right:6px; top:100px;">
+            <div id="legend">
+                <div class="dropdown">
+                    <button type="button" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="border-radius: 50%; border:none; background:white"><span
+                            class="material-icons mt-1">
+                            layers
+                        </span></button>
+                    <ul class="dropdown-menu keep-open p-2" id="menu" aria-labelledby="dropdownLayer"
+                        style="position: relative;font-size: 12px;margin-top: 5px;border: none;">
+                        <li style="margin-bottom:10px; "><b>Base Map</b></li>
+                        <li>
+                            <div class="form-check form-check-inline mr-5">
+                                <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
+                                    id="ckp4wrapq11m117pf2lr49l5t" value="ckp4wrapq11m117pf2lr49l5t" />
+                                <label class="form-check-label pl-1" for="ckp4wrapq11m117pf2lr49l5t">Default</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check form-check-inline mr-5">
+                                <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
+                                    id="ckp6i54ay22u818lrq15ffcnr" value="ckp6i54ay22u818lrq15ffcnr"
+                                    checked="checked" />
+                                <label class="form-check-label pl-1" for="ckp6i54ay22u818lrq15ffcnr">Satellite</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check form-check-inline mr-5">
+                                <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
+                                    id="ckp6i6bgp2jn217pfp6wm5syk" value="ckp6i6bgp2jn217pfp6wm5syk" />
+                                <label class="form-check-label pl-1" for="ckp6i6bgp2jn217pfp6wm5syk">Streets</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="mt-2" style="border-radius: 50%; border:none; background:white"><span
+                        class="material-icons mt-1">
+                        <span class="material-icons">
+                            mark_as_unread
+                        </span>
+                    </span></button>
+            </div>
         </div>
     </div>
     {{-- <div class="detail_omzet" id="legends"></div>
