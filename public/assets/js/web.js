@@ -4,6 +4,22 @@ let popUpHarga;
 var setAttrClick;
 var cat = [];
 var data_kbli;
+var lokasi,
+    zona,
+    imgMaps,
+    bpn,
+    eksisting,
+    chart,
+    pendapatan,
+    fasilitas,
+    kbli_data,
+    harga;
+var pie;
+var bar;
+var pie_kbli;
+var bar_kbli;
+var hrg_min = "";
+var hrg_max = "";
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -13,7 +29,7 @@ $(document).on("input change", "#ControlRange", function () {
     getRadius(setAttrClick);
 });
 
-$("#btn-titik, #more-apps").hide();
+$("#btn-titik, #more-apps, #btn-print").hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
@@ -65,6 +81,7 @@ mapboxgl.accessToken =
 const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/menthoelsr/ckp6i54ay22u818lrq15ffcnr",
+    preserveDrawingBuffer: true,
 });
 const draw = new MapboxDraw({
     displayControlsDefault: false,
@@ -431,15 +448,19 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdh, .inf-gsb"
     ).html("-");
 
-    getEksisting(e);
+    getRadius(e);
     getNJOP(e);
     getPersilBPN(e);
-    getRadius(e);
+    getEksisting(e);
 
     const larea = dt["luas-area"] / 10000;
 
     // Chart
-    new Chart(document.getElementById("pie-chart"), {
+    var chart_pie = $("#pie-chart").get(0).getContext("2d");
+    var chart_bar = $("#bar-chart-grouped").get(0).getContext("2d");
+    var chart_pie_kbli = $("#pie-chart-kbli").get(0).getContext("2d");
+    var chart_bar_kbli = $("#bar-chart-grouped-kbli").get(0).getContext("2d");
+    pie = new Chart(chart_pie, {
         type: "pie",
         data: {
             labels: ["Produksi", "Perdagangan", "Jasa"],
@@ -455,10 +476,12 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             title: {
                 display: true,
             },
+            bezierCurve: false,
+            animation: 0,
         },
     });
 
-    new Chart(document.getElementById("bar-chart-grouped"), {
+    bar = new Chart(chart_bar, {
         type: "bar",
         data: {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
@@ -498,6 +521,74 @@ map.on(clickEvent, "wilayah_fill", function (e) {
                     },
                 ],
             },
+            bezierCurve: false,
+            animation: 0,
+        },
+    });
+
+    pie_kbli = new Chart(chart_pie_kbli, {
+        type: "pie",
+        data: {
+            labels: ["Produksi", "Perdagangan", "Jasa"],
+            datasets: [
+                {
+                    label: "Kelurahan",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                    data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
+                },
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+            },
+            bezierCurve: false,
+            animation: 0,
+        },
+    });
+
+    bar_kbli = new Chart(chart_bar_kbli, {
+        type: "bar",
+        data: {
+            labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
+            datasets: [
+                {
+                    backgroundColor: "#3e95cd",
+                    data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
+                },
+            ],
+        },
+        options: {
+            // title: {
+            //     display: true,
+            //     text: ["Usia", "Jumlah"],
+            //     position: ["bottom", "left"],
+            // },
+            legend: {
+                display: false,
+            },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Jumlah",
+                            padding: 20,
+                        },
+                    },
+                ],
+                xAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Usia",
+                            padding: 20,
+                        },
+                    },
+                ],
+            },
+            bezierCurve: false,
+            animation: 0,
         },
     });
 
@@ -517,6 +608,84 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         separatorNum(dt["Kepadatan-Penduduk"]) + " jiwa/km2"
     );
     $(".inf-rasio").html(dt.gini);
+
+    map.resize();
+    var img = map.getCanvas().toDataURL("image/png");
+    var width = $("#screenshotPlaceholder").width();
+    var height = $("#screenshotPlaceholder").height();
+    var imgHTML = `<img class="img-snapshot" src="${img}" width="${width}" height="${height}"/>`;
+    $("#screenshotPlaceholder").empty();
+    $("#screenshotPlaceholder").append(imgHTML);
+
+    imgMaps = `
+    <div>
+    <h1 align="center">Info Lokasi</h1>
+    <p class="font-weight-bold">Lokasi</p>
+        <center>
+          <img src="${img}" width="100%">
+        </center>
+  `;
+
+    lokasi = `
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-4">Kordinat</div>
+      <div class="col-sm-8"><a class="text-black" href="https://jakpintas.dpmptsp-dki.com/?kat=konsul&lat=${
+          e.lngLat.lat
+      }&lng=${e.lngLat.lng}" target="_blank">${e.lngLat.lat}, ${
+        e.lngLat.lng
+    }</a></div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-4">Kelurahan</div>
+      <div class="col-sm-8">${dt.Kelurahan}</div>
+      <div class="col-sm-4">Kecamatan</div>
+      <div class="col-sm-8">${dt.Kecamatan}</div>
+      <div class="col-sm-4">Wilayah</div>
+      <div class="col-sm-8">${dt.Kota}</div>
+      <div class="col-sm-4">Rasio Gini</div>
+      <div class="col-sm-8">${dt.gini}</div>
+      <div class="col-sm-4">Kepadatan Penduduk</div>
+      <div class="col-sm-8">${dt["Kepadatan-Penduduk"]} jiwa/km&sup2;</div>
+      <div class="col-sm-4">Luas Kelurahan</div>
+      <div class="col-sm-8">${larea.toFixed(2)} ha</div>
+    </div>
+  </div>
+  <div class="col-sm-12 mt-5 mb-5">
+  <div class="row">
+      <div class="col-sm-12 font-weight-bold">Ekonomi</div>
+      <div class="col-sm-4">Pelaku usaha mikro kecil </div>
+      <div class="col-sm-8">${dt.Jumlah} Orang</div>
+      <div class="col-sm-4">Total Omzet</div>
+      <div class="col-sm-8">Rp ${separatorNum(dt["Total omzet"])} / bulan</div>
+    </div>
+  </div>
+</div>
+`;
+
+    pendapatan = `
+<br>
+<div class="col-sm-12 mt-5">
+    <div class="row">
+        <div class="col-sm-12">Pendapatan Rata-Rata Perbulan</div>
+        <div class="col-sm-4">0-5 Jt</div>
+        <div class="col-sm-8">${dt.P1} %</div>
+        <div class="col-sm-4">6-10 Jt</div>
+        <div class="col-sm-8">${dt.P2} %</div>
+        <div class="col-sm-4">11-15 Jt</div>
+        <div class="col-sm-8">${dt.P3} %</div>
+        <div class="col-sm-4">16-20 Jt</div>
+        <div class="col-sm-8">${dt.P4} %</div>
+        <div class="col-sm-4"> 20 Jt</div>
+        <div class="col-sm-8">${dt.P5} %</div>
+        <div class="col-sm-4">Tidak Menjawab</div>
+        <div class="col-sm-8">${dt.P6} %</div>
+    </div>
+</div>
+  `;
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
@@ -547,15 +716,48 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
     $(".inf-gsb").html(gsb);
+
+    zona = `
+    <div class="col-sm-12 mt-5 mb-5">
+    <div class="row">
+            <div class="col-sm-12 font-weight-bold">Rencana Kota</div>
+            <div class="col-sm-4">Zona</div>
+            <div class="col-sm-8">${dt.Zona}</div>
+            <div class="col-sm-4">Sub Zona</div>
+            <div class="col-sm-8">${dt["Sub Zona"]}</div>
+            <div class="col-sm-4">Kode Blok</div>
+            <div class="col-sm-8">${dt["Kode Blok"]}</div>
+            <div class="col-sm-4">Sub Blok</div>
+            <div class="col-sm-8">${dt["Sub Blok"]}</div>
+            <div class="col-sm-4">CD TPZ</div>
+            <div class="col-sm-8">${dt["CD TPZ"]}</div>
+            <div class="col-sm-4">TPZ</div>
+            <div class="col-sm-8">${dt.TPZ}</div>
+            <div class="col-sm-4">KDB</div>
+            <div class="col-sm-8">${dt.KDB}</div>
+            <div class="col-sm-4">KDH</div>
+            <div class="col-sm-8">${dt.KDH}</div>
+            <div class="col-sm-4">KLB</div>
+            <div class="col-sm-8">${dt.KLB}</div>
+            <div class="col-sm-12">
+              ${gsb}
+            </div>
+          </div>
+      </div>
+      `;
+
     dropDownKegiatan(dt["Sub Zona"]);
     $("#kegiatanRuang").change(function () {
         $("#skala").html("");
+        $(".dtKBLI").html("");
         var sel = $(this).select2("val");
         // console.log(sel);
         DropdownSkala(dt["Sub Zona"], sel);
         $("#skala").change(function () {
+            $(".dtKBLI").html("");
             var skala = $(this).select2("val");
             dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+            $("#btn-print").hide();
         });
     });
 });
@@ -612,17 +814,17 @@ function getEksisting(e) {
             if (dtResp.features != null) {
                 const prop = dtResp.features[0].properties;
                 $(".inf-eksisting").html(prop.Kegiatan);
-                //   eksisting = `
-                //   <div class="col-sm-12">
-                //   <div class="row">
-                //         <div class="col-sm-12 font-weight-bold">Persil Tanah</div>
-                //         <div class="col-sm-4">Lahan Eksisting</div>
-                //         <div class="col-sm-8">${prop.Kegiatan}</div>
-                //       </div>
-                //     </div>
-                //     </tbody>
-                //   </table>
-                //   `;
+                eksisting = `
+                  <div class="col-sm-12">
+                  <div class="row">
+                        <div class="col-sm-12 font-weight-bold">Persil Tanah</div>
+                        <div class="col-sm-4">Lahan Eksisting</div>
+                        <div class="col-sm-8">${prop.Kegiatan}</div>
+                      </div>
+                    </div>
+                    </tbody>
+                  </table>
+                  `;
             }
         },
         error: function (error) {
@@ -656,17 +858,14 @@ function getNJOP(e) {
                 );
             }
 
-            // hrg_min = separatorNum(prop.Min);
-            // hrg_max = separatorNum(prop.Max);
+            hrg_min = separatorNum(prop.Min);
+            hrg_max = separatorNum(prop.Max);
 
-            // harga += `
-            //   <div class="col-sm-12">
-            //     <div class="row">
-            //       <div class="col-sm-4">Harga</div>
-            //       <div class="col-sm-8">Rp. ${hrg_min} - ${hrg_max}</dic>
-            //     </div>
-            //   </div>
-            // `;
+            harga = `
+            <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
+            </div>
+          </div>
+            `;
         },
         error: function (error) {
             console.log(error);
@@ -694,18 +893,18 @@ function getPersilBPN(e) {
                 const prop = dtResp.features[0].properties;
                 $(".inf-tipehak").html(prop.Tipe);
                 $(".inf-luasbpn").html(separatorNum(prop.Luas) + " m&sup2;");
-                //   bpn = `
-                //     <div class="col-sm-12">
-                //       <div class="row">
-                //         <div class="col-sm-4">Tipe Hak</div>
-                //         <div class="col-sm-8">${prop.Tipe}</div>
-                //         <div class="col-sm-4">Luas</div>
-                //         <div class="col-sm-8">${separatorNum(prop.Luas)} m&sup2;</div>
-                //         <div class="col-sm-4">Harga</div>
-                //         <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
-                //       </div>
-                //     </div>
-                //   `;
+                bpn = `
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-4">Tipe Hak</div>
+                        <div class="col-sm-8">${prop.Tipe}</div>
+                        <div class="col-sm-4">Luas</div>
+                        <div class="col-sm-8">${separatorNum(
+                            prop.Luas
+                        )} m&sup2;</div>
+                        <div class="col-sm-4">Harga</div>
+                        
+                  `;
             }
         },
         error: function (error) {
@@ -733,6 +932,15 @@ function getRadius(e) {
         success: function (dt) {
             var dtResp = JSON.parse(dt);
             var htmlContent = "";
+
+            fasilitas = `
+            <div class="col-sm-12 mt-4 mb-5">
+            <div class="row">
+                <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
+                    getRadVal / 1000
+                } Km
+                </div>
+            `;
 
             cat = [];
 
@@ -784,6 +992,10 @@ function getRadius(e) {
                         <div class="card-body text_poi2 row_mid_judul">
                             <ul class="list-group list-group-flush PoiCollabse_mobile">
                 `;
+                fasilitas += `
+                <div class="col-sm-4">${dt[0].name}</div>
+                <div class="col-sm-8">
+                `;
 
                 // console.log(dt[0].name);
 
@@ -801,12 +1013,22 @@ function getRadius(e) {
                         </div>
                     </li>
                     `;
+
+                    fasilitas += `
+                    <div class="row">
+                        <div class="col-sm-8">${dta.fasilitas}</div>
+                        <div class="col-sm-4">${
+                            Math.round(dta.jarak) / 1000
+                        } km</div>
+                    </div>
+          `;
                     // console.log(dta.fasilitas, dta.jarak);
                 }
 
                 htmlContent += `</ul>
                 </div>
             </div>`;
+                fasilitas += `</div>`;
             }
             $(".tabListFasilitas").html(htmlContent);
         },
@@ -1496,7 +1718,7 @@ function getDataSewa(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${url}/kblia2/${subzona}`,
+        url: `http://103.146.202.108:4000/kblia2/${subzona}`,
         method: "get",
         dataType: "json",
         success: function (e) {
@@ -1504,6 +1726,7 @@ function dropDownKegiatan(subzona) {
             $("#skala").html("");
             $("#kegiatanKewenangan").html("");
             var htmlContent = "";
+            $("#btn-print").hide();
             htmlContent += `<option>Pilih...</option>`;
             var data = e.features[0].properties;
             for (i in data) {
@@ -1523,6 +1746,7 @@ function DropdownSkala(zonasi, sel) {
         method: "get",
         dataType: "json",
         success: function (res) {
+            $("#btn-print").hide();
             if (res.features != null) {
                 const prop = res.features[0].properties;
                 var jmlh = [];
@@ -1622,6 +1846,7 @@ $(document).on("change", "#kegiatanKewenangan", function () {
     selSektor = dis.val();
     var index = dis.data("index");
     $(".dtKBLI").html("");
+    $("#btn-print").show();
     // console.log(data_kbli);
     var tblSel = "";
     tblSel += `
@@ -1640,6 +1865,24 @@ $(document).on("change", "#kegiatanKewenangan", function () {
       </tr>
       `;
     $(".dtKBLI").html(tblSel);
+
+    kbli_data = `
+            <div class="col-sm-12 mt-5">
+              <div class="row">
+                <div class="col-sm-12 font-weight-bold">KBLI</div>
+                <div class="col-sm-4">Kode</div>
+                <div class="col-sm-8">${data_kbli[selSektor]["Kode KBLI"]}</div>
+                <div class="col-sm-4">Kegiatan</div>
+                <div class="col-sm-8">${data_kbli[selSektor]["Kegiatan"]}</div>
+                <div class="col-sm-4">Resiko</div>
+                <div class="col-sm-8">${data_kbli[selSektor]["Resiko"]}</div>
+                <div class="col-sm-4">Status</div>
+                <div class="col-sm-8">${data_kbli[selSektor]["Status"]}</div>
+                <div class="col-sm-4">Ketentuan ITBX</div>
+                <div class="col-sm-8">${data_kbli[selSektor]["Substansi"]}</div>
+              </div>
+            </div>
+          `;
 });
 
 $(
@@ -1662,4 +1905,46 @@ $("#iumk").click(function () {
 
 $("#proyek").click(function () {
     $("#investasi_fill").trigger("click");
+});
+
+$("#btn-print").on("click", function () {
+    var data_pie = $("#pie-chart-kbli").get(0).toDataURL("img/png");
+    var data_bar = $("#bar-chart-grouped-kbli").get(0).toDataURL("img/png");
+    chart = `
+        <div class="row mt-5 mb-5">
+        <div class="col-md-6">
+            <center>
+              <img src="${data_pie}" width="70%">
+            </center>
+        </div>
+        <div class="col-md-6">
+          <center>
+            <img src="${data_bar}" width="70%">
+          </center>
+        </div>
+      </div>
+        `;
+    var html = [
+        imgMaps,
+        lokasi,
+        chart,
+        pendapatan,
+        zona,
+        eksisting,
+        bpn,
+        harga,
+        fasilitas,
+        kbli_data,
+    ].join("");
+    var opt = {
+        margin: [10, 30, 10, 30],
+        html2canvas: { scale: 2, logging: true },
+    };
+    html2pdf()
+        .set(opt)
+        .from(html)
+        .output("bloburl")
+        .then((r) => {
+            window.open(r);
+        });
 });

@@ -1014,6 +1014,21 @@
                                 </tbody>
                             </table>
 
+                            <button class="btn btn-sm text-primary ml-0" id="btn-print"><i
+                                    class="fa fa-print"></i></button>
+
+                            <div class="d-flex margin_chart_ekonomi_mobile">
+                                <canvas id="pie-chart-kbli" width="70" height="50"
+                                    style="position:absolute;z-index: -999; display:none"></canvas>
+                            </div>
+
+                            <div class="d-flex margin_chartline_ekonomi_mobile">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                                    <canvas id="bar-chart-grouped-kbli" width="90" height="80"
+                                        style="display: none;position:absolute;"></canvas>
+                                </div>
+                            </div>
+
 
                             <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
 
@@ -1159,7 +1174,8 @@
     </div>
     <!-- End Detail Jumlah -->
 
-
+    {{-- ScreenShoot Map --}}
+    <div id="screenshotPlaceholder"></div>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -1174,10 +1190,14 @@
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
+    <script src="{{ asset('assets/js/canvas-toBlob.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else
