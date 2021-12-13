@@ -41,7 +41,7 @@ $request_url = end($uri_parts);
 
     <!-- Judul -->
 
-    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
+    {{-- <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
         style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
 
@@ -60,7 +60,7 @@ $request_url = end($uri_parts);
 
         </div>
 
-    </div>
+    </div> --}}
 
     <!-- Content -->
     <div class="container margin_conten_permenu">

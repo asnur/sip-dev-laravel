@@ -466,6 +466,26 @@
 
 
                 <!-- Mengatur Menu Mobile -->
+
+                <div id="popup" class="for_mobile">
+                    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
+                    style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+                        <div class="d-flex">
+                            <div class="col-md-1">
+                                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close" data-dismiss="modal" aria-hidden="true">
+                                    <span class="material-icons">
+                                        arrow_back_ios
+                                    </span>
+                                </a>
+                            </div>
+
+                            <div class="col-md-9 margin_new_menu" id="judul"> </div>
+                        </div>
+                    </div>
+
+                    <iframe id="popupiframe"></iframe>
+                </div>
+
                 <div class="container container_menu for_mobile">
 
                     <div class="d-flex justify-content-center">
@@ -485,16 +505,15 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="lokasi-tab" href="{{ route('lokasi') }}" target="_blank" role="tab"
-                                    aria-controls="pills-lokasi" aria-selected="true"><i
-                                        class="fa fa-map-marker"></i></a>
+                                id="hlm_lokasi" href=""  role="tab" aria-controls="pills-lokasi" aria-selected="true"><i
+                                class="fa fa-map-marker"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Lokasi</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="ekonomi-tab" href="{{ route('ekonomi') }}" target="_blank" role="tab"
+                                id="hlm_ekonomi" href="" role="tab"
                                     aria-controls="pills-ekonomi" aria-selected="false"><i
                                         class="ri-funds-box-fill"></i></a>
                                 <br>
@@ -503,7 +522,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="zonasi-tab" href="{{ route('zonasi') }}" target="_blank\" role="tab"
+                                id="hlm_zonasi" href="" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-map-2-fill"></i></a>
                                 <br>
@@ -512,7 +531,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="persil-tab" href="{{ route('persil') }}" target="_blank" role="tab"
+                                id="hlm_persil" href="" role="tab"
                                     aria-controls="pills-persil" aria-selected="false"><i
                                         class="ri-home-4-fill"></i></a>
                                 <br>
@@ -520,8 +539,8 @@
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
-                                    href="{{ route('poi') }}" role="tab" aria-controls="pills-poi"
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
+                                href="" role="tab" aria-controls="pills-poi"
                                     aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">POI</label>
@@ -529,7 +548,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" href="{{ route('kode_kbli') }}" role="tab"
+                                id="hlm_kblikeg" href="" role="tab"
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
@@ -1111,6 +1130,7 @@
             var setEksisting = "{{ route('setEksisting') }}"
         </script>
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
+        <script src="{{ asset('assets/js/popup.js') }}"></script>
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
