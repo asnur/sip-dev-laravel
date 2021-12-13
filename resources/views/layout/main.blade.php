@@ -39,6 +39,8 @@
     @endif
 
 
+
+
 </head>
 
 <body>
@@ -1136,6 +1138,7 @@
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
+
 </body>
 
 </html>
