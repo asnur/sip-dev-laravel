@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/remix-icon/remixicon.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
 
 
 
@@ -1071,7 +1073,7 @@
             </button>
         </div>
         <div class="container p-2 dropdown" id="more-apps"
-            style="position:absolute; right:-15px; z-index:999; width:9%">
+            style="position:absolute; right:-15px; z-index:999; width:8rem">
             <button class="btn btn-sm">
                 <div class="container">
                     <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
@@ -1120,20 +1122,32 @@
             <button class="btn btn-sm">
                 <div class="container">
                     <div class="row">
-                        <i class="ri-user-fill bg-primary p-1 text-white"
+                        <i class="ri-user-fill bg-white p-1 text-secondary"
                             style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
                     </div>
                 </div>
             </button>
-        </div>
-        <div style="z-index: 999; position: absolute; right:6px; top:100px;">
-            <div id="legend">
+            <div id="legend btn btn-sm" style="float: right;margin-right:0.77rem;">
                 <div class="dropdown">
-                    <button type="button" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="border-radius: 50%; border:none; background:white"><span
-                            class="material-icons mt-1">
-                            layers
-                        </span></button>
+                    {{-- <button type="button" class="btn btn-sm" id="dropdownLayer" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"
+                        style="border-radius: 50%; border:none; background:white">
+                        <div class="container">
+                            <div class="row">
+                                <i class="las la-layer-group bg-white p-1 text-secondary"
+                                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                            </div>
+                        </div>
+                    </button> --}}
+                    <button class="btn btn-sm mt-3" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="container">
+                            <div class="row">
+                                <i class="ri-stack-line bg-white p-1 text-secondary"
+                                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                            </div>
+                        </div>
+                    </button>
                     <ul class="dropdown-menu keep-open p-2" id="menu" aria-labelledby="dropdownLayer"
                         style="position: relative;font-size: 12px;margin-top: 5px;border: none;">
                         <li style="margin-bottom:10px; "><b>Base Map</b></li>
@@ -1161,14 +1175,20 @@
                         </li>
                     </ul>
                 </div>
-                <button class="mt-2" style="border-radius: 50%; border:none; background:white"><span
-                        class="material-icons mt-1">
-                        <span class="material-icons">
-                            mark_as_unread
-                        </span>
-                    </span></button>
+                <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <div class="container">
+                        <div class="row">
+                            <i class="ri-mail-open-line bg-white p-1 text-secondary"
+                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                        </div>
+                    </div>
+                </button>
             </div>
         </div>
+        {{-- <div style="z-index: 999; position: absolute; right:6px; top:100px;">
+            
+        </div> --}}
     </div>
     {{-- <div class="detail_omzet" id="legends"></div>
     <div class="detail_jumlah" id="features">

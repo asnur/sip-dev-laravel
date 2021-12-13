@@ -11,8 +11,8 @@
     position: absolute;
     border-radius: 4px;
     background: #fff;
-    bottom: -15vh;
-    right: 0px;
+    bottom: -11vh;
+    right: 0.3rem;
 }
 
 .select2-results__options {
