@@ -412,7 +412,7 @@
                                     aria-controls="pills-lokasi" aria-selected="true"><i
                                         class="fa fa-map-marker"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Lokasi</label>
+                                <label class="size_menu size_menu_mobile">Profil</label>
                             </li>
 
                             <li class="nav-item">
@@ -537,7 +537,7 @@
 
                     <div class="tab-pane active" id="pills-lokasi" role="tabpanel" aria-labelledby="lokasi-tab">
                         <div class="container">
-                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Info Lokasi</p>
+                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Lokasi</p>
 
                             <div class="d-flex space_judul row_mid_judul">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
@@ -603,7 +603,7 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex row_mid_judul">
+                            <div class="d-flex row_mid_text">
                                 <div class="col-md-5 text_all">
                                     <label class="text_all_mobile">Lahan Eksisting</label>
                                 </div>
