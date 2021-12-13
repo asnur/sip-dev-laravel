@@ -34,7 +34,7 @@
         border: 0;
     }
 
-    #popupdarkbg {
+    /* #popupdarkbg {
         position: fixed;
         z-index: 5;
         left: 0;
@@ -44,7 +44,7 @@
         overflow: hidden;
         background-color: rgba(0, 0, 0, .75);
         display: none;
-    }
+    } */
 
     .for_web {
         display: none;

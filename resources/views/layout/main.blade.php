@@ -469,8 +469,24 @@
 
                 <!-- Mengatur Menu Mobile -->
 
-                <div id="popup"><iframe id="popupiframe"></iframe></div>
-                <div id="popupdarkbg"></div>
+                <div id="popup" class="for_mobile">
+                    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
+                    style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+                        <div class="d-flex">
+                            <div class="col-md-1">
+                                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close" data-dismiss="modal" aria-hidden="true">
+                                    <span class="material-icons">
+                                        arrow_back_ios
+                                    </span>
+                                </a>
+                            </div>
+
+                            <div class="col-md-9 margin_new_menu" id="judul"> </div>
+                        </div>
+                    </div>
+
+                    <iframe id="popupiframe"></iframe>
+                </div>
 
                 <div class="container container_menu for_mobile">
 
@@ -1112,95 +1128,10 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
     @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
+        <script src="{{ asset('assets/js/popup.js') }}"></script>
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
-
-
-    <script>
-        document.getElementById("hlm_lokasi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popupdarkbg").style.display = "block";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
-            document.getElementById('popupdarkbg').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_ekonomi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popupdarkbg").style.display = "block";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('ekonomi') }}";
-            document.getElementById('popupdarkbg').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_zonasi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popupdarkbg").style.display = "block";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
-            document.getElementById('popupdarkbg').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_persil").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popupdarkbg").style.display = "block";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('persil') }}";
-            document.getElementById('popupdarkbg').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_poi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popupdarkbg").style.display = "block";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('poi') }}";
-            document.getElementById('popupdarkbg').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_kblikeg").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popupdarkbg").style.display = "block";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('kode_kbli') }}";
-            document.getElementById('popupdarkbg').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-            };
-            return false;
-        }
-
-
-
-        window.onkeydown = function (e) {
-            if (e.keyCode == 27) {
-                document.getElementById("popup").style.display = "none";
-                document.getElementById("popupdarkbg").style.display = "none";
-                e.preventDefault();
-                return;
-            }
-        }
-    </script>
 
 </body>
 

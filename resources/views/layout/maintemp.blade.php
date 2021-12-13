@@ -35,27 +35,22 @@
 <body>
 
     <!-- Judul -->
-
-    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
+    {{-- <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
         style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
-
 
         <div class="d-flex">
             <div class="col-md-1">
-
-                <a onclick="window.close()" class="badge badge-primary margin_new_menu_icon">
+                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close" data-dismiss="modal" aria-hidden="true">
                     <span class="material-icons">
                         arrow_back_ios
                     </span>
                 </a>
-
             </div>
 
             <div class="col-md-9 margin_new_menu">{{ $title }}</div>
-
         </div>
 
-    </div>
+    </div> --}}
 
     <!-- Content -->
     <div class="container margin_conten_permenu">
@@ -72,9 +67,14 @@
 
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
-
+    {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
     <!-- CHART -->
     <script>
+
+        // $("#close").click(function() {
+        //     $("#popup").hide();
+        // });
+
         // new Chart(document.getElementById("pie-chart"), {
         //     type: "pie",
         //     data: {

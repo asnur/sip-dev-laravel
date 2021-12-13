@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('layout.main');
+    return view('layout.main', ["title" => ""]);
 })->name('home');
 
 Route::post('/getresolustion', function () {
