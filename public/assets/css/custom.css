@@ -351,9 +351,9 @@ input[type="range"]::-moz-range-progress {
 
 /* perubahan setelah push */
 .container_menu {
-    margin-left: 0.5%;
+    /* margin-left: 0.5%;
     margin-top: 2%;
-    margin-bottom: -2%;
+    margin-bottom: -2%; */
 }
 
 .icon_logo {

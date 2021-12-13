@@ -404,7 +404,7 @@
 
                     <div class="flex_container">
 
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <ul class="nav nav-pills w-100" id="pills-tab" role="tablist">
 
                             <li class="nav-item">
                                 <a class="active btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"

@@ -445,6 +445,8 @@ map.on("mouseleave", "investasi_dot", () => {
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     setAttrClick = e;
+    $("#hide_side_bar").hide();
+    $("#show_side_bar").trigger("click");
     // console.log(dt);
     $("#radiusSlide").show();
     $(".container_menu.for_web").show();
@@ -1681,7 +1683,6 @@ function onOffLayers() {
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
     $("#btn-titik").show();
-
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");
     const text = $(this).text();
