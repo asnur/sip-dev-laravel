@@ -1128,16 +1128,104 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
     @if (isMobileDevice())
         <script>
-            var setLokasi = "{{ route('setLokasi') }}"
-            var setKordinat = "{{ route('setKordinat') }}"
-            var setZonasi = "{{ route('setZonasi') }}"
-            var setEksisting = "{{ route('setEksisting') }}"
+            var setLokasi = "{{ @route('setLokasi') }}"
+            var setKordinat = "{{ @route('setKordinat') }}"
+            var setZonasi = "{{ @route('setZonasi') }}"
+            var setEksisting = "{{ @route('setEksisting') }}"
+
+            // var menuLokasi = "{{ @route('lokasi') }}"
+            // var menuEkonomi = "{{ @route('ekonomi') }}"
+            // var menuKode = "{{ @route('kode_kbli') }}"
+            // var menuPersil = "{{ @route('persil') }}"
+            // var menuPoi = "{{ @route('poi') }}"
+            // var menuZonasi = "{{ @route('zonasi') }}"
+
+
+            document.getElementById("hlm_lokasi").onclick = function (e) {
+            e.preventDefault();
+            document.getElementById("popup").style.display = "block";
+            document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
+            document.getElementById("judul").innerHTML = "Info Lokasi";
+            document.getElementById('close').onclick = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+            return false;
+        }
+
+        document.getElementById("hlm_ekonomi").onclick = function (e) {
+            e.preventDefault();
+            document.getElementById("popup").style.display = "block";
+            document.getElementById('popupiframe').src = "{{ @route('ekonomi') }}";
+            document.getElementById("judul").innerHTML = "Ekonomi";
+            document.getElementById('close').onclick = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+            return false;
+        }
+
+        document.getElementById("hlm_zonasi").onclick = function (e) {
+            e.preventDefault();
+            document.getElementById("popup").style.display = "block";
+            document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
+            document.getElementById("judul").innerHTML = "Zonasi";
+            document.getElementById('close').onclick = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+            return false;
+        }
+
+        document.getElementById("hlm_persil").onclick = function (e) {
+            e.preventDefault();
+            document.getElementById("popup").style.display = "block";
+            document.getElementById('popupiframe').src = "{{ @route('persil') }}";
+            document.getElementById("judul").innerHTML = "Persil";
+            document.getElementById('close').onclick = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+            return false;
+        }
+
+        document.getElementById("hlm_poi").onclick = function (e) {
+            e.preventDefault();
+            document.getElementById("popup").style.display = "block";
+            document.getElementById('popupiframe').src = "{{ @route('poi') }}";
+            document.getElementById("judul").innerHTML = "POI";
+            document.getElementById('close').onclick = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+            return false;
+        }
+
+        document.getElementById("hlm_kblikeg").onclick = function (e) {
+            e.preventDefault();
+            document.getElementById("popup").style.display = "block";
+            document.getElementById('popupiframe').src = "{{ @route('kode_kbli') }}";
+            document.getElementById("judul").innerHTML = "Kode KBLI";
+            document.getElementById('close').onclick = function () {
+                document.getElementById("popup").style.display = "none";
+            };
+            return false;
+        }
+
+        window.onkeydown = function (e) {
+            if (e.keyCode == 27) {
+                document.getElementById("popup").style.display = "none";
+                e.preventDefault();
+                return;
+            }
+        }
+
+
+
+
+
         </script>
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
-        <script src="{{ asset('assets/js/popup.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
+
 
 </body>
 
