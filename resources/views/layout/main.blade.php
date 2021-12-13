@@ -432,15 +432,6 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="persil-tab" data-toggle="pill" href="#pills-persil" role="tab"
-                                    aria-controls="pills-persil" aria-selected="false"><i
-                                        class="ri-home-4-fill"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile">Persil</label>
-                            </li>
-
-                            <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
                                     data-toggle="pill" href="#pills-poi" role="tab" aria-controls="pills-poi"
                                     aria-selected="false"><i class="fa fa-crosshairs"></i></a>
@@ -610,6 +601,42 @@
                                 </div>
                             </div>
 
+                            <div class="d-flex row_mid_judul">
+                                <div class="col-md-5 text_all">
+                                    <label class="text_all_mobile">Lahan Eksisting</label>
+                                </div>
+                                <div class="col-md-7 text_all">
+                                    <p class="inf-eksisting">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Perkiraan Harga</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-harganjop">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Tipe Hak</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-tipehak">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Luas</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-luasbpn">-</p>
+                                </div>
+                            </div>
+
                             {{-- <div class="d-flex space_text row_mid_text">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
                                     <label class="text_all_mobile">UMR</label>
@@ -764,48 +791,6 @@
                                     <p class="inf-blok">-</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="pills-persil" role="tabpanel" aria-labelledby="persil-tab">
-                        <div class="container">
-                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Persil</p>
-
-                            <div class="d-flex space_judul row_mid_judul">
-                                <div class="col-md-5 text_all">
-                                    <label class="text_all_mobile">Lahan Eksisting</label>
-                                </div>
-                                <div class="col-md-7 text_all">
-                                    <p class="inf-eksisting">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Perkiraan Harga</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-harganjop">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Tipe Hak</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-tipehak">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Luas</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-luasbpn">-</p>
-                                </div>
-                            </div>
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
@@ -850,8 +835,6 @@
                                     </label>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 
