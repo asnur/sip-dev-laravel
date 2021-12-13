@@ -477,6 +477,7 @@ input[type="range"]::-moz-range-progress {
     z-index: 400;
     width: 100%;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    overflow-x: hidden;
 }
 
 .wm-search__dropdown,
@@ -1156,11 +1157,11 @@ input[type="range"]::-moz-range-progress {
         border-radius: 10px;
     }
 
-    /* .container_menu {
-    margin-left: 0.5%;
-    margin-top: 2%;
-    margin-bottom: -2%;
-  } */
+    .container_menu {
+        /* margin-left: 0.5%; */
+        margin-top: 2%;
+        margin-bottom: -2%;
+    }
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     .dalam::-webkit-scrollbar {

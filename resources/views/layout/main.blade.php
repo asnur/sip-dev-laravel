@@ -336,7 +336,7 @@
                     <div class="form-check sewa_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="sewa_fill">
+                                <input type="radio" name="layer" class="form-check-input" id="sewa_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="sewa_fill">Harga Sewa Kantor</label>
                             </li>
@@ -345,7 +345,7 @@
                     <div class="form-check iumk_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="iumk_fill">
+                                <input type="radio" name="layer" class="form-check-input" id="iumk_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="iumk_fill">Sebaran Usaha Mikro Kecil</label>
                             </li>
@@ -354,7 +354,7 @@
                     <div class="form-check investasi_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="investasi_fill">
+                                <input type="radio" name="layer" class="form-check-input" id="investasi_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="investasi_fill">Proyek</label>
                             </li>
@@ -602,7 +602,7 @@
                                     <p class="inf-rasio">-</p>
                                 </div>
                             </div>
-
+                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Persil</p>
                             <div class="d-flex row_mid_text">
                                 <div class="col-md-5 text_all">
                                     <label class="text_all_mobile">Lahan Eksisting</label>
@@ -829,7 +829,7 @@
                                     <p class="inf-klb">-</p>
                                 </div>
                             </div>
-
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan</p>
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
                                     <label class="text_all_mobile inf-gsb">
@@ -947,10 +947,8 @@
 
 
                             <div class="d-flex ml-1 margin_cari_kodelbli_mobile">
-                                <div class="col-md-6 text_all">
+                                <div class="col-md-12 text_all">
                                     <label class="text_all_mobile">Kegiatan Ruang</label>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group input-group-sm cari_kodekbli_option_mobile">
                                         <select class="form-control text_all" id="kegiatanRuang" style="z-index: 9999">
 
@@ -960,10 +958,8 @@
                             </div>
 
                             <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
-                                <div class="col-md-6 text_all">
+                                <div class="col-md-12 text_all">
                                     <label class="text_all_mobile">Skala</label>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group input-group-sm cari_kodekbli_option_mobile">
                                         <select class="form-control" id="skala">
 
@@ -973,10 +969,8 @@
                             </div>
 
                             <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
-                                <div class="col-md-6 text_all">
+                                <div class="col-md-12 text_all">
                                     <label class="text_all_mobile">Kegiatan Kewenangan</label>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group input-group-sm cari_kodekbli_option_mobile">
                                         <select class="form-control" id="kegiatanKewenangan">
 

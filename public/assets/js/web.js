@@ -1477,6 +1477,11 @@ function onOffLayers() {
     $("#iumk_fill").change(function () {
         if ($(this).prop("checked") == true) {
             showLayer("iumk_fill");
+            hideLayer("sewa_fill");
+            hideLayer("investasi_fill");
+            hideLayer("investasi_dot");
+            hideLayer("investasi_line");
+            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
         } else {
             hideLayer("iumk_fill");
         }
@@ -1486,6 +1491,10 @@ function onOffLayers() {
     $("#sewa_fill").change(function () {
         if ($(this).prop("checked") == true) {
             showLayer("sewa_fill");
+            hideLayer("iumk_fill");
+            hideLayer("investasi_fill");
+            hideLayer("investasi_dot");
+            hideLayer("investasi_line");
             var infoHarga = popUpHarga[0].features;
             for (
                 let index = 0;
@@ -1522,6 +1531,8 @@ function onOffLayers() {
     $("#investasi_fill").change(function () {
         if ($(this).prop("checked") == true) {
             showLayer("investasi_fill");
+            hideLayer("iumk_fill");
+            hideLayer("sewa_fill");
         } else {
             hideLayer("investasi_fill");
         }
@@ -1898,21 +1909,35 @@ $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
 
-$(document).on("click", "#investasi_fill", function () {
-    $("#investasi_dot").trigger("click");
-    $("#investasi_line").trigger("click");
+$(document).on("change", "input:radio[name=layer]", function () {
+    if ($("#investasi_fill").prop("checked") == true) {
+        $("#investasi_dot").trigger("click");
+        $("#investasi_line").trigger("click");
+    } else {
+        $("#investasi_dot").prop("checked", false);
+        $("#investasi_line").prop("checked", false);
+    }
     // console.log("aaa");
 });
 
 $("#sewa_kantor").click(function () {
+    $(this).css("background", "orange");
+    $("#iumk").css("background", "white");
+    $("#proyek").css("background", "white");
     $("#sewa_fill").trigger("click");
 });
 
 $("#iumk").click(function () {
+    $(this).css("background", "orange");
+    $("#sewa_kantor").css("background", "white");
+    $("#proyek").css("background", "white");
     $("#iumk_fill").trigger("click");
 });
 
 $("#proyek").click(function () {
+    $(this).css("background", "orange");
+    $("#sewa_kantor").css("background", "white");
+    $("#iumk").css("background", "white");
     $("#investasi_fill").trigger("click");
 });
 
