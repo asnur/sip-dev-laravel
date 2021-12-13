@@ -1533,6 +1533,7 @@ function onOffLayers() {
             showLayer("investasi_fill");
             hideLayer("iumk_fill");
             hideLayer("sewa_fill");
+            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
         } else {
             hideLayer("investasi_fill");
         }
