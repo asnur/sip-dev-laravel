@@ -56,6 +56,17 @@
         <i class="btn_icon_show ri-arrow-right-s-fill fa-2x"></i>
     </button>
 
+    <div class="info-layer">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeSewa" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="title-info font-weight-bold">Harga Sewa Kantor</h3>
+            <div class="list-item mt-5">
+
+            </div>
+        </div>
+    </div>
 
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
@@ -1231,7 +1242,6 @@
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
-    <script src="{{ asset('assets/js/canvas-toBlob.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>

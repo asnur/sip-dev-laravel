@@ -110,8 +110,17 @@
 
 .pembungkus {
     position: absolute;
-    z-index: 999;
+    z-index: 9;
 
+    width: 30% !important;
+    height: 100% !important;
+}
+
+.info-layer {
+    position: absolute;
+    z-index: 999;
+    background: #fdfffc;
+    display: none;
     width: 30% !important;
     height: 100% !important;
 }

@@ -1495,28 +1495,62 @@ function onOffLayers() {
             hideLayer("investasi_fill");
             hideLayer("investasi_dot");
             hideLayer("investasi_line");
+            $(".list-item").html("");
             var infoHarga = popUpHarga[0].features;
-            for (
-                let index = 0;
-                index < popUpHarga[0].features.length;
-                index++
-            ) {
-                const pop = new mapboxgl.Popup({
-                    closeButton: false,
-                })
-                    .setLngLat(infoHarga[index]["geometry"]["coordinates"])
-                    .setHTML(
-                        `Rp. ${separatorNum(
-                            infoHarga[index]["properties"]["Sewa"]
-                        )}`
-                    )
-                    .addTo(map);
+            var content = "";
+            // console.log(infoHarga);
+            if (infoHarga !== null) {
+                $(".info-layer").show();
+                $("#hide_side_bar").hide();
+                for (
+                    let index = 0;
+                    index < popUpHarga[0].features.length;
+                    index++
+                ) {
+                    const pop = new mapboxgl.Popup({
+                        closeButton: false,
+                    })
+                        .setLngLat(infoHarga[index]["geometry"]["coordinates"])
+                        .setHTML(
+                            `Rp. ${separatorNum(
+                                infoHarga[index]["properties"]["Sewa"]
+                            )}`
+                        )
+                        .addTo(map);
 
-                $(".mapboxgl-popup-content").css("background", "green");
-                $(".mapboxgl-popup-content").css("color", "white");
-                $(".mapboxgl-popup-tip").css("border-top-color", "green");
-                $(".mapboxgl-popup-tip").css("border-bottom-color", "green");
+                    $(".mapboxgl-popup-content").css("background", "green");
+                    $(".mapboxgl-popup-content").css("color", "white");
+                    $(".mapboxgl-popup-tip").css("border-top-color", "green");
+                    $(".mapboxgl-popup-tip").css(
+                        "border-bottom-color",
+                        "green"
+                    );
+                    content += `
+                    <div class="item mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <img width="100px" height="90px" style="object-fit: cover; border-radius:15px"
+                                src="http://jakpintas.dpmptsp-dki.com/rent/${
+                                    infoHarga[index]["properties"]["Foto"]
+                                }">
+                        </div>
+                        <div class="col-8">
+                            <h5 class="font-weight-bold" class="inf-nama-kantor">${
+                                infoHarga[index]["properties"]["Nama"]
+                            }</h5>
+                            <label style="font-size: 13px;" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
+                                infoHarga[index]["properties"]["Sewa"]
+                            )}</span></label>
+                            <label style="font-size: 13px;" class="inf-alamat-sewa">Alamat : <span>${
+                                infoHarga[index]["properties"]["Alamat"]
+                            }</span></label>
+                        </div>
+                    </div>
+                </div>
+                    `;
+                }
             }
+            $(".list-item").html(content);
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
                 "display",
                 ""
@@ -1703,7 +1737,7 @@ $(document).on("click", ".wilayah-select", function () {
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);
-    console.log(coor.split(","));
+    // console.log(coor.split(","));
     var coord = coor.split(",");
 
     geocoder.query(coor);
@@ -1940,6 +1974,17 @@ $("#proyek").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#iumk").css("background", "white");
     $("#investasi_fill").trigger("click");
+});
+
+$("#closeSewa").on("click", function () {
+    $(".info-layer").hide();
+    $("#show_side_bar").hide();
+    if ($("#sidebar").hide() == true) {
+        $("#hide_side_bar").hide();
+    } else {
+        $("#hide_side_bar").show();
+        $("#sidebar").show();
+    }
 });
 
 $("#btn-print").on("click", function () {
