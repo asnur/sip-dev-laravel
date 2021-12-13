@@ -40,7 +40,6 @@ $request_url = end($uri_parts);
 <body>
 
     <!-- Judul -->
-
     {{-- <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
         style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
