@@ -115,7 +115,7 @@
                                                                 id="checkbox1">
                                                             <label
                                                                 class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox1">Wilayah</label>
+                                                                for="checkbox1">Peta Zonasi</label>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -128,49 +128,11 @@
                                                                 id="checkbox2">
                                                             <label
                                                                 class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox2">Total Omzet Per Kelurahan</label>
+                                                                for="checkbox2">Total Omzet Mikro Kecil</label>
                                                         </li>
                                                     </ul>
                                                 </div>
 
-                                                <div class="form-check">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox3">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox3">Rencana Kota</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox4">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox4">Sebaran Usaha Mikro Kecil</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="form-check mb-2">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox4">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox4">Harga Sewa Kantor</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
                                                 <hr>
                                             </div>
 

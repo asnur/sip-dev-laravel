@@ -88,7 +88,7 @@
     .dropdown-menu {
         position: absolute;
         margin-top: 96% !important;
-        margin-left: -20%;
+        /* margin-left: -20%; */
         transform: none !important;
     }
 
@@ -182,7 +182,7 @@
     .tempat_search {
         /* width: 350px; */
         /* margin-top: -12%; */
-        margin: 0 0 0 0;
+        margin: 0.5rem 0.5rem 0 0.5rem;
     }
 
     .tempat_search .search_box {
@@ -661,7 +661,7 @@
     .tempat_search {
         /* width: 350px; */
         /* margin-top: -12%; */
-        margin: 0 0 0 0;
+        margin: 0.5rem 0.5rem 0 0.5rem;
     }
 
     .tempat_search .search_box {
