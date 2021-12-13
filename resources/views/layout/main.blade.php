@@ -504,16 +504,18 @@
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                 id="hlm_lokasi" href=""  role="tab" aria-controls="pills-lokasi" aria-selected="true"><i
                                 class="fa fa-map-marker"></i></a>
+
                                 <br>
                                 <label class="size_menu size_menu_mobile">Lokasi</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                id="hlm_ekonomi" href="" role="tab"
+                                    id="hlm_ekonomi" href="" role="tab"
                                     aria-controls="pills-ekonomi" aria-selected="false"><i
                                         class="ri-funds-box-fill"></i></a>
                                 <br>
@@ -522,7 +524,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                id="hlm_zonasi" href="" role="tab"
+                                    id="hlm_zonasi" href="" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-map-2-fill"></i></a>
                                 <br>
@@ -531,7 +533,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                id="hlm_persil" href="" role="tab"
+                                    id="hlm_persil" href="" role="tab"
                                     aria-controls="pills-persil" aria-selected="false"><i
                                         class="ri-home-4-fill"></i></a>
                                 <br>
@@ -540,7 +542,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
-                                href="" role="tab" aria-controls="pills-poi"
+                                    href="" role="tab" aria-controls="pills-poi"
                                     aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">POI</label>
@@ -548,7 +550,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                id="hlm_kblikeg" href="" role="tab"
+                                    id="hlm_kblikeg" href="" role="tab"
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
