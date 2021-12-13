@@ -447,6 +447,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     setAttrClick = e;
     $("#hide_side_bar").hide();
     $("#show_side_bar").trigger("click");
+    $(".pembungkus").css("background", "#fdfffc");
     // console.log(dt);
     $("#radiusSlide").show();
     $(".container_menu.for_web").show();
