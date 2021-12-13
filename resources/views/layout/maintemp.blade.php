@@ -67,68 +67,6 @@
 
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
-    <!-- CHART -->
-    <script>
-
-        // $("#close").click(function() {
-        //     $("#popup").hide();
-        // });
-
-        // new Chart(document.getElementById("pie-chart"), {
-        //     type: "pie",
-        //     data: {
-        //         labels: ["Produksi", "Perdagangan", "Jasa"],
-        //         datasets: [{
-        //             label: "Kelurahan",
-        //             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-        //             data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
-        //         }, ],
-        //     },
-        //     options: {
-        //         title: {
-        //             display: true,
-        //         },
-        //     },
-        // });
-
-        // new Chart(document.getElementById("bar-chart-grouped"), {
-        //     type: "bar",
-        //     data: {
-        //         labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
-        //         datasets: [{
-        //             backgroundColor: "#3e95cd",
-        //             data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
-        //         }, ],
-        //     },
-        //     options: {
-        //         // title: {
-        //         //     display: true,
-        //         //     text: ["Usia", "Jumlah"],
-        //         //     position: ["bottom", "left"],
-        //         // },
-        //         legend: {
-        //             display: false,
-        //         },
-        //         scales: {
-        //             yAxes: [{
-        //                 scaleLabel: {
-        //                     display: true,
-        //                     labelString: "Jumlah",
-        //                     padding: 20,
-        //                 },
-        //             }, ],
-        //             xAxes: [{
-        //                 scaleLabel: {
-        //                     display: true,
-        //                     labelString: "Usia",
-        //                     padding: 20,
-        //                 },
-        //             }, ],
-        //         },
-        //     },
-        // });
-    </script>
 
 
 
