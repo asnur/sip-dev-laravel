@@ -2058,10 +2058,14 @@ $("#proyek").click(function () {
 $("#closeSewa").on("click", function () {
     $(".info-layer").hide();
     $("#show_side_bar").hide();
+    $("#sewa_kantor").css("background", "white");
+    hideLayer("sewa_fill");
+    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+    // $("#sewa_fill").prop("checked", false);
     if ($("#sidebar").hide() == true) {
         $("#hide_side_bar").hide();
     } else {
-        $("#hide_side_bar").show();
+        // $("#hide_side_bar").show();
         $("#sidebar").show();
     }
 });
