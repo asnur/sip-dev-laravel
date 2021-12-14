@@ -79,8 +79,9 @@
                             <img src="assets/gambar/logo_jakpintas.png" width="70px">
                         </div>
                     </div>
-                    <div style="margin-top: 5%;">
-                        <p><span class="TextHead font-weight-bold">Peta Perizinan dan Investasi</span></p>
+                    <div style="margin-top: 1%;">
+                        <p><span class="TextHead font-weight-bold">Peta Perizinan dan Investasi</span><br><span>Sistem
+                                Pelayanan Informasi</span></p>
                     </div>
                 </div>
             </div>
