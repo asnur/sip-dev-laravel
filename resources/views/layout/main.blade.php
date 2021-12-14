@@ -340,7 +340,7 @@
                     <div class="form-check banjir_fill mt-1">
 
                         <input type="checkbox" class="form-check-input" id="banjir_fill">
-                        <label class="form-check-label text_all" for="banjir_fill">Wilayah
+                        <label class="form-check-label text_all" for="banjir_fill">Terdampak
                             Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
                         <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
                             id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
