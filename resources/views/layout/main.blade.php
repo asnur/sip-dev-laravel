@@ -1072,36 +1072,39 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
                         aria-labelledby="dropdownMenuButton" style="width: 330px">
                         <div class="row p-3">
-                            <div class="col-md-4 text-center d-flex align-items-center">
+                            <div class="col-sm-4 border border-white text-center d-flex align-items-center">
                                 <a href="https://oss.go.id" target="_blank"
                                     style="font-size: 13px; text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/OSS.png') }}" class="w-75">OSS</a>
+                                        src="{{ asset('assets/gambar/OSS.png') }}"
+                                        class="w-75"><span>OSS</span></a>
                             </div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-sm-4 border border-white text-center">
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/ptsp_logo.png') }}" class="w-75">Pesan
+                                        src="{{ asset('assets/gambar/ptsp_logo.png') }}"
+                                        class="w-75"><span>Pesan</span>
                                     AJIB</a>
                             </div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-sm-4 border border-white text-center">
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-75"
-                                        src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
+                                    class="text-dark font-weight-bold"><img class="w-50"
+                                        style="margin-top: 20px"
+                                        src="{{ asset('assets/gambar/jakevo.png') }}"><span>Jakevo</span></a>
                             </div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-sm-4 border border-white text-center">
                                 <a href="https://simbg.pu.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-75"
-                                        src="{{ asset('assets/gambar/simbg.png') }}">SIMBG</a>
+                                    class="text-dark font-weight-bold"><img class="w-50"
+                                        src="{{ asset('assets/gambar/simbg.png') }}"><span>SIMBG</span></a>
                             </div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-sm-4 border border-white text-center">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-75"
-                                        src="{{ asset('assets/gambar/jakarta1_logo.png') }}">JakartaSatu</a>
+                                    class="text-dark font-weight-bold"><img class="w-50"
+                                        src="{{ asset('assets/gambar/jakarta1_logo.png') }}"><span>JakartaSatu</span></a>
                             </div>
                         </div>
                     </div>
