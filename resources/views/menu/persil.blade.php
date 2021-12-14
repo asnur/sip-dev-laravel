@@ -81,7 +81,7 @@
             <div class="col-lg-12 text_all_permenu">
                 @if ($data_zonasi['CD TPZ'] == ' ' || $data_zonasi['CD TPZ'] !== 'g')
 
-                    <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
+                    <p class="mt-3">Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
                     <ol style="margin-top:-15px">
                         <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≤ 12m, Maka GSB: Sebesar 0,5 Kali Lebar
                             Rencana Jalan Dari Sisi Terdekat Rencana Jalan;</li>

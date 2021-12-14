@@ -1,4 +1,4 @@
-var url = "http://103.146.202.108:3000";
+var url = "https://jakpintasdev.dpmptsp-dki.com:3000/";
 var clickEvent = "touchstart";
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
@@ -9,6 +9,9 @@ const map = new mapboxgl.Map({
 $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
+
+map.addControl(new mapboxgl.NavigationControl());
+
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
@@ -75,6 +78,8 @@ map.on("style.load", function () {
         },
     });
 });
+
+
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
@@ -502,3 +507,23 @@ function getDataSewa(kel) {
 
     return data;
 }
+
+
+
+
+// create legend
+const legend = document.getElementById("legends");
+
+layers.forEach((layer, i) => {
+    const color = colors[i];
+    const item = document.createElement("div");
+    const key = document.createElement("span");
+    key.className = "legend-key";
+    key.style.backgroundColor = color;
+
+    const value = document.createElement("span");
+    value.innerHTML = `${layer}`;
+    item.appendChild(key);
+    item.appendChild(value);
+    legend.appendChild(item);
+});
