@@ -458,7 +458,8 @@ map.on("mouseleave", "investasi_dot", () => {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
-    console.log(dt);
+    // console.log(dt);
+    $(".dtKBLI").html("");
     setAttrClick = e;
     $("#hide_side_bar").hide();
     $("#show_side_bar").trigger("click");
@@ -716,7 +717,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
-    console.log(dt);
+    $(".dtKBLI").html("");
+    // console.log(dt);
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
         gsb = `
         <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
@@ -1850,7 +1852,7 @@ function getDataSewa(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `https://jakpintasdev.dpmptsp-dki.com:3001/kblia2/${subzona}`,
+        url: `${APP_URL}/kbli/${subzona}`,
         method: "get",
         dataType: "json",
         success: function (e) {
@@ -1860,7 +1862,7 @@ function dropDownKegiatan(subzona) {
             var htmlContent = "";
             $("#btn-print").hide();
             htmlContent += `<option>Pilih...</option>`;
-            var data = e.features[0].properties;
+            var data = e;
             for (i in data) {
                 // console.log(data[i]["Kegiatan Ruang"]);
                 htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
@@ -1874,13 +1876,13 @@ function DropdownSkala(zonasi, sel) {
     var resHTML = "";
     $("#kegiatanKewenangan").html("");
     $.ajax({
-        url: `${url}/kblib2/${zonasi}/${sel}`,
+        url: `${APP_URL}/kbli/${zonasi}/${sel}`,
         method: "get",
         dataType: "json",
         success: function (res) {
             $("#btn-print").hide();
-            if (res.features != null) {
-                const prop = res.features[0].properties;
+            if (res != null) {
+                const prop = res;
                 var jmlh = [];
                 resHTML += "<option>Pilih....</option>";
                 resHTML += "<optgroup label='Modal'>";
@@ -1950,14 +1952,14 @@ function DropdownSkala(zonasi, sel) {
 
 function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     $.ajax({
-        url: `${url}/kblic2/${zonasi}/${sel}/${skala}`,
+        url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
         method: "get",
         dataType: "json",
         success: function (res) {
             var resHTML = "";
-            if (res.features != null) {
-                const prop = res.features[0].properties;
-                data_kbli = res.features[0].properties;
+            if (res != null) {
+                const prop = res;
+                data_kbli = res;
                 resHTML += "<option>Pilih....</option>";
                 for (var i in prop) {
                     resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;

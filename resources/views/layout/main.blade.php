@@ -1235,6 +1235,9 @@
     @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else
+        <script>
+            var APP_URL = {!! json_encode(url('/')) !!}
+        </script>
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
 </body>
