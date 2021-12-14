@@ -344,6 +344,21 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div class="form-check banjir_fill">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="checkbox" class="form-check-input" id="banjir_fill">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="banjir_fill">Wilayah Banjir</label>
+                            </li>
+                        </ul>
+                        <label class="font_range_input" id="tahunBanjir">2015</label>
+
+                        <input type="range" style="height: 6px;" class="form-control-range" id="ControlTahunBanjir"
+                            min="2015" max="2020" step="1" value="2015">
+                    </div>
+
                     <div class="form-check sewa_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">

@@ -1,5 +1,6 @@
 var url = "https://jakpintasdev.dpmptsp-dki.com:3000";
 var kilometer = $("#ControlRange").val() / 1000;
+var tahun = $("#ControlTahunBanjir").val();
 let popUpHarga;
 var setAttrClick;
 var cat = [];
@@ -27,6 +28,11 @@ $(document).on("input change", "#ControlRange", function () {
     var kilometer = $(this).val() / 1000;
     $("#OutputControlRange").html(kilometer + " Km");
     getRadius(setAttrClick);
+});
+$("#tahunBanjir").html(tahun);
+$(document).on("input change", "#ControlTahunBanjir", function () {
+    tahun = $(this).val();
+    $("#tahunBanjir").html(tahun);
 });
 
 $("#btn-titik, #btn-print").hide();
@@ -1211,7 +1217,7 @@ map.addControl(geocoder);
 
 //add source layer
 function addSourceLayer(item) {
-    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi", "banjir"];
+    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi"];
 
     for (var i = 0; i < api.length; i++) {
         const dt = api[i];
@@ -1250,7 +1256,42 @@ function addSourceLayer(item) {
         });
     }
 
+    if (map.getLayer("banjir_fill")) {
+        map.removeLayer("banjir_fill");
+    }
+
+    if (map.getSource("banjir")) {
+        map.removeSource("banjir");
+    }
+
+    map.addSource("banjir", {
+        type: "geojson",
+        data: `${url}/banjir/${item}/${tahun}`,
+    });
+
+    $("#ControlTahunBanjir").change(function () {
+        map.removeLayer("banjir_fill");
+        map.removeSource("banjir");
+        map.addSource("banjir", {
+            type: "geojson",
+            data: `${url}/banjir/${item}/${tahun}`,
+        });
+        map.addLayer({
+            id: "banjir_fill",
+            type: "fill",
+            source: "banjir",
+            paint: {
+                "fill-color": "#2980b9",
+                "fill-opacity": 0.9,
+            },
+            layout: {
+                visibility: "visible",
+            },
+        });
+    });
+
     addLayers();
+
     $(".lblLayer").show();
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
@@ -1353,7 +1394,7 @@ function addLayers() {
         source: "banjir",
         paint: {
             "fill-color": "#2980b9",
-            "fill-opacity": 0.4,
+            "fill-opacity": 0.9,
         },
         layout: {
             visibility: "none",
@@ -1484,6 +1525,20 @@ function onOffLayers() {
             showLayer("zoning_fill");
         } else {
             hideLayer("zoning_fill");
+        }
+    });
+
+    if ($("#banjir_fill").prop("checked") == true) {
+        showLayer("banjir_fill");
+    } else {
+        hideLayer("banjir_fill");
+    }
+
+    $("#banjir_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("banjir_fill");
+        } else {
+            hideLayer("banjir_fill");
         }
     });
 
