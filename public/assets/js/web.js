@@ -54,6 +54,7 @@ $.ajax({
     method: "GET",
     headers: {
         Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Headers": "Authorization",
     },
     success: function (e) {
         console.log(e);
