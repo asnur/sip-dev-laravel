@@ -59,6 +59,14 @@ var delay = (function () {
     };
 })();
 
+function titleCase(str) {
+    str = str.toLowerCase().split(" ");
+    for (var i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(" ");
+}
+
 function handleImgError() {
     $("#imgCardIUMK").hide();
 }
@@ -617,9 +625,9 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $(".inf-pen-1620").html(dt.P4 + " %");
     $(".inf-pen-20").html(dt.P5 + " %");
     $(".inf-pen-na").html(dt.P6 + " %");
-    $(".inf-kelurahan").html(dt.Kelurahan);
-    $(".inf-kecamatan").html(dt.Kecamatan);
-    $(".inf-kota").html(dt.Kota);
+    $(".inf-kelurahan").html(titleCase(dt.Kelurahan));
+    $(".inf-kecamatan").html(titleCase(dt.Kecamatan));
+    $(".inf-kota").html(titleCase(dt.Kota));
     $(".inf-luasarea").html(larea.toFixed(2) + " ha");
     $(".inf-kepadatan").html(
         separatorNum(dt["Kepadatan-Penduduk"]) + " jiwa/km2"
@@ -658,11 +666,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-4">Kelurahan</div>
-      <div class="col-sm-8">${dt.Kelurahan}</div>
+      <div class="col-sm-8">${titleCase(dt.Kelurahan)}</div>
       <div class="col-sm-4">Kecamatan</div>
-      <div class="col-sm-8">${dt.Kecamatan}</div>
+      <div class="col-sm-8">${titleCase(dt.Kecamatan)}</div>
       <div class="col-sm-4">Wilayah</div>
-      <div class="col-sm-8">${dt.Kota}</div>
+      <div class="col-sm-8">${titleCase(dt.Kota)}</div>
       <div class="col-sm-4">Rasio Gini</div>
       <div class="col-sm-8">${dt.gini}</div>
       <div class="col-sm-4">Kepadatan Penduduk</div>
@@ -725,7 +733,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
         `;
     }
     $(".inf-zona").html(dt.Zona);
-    $(".inf-subzona").html(dt["Sub Zona"] + " - " + dt.Hirarki);
+    $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
     $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
@@ -830,13 +838,13 @@ function getEksisting(e) {
             const dtResp = JSON.parse(dt);
             if (dtResp.features != null) {
                 const prop = dtResp.features[0].properties;
-                $(".inf-eksisting").html(prop.Kegiatan);
+                $(".inf-eksisting").html(titleCase(prop.Kegiatan));
                 eksisting = `
                   <div class="col-sm-12">
                   <div class="row">
                         <div class="col-sm-12 font-weight-bold">Persil Tanah</div>
                         <div class="col-sm-4">Lahan Eksisting</div>
-                        <div class="col-sm-8">${prop.Kegiatan}</div>
+                        <div class="col-sm-8">${titleCase(prop.Kegiatan)}</div>
                       </div>
                     </div>
                     </tbody>
