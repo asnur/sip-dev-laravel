@@ -326,45 +326,31 @@
                             name="investasi_line" class="form-check-input mt-1" type="checkbox"><label
                             for="investasi_line" class="form-check-label text_all">Investasi3</label></div> --}}
                     <div class="form-check zoning_fill">
-                        <ul class="list-group list-group-flush">
-                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" checked id="zoning_fill">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="zoning_fill">Peta Zonasi</label>
-                            </li>
-                        </ul>
+                        <input type="checkbox" class="form-check-input" checked id="zoning_fill">
+                        <label class="form-check-label  text_all" for="zoning_fill">Peta
+                            Zonasi</label>
                     </div>
 
-                    <div class="form-check wilayahindex_fill">
-                        <ul class="list-group list-group-flush">
-                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="wilayahindex_fill">Total Omzet Usaha Mikro Kecil</label>
-                            </li>
-                        </ul>
+                    <div class="form-check wilayahindex_fill mt-1">
+                        <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
+                        <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
+                            Kecil</label>
                     </div>
 
-                    <div class="form-check banjir_fill">
-                        <ul class="list-group list-group-flush">
-                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="checkbox" class="form-check-input" id="banjir_fill">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="banjir_fill">Wilayah Banjir</label>
-                            </li>
-                        </ul>
-                        <label class="font_range_input" id="tahunBanjir">2015</label>
+                    <div class="form-check banjir_fill mt-1">
 
-                        <input type="range" style="height: 6px;" class="form-control-range" id="ControlTahunBanjir"
-                            min="2015" max="2020" step="1" value="2015">
+                        <input type="checkbox" class="form-check-input" id="banjir_fill">
+                        <label class="form-check-label text_all" for="banjir_fill">Wilayah
+                            Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
+                        <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
+                            id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
                     </div>
 
                     <div class="form-check sewa_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
                                 <input type="radio" name="layer" class="form-check-input" id="sewa_fill">
-                                <label class="form-check-label checkbox_left text_checkbox text_all"
-                                    for="sewa_fill">Harga Sewa Kantor</label>
+                                <label class="form-check-label  text_all" for="sewa_fill">Harga Sewa Kantor</label>
                             </li>
                         </ul>
                     </div>
