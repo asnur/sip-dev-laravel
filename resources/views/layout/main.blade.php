@@ -61,7 +61,7 @@
             <button type="button" class="close" id="closeSewa" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <h3 class="title-info font-weight-bold">Harga Sewa Kantor</h3>
+            <h4 class="title-info font-weight-bold">Harga Sewa Kantor</h4>
             <div class="list-item mt-5">
 
             </div>

@@ -1614,9 +1614,9 @@ function onOffLayers() {
                                 }">
                         </div>
                         <div class="col-8">
-                            <h5 class="font-weight-bold" class="inf-nama-kantor">${
+                            <h6 class="font-weight-bold" class="inf-nama-kantor">${
                                 infoHarga[index]["properties"]["Nama"]
-                            }</h5>
+                            }</h6>
                             <label style="font-size: 13px;" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
                                 infoHarga[index]["properties"]["Sewa"]
                             )}</span></label>
