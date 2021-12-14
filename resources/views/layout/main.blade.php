@@ -1070,7 +1070,7 @@
                         </span>
                     </div>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-                        aria-labelledby="dropdownMenuButton" style="width: 330px">
+                        aria-labelledby="dropdownMenuButton" style="width: 300px">
                         <div class="row p-3">
                             <div class="col-sm-4 border border-white text-center d-flex align-items-center">
                                 <a href="https://oss.go.id" target="_blank"
@@ -1091,7 +1091,7 @@
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-50"
-                                        style="margin-top: 20px"
+                                        style="margin-top: 17px"
                                         src="{{ asset('assets/gambar/jakevo.png') }}"><span>Jakevo</span></a>
                             </div>
                             <div class="col-sm-4 border border-white text-center">
