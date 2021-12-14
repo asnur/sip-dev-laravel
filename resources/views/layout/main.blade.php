@@ -1042,239 +1042,141 @@
 
 
 
+    </div>
 
 
-        <div class="container p-2 dropdown for_mobile" id="more-apps"
-        style=" z-index:999; margin-top:4rem; margin-right:-5px;">
 
-        <button class="btn btn-sm for_web">
+
+
+
+
+
+
+    <div class="p-2 dropdown for_mobile" id="more-apps"
+    style=" z-index:9; margin-top:4rem; margin-left:5px;">
+
+    <button class="btn btn-sm for_web">
+        <div class="container">
+            <div class="row">
+                <i class="ri-user-fill bg-white p-1 text-secondary"
+                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+            </div>
+        </div>
+    </button>
+
+    <button style="margin-left:19rem;" class="btn btn-sm">
+        <div class="container">
+            <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
+                <span class="material-icons text-white">
+                    apps
+                </span>
+            </div>
+            <div class="dropdown-menu dropdown-menu-lg-right menu_apps"
+                aria-labelledby="dropdownMenuButton">
+
+                <div class="d-flex justify-content-center mt-3">
+
+                    <div class="col-md-4 ">
+                        <a href="https://oss.go.id" target="_blank"
+                        style="text-decoration:none;"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/OSS.png') }}" class=""></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">
+                                OSS
+                            </h5>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://dpmptsp-jkt.com" target="_blank"
+                            style="text-decoration:none"
+                            class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                src="{{ asset('assets/gambar/mobile/ptsp_logo.png') }}" class=""></a>
+                                <h5 class="font_menu_apps text-center font-weight-bold">Pesan
+                                    AJIB</h5>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                        style="text-decoration:none"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class=""></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                    </div>
+
+
+                </div>
+
+                <div class="d-flex justify-content-center">
+
+                    <div class="col-md-4 ">
+                        <a href="https://simbg.pu.go.id/" target="_blank"
+                        style="text-decoration:none;"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/simbg.png') }}" class=""></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">
+                                SIMBG
+                            </h5>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
+                            style="text-decoration:none"
+                            class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}" class=""></a>
+                                <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
+                    </div>
+
+                    <div class="col-md-4">
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </button>
+
+
+
+    <div id="legend btn btn-sm" style="float: right;">
+        <div class="dropdown">
+
+            <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div class="container">
+                    <div class="row">
+                        <i class="ri-stack-line bg-white p-1 text-secondary"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                    </div>
+                </div>
+            </button>
+
+        </div>
+
+        <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
             <div class="container">
                 <div class="row">
-                    <i class="ri-user-fill bg-white p-1 text-secondary"
+                    <i class="ri-mail-open-line bg-white p-1 text-secondary"
                         style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
                 </div>
             </div>
         </button>
 
-        <button style="margin-left:19rem;" class="btn btn-sm">
-            <div class="container">
-                <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
-                    <span class="material-icons text-white">
-                        apps
-                    </span>
-                </div>
-                <div class="dropdown-menu dropdown-menu-lg-right menu_apps"
-                    aria-labelledby="dropdownMenuButton">
-
-
-                    {{-- <div class="row p-3">
-                        <div class="col-md-4 text-center d-flex align-items-center">
-                            <a href="https://oss.go.id" target="_blank"
-                                style="font-size: 13px; text-decoration:none"
-                                class="text-dark font-weight-bold"><img
-                                    src="{{ asset('assets/gambar/OSS.png') }}" class="w-25">OSS</a>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <a href="https://dpmptsp-jkt.com" target="_blank"
-                                style="font-size: 13px;text-decoration:none"
-                                class="text-dark font-weight-bold"><img
-                                    src="{{ asset('assets/gambar/ptsp_logo.png') }}" class="w-25">Pesan
-                                AJIB</a>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                                style="font-size: 13px;text-decoration:none"
-                                class="text-dark font-weight-bold"><img class="w-25"
-                                    src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <a href="https://simbg.pu.go.id/" target="_blank"
-                                style="font-size: 13px;text-decoration:none"
-                                class="text-dark font-weight-bold"><img class="w-25"
-                                    src="{{ asset('assets/gambar/simbg.png') }}">SIMBG</a>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
-                                style="font-size: 13px;text-decoration:none"
-                                class="text-dark font-weight-bold"><img class="w-25"
-                                    src="{{ asset('assets/gambar/jakarta1_logo.png') }}">JakartaSatu</a>
-                        </div>
-                    </div> --}}
-
-
-
-                    <div class="d-flex justify-content-center mt-3">
-
-                        <div class="col-md-6 ">
-                            <a href="https://oss.go.id" target="_blank"
-                            style="text-decoration:none;"
-                            class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                src="{{ asset('assets/gambar/mobile/OSS.png') }}" class=""></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">
-                                    OSS
-                                </h5>
-                        </div>
-
-                        <div class="col-md-6">
-                            <a href="https://dpmptsp-jkt.com" target="_blank"
-                                style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/ptsp_logo.png') }}" class=""></a>
-                                    <h5 class="font_menu_apps text-center font-weight-bold">Pesan
-                                        AJIB</h5>
-                        </div>
-
-
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-
-                        <div class="col-md-6">
-                            <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                                style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class=""></a>
-                                    <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                        </div>
-
-
-
-                        <div class="col-md-6 ">
-                            <a href="https://simbg.pu.go.id/" target="_blank"
-                            style="text-decoration:none;"
-                            class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                src="{{ asset('assets/gambar/mobile/simbg.png') }}" class=""></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">
-                                    SIMBG
-                                </h5>
-                        </div>
-
-
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-
-                        <div class="col-md-6">
-                            <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
-                                style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}" class=""></a>
-                                    <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
-                        </div>
-
-                        <div class="col-md-6">
-
-                        </div>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {{-- <div class="row row-cols-1 row-cols-md-2">
-                        <div class="col mb-4">
-                            <div class="card">
-                            <a href="https://oss.go.id" target="_blank"
-                            style="font-size: 13px; text-decoration:none"
-                            class="text-dark font-weight-bold"><img
-                                src="{{ asset('assets/gambar/OSS.png') }}" class="card-img-top w-50"></a>
-                                <h5 class="card-title">OSS</h5>
-
-                            </div>
-                        </div>
-                        <div class="col mb-4">
-                            <div class="card">
-
-                                <a href="https://dpmptsp-jkt.com" target="_blank"
-                                style="font-size: 13px;text-decoration:none"
-                                class="text-dark font-weight-bold"><img
-                                    src="{{ asset('assets/gambar/ptsp_logo.png') }}" class="w-50"></a>
-
-                                    <h5>Pesan
-                                        AJIB</h5>
-                            </div>
-                        </div>
-                    </div> --}}
-
-
-
-
-
-
-
-                </div>
-            </div>
-        </button>
-
-
-
-        <div id="legend btn btn-sm" style="float: right;margin-right:0.45rem;">
-            <div class="dropdown">
-                {{-- <button type="button" class="btn btn-sm" id="dropdownLayer" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"
-                    style="border-radius: 50%; border:none; background:white">
-                    <div class="container">
-                        <div class="row">
-                            <i class="las la-layer-group bg-white p-1 text-secondary"
-                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                        </div>
-                    </div>
-                </button> --}}
-                <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <div class="container">
-                        <div class="row">
-                            <i class="ri-stack-line bg-white p-1 text-secondary"
-                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                        </div>
-                    </div>
-                </button>
-
-                {{-- <ul class="dropdown-menu keep-open p-2" id="menu" aria-labelledby="dropdownLayer"
-                    style="position: relative;font-size: 12px;margin-top: 5px;border: none;">
-                    <li style="margin-bottom:10px; "><b>Base Map</b></li>
-                    <li>
-                        <div class="form-check form-check-inline mr-5">
-                            <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
-                                id="ckp4wrapq11m117pf2lr49l5t" value="ckp4wrapq11m117pf2lr49l5t" />
-                            <label class="form-check-label pl-1" for="ckp4wrapq11m117pf2lr49l5t">Default</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check form-check-inline mr-5">
-                            <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
-                                id="ckp6i54ay22u818lrq15ffcnr" value="ckp6i54ay22u818lrq15ffcnr"
-                                checked="checked" />
-                            <label class="form-check-label pl-1" for="ckp6i54ay22u818lrq15ffcnr">Satellite</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check form-check-inline mr-5">
-                            <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
-                                id="ckp6i6bgp2jn217pfp6wm5syk" value="ckp6i6bgp2jn217pfp6wm5syk" />
-                            <label class="form-check-label pl-1" for="ckp6i6bgp2jn217pfp6wm5syk">Streets</label>
-                        </div>
-                    </li>
-                </ul> --}}
-            </div>
-            <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <div class="container">
-                    <div class="row">
-                        <i class="ri-mail-open-line bg-white p-1 text-secondary"
-                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                    </div>
-                </div>
-            </button>
-        </div>
-
     </div>
 
-    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
     {{-- <div class="detail_omzet" id="legends"></div>
     <div class="detail_jumlah" id="features">
         <strong class="border-bottom">Detail Omzet</strong>
