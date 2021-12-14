@@ -451,7 +451,7 @@
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile menu_kbli_top">Kode KBLI</label>
+                                <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
 
                             <li class="nav-item">
@@ -460,7 +460,7 @@
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-printer-fill"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Print</label>
+                                <label class="size_menu size_menu_mobile">Cetak</label>
                             </li>
                             <!-- Pending menu pin-->
 
@@ -617,7 +617,7 @@
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Persil</p>
                             <div class="d-flex row_mid_text">
                                 <div class="col-md-5 text_all">
-                                    <label class="text_all_mobile">Lahan Eksisting</label>
+                                    <label class="text_all_mobile">Kegiatan</label>
                                 </div>
                                 <div class="col-md-7 text_all">
                                     <p class="inf-eksisting">-</p>
@@ -895,7 +895,7 @@
 
                     <div class="tab-pane " id="pills-kblikeg" role="tabpanel" aria-labelledby="kblikeg-tab">
                         <div class="container">
-                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Kode KBLI</p>
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">KBLI</p>
 
                             {{-- <div class="d-flex ml-1">
                                 <div class="col-md-5 text_all">

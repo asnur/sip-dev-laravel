@@ -7,7 +7,3 @@ function isMobileDevice()
         $_SERVER["HTTP_USER_AGENT"]
     );
 }
-
-function getToken()
-{
-}

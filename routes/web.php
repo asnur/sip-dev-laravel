@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KBLIPusdatin;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,6 @@ Route::get('/', function () {
     return view('layout.main');
 });
 
-Route::post('/getresolustion', function () {
-});
+Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
+Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
+Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
