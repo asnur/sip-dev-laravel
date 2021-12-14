@@ -1,4 +1,4 @@
-var url = "http://103.146.202.108:3000";
+var url = "https://jakpintasdev.dpmptsp-dki.com:3000";
 var kilometer = $("#ControlRange").val() / 1000;
 let popUpHarga;
 var setAttrClick;
@@ -444,6 +444,7 @@ map.on("mouseleave", "investasi_dot", () => {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
+    console.log(dt);
     setAttrClick = e;
     $("#hide_side_bar").hide();
     $("#show_side_bar").trigger("click");
@@ -701,7 +702,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
-    // console.log(dt);
+    console.log(dt);
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
         gsb = `
         <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
@@ -1210,7 +1211,7 @@ map.addControl(geocoder);
 
 //add source layer
 function addSourceLayer(item) {
-    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi"];
+    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi", "banjir"];
 
     for (var i = 0; i < api.length; i++) {
         const dt = api[i];
@@ -1341,6 +1342,19 @@ function addLayers() {
             "line-width": 8,
         },
         filter: ["==", "$type", "LineString"],
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "banjir_fill",
+        type: "fill",
+        source: "banjir",
+        paint: {
+            "fill-color": "#2980b9",
+            "fill-opacity": 0.4,
+        },
         layout: {
             visibility: "none",
         },
@@ -1773,7 +1787,7 @@ function getDataSewa(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `http://103.146.202.108:4000/kblia2/${subzona}`,
+        url: `https://jakpintasdev.dpmptsp-dki.com:3001/kblia2/${subzona}`,
         method: "get",
         dataType: "json",
         success: function (e) {
