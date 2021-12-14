@@ -1,4 +1,4 @@
-var url = "http://103.146.202.108:3000";
+var url = "https://jakpintasdev.dpmptsp-dki.com:3000/";
 var clickEvent = "touchstart";
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
