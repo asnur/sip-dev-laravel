@@ -841,14 +841,11 @@ function getIumkForInfo(coor, destination) {
         beforeSend: function () {},
         success: function (dt) {
             const dtResp = JSON.parse(dt);
-            setTimeout(() => {
-                // const img = document.getElementById('imgCardIUMK')
-                // img.src = dtResp.data[0].file_foto_usaha
-                addImageIumkForInfo(
-                    dtResp.data[0].file_foto_usaha,
-                    destination
-                );
-            }, 500);
+            // setTimeout(() => {
+            // const img = document.getElementById('imgCardIUMK')
+            // img.src = dtResp.data[0].file_foto_usaha
+            addImageIumkForInfo(dtResp.data[0].file_foto_usaha, destination);
+            // }, 500);
         },
         error: function (error) {
             console.log(error);
