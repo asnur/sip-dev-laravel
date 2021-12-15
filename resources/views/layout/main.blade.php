@@ -686,7 +686,7 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kode Blok/Sub Blok</label>
+                                    <label class="text_all_mobile">Blok/Sub Blok</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-blok">-</p>
