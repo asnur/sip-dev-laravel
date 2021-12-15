@@ -150,8 +150,9 @@
     position: absolute;
     bottom: 0;
     z-index: 8;
-    background: rgb(20, 22, 145);
-    color: orange;
+    background: white;
+    color: blue;
+    font-weight: bold;
     font-size: 14px;
 }
 
