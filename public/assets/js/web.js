@@ -22,6 +22,7 @@ var bar_kbli;
 var hrg_min = "";
 var hrg_max = "";
 var sebaran_usaha;
+var proyek;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -1321,6 +1322,8 @@ function addSourceLayer(item) {
     });
 
     $("#ControlTahunBanjir").change(function () {
+        var layer = map.getLayer("banjir_fill");
+        var condition = layer.visibility == "visible" ? "visible" : "none";
         map.removeLayer("banjir_fill");
         map.removeSource("banjir");
         map.addSource("banjir", {
@@ -1336,7 +1339,7 @@ function addSourceLayer(item) {
                 "fill-opacity": 0.9,
             },
             layout: {
-                visibility: "visible",
+                visibility: condition,
             },
         });
     });
@@ -1583,6 +1586,7 @@ function onOffLayers() {
             hideLayer("investasi_line");
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
             $(".list-item-usaha").html("");
+            $("#hide_side_bar").hide();
             var content = "";
             var infoUsaha = sebaran_usaha[0].features;
             for (
@@ -1785,6 +1789,8 @@ function getDataSebaranUsaha(kel) {
 
     return data;
 }
+
+function getDataProyek(kel) {}
 
 function dropDownKegiatan(subzona) {
     $.ajax({
