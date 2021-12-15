@@ -745,7 +745,7 @@
 
                             <div class="d-flex space_judul row_mid_judul">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Pelaku Usaha</label>
+                                    <label class="text_all_mobile">Pemilik IUMK</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <p><span class="inf-iumk">-</span> <span>orang</span></p>
@@ -757,7 +757,7 @@
                                     <label class="text_all_mobile">Total Omset</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p><span class="inf-omzet">-</span> <span>per bulan</span></p>
+                                    <p>Rp.<span class="inf-omzet">-</span> <span>per bulan</span></p>
                                 </div>
                             </div>
 
@@ -816,7 +816,7 @@
 
 
                                 <div class="text_all">
-                                    <label>> N/A</label>
+                                    <label>N/A</label>
                                 </div>
                                 <div class="text_all col_info">
                                     <label class="inf-pen-na">-</label>
