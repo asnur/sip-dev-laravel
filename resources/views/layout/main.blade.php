@@ -106,7 +106,27 @@
 
                                             <div class="layout_checkbox_mobile">
 
-                                                <div class="form-check">
+                                                <div class="form-check  mt-1">
+                                                    <input type="checkbox" class="form-check-input" id="peta_zonasi">
+                                                    <label class="form-check-label  text_all" for="peta_zonasi">Peta Zonasi</label>
+                                                </div>
+
+                                                <div class="form-check mt-1">
+                                                    <input type="checkbox" class="form-check-input" id="mikro_kecil">
+                                                    <label class="form-check-label  text_all" for="mikro_kecil">Total Omzet Mikro Kecil</label>
+                                                </div>
+
+                                                <div class="form-check mt-1 mb-2">
+
+                                                    <input type="checkbox" class="form-check-input" id="banjir_fill">
+                                                    <label class="form-check-label text_all" for="banjir_fill">Terdampak
+                                                        Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
+                                                    <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
+                                                        id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                                                </div>
+
+
+                                                {{-- <div class="form-check">
 
                                                     <ul class="list-group list-group-flush">
                                                         <li
@@ -131,7 +151,9 @@
                                                                 for="checkbox2">Total Omzet Mikro Kecil</label>
                                                         </li>
                                                     </ul>
-                                                </div>
+                                                </div> --}}
+
+
 
                                                 {{-- <hr> --}}
                                             </div>
