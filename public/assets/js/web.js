@@ -865,6 +865,7 @@ function addImageIumkForInfo(imgSource, destination) {
             );
         })
         .attr("src", imgSource);
+    console.clear();
 }
 
 function getEksisting(e) {
