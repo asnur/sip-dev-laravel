@@ -21,6 +21,7 @@ var pie_kbli;
 var bar_kbli;
 var hrg_min = "";
 var hrg_max = "";
+var sebaran_usaha;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -717,8 +718,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
+    console.log(sebaran_usaha);
     $(".dtKBLI").html("");
-    // console.log(dt);
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
         gsb = `
         <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
@@ -818,12 +819,54 @@ function getIumk(e) {
     });
 }
 function addImageIumk(imgSource, destination) {
-    var img = $("#imgCardIUMK")
-        .on("error", handleImgError)
-        .attr("src", imgSource);
+    var img = $(destination).on("error", handleImgError).attr("src", imgSource);
     $(destination).append(img);
     $(destination).show();
 }
+
+function getIumkForInfo(coor, destination) {
+    const dt = coor;
+    $.ajax({
+        url: `https://iumk.perizinan-dev.com/api/getWithKoordinat`,
+        method: "post",
+        headers: {
+            AUTHCODE: "9ee2f95d62b9f67f58ec288b1599cf9c",
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data: {
+            lat: coor[0],
+            lng: coor[1],
+        },
+        beforeSend: function () {},
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            setTimeout(() => {
+                // const img = document.getElementById('imgCardIUMK')
+                // img.src = dtResp.data[0].file_foto_usaha
+                addImageIumkForInfo(
+                    dtResp.data[0].file_foto_usaha,
+                    destination
+                );
+            }, 500);
+        },
+        error: function (error) {
+            console.log(error);
+        },
+    });
+}
+
+function addImageIumkForInfo(imgSource, destination) {
+    $(destination)
+        .on("error", function () {
+            $(this).attr(
+                "src",
+                "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png"
+            );
+        })
+        .attr("src", imgSource);
+}
+
 function getEksisting(e) {
     // $("#dtEksistingBot").html("");
     var htmlPopupLayer = "";
@@ -1479,27 +1522,6 @@ function switchLayer(layer) {
 }
 
 function onOffLayers() {
-    // var toggleableLayerIds = [
-    //     "wilayah_fill",
-    //     "zoning_fill",
-    //     "investasi_fill",
-    //     "sewa_fill",
-    //     "wilayahindex_fill",
-    //     "iumk_fill",
-    //     "investasi_dot",
-    //     "investasi_line",
-    // ];
-    // var textCnt = [
-    //     "Wilayah",
-    //     "Peta Zonasi",
-    //     "Proyek Potensial",
-    //     "Harga Sewa Kantor",
-    //     "Total Omzet Usaha Mikro Kecil",
-    //     "Sebaran Usaha Mikro Kecil",
-    //     "Investasi2",
-    //     "Investasi3",
-    // ];
-
     //Wilayah
     if ($("#wilayahindex_fill").prop("checked") == true) {
         showLayer("wilayahindex_fill");
@@ -1555,12 +1577,46 @@ function onOffLayers() {
     //Sebaran Usaha mikro kecil
     $("#iumk_fill").change(function () {
         if ($(this).prop("checked") == true) {
+            $(".info-layer-usaha").show();
             showLayer("iumk_fill");
             hideLayer("sewa_fill");
             hideLayer("investasi_fill");
             hideLayer("investasi_dot");
             hideLayer("investasi_line");
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+            $(".list-item-usaha").html("");
+            var content = "";
+            var infoUsaha = sebaran_usaha[0].features;
+            for (
+                let index = 0;
+                index < sebaran_usaha[0].features.length;
+                index++
+            ) {
+                var coord = [
+                    infoUsaha[index]["properties"]["Lat"],
+                    infoUsaha[index]["properties"]["Long"],
+                ];
+                content += `
+                <div class="item mb-3">
+                <div class="row">
+                    <div class="col-4">
+                        <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="">
+                    </div>
+                    <div class="col-8">
+                        <h6 class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</h6>
+                        <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pemilik Usaha :
+                            <span>${infoUsaha[index]["properties"]["Pemilik Usaha"]}</span></label>
+                        <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Jenis Usaha :
+                            <span>${infoUsaha[index]["properties"]["Jenis Usaha"]}</span></label>
+                        <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Tenaga Kerja : <span>${infoUsaha[index]["properties"]["Tenaga Kerja"]}
+                                Orang</span></label>
+                    </div>
+                </div>
+            </div>
+                `;
+                getIumkForInfo(coord, `#imgUsaha-${index}`);
+            }
+            $(".list-item-usaha").html(content);
         } else {
             hideLayer("iumk_fill");
         }
@@ -1617,10 +1673,10 @@ function onOffLayers() {
                             <h6 class="font-weight-bold" class="inf-nama-kantor">${
                                 infoHarga[index]["properties"]["Nama"]
                             }</h6>
-                            <label style="font-size: 13px;" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
+                            <label style="font-size: 13px; line-height:0" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
                                 infoHarga[index]["properties"]["Sewa"]
                             )}</span></label>
-                            <label style="font-size: 13px;" class="inf-alamat-sewa">Alamat : <span>${
+                            <label style="font-size: 13px; line-height:1.6" class="inf-alamat-sewa">Alamat : <span>${
                                 infoHarga[index]["properties"]["Alamat"]
                             }</span></label>
                         </div>
@@ -1667,143 +1723,6 @@ function onOffLayers() {
             hideLayer("investasi_line");
         }
     });
-
-    // $("#menus").append("<label class='font-weight-bold'>Aktivasi</label>");
-    // for (var i = 0; i < toggleableLayerIds.length; i++) {
-    //     var id = toggleableLayerIds[i];
-    //     if (!document.getElementById(id)) {
-    //         var div = document.createElement("div");
-    //         div.className = "form-check " + id;
-
-    //         var link = document.createElement("input");
-    //         link.id = id;
-    //         link.name = id;
-    //         if (textCnt[i] == "Wilayah") {
-    //             link.setAttribute("disabled", true);
-    //         }
-    //         link.className = "form-check-input mt-1";
-    //         link.type = "checkbox";
-    //         // link.value = id
-    //         div.append(link);
-
-    //         var label = document.createElement("label");
-    //         label.htmlFor = id;
-    //         label.className = "form-check-label";
-    //         label.innerHTML = textCnt[i];
-    //         div.classList.add("text_all");
-    //         div.appendChild(label);
-
-    //         var mapLayer = map.getLayer(id);
-    //         // console.log(mapLayer.visibility);
-
-    //         if (mapLayer.visibility == "visible") {
-    //             link.checked = true;
-    //         } else {
-    //             link.checked = false;
-    //         }
-
-    //         link.addEventListener("change", function (e) {
-    //             var clickedLayer = this.id;
-    //             e.preventDefault();
-    //             e.stopPropagation();
-    //             var pop = new mapboxgl.Popup({
-    //                 closeButton: false,
-    //                 closeOnClick: false,
-    //             });
-    //             var visibility = map.getLayoutProperty(
-    //                 clickedLayer,
-    //                 "visibility"
-    //             );
-    //             var popUp = new mapboxgl.Popup();
-    //             if (visibility == "visible") {
-    //                 hideLayer(clickedLayer);
-    //                 popUp.remove();
-    //             } else if (visibility == "none") {
-    //                 showLayer(clickedLayer);
-    //                 if (this.id == "sewa_fill") {
-    //                     // console.log(popUpHarga);
-    //                     var infoHarga = popUpHarga[0].features;
-    //                     var checkBox = document.getElementById("sewa_fill");
-    //                     for (
-    //                         let index = 0;
-    //                         index < popUpHarga[0].features.length;
-    //                         index++
-    //                     ) {
-    //                         const pop = new mapboxgl.Popup({
-    //                             closeButton: false,
-    //                         })
-    //                             .setLngLat(
-    //                                 infoHarga[index]["geometry"]["coordinates"]
-    //                             )
-    //                             .setHTML(
-    //                                 `Rp. ${separatorNum(
-    //                                     infoHarga[index]["properties"]["Sewa"]
-    //                                 )}`
-    //                             )
-    //                             .addTo(map);
-
-    //                         $(".mapboxgl-popup-content").css(
-    //                             "background",
-    //                             "green"
-    //                         );
-    //                         $(".mapboxgl-popup-content").css("color", "white");
-    //                         $(".mapboxgl-popup-tip").css(
-    //                             "border-top-color",
-    //                             "green"
-    //                         );
-    //                         $(".mapboxgl-popup-tip").css(
-    //                             "border-bottom-color",
-    //                             "green"
-    //                         );
-    //                         // $(".mapboxgl-popup-tip").css(
-    //                         //     "border-left-color",
-    //                         //     "green"
-    //                         // );
-    //                         // $(".mapboxgl-popup-tip").css(
-    //                         //     "border-right-color",
-    //                         //     "green"
-    //                         // );
-    //                     }
-    //                 }
-    //             } else {
-    //                 $(this).prop("checked", false);
-    //                 // alert("nda ada");
-    //             }
-    //         });
-
-    //         $("#menus").append(div);
-    //         $("#menus").show();
-    //         $("#radiusSlide").show();
-    //         $(".wilayah_fill").css("display", "none");
-    //         $("#iumk_fill").prop("checked", false);
-    //         $("#sewa_fill").prop("checked", false);
-    //         $("#wilayahindex_fill").prop("checked", false);
-    //         $(".investasi_dot").css("display", "none");
-    //         $(".investasi_line").css("display", "none");
-    //         $("#sewa_fill").on("change", function () {
-    //             if ($(this).prop("checked") == true) {
-    //                 $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
-    //                     "display",
-    //                     ""
-    //                 );
-    //                 // console.log("remove");
-    //             } else {
-    //                 $(
-    //                     "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
-    //                 ).remove();
-    //             }
-    //         });
-    //         $("#wilayahindex_fill").on("change", function () {
-    //             if ($(this).prop("checked") == true) {
-    //                 $(".detail_omzet").show();
-    //                 $(".detail_jumlah").show();
-    //             } else {
-    //                 $(".detail_omzet").hide();
-    //                 $(".detail_jumlah").hide();
-    //             }
-    //         });
-    //     }
-    // }
 }
 
 $(document).on("click", ".wilayah-select", function () {
@@ -1816,6 +1735,8 @@ $(document).on("click", ".wilayah-select", function () {
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);
+    sebaran_usaha = [];
+    sebaran_usaha = getDataSebaranUsaha(kel);
     // console.log(coor.split(","));
     var coord = coor.split(",");
 
@@ -1838,6 +1759,23 @@ function getDataSewa(kel) {
     setTimeout(function () {
         $.ajax({
             url: `${url}/sewa/${kel}`,
+            method: "GET",
+            dataType: "json",
+            success: function (e) {
+                // console.log(e);
+                data.push(e);
+            },
+        });
+    }, 1000);
+
+    return data;
+}
+
+function getDataSebaranUsaha(kel) {
+    var data = [];
+    setTimeout(function () {
+        $.ajax({
+            url: `${url}/iumk/${kel}`,
             method: "GET",
             dataType: "json",
             success: function (e) {
@@ -2039,6 +1977,7 @@ $("#sewa_kantor").click(function () {
     $("#iumk").css("background", "white");
     $("#proyek").css("background", "white");
     $("#sewa_fill").trigger("click");
+    $("#closeUsaha").trigger("click");
 });
 
 $("#iumk").click(function () {
@@ -2046,6 +1985,7 @@ $("#iumk").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#proyek").css("background", "white");
     $("#iumk_fill").trigger("click");
+    $("#closeSewa").trigger("click");
 });
 
 $("#proyek").click(function () {
@@ -2061,7 +2001,23 @@ $("#closeSewa").on("click", function () {
     $("#sewa_kantor").css("background", "white");
     hideLayer("sewa_fill");
     $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-    // $("#sewa_fill").prop("checked", false);
+    $("#sewa_fill").prop("checked", false);
+    // $("#closeUsaha").trigger("click");
+    if ($("#sidebar").hide() == true) {
+        $("#hide_side_bar").hide();
+    } else {
+        // $("#hide_side_bar").show();
+        $("#sidebar").show();
+    }
+});
+
+$("#closeUsaha").on("click", function () {
+    $(".info-layer-usaha").hide();
+    $("#show_side_bar").hide();
+    $("#iumk").css("background", "white");
+    hideLayer("iumk_fill");
+    $("#iumk_fill").prop("checked", false);
+    // $("#closeSewa").trigger("click");
     if ($("#sidebar").hide() == true) {
         $("#hide_side_bar").hide();
     } else {

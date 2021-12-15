@@ -61,8 +61,20 @@
             <button type="button" class="close" id="closeSewa" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="title-info font-weight-bold">Harga Sewa Kantor</h4>
+            <h5 class="title-info font-weight-bold">Harga Sewa Kantor</h5>
             <div class="list-item mt-5">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="info-layer-usaha">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeUsaha" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="title-info font-weight-bold">Sebaran Usaha Mikro Kecil</h5>
+            <div class="list-item-usaha mt-5">
 
             </div>
         </div>
