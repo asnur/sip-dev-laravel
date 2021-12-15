@@ -719,7 +719,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
-    console.log(sebaran_usaha);
+    console.log(proyek);
     $(".dtKBLI").html("");
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
         gsb = `
@@ -1675,12 +1675,12 @@ function onOffLayers() {
                             <h6 class="font-weight-bold" class="inf-nama-kantor">${
                                 infoHarga[index]["properties"]["Nama"]
                             }</h6>
+                            <label style="font-size: 13px; line-height:1.6; margin-bottom: -10px;" class="inf-alamat-sewa">Alamat : <span>${
+                                infoHarga[index]["properties"]["Alamat"]
+                            }</span></label>
                             <label style="font-size: 13px; line-height:0" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
                                 infoHarga[index]["properties"]["Sewa"]
                             )}</span></label>
-                            <label style="font-size: 13px; line-height:1.6" class="inf-alamat-sewa">Alamat : <span>${
-                                infoHarga[index]["properties"]["Alamat"]
-                            }</span></label>
                         </div>
                     </div>
                 </div>
@@ -1739,6 +1739,8 @@ $(document).on("click", ".wilayah-select", function () {
     popUpHarga = getDataSewa(kel);
     sebaran_usaha = [];
     sebaran_usaha = getDataSebaranUsaha(kel);
+    proyek = [];
+    proyek = getDataProyek(kel);
     // console.log(coor.split(","));
     var coord = coor.split(",");
 
@@ -1790,7 +1792,22 @@ function getDataSebaranUsaha(kel) {
     return data;
 }
 
-function getDataProyek(kel) {}
+function getDataProyek(kel) {
+    var data = [];
+    setTimeout(function () {
+        $.ajax({
+            url: `${url}/investasi/${kel}`,
+            method: "GET",
+            dataType: "json",
+            success: function (e) {
+                // console.log(e);
+                data.push(e);
+            },
+        });
+    }, 1000);
+
+    return data;
+}
 
 function dropDownKegiatan(subzona) {
     $.ajax({
