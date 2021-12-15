@@ -61,7 +61,7 @@
             <button type="button" class="close" id="closeSewa" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <h5 class="title-info font-weight-bold">Harga Sewa Kantor</h5>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Harga Sewa Kantor</span>
             <div class="list-item mt-5">
 
             </div>
@@ -73,10 +73,22 @@
             <button type="button" class="close" id="closeUsaha" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <h5 class="title-info font-weight-bold">Sebaran Usaha Mikro Kecil</h5>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Sebaran Usaha Mikro Kecil</span>
             <div class="list-item-usaha mt-5">
 
             </div>
+        </div>
+    </div>
+
+    <div class="info-layer-investasi">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeInvestasi" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Proyek Potensial</span>
+            <ol class="list-item-investasi mt-5">
+
+            </ol>
         </div>
     </div>
 
@@ -469,7 +481,7 @@
 
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="zonasi-tab" data-toggle="pill" href="#pills-zonasi" role="tab"
+                                    id="printAll" data-toggle="pill" href="#pills-zonasi" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-printer-fill"></i></a>
                                 <br>
@@ -744,6 +756,18 @@
                                     <label class="text_all_mobile inf-gsb">
                                         -
                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex margin_chart_ekonomi_mobile">
+                                <canvas id="pie-chart-info" width="70" height="50"
+                                    style="position:absolute;z-index: -999; display:none"></canvas>
+                            </div>
+
+                            <div class="d-flex margin_chartline_ekonomi_mobile">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                                    <canvas id="bar-chart-grouped-info" width="90" height="80"
+                                        style="display: none;position:absolute;"></canvas>
                                 </div>
                             </div>
                         </div>

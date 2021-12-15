@@ -19,6 +19,8 @@ var pie;
 var bar;
 var pie_kbli;
 var bar_kbli;
+var pie_info;
+var bar_info;
 var hrg_min = "";
 var hrg_max = "";
 var sebaran_usaha;
@@ -488,6 +490,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     var chart_bar = $("#bar-chart-grouped").get(0).getContext("2d");
     var chart_pie_kbli = $("#pie-chart-kbli").get(0).getContext("2d");
     var chart_bar_kbli = $("#bar-chart-grouped-kbli").get(0).getContext("2d");
+    var chart_pie_info = $("#pie-chart-info").get(0).getContext("2d");
+    var chart_bar_info = $("#bar-chart-grouped-info").get(0).getContext("2d");
     pie = new Chart(chart_pie, {
         type: "pie",
         data: {
@@ -576,6 +580,72 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     });
 
     bar_kbli = new Chart(chart_bar_kbli, {
+        type: "bar",
+        data: {
+            labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
+            datasets: [
+                {
+                    backgroundColor: "#3e95cd",
+                    data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
+                },
+            ],
+        },
+        options: {
+            // title: {
+            //     display: true,
+            //     text: ["Usia", "Jumlah"],
+            //     position: ["bottom", "left"],
+            // },
+            legend: {
+                display: false,
+            },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Jumlah",
+                            padding: 20,
+                        },
+                    },
+                ],
+                xAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Usia",
+                            padding: 20,
+                        },
+                    },
+                ],
+            },
+            bezierCurve: false,
+            animation: 0,
+        },
+    });
+
+    pie_info = new Chart(chart_pie_info, {
+        type: "pie",
+        data: {
+            labels: ["Produksi", "Perdagangan", "Jasa"],
+            datasets: [
+                {
+                    label: "Kelurahan",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                    data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
+                },
+            ],
+        },
+        options: {
+            title: {
+                display: true,
+            },
+            bezierCurve: false,
+            animation: 0,
+        },
+    });
+
+    bar_info = new Chart(chart_bar_info, {
         type: "bar",
         data: {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
@@ -1605,7 +1675,7 @@ function onOffLayers() {
                         <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="">
                     </div>
                     <div class="col-8">
-                        <h6 class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</h6>
+                        <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>
                         <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pemilik Usaha :
                             <span>${infoUsaha[index]["properties"]["Pemilik Usaha"]}</span></label>
                         <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Jenis Usaha :
@@ -1672,9 +1742,9 @@ function onOffLayers() {
                                 }">
                         </div>
                         <div class="col-8">
-                            <h6 class="font-weight-bold" class="inf-nama-kantor">${
+                            <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${
                                 infoHarga[index]["properties"]["Nama"]
-                            }</h6>
+                            }</span>
                             <label style="font-size: 13px; line-height:1.6; margin-bottom: -10px;" class="inf-alamat-sewa">Alamat : <span>${
                                 infoHarga[index]["properties"]["Alamat"]
                             }</span></label>
@@ -1701,10 +1771,29 @@ function onOffLayers() {
     //proyek_potensial
     $("#investasi_fill").change(function () {
         if ($(this).prop("checked") == true) {
-            showLayer("investasi_fill");
-            hideLayer("iumk_fill");
-            hideLayer("sewa_fill");
-            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+            var infoProyek = proyek[0].features;
+            if (infoProyek !== null) {
+                $(".info-layer-investasi").show();
+                showLayer("investasi_fill");
+                hideLayer("iumk_fill");
+                hideLayer("sewa_fill");
+                $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+                $(".list-item-investasi").html("");
+                var content = "";
+                for (
+                    let index = 0;
+                    index < proyek[0].features.length;
+                    index++
+                ) {
+                    content += `
+                        <li class="item mb-3" style="margin-left:-20px">
+                            <span style="font-size: 11pt" class="font-weight-bold">${infoProyek[index]["properties"]["Nama"]}</span>
+                            <label style="font-size: 13px;">${infoProyek[index]["properties"]["Deskripsi"]}</label>
+                        </li>
+                    `;
+                }
+                $(".list-item-investasi").html(content);
+            }
         } else {
             hideLayer("investasi_fill");
         }
@@ -1999,6 +2088,7 @@ $("#sewa_kantor").click(function () {
     $("#proyek").css("background", "white");
     $("#sewa_fill").trigger("click");
     $("#closeUsaha").trigger("click");
+    $("#closeInvestasi").trigger("click");
 });
 
 $("#iumk").click(function () {
@@ -2007,6 +2097,7 @@ $("#iumk").click(function () {
     $("#proyek").css("background", "white");
     $("#iumk_fill").trigger("click");
     $("#closeSewa").trigger("click");
+    $("#closeInvestasi").trigger("click");
 });
 
 $("#proyek").click(function () {
@@ -2014,6 +2105,8 @@ $("#proyek").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#iumk").css("background", "white");
     $("#investasi_fill").trigger("click");
+    $("#closeSewa").trigger("click");
+    $("#closeUsaha").trigger("click");
 });
 
 $("#closeSewa").on("click", function () {
@@ -2047,9 +2140,70 @@ $("#closeUsaha").on("click", function () {
     }
 });
 
+$("#closeInvestasi").on("click", function () {
+    $(".info-layer-investasi").hide();
+    $("#show_side_bar").hide();
+    $("#proyek").css("background", "white");
+    hideLayer("investasi_fill");
+    hideLayer("investasi_dot");
+    hideLayer("investasi_line");
+    $("#investasi_fill").prop("checked", false);
+    $("#investasi_dot").prop("checked", false);
+    $("#investasi_line").prop("checked", false);
+    // $("#closeSewa").trigger("click");
+    if ($("#sidebar").hide() == true) {
+        $("#hide_side_bar").hide();
+    } else {
+        // $("#hide_side_bar").show();
+        $("#sidebar").show();
+    }
+});
+
 $("#btn-print").on("click", function () {
     var data_pie = $("#pie-chart-kbli").get(0).toDataURL("img/png");
     var data_bar = $("#bar-chart-grouped-kbli").get(0).toDataURL("img/png");
+    chart = `
+        <div class="row mt-5 mb-5">
+        <div class="col-md-6">
+            <center>
+              <img src="${data_pie}" width="70%">
+            </center>
+        </div>
+        <div class="col-md-6">
+          <center>
+            <img src="${data_bar}" width="70%">
+          </center>
+        </div>
+      </div>
+        `;
+    var html = [
+        imgMaps,
+        lokasi,
+        chart,
+        pendapatan,
+        zona,
+        eksisting,
+        bpn,
+        harga,
+        fasilitas,
+        kbli_data,
+    ].join("");
+    var opt = {
+        margin: [10, 30, 10, 30],
+        html2canvas: { scale: 2, logging: true },
+    };
+    html2pdf()
+        .set(opt)
+        .from(html)
+        .output("bloburl")
+        .then((r) => {
+            window.open(r);
+        });
+});
+
+$("#printAll").on("click", function () {
+    var data_pie = $("#pie-chart-info").get(0).toDataURL("img/png");
+    var data_bar = $("#bar-chart-grouped-info").get(0).toDataURL("img/png");
     chart = `
         <div class="row mt-5 mb-5">
         <div class="col-md-6">
