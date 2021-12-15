@@ -146,6 +146,15 @@
     overflow-x: hidden;
 }
 
+.runing-text {
+    position: absolute;
+    bottom: 0;
+    z-index: 8;
+    background: rgb(17, 19, 124);
+    color: orange;
+    font-size: 14px;
+}
+
 .dalam {
     height: 100% !important;
     overflow-y: auto;

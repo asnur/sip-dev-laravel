@@ -1276,6 +1276,7 @@
 
     {{-- ScreenShoot Map --}}
     <div id="screenshotPlaceholder"></div>
+    <marquee class="runing-text">-</marquee>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

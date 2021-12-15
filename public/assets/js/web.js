@@ -50,6 +50,24 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
+$.ajax({
+    url: `${url}/text`,
+    method: "GET",
+    dataType: "json",
+    beforeSend: function () {
+        $(".runing-text").html("");
+    },
+    success: function (e) {
+        var data = e.features;
+        var text = "";
+        for (let index = 0; index < data.length; index++) {
+            text += data[index].properties.Text + ". ";
+        }
+        $(".runing-text").html("");
+        $(".runing-text").html(text);
+    },
+});
+
 const popup = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false,
