@@ -64,7 +64,15 @@ $.ajax({
             text += data[index].properties.Text + ". ";
         }
         $(".runing-text").html("");
-        $(".runing-text").html(text);
+        $(".runing-text")
+            .html(text)
+            .css("overflow-x", "hidden")
+            .css("width", "100%");
+        $(".runing-text").marquee({
+            direction: "left",
+            duration: 20000,
+        });
+        // console.log(text);
     },
 });
 
