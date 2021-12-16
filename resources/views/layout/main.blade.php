@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peta Perijinan dan Investasi DKI Jakarta</title>
 
-    <link rel="icon" href="assets/gambar/favicon.ico">
+    <link rel="icon" href="{{ asset('assets/gambar/favicon.ico')}}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
@@ -1086,7 +1086,7 @@
         </div>
     </button>
 
-    <button style="margin-left:19rem;" class="btn btn-sm">
+    <button class="btn btn-sm float-right">
         <div class="container">
             <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
                 <span class="material-icons text-white">
@@ -1161,7 +1161,7 @@
 
 
 
-    <div id="legend btn btn-sm" style="float: right;">
+    <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
         <div class="dropdown">
 
             <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
@@ -1245,23 +1245,19 @@
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
+
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+
     @if (isMobileDevice())
+
         <script>
             var setLokasi = "{{ @route('setLokasi') }}"
             var setKordinat = "{{ @route('setKordinat') }}"
             var setZonasi = "{{ @route('setZonasi') }}"
             var setEksisting = "{{ @route('setEksisting') }}"
-
-            // var menuLokasi = "{{ @route('lokasi') }}"
-            // var menuEkonomi = "{{ @route('ekonomi') }}"
-            // var menuKode = "{{ @route('kode_kbli') }}"
-            // var menuPersil = "{{ @route('persil') }}"
-            // var menuPoi = "{{ @route('poi') }}"
-            // var menuZonasi = "{{ @route('zonasi') }}"
 
 
             document.getElementById("hlm_lokasi").onclick = function (e) {
@@ -1338,13 +1334,11 @@
             }
         }
 
-
-
-
-
         </script>
+
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
         {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
+
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif

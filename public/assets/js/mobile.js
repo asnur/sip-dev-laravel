@@ -1,5 +1,19 @@
 var url = "https://jakpintasdev.dpmptsp-dki.com:3000/";
-var clickEvent = "touchstart";
+
+var kilometer = $("#ControlRange").val() / 1000;
+$("#OutputControlRange").html(kilometer + " Km");
+$(document).on("input change", "#ControlRange", function () {
+    var kilometer = $(this).val() / 1000;
+    $("#OutputControlRange").html(kilometer + " Km");
+    // getRadius(setAttrClick);
+});
+
+// var clickEvent = "touchstart";
+var clickEvent =
+    "ontouchstart" in document.documentElement ? "touchstart" : "click";
+
+
+
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
@@ -38,14 +52,14 @@ map.on("style.load", function () {
     }
     map.on(clickEvent, add_marker);
 
-    map.addSource("wilayahindex", {
-        type: "geojson",
-        data: `${url}/choro`,
-    });
+    // map.addSource("wilayahindex", {
+    //     type: "geojson",
+    //     data: `${url}/choro`,
+    // });
 
     map.addSource("mobile_index", {
-        type: "geojson",
-        data: `${url}/choro`,
+        // type: "geojson",
+        // data: `${url}/choro`,
     });
 
     map.addLayer({
@@ -85,14 +99,162 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     console.log(e.features[0].properties);
     lokasi(dt);
+
+    // getRadius(e);
+
 });
+
+
+
+
 
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     console.log(e.features[0].properties);
     zonasi(dt);
+    // poi(dt);
+
+
     $(".container.container_menu.for_mobile").show();
+
 });
+
+// function getRadius(e) {
+//     var tblRadData = "";
+//     var getRadVal = $("#ControlRange").val();
+//     $.ajax({
+//         url: `${url}/lon/${e.lngLat.lng}/lat/${e.lngLat.lat}/rad/${getRadVal}`,
+//         method: "get",
+//         contentType: false,
+//         processData: false,
+//         cache: false,
+//         beforeSend: function () {
+//             // $('.map-loading').show()
+//             // $("#forDataRad").html("");
+//             // $("#tabListFasilitas").html("");
+//         },
+//         success: function (dt) {
+//             var dtResp = JSON.parse(dt);
+//             var htmlContent = "";
+
+//             fasilitas = `
+//             <div class="col-sm-12 mt-4 mb-5">
+//             <div class="row">
+//                 <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
+//                     getRadVal / 1000
+//                 } Km
+//                 </div>
+//             `;
+
+//             cat = [];
+
+//             for (var i in dtResp.features) {
+//                 const dtpar = dtResp.features[i];
+//                 const props = dtpar.properties;
+//                 const geo = dtpar.geometry;
+//                 cat.push({
+//                     name: props.Kategori,
+//                     fasilitas: props.Name,
+//                     jarak: geo.Distance,
+//                 });
+//             }
+
+//             function groupBy(collection, property) {
+//                 var i = 0,
+//                     val,
+//                     index,
+//                     values = [],
+//                     result = [];
+//                 for (var i = 0; i < collection.length; i++) {
+//                     val = collection[i][property];
+//                     index = values.indexOf(val);
+//                     if (index > -1) result[index].push(collection[i]);
+//                     else {
+//                         values.push(val);
+//                         result.push([collection[i]]);
+//                     }
+//                 }
+//                 return result;
+//             }
+
+//             var obj = groupBy(cat, "name");
+//             for (var as in obj) {
+//                 const dt = obj[as];
+
+//                 htmlContent += `
+//                     <div class="row row_mid_judul2">
+//                     <div class="col-md-12 flex-column">
+//                         <button type="button"
+//                             class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
+//                             data-toggle="collapse" data-target="#${dt[0].name}" aria-expanded="true"
+//                             aria-controls="collapsePoiOne">
+//                             <b class="text_all_mobile">${dt[0].name}</b>
+//                         </button>
+//                     </div>
+//                     </div>
+//                     <div id="${dt[0].name}" class="collapse show" aria-labelledby="headingOne" data-parent="#PoiCollabse">
+//                         <div class="card-body text_poi2 row_mid_judul">
+//                             <ul class="list-group list-group-flush PoiCollabse_mobile">
+//                 `;
+//                 fasilitas += `
+//                 <div class="col-sm-4">${dt[0].name}</div>
+//                 <div class="col-sm-8">
+//                 `;
+
+//                 console.log(dt[0].name);
+
+//                 for (var az in dt) {
+//                     const dta = dt[az];
+//                     htmlContent += `
+//                     <li style="list-style:none" class="listgroup-cust align-items-center text_all">
+//                         <div class="row">
+//                             <div class="col-md-8 text_all">
+//                             ${dta.fasilitas}
+//                             </div>
+//                             <div class="col-md-4 text-right">
+//                             <span>${Math.round(dta.jarak) / 1000} km</span>
+//                             </div>
+//                         </div>
+//                     </li>
+//                     `;
+
+//                     fasilitas += `
+//                     <div class="row">
+//                         <div class="col-sm-8">${dta.fasilitas}</div>
+//                         <div class="col-sm-4">${
+//                             Math.round(dta.jarak) / 1000
+//                         } km</div>
+//                     </div>
+//           `;
+//                     // console.log(dta.fasilitas, dta.jarak);
+//                 }
+
+//                 htmlContent += `</ul>
+//                 </div>
+//             </div>`;
+//                 fasilitas += `</div>`;
+//             }
+//             $(".tabListFasilitas").html(htmlContent);
+//             console.log(htmlContent);
+//         },
+//         error: function (error) {
+//             console.log(error);
+//         },
+//         complete: function (e) {
+//             // $('.map-loading').hide()
+//         },
+//     });
+//     // var htmlPopupRad = `<div class="col-3 pl-0">
+//     //                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+//     //                     </div>
+//     //                   </div>
+//     //                   <div class="col-9 pl-0 pr-0">
+//     //                   <div class="tab-content" id="tabListFasilitas">
+//     //                   </div>`;
+
+//     // $(".dtRadiusBot").html(htmlPopupRad);
+//     // $(".infoLokasi").show();
+// }
 
 function lokasi(e) {
     var data = e;
@@ -126,6 +288,32 @@ function zonasi(e) {
     var data = e;
     $.ajax({
         url: setZonasi,
+        method: "post",
+        data: {
+            _token: CSRF_TOKEN,
+            zona: data,
+        },
+        success: function (e) {},
+    });
+}
+
+function poi(e) {
+    var data = e;
+    $.ajax({
+        url: setPoi,
+        method: "post",
+        data: {
+            _token: CSRF_TOKEN,
+            zona: data,
+        },
+        success: function (e) {},
+    });
+}
+
+function kodekbli(e) {
+    var data = e;
+    $.ajax({
+        url: setKodeKbli,
         method: "post",
         data: {
             _token: CSRF_TOKEN,

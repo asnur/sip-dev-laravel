@@ -45,7 +45,17 @@ Route::post('/setZonasi', function (Request $request) {
     return $request->session()->put('zona', $data);
 })->name('setZonasi');
 
+Route::post('/setPoi', function (Request $request) {
+    $data = $request->input('poi');
+    return $request->session()->put('poi', $data);
+})->name('setPoi');
+
 Route::post('/setEksisting', function (Request $request) {
     $data = $request->input('eksisting');
     return $request->session()->put('eksisting', $data);
 })->name('setEksisting');
+
+Route::post('/setKodeKbli', function (Request $request) {
+    $data = $request->input('kodekbli');
+    return $request->session()->put('kodekbli', $data);
+})->name('setKodeKbli');
