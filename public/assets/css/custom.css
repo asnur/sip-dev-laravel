@@ -78,6 +78,14 @@
     left: 10px;
 }
 
+.subjudul{
+    padding: 2px;
+    font-size: 14px;
+    padding-left: 10px;
+    border-radius: 10px;
+    padding-right: 10px;
+}
+
 .legend-key {
     display: inline-block;
     border-radius: 20%;
