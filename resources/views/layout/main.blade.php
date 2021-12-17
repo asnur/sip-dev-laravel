@@ -105,7 +105,7 @@
                     </div>
                     <div style="margin-top: 1%;">
                         <p><span class="TextHead font-weight-bold">Peta Perizinan dan Investasi</span><br><span
-                                class="bg-primary text-white ml-3 subjudul">Sistem
+                                class="text-white ml-3 subjudul">Sistem
                                 Pelayanan Informasi</span></p>
                     </div>
                 </div>
