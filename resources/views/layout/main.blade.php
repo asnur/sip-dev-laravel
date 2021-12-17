@@ -104,7 +104,8 @@
                         </div>
                     </div>
                     <div style="margin-top: 1%;">
-                        <p><span class="TextHead font-weight-bold">Peta Perizinan dan Investasi</span><br><span class="bg-primary text-white ml-3 subjudul">Sistem
+                        <p><span class="TextHead font-weight-bold">Peta Perizinan dan Investasi</span><br><span
+                                class="bg-primary text-white ml-3 subjudul">Sistem
                                 Pelayanan Informasi</span></p>
                     </div>
                 </div>
@@ -1175,8 +1176,13 @@
             <button class="btn btn-sm">
                 <div class="container">
                     <div class="row">
-                        <i class="ri-user-fill bg-white p-1 text-secondary"
-                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                        @if (!\Auth::check())
+                            <a href="{{ route('login-google') }}" class="ri-user-fill bg-white p-1 text-secondary"
+                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
+                        @else
+                            <img src="{{ \Request::session()->get('img_profile') }}"
+                                style="border-radius: 50%; width:30px;  height:30px;">
+                        @endif
                     </div>
                 </div>
             </button>
