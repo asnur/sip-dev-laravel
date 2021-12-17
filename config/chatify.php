@@ -7,7 +7,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Konsultasi'),
+    'name' => env('CHATIFY_NAME', 'Chatify Messenger'),
 
     /*
     |-------------------------------------
@@ -19,11 +19,6 @@ return [
         'middleware' => env('CHATIFY_ROUTES_MIDDLEWARE', ['web', 'auth']),
         'namespace' => env('CHATIFY_ROUTES_NAMESPACE', 'Chatify\Http\Controllers'),
     ],
-    'api_routes' => [
-        'prefix' => env('CHATIFY_API_ROUTES_PREFIX', 'chatify/api'),
-        'middleware' => env('CHATIFY_API_ROUTES_MIDDLEWARE', ['api']),
-        'namespace' => env('CHATIFY_API_ROUTES_NAMESPACE', 'Chatify\Http\Controllers\Api'),
-    ],
 
     /*
     |-------------------------------------
@@ -34,9 +29,10 @@ return [
         'key' => env('PUSHER_APP_KEY'),
         'secret' => env('PUSHER_APP_SECRET'),
         'app_id' => env('PUSHER_APP_ID'),
-        'options' => [
+        'options' => (array) [
             'cluster' => env('PUSHER_APP_CLUSTER'),
-            'encrypted' => false,
+            'useTLS' => env('PUSHER_APP_USETLS'),
+            'encryption_master_key_base64' => env('PUSHER_APP_ENCRYPTION_KEY'),
         ],
     ],
 

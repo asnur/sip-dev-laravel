@@ -16,46 +16,42 @@
             <input type="text" class="messenger-search" placeholder="Search" />
             {{-- Tabs --}}
             <div class="messenger-listView-tabs">
-                <a href="#" @if($type == 'user') class="active-tab" @endif data-view="users">
+                <a href="#" @if($route == 'user') class="active-tab" @endif data-view="users">
                     <span class="far fa-user"></span> People</a>
-                <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
+                <a href="#" @if($route == 'group') class="active-tab" @endif data-view="groups">
                     <span class="fas fa-users"></span> Groups</a>
             </div>
         </div>
         {{-- tabs and lists --}}
-        <div class="m-body contacts-container">
+        <div class="m-body">
            {{-- Lists [Users/Group] --}}
            {{-- ---------------- [ User Tab ] ---------------- --}}
-           <div class="@if($type == 'user') show @endif messenger-tab users-tab app-scroll" data-view="users">
+           <div class="@if($route == 'user') show @endif messenger-tab app-scroll" data-view="users">
 
                {{-- Favorites --}}
-               <div class="favorites-section">
-                <p class="messenger-title">Favorites</p>
+               <p class="messenger-title">Favorites</p>
                 <div class="messenger-favorites app-scroll-thin"></div>
-               </div>
 
                {{-- Saved Messages --}}
-               {!! view('Chatify::layouts.listItem', ['get' => 'saved']) !!}
+               {!! view('Chatify::layouts.listItem', ['get' => 'saved','id' => $id])->render() !!}
 
                {{-- Contact --}}
-               <div class="listOfContacts" style="width: 100%;height: calc(100% - 200px);position: relative;"></div>
+               <div class="listOfContacts" style="width: 100%;height: calc(100% - 200px);"></div>
 
            </div>
 
            {{-- ---------------- [ Group Tab ] ---------------- --}}
-           <div class="@if($type == 'group') show @endif messenger-tab groups-tab app-scroll" data-view="groups">
+           <div class="@if($route == 'group') show @endif messenger-tab app-scroll" data-view="groups">
                 {{-- items --}}
-                <p style="text-align: center;color:grey;margin-top:30px">
-                    <a target="_blank" style="color:{{$messengerColor}};" href="https://chatify.munafio.com/notes#groups-feature">Click here</a> for more info!
-                </p>
+                <p style="text-align: center;color:grey;">Soon will be available</p>
              </div>
 
              {{-- ---------------- [ Search Tab ] ---------------- --}}
-           <div class="messenger-tab search-tab app-scroll"app-scroll" data-view="search">
+           <div class="messenger-tab app-scroll" data-view="search">
                 {{-- items --}}
                 <p class="messenger-title">Search</p>
                 <div class="search-records">
-                    <p class="message-hint center-el"><span>Type to search..</span></p>
+                    <p class="message-hint"><span>Type to search..</span></p>
                 </div>
              </div>
         </div>
@@ -88,9 +84,9 @@
             <span class="ic-noInternet">No internet access</span>
         </div>
         {{-- Messaging area --}}
-        <div class="m-body messages-container app-scroll">
+        <div class="m-body app-scroll">
             <div class="messages">
-                <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                <p class="message-hint" style="margin-top: calc(30% - 126.2px);"><span>Please select a chat to start messaging</span></p>
             </div>
             {{-- Typing indicator --}}
             <div class="typing-indicator">

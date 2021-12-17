@@ -9,81 +9,35 @@ var messenger,
   temporaryMsgId = 0,
   defaultAvatarInSettings = null,
   messengerColor,
-  dark_mode,
-  messages_page = 1;
-
+  dark_mode;
 const messagesContainer = $(".messenger-messagingView .m-body"),
   messengerTitleDefault = $(".messenger-headTitle").text(),
   messageInput = $("#message-form .m-send"),
   auth_id = $("meta[name=url]").attr("data-user"),
+  route = $("meta[name=route]").attr("content"),
   url = $("meta[name=url]").attr("content"),
-  defaultMessengerColor = $("meta[name=messenger-color]").attr("content"),
   access_token = $('meta[name="csrf-token"]').attr("content");
+// console.log(auth_id);
 
-const getMessengerId = () => $("meta[name=id]").attr("content");
-const getMessengerType = () => $("meta[name=type]").attr("content");
-const setMessengerId = (id) => $("meta[name=id]").attr("content", id);
-const setMessengerType = (type) => $("meta[name=type]").attr("content", type);
-/**
- *-------------------------------------------------------------
- * Re-usable methods
- *-------------------------------------------------------------
- */
-const escapeHtml = (unsafe) => {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-};
-function actionOnScroll(selector, callback, topScroll = false) {
-  $(selector).on("scroll", function () {
-    let element = $(this).get(0);
-    const condition = topScroll
-      ? element.scrollTop == 0
-      : element.scrollTop + element.clientHeight >= element.scrollHeight;
-    if (condition) {
-      callback();
-    }
-  });
-}
-function routerPush(title, url) {
-  $("meta[name=url]").attr("content", url);
-  return window.history.pushState({}, title || document.title, url);
-}
-function updateSelectedContact(user_id) {
-  $(document).find(".messenger-list-item").removeClass("m-list-active");
-  $(document)
-    .find(
-      ".messenger-list-item[data-contact=" + (user_id || getMessengerId()) + "]"
-    )
-    .addClass("m-list-active");
-}
 /**
  *-------------------------------------------------------------
  * Global Templates
  *-------------------------------------------------------------
  */
 // Loading svg
-function loadingSVG(w_h = "25px", className = "", style = "") {
+function loadingSVG(w_h = "25px", className = null, style = null) {
   return `
-<svg style="${style}" class="loadingSVG ${className}" xmlns="http://www.w3.org/2000/svg" width="${w_h}" height="${w_h}" viewBox="0 0 40 40" stroke="${defaultMessengerColor}">
-<g fill="none" fill-rule="evenodd">
-<g transform="translate(2 2)" stroke-width="3">
-<circle stroke-opacity=".1" cx="18" cy="18" r="18"></circle>
-<path d="M36 18c0-9.94-8.06-18-18-18" transform="rotate(349.311 18 18)">
-    <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur=".8s" repeatCount="indefinite"></animateTransform>
-</path>
-</g>
-</g>
-</svg>
-`;
-}
-function loadingWithContainer(className) {
-  return `<div class="${className}" style="text-align:center;padding:15px">${loadingSVG(
-    "25px",
-    "",
-    "margin:auto"
-  )}</div>`;
+ <svg style="${style}" class="loadingSVG ${className}" xmlns="http://www.w3.org/2000/svg" width="${w_h}" height="${w_h}" viewBox="0 0 40 40" stroke="#2196f3">
+   <g fill="none" fill-rule="evenodd">
+     <g transform="translate(2 2)" stroke-width="3">
+       <circle stroke-opacity=".1" cx="18" cy="18" r="18"></circle>
+       <path d="M36 18c0-9.94-8.06-18-18-18" transform="rotate(349.311 18 18)">
+           <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur=".8s" repeatCount="indefinite"></animateTransform>
+       </path>
+     </g>
+   </g>
+ </svg>
+ `;
 }
 
 // loading placeholder for users list item
@@ -91,22 +45,22 @@ function listItemLoading(items) {
   let template = "";
   for (let i = 0; i < items; i++) {
     template += `
-<div class="loadingPlaceholder">
-<div class="loadingPlaceholder-wrapper">
-  <div class="loadingPlaceholder-body">
-  <table class="loadingPlaceholder-header">
-    <tr>
-      <td style="width: 45px;"><div class="loadingPlaceholder-avatar"></div></td>
-      <td>
-        <div class="loadingPlaceholder-name"></div>
-            <div class="loadingPlaceholder-date"></div>
-      </td>
-    </tr>
-  </table>
-  </div>
-</div>
-</div>
-`;
+     <div class="loadingPlaceholder">
+       <div class="loadingPlaceholder-wrapper">
+         <div class="loadingPlaceholder-body">
+         <table class="loadingPlaceholder-header">
+           <tr>
+             <td style="width: 45px;"><div class="loadingPlaceholder-avatar"></div></td>
+             <td>
+               <div class="loadingPlaceholder-name"></div>
+                   <div class="loadingPlaceholder-date"></div>
+             </td>
+           </tr>
+         </table>
+         </div>
+       </div>
+   </div>
+     `;
   }
   return template;
 }
@@ -116,20 +70,20 @@ function avatarLoading(items) {
   let template = "";
   for (let i = 0; i < items; i++) {
     template += `
-<div class="loadingPlaceholder">
-<div class="loadingPlaceholder-wrapper">
-  <div class="loadingPlaceholder-body">
-      <table class="loadingPlaceholder-header">
-          <tr>
-              <td style="width: 45px;">
-                  <div class="loadingPlaceholder-avatar" style="margin: 2px;"></div>
-              </td>
-          </tr>
-      </table>
-  </div>
-</div>
-</div>
-`;
+     <div class="loadingPlaceholder">
+     <div class="loadingPlaceholder-wrapper">
+         <div class="loadingPlaceholder-body">
+             <table class="loadingPlaceholder-header">
+                 <tr>
+                     <td style="width: 45px;">
+                         <div class="loadingPlaceholder-avatar" style="margin: 2px;"></div>
+                     </td>
+                 </tr>
+             </table>
+         </div>
+     </div>
+     </div>
+     `;
   }
   return template;
 }
@@ -138,14 +92,14 @@ function avatarLoading(items) {
 function sendigCard(message, id) {
   return (
     `
-<div class="message-card mc-sender" data-id="` +
+ <div class="message-card mc-sender" data-id="` +
     id +
     `">
-<p>` +
+     <p>` +
     message +
     `<sub><span class="far fa-clock"></span></sub></p>
-</div>
-`
+ </div>
+ `
   );
 }
 // upload image preview card.
@@ -153,27 +107,27 @@ function attachmentTemplate(fileType, fileName, imgURL = null) {
   if (fileType != "image") {
     return (
       `
-<div class="attachment-preview">
-  <span class="fas fa-times cancel"></span>
-  <p style="padding:0px 30px;"><span class="fas fa-file"></span> ` +
-      escapeHtml(fileName) +
+     <div class="attachment-preview">
+         <span class="fas fa-times cancel"></span>
+         <p style="padding:0px 30px;"><span class="fas fa-file"></span> ` +
+      fileName +
       `</p>
-</div>
-`
+     </div>
+     `
     );
   } else {
     return (
       `
-<div class="attachment-preview">
-  <span class="fas fa-times cancel"></span>
-  <div class="image-file chat-image" style="background-image: url('` +
+     <div class="attachment-preview">
+         <span class="fas fa-times cancel"></span>
+         <div class="image-file chat-image" style="background-image: url('` +
       imgURL +
       `');"></div>
-  <p><span class="fas fa-file-image"></span> ` +
-      escapeHtml(fileName) +
+         <p><span class="fas fa-file-image"></span> ` +
+      fileName +
       `</p>
-</div>
-`
+     </div>
+     `
     );
   }
 }
@@ -188,7 +142,7 @@ function activeStatusCircle() {
  * Css Media Queries [For responsive design]
  *-------------------------------------------------------------
  */
-$(window).resize(function () {
+$(window).resize(function() {
   cssMediaQueries();
 });
 function cssMediaQueries() {
@@ -200,13 +154,19 @@ function cssMediaQueries() {
       .find(".messenger-list-item")
       .find("tr[data-action]")
       .attr("data-action", "1");
-    $("body").find(".favorite-list-item").find("div").attr("data-action", "1");
+    $("body")
+      .find(".favorite-list-item")
+      .find("div")
+      .attr("data-action", "1");
   } else {
     $("body")
       .find(".messenger-list-item")
       .find("tr[data-action]")
       .attr("data-action", "0");
-    $("body").find(".favorite-list-item").find("div").attr("data-action", "0");
+    $("body")
+      .find(".favorite-list-item")
+      .find("div")
+      .attr("data-action", "0");
   }
 }
 
@@ -215,7 +175,7 @@ function cssMediaQueries() {
  * App Modal
  *-------------------------------------------------------------
  */
-let app_modal = function ({
+let app_modal = function({
   show = true,
   name,
   data = 0,
@@ -313,7 +273,7 @@ function disableOnLoad(action = true) {
     $(".upload-attachment").attr("disabled", "disabled");
   } else {
     // show star button
-    if (getMessengerId() != auth_id) {
+    if (messenger.split("_")[1] != auth_id) {
       $(".add-to-favorite").show();
     }
     // show send card
@@ -366,7 +326,7 @@ function IDinfo(id, type) {
     $.ajax({
       url: url + "/idInfo",
       method: "POST",
-      data: { _token: access_token, id, type },
+      data: { _token: access_token, id: id, type: type },
       dataType: "JSON",
       success: (data) => {
         // avatar photo
@@ -381,7 +341,7 @@ function IDinfo(id, type) {
         $(".messenger-infoView-btns .delete-conversation").show();
         $(".messenger-infoView-shared").show();
         // fetch messages
-        fetchMessages(id, type, true);
+        fetchMessages(id, type);
         // focus on messaging input
         messageInput.focus();
         // update info in view
@@ -422,8 +382,8 @@ function sendMessage() {
 
   if ($.trim(messageInput.val()).length > 0 || hasFile) {
     const formData = new FormData($("#message-form")[0]);
-    formData.append("id", getMessengerId());
-    formData.append("type", getMessengerType());
+    formData.append("id", messenger.split("_")[1]);
+    formData.append("type", messenger.split("_")[0]);
     formData.append("temporaryMsgId", tempID);
     formData.append("_token", access_token);
     $.ajax({
@@ -435,20 +395,20 @@ function sendMessage() {
       contentType: false,
       beforeSend: () => {
         // remove message hint
-        $(".messages").find(".message-hint").remove();
+        $(".message-hint").remove();
         // append message
         hasFile
           ? messagesContainer
               .find(".messages")
               .append(
                 sendigCard(
-                  messageInput.text() + "\n" + loadingSVG("28px"),
+                  messageInput.val() + "\n" + loadingSVG("28px"),
                   tempID
                 )
               )
           : messagesContainer
               .find(".messages")
-              .append(sendigCard(messageInput.text(), tempID));
+              .append(sendigCard(messageInput.val(), tempID));
         // scroll to bottom
         scrollBottom(messagesContainer);
         messageInput.css({ height: "42px" });
@@ -458,13 +418,14 @@ function sendMessage() {
         messageInput.focus();
       },
       success: (data) => {
+        console.log(data.tempID);
         if (data.error > 0) {
           // message card error status
           errorMessageCard(tempID);
           console.error(data.error_msg);
         } else {
           // update contact item
-          updateContatctItem(getMessengerId());
+          updateContatctItem(messenger.split("_")[1]);
           messagesContainer.find('.mc-sender[data-id="sending"]').remove();
           // get message before the sending one [temporary]
           messagesContainer
@@ -498,66 +459,33 @@ function sendMessage() {
  * Fetch messages from database
  *-------------------------------------------------------------
  */
-let messagesPage = 1;
-let noMoreMessages = false;
-let messagesLoading = false;
-function setMessagesLoading(loading = false) {
-  if (!loading) {
-    messagesContainer.find(".messages").find(".loading-messages").remove();
-    NProgress.done();
-    NProgress.remove();
-  } else {
-    messagesContainer
-      .find(".messages")
-      .prepend(loadingWithContainer("loading-messages"));
-  }
-  messagesLoading = loading;
-}
-function fetchMessages(id, type, newFetch = false) {
-  if (newFetch) {
-    messagesPage = 1;
-    noMoreMessages = false;
-  }
-  if (messenger != 0 && !noMoreMessages && !messagesLoading) {
-    const messagesElement = messagesContainer.find(".messages");
-    setMessagesLoading(true);
+function fetchMessages(id, type) {
+  if (messenger != 0) {
     $.ajax({
       url: url + "/fetchMessages",
       method: "POST",
-      data: {
-        _token: access_token,
-        id: id,
-        type: type,
-        page: messagesPage,
-      },
+      data: { _token: access_token, id: id, type: type },
       dataType: "JSON",
       success: (data) => {
-        setMessagesLoading(false);
-        if (messagesPage == 1) {
-          messagesElement.html(data.messages);
-          scrollBottom(messagesContainer);
-        } else {
-          const lastMsg = messagesElement.find(
-            messagesElement.find(".message-card")[0]
-          );
-          const curOffset =
-            lastMsg.offset().top - messagesContainer.scrollTop();
-          messagesElement.prepend(data.messages);
-          messagesContainer.scrollTop(lastMsg.offset().top - curOffset);
-        }
-        // trigger seen event
-        makeSeen(true);
-        // Pagination lock & messages page
-        noMoreMessages = messagesPage >= data?.last_page;
-        if (!noMoreMessages) messagesPage += 1;
         // Enable message form if messenger not = 0; means if data is valid
         if (messenger != 0) {
           disableOnLoad(false);
         }
+        messagesContainer.find(".messages").html(data.messages);
+        // scroll to bottom
+        scrollBottom(messagesContainer);
+        // remove loading bar
+        NProgress.done();
+        NProgress.remove();
+
+        // trigger seen event
+        makeSeen(true);
       },
-      error: (error) => {
-        setMessagesLoading(false);
-        console.error(error);
+      error: () => {
+        // remove loading bar
+        NProgress.done();
+        NProgress.remove();
+        console.error("Failed to fetch messages! check your server response.");
       },
     });
   }
@@ -569,9 +497,13 @@ function fetchMessages(id, type, newFetch = false) {
  *-------------------------------------------------------------
  */
 function cancelAttachment() {
-  $(".messenger-sendCard").find(".attachment-preview").remove();
+  $(".messenger-sendCard")
+    .find(".attachment-preview")
+    .remove();
   $(".upload-attachment").replaceWith(
-    $(".upload-attachment").val("").clone(true)
+    $(".upload-attachment")
+      .val("")
+      .clone(true)
   );
 }
 
@@ -582,7 +514,11 @@ function cancelAttachment() {
  */
 function cancelUpdatingAvatar() {
   $(".upload-avatar-preview").css("background-image", defaultAvatarInSettings);
-  $(".upload-avatar").replaceWith($(".upload-avatar").val("").clone(true));
+  $(".upload-avatar").replaceWith(
+    $(".upload-avatar")
+      .val("")
+      .clone(true)
+  );
 }
 
 /**
@@ -595,22 +531,22 @@ function cancelUpdatingAvatar() {
 var channel = pusher.subscribe("private-chatify");
 
 // Listen to messages, and append if data received
-channel.bind("messaging", function (data) {
-  if (data.from_id == getMessengerId() && data.to_id == auth_id) {
-    $(".messages").find(".message-hint").remove();
+channel.bind("messaging", function(data) {
+  if (data.from_id == messenger.split("_")[1] && data.to_id == auth_id) {
+    $(".message-hint").remove();
     messagesContainer.find(".messages").append(data.message);
     scrollBottom(messagesContainer);
     makeSeen(true);
     // remove unseen counter for the user from the contacts list
-    $(".messenger-list-item[data-contact=" + getMessengerId() + "]")
+    $(".messenger-list-item[data-contact=" + messenger.split("_")[1] + "]")
       .find("tr>td>b")
       .remove();
   }
 });
 
 // listen to typing indicator
-channel.bind("client-typing", function (data) {
-  if (data.from_id == getMessengerId() && data.to_id == auth_id) {
+channel.bind("client-typing", function(data) {
+  if (data.from_id == messenger.split("_")[1] && data.to_id == auth_id) {
     data.typing == true
       ? messagesContainer.find(".typing-indicator").show()
       : messagesContainer.find(".typing-indicator").hide();
@@ -620,13 +556,15 @@ channel.bind("client-typing", function (data) {
 });
 
 // listen to seen event
-channel.bind("client-seen", function (data) {
-  if (data.from_id == getMessengerId() && data.to_id == auth_id) {
+channel.bind("client-seen", function(data) {
+  if (data.from_id == messenger.split("_")[1] && data.to_id == auth_id) {
     if (data.seen == true) {
       $(".message-time")
         .find(".fa-check")
         .before('<span class="fas fa-check-double seen"></span> ');
-      $(".message-time").find(".fa-check").remove();
+      $(".message-time")
+        .find(".fa-check")
+        .remove();
       console.info("[seen] triggered!");
     } else {
       console.error("[seen] event not triggered!");
@@ -635,7 +573,7 @@ channel.bind("client-seen", function (data) {
 });
 
 // listen to contact item updates event
-channel.bind("client-contactItem", function (data) {
+channel.bind("client-contactItem", function(data) {
   if (data.update_for == auth_id) {
     data.updating == true
       ? updateContatctItem(data.update_to)
@@ -648,7 +586,7 @@ channel.bind("client-contactItem", function (data) {
 var activeStatusChannel = pusher.subscribe("presence-activeStatus");
 
 // Joined
-activeStatusChannel.bind("pusher:member_added", function (member) {
+activeStatusChannel.bind("pusher:member_added", function(member) {
   setActiveStatus(1, member.id);
   $(".messenger-list-item[data-contact=" + member.id + "]")
     .find(".activeStatus")
@@ -659,7 +597,7 @@ activeStatusChannel.bind("pusher:member_added", function (member) {
 });
 
 // Leaved
-activeStatusChannel.bind("pusher:member_removed", function (member) {
+activeStatusChannel.bind("pusher:member_removed", function(member) {
   setActiveStatus(0, member.id);
   $(".messenger-list-item[data-contact=" + member.id + "]")
     .find(".activeStatus")
@@ -674,7 +612,7 @@ activeStatusChannel.bind("pusher:member_removed", function (member) {
 function isTyping(status) {
   return channel.trigger("client-typing", {
     from_id: auth_id, // Me
-    to_id: getMessengerId(), // Messenger
+    to_id: messenger.split("_")[1], // Messenger
     typing: status,
   });
 }
@@ -686,22 +624,22 @@ function isTyping(status) {
  */
 function makeSeen(status) {
   // remove unseen counter for the user from the contacts list
-  $(".messenger-list-item[data-contact=" + getMessengerId() + "]")
+  $(".messenger-list-item[data-contact=" + messenger.split("_")[1] + "]")
     .find("tr>td>b")
     .remove();
   // seen
   $.ajax({
     url: url + "/makeSeen",
     method: "POST",
-    data: { _token: access_token, id: getMessengerId() },
+    data: { _token: access_token, id: messenger.split("_")[1] },
     dataType: "JSON",
-    // success: data => {
-    //     console.log("[seen] Messages seen - " + getMessengerId());
-    // }
+    success: (data) => {
+      console.log("[seen] Messages seen - " + messenger.split("_")[1]);
+    },
   });
   return channel.trigger("client-seen", {
     from_id: auth_id, // Me
-    to_id: getMessengerId(), // Messenger
+    to_id: messenger.split("_")[1], // Messenger
     seen: status,
   });
 }
@@ -713,7 +651,7 @@ function makeSeen(status) {
  */
 function sendContactItemUpdates(status) {
   return channel.trigger("client-contactItem", {
-    update_for: getMessengerId(), // Messenger
+    update_for: messenger.split("_")[1], // Messenger
     update_to: auth_id, // Me
     updating: status,
   });
@@ -733,10 +671,10 @@ function checkInternet(state, selector) {
         messengerTitle.text(messengerTitleDefault);
         selector.addClass("successBG-rgba");
         selector.find("span").hide();
-        selector.slideDown("fast", function () {
+        selector.slideDown("fast", function() {
           selector.find(".ic-connected").show();
         });
-        setTimeout(function () {
+        setTimeout(function() {
           $(".internet-connection").slideUp("fast");
         }, 3000);
       }
@@ -745,7 +683,7 @@ function checkInternet(state, selector) {
       messengerTitle.text($(".ic-connecting").text());
       selector.removeClass("successBG-rgba");
       selector.find("span").hide();
-      selector.slideDown("fast", function () {
+      selector.slideDown("fast", function() {
         selector.find(".ic-connecting").show();
       });
       net_errs = 1;
@@ -755,7 +693,7 @@ function checkInternet(state, selector) {
       messengerTitle.text($(".ic-noInternet").text());
       selector.removeClass("successBG-rgba");
       selector.find("span").hide();
-      selector.slideDown("fast", function () {
+      selector.slideDown("fast", function() {
         selector.find(".ic-noInternet").show();
       });
       net_errs = 1;
@@ -768,47 +706,23 @@ function checkInternet(state, selector) {
  * Get contacts
  *-------------------------------------------------------------
  */
-let contactsPage = 1;
-let contactsLoading = false;
-let noMoreContacts = false;
-function setContactsLoading(loading = false) {
-  if (!loading) {
-    $(".listOfContacts").find(".loading-contacts").remove();
-  } else {
-    $(".listOfContacts").append(
-      `<div class="loading-contacts">${listItemLoading(4)}</div>`
-    );
-  }
-  contactsLoading = loading;
-}
 function getContacts() {
-  if (!contactsLoading && !noMoreContacts) {
-    setContactsLoading(true);
-    $.ajax({
-      url: url + "/getContacts",
-      method: "GET",
-      data: { _token: access_token, page: contactsPage },
-      dataType: "JSON",
-      success: (data) => {
-        setContactsLoading(false);
-        if (contactsPage < 2) {
-          $(".listOfContacts").html(data.contacts);
-        } else {
-          $(".listOfContacts").append(data.contacts);
-        }
-        updateSelectedContact();
-        // update data-action required with [responsive design]
-        cssMediaQueries();
-        // Pagination lock & messages page
-        noMoreContacts = contactsPage >= data?.last_page;
-        if (!noMoreContacts) contactsPage += 1;
-      },
-      error: (error) => {
-        setContactsLoading(false);
-        console.error(error);
-      },
-    });
-  }
+  $(".listOfContacts").html(listItemLoading(4));
+  $.ajax({
+    url: url + "/getContacts",
+    method: "POST",
+    data: { _token: access_token, messenger_id: messenger.split("_")[1] },
+    dataType: "JSON",
+    success: (data) => {
+      $(".listOfContacts").html("");
+      $(".listOfContacts").html(data.contacts);
+      // update data-action required with [responsive design]
+      cssMediaQueries();
+    },
+    error: () => {
+      console.error("Server error, check your response");
+    },
+  });
 }
 
 /**
@@ -826,7 +740,8 @@ function updateContatctItem(user_id) {
       method: "POST",
       data: {
         _token: access_token,
-        user_id,
+        user_id: user_id,
+        messenger_id: messenger.split("_")[1],
       },
       dataType: "JSON",
       success: (data) => {
@@ -834,7 +749,6 @@ function updateContatctItem(user_id) {
         $(".listOfContacts").prepend(data.contactItem);
         // update data-action required with [responsive design]
         cssMediaQueries();
-        updateSelectedContact(user_id);
       },
       error: () => {
         console.error("Server error, check your response");
@@ -850,7 +764,8 @@ function updateContatctItem(user_id) {
  */
 
 function star(user_id) {
-  if (getMessengerId() != auth_id) {
+  console.log(messenger);
+  if (messenger.split("_")[1] != auth_id) {
     $.ajax({
       url: url + "/star",
       method: "POST",
@@ -881,12 +796,8 @@ function getFavoritesList() {
     data: { _token: access_token },
     dataType: "JSON",
     success: (data) => {
-      if (data.count > 0) {
-        $(".favorites-section").show();
-        $(".messenger-favorites").html(data.favorites);
-      } else {
-        $(".favorites-section").hide();
-      }
+      $(".messenger-favorites").html("");
+      $(".messenger-favorites").html(data.favorites);
       // update data-action required with [responsive design]
       cssMediaQueries();
     },
@@ -921,56 +832,29 @@ function getSharedPhotos(user_id) {
  * Search in messenger
  *-------------------------------------------------------------
  */
-let searchPage = 1;
-let noMoreDataSearch = false;
-let searchLoading = false;
-let searchTempVal = "";
-function setSearchLoading(loading = false) {
-  if (!loading) {
-    $(".search-records").find(".loading-search").remove();
-  } else {
-    $(".search-records").append(
-      `<div class="loading-search">${listItemLoading(4)}</div>`
-    );
-  }
-  searchLoading = loading;
-}
 function messengerSearch(input) {
-  if (input != searchTempVal) {
-    searchPage = 1;
-    noMoreDataSearch = false;
-    searchLoading = false;
-  }
-  searchTempVal = input;
-  if (!searchLoading && !noMoreDataSearch) {
-    if (searchPage < 2) {
-      $(".search-records").html("");
-    }
-    setSearchLoading(true);
-    $.ajax({
-      url: url + "/search",
-      method: "GET",
-      data: { _token: access_token, input: input, page: searchPage },
-      dataType: "JSON",
-      success: (data) => {
-        setSearchLoading(false);
-        if (searchPage < 2) {
-          $(".search-records").html(data.records);
-        } else {
-          $(".search-records").append(data.records);
-        }
-        // update data-action required with [responsive design]
-        cssMediaQueries();
-        // Pagination lock & messages page
-        noMoreDataSearch = searchPage >= data?.last_page;
-        if (!noMoreDataSearch) searchPage += 1;
-      },
-      error: (error) => {
-        setSearchLoading(false);
-        console.error(error);
-      },
-    });
-  }
+  $.ajax({
+    url: url + "/search",
+    method: "POST",
+    data: { _token: access_token, input: input },
+    dataType: "JSON",
+    beforeSend: () => {
+      $(".search-records").html(listItemLoading(4));
+    },
+    success: (data) => {
+      $(".search-records")
+        .find("svg")
+        .remove();
+      data.addData == "append"
+        ? $(".search-records").append(data.records)
+        : $(".search-records").html(data.records);
+      // update data-action required with [responsive design]
+      cssMediaQueries();
+    },
+    error: () => {
+      console.error("Server error, check your response");
+    },
+  });
 }
 
 /**
@@ -995,7 +879,7 @@ function deleteConversation(id) {
         show: true,
         name: "alert",
         buttons: false,
-        body: loadingSVG("32px", null, "margin:auto"),
+        body: loadingSVG("32px"),
       });
     },
     success: (data) => {
@@ -1004,7 +888,7 @@ function deleteConversation(id) {
         .find(".messenger-list-item[data-contact=" + id + "]")
         .remove();
       // refresh info
-      IDinfo(id, getMessengerType());
+      IDinfo(id, messenger.split("_")[0]);
 
       data.deleted ? "" : console.error("Error occured!");
 
@@ -1023,7 +907,7 @@ function deleteConversation(id) {
 }
 
 function updateSettings() {
-  const formData = new FormData($("#update-settings")[0]);
+  const formData = new FormData($("#updateAvatar")[0]);
   if (messengerColor) {
     formData.append("messengerColor", messengerColor);
   }
@@ -1104,7 +988,7 @@ function setActiveStatus(status, user_id) {
  * On DOM ready
  *-------------------------------------------------------------
  */
-$(document).ready(function () {
+$(document).ready(function() {
   // get contacts list
   getContacts();
 
@@ -1121,27 +1005,18 @@ $(document).ready(function () {
   autosize($(".m-send"));
 
   // check if pusher has access to the channel [Internet status]
-  pusher.connection.bind("state_change", function (states) {
+  pusher.connection.bind("state_change", function(states) {
     let selector = $(".internet-connection");
     checkInternet(states.current, selector);
     // listening for pusher:subscription_succeeded
-    channel.bind("pusher:subscription_succeeded", function () {
+    channel.bind("pusher:subscription_succeeded", function() {
       // On connection state change [Updating] and get [info & msgs]
-      if (getMessengerId() != 0) {
-        if (
-          $(".messenger-list-item")
-            .find("tr[data-action]")
-            .attr("data-action") == "1"
-        ) {
-          $(".messenger-listView").hide();
-        }
-        IDinfo(getMessengerId(), getMessengerType());
-      }
+      IDinfo(messenger.split("_")[1], messenger.split("_")[0]);
     });
   });
 
   // tabs on click, show/hide...
-  $(".messenger-listView-tabs a").on("click", function () {
+  $(".messenger-listView-tabs a").on("click", function() {
     var dataView = $(this).attr("data-view");
     $(".messenger-listView-tabs a").removeClass("active-tab");
     $(this).addClass("active-tab");
@@ -1150,64 +1025,72 @@ $(document).ready(function () {
   });
 
   // set item active on click
-  $("body").on("click", ".messenger-list-item", function () {
-    const dataView = $(".messenger-list-item")
-      .find("p[data-type]")
-      .attr("data-type");
-    $(".messenger-tab").hide();
-    $(".messenger-tab[data-view=" + dataView + "s]").show();
-
+  $("body").on("click", ".messenger-list-item", function() {
     $(".messenger-list-item").removeClass("m-list-active");
     $(this).addClass("m-list-active");
-    const userID = $(this).attr("data-contact");
-    routerPush(document.title, `${url}/${userID}`);
-    updateSelectedContact(userID);
   });
 
   // show info side button
-  $(".messenger-infoView nav a , .show-infoSide").on("click", function () {
+  $(".messenger-infoView nav a , .show-infoSide").on("click", function() {
     $(".messenger-infoView").toggle();
+  });
+
+  // x button for info section to show the main button.
+  $(".messenger-infoView nav a").on("click", function() {
+    $(".show-infoSide").show();
+  });
+
+  // hide showing button for info section.
+  $(".show-infoSide").on("click", function() {
+    $(this).hide();
   });
 
   // make favorites card dragable on click to slide.
   hScroller(".messenger-favorites");
 
   // click action for list item [user/group]
-  $("body").on("click", ".messenger-list-item", function () {
-    if ($(this).find("tr[data-action]").attr("data-action") == "1") {
+  $("body").on("click", ".messenger-list-item", function() {
+    if (
+      $(this)
+        .find("tr[data-action]")
+        .attr("data-action") == "1"
+    ) {
       $(".messenger-listView").hide();
     }
-    const dataId = $(this).find("p[data-id]").attr("data-id");
-    const dataType = $(this).find("p[data-type]").attr("data-type");
-    setMessengerId(dataId);
-    setMessengerType(dataType);
-    IDinfo(dataId, dataType);
+    messenger = $(this)
+      .find("p[data-id]")
+      .attr("data-id");
+    IDinfo(messenger.split("_")[1], messenger.split("_")[0]);
   });
 
   // click action for favorite button
-  $("body").on("click", ".favorite-list-item", function () {
-    if ($(this).find("div").attr("data-action") == "1") {
+  $("body").on("click", ".favorite-list-item", function() {
+    if (
+      $(this)
+        .find("div")
+        .attr("data-action") == "1"
+    ) {
       $(".messenger-listView").hide();
     }
-    const uid = $(this).find("div.avatar").attr("data-id");
-    setMessengerId(uid);
-    setMessengerType("user");
-    IDinfo(uid, "user");
-    updateSelectedContact(uid);
-    routerPush(document.title, `${url}/${uid}`);
+    messenger =
+      "user_" +
+      $(this)
+        .find("div.avatar")
+        .attr("data-id");
+    IDinfo(messenger.split("_")[1], messenger.split("_")[0]);
   });
 
   // list view buttons
-  $(".listView-x").on("click", function () {
+  $(".listView-x").on("click", function() {
     $(".messenger-listView").hide();
   });
-  $(".show-listView").on("click", function () {
+  $(".show-listView").on("click", function() {
     $(".messenger-listView").show();
   });
 
   // click action for [add to favorite] button.
-  $(".add-to-favorite").on("click", function () {
-    star(getMessengerId());
+  $(".add-to-favorite").on("click", function() {
+    star(messenger.split("_")[1]);
   });
 
   // calling Css Media Queries
@@ -1243,7 +1126,9 @@ $(document).ready(function () {
       $("#message-form").before(loadingSVG());
     });
     reader.addEventListener("load", (e) => {
-      $(".messenger-sendCard").find(".loadingSVG").remove();
+      $(".messenger-sendCard")
+        .find(".loadingSVG")
+        .remove();
       if (!file.type.match("image.*")) {
         // if the file not image
         sendCard.find(".attachment-preview").remove(); // older one
@@ -1259,34 +1144,30 @@ $(document).ready(function () {
   });
 
   function attachmentValidate(file) {
+    // Allowing file type
     const fileElement = $(".upload-attachment");
-    const allowedExtensions = [
-      "jpg",
-      "jpeg",
-      "png",
-      "gif",
-      "zip",
-      "rar",
-      "txt",
-    ];
-    const sizeLimit = 5000000; // 5 megabyte
-    const { name: fileName, size: fileSize } = file;
-    const fileExtension = fileName.split(".").pop();
-    if (!allowedExtensions.includes(fileExtension)) {
-      alert("file type not allowed");
-      fileElement.val("");
-      return false;
-    }
-    // Validate file size.
-    if (fileSize > sizeLimit) {
-      alert("Please select file size less than 5 MiB");
+    if (typeof file != "undefined") {
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.zip|\.rar|\.txt)$/i;
+      if (!allowedExtensions.exec(fileElement.val())) {
+        alert("File type is not allowed!");
+        fileElement.val("");
+        return false;
+      }
+      // Validate file size.
+      var size = parseFloat(file.size / (1024 * 1024)).toFixed(2);
+      if (size > 5) {
+        alert("Please select file size less than 5 MB");
+        return false;
+      }
+    } else {
+      alert("This browser does not support HTML5.");
       return false;
     }
     return true;
   }
 
   // Attachment preview cancel button.
-  $("body").on("click", ".attachment-preview .cancel", () => {
+  $("body").on("click", ".attachment-preview .cancel", (e) => {
     cancelAttachment();
   });
 
@@ -1304,7 +1185,7 @@ $(document).ready(function () {
     // Clear typing timeout
     clearTimeout(typingTimeout);
     // Typing timeout
-    typingTimeout = setTimeout(function () {
+    typingTimeout = setTimeout(function() {
       triggered = isTyping(false);
       triggered
         ? console.info("[-] Triggered")
@@ -1315,28 +1196,24 @@ $(document).ready(function () {
   });
 
   // Image modal
-  $("body").on("click", ".chat-image", function () {
-    let src = $(this).css("background-image").split(/"/)[1];
+  $("body").on("click", ".chat-image", function() {
+    let src = $(this)
+      .css("background-image")
+      .split(/"/)[1];
     $("#imageModalBox").show();
     $("#imageModalBoxSrc").attr("src", src);
   });
-  $(".imageModal-close").on("click", function () {
+  $(".imageModal-close").on("click", function() {
     $("#imageModalBox").hide();
   });
 
   // Search input on focus
-  $(".messenger-search").on("focus", function () {
+  $(".messenger-search").on("focus", function() {
     $(".messenger-tab").hide();
     $('.messenger-tab[data-view="search"]').show();
   });
-  $(".messenger-search").on("blur", function () {
-    setTimeout(function () {
-      $(".messenger-tab").hide();
-      $('.messenger-tab[data-view="users"]').show();
-    }, 200);
-  });
   // Search action on keyup
-  $(".messenger-search").on("keyup", function (e) {
+  $(".messenger-search").on("keyup", function(e) {
     $.trim($(this).val()).length > 0
       ? $(".messenger-search").trigger("focus") + messengerSearch($(this).val())
       : $(".messenger-tab").hide() +
@@ -1344,7 +1221,7 @@ $(document).ready(function () {
   });
 
   // Delete Conversation button
-  $(".messenger-infoView-btns .delete-conversation").on("click", function () {
+  $(".messenger-infoView-btns .delete-conversation").on("click", function() {
     app_modal({
       name: "delete",
     });
@@ -1352,8 +1229,8 @@ $(document).ready(function () {
   // delete modal [delete button]
   $(".app-modal[data-name=delete]")
     .find(".app-modal-footer .delete")
-    .on("click", function () {
-      deleteConversation(getMessengerId());
+    .on("click", function() {
+      deleteConversation(messenger.split("_")[1]);
       app_modal({
         show: false,
         name: "delete",
@@ -1362,7 +1239,7 @@ $(document).ready(function () {
   // delete modal [cancel button]
   $(".app-modal[data-name=delete]")
     .find(".app-modal-footer .cancel")
-    .on("click", function () {
+    .on("click", function() {
       app_modal({
         show: false,
         name: "delete",
@@ -1370,7 +1247,7 @@ $(document).ready(function () {
     });
 
   // Settings button action to show settings modal
-  $("body").on("click", ".settings-btn", function (e) {
+  $(".settings-btn").on("click", function(e) {
     e.preventDefault();
     app_modal({
       show: true,
@@ -1379,14 +1256,14 @@ $(document).ready(function () {
   });
 
   // on submit settings' form
-  $("#update-settings").on("submit", (e) => {
+  $("#updateAvatar").on("submit", (e) => {
     e.preventDefault();
     updateSettings();
   });
   // Settings modal [cancel button]
   $(".app-modal[data-name=settings]")
     .find(".app-modal-footer .cancel")
-    .on("click", function () {
+    .on("click", function() {
       app_modal({
         show: false,
         name: "settings",
@@ -1402,7 +1279,6 @@ $(document).ready(function () {
       );
     }
     let file = e.target.files[0];
-    if (!attachmentValidate(file)) return false;
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.addEventListener("loadstart", (e) => {
@@ -1411,7 +1287,9 @@ $(document).ready(function () {
       );
     });
     reader.addEventListener("load", (e) => {
-      $(".upload-avatar-preview").find(".loadingSVG").remove();
+      $(".upload-avatar-preview")
+        .find(".loadingSVG")
+        .remove();
       if (!file.type.match("image.*")) {
         // if the file is not an image
         console.error("File you selected is not an image!");
@@ -1425,13 +1303,15 @@ $(document).ready(function () {
     });
   });
   // change messenger color button
-  $("body").on("click", ".update-messengerColor .color-btn", function () {
-    messengerColor = $(this).attr("class").split(" ")[0];
-    $(".update-messengerColor .color-btn").removeClass("m-color-active");
+  $("body").on("click", ".update-messengerColor a", function() {
+    messengerColor = $(this)
+      .attr("class")
+      .split(" ")[0];
+    $(".update-messengerColor a").removeClass("m-color-active");
     $(this).addClass("m-color-active");
   });
   // Switch to Dark/Light mode
-  $("body").on("click", ".dark-mode-switch", function () {
+  $("body").on("click", ".dark-mode-switch", function() {
     if ($(this).attr("data-mode") == "0") {
       $(this).attr("data-mode", "1");
       $(this).removeClass("far");
@@ -1443,22 +1323,5 @@ $(document).ready(function () {
       $(this).addClass("far");
       dark_mode = "light";
     }
-  });
-
-  //Messages pagination
-  actionOnScroll(
-    ".m-body.messages-container",
-    function () {
-      fetchMessages(getMessengerId(), getMessengerType());
-    },
-    true
-  );
-  //Contacts (users) pagination
-  actionOnScroll(".messenger-tab.users-tab", function () {
-    getContacts();
-  });
-  //Search pagination
-  actionOnScroll(".messenger-tab.search-tab", function () {
-    messengerSearch($(".messenger-search").val());
   });
 });
