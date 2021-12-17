@@ -1180,8 +1180,21 @@
                             <a href="{{ route('login-google') }}" class="ri-user-fill bg-white p-1 text-secondary"
                                 style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
                         @else
-                            <img src="{{ \Request::session()->get('img_profile') }}"
-                                style="border-radius: 50%; width:30px;  height:30px;">
+                            <div class="dropdown">
+                                <img src="{{ \Request::session()->get('img_profile') }}"
+                                    style="border-radius: 50%; width:30px;  height:30px;" id="btnLogout"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
+                                    style="min-width: 73px;">
+                                    <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();" style="font-size: 12px"><i
+                                            class="fa fa-sign-out"></i> Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>
