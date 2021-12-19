@@ -1251,7 +1251,7 @@
                 <button class="btn btn-sm mt-1">
                     <div class="container">
                         <div class="row">
-                            <a href="{{ route('chat') }}" class="ri-mail-open-line bg-white p-1 text-secondary"
+                            <a href="{{ route('konsul') }}" class="ri-mail-open-line bg-white p-1 text-secondary"
                                 style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
                         </div>
                     </div>
