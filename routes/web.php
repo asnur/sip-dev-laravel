@@ -35,7 +35,7 @@ Auth::routes();
 
 
 //For Login Google
-Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
-Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
+Route::get('/chat/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
+Route::get('/chat/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
