@@ -25,6 +25,8 @@ var hrg_min = "";
 var hrg_max = "";
 var sebaran_usaha;
 var proyek;
+var name_file = Math.floor(Math.random() * 9999);
+var status;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -74,6 +76,12 @@ $.ajax({
         });
         // console.log(text);
     },
+});
+
+$.get(`${APP_URL}/pdf_file/${name_file}`, function (data, statusText, xhr) {
+    status = xhr.status;
+}).fail(function () {
+    console.clear();
 });
 
 const popup = new mapboxgl.Popup({
@@ -811,7 +819,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 </div>
   `;
 
-    SavePDFtoServer();
+    if (status !== 200) {
+        setTimeout(() => {
+            SavePDFtoServer();
+        }, 1500);
+    }
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
@@ -2068,7 +2080,6 @@ function setKelurahanSession(kel) {
 function SavePDFtoServer() {
     var data_pie = $("#pie-chart-info").get(0).toDataURL("img/png");
     var data_bar = $("#bar-chart-grouped-info").get(0).toDataURL("img/png");
-    var name_file = Math.floor(Math.random() * 9999);
     chart = `
         <div class="row mt-5 mb-5">
         <div class="col-md-6">
