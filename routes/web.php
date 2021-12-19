@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KBLIPusdatin;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -25,6 +26,10 @@ Route::get('/', function () {
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
 Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
+
+//For PDF Fitur
+Route::post('/setKelurahan/{kelurahan}', [PDFController::class, 'setKelurahan']);
+Route::post('/savePDF', [PDFController::class, 'savePDF']);
 
 Auth::routes();
 

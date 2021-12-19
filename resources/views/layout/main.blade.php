@@ -38,6 +38,7 @@
 
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     {{-- <meta name="Access-Control-Allow-Headers" value="Content-Type" /> --}}
 
 </head>

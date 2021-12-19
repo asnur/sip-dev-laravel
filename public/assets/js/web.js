@@ -810,12 +810,14 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     </div>
 </div>
   `;
+
+    SavePDFtoServer();
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
-    console.log(proyek);
+    // console.log(proyek);
     $(".dtKBLI").html("");
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
         gsb = `
@@ -1859,6 +1861,7 @@ $(document).on("click", ".wilayah-select", function () {
     // console.log(coor.split(","));
     var coord = coor.split(",");
 
+    setKelurahanSession(kel);
     geocoder.query(coor);
     addSourceLayer(kel);
 });
@@ -2047,6 +2050,70 @@ function dropDownKegiatanKewenangan(zonasi, sel, skala) {
             // alert('data tidak ada')
         },
     });
+}
+
+function setKelurahanSession(kel) {
+    $.ajax({
+        url: `${APP_URL}/setKelurahan/${kel}`,
+        method: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (e) {
+            console.log(e);
+        },
+    });
+}
+
+function SavePDFtoServer() {
+    var data_pie = $("#pie-chart-info").get(0).toDataURL("img/png");
+    var data_bar = $("#bar-chart-grouped-info").get(0).toDataURL("img/png");
+    var name_file = Math.floor(Math.random() * 9999);
+    chart = `
+        <div class="row mt-5 mb-5">
+        <div class="col-md-6">
+            <center>
+              <img src="${data_pie}" width="70%">
+            </center>
+        </div>
+        <div class="col-md-6">
+          <center>
+            <img src="${data_bar}" width="70%">
+          </center>
+        </div>
+      </div>
+        `;
+    var html = [
+        imgMaps,
+        lokasi,
+        chart,
+        pendapatan,
+        zona,
+        eksisting,
+        bpn,
+        harga,
+        fasilitas,
+        kbli_data,
+    ].join("");
+    var opt = {
+        margin: [10, 30, 10, 30],
+        html2canvas: { scale: 2, logging: true },
+    };
+    html2pdf()
+        .set(opt)
+        .from(html)
+        .toPdf()
+        .output("datauristring")
+        .then((r) => {
+            var uristring = r.split(",");
+            r = uristring[1];
+            var data = {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                uristring: r,
+                name_file: name_file,
+            };
+            $.post(`${APP_URL}/savePDF`, data);
+        });
 }
 
 $(document).on("change", "#kegiatanKewenangan", function () {
