@@ -108,7 +108,7 @@
 
                                                 <div class="form-check  mt-1">
                                                     <input type="checkbox" class="form-check-input" id="peta_zonasi">
-                                                    <label class="form-check-label  text_all" for="peta_zonasi">Peta Zonasi</label>
+                                                    <label class="form-check-label  text_all" for="peta_zonasi">Petyy Zonasi</label>
                                                 </div>
 
                                                 <div class="form-check mt-1">
@@ -1261,6 +1261,7 @@
 
 
 
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -1273,11 +1274,17 @@
 
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
-
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
+        integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
     @if (isMobileDevice())
 
@@ -1365,6 +1372,8 @@
         </script>
 
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/mobile2.js') }}"></script> --}}
+
         {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
 
     @else
