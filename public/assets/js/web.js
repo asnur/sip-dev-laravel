@@ -834,21 +834,108 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var gsb = "";
     // console.log(proyek);
     $(".dtKBLI").html("");
-    if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
-        gsb = `
-        <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
-        <ol style="margin-top:-15px">
-          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≤ 12m, Maka GSB: Sebesar 0,5 Kali Lebar Rencana Jalan Dari Sisi Terdekat Rencana Jalan;</li>
-          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar 12m – 26m, Maka GSB: 8m Dari Sisi Terdekat Rencana Jalan;</li>
-          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≥ 26m, Maka GSB: 10m Dari Sisi Terdekat Rencana Jalan;</li>
-          <li style="margin-left:-25px">Jalan Eksisting Tanpa Rencana, Maka GSB: 2m Dari Sisi Terdekat Jalan Eksisting.</li>
-        </ol>
-        `;
-    } else {
-        gsb = `
+    var dataabse_tpz = {
+        a: `
+            <p>PENYEDIAAN FASILITAS PUBLIK BERUPA:</p>
+            <ol style="margin-top:-15px">
+                <li style="margin-left:-25px">MENYEDIAKAN LAHAN DAN/ATAU MEMBANGUN RTH PUBLIK;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN LAHAN DAN/ATAU MEMBANGUN RUMAH SUSUN UMUM;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN DAN/ATAU MEMBANGUN WADUK ATAU SITU</li>
+                <li style="margin-left:-25px">MENYEDIAKAN INFRASTRUKTUR;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN JALUR DAN MENINGKATKAN KUALITAS FASILITAS PEJALAN KAKI YANG TERINTEGRASI DENGAN ANGKUTAN UMUM; <b>DAN/ATAU</b></li>
+                <li style="margin-left:-25px">MENYEDIAKAN JALUR SEPEDA YANG TERINTEGRASI DENGAN ANGKUTAN UMUM.</li>
+            </ol>
+            <p><b>KETENTUAN TAMBAHAN:</b>TPZ BONUS DAPAT DILAKUKAN DI DALAM LAHAN PERENCANAAN DAN/ATAU DI LUAR LAHAN PERENCANAAN.</p>
+        `,
+        b: `
+            <ol>
+                <li style="margin-left:-25px">PENGALIHAN HAK MEMBANGUN BERUPA LUAS LANTAI DARI SATU PERSIL KE PERSIL LAIN DENGAN ZONA YANG SAMA DALAM SATU BATAS ADMINISTRASI KELURAHAN</li>
+                <li style="margin-left:-25px">PENGALIHAN HAK MEMBANGUN BERUPA LUAS LANTAI DARI SATU PERSIL KE PERSIL LAIN DENGAN ZONA YANG SAMA DALAM KAWASAN YANG DIKEMBANGKAN KONSEP TOD DIPERKENANKAN TIDAK DALAM SATU BLOK</li>
+                <li style="margin-left:-25px">HAK MEMBANGUN YANG DAPAT DIALIHKAN BERUPA LUAS LANTAI DARI SELISIH BATASAN KLB YANG DITETAPKAN DALAM PZ DENGAN KLB YANG TELAH DIGUNAKAN DALAM KAVELING</li>
+                <li style="margin-left:-25px">PENGALIHAN HAK MEMBANGUN BERUPA LUAS LANTAI TIDAK DIPERKENANKAN PADA ZONA PERUMAHAN KAMPUNG, ZONA PERUMAHAN KDB SEDANG-TINGGI, DAN ZONA PERUMAHAN KDB RENDAH</li>
+                <li style="margin-left:-25px">PENERIMA PENGALIHAN LUAS LANTAI SETINGGI-TINGGINYA 50% (LIMA PULUH PERSEN) DARI KLB YANG DITETAPKAN DI LAHAN PERENCANAAN DIMAKSUD</li>
+                <li style="margin-left:-25px">PENGALIHAN LUAS LANTAI  HANYA DILAKUKAN 1 (SATU) KALI</li>
+            </ol>
+        `,
+        c: `
+            <ol>
+                <li style="margin-left:-25px">PEMBATASAN TINGGI BANGUNAN, TINGGI BANGUN-BANGUNAN DAN JENIS KEGIATAN SESUAI KETENTUAN PERATURAN PERUNDANG-UNDANGAN</li>
+            </ol>
+        `,
+        d: `
+            <ol>
+                <li style="margin-left:-25px">PERUBAHAN/PENAMBAHAN KEGIATAN; DAN</li>
+                <li style="margin-left:-25px">PENAMBAHAN LUAS LANTAI.</li>
+            </ol>
+        `,
+        e: `
+            <ol>
+                <li style="margin-left:-25px">PADA KAWASAN TAMAN MEDAN MERDEKA (TAMAN MONAS) DIPERKENANKAN PEMANFAATAN RUANG BAWAH TANAH SEBAGAI RUANG PAMER, PUSAT INFORMASI, PARKIR, DAN PENUNJANG SERTA RUANG UNTUK KEPENTINGAN PERTAHANAN KEAMANAN;</li>
+                <li style="margin-left:-25px">MEMILIKI DIMENSI DAN KETENTUAN PEMBANGUNAN SESUAI KEBUTUHAN DAN DILAKSANAKAN SESUAI KETENTUAN PERATURAN PERUNDANGAN;</li>
+                <li style="margin-left:-25px">TIDAK MENIMBULKAN DAMPAK NEGATIF TERHADAP KAWASAN SEKITAR;DAN</li>
+                <li style="margin-left:-25px">PADA LAHAN PERTANIAN SAWAH TIDAK DIPERKENANKAN ADA PENGEMBANGAN SELAIN KEGIATAN PERTANIAN.</li>
+            </ol>
+        `,
+        "f.1": `
+            <ol>
+                <li style="margin-left:-25px">MENYEDIAKAN GUDANG BAHAN BAKU BERSAMA;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN IPAL KOMUNAL;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN DAPUR DENGAN TEKNOLOGI RAMAH LINGKUNGAN;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN FASILITAS BONGKAR MUAT KOMUNAL; DAN</li>
+                <li style="margin-left:-25px">MENJADI ANGGOTA WADAH ATAU PERKUMPULAN YANG TERDAFTAR DAN DIAKUI OLEH PEMERINTAH.</li>
+            </ol>
+        `,
+        "f.2": `
+            <ol>
+                <li style="margin-left:-25px">KEGIATAN PEMANFAATAN RUANG UNTUK FUNGSI KOMERSIAL DIBATASI PALING TINGGI  50% (LIMA PULUH PERSEN) ATAU 2 (DUA) LANTAI DARI LUAS SELURUH LANTAI BANGUNAN;</li>
+                <li style="margin-left:-25px">TIPE BANGUNAN DERET INTENSITAS PEMANFAATAN RUANG KDB PALING TINGGI 50% (LIMA PULUH PERSEN), KLB PALING TINGGI 2,0 (DUA KOMA NOL), KETINGGIAN BANGUNAN PALING TINGGI 4 (EMPAT) LANTAI, KDH PALING RENDAH 30% (TIGA PULUH PERSEN), DAN KTB PALING TINGGI  55% (LIMA PULUH LIMA PERSEN);</li>
+                <li style="margin-left:-25px">PEMBANGUNAN HARUS SESUAI KARAKTER LINGKUNGAN;</li>
+                <li style="margin-left:-25px">PENGATURAN SISTEM INLET OUTLET PALING KURANG SETIAP JARAK 60 M (ENAM PULUH METER) DAN MEMBUKA PAGAR ANTAR PERSIL;</li>
+                <li style="margin-left:-25px">MENYEDIAKAN JALUR PEJALAN KAKI MENERUS DENGAN LEBAR PALING KURANG 3 M (TIGA METER);</li>
+                <li style="margin-left:-25px">MENYEDIAKAN PRASARANA PARKIR DALAM PERSIL; DAN</li>
+                <li style="margin-left:-25px">MENYERAHKAN LAHAN YANG TERKENA RENCANA JALAN DAN SALURAN KEPADA PEMERINTAH DAERAH.</li>
+            </ol>
+        `,
+        g: `
+            <ol>
+                <li style="margin-left:-25px">KEGIATAN HUNIAN DIPERKENANKAN UNTUK DIRUBAH TANPA MERUBAH STRUKTUR DAN BENTUK ASLI BANGUNAN PADA KAWASAN YANG DILALUI ANGKUTAN UMUM MASSAL;</li>
+                <li style="margin-left:-25px">KEGIATAN YANG DIIZINKAN TERBATAS, BERSYARAT, DAN DIIZINKAN TERBATAS BERSYARAT DALAM KAWASAN CAGAR BUDAYA DITETAPKAN GUBERNUR SETELAH MENDAPATKAN PERTIMBANGAN DARI BKPRD;</li>
+                <li style="margin-left:-25px">INTENSITAS PEMANFAATAN RUANG BANGUNAN CAGAR BUDAYA GOLONGAN A DAN GOLONGAN B SESUAI KONDISI BANGUNAN ASLI YANG DITETAPKAN; DAN</li>
+                <li style="margin-left:-25px">PEMBANGUNAN BARU PADA KAVELING DALAM KAWASAN CAGAR BUDAYA HARUS MENYESUAIKAN DENGAN KARAKTER KAWASAN CAGAR BUDAYA.</li>
+            </ol>
+        `,
+    };
+
+    var value_tpz = ``;
+    var data_tpz = dt["CD TPZ"];
+    if (dt["CD TPZ"] == " ") {
+        value_tpz += `
         <p>Ketentuan GSB Bangunan Ditiadakan dan Diganti Dengan Pedestrian.</p>
         `;
+    } else {
+        var arr_tpz = data_tpz.split(",");
+        for (let index = 0; index < arr_tpz.length; index++) {
+            value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
+        }
     }
+
+    // console.log(value_tpz);
+
+    // if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
+    //     gsb = `
+    //     <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
+    //     <ol style="margin-top:-15px">
+    //       <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≤ 12m, Maka GSB: Sebesar 0,5 Kali Lebar Rencana Jalan Dari Sisi Terdekat Rencana Jalan;</li>
+    //       <li style="margin-left:-25px">Rencana Jalan Dengan Lebar 12m – 26m, Maka GSB: 8m Dari Sisi Terdekat Rencana Jalan;</li>
+    //       <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≥ 26m, Maka GSB: 10m Dari Sisi Terdekat Rencana Jalan;</li>
+    //       <li style="margin-left:-25px">Jalan Eksisting Tanpa Rencana, Maka GSB: 2m Dari Sisi Terdekat Jalan Eksisting.</li>
+    //     </ol>
+    //     `;
+    // } else {
+    //     gsb = `
+    //     <p>Ketentuan GSB Bangunan Ditiadakan dan Diganti Dengan Pedestrian.</p>
+    //     `;
+    // }
     $(".inf-zona").html(dt.Zona);
     $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
@@ -857,7 +944,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
-    $(".inf-gsb").html(gsb);
+    $(".inf-gsb").html(value_tpz);
 
     zona = `
     <div class="col-sm-12 mt-5 mb-5">
@@ -2126,7 +2213,7 @@ function SavePDFtoServer() {
                 uristring: r,
                 name_file: name_file,
             };
-            $.post(`${APP_URL}/savePDF`, data);
+            // $.post(`${APP_URL}/savePDF`, data);
         });
 }
 
