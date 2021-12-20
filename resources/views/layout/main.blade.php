@@ -1308,7 +1308,7 @@
             e.preventDefault();
             document.getElementById("popup").style.display = "block";
             document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
-            document.getElementById("judul").innerHTML = "Info Lokasi";
+            document.getElementById("judul").innerHTML = "Profile";
             document.getElementById('close').onclick = function () {
                 document.getElementById("popup").style.display = "none";
             };
@@ -1352,7 +1352,7 @@
             e.preventDefault();
             document.getElementById("popup").style.display = "block";
             document.getElementById('popupiframe').src = "{{ @route('poi') }}";
-            document.getElementById("judul").innerHTML = "POI";
+            document.getElementById("judul").innerHTML = "Akses";
             document.getElementById('close').onclick = function () {
                 document.getElementById("popup").style.display = "none";
             };
