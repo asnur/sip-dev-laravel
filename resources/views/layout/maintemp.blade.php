@@ -189,6 +189,7 @@ $request_url = end($uri_parts);
                     },
                 },
             });
+
         </script>
     @endif
 
@@ -272,19 +273,6 @@ $request_url = end($uri_parts);
             });
         </script>
     @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @if ($request_url == 'poi')
@@ -549,14 +537,6 @@ $request_url = end($uri_parts);
         </script>
 
     @endif
-
-
-
-
-
-
-
-
 
 
     @if ($request_url == 'kodekbli')

@@ -10,10 +10,11 @@ class MenuController extends Controller
     {
         $data_kordinat = $request->session()->get('kordinat');
         $data_lokasi = $request->session()->get('lokasi');
+        $data_zonasi = $request->session()->get('zona');
 
         // var_dump($data_lokasi);
         // die();
-        return view('menu.lokasi', ["title" => "Info Lokasi", "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
+        return view('menu.lokasi', ["title" => "Info Lokasi", "data_zonasi" => $data_zonasi, "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
     }
 
     public function ekonomi(Request $request)

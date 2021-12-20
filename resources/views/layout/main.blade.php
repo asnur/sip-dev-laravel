@@ -487,7 +487,7 @@
 
                     <div class="flex_container">
 
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <ul class="nav nav-pills  mb-3" id="pills-tab" role="tablist">
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
@@ -496,7 +496,7 @@
                                 class="fa fa-map-marker"></i></a>
 
                                 <br>
-                                <label class="size_menu size_menu_mobile">Lokasi</label>
+                                <label class="size_menu size_menu_mobile">Profil</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
@@ -508,30 +508,30 @@
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="hlm_zonasi" href="" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-map-2-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Zonasi</label>
-                            </li>
+                            </li> --}}
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="hlm_persil" href="" role="tab"
                                     aria-controls="pills-persil" aria-selected="false"><i
                                         class="ri-home-4-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Persil</label>
-                            </li>
+                            </li> --}}
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
                                     href="" role="tab" aria-controls="pills-poi"
                                     aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">POI</label>
+                                <label class="size_menu size_menu_mobile">Akses</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
@@ -540,7 +540,16 @@
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile menu_kbli_top">Kode KBLI</label>
+                                <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
+                            </li>
+
+                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                {{-- <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="hlm_cetak" href="" role="tab"
+                                    aria-controls="pills-cetak" aria-selected="false"><i
+                                        class="ri-printer-fill"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile menu_kbli_top">Cetak</label> --}}
                             </li>
 
                             <!-- Pending menu pin-->
@@ -1317,27 +1326,27 @@
             return false;
         }
 
-        document.getElementById("hlm_zonasi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
-            document.getElementById("judul").innerHTML = "Zonasi";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
+        // document.getElementById("hlm_zonasi").onclick = function (e) {
+        //     e.preventDefault();
+        //     document.getElementById("popup").style.display = "block";
+        //     document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
+        //     document.getElementById("judul").innerHTML = "Zonasi";
+        //     document.getElementById('close').onclick = function () {
+        //         document.getElementById("popup").style.display = "none";
+        //     };
+        //     return false;
+        // }
 
-        document.getElementById("hlm_persil").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('persil') }}";
-            document.getElementById("judul").innerHTML = "Persil";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
+        // document.getElementById("hlm_persil").onclick = function (e) {
+        //     e.preventDefault();
+        //     document.getElementById("popup").style.display = "block";
+        //     document.getElementById('popupiframe').src = "{{ @route('persil') }}";
+        //     document.getElementById("judul").innerHTML = "Persil";
+        //     document.getElementById('close').onclick = function () {
+        //         document.getElementById("popup").style.display = "none";
+        //     };
+        //     return false;
+        // }
 
         document.getElementById("hlm_poi").onclick = function (e) {
             e.preventDefault();
