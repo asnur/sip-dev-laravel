@@ -41,8 +41,6 @@ $(document).on("input change", "#ControlTahunBanjir", function () {
     $("#tahunBanjir").html(tahun);
 });
 
-console.log("test");
-
 $("#btn-titik, #btn-print").hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
