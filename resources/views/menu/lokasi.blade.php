@@ -128,7 +128,7 @@
                 <label class="text_all_mobile_permenu">Sub Zona</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>{{ $data_zonasi['Sub_Zona'] }} - {{ $data_zonasi['Zona'] }}</p>
+                <p>{{ $data_zonasi['Sub Zona'] }} - {{ $data_zonasi['Zona'] }}</p>
             </div>
         </div>
 
@@ -137,7 +137,7 @@
                 <label class="text_all_mobile_permenu">Blok/Subblok</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>{{ $data_zonasi['Kode_Blok'] }}/{{ $data_zonasi['Sub_Blok'] }}</p>
+                <p>{{ $data_zonasi['Kode Blok'] }}/{{ $data_zonasi['Sub Blok'] }}</p>
             </div>
         </div>
 
@@ -155,7 +155,7 @@
                 <label class="text_all_mobile_permenu">CD_TPZ</label>
             </div>
             <div class="col-lg-7 text_all_permenu">
-                <p>{{ $data_zonasi['CD_TPZ'] }}</p>
+                <p>{{ $data_zonasi['CD TPZ'] }}</p>
             </div>
         </div>
 
@@ -181,7 +181,7 @@
 
         <div class="d-flex space_text row_mid_text">
             <div class="col-lg-12 text_all_permenu">
-                @if ($data_zonasi['CD_TPZ'] == ' ' || $data_zonasi['CD_TPZ'] !== 'g')
+                @if ($data_zonasi['CD TPZ'] == ' ' || $data_zonasi['CD TPZ'] !== 'g')
 
                     <p class="mt-3">Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
                     <ol style="margin-top:-15px">
