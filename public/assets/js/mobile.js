@@ -1,5 +1,9 @@
-var url = "https://jakpintasdev.dpmptsp-dki.com:3000/";
-var clickEvent = "touchstart";
+var url = "https://jakpintas.dpmptsp-dki.com:3000/";
+
+// var clickEvent = "touchstart";
+var clickEvent =
+    "ontouchstart" in document.documentElement ? "touchstart" : "click";
+
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
