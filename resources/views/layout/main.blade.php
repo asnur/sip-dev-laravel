@@ -1246,14 +1246,34 @@
                         </li>
                     </ul>
                 </div>
-                <button class="btn btn-sm mt-1">
-                    <div class="container">
+                <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-3' }}">
+                    @if (Auth::check())
+                        <button type="button" class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
+                        </button>
+                        <div class="dropdown-menu" style="background: none; width:300px; margin-top:-80px">
+                            <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"></iframe>
+                            <!-- Dropdown menu links -->
+                        </div>
+                    @else
+                        <a href="{{ url('/') }}/auth/redirect" class="ri-phone-line bg-white p-2 text-secondary"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none; text-decoration:none">
+                        </a>
+                    @endif
+                </div>
+                {{-- <button class="btn btn-sm mt-1 ">
+                    <div class="container dropleft">
                         <div class="row">
-                            <a href="{{ route('konsul') }}" class="ri-phone-line bg-white p-1 text-secondary"
-                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
+                            <div id="dropdownChat" class="ri-phone-line bg-white p-1 text-secondary"
+                                data-toggle="dropdown"
+                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></div>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownChat"
+                            style="position: relative;font-size: 12px;margin-top: 5px;border: none;">
+                            <h1>Test</h1>
                         </div>
                     </div>
-                </button>
+                </button> --}}
             </div>
         </div>
         {{-- <div style="z-index: 999; position: absolute; right:6px; top:100px;">
