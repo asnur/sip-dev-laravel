@@ -1135,7 +1135,7 @@
                                         src="{{ asset('assets/gambar/jakevo.png') }}"><br><span>IRK</span></a>
                             </div>
                             <div class="col-sm-4 border-white text-center">
-                                <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
+                                <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-50"
                                         style="margin-top: 16px"
