@@ -1,4 +1,4 @@
-var url = "https://jakpintas.dpmptsp-dki.com:3000";
+var url = `${APP_URL}:3000`;
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
 let popUpHarga;
@@ -763,9 +763,9 @@ map.on(clickEvent, "wilayah_fill", function (e) {
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-4">Kordinat</div>
-      <div class="col-sm-8"><a class="text-black" href="https://jakpintas.dpmptsp-dki.com/?kat=konsul&lat=${
-          e.lngLat.lat
-      }&lng=${e.lngLat.lng}" target="_blank">${e.lngLat.lat}, ${
+      <div class="col-sm-8"><a class="text-black" href="${APP_URL}/?kat=konsul&lat=${
+        e.lngLat.lat
+    }&lng=${e.lngLat.lng}" target="_blank">${e.lngLat.lat}, ${
         e.lngLat.lng
     }</a></div>
     </div>
