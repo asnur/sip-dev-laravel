@@ -489,6 +489,12 @@
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
                             </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
+                                    href="#" target="_blank"><i class="ri-shape-line"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile">File SHP</label>
+                            </li>
                             <!-- Pending menu pin-->
 
                         </ul>
