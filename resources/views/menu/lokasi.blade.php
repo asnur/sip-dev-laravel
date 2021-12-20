@@ -1,5 +1,4 @@
 @extends('layout.maintemp')
-
 @section('lokasi')
 
     <div class="container margin_conten_permenu">

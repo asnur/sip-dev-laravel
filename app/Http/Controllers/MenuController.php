@@ -10,6 +10,9 @@ class MenuController extends Controller
     {
         $data_kordinat = $request->session()->get('kordinat');
         $data_lokasi = $request->session()->get('lokasi');
+
+        // var_dump($data_lokasi);
+        // die();
         return view('menu.lokasi', ["title" => "Info Lokasi", "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
     }
 
