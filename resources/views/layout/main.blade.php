@@ -489,6 +489,12 @@
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
                             </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
+                                    href="#" target="_blank"><i class="ri-shape-line"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile">File SHP</label>
+                            </li>
                             <!-- Pending menu pin-->
 
                         </ul>
@@ -1120,14 +1126,6 @@
                                         src="{{ asset('assets/gambar/jakevo.png') }}"><span>Jakevo</span></a>
                             </div>
                             <div class="col-sm-4 border border-white text-center">
-                                <a href="https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html"
-                                    target="_blank" style="font-size: 13px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-50"
-                                        style="margin-top: 17px"
-                                        src="{{ asset('assets/gambar/jakevo.png') }}"><br><span>File
-                                        SHP</span></a>
-                            </div>
-                            <div class="col-sm-4 border border-white text-center">
                                 <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-50"
@@ -1135,7 +1133,7 @@
                                         src="{{ asset('assets/gambar/jakevo.png') }}"><br><span>IRK</span></a>
                             </div>
                             <div class="col-sm-4 border-white text-center">
-                                <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
+                                <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-50"
                                         style="margin-top: 16px"
@@ -1150,7 +1148,7 @@
                                         src="{{ asset('assets/gambar/OSS.png') }}"
                                         class="w-75"><span>OSS</span></a>
                             </div>
-                            <div class="col-sm-4 border border-white text-center">
+                            <div class="col-sm-4 border-white text-center">
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
@@ -1158,13 +1156,13 @@
                                         class="w-75"><span>Pesan</span>
                                     AJIB</a>
                             </div>
-                            <div class="col-sm-4 border border-white text-center">
+                            <div class="col-sm-4 border-white text-center">
                                 <a href="https://simbg.pu.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-50"
+                                    class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/simbg.png') }}"><span>SIMBG</span></a>
                             </div>
-                            <div class="col-sm-4 border border-white text-center">
+                            <div class="col-sm-4 border-white text-center">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-50"
