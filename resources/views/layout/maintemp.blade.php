@@ -3,6 +3,7 @@ $uri_path = $_SERVER['REQUEST_URI'];
 $uri_parts = explode('/', $uri_path);
 $request_url = end($uri_parts);
 @endphp
+
 <!doctype html>
 <html lang="en">
 
@@ -14,23 +15,43 @@ $request_url = end($uri_parts);
 
     <title>Peta Perijinan dan Investasi DKI Jakarta</title>
 
-    <link rel="icon" href="../assets/gambar/favicon.ico">
+    <link rel="icon" href="{{ asset('assets/gambar/favicon.ico')}}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
 
     <!-- Icon -->
-    <link rel="stylesheet" href="{{ asset('assets/css/remix-icon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('assets/css/remix-icon/remixicon.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
 
-    <!-- custom -->
+    <!-- MAPBOX -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css"
+        type="text/css">
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+        type="text/css">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <script>
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
+
+
     @if (isMobileDevice())
         <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
     @else
+        <!-- custom -->
         <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     @endif
 
@@ -71,10 +92,34 @@ $request_url = end($uri_parts);
 
 
 
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- <script src="assets/js/bootstrap.min.js" rel="preload"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
+    integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     <script>
-        var url = "http://103.146.202.108:3000"
+        var url = "https://jakpintasdev.dpmptsp-dki.com:3000";
 
         function separatorNum(val) {
             if (typeof val === "undefined" || val === null || val === "null") {
@@ -144,6 +189,7 @@ $request_url = end($uri_parts);
                     },
                 },
             });
+
         </script>
     @endif
 
@@ -227,6 +273,425 @@ $request_url = end($uri_parts);
             });
         </script>
     @endif
+
+
+    @if ($request_url == 'poi')
+
+        <script>
+
+        var kilometer = $("#ControlRange").val() / 1000;
+        var fasilitas;
+        var setAttrClick;
+
+        var lat = "{{ @$data_kordinat[0] }}"
+        var lng = "{{ @$data_kordinat[1] }}"
+
+        // Sebelum klik radius
+        var tblRadData = "";
+            var getRadVal = $("#ControlRange").val();
+
+            $.ajax({
+                url: `${url}/lon/${lng}/lat/${lat}/rad/${getRadVal}`,
+                method: "get",
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function () {
+                    // $('.map-loading').show()
+                    // $("#forDataRad").html("");
+                    // $("#tabListFasilitas").html("");
+                },
+                success: function (dt) {
+                    var dtResp = JSON.parse(dt);
+                    var htmlContent = "";
+
+                    fasilitas = `
+                    <div class="col-sm-12 mt-4 mb-5">
+                    <div class="row">
+                        <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
+                            getRadVal / 1000
+                        } Km
+                        </div>`;
+
+                    cat = [];
+
+                    for (var i in dtResp.features) {
+                        const dtpar = dtResp.features[i];
+                        const props = dtpar.properties;
+                        const geo = dtpar.geometry;
+                        cat.push({
+                            name: props.Kategori,
+                            fasilitas: props.Name,
+                            jarak: geo.Distance,
+                        });
+                    }
+
+                    function groupBy(collection, property) {
+                        var i = 0,
+                            val,
+                            index,
+                            values = [],
+                            result = [];
+                        for (var i = 0; i < collection.length; i++) {
+                            val = collection[i][property];
+                            index = values.indexOf(val);
+                            if (index > -1) result[index].push(collection[i]);
+                            else {
+                                values.push(val);
+                                result.push([collection[i]]);
+                            }
+                        }
+                        return result;
+                    }
+
+                    var obj = groupBy(cat, "name");
+                    for (var as in obj) {
+                        const dt = obj[as];
+                        htmlContent += `
+                            <div class="row row_mid_judul2">
+                            <div class="col-md-12 flex-column">
+                                <button type="button"
+                                    class="btn btn-md btn-block text-left mt-3 text_all text_poi1 tombol_search"
+                                    data-toggle="collapse" data-target="#${dt[0].name}" aria-expanded="true"
+                                    aria-controls="collapsePoiOne">
+                                    <b class="text_all_mobile_poi">${dt[0].name}</b>
+                                </button>
+                            </div>
+                            </div>
+                            <div id="${dt[0].name}" class="collapse show" aria-labelledby="headingOne" data-parent="#PoiCollabse">
+                                <div class="card-body text_poi2 row_mid_judul">
+                                    <ul class="list-group list-group-flush PoiCollabse_mobile">`;
+
+                        fasilitas += `
+                        <div class="col-sm-4">${dt[0].name}</div>
+                        <div class="col-sm-8">`;
+
+                        for (var az in dt) {
+                            const dta = dt[az];
+                            htmlContent += `
+                            <li style="list-style:none" class="listgroup-cust align-items-center">
+                                <div class="d-flex">
+                                    <div class="col-md-8 text_all">
+                                    ${dta.fasilitas} <span class="float-right">${Math.round(dta.jarak) / 1000} km</span>
+                                    </div>
+                                </div>
+                            </li>`;
+
+                            fasilitas += `
+                            <div class="row">
+                                <div class="col-sm-8">${dta.fasilitas}</div>
+                                <div class="col-sm-4">${
+                                    Math.round(dta.jarak) / 1000
+                                } km</div>
+                            </div>`;
+                        }
+
+                        htmlContent += `</ul>
+                        </div>
+                    </div>`;
+                        fasilitas += `</div>`;
+                    }
+                    $(".tabListFasilitas").html(htmlContent);
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function (e) {
+                    // $('.map-loading').hide()
+                },
+            });
+
+        // Sesudah klik radius
+        $("#OutputControlRange").html(kilometer + " Km");
+        $('#ControlRange').on('input change keyup', function(e) {
+            var kilometer = $(this).val() / 1000;
+            $("#OutputControlRange").html(kilometer + " Km");
+            getRadius();
+        });
+
+        function getRadius(e) {
+            var tblRadData = "";
+            var getRadVal = $("#ControlRange").val();
+
+            $.ajax({
+                url: `${url}/lon/${lng}/lat/${lat}/rad/${getRadVal}`,
+                method: "get",
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function () {
+                    // $('.map-loading').show()
+                    // $("#forDataRad").html("");
+                    // $("#tabListFasilitas").html("");
+                },
+                success: function (dt) {
+                    var dtResp = JSON.parse(dt);
+                    var htmlContent = "";
+
+                    fasilitas = `
+                    <div class="col-sm-12 mt-4 mb-5">
+                    <div class="row">
+                        <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
+                            getRadVal / 1000
+                        } Km
+                        </div>
+                    `;
+
+                    cat = [];
+
+                    for (var i in dtResp.features) {
+                        const dtpar = dtResp.features[i];
+                        const props = dtpar.properties;
+                        const geo = dtpar.geometry;
+                        cat.push({
+                            name: props.Kategori,
+                            fasilitas: props.Name,
+                            jarak: geo.Distance,
+                        });
+                    }
+
+                    function groupBy(collection, property) {
+                        var i = 0,
+                            val,
+                            index,
+                            values = [],
+                            result = [];
+                        for (var i = 0; i < collection.length; i++) {
+                            val = collection[i][property];
+                            index = values.indexOf(val);
+                            if (index > -1) result[index].push(collection[i]);
+                            else {
+                                values.push(val);
+                                result.push([collection[i]]);
+                            }
+                        }
+                        return result;
+                    }
+
+                    var obj = groupBy(cat, "name");
+                    for (var as in obj) {
+                        const dt = obj[as];
+
+                        htmlContent += `
+                            <div class="row row_mid_judul2">
+                            <div class="col-md-12 flex-column">
+                                <button type="button"
+                                    class="btn btn-md btn-block text-left mt-3 text_all text_poi1 tombol_search"
+                                    data-toggle="collapse" data-target="#${dt[0].name}" aria-expanded="true"
+                                    aria-controls="collapsePoiOne">
+                                    <b class="text_all_mobile_poi">${dt[0].name}</b>
+                                </button>
+                            </div>
+                            </div>
+                            <div id="${dt[0].name}" class="collapse show" aria-labelledby="headingOne" data-parent="#PoiCollabse">
+                                <div class="card-body text_poi2 row_mid_judul">
+                                    <ul class="list-group list-group-flush PoiCollabse_mobile">
+                        `;
+                        fasilitas += `
+                        <div class="col-sm-4">${dt[0].name}</div>
+                        <div class="col-sm-8">
+                        `;
+
+                        // console.log(dt[0].name);
+
+                        for (var az in dt) {
+                            const dta = dt[az];
+                            htmlContent += `
+                            <li style="list-style:none" class="listgroup-cust align-items-center">
+                                <div class="d-flex">
+                                    <div class="col-md-8 text_all">
+                                    ${dta.fasilitas} <span class="float-right">${Math.round(dta.jarak) / 1000} km</span>
+                                    </div>
+
+                                </div>
+                            </li>
+                            `;
+
+                            fasilitas += `
+                            <div class="row">
+                                <div class="col-sm-8">${dta.fasilitas}</div>
+                                <div class="col-sm-4">${
+                                    Math.round(dta.jarak) / 1000
+                                } km</div>
+                            </div>
+                `;
+                        }
+
+                        htmlContent += `</ul>
+                        </div>
+                    </div>`;
+                        fasilitas += `</div>`;
+                    }
+                    // console.log(htmlContent);
+                    $(".tabListFasilitas").html(htmlContent);
+                    // console.log(dta.jarak);
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function (e) {
+                    // $('.map-loading').hide()
+                },
+            });
+        }
+        </script>
+
+    @endif
+
+
+    @if ($request_url == 'kodekbli')
+
+        <script>
+
+    //     $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+
+
+    //         dropDownKegiatan(dt["Sub Zona"]);
+    //         $("#kegiatanRuang").change(function () {
+    //         $("#skala").html("");
+    //         $(".dtKBLI").html("");
+    //         var sel = $(this).select2("val");
+    //         // console.log(sel);
+    //         DropdownSkala(dt["Sub Zona"], sel);
+    //         $("#skala").change(function () {
+    //             $(".dtKBLI").html("");
+    //             var skala = $(this).select2("val");
+    //             dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+    //             $("#btn-print").hide();
+    //         });
+    //     });
+    // });
+
+    //     function dropDownKegiatan(subzona) {
+    //     $.ajax({
+    //         url: `${APP_URL}/kbli/${subzona}`,
+    //         method: "get",
+    //         dataType: "json",
+    //         success: function (e) {
+    //             $("#kegiatanRuang").html("");
+    //             $("#skala").html("");
+    //             $("#kegiatanKewenangan").html("");
+    //             var htmlContent = "";
+    //             $("#btn-print").hide();
+    //             htmlContent += `<option>Pilih...</option>`;
+    //             var data = e;
+    //             for (i in data) {
+    //                 // console.log(data[i]["Kegiatan Ruang"]);
+    //                 htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
+    //             }
+    //             $("#kegiatanRuang").html(htmlContent);
+    //         },
+    //     });
+    //     }
+
+    //     function DropdownSkala(zonasi, sel) {
+    //         var resHTML = "";
+    //         $("#kegiatanKewenangan").html("");
+    //         $.ajax({
+    //             url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+    //             method: "get",
+    //             dataType: "json",
+    //             success: function (res) {
+    //                 $("#btn-print").hide();
+    //                 if (res != null) {
+    //                     const prop = res;
+    //                     var jmlh = [];
+    //                     resHTML += "<option>Pilih....</option>";
+    //                     resHTML += "<optgroup label='Modal'>";
+    //                     for (var i in prop) {
+    //                         if (prop[i]["Skala"] == "MIKRO") {
+    //                             jmlh[0] = {
+    //                                 skala: "MIKRO",
+    //                                 jmlh_modal: "< Rp 1 Milyar",
+    //                                 jml_omzet: "< Rp 2 Miliyar",
+    //                             };
+    //                         } else if (prop[i]["Skala"] == "KECIL") {
+    //                             jmlh[1] = {
+    //                                 skala: "KECIL",
+    //                                 jmlh_modal: "Rp 1-5 Milyar",
+    //                                 jml_omzet: "Rp 2-15 Miliyar",
+    //                             };
+    //                         } else if (prop[i]["Skala"] == "MENENGAH") {
+    //                             jmlh[2] = {
+    //                                 skala: "MENENGAH",
+    //                                 jmlh_modal: "Rp 5-10 Milyar",
+    //                                 jml_omzet: "Rp 15-50 Miliyar",
+    //                             };
+    //                         } else {
+    //                             jmlh[3] = {
+    //                                 skala: "BESAR",
+    //                                 jmlh_modal: "> Rp 10 Milyar",
+    //                                 jml_omzet: "> Rp 50 Miliyar",
+    //                             };
+    //                         }
+    //                         // resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+    //                     }
+
+    //                     for (var i in jmlh) {
+    //                         resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jmlh_modal}</option>`;
+    //                     }
+    //                     resHTML += "</optgroup><optgroup label='Omzet'>";
+
+    //                     for (var i in jmlh) {
+    //                         resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jml_omzet}</option>`;
+    //                     }
+    //                     // for (var i in prop) {
+    //                     //   if (prop[i]['Skala'] == "MIKRO") {
+    //                     //       jmlh = '< Rp 2 Milyar'
+    //                     //   }else if (prop[i]['Skala'] == "KECIL") {
+    //                     //       jmlh = 'Rp 2-5 Milyar'
+    //                     //   }else if (prop[i]['Skala'] == "MENENGAH") {
+    //                     //     jmlh = 'Rp 15-50 Milyar'
+    //                     //   }else{
+    //                     //     jmlh = '> Rp 50 Milyar'
+    //                     //   }
+    //                     //   resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+    //                     // }
+
+    //                     resHTML += "</optgroup>";
+
+    //                     // console.log(jmlh);
+
+    //                     $("#skala").html(resHTML);
+    //                 }
+    //             },
+    //             error: function (error) {
+    //                 console.log(error);
+    //                 // alert('data tidak ada')
+    //             },
+    //         });
+    //     }
+
+    //     function dropDownKegiatanKewenangan(zonasi, sel, skala) {
+    //         $.ajax({
+    //             url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+    //             method: "get",
+    //             dataType: "json",
+    //             success: function (res) {
+    //                 var resHTML = "";
+    //                 if (res != null) {
+    //                     const prop = res;
+    //                     data_kbli = res;
+    //                     resHTML += "<option>Pilih....</option>";
+    //                     for (var i in prop) {
+    //                         resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
+    //                     }
+
+    //                     $("#kegiatanKewenangan").html(resHTML);
+    //                 }
+    //             },
+    //             error: function (error) {
+    //                 console.log(error);
+    //                 // alert('data tidak ada')
+    //             },
+    //         });
+    //     }
+
+        </script>
+
+    @endif
+
+
 
 
 

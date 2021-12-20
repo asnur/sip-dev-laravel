@@ -1,9 +1,28 @@
-var url = "https://jakpintas.dpmptsp-dki.com:3000/";
+var url = "https://jakpintasdev.dpmptsp-dki.com:3000/";
 
-// var clickEvent = "touchstart";
+var cat = [];
+var setAttrClick;
+var kilometer = $("#ControlRange").val() / 1000;
+
+
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
+$("#OutputControlRange").html(kilometer + " Km");
+$(document).on("input change", "#ControlRange", function () {
+    var kilometer = $(this).val() / 1000;
+    $("#OutputControlRange").html(kilometer + " Km");
+    getRadius(setAttrClick);
+});
 
+
+$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+
+
+
+
+
+// ini baru bisa sampe event click, nanti dirapihin lg karna masih copy all dr mobile js nya
+// file buat ini di off
 
 
 
@@ -20,10 +39,10 @@ $(
 
 map.addControl(new mapboxgl.NavigationControl());
 
-
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
 $(".container.container_menu.for_mobile").hide();
+
 
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
@@ -33,9 +52,20 @@ map.on("style.load", function () {
         var lngs = coornya.lng.toString();
         lats = lats.slice(0, -7);
         lngs = lngs.slice(0, -7);
-        var cord = [lats, lngs];
-        koordinat(cord);
+
+        console.log(lats);
+        console.log(lngs);
+
+
+        // lat = lats;
+        // long = lngs;
+        // $(".inf-kordinat").html(
+        //     `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
+        // );
+
+        // $('#btnKonsultasi').attr('href', `mailto:asnurramdhani12@gmail.com?subject=Konsultasi%20Daerah&body=Saya%20Ingin%20Konsultasi%20Mengenai%20Daerah%20Pada%20Titik%20${lat},${long}`);
     });
+    // Marker onclick
     const el = document.createElement("div");
     el.className = "marker";
     var marker = new mapboxgl.Marker(el);
@@ -46,20 +76,15 @@ map.on("style.load", function () {
     }
     map.on(clickEvent, add_marker);
 
-    // map.addSource("wilayahindex", {
-    //     type: "geojson",
-    //     data: `${url}/choro`,
-    // });
-
-    map.addSource("mobile_index", {
-        // type: "geojson",
-        // data: `${url}/choro`,
+    map.addSource("mobileindex", {
+        type: "geojson",
+        data: `${url}/choro`,
     });
 
     map.addLayer({
-        id: "mobile_index-fill",
+        id: "mobileindex_fill",
         type: "fill",
-        source: "mobile_index",
+        source: "mobileindex",
         paint: {
             "fill-color": [
                 "interpolate",
@@ -85,21 +110,26 @@ map.on("style.load", function () {
             visibility: "none",
         },
     });
+
+
+
+
 });
 
 
 
-map.on(clickEvent, "wilayah_fill", function (e) {
+map.on(clickEvent, "mobileindex_fill", function (e) {
     var dt = e.features[0].properties;
-    console.log(e.features[0].properties);
-    lokasi(dt);
 
-    // setAttrClick = e;
+    // console.log(dt);
 
-    // getRadius(e);
+    $(".dtKBLI").html("");
+    setAttrClick = e;
+
+    getRadius(e);
+
+
 });
-
-
 
 
 
@@ -113,6 +143,37 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".container.container_menu.for_mobile").show();
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function lokasi(e) {
@@ -156,16 +217,149 @@ function zonasi(e) {
     });
 }
 
-function poi(e) {
-    var data = e;
+// function poi(e) {
+//     var data = e;
+//     $.ajax({
+//         url: setPoi,
+//         method: "post",
+//         data: {
+//             _token: CSRF_TOKEN,
+//             zona: data,
+//         },
+//         success: function (e) {},
+//     });
+// }
+
+function getRadius(e) {
+    var getRadVal = $("#ControlRange").val();
+
+    var lat = "{{ @$data_kordinat[0] }}"
+    var lng = "{{ @$data_kordinat[1] }}"
+
+
+
     $.ajax({
-        url: setPoi,
-        method: "post",
-        data: {
-            _token: CSRF_TOKEN,
-            zona: data,
+        url: `${url}/lon/${lng}/lat/${lat}/rad/${getRadVal}`,
+
+        method: "get",
+        contentType: false,
+        processData: false,
+        cache: false,
+        beforeSend: function () {
+            // $('.map-loading').show()
+            // $("#forDataRad").html("");
+            // $("#tabListFasilitas").html("");
         },
-        success: function (e) {},
+        success: function (dt) {
+            var dtResp = JSON.parse(dt);
+            var htmlContent = "";
+            var fasilitas
+
+
+            fasilitas = `
+        <div class="col-sm-12 mt-4 mb-5">
+        <div class="row">
+            <div class="col-sm-12 font-weight-bold">Fasilitas Dalam Radius ${
+                getRadVal / 1000
+            } Km
+            </div>
+        `;
+
+            cat = [];
+
+            for (var i in dtResp.features) {
+                const dtpar = dtResp.features[i];
+                const props = dtpar.properties;
+                const geo = dtpar.geometry;
+                cat.push({
+                    name: props.Kategori,
+                    fasilitas: props.Name,
+                    jarak: geo.Distance,
+                });
+            }
+
+            function groupBy(collection, property) {
+                var i = 0,
+                    val,
+                    index,
+                    values = [],
+                    result = [];
+                for (var i = 0; i < collection.length; i++) {
+                    val = collection[i][property];
+                    index = values.indexOf(val);
+                    if (index > -1) result[index].push(collection[i]);
+                    else {
+                        values.push(val);
+                        result.push([collection[i]]);
+                    }
+                }
+                return result;
+            }
+
+            var obj = groupBy(cat, "name");
+            for (var as in obj) {
+                const dt = obj[as];
+
+                htmlContent += `
+                <div class="row row_mid_judul2">
+                <div class="col-md-12 flex-column">
+                    <button type="button"
+                        class="btn btn-md btn-block text-left mt-3 text_all text_poi1 tombol_search"
+                        data-toggle="collapse" data-target="#${dt[0].name}" aria-expanded="true"
+                        aria-controls="collapsePoiOne">
+                        <b class="text_all_mobile_poi">${dt[0].name}</b>
+                    </button>
+                </div>
+                </div>
+                <div id="${dt[0].name}" class="collapse show" aria-labelledby="headingOne" data-parent="#PoiCollabse">
+                    <div class="card-body text_poi2 row_mid_judul">
+                        <ul class="list-group list-group-flush PoiCollabse_mobile">
+            `;
+                fasilitas += `
+            <div class="col-sm-4">${dt[0].name}</div>
+            <div class="col-sm-8">
+            `;
+
+                // console.log(dt[0].name);
+
+                for (var az in dt) {
+                    const dta = dt[az];
+                    htmlContent += `
+                <li style="list-style:none" class="listgroup-cust align-items-center">
+                    <div class="d-flex">
+                        <div class="col-md-8 text_all">
+                        ${dta.fasilitas} <span class="float-right">${Math.round(dta.jarak) / 1000} km</span>
+                        </div>
+
+                    </div>
+                </li>
+                `;
+
+                    fasilitas += `
+                <div class="row">
+                    <div class="col-sm-8">${dta.fasilitas}</div>
+                    <div class="col-sm-4">${
+                        Math.round(dta.jarak) / 1000
+                    } km</div>
+                </div>
+      `;
+                    // console.log(dta.fasilitas, dta.jarak);
+                }
+
+                htmlContent += `</ul>
+            </div>
+        </div>`;
+                fasilitas += `</div>`;
+            }
+            // console.log(htmlContent);
+            $(".tabListFasilitas").html(htmlContent);
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
     });
 }
 
@@ -326,45 +520,6 @@ var geocoder = new MapboxGeocoder({
         zoom: 15,
     },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 map.addControl(geocoder);
 
@@ -593,3 +748,23 @@ function getDataSewa(kel) {
 
     return data;
 }
+
+
+
+
+// create legend
+// const legend = document.getElementById("legends");
+
+// layers.forEach((layer, i) => {
+//     const color = colors[i];
+//     const item = document.createElement("div");
+//     const key = document.createElement("span");
+//     key.className = "legend-key";
+//     key.style.backgroundColor = color;
+
+//     const value = document.createElement("span");
+//     value.innerHTML = `${layer}`;
+//     item.appendChild(key);
+//     item.appendChild(value);
+//     legend.appendChild(item);
+// });

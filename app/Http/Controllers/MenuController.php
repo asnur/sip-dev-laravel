@@ -10,7 +10,11 @@ class MenuController extends Controller
     {
         $data_kordinat = $request->session()->get('kordinat');
         $data_lokasi = $request->session()->get('lokasi');
-        return view('menu.lokasi', ["title" => "Info Lokasi", "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
+        $data_zonasi = $request->session()->get('zona');
+
+        // var_dump($data_zonasi);
+        // die();
+        return view('menu.lokasi', ["title" => "Info Lokasi", "data_zonasi" => $data_zonasi, "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
     }
 
     public function ekonomi(Request $request)
@@ -19,9 +23,12 @@ class MenuController extends Controller
         return view('menu.ekonomi', ["title" => "Ekonomi", "data_lokasi" => $data_lokasi]);
     }
 
-    public function kode_kbli()
+    public function kode_kbli(Request $request)
     {
-        return view('menu.kode-kbli', ["title" => "Kode KBLI"]);
+        // masih yg lain/tidak perlu karna sdh session sblmnya
+        $data_kordinat = $request->session()->get('kordinat');
+
+        return view('menu.kode-kbli', ["title" => "Kode KBLI", "data_kordinat" => $data_kordinat]);
     }
 
     public function persil(Request $request)
@@ -31,9 +38,12 @@ class MenuController extends Controller
         return view('menu.persil', ["title" => "Persil", "data_kordinat" => $data_kordinat, "data_zonasi" => $data_zonasi]);
     }
 
-    public function poi()
+    public function poi(Request $request)
     {
-        return view('menu.poi', ["title" => "POI"]);
+        // masih yg lain
+        $data_kordinat = $request->session()->get('kordinat');
+
+        return view('menu.poi', ["title" => "POI", "data_kordinat" => $data_kordinat]);
     }
 
     public function zonasi(Request $request)

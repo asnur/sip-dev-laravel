@@ -17,6 +17,53 @@
 @media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
+    .form-control-range {
+        width: 90% !important;
+    }
+
+    .mapboxgl-ctrl-group {
+        position: absolute;
+        border-radius: 4px;
+        background: #fff;
+        bottom: -55vh;
+        right: 10px;
+    }
+
+    .menu_apps {
+        width: 98% !important;
+        position: absolute !important;
+        top: -19.5rem !important;
+
+    }
+
+    .font_menu_apps {
+        font-size: 13px;
+        margin-top: 10px;
+        /* font-weight: normal; */
+    }
+
+
+    .img_logo_menu_apps {
+        width: 100%;
+        height: 100px;
+        max-height: 100px;
+        padding-top: 10px;
+
+    }
+
+    .img_logo_menu_apps img {
+        /* object-fit: cover; */
+        width: 100%;
+        height: 70%;
+        padding-left: 20px;
+
+    }
+
+    .newmenu_logo {
+        padding: 0 !important;
+    }
+
+
     #popup {
         display: none;
         position: fixed;
@@ -59,6 +106,11 @@
         margin-left: 1%;
     }
 
+    .text_all_kbli {
+        font-size: 16px;
+        margin-left: 1%;
+    }
+
     /* ALL FONT PAGE INI */
     .text_all_permenu {
         font-size: 17px;
@@ -88,13 +140,13 @@
     .dropdown-menu {
         position: absolute;
         margin-top: 96% !important;
-        margin-left: -20%;
+        /* margin-left: -20%; */
         transform: none !important;
     }
 
     .PoiCollabse_mobile {
         margin-top: 20px;
-        margin-left: 10%;
+        margin-left: 1%;
     }
 
     .PoiCollabse_konten_mobile {
@@ -102,7 +154,15 @@
     }
 
     .text_all_mobile {
-        margin-left: 35px;
+        margin-left: 30px;
+    }
+
+    .text_all_mobile_kbli {
+        margin-left: -40px;
+    }
+
+    .text_all_mobile_poi {
+        margin-left: 47px;
     }
 
     .text_all_mobile_permenu {
@@ -128,9 +188,9 @@
     }
 
     .cari_kodekbli_option_mobile {
-        margin-left: -40px;
+        margin-left: -45px;
         margin-bottom: 7px;
-        margin-right: 25px;
+        margin-right: 5px;
     }
 
     .kotak_sidebar {
@@ -155,7 +215,7 @@
     }
 
     .margin_new_menu {
-        margin-left: -30%;
+        margin-left: -25%;
         font-size: 18px;
         padding-top: 2%;
     }
@@ -182,7 +242,7 @@
     .tempat_search {
         /* width: 350px; */
         /* margin-top: -12%; */
-        margin: 0 0 0 0;
+        margin: 0.5rem 0.5rem 0 0.5rem;
     }
 
     .tempat_search .search_box {
@@ -407,7 +467,7 @@
     }
 
     .row_mid_judul2 {
-        margin-left: -3px;
+        margin-left: -50px;
         margin-top: -10px;
     }
 
@@ -471,7 +531,7 @@
         height: 7px;
     }
 
-    .mapboxgl-ctrl-top-right {
+    .mapboxgl-ctrl-geocoder {
         display: none;
     }
 
@@ -661,7 +721,7 @@
     .tempat_search {
         /* width: 350px; */
         /* margin-top: -12%; */
-        margin: 0 0 0 0;
+        margin: 0.5rem 0.5rem 0 0.5rem;
     }
 
     .tempat_search .search_box {
@@ -886,7 +946,7 @@
     }
 
     .row_mid_judul2 {
-        margin-left: -3px;
+        margin-left: -20px;
         margin-top: -10px;
     }
 
@@ -950,9 +1010,11 @@
         height: 7px;
     }
 
-    .mapboxgl-ctrl-top-right {
+    .mapboxgl-ctrl-geocoder {
         display: none;
     }
+
+
 
     .wm-search__dropdown,
     .wm-search__selected {

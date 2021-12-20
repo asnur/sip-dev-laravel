@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peta Perijinan dan Investasi DKI Jakarta</title>
 
-    <link rel="icon" href="assets/gambar/favicon.ico">
+    <link rel="icon" href="{{ asset('assets/gambar/favicon.ico')}}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
@@ -106,7 +106,27 @@
 
                                             <div class="layout_checkbox_mobile">
 
-                                                <div class="form-check">
+                                                <div class="form-check  mt-1">
+                                                    <input type="checkbox" class="form-check-input" id="peta_zonasi">
+                                                    <label class="form-check-label  text_all" for="peta_zonasi">Petyy Zonasi</label>
+                                                </div>
+
+                                                <div class="form-check mt-1">
+                                                    <input type="checkbox" class="form-check-input" id="mikro_kecil">
+                                                    <label class="form-check-label  text_all" for="mikro_kecil">Total Omzet Mikro Kecil</label>
+                                                </div>
+
+                                                <div class="form-check mt-1 mb-2">
+
+                                                    <input type="checkbox" class="form-check-input" id="banjir_fill">
+                                                    <label class="form-check-label text_all" for="banjir_fill">Terdampak
+                                                        Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
+                                                    <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
+                                                        id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                                                </div>
+
+
+                                                {{-- <div class="form-check">
 
                                                     <ul class="list-group list-group-flush">
                                                         <li
@@ -115,46 +135,7 @@
                                                                 id="checkbox1">
                                                             <label
                                                                 class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox1">Wilayah</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox2">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox2">Total Omzet Per Kelurahan</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox3">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox3">Rencana Kota</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox4">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox4">Sebaran Usaha Mikro Kecil</label>
+                                                                for="checkbox1">Peta Zonasi</label>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -164,18 +145,21 @@
                                                         <li
                                                             class="listgroup-cust d-flex justify-content-between align-items-center text_all">
                                                             <input type="checkbox" class="form-check-input"
-                                                                id="checkbox4">
+                                                                id="checkbox2">
                                                             <label
                                                                 class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox4">Harga Sewa Kantor</label>
+                                                                for="checkbox2">Total Omzet Mikro Kecil</label>
                                                         </li>
                                                     </ul>
-                                                </div>
-                                                <hr>
+                                                </div> --}}
+
+
+
+                                                {{-- <hr> --}}
                                             </div>
 
 
-                                            <div class="kotak_sidebar">
+                                            {{-- <div class="kotak_sidebar">
 
 
                                                 <span class="material-icons iconn_kotak_sidebar">
@@ -239,7 +223,7 @@
 
 
 
-                                            </div>
+                                            </div> --}}
 
                                         </div>
                                     </span>
@@ -503,7 +487,7 @@
 
                     <div class="flex_container">
 
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <ul class="nav nav-pills  mb-3" id="pills-tab" role="tablist">
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
@@ -512,7 +496,7 @@
                                 class="fa fa-map-marker"></i></a>
 
                                 <br>
-                                <label class="size_menu size_menu_mobile">Lokasi</label>
+                                <label class="size_menu size_menu_mobile">Profil</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
@@ -524,30 +508,30 @@
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="hlm_zonasi" href="" role="tab"
                                     aria-controls="pills-zonasi" aria-selected="false"><i
                                         class="ri-map-2-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Zonasi</label>
-                            </li>
+                            </li> --}}
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="hlm_persil" href="" role="tab"
                                     aria-controls="pills-persil" aria-selected="false"><i
                                         class="ri-home-4-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Persil</label>
-                            </li>
+                            </li> --}}
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
                                     href="" role="tab" aria-controls="pills-poi"
                                     aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">POI</label>
+                                <label class="size_menu size_menu_mobile">Akses</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
@@ -556,7 +540,16 @@
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile menu_kbli_top">Kode KBLI</label>
+                                <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
+                            </li>
+
+                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                {{-- <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="hlm_cetak" href="" role="tab"
+                                    aria-controls="pills-cetak" aria-selected="false"><i
+                                        class="ri-printer-fill"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile menu_kbli_top">Cetak</label> --}}
                             </li>
 
                             <!-- Pending menu pin-->
@@ -1075,7 +1068,174 @@
 
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
+
+    <div class="p-2 dropdown for_mobile" id="more-apps"
+    style=" z-index:9; margin-top:4rem; margin-left:5px;">
+
+    <button class="btn btn-sm for_web">
+        <div class="container">
+            <div class="row">
+                <i class="ri-user-fill bg-white p-1 text-secondary"
+                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+            </div>
+        </div>
+    </button>
+
+    <button class="btn btn-sm float-right">
+        <div class="container">
+            <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
+                <span class="material-icons text-white">
+                    apps
+                </span>
+            </div>
+            <div style="margin-left: 0.5%; !important;" class="dropdown-menu dropdown-menu-lg-right menu_apps"
+                aria-labelledby="dropdownMenuButton">
+
+                <div class="d-flex mt-3 ml-1 mr-1">
+
+                    <div class="col-sm-3 newmenu_logo">
+                        <a href="https://oss.go.id" target="_blank"
+                        style="text-decoration:none;"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/OSS.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">
+                                OSS
+                            </h5>
+                    </div>
+
+                    <div class="col-sm-3 newmenu_logo">
+                        <a href="https://dpmptsp-jkt.com" target="_blank"
+                            style="text-decoration:none"
+                            class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                src="{{ asset('assets/gambar/mobile/ptsp_logo.png') }}" class="w-75"></a>
+                                <h5 class="font_menu_apps text-center font-weight-bold">Pesan
+                                    AJIB</h5>
+                    </div>
+
+                    <div class="col-md-3 newmenu_logo">
+                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                        style="text-decoration:none"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                    </div>
+
+                    <div class="col-md-3 newmenu_logo">
+                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                        style="text-decoration:none"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="d-flex mt-3 mb-3 ml-1 mr-1">
+
+                    <div class="col-sm-3 newmenu_logo">
+                        <a href="https://oss.go.id" target="_blank"
+                        style="text-decoration:none;"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/simbg.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">
+                                SIMBG
+                            </h5>
+                    </div>
+
+                    <div class="col-sm-3 newmenu_logo">
+                        <a href="https://dpmptsp-jkt.com" target="_blank"
+                            style="text-decoration:none"
+                            class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}" class="w-75"></a>
+                                <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
+                    </div>
+
+                    <div class="col-md-3 newmenu_logo">
+                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                        style="text-decoration:none"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                    </div>
+
+                    <div class="col-md-3 newmenu_logo">
+                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                        style="text-decoration:none"
+                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+    </button>
+
+
+
+    <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
+        <div class="dropdown">
+
+            <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div class="container">
+                    <div class="row">
+                        <i class="ri-stack-line bg-white p-1 text-secondary"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                    </div>
+                </div>
+            </button>
+
+        </div>
+
+        <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <div class="container">
+                <div class="row">
+                    <i class="ri-mail-open-line bg-white p-1 text-secondary"
+                        style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                </div>
+            </div>
+        </button>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
     {{-- <div class="detail_omzet" id="legends"></div>
     <div class="detail_jumlah" id="features">
         <strong class="border-bottom">Detail Omzet</strong>
@@ -1110,6 +1270,7 @@
 
 
 
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -1126,26 +1287,28 @@
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
+        integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     @if (isMobileDevice())
+
         <script>
             var setLokasi = "{{ @route('setLokasi') }}"
             var setKordinat = "{{ @route('setKordinat') }}"
             var setZonasi = "{{ @route('setZonasi') }}"
             var setEksisting = "{{ @route('setEksisting') }}"
 
-            // var menuLokasi = "{{ @route('lokasi') }}"
-            // var menuEkonomi = "{{ @route('ekonomi') }}"
-            // var menuKode = "{{ @route('kode_kbli') }}"
-            // var menuPersil = "{{ @route('persil') }}"
-            // var menuPoi = "{{ @route('poi') }}"
-            // var menuZonasi = "{{ @route('zonasi') }}"
-
 
             document.getElementById("hlm_lokasi").onclick = function (e) {
             e.preventDefault();
             document.getElementById("popup").style.display = "block";
             document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
-            document.getElementById("judul").innerHTML = "Info Lokasi";
+            document.getElementById("judul").innerHTML = "Profile";
             document.getElementById('close').onclick = function () {
                 document.getElementById("popup").style.display = "none";
             };
@@ -1163,33 +1326,33 @@
             return false;
         }
 
-        document.getElementById("hlm_zonasi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
-            document.getElementById("judul").innerHTML = "Zonasi";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
+        // document.getElementById("hlm_zonasi").onclick = function (e) {
+        //     e.preventDefault();
+        //     document.getElementById("popup").style.display = "block";
+        //     document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
+        //     document.getElementById("judul").innerHTML = "Zonasi";
+        //     document.getElementById('close').onclick = function () {
+        //         document.getElementById("popup").style.display = "none";
+        //     };
+        //     return false;
+        // }
 
-        document.getElementById("hlm_persil").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('persil') }}";
-            document.getElementById("judul").innerHTML = "Persil";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
+        // document.getElementById("hlm_persil").onclick = function (e) {
+        //     e.preventDefault();
+        //     document.getElementById("popup").style.display = "block";
+        //     document.getElementById('popupiframe').src = "{{ @route('persil') }}";
+        //     document.getElementById("judul").innerHTML = "Persil";
+        //     document.getElementById('close').onclick = function () {
+        //         document.getElementById("popup").style.display = "none";
+        //     };
+        //     return false;
+        // }
 
         document.getElementById("hlm_poi").onclick = function (e) {
             e.preventDefault();
             document.getElementById("popup").style.display = "block";
             document.getElementById('popupiframe').src = "{{ @route('poi') }}";
-            document.getElementById("judul").innerHTML = "POI";
+            document.getElementById("judul").innerHTML = "Akses";
             document.getElementById('close').onclick = function () {
                 document.getElementById("popup").style.display = "none";
             };
@@ -1215,13 +1378,13 @@
             }
         }
 
-
-
-
-
         </script>
+
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/mobile2.js') }}"></script> --}}
+
         {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
+
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
