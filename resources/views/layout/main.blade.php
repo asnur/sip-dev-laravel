@@ -768,11 +768,9 @@
                                 </div>
                             </div>
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan TPZ
-                            </p>
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
-                                    <label class="text_all_mobile inf-k-tpz">
+                                    <label class="text_all_mobile inf-k-tpz w-100">
                                         -
                                     </label>
                                 </div>

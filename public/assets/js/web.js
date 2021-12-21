@@ -910,9 +910,14 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var data_tpz = dt["CD TPZ"];
     var arr_tpz = data_tpz.split(",");
     if (dt["CD TPZ"] == " ") {
-        value_tpz += "<p>Tidak Ada Ketentuan</p>";
+        value_tpz += `
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>
+        <p>Tidak Ada Ketentuan</p>`;
     } else {
         for (let index = 0; index < arr_tpz.length; index++) {
+            value_tpz += `
+            <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ untuk CD TPZ ${arr_tpz[index]}</p>
+            `;
             value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
         }
     }
