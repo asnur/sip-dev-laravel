@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peta Perijinan dan Investasi DKI Jakarta</title>
 
-    <link rel="icon" href="{{ asset('assets/gambar/favicon.ico')}}">
+    <link rel="icon" href="{{ asset('assets/gambar/favicon.ico') }}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
@@ -29,18 +29,18 @@
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
         type="text/css">
 
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-        <link rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
     @if (isMobileDevice())
-    <script>
-        var APP_URL = {!! json_encode(url('/')) !!}
-    </script>
+        <script>
+            var APP_URL = {!! json_encode(url('/')) !!}
+        </script>
 
         <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
     @else
@@ -118,21 +118,25 @@
 
                                                 <div class="form-check  mt-1">
                                                     <input type="checkbox" class="form-check-input" id="peta_zonasi">
-                                                    <label class="form-check-label  text_all" for="peta_zonasi">Petyy Zonasi</label>
+                                                    <label class="form-check-label  text_all" for="peta_zonasi">Petyy
+                                                        Zonasi</label>
                                                 </div>
 
                                                 <div class="form-check mt-1">
                                                     <input type="checkbox" class="form-check-input" id="mikro_kecil">
-                                                    <label class="form-check-label  text_all" for="mikro_kecil">Total Omzet Mikro Kecil</label>
+                                                    <label class="form-check-label  text_all" for="mikro_kecil">Total
+                                                        Omzet Mikro Kecil</label>
                                                 </div>
 
                                                 <div class="form-check mt-1 mb-2">
 
                                                     <input type="checkbox" class="form-check-input" id="banjir_fill">
                                                     <label class="form-check-label text_all" for="banjir_fill">Terdampak
-                                                        Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
-                                                    <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
-                                                        id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                                                        Banjir <span class="font_range_input"
+                                                            id="tahunBanjir">2015</span></label>
+                                                    <input type="range" style="height: 6px;"
+                                                        class="form-control-range mt-3 w-75" id="ControlTahunBanjir"
+                                                        min="2015" max="2020" step="1" value="2015">
                                                 </div>
 
 
@@ -465,10 +469,11 @@
 
                 <div id="popup" class="for_mobile">
                     <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
-                    style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+                        style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
                         <div class="d-flex">
                             <div class="col-md-1">
-                                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close" data-dismiss="modal" aria-hidden="true">
+                                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close"
+                                    data-dismiss="modal" aria-hidden="true">
                                     <span class="material-icons">
                                         arrow_back_ios
                                     </span>
@@ -486,10 +491,20 @@
 
                     <div class="d-flex justify-content-center">
 
-                        <svg style="margin-top:-15px;"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                        width="50" height="50"
-                        viewBox="0 0 172 172"
-                        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#cccccc"><path d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z"></path></g></g></svg>
+                        <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
+                            height="50" viewBox="0 0 172 172" style=" fill:#000000;">
+                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                                font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                                style="mix-blend-mode: normal">
+                                <path d="M0,172v-172h172v172z" fill="none"></path>
+                                <g fill="#cccccc">
+                                    <path
+                                        d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
 
                     </div>
 
@@ -502,8 +517,8 @@
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                id="hlm_lokasi" href=""  role="tab" aria-controls="pills-lokasi" aria-selected="true"><i
-                                class="fa fa-map-marker"></i></a>
+                                    id="hlm_lokasi" href="" role="tab" aria-controls="pills-lokasi"
+                                    aria-selected="true"><i class="fa fa-map-marker"></i></a>
 
                                 <br>
                                 <label class="size_menu size_menu_mobile">Profil</label>
@@ -511,9 +526,8 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_ekonomi" href="" role="tab"
-                                    aria-controls="pills-ekonomi" aria-selected="false"><i
-                                        class="ri-funds-box-fill"></i></a>
+                                    id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
+                                    aria-selected="false"><i class="ri-funds-box-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
                             </li>
@@ -538,17 +552,16 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
-                                    href="" role="tab" aria-controls="pills-poi"
-                                    aria-selected="false"><i class="fa fa-crosshairs"></i></a>
+                                    href="" role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                        class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Akses</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_kblikeg" href="" role="tab"
-                                    aria-controls="pills-kblikeg" aria-selected="false"><i
-                                        class="ri-user-search-fill"></i></a>
+                                    id="hlm_kblikeg" href="" role="tab" aria-controls="pills-kblikeg"
+                                    aria-selected="false"><i class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
@@ -1093,129 +1106,134 @@
 
 
 
-    <div class="p-2 dropdown for_mobile" id="more-apps"
-    style=" z-index:9; margin-top:4rem; margin-left:5px;">
+    <div class="p-2 dropdown for_mobile" id="more-apps" style=" z-index:9; margin-top:4rem; margin-left:5px;">
 
-    <button class="btn btn-sm for_web">
-        <div class="container">
-            <div class="row">
-                <i class="ri-user-fill bg-white p-1 text-secondary"
-                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+        <button class="btn btn-sm for_web">
+            <div class="container">
+                <div class="row">
+                    <i class="ri-user-fill bg-white p-1 text-secondary"
+                        style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                </div>
             </div>
-        </div>
-    </button>
+        </button>
 
-    <button class="btn btn-sm float-right">
-        <div class="container">
-            <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
-                <span class="material-icons text-white">
-                    apps
-                </span>
-            </div>
-            <div style="margin-left: 0.5%; !important;" class="dropdown-menu dropdown-menu-lg-right menu_apps"
-                aria-labelledby="dropdownMenuButton">
+        <button class="btn btn-sm float-right">
+            <div class="container">
+                <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
+                    <span class="material-icons text-white">
+                        apps
+                    </span>
+                </div>
+                <div style="margin-left: 0.5%; !important;" class="dropdown-menu dropdown-menu-lg-right menu_apps"
+                    aria-labelledby="dropdownMenuButton">
 
-                <div class="d-flex mt-3 ml-1 mr-1">
+                    <div class="d-flex mt-3 ml-1 mr-1">
 
-                    <div class="col-sm-3 newmenu_logo">
-                        <a href="https://oss.go.id" target="_blank"
-                        style="text-decoration:none;"
-                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                            src="{{ asset('assets/gambar/mobile/OSS.png') }}" class="w-75"></a>
+                        <div class="col-sm-3 newmenu_logo">
+                            <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/OSS.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">
                                 OSS
                             </h5>
-                    </div>
+                        </div>
 
-                    <div class="col-sm-3 newmenu_logo">
-                        <a href="https://dpmptsp-jkt.com" target="_blank"
-                            style="text-decoration:none"
-                            class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                src="{{ asset('assets/gambar/mobile/ptsp_logo.png') }}" class="w-75"></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">Pesan
-                                    AJIB</h5>
-                    </div>
+                        <div class="col-sm-3 newmenu_logo">
+                            <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/ptsp_logo.png') }}"
+                                    class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Pesan
+                                AJIB</h5>
+                        </div>
 
-                    <div class="col-md-3 newmenu_logo">
-                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                        style="text-decoration:none"
-                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                        <div class="col-md-3 newmenu_logo">
+                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                    </div>
+                        </div>
 
-                    <div class="col-md-3 newmenu_logo">
-                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                        style="text-decoration:none"
-                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                        <div class="col-md-3 newmenu_logo">
+                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                        </div>
+
+
+
                     </div>
 
 
+                    <div class="d-flex mt-3 mb-3 ml-1 mr-1">
 
-                </div>
-
-
-                <div class="d-flex mt-3 mb-3 ml-1 mr-1">
-
-                    <div class="col-sm-3 newmenu_logo">
-                        <a href="https://oss.go.id" target="_blank"
-                        style="text-decoration:none;"
-                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                            src="{{ asset('assets/gambar/mobile/simbg.png') }}" class="w-75"></a>
+                        <div class="col-sm-3 newmenu_logo">
+                            <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/simbg.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">
                                 SIMBG
                             </h5>
-                    </div>
+                        </div>
 
-                    <div class="col-sm-3 newmenu_logo">
-                        <a href="https://dpmptsp-jkt.com" target="_blank"
-                            style="text-decoration:none"
-                            class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}" class="w-75"></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
-                    </div>
+                        <div class="col-sm-3 newmenu_logo">
+                            <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}"
+                                    class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
+                        </div>
 
-                    <div class="col-md-3 newmenu_logo">
-                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                        style="text-decoration:none"
-                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                        <div class="col-md-3 newmenu_logo">
+                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                        </div>
+
+                        <div class="col-md-3 newmenu_logo">
+                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                        </div>
+
+
+
                     </div>
 
-                    <div class="col-md-3 newmenu_logo">
-                        <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                        style="text-decoration:none"
-                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                            src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                    </div>
+
+
 
 
 
                 </div>
+            </div>
+        </button>
 
 
 
+        <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
+            <div class="dropdown">
 
-
+                <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <div class="container">
+                        <div class="row">
+                            <i class="ri-stack-line bg-white p-1 text-secondary"
+                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                        </div>
+                    </div>
+                </button>
 
             </div>
-        </div>
-    </button>
 
-
-
-    <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
-        <div class="dropdown">
-
-            <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+            <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <div class="container">
                     <div class="row">
-                        <i class="ri-stack-line bg-white p-1 text-secondary"
+                        <i class="ri-mail-open-line bg-white p-1 text-secondary"
                             style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
                     </div>
                 </div>
@@ -1223,21 +1241,9 @@
 
         </div>
 
-        <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <div class="container">
-                <div class="row">
-                    <i class="ri-mail-open-line bg-white p-1 text-secondary"
-                        style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                </div>
-            </div>
-        </button>
+
 
     </div>
-
-
-
-</div>
 
 
 
@@ -1314,84 +1320,84 @@
             var setEksisting = "{{ @route('setEksisting') }}"
             var setZonasi = "{{ @route('setZonasi') }}"
             var setKodekbli = "{{ @route('setKodekbli') }}"
+            console.log(setKodekbli);
 
 
 
 
-            document.getElementById("hlm_lokasi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
-            document.getElementById("judul").innerHTML = "Profile";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_ekonomi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('ekonomi') }}";
-            document.getElementById("judul").innerHTML = "Ekonomi";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
-
-        // document.getElementById("hlm_zonasi").onclick = function (e) {
-        //     e.preventDefault();
-        //     document.getElementById("popup").style.display = "block";
-        //     document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
-        //     document.getElementById("judul").innerHTML = "Zonasi";
-        //     document.getElementById('close').onclick = function () {
-        //         document.getElementById("popup").style.display = "none";
-        //     };
-        //     return false;
-        // }
-
-        // document.getElementById("hlm_persil").onclick = function (e) {
-        //     e.preventDefault();
-        //     document.getElementById("popup").style.display = "block";
-        //     document.getElementById('popupiframe').src = "{{ @route('persil') }}";
-        //     document.getElementById("judul").innerHTML = "Persil";
-        //     document.getElementById('close').onclick = function () {
-        //         document.getElementById("popup").style.display = "none";
-        //     };
-        //     return false;
-        // }
-
-        document.getElementById("hlm_poi").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('poi') }}";
-            document.getElementById("judul").innerHTML = "Akses";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
-
-        document.getElementById("hlm_kblikeg").onclick = function (e) {
-            e.preventDefault();
-            document.getElementById("popup").style.display = "block";
-            document.getElementById('popupiframe').src = "{{ @route('kode_kbli') }}";
-            document.getElementById("judul").innerHTML = "Kode KBLI";
-            document.getElementById('close').onclick = function () {
-                document.getElementById("popup").style.display = "none";
-            };
-            return false;
-        }
-
-        window.onkeydown = function (e) {
-            if (e.keyCode == 27) {
-                document.getElementById("popup").style.display = "none";
+            document.getElementById("hlm_lokasi").onclick = function(e) {
                 e.preventDefault();
-                return;
+                document.getElementById("popup").style.display = "block";
+                document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
+                document.getElementById("judul").innerHTML = "Profile";
+                document.getElementById('close').onclick = function() {
+                    document.getElementById("popup").style.display = "none";
+                };
+                return false;
             }
-        }
 
+            document.getElementById("hlm_ekonomi").onclick = function(e) {
+                e.preventDefault();
+                document.getElementById("popup").style.display = "block";
+                document.getElementById('popupiframe').src = "{{ @route('ekonomi') }}";
+                document.getElementById("judul").innerHTML = "Ekonomi";
+                document.getElementById('close').onclick = function() {
+                    document.getElementById("popup").style.display = "none";
+                };
+                return false;
+            }
+
+            // document.getElementById("hlm_zonasi").onclick = function (e) {
+            //     e.preventDefault();
+            //     document.getElementById("popup").style.display = "block";
+            //     document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
+            //     document.getElementById("judul").innerHTML = "Zonasi";
+            //     document.getElementById('close').onclick = function () {
+            //         document.getElementById("popup").style.display = "none";
+            //     };
+            //     return false;
+            // }
+
+            // document.getElementById("hlm_persil").onclick = function (e) {
+            //     e.preventDefault();
+            //     document.getElementById("popup").style.display = "block";
+            //     document.getElementById('popupiframe').src = "{{ @route('persil') }}";
+            //     document.getElementById("judul").innerHTML = "Persil";
+            //     document.getElementById('close').onclick = function () {
+            //         document.getElementById("popup").style.display = "none";
+            //     };
+            //     return false;
+            // }
+
+            document.getElementById("hlm_poi").onclick = function(e) {
+                e.preventDefault();
+                document.getElementById("popup").style.display = "block";
+                document.getElementById('popupiframe').src = "{{ @route('poi') }}";
+                document.getElementById("judul").innerHTML = "Akses";
+                document.getElementById('close').onclick = function() {
+                    document.getElementById("popup").style.display = "none";
+                };
+                return false;
+            }
+
+            document.getElementById("hlm_kblikeg").onclick = function(e) {
+                e.preventDefault();
+                document.getElementById("popup").style.display = "block";
+                document.getElementById('popupiframe').src = "{{ @route('kode_kbli') }}";
+                document.getElementById("judul").innerHTML = "Kode KBLI";
+                document.getElementById('close').onclick = function() {
+                    document.getElementById("popup").style.display = "none";
+                };
+                return false;
+            }
+
+            window.onkeydown = function(e) {
+                if (e.keyCode == 27) {
+                    document.getElementById("popup").style.display = "none";
+                    e.preventDefault();
+                    return;
+                }
+            }
         </script>
 
 

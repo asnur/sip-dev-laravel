@@ -1,6 +1,5 @@
 var url = "https://jakpintas.dpmptsp-dki.com:3000/";
 
-
 // var clickEvent = "touchstart";
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
@@ -20,7 +19,6 @@ var lokasi,
     harga;
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
-
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
@@ -32,7 +30,6 @@ $(
 ).css("visibility", "hidden");
 
 map.addControl(new mapboxgl.NavigationControl());
-
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
@@ -100,8 +97,6 @@ map.on("style.load", function () {
     });
 });
 
-
-
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     console.log(e.features[0].properties);
@@ -119,7 +114,6 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var gsb = "";
     zonasi(dt);
     kode_kbli(dt);
-
 
     // console.log(proyek);
     $(".dtKBLI").html("");
@@ -177,9 +171,6 @@ map.on(clickEvent, "zoning_fill", function (e) {
       </div>
       `;
 
-
-
-
     // dropDownKegiatan(dt["Sub Zona"]);
     // $("#kegiatanRuang").change(function () {
     //     $("#skala").html("");
@@ -194,7 +185,6 @@ map.on(clickEvent, "zoning_fill", function (e) {
     //         $("#btn-print").hide();
     //     });
     // });
-
 });
 
 // function dropDownKegiatan(subzona) {
@@ -327,10 +317,6 @@ map.on(clickEvent, "zoning_fill", function (e) {
 //     });
 // }
 
-
-
-
-
 function titleCase(str) {
     str = str.toLowerCase().split(" ");
     for (var i = 0; i < str.length; i++) {
@@ -400,7 +386,7 @@ function kode_kbli(e) {
         method: "post",
         data: {
             _token: CSRF_TOKEN,
-            zona: data,
+            kode_kbli: data,
         },
         success: function (e) {},
     });
@@ -550,45 +536,6 @@ var geocoder = new MapboxGeocoder({
         zoom: 15,
     },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 map.addControl(geocoder);
 
