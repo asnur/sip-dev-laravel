@@ -938,7 +938,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
     $(".inf-gsb").html(gsb);
-    $(".inf-k-tpz").html(value);
+    $(".inf-k-tpz").html(value_tpz);
 
     zona = `
     <div class="col-sm-12 mt-5 mb-5">
