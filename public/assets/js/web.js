@@ -1890,6 +1890,7 @@ function onOffLayers() {
                 "display",
                 ""
             );
+            window.stop();
         } else {
             hideLayer("sewa_fill");
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
@@ -1921,6 +1922,7 @@ function onOffLayers() {
                     `;
                 }
                 $(".list-item-investasi").html(content);
+                window.stop();
             }
         } else {
             hideLayer("investasi_fill");
@@ -2279,8 +2281,8 @@ $("#sewa_kantor").click(function () {
     $("#iumk").css("background", "white");
     $("#proyek").css("background", "white");
     $("#sewa_fill").trigger("click");
-    $("#closeUsaha").trigger("click");
-    $("#closeInvestasi").trigger("click");
+    $(".info-layer-usaha").hide();
+    $(".info-layer-investasi").hide();
 });
 
 $("#iumk").click(function () {
@@ -2288,8 +2290,8 @@ $("#iumk").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#proyek").css("background", "white");
     $("#iumk_fill").trigger("click");
-    $("#closeSewa").trigger("click");
-    $("#closeInvestasi").trigger("click");
+    $(".info-layer").hide();
+    $(".info-layer-investasi").hide();
 });
 
 $("#proyek").click(function () {
@@ -2297,8 +2299,8 @@ $("#proyek").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#iumk").css("background", "white");
     $("#investasi_fill").trigger("click");
-    $("#closeSewa").trigger("click");
-    $("#closeUsaha").trigger("click");
+    $(".info-layer-usaha").hide();
+    $(".info-layer").hide();
 });
 
 $("#closeSewa").on("click", function () {

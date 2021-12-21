@@ -1259,7 +1259,8 @@
                 </div>
                 <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-3' }}">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
+                    <button type="button" disabled class="ri-phone-line bg-white p-1 text-secondary"
+                        data-toggle="dropdown"
                         style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
                     </button>
                     <div class="dropdown-menu" style="background: none; width:300px; border:none; margin-top:-10px">
