@@ -1,6 +1,5 @@
 var url = "https://jakpintas.dpmptsp-dki.com:3000/";
 
-
 // var clickEvent = "touchstart";
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
@@ -20,7 +19,6 @@ var lokasi,
     harga;
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
-
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
@@ -32,7 +30,6 @@ $(
 ).css("visibility", "hidden");
 
 map.addControl(new mapboxgl.NavigationControl());
-
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
@@ -65,8 +62,8 @@ map.on("style.load", function () {
     // });
 
     map.addSource("mobile_index", {
-        // type: "geojson",
-        // data: `${url}/choro`,
+        type: "geojson",
+        data: `${url}/choro`,
     });
 
     map.addLayer({
@@ -100,8 +97,6 @@ map.on("style.load", function () {
     });
 });
 
-
-
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     console.log(e.features[0].properties);
@@ -118,6 +113,8 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
     zonasi(dt);
+    kode_kbli(dt["Sub Zona"]);
+
     // console.log(proyek);
     $(".dtKBLI").html("");
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
@@ -174,151 +171,151 @@ map.on(clickEvent, "zoning_fill", function (e) {
       </div>
       `;
 
-    dropDownKegiatan(dt["Sub Zona"]);
-    $("#kegiatanRuang").change(function () {
-        $("#skala").html("");
-        $(".dtKBLI").html("");
-        var sel = $(this).select2("val");
-        // console.log(sel);
-        DropdownSkala(dt["Sub Zona"], sel);
-        $("#skala").change(function () {
-            $(".dtKBLI").html("");
-            var skala = $(this).select2("val");
-            dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
-            $("#btn-print").hide();
-        });
-    });
+    // dropDownKegiatan(dt["Sub Zona"]);
+    // $("#kegiatanRuang").change(function () {
+    //     $("#skala").html("");
+    //     $(".dtKBLI").html("");
+    //     var sel = $(this).select2("val");
+    //     // console.log(sel);
+    //     DropdownSkala(dt["Sub Zona"], sel);
+    //     $("#skala").change(function () {
+    //         $(".dtKBLI").html("");
+    //         var skala = $(this).select2("val");
+    //         dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+    //         $("#btn-print").hide();
+    //     });
+    // });
 });
 
-function dropDownKegiatan(subzona) {
-    $.ajax({
-        url: `${APP_URL}/kbli/${subzona}`,
-        method: "get",
-        dataType: "json",
-        success: function (e) {
-            // $("#kegiatanRuang").html("");
-            // $("#skala").html("");
-            // $("#kegiatanKewenangan").html("");
-            var htmlContent = "";
-            $("#btn-print").hide();
-            htmlContent += `<option>Pilih...</option>`;
-            var data = e;
-            for (i in data) {
-                // console.log(data[i]["Kegiatan Ruang"]);
-                htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
-            }
-            $("#kegiatanRuang").html(htmlContent);
-            // console.log(htmlContent);
-        },
-        error: function (error) {
-            console.log(error);
-            // alert('data tidak ada')
-        },
-    });
-}
+// function dropDownKegiatan(subzona) {
+//     $.ajax({
+//         url: `${APP_URL}/kbli/${subzona}`,
+//         method: "get",
+//         dataType: "json",
+//         success: function (e) {
+//             // $("#kegiatanRuang").html("");
+//             // $("#skala").html("");
+//             // $("#kegiatanKewenangan").html("");
+//             var htmlContent = "";
+//             $("#btn-print").hide();
+//             htmlContent += `<option>Pilih...</option>`;
+//             var data = e;
+//             for (i in data) {
+//                 // console.log(data[i]["Kegiatan Ruang"]);
+//                 htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
+//             }
+//             $("#kegiatanRuang").html(htmlContent);
+//             console.log(htmlContent);
+//         },
+//         error: function (error) {
+//             console.log(error);
+//             // alert('data tidak ada')
+//         },
+//     });
+// }
 
-function DropdownSkala(zonasi, sel) {
-    var resHTML = "";
-    $("#kegiatanKewenangan").html("");
-    $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}`,
-        method: "get",
-        dataType: "json",
-        success: function (res) {
-            $("#btn-print").hide();
-            if (res != null) {
-                const prop = res;
-                var jmlh = [];
-                resHTML += "<option>Pilih....</option>";
-                resHTML += "<optgroup label='Modal'>";
-                for (var i in prop) {
-                    if (prop[i]["Skala"] == "MIKRO") {
-                        jmlh[0] = {
-                            skala: "MIKRO",
-                            jmlh_modal: "< Rp 1 Milyar",
-                            jml_omzet: "< Rp 2 Miliyar",
-                        };
-                    } else if (prop[i]["Skala"] == "KECIL") {
-                        jmlh[1] = {
-                            skala: "KECIL",
-                            jmlh_modal: "Rp 1-5 Milyar",
-                            jml_omzet: "Rp 2-15 Miliyar",
-                        };
-                    } else if (prop[i]["Skala"] == "MENENGAH") {
-                        jmlh[2] = {
-                            skala: "MENENGAH",
-                            jmlh_modal: "Rp 5-10 Milyar",
-                            jml_omzet: "Rp 15-50 Miliyar",
-                        };
-                    } else {
-                        jmlh[3] = {
-                            skala: "BESAR",
-                            jmlh_modal: "> Rp 10 Milyar",
-                            jml_omzet: "> Rp 50 Miliyar",
-                        };
-                    }
-                    // resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
-                }
+// function DropdownSkala(zonasi, sel) {
+//     var resHTML = "";
+//     $("#kegiatanKewenangan").html("");
+//     $.ajax({
+//         url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+//         method: "get",
+//         dataType: "json",
+//         success: function (res) {
+//             $("#btn-print").hide();
+//             if (res != null) {
+//                 const prop = res;
+//                 var jmlh = [];
+//                 resHTML += "<option>Pilih....</option>";
+//                 resHTML += "<optgroup label='Modal'>";
+//                 for (var i in prop) {
+//                     if (prop[i]["Skala"] == "MIKRO") {
+//                         jmlh[0] = {
+//                             skala: "MIKRO",
+//                             jmlh_modal: "< Rp 1 Milyar",
+//                             jml_omzet: "< Rp 2 Miliyar",
+//                         };
+//                     } else if (prop[i]["Skala"] == "KECIL") {
+//                         jmlh[1] = {
+//                             skala: "KECIL",
+//                             jmlh_modal: "Rp 1-5 Milyar",
+//                             jml_omzet: "Rp 2-15 Miliyar",
+//                         };
+//                     } else if (prop[i]["Skala"] == "MENENGAH") {
+//                         jmlh[2] = {
+//                             skala: "MENENGAH",
+//                             jmlh_modal: "Rp 5-10 Milyar",
+//                             jml_omzet: "Rp 15-50 Miliyar",
+//                         };
+//                     } else {
+//                         jmlh[3] = {
+//                             skala: "BESAR",
+//                             jmlh_modal: "> Rp 10 Milyar",
+//                             jml_omzet: "> Rp 50 Miliyar",
+//                         };
+//                     }
+//                     // resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+//                 }
 
-                for (var i in jmlh) {
-                    resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jmlh_modal}</option>`;
-                }
-                resHTML += "</optgroup><optgroup label='Omzet'>";
+//                 for (var i in jmlh) {
+//                     resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jmlh_modal}</option>`;
+//                 }
+//                 resHTML += "</optgroup><optgroup label='Omzet'>";
 
-                for (var i in jmlh) {
-                    resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jml_omzet}</option>`;
-                }
-                // for (var i in prop) {
-                //   if (prop[i]['Skala'] == "MIKRO") {
-                //       jmlh = '< Rp 2 Milyar'
-                //   }else if (prop[i]['Skala'] == "KECIL") {
-                //       jmlh = 'Rp 2-5 Milyar'
-                //   }else if (prop[i]['Skala'] == "MENENGAH") {
-                //     jmlh = 'Rp 15-50 Milyar'
-                //   }else{
-                //     jmlh = '> Rp 50 Milyar'
-                //   }
-                //   resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
-                // }
+//                 for (var i in jmlh) {
+//                     resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jml_omzet}</option>`;
+//                 }
+//                 // for (var i in prop) {
+//                 //   if (prop[i]['Skala'] == "MIKRO") {
+//                 //       jmlh = '< Rp 2 Milyar'
+//                 //   }else if (prop[i]['Skala'] == "KECIL") {
+//                 //       jmlh = 'Rp 2-5 Milyar'
+//                 //   }else if (prop[i]['Skala'] == "MENENGAH") {
+//                 //     jmlh = 'Rp 15-50 Milyar'
+//                 //   }else{
+//                 //     jmlh = '> Rp 50 Milyar'
+//                 //   }
+//                 //   resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+//                 // }
 
-                resHTML += "</optgroup>";
+//                 resHTML += "</optgroup>";
 
-                // console.log(jmlh);
+//                 // console.log(jmlh);
 
-                $("#skala").html(resHTML);
-            }
-        },
-        error: function (error) {
-            console.log(error);
-            // alert('data tidak ada')
-        },
-    });
-}
+//                 $("#skala").html(resHTML);
+//             }
+//         },
+//         error: function (error) {
+//             console.log(error);
+//             // alert('data tidak ada')
+//         },
+//     });
+// }
 
-function dropDownKegiatanKewenangan(zonasi, sel, skala) {
-    $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
-        method: "get",
-        dataType: "json",
-        success: function (res) {
-            var resHTML = "";
-            if (res != null) {
-                const prop = res;
-                data_kbli = res;
-                resHTML += "<option>Pilih....</option>";
-                for (var i in prop) {
-                    resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
-                }
+// function dropDownKegiatanKewenangan(zonasi, sel, skala) {
+//     $.ajax({
+//         url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+//         method: "get",
+//         dataType: "json",
+//         success: function (res) {
+//             var resHTML = "";
+//             if (res != null) {
+//                 const prop = res;
+//                 data_kbli = res;
+//                 resHTML += "<option>Pilih....</option>";
+//                 for (var i in prop) {
+//                     resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
+//                 }
 
-                $("#kegiatanKewenangan").html(resHTML);
-            }
-        },
-        error: function (error) {
-            console.log(error);
-            // alert('data tidak ada')
-        },
-    });
-}
+//                 $("#kegiatanKewenangan").html(resHTML);
+//             }
+//         },
+//         error: function (error) {
+//             console.log(error);
+//             // alert('data tidak ada')
+//         },
+//     });
+// }
 
 function titleCase(str) {
     str = str.toLowerCase().split(" ");
@@ -382,14 +379,14 @@ function poi(e) {
     });
 }
 
-function kodekbli(e) {
+function kode_kbli(e) {
     var data = e;
     $.ajax({
-        url: setKodeKbli,
+        url: setKodekbli,
         method: "post",
         data: {
             _token: CSRF_TOKEN,
-            zona: data,
+            kode_kbli: data,
         },
         success: function (e) {},
     });
@@ -539,45 +536,6 @@ var geocoder = new MapboxGeocoder({
         zoom: 15,
     },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 map.addControl(geocoder);
 

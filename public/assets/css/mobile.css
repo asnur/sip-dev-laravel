@@ -331,7 +331,7 @@
     .pembungkus {
         /* margin-top: 144%; */
 
-        position: fixed;
+        position: absolute;
         z-index: 99;
         max-width: 100vh !important;
         height: 30% !important;
@@ -363,7 +363,6 @@
     .container_menu {
         padding-right: 40px !important;
         padding-left: 40px !important;
-
     }
 
 

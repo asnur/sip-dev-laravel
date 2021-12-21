@@ -51,8 +51,8 @@
             </tbody>
         </table>
 
-        <button class="btn btn-sm text-primary ml-0" id="btn-print"><i
-                class="fa fa-print"></i></button>
+        {{-- <button class="btn btn-sm text-primary ml-0" id="btn-print">
+            <i class="fa fa-print"></i></button> --}}
 
         <div class="d-flex margin_chart_ekonomi_mobile">
             <canvas id="pie-chart-kbli" width="70" height="50"

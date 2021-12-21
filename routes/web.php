@@ -58,10 +58,10 @@ Route::post('/setEksisting', function (Request $request) {
     return $request->session()->put('eksisting', $data);
 })->name('setEksisting');
 
-Route::post('/setKodeKbli', function (Request $request) {
-    $data = $request->input('kodekbli');
-    return $request->session()->put('kodekbli', $data);
-})->name('setKodeKbli');
+Route::post('/setKodekbli', function (Request $request) {
+    $data = $request->input('kode_kbli');
+    return $request->session()->put('kode_kbli', $data);
+})->name('setKodekbli');
 
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);

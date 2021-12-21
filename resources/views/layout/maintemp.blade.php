@@ -533,8 +533,207 @@ $request_url = end($uri_parts);
     @endif
 
 
-    @if ($request_url == 'kodekbli')
+    @if ($request_url == 'kode-kbli')
 
+    <script>
+
+        var APP_URL = {!! json_encode(url('/')) !!}
+
+        $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+
+        var subzona = "{{ @$data_subzona }}"
+
+
+
+        function dropDownKegiatan(subzona) {
+        $.ajax({
+            url: `${APP_URL}/kbli/${subzona}`,
+            method: "get",
+            dataType: "json",
+            success: function (e) {
+                $("#kegiatanRuang").html("");
+                $("#skala").html("");
+                $("#kegiatanKewenangan").html("");
+                var htmlContent = "";
+                $("#btn-print").hide();
+                htmlContent += `<option>Pilih...</option>`;
+                var data = e;
+                for (i in data) {
+                    // console.log(data[i]["Kegiatan Ruang"]);
+                    htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
+                }
+                $("#kegiatanRuang").html(htmlContent);
+                // console.log(htmlContent);
+            },
+        });
+    }
+
+    function DropdownSkala(zonasi, sel) {
+        var resHTML = "";
+        $("#kegiatanKewenangan").html("");
+        $.ajax({
+            url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+            method: "get",
+            dataType: "json",
+            success: function (res) {
+                $("#btn-print").hide();
+                if (res != null) {
+                    const prop = res;
+                    var jmlh = [];
+                    resHTML += "<option>Pilih....</option>";
+                    resHTML += "<optgroup label='Modal'>";
+                    for (var i in prop) {
+                        if (prop[i]["Skala"] == "MIKRO") {
+                            jmlh[0] = {
+                                skala: "MIKRO",
+                                jmlh_modal: "< Rp 1 Milyar",
+                                jml_omzet: "< Rp 2 Miliyar",
+                            };
+                        } else if (prop[i]["Skala"] == "KECIL") {
+                            jmlh[1] = {
+                                skala: "KECIL",
+                                jmlh_modal: "Rp 1-5 Milyar",
+                                jml_omzet: "Rp 2-15 Miliyar",
+                            };
+                        } else if (prop[i]["Skala"] == "MENENGAH") {
+                            jmlh[2] = {
+                                skala: "MENENGAH",
+                                jmlh_modal: "Rp 5-10 Milyar",
+                                jml_omzet: "Rp 15-50 Miliyar",
+                            };
+                        } else {
+                            jmlh[3] = {
+                                skala: "BESAR",
+                                jmlh_modal: "> Rp 10 Milyar",
+                                jml_omzet: "> Rp 50 Miliyar",
+                            };
+                        }
+                        // resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+                    }
+
+                    for (var i in jmlh) {
+                        resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jmlh_modal}</option>`;
+                    }
+                    resHTML += "</optgroup><optgroup label='Omzet'>";
+
+                    for (var i in jmlh) {
+                        resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jml_omzet}</option>`;
+                    }
+                    // for (var i in prop) {
+                    //   if (prop[i]['Skala'] == "MIKRO") {
+                    //       jmlh = '< Rp 2 Milyar'
+                    //   }else if (prop[i]['Skala'] == "KECIL") {
+                    //       jmlh = 'Rp 2-5 Milyar'
+                    //   }else if (prop[i]['Skala'] == "MENENGAH") {
+                    //     jmlh = 'Rp 15-50 Milyar'
+                    //   }else{
+                    //     jmlh = '> Rp 50 Milyar'
+                    //   }
+                    //   resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+                    // }
+
+                    resHTML += "</optgroup>";
+
+                    // console.log(jmlh);
+
+                    $("#skala").html(resHTML);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert('data tidak ada')
+            },
+        });
+    }
+
+    function dropDownKegiatanKewenangan(zonasi, sel, skala) {
+        $.ajax({
+            url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+            method: "get",
+            dataType: "json",
+            success: function (res) {
+                var resHTML = "";
+                if (res != null) {
+                    const prop = res;
+                    data_kbli = res;
+                    resHTML += "<option>Pilih....</option>";
+                    for (var i in prop) {
+                        resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
+                    }
+
+                    $("#kegiatanKewenangan").html(resHTML);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                // alert('data tidak ada')
+            },
+        });
+    }
+
+    dropDownKegiatan(subzona);
+
+        $("#kegiatanRuang").change(function () {
+            $("#skala").html("");
+            $(".dtKBLI").html("");
+            var sel = $(this).select2("val");
+            // console.log(sel);
+            DropdownSkala(subzona, sel);
+            $("#skala").change(function () {
+                $(".dtKBLI").html("");
+                var skala = $(this).select2("val");
+                dropDownKegiatanKewenangan(subzona, sel, skala);
+                $("#btn-print").hide();
+            });
+        });
+
+
+        $(document).on("change", "#kegiatanKewenangan", function () {
+        const dis = $(this);
+        selSektor = dis.val();
+        var index = dis.data("index");
+        $(".dtKBLI").html("");
+        $("#btn-print").show();
+        // console.log(data_kbli);
+        var tblSel = "";
+        tblSel += `
+        <tr>
+            <td class="text_all" style="vertical-align: top;"><a href="https://oss.go.id/informasi/kbli-kode?kode=G&kbli=${data_kbli[selSektor]["Kode KBLI"]}" target="_blank">${data_kbli[selSektor]["Kode KBLI"]}</a></td>
+            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Kegiatan"]}</td>
+            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Resiko"]}</td>
+            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Status"]}</td>
+        </tr>
+        <br>
+        <tr>
+            <td class="text_all font-weight-bold" colspan="4"><br>Ketentuan ITBX</td>
+        </tr>
+        <tr>
+            <td class="text_all" class="bg-white" colspan="4">${data_kbli[selSektor]["Substansi"]}</td>
+        </tr>
+        `;
+        $(".dtKBLI").html(tblSel);
+
+        kbli_data = `
+                <div class="col-sm-12 mt-5">
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold">KBLI</div>
+                    <div class="col-sm-4">Kode</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Kode KBLI"]}</div>
+                    <div class="col-sm-4">Kegiatan</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Kegiatan"]}</div>
+                    <div class="col-sm-4">Resiko</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Resiko"]}</div>
+                    <div class="col-sm-4">Status</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Status"]}</div>
+                    <div class="col-sm-4">Ketentuan ITBX</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Substansi"]}</div>
+                </div>
+                </div>
+            `;
+    });
+
+
+    </script>
 
 
     @endif
