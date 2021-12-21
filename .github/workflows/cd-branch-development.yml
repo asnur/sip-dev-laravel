@@ -1,0 +1,32 @@
+name: cd-branch-development
+
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Deploy Using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /var/www/html/
+            git clone https://github.com/asnur/sip-dev-laravel -b development
+            cd sip-dev-laravel
+            git pull origin development
+            chown -R $USER:www-data storage
+            chmod -R 775 storage
+            composer install
