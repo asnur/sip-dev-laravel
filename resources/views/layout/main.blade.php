@@ -108,7 +108,7 @@
                                         </button>
 
                                         <!-- silent dropdown -->
-                                        <div class="dropdown-menu w_checkbox_dropdown_mobile"
+                                        {{-- <div class="dropdown-menu w_checkbox_dropdown_mobile"
                                             aria-labelledby="dropdownMenuButton">
 
                                             <img src="./assets/gambar/logo_jakpintas.png" width="60px"
@@ -137,7 +137,7 @@
                                                     <input type="range" style="height: 6px;"
                                                         class="form-control-range mt-3 w-75" id="ControlTahunBanjir"
                                                         min="2015" max="2020" step="1" value="2015">
-                                                </div>
+                                                </div> --}}
 
 
                                                 {{-- <div class="form-check">
@@ -170,7 +170,9 @@
 
 
                                                 {{-- <hr> --}}
-                                            </div>
+
+
+                                            {{-- </div> --}}
 
 
                                             {{-- <div class="kotak_sidebar">
@@ -239,7 +241,13 @@
 
                                             </div> --}}
 
-                                        </div>
+
+
+
+
+                                        {{-- </div> --}}
+
+
                                     </span>
 
 
