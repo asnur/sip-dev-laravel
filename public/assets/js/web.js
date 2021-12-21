@@ -78,11 +78,11 @@ $.ajax({
     },
 });
 
-$.get(`${APP_URL}/pdf_file/${name_file}`, function (data, statusText, xhr) {
-    status = xhr.status;
-}).fail(function () {
-    console.clear();
-});
+// $.get(`${APP_URL}/pdf_file/${name_file}`, function (data, statusText, xhr) {
+//     status = xhr.status;
+// }).fail(function () {
+//     console.clear();
+// });
 
 const popup = new mapboxgl.Popup({
     closeButton: false,
@@ -512,7 +512,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz"
     ).html("-");
 
     getRadius(e);
@@ -822,11 +822,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 </div>
   `;
 
-    if (status !== 200) {
-        setTimeout(() => {
-            SavePDFtoServer();
-        }, 1500);
-    }
+    // if (status !== 200) {
+    //     setTimeout(() => {
+    //         SavePDFtoServer();
+    //     }, 1500);
+    // }
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
@@ -834,6 +834,95 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var gsb = "";
     // console.log(proyek);
     $(".dtKBLI").html("");
+    var dataabse_tpz = {
+        a: `
+            <p>Penyediaan Fasilitas Publik Berupa:</p>
+            <ol style="margin-top:-15px">
+                <li style="margin-left:-25px">Menyediakan Lahan Dan/Atau Membangun Rth Publik;</li>
+                <li style="margin-left:-25px">Menyediakan Lahan Dan/Atau Membangun Rumah Susun Umum;</li>
+                <li style="margin-left:-25px">Menyediakan Dan/Atau Membangun Waduk Atau Situ</li>
+                <li style="margin-left:-25px">Menyediakan Infrastruktur;</li>
+                <li style="margin-left:-25px">Menyediakan Jalur Dan Meningkatkan Kualitas Fasilitas Pejalan Kaki Yang Terintegrasi Dengan Angkutan Umum; <b>Dan/Atau</b></li>
+                <li style="margin-left:-25px">Menyediakan Jalur Sepeda Yang Terintegrasi Dengan Angkutan Umum.</li>
+            </ol>
+            <p><b>Ketentuan Tambahan:</b>TPZ Bonus Dapat Dilakukan Di Dalam Lahan Perencanaan Dan/Atau Di Luar Lahan Perencanaan.</p>
+        `,
+        b: `
+            <ol>
+                <li style="margin-left:-25px">Pengalihan Hak Membangun Berupa Luas Lantai Dari Satu Persil Ke Persil Lain Dengan Zona Yang Sama Dalam Satu Batas Administrasi Kelurahan;</li>
+                <li style="margin-left:-25px">Pengalihan Hak Membangun Berupa Luas Lantai Dari Satu Persil Ke Persil Lain Dengan Zona Yang Sama Dalam Kawasan Yang Dikembangkan Konsep Tod Diperkenankan Tidak Dalam Satu Blok;</li>
+                <li style="margin-left:-25px">Hak Membangun Yang Dapat Dialihkan Berupa Luas Lantai Dari Selisih Batasan Klb Yang Ditetapkan Dalam Pz Dengan Klb Yang Telah Digunakan Dalam Kaveling;</li>
+                <li style="margin-left:-25px">Pengalihan Hak Membangun Berupa Luas Lantai Tidak Diperkenankan Pada Zona Perumahan Kampung, Zona Perumahan Kdb Sedang-Tinggi, Dan Zona Perumahan Kdb Rendah;</li>
+                <li style="margin-left:-25px">Penerima Pengalihan Luas Lantai Setinggi-Tingginya 50% (Lima Puluh Persen) Dari Klb Yang Ditetapkan Di Lahan Perencanaan Dimaksud;</li>
+                <li style="margin-left:-25px">Pengalihan Luas Lantai  Hanya Dilakukan 1 (Satu) Kali;</li>
+            </ol>
+        `,
+        c: `
+            <ol>
+                <li style="margin-left:-25px">Pembatasan Tinggi Bangunan, Tinggi Bangun-Bangunan Dan Jenis Kegiatan Sesuai Ketentuan Peraturan Perundang-Undangan.</li>
+            </ol>
+        `,
+        d: `
+            <ol>
+                <li style="margin-left:-25px">Perubahan/Penambahan Kegiatan; Dan</li>
+                <li style="margin-left:-25px">Penambahan Luas Lantai.</li>
+            </ol>
+        `,
+        e: `
+            <ol>
+                <li style="margin-left:-25px">Pada Kawasan Taman Medan Merdeka (Taman Monas) Diperkenankan Pemanfaatan Ruang Bawah Tanah Sebagai Ruang Pamer, Pusat Informasi, Parkir, Dan Penunjang Serta Ruang Untuk Kepentingan Pertahanan Keamanan;</li>
+                <li style="margin-left:-25px">Memiliki Dimensi Dan Ketentuan Pembangunan Sesuai Kebutuhan Dan Dilaksanakan Sesuai Ketentuan Peraturan Perundangan;</li>
+                <li style="margin-left:-25px">Tidak Menimbulkan Dampak Negatif Terhadap Kawasan Sekitar;Dan</li>
+                <li style="margin-left:-25px">Pada Lahan Pertanian Sawah Tidak Diperkenankan Ada Pengembangan Selain Kegiatan Pertanian.</li>
+            </ol>
+        `,
+        "f.1": `
+            <ol>
+                <li style="margin-left:-25px">Menyediakan Gudang Bahan Baku Bersama;</li>
+                <li style="margin-left:-25px">Menyediakan Ipal Komunal;</li>
+                <li style="margin-left:-25px">Menyediakan Dapur Dengan Teknologi Ramah Lingkungan;</li>
+                <li style="margin-left:-25px">Menyediakan Fasilitas Bongkar Muat Komunal; Dan</li>
+                <li style="margin-left:-25px">Menjadi Anggota Wadah Atau Perkumpulan Yang Terdaftar Dan Diakui Oleh Pemerintah.</li>
+            </ol>
+        `,
+        "f.2": `
+            <ol>
+                <li style="margin-left:-25px">Kegiatan Pemanfaatan Ruang Untuk Fungsi Komersial Dibatasi Paling Tinggi  50% (Lima Puluh Persen) Atau 2 (Dua) Lantai Dari Luas Seluruh Lantai Bangunan;</li>
+                <li style="margin-left:-25px">Tipe Bangunan Deret Intensitas Pemanfaatan Ruang Kdb Paling Tinggi 50% (Lima Puluh Persen), Klb Paling Tinggi 2,0 (Dua Koma Nol), Ketinggian Bangunan Paling Tinggi 4 (Empat) Lantai, Kdh Paling Rendah 30% (Tiga Puluh Persen), Dan Ktb Paling Tinggi  55% (Lima Puluh Lima Persen);</li>
+                <li style="margin-left:-25px">Pembangunan Harus Sesuai Karakter Lingkungan;</li>
+                <li style="margin-left:-25px">Pengaturan Sistem Inlet Outlet Paling Kurang Setiap Jarak 60 M (Enam Puluh Meter) Dan Membuka Pagar Antar Persil;</li>
+                <li style="margin-left:-25px">Menyediakan Jalur Pejalan Kaki Menerus Dengan Lebar Paling Kurang 3 M (Tiga Meter);</li>
+                <li style="margin-left:-25px">Menyediakan Prasarana Parkir Dalam Persil; Dan</li>
+                <li style="margin-left:-25px">Menyerahkan Lahan Yang Terkena Rencana Jalan Dan Saluran Kepada Pemerintah Daerah.</li>
+            </ol>
+        `,
+        g: `
+            <ol>
+                <li style="margin-left:-25px">Kegiatan Hunian Diperkenankan Untuk Dirubah Tanpa Merubah Struktur Dan Bentuk Asli Bangunan Pada Kawasan Yang Dilalui Angkutan Umum Massal;</li>
+                <li style="margin-left:-25px">Kegiatan Yang Diizinkan Terbatas, Bersyarat, Dan Diizinkan Terbatas Bersyarat Dalam Kawasan Cagar Budaya Ditetapkan Gubernur Setelah Mendapatkan Pertimbangan Dari Bkprd;</li>
+                <li style="margin-left:-25px">Intensitas Pemanfaatan Ruang Bangunan Cagar Budaya Golongan A Dan Golongan B Sesuai Kondisi Bangunan Asli Yang Ditetapkan; Dan</li>
+                <li style="margin-left:-25px">Pembangunan Baru Pada Kaveling Dalam Kawasan Cagar Budaya   Harus Menyesuaikan Dengan Karakter Kawasan Cagar Budaya.</li>
+            </ol>
+        `,
+    };
+
+    var value_tpz = ``;
+    var data_tpz = dt["CD TPZ"];
+    var arr_tpz = data_tpz.split(",");
+    if (dt["CD TPZ"] == " ") {
+        value_tpz += `
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>
+        <p>Tidak Ada Ketentuan</p>`;
+    } else {
+        for (let index = 0; index < arr_tpz.length; index++) {
+            value_tpz += `
+            <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ untuk CD TPZ ${arr_tpz[index]}</p>
+            `;
+            value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
+        }
+    }
+    // console.log(value_tpz);
+
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
         gsb = `
         <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
@@ -858,6 +947,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
     $(".inf-gsb").html(gsb);
+    $(".inf-k-tpz").html(value_tpz);
 
     zona = `
     <div class="col-sm-12 mt-5 mb-5">
@@ -1747,10 +1837,10 @@ function onOffLayers() {
             hideLayer("investasi_line");
             $(".list-item").html("");
             var infoHarga = popUpHarga[0].features;
+            $(".info-layer").show();
             var content = "";
             // console.log(infoHarga);
             if (infoHarga !== null) {
-                $(".info-layer").show();
                 $("#hide_side_bar").hide();
                 for (
                     let index = 0;
@@ -1785,26 +1875,31 @@ function onOffLayers() {
                                 }">
                         </div>
                         <div class="col-8">
-                            <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${
+                            <p style="font-size: 11pt;margin-bottom:-1px" class="font-weight-bold" class="inf-nama-kantor">${
                                 infoHarga[index]["properties"]["Nama"]
-                            }</span>
-                            <label style="font-size: 13px; line-height:1.6; margin-bottom: -10px;" class="inf-alamat-sewa">Alamat : <span>${
+                            }</p>
+                            <lable style="font-size: 13px; line-height:1; margin-bottom: -13px;" class="inf-alamat-sewa"><span>${
                                 infoHarga[index]["properties"]["Alamat"]
-                            }</span></label>
-                            <label style="font-size: 13px; line-height:0" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
+                            }</span></lable>
+                            <p style="font-size: 13px; line-height:0; margin-top:10px !important;" class="inf-harga-sewa"> <span>Rp. ${separatorNum(
                                 infoHarga[index]["properties"]["Sewa"]
-                            )}</span></label>
+                            )}</span></p>
                         </div>
                     </div>
                 </div>
                     `;
                 }
+                $(".list-item").html(content);
+            } else {
+                content = `<p style="font-size: 13px;">Tidak Ada Data</p>`;
+                $(".list-item").html(content);
             }
-            $(".list-item").html(content);
+
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
                 "display",
                 ""
             );
+            window.stop();
         } else {
             hideLayer("sewa_fill");
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
@@ -1815,8 +1910,8 @@ function onOffLayers() {
     $("#investasi_fill").change(function () {
         if ($(this).prop("checked") == true) {
             var infoProyek = proyek[0].features;
+            $(".info-layer-investasi").show();
             if (infoProyek !== null) {
-                $(".info-layer-investasi").show();
                 showLayer("investasi_fill");
                 hideLayer("iumk_fill");
                 hideLayer("sewa_fill");
@@ -1835,6 +1930,10 @@ function onOffLayers() {
                         </li>
                     `;
                 }
+                $(".list-item-investasi").html(content);
+                window.stop();
+            } else {
+                content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
                 $(".list-item-investasi").html(content);
             }
         } else {
@@ -2126,7 +2225,7 @@ function SavePDFtoServer() {
                 uristring: r,
                 name_file: name_file,
             };
-            $.post(`${APP_URL}/savePDF`, data);
+            // $.post(`${APP_URL}/savePDF`, data);
         });
 }
 
@@ -2194,8 +2293,8 @@ $("#sewa_kantor").click(function () {
     $("#iumk").css("background", "white");
     $("#proyek").css("background", "white");
     $("#sewa_fill").trigger("click");
-    $("#closeUsaha").trigger("click");
-    $("#closeInvestasi").trigger("click");
+    $(".info-layer-usaha").hide();
+    $(".info-layer-investasi").hide();
 });
 
 $("#iumk").click(function () {
@@ -2203,8 +2302,8 @@ $("#iumk").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#proyek").css("background", "white");
     $("#iumk_fill").trigger("click");
-    $("#closeSewa").trigger("click");
-    $("#closeInvestasi").trigger("click");
+    $(".info-layer").hide();
+    $(".info-layer-investasi").hide();
 });
 
 $("#proyek").click(function () {
@@ -2212,8 +2311,8 @@ $("#proyek").click(function () {
     $("#sewa_kantor").css("background", "white");
     $("#iumk").css("background", "white");
     $("#investasi_fill").trigger("click");
-    $("#closeSewa").trigger("click");
-    $("#closeUsaha").trigger("click");
+    $(".info-layer-usaha").hide();
+    $(".info-layer").hide();
 });
 
 $("#closeSewa").on("click", function () {
@@ -2232,11 +2331,12 @@ $("#closeSewa").on("click", function () {
     }
 });
 
-$("#closeUsaha").on("click", function () {
+$("#closeUsaha").on("click", function (e) {
     $(".info-layer-usaha").hide();
     $("#show_side_bar").hide();
     $("#iumk").css("background", "white");
     hideLayer("iumk_fill");
+    window.stop();
     $("#iumk_fill").prop("checked", false);
     // $("#closeSewa").trigger("click");
     if ($("#sidebar").hide() == true) {
