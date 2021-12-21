@@ -1,11 +1,24 @@
 var url = "https://jakpintas.dpmptsp-dki.com:3000/";
 
+
 // var clickEvent = "touchstart";
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 
-
-
+var setAttrClick;
+var cat = [];
+var data_kbli;
+var lokasi,
+    zona,
+    imgMaps,
+    bpn,
+    eksisting,
+    chart,
+    pendapatan,
+    fasilitas,
+    kbli_data,
+    harga;
+$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
 
 mapboxgl.accessToken =
@@ -99,21 +112,221 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     // getRadius(e);
 });
 
-
-
-
-
 map.on(clickEvent, "zoning_fill", function (e) {
-    var dt = e.features[0].properties;
-    console.log(e.features[0].properties);
-    zonasi(dt);
-    // poi(dt);
-
-
     $(".container.container_menu.for_mobile").show();
 
+    var dt = e.features[0].properties;
+    var gsb = "";
+    zonasi(dt);
+    // console.log(proyek);
+    $(".dtKBLI").html("");
+    if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
+        gsb = `
+        <p>Ketentuan GSB Bangunan Gedung bila Gedung Berada di sisi:</p>
+        <ol style="margin-top:-15px">
+          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≤ 12m, Maka GSB: Sebesar 0,5 Kali Lebar Rencana Jalan Dari Sisi Terdekat Rencana Jalan;</li>
+          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar 12m – 26m, Maka GSB: 8m Dari Sisi Terdekat Rencana Jalan;</li>
+          <li style="margin-left:-25px">Rencana Jalan Dengan Lebar ≥ 26m, Maka GSB: 10m Dari Sisi Terdekat Rencana Jalan;</li>
+          <li style="margin-left:-25px">Jalan Eksisting Tanpa Rencana, Maka GSB: 2m Dari Sisi Terdekat Jalan Eksisting.</li>
+        </ol>
+        `;
+    } else {
+        gsb = `
+        <p>Ketentuan GSB Bangunan Ditiadakan dan Diganti Dengan Pedestrian.</p>
+        `;
+    }
+    $(".inf-zona").html(dt.Zona);
+    $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
+    $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
+    $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
+    $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
+    $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
+    $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
+    $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
+    $(".inf-gsb").html(gsb);
+
+    zona = `
+    <div class="col-sm-12 mt-5 mb-5">
+    <div class="row">
+            <div class="col-sm-12 font-weight-bold">Rencana Kota</div>
+            <div class="col-sm-4">Zona</div>
+            <div class="col-sm-8">${dt.Zona}</div>
+            <div class="col-sm-4">Sub Zona</div>
+            <div class="col-sm-8">${dt["Sub Zona"]}</div>
+            <div class="col-sm-4">Kode Blok</div>
+            <div class="col-sm-8">${dt["Kode Blok"]}</div>
+            <div class="col-sm-4">Sub Blok</div>
+            <div class="col-sm-8">${dt["Sub Blok"]}</div>
+            <div class="col-sm-4">CD TPZ</div>
+            <div class="col-sm-8">${dt["CD TPZ"]}</div>
+            <div class="col-sm-4">TPZ</div>
+            <div class="col-sm-8">${dt.TPZ}</div>
+            <div class="col-sm-4">KDB</div>
+            <div class="col-sm-8">${dt.KDB}</div>
+            <div class="col-sm-4">KDH</div>
+            <div class="col-sm-8">${dt.KDH}</div>
+            <div class="col-sm-4">KLB</div>
+            <div class="col-sm-8">${dt.KLB}</div>
+            <div class="col-sm-12">
+              ${gsb}
+            </div>
+          </div>
+      </div>
+      `;
+
+    dropDownKegiatan(dt["Sub Zona"]);
+    $("#kegiatanRuang").change(function () {
+        $("#skala").html("");
+        $(".dtKBLI").html("");
+        var sel = $(this).select2("val");
+        // console.log(sel);
+        DropdownSkala(dt["Sub Zona"], sel);
+        $("#skala").change(function () {
+            $(".dtKBLI").html("");
+            var skala = $(this).select2("val");
+            dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+            $("#btn-print").hide();
+        });
+    });
 });
 
+function dropDownKegiatan(subzona) {
+    $.ajax({
+        url: `${APP_URL}/kbli/${subzona}`,
+        method: "get",
+        dataType: "json",
+        success: function (e) {
+            // $("#kegiatanRuang").html("");
+            // $("#skala").html("");
+            // $("#kegiatanKewenangan").html("");
+            var htmlContent = "";
+            $("#btn-print").hide();
+            htmlContent += `<option>Pilih...</option>`;
+            var data = e;
+            for (i in data) {
+                // console.log(data[i]["Kegiatan Ruang"]);
+                htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
+            }
+            $("#kegiatanRuang").html(htmlContent);
+            // console.log(htmlContent);
+        },
+        error: function (error) {
+            console.log(error);
+            // alert('data tidak ada')
+        },
+    });
+}
+
+function DropdownSkala(zonasi, sel) {
+    var resHTML = "";
+    $("#kegiatanKewenangan").html("");
+    $.ajax({
+        url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+        method: "get",
+        dataType: "json",
+        success: function (res) {
+            $("#btn-print").hide();
+            if (res != null) {
+                const prop = res;
+                var jmlh = [];
+                resHTML += "<option>Pilih....</option>";
+                resHTML += "<optgroup label='Modal'>";
+                for (var i in prop) {
+                    if (prop[i]["Skala"] == "MIKRO") {
+                        jmlh[0] = {
+                            skala: "MIKRO",
+                            jmlh_modal: "< Rp 1 Milyar",
+                            jml_omzet: "< Rp 2 Miliyar",
+                        };
+                    } else if (prop[i]["Skala"] == "KECIL") {
+                        jmlh[1] = {
+                            skala: "KECIL",
+                            jmlh_modal: "Rp 1-5 Milyar",
+                            jml_omzet: "Rp 2-15 Miliyar",
+                        };
+                    } else if (prop[i]["Skala"] == "MENENGAH") {
+                        jmlh[2] = {
+                            skala: "MENENGAH",
+                            jmlh_modal: "Rp 5-10 Milyar",
+                            jml_omzet: "Rp 15-50 Miliyar",
+                        };
+                    } else {
+                        jmlh[3] = {
+                            skala: "BESAR",
+                            jmlh_modal: "> Rp 10 Milyar",
+                            jml_omzet: "> Rp 50 Miliyar",
+                        };
+                    }
+                    // resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+                }
+
+                for (var i in jmlh) {
+                    resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jmlh_modal}</option>`;
+                }
+                resHTML += "</optgroup><optgroup label='Omzet'>";
+
+                for (var i in jmlh) {
+                    resHTML += `<option value="${jmlh[i].skala}">${jmlh[i].jml_omzet}</option>`;
+                }
+                // for (var i in prop) {
+                //   if (prop[i]['Skala'] == "MIKRO") {
+                //       jmlh = '< Rp 2 Milyar'
+                //   }else if (prop[i]['Skala'] == "KECIL") {
+                //       jmlh = 'Rp 2-5 Milyar'
+                //   }else if (prop[i]['Skala'] == "MENENGAH") {
+                //     jmlh = 'Rp 15-50 Milyar'
+                //   }else{
+                //     jmlh = '> Rp 50 Milyar'
+                //   }
+                //   resHTML += `<option value="${prop[i]["Skala"]}">${jmlh}</option>`;
+                // }
+
+                resHTML += "</optgroup>";
+
+                // console.log(jmlh);
+
+                $("#skala").html(resHTML);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+            // alert('data tidak ada')
+        },
+    });
+}
+
+function dropDownKegiatanKewenangan(zonasi, sel, skala) {
+    $.ajax({
+        url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+        method: "get",
+        dataType: "json",
+        success: function (res) {
+            var resHTML = "";
+            if (res != null) {
+                const prop = res;
+                data_kbli = res;
+                resHTML += "<option>Pilih....</option>";
+                for (var i in prop) {
+                    resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
+                }
+
+                $("#kegiatanKewenangan").html(resHTML);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+            // alert('data tidak ada')
+        },
+    });
+}
+
+function titleCase(str) {
+    str = str.toLowerCase().split(" ");
+    for (var i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(" ");
+}
 
 function lokasi(e) {
     var data = e;
