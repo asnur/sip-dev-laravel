@@ -836,72 +836,72 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".dtKBLI").html("");
     var dataabse_tpz = {
         a: `
-            <p>PENYEDIAAN FASILITAS PUBLIK BERUPA:</p>
+            <p>Penyediaan Fasilitas Publik Berupa:</p>
             <ol style="margin-top:-15px">
-                <li style="margin-left:-25px">MENYEDIAKAN LAHAN DAN/ATAU MEMBANGUN RTH PUBLIK;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN LAHAN DAN/ATAU MEMBANGUN RUMAH SUSUN UMUM;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN DAN/ATAU MEMBANGUN WADUK ATAU SITU</li>
-                <li style="margin-left:-25px">MENYEDIAKAN INFRASTRUKTUR;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN JALUR DAN MENINGKATKAN KUALITAS FASILITAS PEJALAN KAKI YANG TERINTEGRASI DENGAN ANGKUTAN UMUM; <b>DAN/ATAU</b></li>
-                <li style="margin-left:-25px">MENYEDIAKAN JALUR SEPEDA YANG TERINTEGRASI DENGAN ANGKUTAN UMUM.</li>
+                <li style="margin-left:-25px">Menyediakan Lahan Dan/Atau Membangun Rth Publik;</li>
+                <li style="margin-left:-25px">Menyediakan Lahan Dan/Atau Membangun Rumah Susun Umum;</li>
+                <li style="margin-left:-25px">Menyediakan Dan/Atau Membangun Waduk Atau Situ</li>
+                <li style="margin-left:-25px">Menyediakan Infrastruktur;</li>
+                <li style="margin-left:-25px">Menyediakan Jalur Dan Meningkatkan Kualitas Fasilitas Pejalan Kaki Yang Terintegrasi Dengan Angkutan Umum; <b>Dan/Atau</b></li>
+                <li style="margin-left:-25px">Menyediakan Jalur Sepeda Yang Terintegrasi Dengan Angkutan Umum.</li>
             </ol>
-            <p><b>KETENTUAN TAMBAHAN:</b>TPZ BONUS DAPAT DILAKUKAN DI DALAM LAHAN PERENCANAAN DAN/ATAU DI LUAR LAHAN PERENCANAAN.</p>
+            <p><b>Ketentuan Tambahan:</b>TPZ Bonus Dapat Dilakukan Di Dalam Lahan Perencanaan Dan/Atau Di Luar Lahan Perencanaan.</p>
         `,
         b: `
             <ol>
-                <li style="margin-left:-25px">PENGALIHAN HAK MEMBANGUN BERUPA LUAS LANTAI DARI SATU PERSIL KE PERSIL LAIN DENGAN ZONA YANG SAMA DALAM SATU BATAS ADMINISTRASI KELURAHAN</li>
-                <li style="margin-left:-25px">PENGALIHAN HAK MEMBANGUN BERUPA LUAS LANTAI DARI SATU PERSIL KE PERSIL LAIN DENGAN ZONA YANG SAMA DALAM KAWASAN YANG DIKEMBANGKAN KONSEP TOD DIPERKENANKAN TIDAK DALAM SATU BLOK</li>
-                <li style="margin-left:-25px">HAK MEMBANGUN YANG DAPAT DIALIHKAN BERUPA LUAS LANTAI DARI SELISIH BATASAN KLB YANG DITETAPKAN DALAM PZ DENGAN KLB YANG TELAH DIGUNAKAN DALAM KAVELING</li>
-                <li style="margin-left:-25px">PENGALIHAN HAK MEMBANGUN BERUPA LUAS LANTAI TIDAK DIPERKENANKAN PADA ZONA PERUMAHAN KAMPUNG, ZONA PERUMAHAN KDB SEDANG-TINGGI, DAN ZONA PERUMAHAN KDB RENDAH</li>
-                <li style="margin-left:-25px">PENERIMA PENGALIHAN LUAS LANTAI SETINGGI-TINGGINYA 50% (LIMA PULUH PERSEN) DARI KLB YANG DITETAPKAN DI LAHAN PERENCANAAN DIMAKSUD</li>
-                <li style="margin-left:-25px">PENGALIHAN LUAS LANTAI  HANYA DILAKUKAN 1 (SATU) KALI</li>
+                <li style="margin-left:-25px">Pengalihan Hak Membangun Berupa Luas Lantai Dari Satu Persil Ke Persil Lain Dengan Zona Yang Sama Dalam Satu Batas Administrasi Kelurahan;</li>
+                <li style="margin-left:-25px">Pengalihan Hak Membangun Berupa Luas Lantai Dari Satu Persil Ke Persil Lain Dengan Zona Yang Sama Dalam Kawasan Yang Dikembangkan Konsep Tod Diperkenankan Tidak Dalam Satu Blok;</li>
+                <li style="margin-left:-25px">Hak Membangun Yang Dapat Dialihkan Berupa Luas Lantai Dari Selisih Batasan Klb Yang Ditetapkan Dalam Pz Dengan Klb Yang Telah Digunakan Dalam Kaveling;</li>
+                <li style="margin-left:-25px">Pengalihan Hak Membangun Berupa Luas Lantai Tidak Diperkenankan Pada Zona Perumahan Kampung, Zona Perumahan Kdb Sedang-Tinggi, Dan Zona Perumahan Kdb Rendah;</li>
+                <li style="margin-left:-25px">Penerima Pengalihan Luas Lantai Setinggi-Tingginya 50% (Lima Puluh Persen) Dari Klb Yang Ditetapkan Di Lahan Perencanaan Dimaksud;</li>
+                <li style="margin-left:-25px">Pengalihan Luas Lantai  Hanya Dilakukan 1 (Satu) Kali;</li>
             </ol>
         `,
         c: `
             <ol>
-                <li style="margin-left:-25px">PEMBATASAN TINGGI BANGUNAN, TINGGI BANGUN-BANGUNAN DAN JENIS KEGIATAN SESUAI KETENTUAN PERATURAN PERUNDANG-UNDANGAN</li>
+                <li style="margin-left:-25px">Pembatasan Tinggi Bangunan, Tinggi Bangun-Bangunan Dan Jenis Kegiatan Sesuai Ketentuan Peraturan Perundang-Undangan.</li>
             </ol>
         `,
         d: `
             <ol>
-                <li style="margin-left:-25px">PERUBAHAN/PENAMBAHAN KEGIATAN; DAN</li>
-                <li style="margin-left:-25px">PENAMBAHAN LUAS LANTAI.</li>
+                <li style="margin-left:-25px">Perubahan/Penambahan Kegiatan; Dan</li>
+                <li style="margin-left:-25px">Penambahan Luas Lantai.</li>
             </ol>
         `,
         e: `
             <ol>
-                <li style="margin-left:-25px">PADA KAWASAN TAMAN MEDAN MERDEKA (TAMAN MONAS) DIPERKENANKAN PEMANFAATAN RUANG BAWAH TANAH SEBAGAI RUANG PAMER, PUSAT INFORMASI, PARKIR, DAN PENUNJANG SERTA RUANG UNTUK KEPENTINGAN PERTAHANAN KEAMANAN;</li>
-                <li style="margin-left:-25px">MEMILIKI DIMENSI DAN KETENTUAN PEMBANGUNAN SESUAI KEBUTUHAN DAN DILAKSANAKAN SESUAI KETENTUAN PERATURAN PERUNDANGAN;</li>
-                <li style="margin-left:-25px">TIDAK MENIMBULKAN DAMPAK NEGATIF TERHADAP KAWASAN SEKITAR;DAN</li>
-                <li style="margin-left:-25px">PADA LAHAN PERTANIAN SAWAH TIDAK DIPERKENANKAN ADA PENGEMBANGAN SELAIN KEGIATAN PERTANIAN.</li>
+                <li style="margin-left:-25px">Pada Kawasan Taman Medan Merdeka (Taman Monas) Diperkenankan Pemanfaatan Ruang Bawah Tanah Sebagai Ruang Pamer, Pusat Informasi, Parkir, Dan Penunjang Serta Ruang Untuk Kepentingan Pertahanan Keamanan;</li>
+                <li style="margin-left:-25px">Memiliki Dimensi Dan Ketentuan Pembangunan Sesuai Kebutuhan Dan Dilaksanakan Sesuai Ketentuan Peraturan Perundangan;</li>
+                <li style="margin-left:-25px">Tidak Menimbulkan Dampak Negatif Terhadap Kawasan Sekitar;Dan</li>
+                <li style="margin-left:-25px">Pada Lahan Pertanian Sawah Tidak Diperkenankan Ada Pengembangan Selain Kegiatan Pertanian.</li>
             </ol>
         `,
         "f.1": `
             <ol>
-                <li style="margin-left:-25px">MENYEDIAKAN GUDANG BAHAN BAKU BERSAMA;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN IPAL KOMUNAL;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN DAPUR DENGAN TEKNOLOGI RAMAH LINGKUNGAN;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN FASILITAS BONGKAR MUAT KOMUNAL; DAN</li>
-                <li style="margin-left:-25px">MENJADI ANGGOTA WADAH ATAU PERKUMPULAN YANG TERDAFTAR DAN DIAKUI OLEH PEMERINTAH.</li>
+                <li style="margin-left:-25px">Menyediakan Gudang Bahan Baku Bersama;</li>
+                <li style="margin-left:-25px">Menyediakan Ipal Komunal;</li>
+                <li style="margin-left:-25px">Menyediakan Dapur Dengan Teknologi Ramah Lingkungan;</li>
+                <li style="margin-left:-25px">Menyediakan Fasilitas Bongkar Muat Komunal; Dan</li>
+                <li style="margin-left:-25px">Menjadi Anggota Wadah Atau Perkumpulan Yang Terdaftar Dan Diakui Oleh Pemerintah.</li>
             </ol>
         `,
         "f.2": `
             <ol>
-                <li style="margin-left:-25px">KEGIATAN PEMANFAATAN RUANG UNTUK FUNGSI KOMERSIAL DIBATASI PALING TINGGI  50% (LIMA PULUH PERSEN) ATAU 2 (DUA) LANTAI DARI LUAS SELURUH LANTAI BANGUNAN;</li>
-                <li style="margin-left:-25px">TIPE BANGUNAN DERET INTENSITAS PEMANFAATAN RUANG KDB PALING TINGGI 50% (LIMA PULUH PERSEN), KLB PALING TINGGI 2,0 (DUA KOMA NOL), KETINGGIAN BANGUNAN PALING TINGGI 4 (EMPAT) LANTAI, KDH PALING RENDAH 30% (TIGA PULUH PERSEN), DAN KTB PALING TINGGI  55% (LIMA PULUH LIMA PERSEN);</li>
-                <li style="margin-left:-25px">PEMBANGUNAN HARUS SESUAI KARAKTER LINGKUNGAN;</li>
-                <li style="margin-left:-25px">PENGATURAN SISTEM INLET OUTLET PALING KURANG SETIAP JARAK 60 M (ENAM PULUH METER) DAN MEMBUKA PAGAR ANTAR PERSIL;</li>
-                <li style="margin-left:-25px">MENYEDIAKAN JALUR PEJALAN KAKI MENERUS DENGAN LEBAR PALING KURANG 3 M (TIGA METER);</li>
-                <li style="margin-left:-25px">MENYEDIAKAN PRASARANA PARKIR DALAM PERSIL; DAN</li>
-                <li style="margin-left:-25px">MENYERAHKAN LAHAN YANG TERKENA RENCANA JALAN DAN SALURAN KEPADA PEMERINTAH DAERAH.</li>
+                <li style="margin-left:-25px">Kegiatan Pemanfaatan Ruang Untuk Fungsi Komersial Dibatasi Paling Tinggi  50% (Lima Puluh Persen) Atau 2 (Dua) Lantai Dari Luas Seluruh Lantai Bangunan;</li>
+                <li style="margin-left:-25px">Tipe Bangunan Deret Intensitas Pemanfaatan Ruang Kdb Paling Tinggi 50% (Lima Puluh Persen), Klb Paling Tinggi 2,0 (Dua Koma Nol), Ketinggian Bangunan Paling Tinggi 4 (Empat) Lantai, Kdh Paling Rendah 30% (Tiga Puluh Persen), Dan Ktb Paling Tinggi  55% (Lima Puluh Lima Persen);</li>
+                <li style="margin-left:-25px">Pembangunan Harus Sesuai Karakter Lingkungan;</li>
+                <li style="margin-left:-25px">Pengaturan Sistem Inlet Outlet Paling Kurang Setiap Jarak 60 M (Enam Puluh Meter) Dan Membuka Pagar Antar Persil;</li>
+                <li style="margin-left:-25px">Menyediakan Jalur Pejalan Kaki Menerus Dengan Lebar Paling Kurang 3 M (Tiga Meter);</li>
+                <li style="margin-left:-25px">Menyediakan Prasarana Parkir Dalam Persil; Dan</li>
+                <li style="margin-left:-25px">Menyerahkan Lahan Yang Terkena Rencana Jalan Dan Saluran Kepada Pemerintah Daerah.</li>
             </ol>
         `,
         g: `
             <ol>
-                <li style="margin-left:-25px">KEGIATAN HUNIAN DIPERKENANKAN UNTUK DIRUBAH TANPA MERUBAH STRUKTUR DAN BENTUK ASLI BANGUNAN PADA KAWASAN YANG DILALUI ANGKUTAN UMUM MASSAL;</li>
-                <li style="margin-left:-25px">KEGIATAN YANG DIIZINKAN TERBATAS, BERSYARAT, DAN DIIZINKAN TERBATAS BERSYARAT DALAM KAWASAN CAGAR BUDAYA DITETAPKAN GUBERNUR SETELAH MENDAPATKAN PERTIMBANGAN DARI BKPRD;</li>
-                <li style="margin-left:-25px">INTENSITAS PEMANFAATAN RUANG BANGUNAN CAGAR BUDAYA GOLONGAN A DAN GOLONGAN B SESUAI KONDISI BANGUNAN ASLI YANG DITETAPKAN; DAN</li>
-                <li style="margin-left:-25px">PEMBANGUNAN BARU PADA KAVELING DALAM KAWASAN CAGAR BUDAYA HARUS MENYESUAIKAN DENGAN KARAKTER KAWASAN CAGAR BUDAYA.</li>
+                <li style="margin-left:-25px">Kegiatan Hunian Diperkenankan Untuk Dirubah Tanpa Merubah Struktur Dan Bentuk Asli Bangunan Pada Kawasan Yang Dilalui Angkutan Umum Massal;</li>
+                <li style="margin-left:-25px">Kegiatan Yang Diizinkan Terbatas, Bersyarat, Dan Diizinkan Terbatas Bersyarat Dalam Kawasan Cagar Budaya Ditetapkan Gubernur Setelah Mendapatkan Pertimbangan Dari Bkprd;</li>
+                <li style="margin-left:-25px">Intensitas Pemanfaatan Ruang Bangunan Cagar Budaya Golongan A Dan Golongan B Sesuai Kondisi Bangunan Asli Yang Ditetapkan; Dan</li>
+                <li style="margin-left:-25px">Pembangunan Baru Pada Kaveling Dalam Kawasan Cagar Budaya   Harus Menyesuaikan Dengan Karakter Kawasan Cagar Budaya.</li>
             </ol>
         `,
     };
