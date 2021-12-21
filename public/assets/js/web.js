@@ -2317,11 +2317,12 @@ $("#closeSewa").on("click", function () {
     }
 });
 
-$("#closeUsaha").on("click", function () {
+$("#closeUsaha").on("click", function (e) {
     $(".info-layer-usaha").hide();
     $("#show_side_bar").hide();
     $("#iumk").css("background", "white");
     hideLayer("iumk_fill");
+    window.stop();
     $("#iumk_fill").prop("checked", false);
     // $("#closeSewa").trigger("click");
     if ($("#sidebar").hide() == true) {
