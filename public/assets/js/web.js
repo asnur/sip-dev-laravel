@@ -1832,10 +1832,10 @@ function onOffLayers() {
             hideLayer("investasi_line");
             $(".list-item").html("");
             var infoHarga = popUpHarga[0].features;
+            $(".info-layer").show();
             var content = "";
             // console.log(infoHarga);
             if (infoHarga !== null) {
-                $(".info-layer").show();
                 $("#hide_side_bar").hide();
                 for (
                     let index = 0;
@@ -1870,22 +1870,26 @@ function onOffLayers() {
                                 }">
                         </div>
                         <div class="col-8">
-                            <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${
+                            <p style="font-size: 11pt;margin-bottom:-1px" class="font-weight-bold" class="inf-nama-kantor">${
                                 infoHarga[index]["properties"]["Nama"]
-                            }</span>
-                            <label style="font-size: 13px; line-height:1.6; margin-bottom: -10px;" class="inf-alamat-sewa">Alamat : <span>${
+                            }</p>
+                            <lable style="font-size: 13px; line-height:1; margin-bottom: -13px;" class="inf-alamat-sewa"><span>${
                                 infoHarga[index]["properties"]["Alamat"]
-                            }</span></label>
-                            <label style="font-size: 13px; line-height:0" class="inf-harga-sewa">Harga Sewa : <span>Rp. ${separatorNum(
+                            }</span></lable>
+                            <p style="font-size: 13px; line-height:0; margin-top:10px !important;" class="inf-harga-sewa"> <span>Rp. ${separatorNum(
                                 infoHarga[index]["properties"]["Sewa"]
-                            )}</span></label>
+                            )}</span></p>
                         </div>
                     </div>
                 </div>
                     `;
                 }
+                $(".list-item").html(content);
+            } else {
+                content = `<p style="font-size: 13px;">Tidak Ada Data</p>`;
+                $(".list-item").html(content);
             }
-            $(".list-item").html(content);
+
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
                 "display",
                 ""
@@ -1901,8 +1905,8 @@ function onOffLayers() {
     $("#investasi_fill").change(function () {
         if ($(this).prop("checked") == true) {
             var infoProyek = proyek[0].features;
+            $(".info-layer-investasi").show();
             if (infoProyek !== null) {
-                $(".info-layer-investasi").show();
                 showLayer("investasi_fill");
                 hideLayer("iumk_fill");
                 hideLayer("sewa_fill");
@@ -1923,6 +1927,9 @@ function onOffLayers() {
                 }
                 $(".list-item-investasi").html(content);
                 window.stop();
+            } else {
+                content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
+                $(".list-item-investasi").html(content);
             }
         } else {
             hideLayer("investasi_fill");
