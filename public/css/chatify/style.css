@@ -87,7 +87,7 @@ body {
     background: transparent;
 }
 .m-header-right {
-    display: inline-flex;
+    display: none;
     float: right;
 }
 .m-header-messaging {
