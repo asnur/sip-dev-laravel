@@ -28,10 +28,20 @@
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
         type="text/css">
+
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
     @if (isMobileDevice())
+    <script>
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
+
         <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
     @else
         <!-- custom -->
@@ -1378,6 +1388,11 @@
             }
         }
 
+        </script>
+
+
+        <script>
+            var APP_URL = {!! json_encode(url('/')) !!}
         </script>
 
         <script src="{{ asset('assets/js/mobile.js') }}"></script>

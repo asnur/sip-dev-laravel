@@ -331,7 +331,7 @@
     .pembungkus {
         /* margin-top: 144%; */
 
-        position: absolute;
+        position: fixed;
         z-index: 99;
         max-width: 100vh !important;
         height: 30% !important;
@@ -359,6 +359,14 @@
     margin-top: 2%;
     margin-bottom: -2%;
   } */
+
+    .container_menu {
+        padding-right: 40px !important;
+        padding-left: 40px !important;
+
+    }
+
+
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     .dalam::-webkit-scrollbar {

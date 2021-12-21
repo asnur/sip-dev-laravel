@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\KBLIPusdatin;
+
 use Illuminate\Http\Request;
 
 /*
@@ -59,3 +62,7 @@ Route::post('/setKodeKbli', function (Request $request) {
     $data = $request->input('kodekbli');
     return $request->session()->put('kodekbli', $data);
 })->name('setKodeKbli');
+
+Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
+Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
+Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
