@@ -1472,7 +1472,7 @@ map.addControl(geocoder);
 
 //add source layer
 function addSourceLayer(item) {
-    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi"];
+    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi", "pipa"];
 
     for (var i = 0; i < api.length; i++) {
         const dt = api[i];
@@ -1492,6 +1492,13 @@ function addSourceLayer(item) {
         }
         if (map.getLayer(dt + "_line")) {
             map.removeLayer(dt + "_line");
+            // $("#menus").html("");
+            $(".lblLayer").hide();
+            $(".closeCollapse").hide();
+            $("#radiusSlide").hide();
+        }
+        if (map.getLayer(dt + "_multilinestring")) {
+            map.removeLayer(dt + "_multilinestring");
             // $("#menus").html("");
             $(".lblLayer").hide();
             $(".closeCollapse").hide();
@@ -1710,6 +1717,19 @@ function addLayers() {
             visibility: "none",
         },
     });
+
+    map.addLayer({
+        id: "pipa_multilinestring",
+        type: "line",
+        source: "pipa",
+        paint: {
+            "line-color": "#fff",
+            "line-width": 2,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
 }
 
 function showLayer(layer) {
@@ -1761,6 +1781,20 @@ function onOffLayers() {
             showLayer("zoning_fill");
         } else {
             hideLayer("zoning_fill");
+        }
+    });
+
+    if ($("#pipa_multilinestring").prop("checked") == true) {
+        showLayer("pipa_multilinestring");
+    } else {
+        hideLayer("pipa_multilinestring");
+    }
+
+    $("#pipa_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("pipa_multilinestring");
+        } else {
+            hideLayer("pipa_multilinestring");
         }
     });
 

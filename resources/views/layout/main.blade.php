@@ -364,6 +364,11 @@
                             Kecil</label>
                     </div>
 
+                    <div class="form-check pipa_multilinestring mt-1">
+                        <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
+                        <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                    </div>
+
                     <div class="form-check banjir_fill mt-1">
 
                         <input type="checkbox" class="form-check-input" id="banjir_fill">
