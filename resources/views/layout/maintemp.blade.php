@@ -533,27 +533,17 @@ $request_url = end($uri_parts);
     @endif
 
 
-    @if ($request_url == 'kode_kbli')
+    @if ($request_url == 'kode-kbli')
 
     <script>
 
-        var dt = e.features[0].properties;
+        var APP_URL = {!! json_encode(url('/')) !!}
 
-        dropDownKegiatan(dt["Sub Zona"]);
+        $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
-        $("#kegiatanRuang").change(function () {
-            $("#skala").html("");
-            $(".dtKBLI").html("");
-            var sel = $(this).select2("val");
-            // console.log(sel);
-            DropdownSkala(dt["Sub Zona"], sel);
-            $("#skala").change(function () {
-                $(".dtKBLI").html("");
-                var skala = $(this).select2("val");
-                dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
-                $("#btn-print").hide();
-            });
-        });
+        var subzona = "{{ @$data_subzona }}"
+
+
 
         function dropDownKegiatan(subzona) {
         $.ajax({
@@ -569,7 +559,7 @@ $request_url = end($uri_parts);
                 htmlContent += `<option>Pilih...</option>`;
                 var data = e;
                 for (i in data) {
-                    console.log(data[i]["Kegiatan Ruang"]);
+                    // console.log(data[i]["Kegiatan Ruang"]);
                     htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
                 }
                 $("#kegiatanRuang").html(htmlContent);
@@ -680,6 +670,68 @@ $request_url = end($uri_parts);
             },
         });
     }
+
+    dropDownKegiatan(subzona);
+
+        $("#kegiatanRuang").change(function () {
+            $("#skala").html("");
+            $(".dtKBLI").html("");
+            var sel = $(this).select2("val");
+            // console.log(sel);
+            DropdownSkala(subzona, sel);
+            $("#skala").change(function () {
+                $(".dtKBLI").html("");
+                var skala = $(this).select2("val");
+                dropDownKegiatanKewenangan(subzona, sel, skala);
+                $("#btn-print").hide();
+            });
+        });
+
+
+        $(document).on("change", "#kegiatanKewenangan", function () {
+        const dis = $(this);
+        selSektor = dis.val();
+        var index = dis.data("index");
+        $(".dtKBLI").html("");
+        $("#btn-print").show();
+        // console.log(data_kbli);
+        var tblSel = "";
+        tblSel += `
+        <tr>
+            <td class="text_all" style="vertical-align: top;"><a href="https://oss.go.id/informasi/kbli-kode?kode=G&kbli=${data_kbli[selSektor]["Kode KBLI"]}" target="_blank">${data_kbli[selSektor]["Kode KBLI"]}</a></td>
+            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Kegiatan"]}</td>
+            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Resiko"]}</td>
+            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Status"]}</td>
+        </tr>
+        <br>
+        <tr>
+            <td class="text_all font-weight-bold" colspan="4"><br>Ketentuan ITBX</td>
+        </tr>
+        <tr>
+            <td class="text_all" class="bg-white" colspan="4">${data_kbli[selSektor]["Substansi"]}</td>
+        </tr>
+        `;
+        $(".dtKBLI").html(tblSel);
+
+        kbli_data = `
+                <div class="col-sm-12 mt-5">
+                <div class="row">
+                    <div class="col-sm-12 font-weight-bold">KBLI</div>
+                    <div class="col-sm-4">Kode</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Kode KBLI"]}</div>
+                    <div class="col-sm-4">Kegiatan</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Kegiatan"]}</div>
+                    <div class="col-sm-4">Resiko</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Resiko"]}</div>
+                    <div class="col-sm-4">Status</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Status"]}</div>
+                    <div class="col-sm-4">Ketentuan ITBX</div>
+                    <div class="col-sm-8">${data_kbli[selSektor]["Substansi"]}</div>
+                </div>
+                </div>
+            `;
+    });
+
 
     </script>
 

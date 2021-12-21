@@ -113,7 +113,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
     zonasi(dt);
-    kode_kbli(dt);
+    kode_kbli(dt["Sub Zona"]);
 
     // console.log(proyek);
     $(".dtKBLI").html("");
