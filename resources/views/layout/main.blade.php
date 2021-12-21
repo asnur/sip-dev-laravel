@@ -758,10 +758,21 @@
                                 </div>
                             </div>
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan</p>
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Bangunan
+                            </p>
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
                                     <label class="text_all_mobile inf-gsb">
+                                        -
+                                    </label>
+                                </div>
+                            </div>
+
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan TPZ
+                            </p>
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-12 text_all">
+                                    <label class="text_all_mobile inf-k-tpz">
                                         -
                                     </label>
                                 </div>
@@ -1247,19 +1258,20 @@
                     </ul>
                 </div>
                 <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-3' }}">
-                    @if (Auth::check())
-                        <button type="button" class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
-                            style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
-                        </button>
-                        <div class="dropdown-menu" style="background: none; width:300px; margin-top:-80px">
-                            <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"></iframe>
-                            <!-- Dropdown menu links -->
-                        </div>
-                    @else
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
+                        style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
+                    </button>
+                    <div class="dropdown-menu" style="background: none; width:300px; border:none; margin-top:-10px">
+                        <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"
+                            style="border: none;border-radius:10px"></iframe>
+                        <!-- Dropdown menu links -->
+                    </div>
+                    {{-- @else
                         <a href="{{ url('/') }}/auth/redirect" class="ri-phone-line bg-white p-2 text-secondary"
                             style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none; text-decoration:none">
                         </a>
-                    @endif
+                    @endif --}}
                 </div>
                 {{-- <button class="btn btn-sm mt-1 ">
                     <div class="container dropleft">

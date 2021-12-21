@@ -21,7 +21,11 @@ class SocialiteController extends Controller
         Auth::login($authUser, true);
         $request->session()->put('img_profile', $user->getAvatar());
 
-        return redirect('/');
+        if ($request->session()->get('access_chat')) {
+            return redirect('/konsul');
+        } else {
+            return redirect('/');
+        }
     }
 
     public function findOrCreateUser($user, $provider)
