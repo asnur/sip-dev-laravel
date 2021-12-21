@@ -1312,6 +1312,10 @@
             var setKordinat = "{{ @route('setKordinat') }}"
             var setZonasi = "{{ @route('setZonasi') }}"
             var setEksisting = "{{ @route('setEksisting') }}"
+            var setZonasi = "{{ @route('setZonasi') }}"
+            var setKodekbli = "{{ @route('setKodekbli') }}"
+
+
 
 
             document.getElementById("hlm_lokasi").onclick = function (e) {

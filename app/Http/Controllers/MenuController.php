@@ -25,7 +25,6 @@ class MenuController extends Controller
 
     public function kode_kbli(Request $request)
     {
-        // masih yg lain/tidak perlu karna sdh session sblmnya
         $data_kordinat = $request->session()->get('kordinat');
 
         return view('menu.kode-kbli', ["title" => "Kode KBLI", "data_kordinat" => $data_kordinat]);
