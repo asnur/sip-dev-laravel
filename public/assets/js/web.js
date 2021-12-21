@@ -78,11 +78,11 @@ $.ajax({
     },
 });
 
-$.get(`${APP_URL}/pdf_file/${name_file}`, function (data, statusText, xhr) {
-    status = xhr.status;
-}).fail(function () {
-    console.clear();
-});
+// $.get(`${APP_URL}/pdf_file/${name_file}`, function (data, statusText, xhr) {
+//     status = xhr.status;
+// }).fail(function () {
+//     console.clear();
+// });
 
 const popup = new mapboxgl.Popup({
     closeButton: false,
@@ -822,11 +822,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 </div>
   `;
 
-    if (status !== 200) {
-        setTimeout(() => {
-            SavePDFtoServer();
-        }, 1500);
-    }
+    // if (status !== 200) {
+    //     setTimeout(() => {
+    //         SavePDFtoServer();
+    //     }, 1500);
+    // }
 });
 
 map.on(clickEvent, "zoning_fill", function (e) {
@@ -909,8 +909,12 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var value_tpz = ``;
     var data_tpz = dt["CD TPZ"];
     var arr_tpz = data_tpz.split(",");
-    for (let index = 0; index < arr_tpz.length; index++) {
-        value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
+    if (dt["CD TPZ"] == " ") {
+        value_tpz += "<p>Tidak Ada Ketentuan</p>";
+    } else {
+        for (let index = 0; index < arr_tpz.length; index++) {
+            value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
+        }
     }
     // console.log(value_tpz);
 
