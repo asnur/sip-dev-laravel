@@ -17,6 +17,21 @@
 @media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
+    /* .card {
+        background-color: dodgerblue;
+        color: white;
+        padding: 1rem;
+        height: 4rem;
+    } */
+
+    .grid_menu_apps {
+        max-width: 280px;
+        margin: 0 auto;
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+    }
+
     .rata_text_mobile {
         margin-left: -30px;
     }
@@ -34,9 +49,9 @@
     }
 
     .menu_apps {
-        width: 98% !important;
+        width: 84% !important;
         position: absolute !important;
-        top: -19.5rem !important;
+        top: -21.5rem !important;
 
     }
 

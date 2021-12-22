@@ -1108,6 +1108,8 @@
 
     <div class="p-2 dropdown for_mobile" id="more-apps" style=" z-index:9; margin-top:4rem; margin-left:5px;">
 
+
+
         <button class="btn btn-sm for_web">
             <div class="container">
                 <div class="row">
@@ -1127,81 +1129,81 @@
                 <div style="margin-left: 0.5%; !important;" class="dropdown-menu dropdown-menu-lg-right menu_apps"
                     aria-labelledby="dropdownMenuButton">
 
-                    <div class="d-flex mt-3 ml-1 mr-1">
+                        <div class="grid_menu_apps">
 
-                        <div class="col-sm-3 newmenu_logo">
-                            <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/OSS.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">
-                                OSS
-                            </h5>
-                        </div>
+                                <div class="col-sm-4">
+                                    <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
+                                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                            src="{{ asset('assets/gambar/mobile/OSSnew.png') }}" class="w-75"></a>
+                                    <h5 class="font_menu_apps text-center font-weight-bold">
+                                        OSS
+                                    </h5>
+                                </div>
 
-                        <div class="col-sm-3 newmenu_logo">
-                            <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/ptsp_logo.png') }}"
-                                    class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">Pesan
-                                AJIB</h5>
-                        </div>
+                                <div class="col-sm-4">
+                                    <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
+                                        class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                            src="{{ asset('assets/gambar/mobile/pesan_ajib.png') }}"
+                                            class="w-75"></a>
+                                    <h5 class="font_menu_apps text-center font-weight-bold">Pesan
+                                        AJIB</h5>
+                                </div>
 
-                        <div class="col-md-3 newmenu_logo">
-                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                        </div>
+                                <div class="col-sm-4">
+                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                        src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                                    <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                                </div>
 
-                        <div class="col-md-3 newmenu_logo">
-                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                        </div>
-
-
-
-                    </div>
-
-
-                    <div class="d-flex mt-3 mb-3 ml-1 mr-1">
-
-                        <div class="col-sm-3 newmenu_logo">
-                            <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
+                                <div class="col-sm-4">
+                                    <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
                                 class="text-dark font-weight-bold img_logo_menu_apps"><img
                                     src="{{ asset('assets/gambar/mobile/simbg.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">
                                 SIMBG
                             </h5>
-                        </div>
+                                </div>
 
-                        <div class="col-sm-3 newmenu_logo">
-                            <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
+                                <div class="col-sm-4">
+                                    <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
                                 class="text-dark font-weight-bold img_logo_menu_apps"><img
                                     src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}"
                                     class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
-                        </div>
+                                </div>
 
-                        <div class="col-md-3 newmenu_logo">
-                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                <div class="col-sm-4">
+                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                        src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                                <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-bold img_logo_menu_apps"><img
+                                        src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
+                                <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
                                 class="text-dark font-weight-bold img_logo_menu_apps"><img
                                     src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                             <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                                </div>
+
+
+
+
+
                         </div>
 
-                        <div class="col-md-3 newmenu_logo">
-                            <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                        </div>
 
 
 
-                    </div>
+
 
 
 
