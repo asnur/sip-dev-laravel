@@ -118,7 +118,7 @@
 
                                                 <div class="form-check  mt-1">
                                                     <input type="checkbox" class="form-check-input" id="peta_zonasi">
-                                                    <label class="form-check-label  text_all" for="peta_zonasi">Petyy
+                                                    <label class="form-check-label  text_all" for="peta_zonasi">Peta
                                                         Zonasi</label>
                                                 </div>
 
@@ -137,116 +137,14 @@
                                                     <input type="range" style="height: 6px;"
                                                         class="form-control-range mt-3 w-75" id="ControlTahunBanjir"
                                                         min="2015" max="2020" step="1" value="2015">
-                                                </div> --}}
-
-
-                                                {{-- <div class="form-check">
-
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox1">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox1">Peta Zonasi</label>
-                                                        </li>
-                                                    </ul>
                                                 </div>
 
-                                                <div class="form-check mb-2">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox2">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox2">Total Omzet Mikro Kecil</label>
-                                                        </li>
-                                                    </ul>
-                                                </div> --}}
 
 
-
-                                                {{-- <hr> --}}
-
-
-                                            {{-- </div> --}}
+                                            </div>
 
 
-                                            {{-- <div class="kotak_sidebar">
-
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    post_add
-                                                </span>
-                                                <div> <a href="#" title="Buat File" class="text_all_kotak_sidebarr">Buat
-                                                        File</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    contact_support
-                                                </span>
-                                                <div>
-                                                    <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">Konsultasi</a>
-                                                </div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    chat
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">Pesan AJIB</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    miscellaneous_services
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">Jakevo</a></div>
-
-                                                <span style="color: #007bff;"
-                                                    class="material-icons iconn_kotak_sidebar">
-                                                    mail
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">OSS</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    corporate_fare
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">SIMBG</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    drafts
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">PraPermohonan(IRK/KKPR)</a>
-                                                </div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    connect_without_contact
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">JakartaSatu</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    center_focus_weak
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">IRK</a></div>
-
-
-
-
-                                            </div> --}}
-
-
-
-
-
-                                        {{-- </div> --}}
-
+                                        </div> --}}
 
                                     </span>
 
