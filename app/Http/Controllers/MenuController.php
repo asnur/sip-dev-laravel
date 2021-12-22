@@ -50,4 +50,9 @@ class MenuController extends Controller
         $data_zonasi = $request->session()->get('zona');
         return view('menu.zonasi', ["title" => "Zonasi", "data_zonasi" => $data_zonasi]);
     }
+
+    public function lokasi2()
+    {
+        return view('menu.lokasi2', ["title" => "Lokasi"]);
+    }
 }

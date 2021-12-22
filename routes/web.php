@@ -32,6 +32,9 @@ Route::get('/persil', [MenuController::class, 'persil'])->name('persil');
 Route::get('/poi', [MenuController::class, 'poi'])->name('poi');
 Route::get('/zonasi', [MenuController::class, 'zonasi'])->name('zonasi');
 
+Route::get('/lokasi2', [MenuController::class, 'lokasi2'])->name('lokasi2');
+
+
 //set data for mobile
 Route::post('/setLokasi', function (Request $request) {
     $data = $request->input('lokasi');
