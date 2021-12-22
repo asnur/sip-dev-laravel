@@ -19,6 +19,13 @@ var lokasi,
     harga;
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
+var tahun = $("#ControlTahunBanjir").val();
+$("#tahunBanjir").html(tahun);
+$(document).on("input change", "#ControlTahunBanjir", function () {
+    tahun = $(this).val();
+    $("#tahunBanjir").html(tahun);
+});
+
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
@@ -580,6 +587,46 @@ function addSourceLayer(item) {
         });
     }
 
+
+
+    if (map.getLayer("banjir_fill")) {
+        map.removeLayer("banjir_fill");
+    }
+
+    if (map.getSource("banjir")) {
+        map.removeSource("banjir");
+    }
+
+    map.addSource("banjir", {
+        type: "geojson",
+        data: `${url}/banjir/${item}/${tahun}`,
+    });
+
+    $("#ControlTahunBanjir").change(function () {
+        var layer = map.getLayer("banjir_fill");
+        var condition = layer.visibility == "visible" ? "visible" : "none";
+        map.removeLayer("banjir_fill");
+        map.removeSource("banjir");
+        map.addSource("banjir", {
+            type: "geojson",
+            data: `${url}/banjir/${item}/${tahun}`,
+        });
+        map.addLayer({
+            id: "banjir_fill",
+            type: "fill",
+            source: "banjir",
+            paint: {
+                "fill-color": "#2980b9",
+                "fill-opacity": 0.9,
+            },
+            layout: {
+                visibility: condition,
+            },
+        });
+    });
+
+
+
     addLayers();
     $(".lblLayer").show();
     $(".closeCollapse").show();
@@ -736,6 +783,21 @@ function addLayers() {
             visibility: "none",
         },
     });
+
+    map.addLayer({
+        id: "banjir_fill",
+        type: "fill",
+        source: "banjir",
+        paint: {
+            "fill-color": "#2980b9",
+            "fill-opacity": 0.9,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+
 }
 
 
@@ -788,6 +850,20 @@ function onOffLayers() {
             showLayer("zoning_fill");
         } else {
             hideLayer("zoning_fill");
+        }
+    });
+
+    if ($("#banjir_fill").prop("checked") == true) {
+        showLayer("banjir_fill");
+    } else {
+        hideLayer("banjir_fill");
+    }
+
+    $("#banjir_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("banjir_fill");
+        } else {
+            hideLayer("banjir_fill");
         }
     });
 
