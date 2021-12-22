@@ -116,19 +116,19 @@
 
                                             <div class="layout_checkbox_mobile">
 
-                                                <div class="form-check  mt-1">
-                                                    <input type="checkbox" class="form-check-input" id="peta_zonasi">
-                                                    <label class="form-check-label  text_all" for="peta_zonasi">Peta
+                                                <div class="form-check zoning_fill mt-1">
+                                                    <input type="checkbox" class="form-check-input" checked id="zoning_fill">
+                                                    <label class="form-check-label  text_all" for="zoning_fill">Peta
                                                         Zonasi</label>
                                                 </div>
 
-                                                <div class="form-check mt-1">
-                                                    <input type="checkbox" class="form-check-input" id="mikro_kecil">
-                                                    <label class="form-check-label  text_all" for="mikro_kecil">Total
+                                                <div class="form-check wilayahindex_fill mt-1">
+                                                    <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
+                                                    <label class="form-check-label  text_all" for="wilayahindex_fill">Total
                                                         Omzet Mikro Kecil</label>
                                                 </div>
 
-                                                <div class="form-check mt-1 mb-2">
+                                                <div class="form-check banjir_fill mt-1 mb-2">
 
                                                     <input type="checkbox" class="form-check-input" id="banjir_fill">
                                                     <label class="form-check-label text_all" for="banjir_fill">Terdampak

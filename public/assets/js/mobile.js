@@ -61,15 +61,15 @@ map.on("style.load", function () {
     //     data: `${url}/choro`,
     // });
 
-    map.addSource("mobile_index", {
+    map.addSource("wilayahindex", {
         type: "geojson",
         data: `${url}/choro`,
     });
 
     map.addLayer({
-        id: "mobile_index-fill",
+        id: "wilayahindex_fill",
         type: "fill",
-        source: "mobile_index",
+        source: "wilayahindex",
         paint: {
             "fill-color": [
                 "interpolate",
@@ -585,8 +585,15 @@ function addSourceLayer(item) {
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
     // $('').show()
-    // onOffLayers();
+    onOffLayers();
 }
+
+map.on("mouseenter", "wilayah_fill", function () {
+    map.getCanvas().style.cursor = "default";
+});
+map.on("mouseleave", "wilayah_fill", function () {
+    map.getCanvas().style.cursor = "default";
+});
 
 //add layer
 function addLayers() {
@@ -600,7 +607,7 @@ function addLayers() {
             "fill-outline-color": "red",
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
     });
     // map.addLayer({
@@ -624,7 +631,7 @@ function addLayers() {
             "fill-opacity": 1,
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
     });
 
@@ -730,6 +737,63 @@ function addLayers() {
         },
     });
 }
+
+
+function showLayer(layer) {
+    map.setLayoutProperty(layer, "visibility", "visible");
+}
+
+function hideLayer(layer) {
+    map.setLayoutProperty(layer, "visibility", "none");
+}
+
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    map.setStyle("mapbox://styles/menthoelsr/" + layerId);
+}
+
+function onOffLayers() {
+    //Wilayah
+    if ($("#wilayahindex_fill").prop("checked") == true) {
+        showLayer("wilayahindex_fill");
+        $(".detail_omzet").show();
+        $(".detail_jumlah").show();
+    } else {
+        hideLayer("wilayahindex_fill");
+        $(".detail_omzet").hide();
+        $(".detail_jumlah").hide();
+    }
+
+    $("#wilayahindex_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("wilayahindex_fill");
+            $(".detail_omzet").show();
+            $(".detail_jumlah").show();
+        } else {
+            hideLayer("wilayahindex_fill");
+            $(".detail_omzet").hide();
+            $(".detail_jumlah").hide();
+        }
+    });
+
+    //Peta Zonasi
+    if ($("#zoning_fill").prop("checked") == true) {
+        showLayer("zoning_fill");
+    } else {
+        hideLayer("zoning_fill");
+    }
+
+    $("#zoning_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("zoning_fill");
+        } else {
+            hideLayer("zoning_fill");
+        }
+    });
+
+
+}
+
 
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
