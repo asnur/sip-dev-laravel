@@ -37,19 +37,9 @@
             </div>
         </div>
 
-        <table style="margin:0;" class="table table-borderless mt-4 table_kbli">
-            <thead>
-                <tr>
-                    <th class="text_all text-center" style="width:30%;">Kode KBLI</th>
-                    <th class="text_all text-center">Kegiatan</th>
-                    <th class="text_all text-center">Resiko</th>
-                    <th class="text_all text-center">ITBX</th>
-                </tr>
-            </thead>
-            <tbody class="dtKBLI">
+        <div class="dtKBLI">
 
-            </tbody>
-        </table>
+        </div>
 
         {{-- <button class="btn btn-sm text-primary ml-0" id="btn-print">
             <i class="fa fa-print"></i></button> --}}

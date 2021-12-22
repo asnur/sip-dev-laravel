@@ -99,7 +99,7 @@ map.on("style.load", function () {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
-    console.log(e.features[0].properties);
+    // console.log(e.features[0].properties);
     lokasi(dt);
 
     // setAttrClick = e;
@@ -741,7 +741,7 @@ $(document).on("click", ".wilayah-select", function () {
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);
-    console.log(coor.split(","));
+    // console.log(coor.split(","));
     var coord = coor.split(",");
 
     geocoder.query(coor);

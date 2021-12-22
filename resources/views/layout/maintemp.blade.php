@@ -697,19 +697,53 @@ $request_url = end($uri_parts);
         // console.log(data_kbli);
         var tblSel = "";
         tblSel += `
-        <tr>
-            <td class="text_all" style="vertical-align: top;"><a href="https://oss.go.id/informasi/kbli-kode?kode=G&kbli=${data_kbli[selSektor]["Kode KBLI"]}" target="_blank">${data_kbli[selSektor]["Kode KBLI"]}</a></td>
-            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Kegiatan"]}</td>
-            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Resiko"]}</td>
-            <td class="text_all" style="vertical-align: top;">${data_kbli[selSektor]["Status"]}</td>
-        </tr>
-        <br>
-        <tr>
-            <td class="text_all font-weight-bold" colspan="4"><br>Ketentuan ITBX</td>
-        </tr>
-        <tr>
-            <td class="text_all" class="bg-white" colspan="4">${data_kbli[selSektor]["Substansi"]}</td>
-        </tr>
+
+        <div class="d-flex space_judul row_mid_judul">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
+                <label class="text_all_mobile_permenu">Kode KBLI</label>
+            </div>
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
+                <p><a href="https://oss.go.id/informasi/kbli-kode?kode=G&kbli=${data_kbli[selSektor]["Kode KBLI"]}" target="_blank">${data_kbli[selSektor]["Kode KBLI"]}</a></p>
+            </div>
+        </div>
+
+
+        <div class="d-flex space_text row_mid_text">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
+                <label class="text_all_mobile_permenu">Kegiatan</label>
+            </div>
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
+                <p>${data_kbli[selSektor]["Kegiatan"]}</p>
+            </div>
+        </div>
+
+        <div class="d-flex space_text row_mid_text">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
+                <label class="text_all_mobile_permenu">Resiko</label>
+            </div>
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
+                <p>${data_kbli[selSektor]["Resiko"]}</p>
+            </div>
+        </div>
+
+        <div class="d-flex space_text row_mid_text">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
+                <label class="text_all_mobile_permenu">ITBX</label>
+            </div>
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
+                <p>${data_kbli[selSektor]["Status"]}</p>
+            </div>
+        </div>
+
+
+        <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
+            <div class="col-md-12 text_all">
+                <label class="text_all_mobile_kbli font-weight-bold">Ketentuan ITBX</label>
+                <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                    <p>${data_kbli[selSektor]["Substansi"]}</p>
+                </div>
+            </div>
+        </div>
         `;
         $(".dtKBLI").html(tblSel);
 
