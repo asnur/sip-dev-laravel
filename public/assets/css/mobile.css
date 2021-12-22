@@ -17,6 +17,18 @@
 @media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
+    .grid_menu_apps {
+        max-width: 280px;
+        margin: 0 auto;
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+    }
+
+    .rata_text_mobile {
+        margin-left: -30px;
+    }
+
     .form-control-range {
         width: 90% !important;
     }
@@ -30,14 +42,14 @@
     }
 
     .menu_apps {
-        width: 98% !important;
+        width: 84% !important;
         position: absolute !important;
-        top: -19.5rem !important;
+        top: -21.5rem !important;
 
     }
 
     .font_menu_apps {
-        font-size: 13px;
+        font-size: 17px;
         margin-top: 10px;
         /* font-weight: normal; */
     }
@@ -54,8 +66,8 @@
     .img_logo_menu_apps img {
         /* object-fit: cover; */
         width: 100%;
-        height: 70%;
-        padding-left: 20px;
+        height: 60%;
+        padding-left: 25px;
 
     }
 
