@@ -1,6 +1,10 @@
 @extends('layout.maintemp2')
 @section('lokasi2')
 
+
+<button action="action" onclick="window.history.go(-1); return false;" type="button" class="btn btn-primary">Kembali</button>
+
+
 <p class="card-title text-center font-weight-bold judul_utama">Lokasi</p>
 
 <div class="d-flex space_judul row_mid_judul">
@@ -119,7 +123,7 @@
         <label class="text_all_mobile_permenu">Zona</label>
     </div>
     <div class="col-md-7 text_all_permenu">
-        <p class="rata_text_mobile"></p>
+        <p class="rata_text_mobile">Pemerintahan Nasional</p>
     </div>
 </div>
 
@@ -128,7 +132,7 @@
         <label class="text_all_mobile_permenu">Sub Zona</label>
     </div>
     <div class="col-lg-7 text_all_permenu">
-        <p class="rata_text_mobile"></p>
+        <p class="rata_text_mobile">P.1 - Pemerintahan Nasional</p>
     </div>
 </div>
 
@@ -137,7 +141,7 @@
         <label class="text_all_mobile_permenu">Blok/Subblok</label>
     </div>
     <div class="col-lg-7 text_all_permenu">
-        <p class="rata_text_mobile"></p>
+        <p class="rata_text_mobile">05/003</p>
     </div>
 </div>
 
@@ -146,7 +150,7 @@
         <label class="text_all_mobile_permenu">TPZ</label>
     </div>
     <div class="col-lg-7 text_all_permenu">
-        <p class="rata_text_mobile"></p>
+        <p class="rata_text_mobile">PUSAT KEGIATAN PRIMER MEDAN MERDEKA</p>
     </div>
 </div>
 
@@ -164,7 +168,7 @@
         <label class="text_all_mobile_permenu">KDH</label>
     </div>
     <div class="col-lg-7 text_all_permenu">
-        <p class="rata_text_mobile"></p>
+        <p class="rata_text_mobile">30</p>
     </div>
 </div>
 
@@ -173,7 +177,16 @@
         <label class="text_all_mobile_permenu">KLB</label>
     </div>
     <div class="col-lg-7 text_all_permenu">
-        <p class="rata_text_mobile"></p>
+        <p class="rata_text_mobile">3,5</p>
+    </div>
+</div>
+
+<div class="d-flex space_text row_mid_text">
+    <div class="col-lg-5 text_all_permenu">
+        <label class="text_all_mobile_permenu">KDB</label>
+    </div>
+    <div class="col-lg-7 text_all_permenu">
+        <p class="rata_text_mobile">50</p>
     </div>
 </div>
 
