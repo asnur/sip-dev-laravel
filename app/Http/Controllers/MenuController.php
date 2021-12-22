@@ -8,20 +8,20 @@ class MenuController extends Controller
 {
     public function lokasi(Request $request)
     {
-        $data_kordinat = $request->session()->get('kordinat');
-        $data_lokasi = $request->session()->get('lokasi');
+        // $data_kordinat = $request->session()->get('kordinat');
+        // $data_lokasi = $request->session()->get('lokasi');
         $data_zonasi = $request->session()->get('zona');
 
-        var_dump($data_zonasi);
-        die();
-        return view('menu.lokasi', ["title" => "Info Lokasi", "data_zonasi" => $data_zonasi, "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
+        // var_dump($data_zonasi);
+        // die();
+        return view('menu.lokasi', ["title" => "Info Lokasi", "data_zonasi" => $data_zonasi]);
     }
 
     public function ekonomi(Request $request)
     {
         $data_lokasi = $request->session()->get('lokasi');
-        var_dump($data_lokasi);
-        die();
+        // var_dump($data_lokasi);
+        // die();
         return view('menu.ekonomi', ["title" => "Ekonomi", "data_lokasi" => $data_lokasi]);
     }
 

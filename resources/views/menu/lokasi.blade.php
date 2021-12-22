@@ -10,9 +10,9 @@
                 <label class="text_all_mobile_permenu">Koordinat</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile"><a class="font-weight-bold"
+                {{-- <p class="rata_text_mobile"><a class="font-weight-bold"
                         href="https://www.google.com/maps/search/%09{{ $data_kordinat[0] }},{{ $data_kordinat[1] }}"
-                        target="_blank">{{ $data_kordinat[0] }}, {{ $data_kordinat[1] }}</a></p>
+                        target="_blank">{{ $data_kordinat[0] }}, {{ $data_kordinat[1] }}</a></p> --}}
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                 <label class="text_all_mobile_permenu">Kelurahan</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile">{{ $data_lokasi['Kelurahan'] }}</p>
+                {{-- <p class="rata_text_mobile">{{ $data_lokasi['Kelurahan'] }}</p> --}}
             </div>
         </div>
 
@@ -30,7 +30,7 @@
                 <label class="text_all_mobile_permenu">Kecamatan</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile">{{ $data_lokasi['Kecamatan'] }}</p>
+                {{-- <p class="rata_text_mobile">{{ $data_lokasi['Kecamatan'] }}</p> --}}
             </div>
         </div>
 
@@ -40,7 +40,7 @@
                 <label class="text_all_mobile_permenu">Wilayah</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile">{{ $data_lokasi['Kota'] }}</p>
+                {{-- <p class="rata_text_mobile">{{ $data_lokasi['Kota'] }}</p> --}}
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <label class="text_all_mobile_permenu">Luas</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile">{{ number_format($data_lokasi['luas-area'] / 10000, 2, '.', '') }} ha</p>
+                {{-- <p class="rata_text_mobile">{{ number_format($data_lokasi['luas-area'] / 10000, 2, '.', '') }} ha</p> --}}
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                 <label class="text_all_mobile_permenu">Kepadatan</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile">{{ number_format($data_lokasi['Kepadatan-Penduduk']) }} jiwa/km2</p>
+                {{-- <p class="rata_text_mobile">{{ number_format($data_lokasi['Kepadatan-Penduduk']) }} jiwa/km2</p> --}}
             </div>
         </div>
 
@@ -67,7 +67,7 @@
                 <label class="text_all_mobile_permenu">Rasio Gini</label>
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                <p class="rata_text_mobile">{{ $data_lokasi['gini'] }}</p>
+                {{-- <p class="rata_text_mobile">{{ $data_lokasi['gini'] }}</p> --}}
             </div>
         </div>
 
