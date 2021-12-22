@@ -18,11 +18,15 @@
     /* START FOR MOBILE */
 
     .grid_menu_apps {
-        max-width: 280px;
+        width: 100%;
         margin: 0 auto;
         display: grid;
-        grid-gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+        /* grid-gap: 1rem; */
+        grid-template-columns: 50% 50%;
+
+        /* width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%; */
     }
 
     .rata_text_mobile {
