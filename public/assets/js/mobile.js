@@ -1,4 +1,4 @@
-var url = "https://jakpintas.dpmptsp-dki.com:3000/";
+var url = "https://jakpintasdev.dpmptsp-dki.com:3000";
 
 // var clickEvent = "touchstart";
 var clickEvent =
@@ -107,7 +107,7 @@ map.on("style.load", function () {
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     console.log(e.features[0].properties);
-    lokasi(dt);
+
 
     // setAttrClick = e;
 
@@ -120,6 +120,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
     zonasi(dt);
+    lokasi(dt);
     kode_kbli(dt["Sub Zona"]);
 
     // console.log(proyek);
@@ -380,7 +381,7 @@ function poi(e) {
         method: "post",
         data: {
             _token: CSRF_TOKEN,
-            zona: data,
+            poi: data,
         },
         success: function (e) {},
     });

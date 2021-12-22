@@ -12,14 +12,16 @@ class MenuController extends Controller
         $data_lokasi = $request->session()->get('lokasi');
         $data_zonasi = $request->session()->get('zona');
 
-        // var_dump($data_zonasi);
-        // die();
+        var_dump($data_zonasi);
+        die();
         return view('menu.lokasi', ["title" => "Info Lokasi", "data_zonasi" => $data_zonasi, "data_lokasi" => $data_lokasi, "data_kordinat" => $data_kordinat]);
     }
 
     public function ekonomi(Request $request)
     {
         $data_lokasi = $request->session()->get('lokasi');
+        var_dump($data_lokasi);
+        die();
         return view('menu.ekonomi', ["title" => "Ekonomi", "data_lokasi" => $data_lokasi]);
     }
 

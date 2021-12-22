@@ -567,12 +567,12 @@
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                {{-- <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_cetak" href="" role="tab"
-                                    aria-controls="pills-cetak" aria-selected="false"><i
-                                        class="ri-printer-fill"></i></a>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="hlm_fileshp" href="" role="tab"
+                                    aria-controls="pills-fileshp" aria-selected="false"><i
+                                        class="ri-shape-line"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile menu_kbli_top">Cetak</label> --}}
+                                <label class="size_menu size_menu_mobile menu_kbli_top">File SHP</label>
                             </li>
 
                             <!-- Pending menu pin-->
@@ -1199,14 +1199,6 @@
 
 
                         </div>
-
-
-
-
-
-
-
-
 
 
 
