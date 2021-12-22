@@ -118,7 +118,7 @@
 
                                                 <div class="form-check  mt-1">
                                                     <input type="checkbox" class="form-check-input" id="peta_zonasi">
-                                                    <label class="form-check-label  text_all" for="peta_zonasi">Petyy
+                                                    <label class="form-check-label  text_all" for="peta_zonasi">Peta
                                                         Zonasi</label>
                                                 </div>
 
@@ -1320,7 +1320,6 @@
             var setEksisting = "{{ @route('setEksisting') }}"
             var setZonasi = "{{ @route('setZonasi') }}"
             var setKodekbli = "{{ @route('setKodekbli') }}"
-            console.log(setKodekbli);
 
 
 

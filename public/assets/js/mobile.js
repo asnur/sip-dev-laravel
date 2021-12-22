@@ -741,7 +741,7 @@ $(document).on("click", ".wilayah-select", function () {
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);
-    console.log(coor.split(","));
+    // console.log(coor.split(","));
     var coord = coor.split(",");
 
     geocoder.query(coor);
