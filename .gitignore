@@ -1,7 +1,8 @@
 /node_modules
 /public/hot
 /public/pdf_file/*
-/public/profile/*
+# !/public/profile
+# /public/profile/*
 /vendor
 .env
 .env.backup
