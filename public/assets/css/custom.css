@@ -155,6 +155,16 @@
     overflow-x: hidden;
 }
 
+.info-layer-budaya {
+    position: absolute;
+    z-index: 999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
 .runing-text {
     position: absolute;
     bottom: 0;

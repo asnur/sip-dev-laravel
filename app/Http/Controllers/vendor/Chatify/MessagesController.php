@@ -22,6 +22,7 @@ class MessagesController extends Controller
      * @param Request $request
      * @return void
      */
+
     public function pusherAuth(Request $request)
     {
         // Auth data
@@ -51,10 +52,12 @@ class MessagesController extends Controller
      */
     public function index($id = null)
     {
+        // dd(session('kelurahan'), session('id_kelurahan'));
         $routeName = FacadesRequest::route()->getName();
         $route = (in_array($routeName, ['user', config('chatify.routes.prefix')]))
             ? 'user'
             : $routeName;
+        // $id_admin = session('id_kelurahan') == null ? 0 : session('id_kelurahan');
 
         // prepare id
         return view('Chatify::pages.app', [
@@ -62,6 +65,7 @@ class MessagesController extends Controller
             'route' => $route,
             'messengerColor' => Auth::user()->messenger_color,
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
+            // 'id_admin' => $id_admin
         ]);
     }
 
@@ -248,6 +252,8 @@ class MessagesController extends Controller
             ->get()
             ->unique('id');
 
+
+
         if ($users->count() > 0) {
             // fetch contacts
             $contacts = null;
@@ -262,7 +268,7 @@ class MessagesController extends Controller
 
         // send the response
         return Response::json([
-            'contacts' => $users->count() > 0 ? $contacts : '<br><p class="message-hint"><span>Your contatct list is empty</span></p>',
+            'contacts' => $users->count() > 0 ? $contacts : '',
         ], 200);
     }
 
