@@ -421,7 +421,7 @@
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_lokasi" href="" role="tab" aria-controls="pills-lokasi"
+                                    href="{{ route('lokasi2') }}" role="tab" aria-controls="pills-lokasi"
                                     aria-selected="true"><i class="fa fa-map-marker"></i></a>
 
                                 <br>
@@ -430,7 +430,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
+                                    href="{{ route('ekonomi2') }}" role="tab" aria-controls="pills-ekonomi"
                                     aria-selected="false"><i class="ri-funds-box-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
@@ -455,8 +455,8 @@
                             </li> --}}
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
-                                    href="" role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    href="{{ route('poi2') }}" role="tab" aria-controls="pills-poi" aria-selected="false"><i
                                         class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Akses</label>
@@ -464,7 +464,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_kblikeg" href="" role="tab" aria-controls="pills-kblikeg"
+                                href="{{ route('kodekbli2') }}" role="tab" aria-controls="pills-kblikeg"
                                     aria-selected="false"><i class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
@@ -1219,84 +1219,8 @@
             var setEksisting = "{{ @route('setEksisting') }}"
             var setZonasi = "{{ @route('setZonasi') }}"
             var setKodekbli = "{{ @route('setKodekbli') }}"
-            console.log(setKodekbli);
 
 
-
-
-            document.getElementById("hlm_lokasi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("popup").style.display = "block";
-                document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
-                document.getElementById("judul").innerHTML = "Profile";
-                document.getElementById('close').onclick = function() {
-                    document.getElementById("popup").style.display = "none";
-                };
-                return false;
-            }
-
-            document.getElementById("hlm_ekonomi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("popup").style.display = "block";
-                document.getElementById('popupiframe').src = "{{ @route('ekonomi') }}";
-                document.getElementById("judul").innerHTML = "Ekonomi";
-                document.getElementById('close').onclick = function() {
-                    document.getElementById("popup").style.display = "none";
-                };
-                return false;
-            }
-
-            // document.getElementById("hlm_zonasi").onclick = function (e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
-            //     document.getElementById("judul").innerHTML = "Zonasi";
-            //     document.getElementById('close').onclick = function () {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            // document.getElementById("hlm_persil").onclick = function (e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('persil') }}";
-            //     document.getElementById("judul").innerHTML = "Persil";
-            //     document.getElementById('close').onclick = function () {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            document.getElementById("hlm_poi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("popup").style.display = "block";
-                document.getElementById('popupiframe').src = "{{ @route('poi') }}";
-                document.getElementById("judul").innerHTML = "Akses";
-                document.getElementById('close').onclick = function() {
-                    document.getElementById("popup").style.display = "none";
-                };
-                return false;
-            }
-
-            document.getElementById("hlm_kblikeg").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("popup").style.display = "block";
-                document.getElementById('popupiframe').src = "{{ @route('kode_kbli') }}";
-                document.getElementById("judul").innerHTML = "Kode KBLI";
-                document.getElementById('close').onclick = function() {
-                    document.getElementById("popup").style.display = "none";
-                };
-                return false;
-            }
-
-            window.onkeydown = function(e) {
-                if (e.keyCode == 27) {
-                    document.getElementById("popup").style.display = "none";
-                    e.preventDefault();
-                    return;
-                }
-            }
         </script>
 
 

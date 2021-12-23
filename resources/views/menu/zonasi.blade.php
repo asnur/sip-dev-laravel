@@ -2,8 +2,6 @@
 @section('zonasi')
 
 
-
-    <!-- Content -->
     <!-- Content -->
     <div class="container margin_conten_permenu">
 

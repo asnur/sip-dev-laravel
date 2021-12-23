@@ -51,8 +51,26 @@ class MenuController extends Controller
         return view('menu.zonasi', ["title" => "Zonasi", "data_zonasi" => $data_zonasi]);
     }
 
+
+
+    public function ekonomi2()
+    {
+        return view('menu.ekonomi2', ["title" => "Ekonomi"]);
+    }
+
+    public function kodekbli2()
+    {
+        return view('menu.kode-kbli2', ["title" => "Kode KBLI"]);
+    }
+
     public function lokasi2()
     {
-        return view('menu.lokasi2', ["title" => "Lokasi"]);
+        return view('menu.lokasi2', ["title" => "Info Lokasi"]);
+    }
+
+
+    public function poi2()
+    {
+        return view('menu.poi2', ["title" => "POI"]);
     }
 }

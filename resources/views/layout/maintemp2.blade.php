@@ -56,15 +56,37 @@ $request_url = end($uri_parts);
 
 <body>
 
-    <!-- Content -->
+    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
+    style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
-    <div class="container margin_conten_permenu">
+    <div class="d-flex">
+        <div class="col-md-1">
+            <a type="button" class="badge badge-primary margin_new_menu_icon" href="{{ route('home') }}">
+                <span class="material-icons">
+                    arrow_back_ios
+                </span>
+            </a>
+        </div>
 
-        @yield('lokasi2')
-
+        <div class="col-md-9 margin_new_menu">{{ $title }}</div>
     </div>
 
+</div>
 
+    <!-- Content -->
+    @if (isMobileDevice())
+    <div style="margin-top: 5rem;" class="container">
+
+        @yield('ekonomi2')
+        @yield('kodekbli2')
+        @yield('lokasi2')
+        @yield('poi2')
+
+
+    </div>
+    @else
+
+    @endif
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

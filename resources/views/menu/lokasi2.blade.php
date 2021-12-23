@@ -2,10 +2,8 @@
 @section('lokasi2')
 
 
-<button action="action" onclick="window.history.go(-1); return false;" type="button" class="btn btn-primary">Kembali</button>
 
-
-<p class="card-title text-center font-weight-bold judul_utama">Lokasi</p>
+<p class="card-title text-center font-weight-bold judul_utama">Lokasii</p>
 
 <div class="d-flex space_judul row_mid_judul">
     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
@@ -72,7 +70,6 @@
         <p class="rata_text_mobile">0.44</p>
     </div>
 </div>
-
 
 
 

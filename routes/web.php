@@ -32,7 +32,14 @@ Route::get('/persil', [MenuController::class, 'persil'])->name('persil');
 Route::get('/poi', [MenuController::class, 'poi'])->name('poi');
 Route::get('/zonasi', [MenuController::class, 'zonasi'])->name('zonasi');
 
+
+
+Route::get('/ekonomi2', [MenuController::class, 'ekonomi2'])->name('ekonomi2');
+Route::get('/kodekbli2', [MenuController::class, 'kodekbli2'])->name('kodekbli2');
 Route::get('/lokasi2', [MenuController::class, 'lokasi2'])->name('lokasi2');
+Route::get('/poi2', [MenuController::class, 'poi2'])->name('poi2');
+
+
 
 
 //set data for mobile
