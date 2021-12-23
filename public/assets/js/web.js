@@ -27,6 +27,7 @@ var hrg_min = "";
 var hrg_max = "";
 var sebaran_usaha;
 var proyek;
+var budaya;
 var name_file = Math.floor(Math.random() * 9999);
 var status;
 var count = 0;
@@ -505,6 +506,33 @@ map.on("mouseenter", "investasi_dot", (e) => {
 });
 
 map.on("mouseleave", "investasi_dot", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+
+map.on("mouseenter", "budaya_dot", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Name"]}</h6>
+      <div style="line-height: 1.2;">
+      <span class="d-block" style="width: 300px">${dt["Keterangan"]}</span>      
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    $(".mapboxgl-popup-content").addClass("inves");
+    $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "budaya_dot", () => {
     map.getCanvas().style.cursor = "";
     popup.remove();
     $(".inves").css("width", "");
@@ -1493,7 +1521,15 @@ map.addControl(geocoder);
 
 //add source layer
 function addSourceLayer(item) {
-    var api = ["wilayah", "zoning", "iumk", "sewa", "investasi", "pipa"];
+    var api = [
+        "wilayah",
+        "zoning",
+        "iumk",
+        "sewa",
+        "investasi",
+        "pipa",
+        "budaya",
+    ];
 
     for (var i = 0; i < api.length; i++) {
         const dt = api[i];
@@ -1751,6 +1787,22 @@ function addLayers() {
             visibility: "none",
         },
     });
+
+    map.addLayer({
+        id: "budaya_dot",
+        type: "circle",
+        source: "budaya",
+        paint: {
+            "circle-color": "#27ae60",
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 1,
+            "circle-radius": 4,
+            "circle-opacity": 0.8,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
 }
 
 function showLayer(layer) {
@@ -1842,6 +1894,7 @@ function onOffLayers() {
             hideLayer("investasi_fill");
             hideLayer("investasi_dot");
             hideLayer("investasi_line");
+            hideLayer("budaya_dot");
             $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
             $(".list-item-usaha").html("");
             $("#hide_side_bar").hide();
@@ -1890,6 +1943,7 @@ function onOffLayers() {
             hideLayer("investasi_fill");
             hideLayer("investasi_dot");
             hideLayer("investasi_line");
+            hideLayer("budaya_dot");
             $(".list-item").html("");
             var infoHarga = popUpHarga[0].features;
             $(".info-layer").show();
@@ -1970,6 +2024,7 @@ function onOffLayers() {
                 showLayer("investasi_fill");
                 hideLayer("iumk_fill");
                 hideLayer("sewa_fill");
+                hideLayer("budaya_dot");
                 $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
                 $(".list-item-investasi").html("");
                 var content = "";
@@ -2011,6 +2066,41 @@ function onOffLayers() {
             hideLayer("investasi_line");
         }
     });
+
+    $("#budaya_dot").change(function () {
+        if ($(this).prop("checked") == true) {
+            var infoBudaya = budaya[0].features;
+            $(".info-layer-budaya").show();
+            if (infoBudaya !== null) {
+                showLayer("budaya_dot");
+                hideLayer("iumk_fill");
+                hideLayer("sewa_fill");
+                hideLayer("investasi_fill");
+                $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+                $(".list-item-budaya").html("");
+                var content = "";
+                for (
+                    let index = 0;
+                    index < budaya[0].features.length;
+                    index++
+                ) {
+                    content += `
+                        <li class="item mb-3" style="margin-left:-20px">
+                            <span style="font-size: 11pt" class="font-weight-bold">${infoBudaya[index]["properties"]["Name"]}</span>
+                            <label style="font-size: 13px;">${infoBudaya[index]["properties"]["Keterangan"]}</label>
+                        </li>
+                    `;
+                }
+                $(".list-item-budaya").html(content);
+                // window.stop();
+            } else {
+                content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
+                $(".list-item-budaya").html(content);
+            }
+        } else {
+            hideLayer("budaya_dot");
+        }
+    });
 }
 
 $(document).on("click", ".wilayah-select", function () {
@@ -2027,6 +2117,8 @@ $(document).on("click", ".wilayah-select", function () {
     sebaran_usaha = getDataSebaranUsaha(kel);
     proyek = [];
     proyek = getDataProyek(kel);
+    budaya = [];
+    budaya = getDataBudaya(kel);
     // console.log(coor.split(","));
     var coord = coor.split(",");
 
@@ -2096,6 +2188,23 @@ function getDataProyek(kel) {
     setTimeout(function () {
         $.ajax({
             url: `${url}/investasi/${kel}`,
+            method: "GET",
+            dataType: "json",
+            success: function (e) {
+                // console.log(e);
+                data.push(e);
+            },
+        });
+    }, 1000);
+
+    return data;
+}
+
+function getDataBudaya(kel) {
+    var data = [];
+    setTimeout(function () {
+        $.ajax({
+            url: `${url}/budaya/${kel}`,
             method: "GET",
             dataType: "json",
             success: function (e) {
@@ -2393,27 +2502,44 @@ $("#sewa_kantor").click(function () {
     $(this).css("background", "orange");
     $("#iumk").css("background", "white");
     $("#proyek").css("background", "white");
+    $("#cagar").css("background", "white");
     $("#sewa_fill").trigger("click");
     $(".info-layer-usaha").hide();
     $(".info-layer-investasi").hide();
+    $(".info-layer-budaya").hide();
 });
 
 $("#iumk").click(function () {
     $(this).css("background", "orange");
     $("#sewa_kantor").css("background", "white");
     $("#proyek").css("background", "white");
+    $("#cagar").css("background", "white");
     $("#iumk_fill").trigger("click");
     $(".info-layer").hide();
     $(".info-layer-investasi").hide();
+    $(".info-layer-budaya").hide();
 });
 
 $("#proyek").click(function () {
     $(this).css("background", "orange");
     $("#sewa_kantor").css("background", "white");
     $("#iumk").css("background", "white");
+    $("#cagar").css("background", "white");
     $("#investasi_fill").trigger("click");
     $(".info-layer-usaha").hide();
     $(".info-layer").hide();
+    $(".info-layer-budaya").hide();
+});
+
+$("#cagar").click(function () {
+    $(this).css("background", "orange");
+    $("#sewa_kantor").css("background", "white");
+    $("#iumk").css("background", "white");
+    $("#proyek").css("background", "white");
+    $("#budaya_dot").trigger("click");
+    $(".info-layer-usaha").hide();
+    $(".info-layer").hide();
+    $(".info-layer-investasi").hide();
 });
 
 $("#closeSewa").on("click", function () {
@@ -2437,8 +2563,25 @@ $("#closeUsaha").on("click", function (e) {
     $("#show_side_bar").hide();
     $("#iumk").css("background", "white");
     hideLayer("iumk_fill");
+    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
     window.stop();
     $("#iumk_fill").prop("checked", false);
+    // $("#closeSewa").trigger("click");
+    if ($("#sidebar").hide() == true) {
+        $("#hide_side_bar").hide();
+    } else {
+        // $("#hide_side_bar").show();
+        $("#sidebar").show();
+    }
+});
+
+$("#closeBudaya").on("click", function (e) {
+    $(".info-layer-budaya").hide();
+    $("#show_side_bar").hide();
+    $("#cagar").css("background", "white");
+    hideLayer("budaya_dot");
+    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+    $("#budaya_dot").prop("checked", false);
     // $("#closeSewa").trigger("click");
     if ($("#sidebar").hide() == true) {
         $("#hide_side_bar").hide();
@@ -2458,6 +2601,7 @@ $("#closeInvestasi").on("click", function () {
     $("#investasi_fill").prop("checked", false);
     $("#investasi_dot").prop("checked", false);
     $("#investasi_line").prop("checked", false);
+    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
     // $("#closeSewa").trigger("click");
     if ($("#sidebar").hide() == true) {
         $("#hide_side_bar").hide();

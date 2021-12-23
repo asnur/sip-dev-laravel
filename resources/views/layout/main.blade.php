@@ -93,6 +93,18 @@
         </div>
     </div>
 
+    <div class="info-layer-budaya">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeBudaya" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Cagar Budaya</span>
+            <ol class="list-item-budaya mt-5">
+
+            </ol>
+        </div>
+    </div>
+
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
 
@@ -392,6 +404,15 @@
                                 <input type="radio" name="layer" class="form-check-input" id="iumk_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="iumk_fill">Sebaran Usaha Mikro Kecil</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check budaya_dot d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="radio" name="layer" class="form-check-input" id="budaya_dot">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="budaya_dot">Cagar Budaya</label>
                             </li>
                         </ul>
                     </div>
@@ -1117,6 +1138,17 @@
                             home_repair_service
                         </span>
                         <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                    </div>
+                </div>
+            </button>
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            location_city
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
                     </div>
                 </div>
             </button>
