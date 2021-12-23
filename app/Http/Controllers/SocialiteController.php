@@ -20,16 +20,15 @@ class SocialiteController extends Controller
         $user = Socialite::driver('google')->user();
         $authUser = $this->findOrCreateUser($user, 'google');
         Auth::login($authUser, true);
-        $foto = file_get_contents($user->getAvatar());
+        $arrContextOptions = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
+        );
+        $foto = file_get_contents($user->getAvatar(), false, stream_context_create($arrContextOptions));
         File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
-        // dd($foto);
-        // $request->session()->put('img_profile', $user->getAvatar());
 
-        // if ($request->session()->get('access_chat')) {
-        //     return redirect('/konsul');
-        // } else {
-        //     return redirect('/');
-        // }
         return redirect('/');
     }
 
