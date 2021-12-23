@@ -732,7 +732,9 @@
                                     <label class="text_all_mobile">CD TPZ</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p class="inf-cdtpz">-</p>
+                                    <p class="inf-cdtpz">
+                                        <select class="w-100" id="selectTPZ"></select>
+                                    </p>
                                 </div>
                             </div>
 
@@ -1194,7 +1196,7 @@
                                 style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
                         @else
                             <div class="dropdown">
-                                <img src="{{ \Request::session()->get('img_profile') }}"
+                                <img src="/profile/{{ Auth::user()->id }}.jpg"
                                     style="border-radius: 50%; width:30px;  height:30px;" id="btnLogout"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
@@ -1260,15 +1262,16 @@
                         </li>
                     </ul>
                 </div>
-                <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-3' }}">
+                <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-2' }}">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" disabled class="ri-phone-line bg-white p-1 text-secondary"
-                        data-toggle="dropdown"
+                    <button onclick="cekLoginChat()" type="button" id="btnChat"
+                        class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
                         style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
                     </button>
-                    <div class="dropdown-menu" style="background: none; width:300px; border:none; margin-top:-10px">
-                        <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"
-                            style="border: none;border-radius:10px"></iframe>
+                    <div class="dropdown-menu" id="frameChat"
+                        style="background: none; width:300px; border:none; margin-top:-10px">
+                        {{-- <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"
+                            style="border: none;border-radius:10px;"></iframe> --}}
                         <!-- Dropdown menu links -->
                     </div>
                     {{-- @else

@@ -1,3 +1,5 @@
+// const { method } = require("lodash");
+
 var url = `${APP_URL}:3000`;
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -27,6 +29,7 @@ var sebaran_usaha;
 var proyek;
 var name_file = Math.floor(Math.random() * 9999);
 var status;
+var count = 0;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -82,6 +85,16 @@ $.ajax({
 //     status = xhr.status;
 // }).fail(function () {
 //     console.clear();
+// });
+
+// $.ajax({
+//     url: `${APP_URL}/statusLogin`,
+//     method: "GET",
+//     success: function (e) {
+//         if (e == "login") {
+//             window.close();
+//         }
+//     },
 // });
 
 const popup = new mapboxgl.Popup({
@@ -512,7 +525,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-cdtpz, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz"
     ).html("-");
 
     getRadius(e);
@@ -907,18 +920,25 @@ map.on(clickEvent, "zoning_fill", function (e) {
     };
 
     var value_tpz = ``;
+    var option_tpz = ``;
     var data_tpz = dt["CD TPZ"];
     var arr_tpz = data_tpz.split(",");
     if (dt["CD TPZ"] == " ") {
         value_tpz += `
         <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>
         <p>Tidak Ada Ketentuan</p>`;
+        option_tpz += `
+            <option>Tidak Ada CD TPZ</option>
+        `;
     } else {
         for (let index = 0; index < arr_tpz.length; index++) {
             value_tpz += `
             <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ untuk CD TPZ ${arr_tpz[index]}</p>
             `;
             value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
+            option_tpz += `
+                <option value="${arr_tpz[index]}">${arr_tpz[index]}</option>
+            `;
         }
     }
     // console.log(value_tpz);
@@ -941,7 +961,8 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-zona").html(dt.Zona);
     $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
-    $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
+    // $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
+    $("#selectTPZ").html(option_tpz);
     $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
@@ -1724,7 +1745,7 @@ function addLayers() {
         source: "pipa",
         paint: {
             "line-color": "#fff",
-            "line-width": 2,
+            "line-width": 3,
         },
         layout: {
             visibility: "none",
@@ -2009,10 +2030,22 @@ $(document).on("click", ".wilayah-select", function () {
     // console.log(coor.split(","));
     var coord = coor.split(",");
 
-    setKelurahanSession(kel);
+    saveKelurahan(kel);
+    // setKelurahanSession(kel);
     geocoder.query(coor);
     addSourceLayer(kel);
 });
+
+function saveKelurahan(kel) {
+    localStorage.setItem("kelurahan", kel);
+    $.ajax({
+        url: `${APP_URL}/saveKelurahan/${kel}`,
+        method: "GET",
+        success: function (e) {
+            localStorage.setItem("id_kelurahan", e);
+        },
+    });
+}
 
 // onOffLayers();
 
@@ -2200,18 +2233,18 @@ function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     });
 }
 
-function setKelurahanSession(kel) {
-    $.ajax({
-        url: `${APP_URL}/setKelurahan/${kel}`,
-        method: "POST",
-        data: {
-            _token: $('meta[name="csrf-token"]').attr("content"),
-        },
-        success: function (e) {
-            console.log(e);
-        },
-    });
-}
+// function setKelurahanSession(kel) {
+//     $.ajax({
+//         url: `${APP_URL}/setKelurahan/${kel}`,
+//         method: "POST",
+//         data: {
+//             _token: $('meta[name="csrf-token"]').attr("content"),
+//         },
+//         success: function (e) {
+//             console.log(e);
+//         },
+//     });
+// }
 
 function SavePDFtoServer() {
     var data_pie = $("#pie-chart-info").get(0).toDataURL("img/png");
@@ -2261,6 +2294,40 @@ function SavePDFtoServer() {
             };
             // $.post(`${APP_URL}/savePDF`, data);
         });
+}
+
+function cekLoginChat() {
+    var status;
+    $.ajax({
+        url: `${APP_URL}/cekLoginChat`,
+        method: "GET",
+        success: function (e) {
+            status += e;
+            var id_admin = localStorage.getItem("id_kelurahan");
+            var kelurahan = localStorage.getItem("kelurahan");
+            if (e == 1) {
+                count += 1;
+                if ($("#boxKonsul").length == 0) {
+                    $("#frameChat")
+                        .append(`<iframe src="${APP_URL}/konsul" id="boxKonsul" name="myFrame" height="450" width="100%"
+                    style="border: none;border-radius:10px;"></iframe>`);
+                }
+            } else {
+                // $("#frameChat").html("");
+                count = 0;
+                window.open(
+                    APP_URL + "/konsul",
+                    "_blank",
+                    "location=yes,height=570,width=520,scrollbars=yes,status=yes"
+                );
+                $("#btnChat").trigger("click");
+            }
+        },
+    });
+    if (count % 2 == 0) {
+        $("#frameChat").html("");
+    }
+    // console.log(status);
 }
 
 $(document).on("change", "#kegiatanKewenangan", function () {
