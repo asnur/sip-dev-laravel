@@ -93,6 +93,18 @@
         </div>
     </div>
 
+    <div class="info-layer-budaya">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeBudaya" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Cagar Budaya</span>
+            <ol class="list-item-budaya mt-5">
+
+            </ol>
+        </div>
+    </div>
+
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
 
@@ -364,6 +376,11 @@
                             Kecil</label>
                     </div>
 
+                    <div class="form-check pipa_multilinestring mt-1">
+                        <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
+                        <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                    </div>
+
                     <div class="form-check banjir_fill mt-1">
 
                         <input type="checkbox" class="form-check-input" id="banjir_fill">
@@ -387,6 +404,15 @@
                                 <input type="radio" name="layer" class="form-check-input" id="iumk_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="iumk_fill">Sebaran Usaha Mikro Kecil</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check budaya_dot d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="radio" name="layer" class="form-check-input" id="budaya_dot">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="budaya_dot">Cagar Budaya</label>
                             </li>
                         </ul>
                     </div>
@@ -727,7 +753,9 @@
                                     <label class="text_all_mobile">CD TPZ</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p class="inf-cdtpz">-</p>
+                                    <p class="inf-cdtpz">
+                                        <select class="w-100" id="selectTPZ"></select>
+                                    </p>
                                 </div>
                             </div>
 
@@ -1113,6 +1141,17 @@
                     </div>
                 </div>
             </button>
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            location_city
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                    </div>
+                </div>
+            </button>
         </div>
         <div class="container p-2 dropdown" id="more-apps"
             style="position:absolute; right:-15px; z-index:999; width:8rem">
@@ -1189,7 +1228,7 @@
                                 style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
                         @else
                             <div class="dropdown">
-                                <img src="{{ \Request::session()->get('img_profile') }}"
+                                <img src="/profile/{{ Auth::user()->id }}.jpg"
                                     style="border-radius: 50%; width:30px;  height:30px;" id="btnLogout"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
@@ -1255,15 +1294,16 @@
                         </li>
                     </ul>
                 </div>
-                <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-3' }}">
+                <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-2' }}">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" disabled class="ri-phone-line bg-white p-1 text-secondary"
-                        data-toggle="dropdown"
+                    <button onclick="cekLoginChat()" type="button" id="btnChat"
+                        class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
                         style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
                     </button>
-                    <div class="dropdown-menu" style="background: none; width:300px; border:none; margin-top:-10px">
-                        <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"
-                            style="border: none;border-radius:10px"></iframe>
+                    <div class="dropdown-menu" id="frameChat"
+                        style="background: none; width:300px; border:none; margin-top:-10px">
+                        {{-- <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"
+                            style="border: none;border-radius:10px;"></iframe> --}}
                         <!-- Dropdown menu links -->
                     </div>
                     {{-- @else
