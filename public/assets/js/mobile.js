@@ -1,4 +1,4 @@
-var url = "https://jakpintasdev.dpmptsp-dki.com:3000";
+var url = "https://jakpintas.dpmptsp-dki.com:3000";
 
 // var clickEvent = "touchstart";
 var clickEvent =
