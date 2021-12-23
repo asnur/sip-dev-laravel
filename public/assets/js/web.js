@@ -959,16 +959,28 @@ map.on(clickEvent, "zoning_fill", function (e) {
             <option>Tidak Ada CD TPZ</option>
         `;
     } else {
+        value_tpz += `
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ untuk CD TPZ ${arr_tpz[0]}</p>
+        `;
+        value_tpz += dataabse_tpz[`${arr_tpz[0]}`];
         for (let index = 0; index < arr_tpz.length; index++) {
-            value_tpz += `
-            <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ untuk CD TPZ ${arr_tpz[index]}</p>
-            `;
-            value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
             option_tpz += `
-                <option value="${arr_tpz[index]}">${arr_tpz[index]}</option>
+                <option value="${index}">${arr_tpz[index]}</option>
             `;
         }
     }
+
+    $("#selectTPZ").change(function () {
+        $(".inf-k-tpz").html("");
+        console.log($(this).val());
+        var index = $(this).val();
+        value_tpz = "";
+        value_tpz += `
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ untuk CD TPZ ${arr_tpz[index]}</p>
+        `;
+        value_tpz += dataabse_tpz[`${arr_tpz[index]}`];
+        $(".inf-k-tpz").html(value_tpz);
+    });
     // console.log(value_tpz);
 
     if (dt["CD TPZ"] == " " || dt["CD TPZ"] !== "g") {
