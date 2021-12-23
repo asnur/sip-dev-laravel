@@ -29,4 +29,6 @@ jobs:
             git pull origin development
             chown -R $USER:www-data storage
             chmod -R 775 storage
+            chown -R $USER:www-data public/profile
+            chmod -R 775 public/profile
             composer install
