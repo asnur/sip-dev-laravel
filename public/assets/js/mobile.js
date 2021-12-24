@@ -1,4 +1,4 @@
-var url = "https://jakpintas.dpmptsp-dki.com:3000/";
+var url = "https://jakpintasdev.dpmptsp-dki.com:3000";
 
 // var clickEvent = "touchstart";
 var clickEvent =
@@ -18,6 +18,13 @@ var lokasi,
     kbli_data,
     harga;
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+
+var tahun = $("#ControlTahunBanjir").val();
+$("#tahunBanjir").html(tahun);
+$(document).on("input change", "#ControlTahunBanjir", function () {
+    tahun = $(this).val();
+    $("#tahunBanjir").html(tahun);
+});
 
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
@@ -61,15 +68,15 @@ map.on("style.load", function () {
     //     data: `${url}/choro`,
     // });
 
-    map.addSource("mobile_index", {
+    map.addSource("wilayahindex", {
         type: "geojson",
         data: `${url}/choro`,
     });
 
     map.addLayer({
-        id: "mobile_index-fill",
+        id: "wilayahindex_fill",
         type: "fill",
-        source: "mobile_index",
+        source: "wilayahindex",
         paint: {
             "fill-color": [
                 "interpolate",
@@ -102,9 +109,6 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     console.log(e.features[0].properties);
 
 
-    // console.log(e.features[0].properties);
-    lokasi(dt);
-
     // setAttrClick = e;
 
     // getRadius(e);
@@ -116,6 +120,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
     zonasi(dt);
+    lokasi(dt);
     kode_kbli(dt["Sub Zona"]);
 
     // console.log(proyek);
@@ -376,7 +381,7 @@ function poi(e) {
         method: "post",
         data: {
             _token: CSRF_TOKEN,
-            zona: data,
+            poi: data,
         },
         success: function (e) {},
     });
@@ -583,13 +588,60 @@ function addSourceLayer(item) {
         });
     }
 
+
+
+    if (map.getLayer("banjir_fill")) {
+        map.removeLayer("banjir_fill");
+    }
+
+    if (map.getSource("banjir")) {
+        map.removeSource("banjir");
+    }
+
+    map.addSource("banjir", {
+        type: "geojson",
+        data: `${url}/banjir/${item}/${tahun}`,
+    });
+
+    $("#ControlTahunBanjir").change(function () {
+        var layer = map.getLayer("banjir_fill");
+        var condition = layer.visibility == "visible" ? "visible" : "none";
+        map.removeLayer("banjir_fill");
+        map.removeSource("banjir");
+        map.addSource("banjir", {
+            type: "geojson",
+            data: `${url}/banjir/${item}/${tahun}`,
+        });
+        map.addLayer({
+            id: "banjir_fill",
+            type: "fill",
+            source: "banjir",
+            paint: {
+                "fill-color": "#2980b9",
+                "fill-opacity": 0.9,
+            },
+            layout: {
+                visibility: condition,
+            },
+        });
+    });
+
+
+
     addLayers();
     $(".lblLayer").show();
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
     // $('').show()
-    // onOffLayers();
+    onOffLayers();
 }
+
+map.on("mouseenter", "wilayah_fill", function () {
+    map.getCanvas().style.cursor = "default";
+});
+map.on("mouseleave", "wilayah_fill", function () {
+    map.getCanvas().style.cursor = "default";
+});
 
 //add layer
 function addLayers() {
@@ -603,7 +655,7 @@ function addLayers() {
             "fill-outline-color": "red",
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
     });
     // map.addLayer({
@@ -627,7 +679,7 @@ function addLayers() {
             "fill-opacity": 1,
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
     });
 
@@ -732,7 +784,93 @@ function addLayers() {
             visibility: "none",
         },
     });
+
+    map.addLayer({
+        id: "banjir_fill",
+        type: "fill",
+        source: "banjir",
+        paint: {
+            "fill-color": "#2980b9",
+            "fill-opacity": 0.9,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+
 }
+
+
+function showLayer(layer) {
+    map.setLayoutProperty(layer, "visibility", "visible");
+}
+
+function hideLayer(layer) {
+    map.setLayoutProperty(layer, "visibility", "none");
+}
+
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    map.setStyle("mapbox://styles/menthoelsr/" + layerId);
+}
+
+function onOffLayers() {
+    //Wilayah
+    if ($("#wilayahindex_fill").prop("checked") == true) {
+        showLayer("wilayahindex_fill");
+        $(".detail_omzet").show();
+        $(".detail_jumlah").show();
+    } else {
+        hideLayer("wilayahindex_fill");
+        $(".detail_omzet").hide();
+        $(".detail_jumlah").hide();
+    }
+
+    $("#wilayahindex_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("wilayahindex_fill");
+            $(".detail_omzet").show();
+            $(".detail_jumlah").show();
+        } else {
+            hideLayer("wilayahindex_fill");
+            $(".detail_omzet").hide();
+            $(".detail_jumlah").hide();
+        }
+    });
+
+    //Peta Zonasi
+    if ($("#zoning_fill").prop("checked") == true) {
+        showLayer("zoning_fill");
+    } else {
+        hideLayer("zoning_fill");
+    }
+
+    $("#zoning_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("zoning_fill");
+        } else {
+            hideLayer("zoning_fill");
+        }
+    });
+
+    if ($("#banjir_fill").prop("checked") == true) {
+        showLayer("banjir_fill");
+    } else {
+        hideLayer("banjir_fill");
+    }
+
+    $("#banjir_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("banjir_fill");
+        } else {
+            hideLayer("banjir_fill");
+        }
+    });
+
+
+}
+
 
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
