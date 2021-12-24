@@ -308,7 +308,7 @@
                             <div class="for_web input-group input-group-md mb-1">
                                 <input type="search" id="cari_wilayah"
                                     class="form-control tombol_search py-2 border-right-0 border"
-                                    placeholder="Cari nama jalan ...">
+                                    placeholder="Cari nama jalan ..." autocomplete="off">
 
 
                                 <!-- Ori -->
@@ -379,6 +379,23 @@
                     <div class="form-check pipa_multilinestring mt-1">
                         <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
                         <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                    </div>
+
+                    <div class="form-check ipal_dot mt-1">
+                        <input type="checkbox" class="form-check-input" id="ipal_dot">
+                        <label class="form-check-label  text_all" for="ipal_dot">Pembuangan Air Limbah</label>
+                    </div>
+
+                    <div class="form-check util_multilinestring mt-1">
+                        <input type="checkbox" class="form-check-input" id="util_multilinestring">
+                        <label class="form-check-label  text_all" for="util_multilinestring">Jaringan Pipa
+                            Utilitas</label>
+                    </div>
+
+                    <div class="form-check phb_multilinestring mt-1">
+                        <input type="checkbox" class="form-check-input" id="phb_multilinestring">
+                        <label class="form-check-label  text_all" for="phb_multilinestring">Jaringan Saluran
+                            Penghubung</label>
                     </div>
 
                     <div class="form-check banjir_fill mt-1">
