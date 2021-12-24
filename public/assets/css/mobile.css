@@ -17,16 +17,72 @@
 @media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
+    /* .card {
+        background-color: dodgerblue;
+        color: white;
+        padding: 1rem;
+        height: 4rem;
+    } */
+
+    #profil {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 999;
+        overflow: scroll;
+    }
+
+    #ekonomi {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 999;
+        overflow: scroll;
+    }
+
+    #akses {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 999;
+        overflow: scroll;
+    }
+
+    #kbli {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 999;
+        overflow: scroll;
+    }
+
     .grid_menu_apps {
         width: 100%;
         margin: 0 auto;
         display: grid;
         /* grid-gap: 1rem; */
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 33% 33% 33%;
 
         /* width: 100%;
         display: grid;
         grid-template-columns: 50% 50%; */
+    }
+
+    .kiri_konten_menu {
+        padding-left: 10px;
+        padding-top: 10px;
     }
 
     .rata_text_mobile {
