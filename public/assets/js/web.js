@@ -541,6 +541,34 @@ map.on("mouseleave", "budaya_dot", () => {
     $(".inves").css("width", "");
 });
 
+map.on("mouseenter", "ipal_dot", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Sistem"]}</h6>
+      <div style="line-height: 1.2;">
+      <span class="d-block" style="width: 300px">${dt["Alamat"]}</span>      
+      <span class="d-block" style="width: 300px">Kapasitas : ${dt["Kapasitas"]}</span>      
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    $(".mapboxgl-popup-content").addClass("inves");
+    $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "ipal_dot", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
@@ -1545,6 +1573,8 @@ function addSourceLayer(item) {
         "pipa",
         "budaya",
         "ipal",
+        "util",
+        "phb",
     ];
 
     for (var i = 0; i < api.length; i++) {
@@ -1805,6 +1835,32 @@ function addLayers() {
     });
 
     map.addLayer({
+        id: "util_multilinestring",
+        type: "line",
+        source: "util",
+        paint: {
+            "line-color": "orange",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "phb_multilinestring",
+        type: "line",
+        source: "phb",
+        paint: {
+            "line-color": "#FC427B",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
         id: "budaya_dot",
         type: "circle",
         source: "budaya",
@@ -1900,6 +1956,34 @@ function onOffLayers() {
             showLayer("pipa_multilinestring");
         } else {
             hideLayer("pipa_multilinestring");
+        }
+    });
+
+    if ($("#util_multilinestring").prop("checked") == true) {
+        showLayer("util_multilinestring");
+    } else {
+        hideLayer("util_multilinestring");
+    }
+
+    $("#util_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("util_multilinestring");
+        } else {
+            hideLayer("util_multilinestring");
+        }
+    });
+
+    if ($("#phb_multilinestring").prop("checked") == true) {
+        showLayer("phb_multilinestring");
+    } else {
+        hideLayer("phb_multilinestring");
+    }
+
+    $("#phb_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("phb_multilinestring");
+        } else {
+            hideLayer("phb_multilinestring");
         }
     });
 
