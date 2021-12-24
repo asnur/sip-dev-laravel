@@ -1,5 +1,3 @@
-// const { method } = require("lodash");
-
 var url = `${APP_URL}:3000`;
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -55,6 +53,11 @@ var inputs = layerList.getElementsByTagName("input");
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
+
+$(window).on("load", function () {
+    localStorage.removeItem("kelurahan");
+    localStorage.removeItem("id_kelurahan");
+});
 
 $.ajax({
     url: `${url}/text`,
@@ -1541,6 +1544,7 @@ function addSourceLayer(item) {
         "investasi",
         "pipa",
         "budaya",
+        "ipal",
     ];
 
     for (var i = 0; i < api.length; i++) {
@@ -1815,6 +1819,22 @@ function addLayers() {
             visibility: "none",
         },
     });
+
+    map.addLayer({
+        id: "ipal_dot",
+        type: "circle",
+        source: "ipal",
+        paint: {
+            "circle-color": "#e67e22",
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 1,
+            "circle-radius": 4,
+            "circle-opacity": 0.8,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
 }
 
 function showLayer(layer) {
@@ -1894,6 +1914,20 @@ function onOffLayers() {
             showLayer("banjir_fill");
         } else {
             hideLayer("banjir_fill");
+        }
+    });
+
+    if ($("#ipal_dot").prop("checked") == true) {
+        showLayer("ipal_dot");
+    } else {
+        hideLayer("ipal_dot");
+    }
+
+    $("#ipal_dot").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("ipal_dot");
+        } else {
+            hideLayer("ipal_dot");
         }
     });
 
