@@ -99,6 +99,8 @@ map.on("style.load", function () {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
+    console.log(e.features[0].properties);
+
     // console.log(e.features[0].properties);
     lokasi(dt);
 
