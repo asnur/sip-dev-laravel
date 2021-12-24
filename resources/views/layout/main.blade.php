@@ -936,14 +936,12 @@
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
 
-                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_fileshp" href="" role="tab"
-                                    aria-controls="pills-fileshp" aria-selected="false"><i
-                                        class="ri-shape-line"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile menu_kbli_top">File SHP</label>
-                            </li> --}}
+                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
+                                href="#" target="_blank"><i class="ri-shape-line"></i></a>
+                            <br>
+                            <label class="size_menu size_menu_mobile">File SHP</label>
+                            </li>
 
                             <!-- Pending menu pin-->
 
@@ -1534,7 +1532,7 @@
 
                         <div class="grid_menu_apps">
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
                                         class="text-dark font-weight-bold img_logo_menu_apps"><img
                                             src="{{ asset('assets/gambar/mobile/OSSnew.png') }}" class="w-75"></a>
@@ -1543,7 +1541,7 @@
                                     </h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
                                         class="text-dark font-weight-bold img_logo_menu_apps"><img
                                             src="{{ asset('assets/gambar/mobile/pesan_ajib.png') }}"
@@ -1552,14 +1550,14 @@
                                         AJIB</h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-bold img_logo_menu_apps"><img
                                         src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                                     <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
                                 class="text-dark font-weight-bold img_logo_menu_apps"><img
                                     src="{{ asset('assets/gambar/mobile/simbg.png') }}" class="w-75"></a>
@@ -1568,7 +1566,7 @@
                             </h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
                                 class="text-dark font-weight-bold img_logo_menu_apps"><img
                                     src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}"
@@ -1576,25 +1574,25 @@
                             <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-bold img_logo_menu_apps"><img
                                         src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                                 <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-bold img_logo_menu_apps"><img
                                         src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
                                 <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 kiri_konten_menu">
                                     <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
                                 class="text-dark font-weight-bold img_logo_menu_apps"><img
                                     src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                                <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
                                 </div>
 
 
