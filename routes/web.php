@@ -18,19 +18,25 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.main', ["title" => ""]);
-})->name('home');
-
-Route::post('/getresolustion', function () {
+Route::get('/', function (Request $request) {
+    $status = $request->session()->get('cek-login');
+    if ($status == 'login') {
+        echo "<script>window.close();</script>";
+    }
+    return view('layout.main');
 });
 
-Route::get('/lokasi', [MenuController::class, 'lokasi'])->name('lokasi');
-Route::get('/ekonomi', [MenuController::class, 'ekonomi'])->name('ekonomi');
-Route::get('/kode-kbli', [MenuController::class, 'kode_kbli'])->name('kode_kbli');
-Route::get('/persil', [MenuController::class, 'persil'])->name('persil');
-Route::get('/poi', [MenuController::class, 'poi'])->name('poi');
-Route::get('/zonasi', [MenuController::class, 'zonasi'])->name('zonasi');
+Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
+Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
+Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
+
+
+// Route::get('/lokasi', [MenuController::class, 'lokasi'])->name('lokasi');
+// Route::get('/ekonomi', [MenuController::class, 'ekonomi'])->name('ekonomi');
+// Route::get('/kode-kbli', [MenuController::class, 'kode_kbli'])->name('kode_kbli');
+// Route::get('/persil', [MenuController::class, 'persil'])->name('persil');
+// Route::get('/poi', [MenuController::class, 'poi'])->name('poi');
+// Route::get('/zonasi', [MenuController::class, 'zonasi'])->name('zonasi');
 
 //set data for mobile
 Route::post('/setLokasi', function (Request $request) {
@@ -62,7 +68,3 @@ Route::post('/setKodekbli', function (Request $request) {
     $data = $request->input('kode_kbli');
     return $request->session()->put('kode_kbli', $data);
 })->name('setKodekbli');
-
-Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
-Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
-Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
