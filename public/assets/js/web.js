@@ -1,5 +1,3 @@
-// const { method } = require("lodash");
-
 var url = `${APP_URL}:3000`;
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -55,6 +53,11 @@ var inputs = layerList.getElementsByTagName("input");
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
+
+$(window).on("load", function () {
+    localStorage.removeItem("kelurahan");
+    localStorage.removeItem("id_kelurahan");
+});
 
 $.ajax({
     url: `${url}/text`,
@@ -533,6 +536,34 @@ map.on("mouseenter", "budaya_dot", (e) => {
 });
 
 map.on("mouseleave", "budaya_dot", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+
+map.on("mouseenter", "ipal_dot", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Sistem"]}</h6>
+      <div style="line-height: 1.2;">
+      <span class="d-block" style="width: 300px">${dt["Alamat"]}</span>      
+      <span class="d-block" style="width: 300px">Kapasitas : ${dt["Kapasitas"]}</span>      
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    $(".mapboxgl-popup-content").addClass("inves");
+    $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "ipal_dot", () => {
     map.getCanvas().style.cursor = "";
     popup.remove();
     $(".inves").css("width", "");
@@ -1541,6 +1572,9 @@ function addSourceLayer(item) {
         "investasi",
         "pipa",
         "budaya",
+        "ipal",
+        "util",
+        "phb",
     ];
 
     for (var i = 0; i < api.length; i++) {
@@ -1801,11 +1835,53 @@ function addLayers() {
     });
 
     map.addLayer({
+        id: "util_multilinestring",
+        type: "line",
+        source: "util",
+        paint: {
+            "line-color": "orange",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "phb_multilinestring",
+        type: "line",
+        source: "phb",
+        paint: {
+            "line-color": "#FC427B",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
         id: "budaya_dot",
         type: "circle",
         source: "budaya",
         paint: {
             "circle-color": "#27ae60",
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 1,
+            "circle-radius": 4,
+            "circle-opacity": 0.8,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "ipal_dot",
+        type: "circle",
+        source: "ipal",
+        paint: {
+            "circle-color": "#e67e22",
             "circle-stroke-color": "#ffffff",
             "circle-stroke-width": 1,
             "circle-radius": 4,
@@ -1883,6 +1959,34 @@ function onOffLayers() {
         }
     });
 
+    if ($("#util_multilinestring").prop("checked") == true) {
+        showLayer("util_multilinestring");
+    } else {
+        hideLayer("util_multilinestring");
+    }
+
+    $("#util_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("util_multilinestring");
+        } else {
+            hideLayer("util_multilinestring");
+        }
+    });
+
+    if ($("#phb_multilinestring").prop("checked") == true) {
+        showLayer("phb_multilinestring");
+    } else {
+        hideLayer("phb_multilinestring");
+    }
+
+    $("#phb_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("phb_multilinestring");
+        } else {
+            hideLayer("phb_multilinestring");
+        }
+    });
+
     if ($("#banjir_fill").prop("checked") == true) {
         showLayer("banjir_fill");
     } else {
@@ -1894,6 +1998,20 @@ function onOffLayers() {
             showLayer("banjir_fill");
         } else {
             hideLayer("banjir_fill");
+        }
+    });
+
+    if ($("#ipal_dot").prop("checked") == true) {
+        showLayer("ipal_dot");
+    } else {
+        hideLayer("ipal_dot");
+    }
+
+    $("#ipal_dot").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("ipal_dot");
+        } else {
+            hideLayer("ipal_dot");
         }
     });
 
