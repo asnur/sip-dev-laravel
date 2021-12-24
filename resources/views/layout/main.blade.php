@@ -91,14 +91,14 @@
 
         <div style="margin-top: 5.5rem;" class="container">
 
-            <p class="card-title text-center font-weight-bold judul_utama">Lokasii</p>
+            <p class="card-title text-center font-weight-bold judul_utama">Lokasi</p>
 
             <div class="d-flex space_judul row_mid_judul">
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
                     <label class="text_all_mobile_permenu">Koordinat</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">-6.18142732, 106.8241349</p>
+                    <p class="inf-kordinat rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@
                     <label class="text_all_mobile_permenu">Kelurahan</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">Gambir</p>
+                    <p class="inf-kelurahan rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -116,7 +116,7 @@
                     <label class="text_all_mobile_permenu">Kecamatan</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">Gambir</p>
+                    <p class="inf-kecamatan rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -126,8 +126,7 @@
                     <label class="text_all_mobile_permenu">Wilayah</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">
-                        Jakarta Pusat</p>
+                    <p class="inf-kota rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -136,7 +135,7 @@
                     <label class="text_all_mobile_permenu">Luas</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">252.07  ha</p>
+                    <p class="inf-luasarea rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -146,7 +145,7 @@
                     <label class="text_all_mobile_permenu">Kepadatan</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">1.216 jiwa/km2</p>
+                    <p class="inf-kepadatan rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -155,7 +154,7 @@
                     <label class="text_all_mobile_permenu">Rasio Gini</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">0.44</p>
+                    <p class="inf-rasio rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -168,7 +167,7 @@
                     <label class="text_all_mobile_permenu">Kegiatan</label>
                 </div>
                 <div class="col-md-7 text_all_permenu">
-                    <p class="inf-eksisting">-</p>
+                    <p class="inf-eksisting rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -177,7 +176,7 @@
                     <label class="text_all_mobile_permenu">Perkiraan Harga</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">Rp.5.000.000,- s/d Rp.10.000.000,-&nbsp;&nbsp;<span>/m²</span></p>
+                    <p class="inf-harganjop rata_text_mobile">-</p>
                 </div>
             </div>
 
@@ -244,7 +243,9 @@
                     <label class="text_all_mobile_permenu">CD_TPZ</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile"></p>
+                    <p class="inf-cdtpz rata_text_mobile">
+                        <select class="w-100" id="selectTPZ"></select>
+                    </p>
                 </div>
             </div>
 
@@ -282,10 +283,6 @@
     </div>
 
 
-
-
-
-
     <div id="ekonomi">
 
         <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
@@ -313,7 +310,7 @@
                     <label class="text_all_permenu_mobile_permenu">Pelaku IUMK</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu_permenu">
-                    {{-- <p>{{ number_format($data_lokasi['Jumlah']) }} Orang</p> --}}
+                    <p><span class="inf-iumk rata_text_mobile">-</span> <span>orang</span></p>
                 </div>
             </div>
 
@@ -322,7 +319,7 @@
                     <label class="text_all_permenu_mobile_permenu">Total Omset</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu_permenu">
-                    {{-- <p>{{'Rp. '. number_format($data_lokasi['Total omzet']) }} <span>per bulan</span></p> --}}
+                    <p class="rata_text_mobile">Rp.<span class="inf-omzet">-</span> <span>per bulan</span></p>
                 </div>
             </div>
 
@@ -351,35 +348,35 @@
                     <label>0 - 5 juta</label>
                 </div>
                 <div class="col_info">
-                    {{-- <label>{{ $data_lokasi['P1'] }} %</label> --}}
+                    <label class="inf-pen-05">-</label>
                 </div>
 
                 <div>
                     <label>6 - 10 Juta</label>
                 </div>
                 <div class="col_info">
-                    {{-- <label>{{ $data_lokasi['P2'] }} %</label> --}}
+                    <label class="inf-pen-610">-</label>
                 </div>
 
                 <div>
                     <label>11 - 15 Juta</label>
                 </div>
                 <div class="col_info">
-                    {{-- <label>{{ $data_lokasi['P3'] }} %</label> --}}
+                    <label class="inf-pen-1115">-</label>
                 </div>
 
                 <div>
                     <label>16 - 20 Juta</label>
                 </div>
                 <div class="col_info">
-                    {{-- <label class="text">{{ $data_lokasi['P4'] }} %</label> --}}
+                    <label class="inf-pen-1620">-</label>
                 </div>
 
                 <div>
                     <label>> 20 Juta</label>
                 </div>
                 <div class="col_info">
-                    {{-- <label>{{ $data_lokasi['P5'] }} %</label> --}}
+                    <label class="inf-pen-20">-</label>
                 </div>
 
 
@@ -387,7 +384,7 @@
                     <label>N/A</label>
                 </div>
                 <div class="col_info">
-                    {{-- <label>{{ $data_lokasi['P6'] }} %</label> --}}
+                    <label class="inf-pen-na">-</label>
                 </div>
 
 
@@ -397,8 +394,6 @@
         </div>
 
     </div>
-
-
 
 
     <div id="akses">
@@ -466,55 +461,65 @@
         <div style="margin-top: 5.5rem;" class="container">
 
 
-        <div class="d-flex ml-5 margin_cari_kodelbli_mobile">
-            <div class="col-md-12 text_all">
-                <label class="text_all_mobile_kbli">Kegiatan Ruang</label>
-                <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                    <select class="form-control text_all" id="kegiatanRuang" style="z-index: 9999">
 
-                    </select>
+
+            <div class="d-flex ml-5 margin_cari_kodelbli_mobile">
+                <div class="col-md-12 text_all">
+                    <label class="text_all_mobile_kbli">Kegiatan Ruang</label>
+                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                        <select class="form-control text_all" id="kegiatanRuang" style="z-index: 9999">
+
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
-            <div class="col-md-12 text_all">
-                <label class="text_all_mobile_kbli">Skala</label>
-                <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                    <select class="form-control" id="skala">
+            <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
+                <div class="col-md-12 text_all">
+                    <label class="text_all_mobile_kbli">Skala</label>
+                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                        <select class="form-control" id="skala">
 
-                    </select>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
-            <div class="col-md-12 text_all">
-                <label class="text_all_mobile_kbli">Kegiatan Kewenangan</label>
-                <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                    <select class="form-control" id="kegiatanKewenangan">
+            <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
+                <div class="col-md-12 text_all">
+                    <label class="text_all_mobile_kbli">Kegiatan Kewenangan</label>
+                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                        <select class="form-control" id="kegiatanKewenangan">
 
-                    </select>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="dtKBLI">
+            <div class="dtKBLI">
 
-        </div>
-
-
-        <div class="d-flex margin_chart_ekonomi_mobile">
-            <canvas id="pie-chart-kbli" width="70" height="50"
-                style="position:absolute;z-index: -999; display:none"></canvas>
-        </div>
-
-        <div class="d-flex margin_chartline_ekonomi_mobile">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
-                <canvas id="bar-chart-grouped-kbli" width="90" height="80"
-                    style="display: none;position:absolute;"></canvas>
             </div>
-        </div>
+
+            {{-- <button class="btn btn-sm text-primary ml-0" id="btn-print">
+                <i class="fa fa-print"></i></button> --}}
+
+            <div class="d-flex margin_chart_ekonomi_mobile">
+                <canvas id="pie-chart-kbli" width="70" height="50"
+                    style="position:absolute;z-index: -999; display:none"></canvas>
+            </div>
+
+            <div class="d-flex margin_chartline_ekonomi_mobile">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                    <canvas id="bar-chart-grouped-kbli" width="90" height="80"
+                        style="display: none;position:absolute;"></canvas>
+                </div>
+            </div>
+
+
+
+
+
+
 
 
         </div>
@@ -571,7 +576,7 @@
 
                                             <div class="layout_checkbox_mobile">
 
-                                                <div class="form-check zoning_fill mt-1">
+                                                <div class="form-check zoning_fill">
                                                     <input type="checkbox" class="form-check-input" checked id="zoning_fill">
                                                     <label class="form-check-label  text_all" for="zoning_fill">Peta
                                                         Zonasi</label>
@@ -579,120 +584,30 @@
 
                                                 <div class="form-check wilayahindex_fill mt-1">
                                                     <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
-                                                    <label class="form-check-label  text_all" for="wilayahindex_fill">Total
-                                                        Omzet Mikro Kecil</label>
+                                                    <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
+                                                        Kecil</label>
                                                 </div>
 
-                                                <div class="form-check banjir_fill mt-1 mb-2">
+                                                <div class="form-check pipa_multilinestring mt-1">
+                                                    <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
+                                                    <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                                                </div>
+
+                                                <div class="form-check banjir_fill mt-1">
 
                                                     <input type="checkbox" class="form-check-input" id="banjir_fill">
                                                     <label class="form-check-label text_all" for="banjir_fill">Terdampak
-                                                        Banjir <span class="font_range_input"
-                                                            id="tahunBanjir">2015</span></label>
-                                                    <input type="range" style="height: 6px;"
-                                                        class="form-control-range mt-3 w-75" id="ControlTahunBanjir"
-                                                        min="2015" max="2020" step="1" value="2015">
-                                                </div>
-
-
-                                                {{-- <div class="form-check">
-
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox1">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox1">Peta Zonasi</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="form-check mb-2">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li
-                                                            class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                                            <input type="checkbox" class="form-check-input"
-                                                                id="checkbox2">
-                                                            <label
-                                                                class="form-check-label checkbox_left text_checkbox text_all"
-                                                                for="checkbox2">Total Omzet Mikro Kecil</label>
-                                                        </li>
-                                                    </ul>
-                                                </div> --}}
-
+                                                        Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
+                                                    <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
+                                                        id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                                                                            </div>
 
 
                                                 {{-- <hr> --}}
                                             </div>
 
 
-                                            {{-- <div class="kotak_sidebar">
 
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    post_add
-                                                </span>
-                                                <div> <a href="#" title="Buat File" class="text_all_kotak_sidebarr">Buat
-                                                        File</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    contact_support
-                                                </span>
-                                                <div>
-                                                    <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">Konsultasi</a>
-                                                </div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    chat
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">Pesan AJIB</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    miscellaneous_services
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">Jakevo</a></div>
-
-                                                <span style="color: #007bff;"
-                                                    class="material-icons iconn_kotak_sidebar">
-                                                    mail
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">OSS</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    corporate_fare
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">SIMBG</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    drafts
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">PraPermohonan(IRK/KKPR)</a>
-                                                </div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    connect_without_contact
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">JakartaSatu</a></div>
-
-                                                <span class="material-icons iconn_kotak_sidebar">
-                                                    center_focus_weak
-                                                </span>
-                                                <div> <a href="#" title="Buat File"
-                                                        class="text_all_kotak_sidebarr">IRK</a></div>
-
-
-
-
-                                            </div> --}}
 
                                         </div>
                                     </span>
@@ -1021,14 +936,14 @@
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="hlm_fileshp" href="" role="tab"
                                     aria-controls="pills-fileshp" aria-selected="false"><i
                                         class="ri-shape-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">File SHP</label>
-                            </li>
+                            </li> --}}
 
                             <!-- Pending menu pin-->
 
@@ -1464,7 +1379,18 @@
                             </div> --}}
 
 
-                            <div class="d-flex ml-1 margin_cari_kodelbli_mobile">
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- <div class="d-flex ml-1 margin_cari_kodelbli_mobile">
                                 <div class="col-md-6 text_all">
                                     <label class="text_all_mobile">Kegiatan Ruang</label>
                                 </div>
@@ -1521,10 +1447,32 @@
 
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> --}}
 
 
                             <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                         </div>
@@ -1762,8 +1710,6 @@
 
     @if (isMobileDevice())
 
-
-
         <script>
 
                 document.getElementById("hlm_profil").onclick = function(e) {
@@ -1813,110 +1759,19 @@
                 }
 
 
+                var setLokasi = "{{ @route('setLokasi') }}"
+                var setKordinat = "{{ @route('setKordinat') }}"
+                var setZonasi = "{{ @route('setZonasi') }}"
+                var setEksisting = "{{ @route('setEksisting') }}"
+                var setZonasi = "{{ @route('setZonasi') }}"
+                var setKodekbli = "{{ @route('setKodekbli') }}"
 
+                var APP_URL = {!! json_encode(url('/')) !!}
 
         </script>
 
 
-
-
-
-
-        <script>
-            var setLokasi = "{{ @route('setLokasi') }}"
-            var setKordinat = "{{ @route('setKordinat') }}"
-            var setZonasi = "{{ @route('setZonasi') }}"
-            var setEksisting = "{{ @route('setEksisting') }}"
-            var setZonasi = "{{ @route('setZonasi') }}"
-            var setKodekbli = "{{ @route('setKodekbli') }}"
-
-
-
-
-            // document.getElementById("hlm_lokasi").onclick = function(e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('lokasi') }}";
-            //     document.getElementById("judul").innerHTML = "Profile";
-            //     document.getElementById('close').onclick = function() {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            // document.getElementById("hlm_ekonomi").onclick = function(e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('ekonomi') }}";
-            //     document.getElementById("judul").innerHTML = "Ekonomi";
-            //     document.getElementById('close').onclick = function() {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            // document.getElementById("hlm_zonasi").onclick = function (e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('zonasi') }}";
-            //     document.getElementById("judul").innerHTML = "Zonasi";
-            //     document.getElementById('close').onclick = function () {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            // document.getElementById("hlm_persil").onclick = function (e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('persil') }}";
-            //     document.getElementById("judul").innerHTML = "Persil";
-            //     document.getElementById('close').onclick = function () {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            // document.getElementById("hlm_poi").onclick = function(e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('poi') }}";
-            //     document.getElementById("judul").innerHTML = "Akses";
-            //     document.getElementById('close').onclick = function() {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            // document.getElementById("hlm_kblikeg").onclick = function(e) {
-            //     e.preventDefault();
-            //     document.getElementById("popup").style.display = "block";
-            //     document.getElementById('popupiframe').src = "{{ @route('kode_kbli') }}";
-            //     document.getElementById("judul").innerHTML = "Kode KBLI";
-            //     document.getElementById('close').onclick = function() {
-            //         document.getElementById("popup").style.display = "none";
-            //     };
-            //     return false;
-            // }
-
-            window.onkeydown = function(e) {
-                if (e.keyCode == 27) {
-                    document.getElementById("popup").style.display = "none";
-                    e.preventDefault();
-                    return;
-                }
-            }
-        </script>
-
-
-        <script>
-            var APP_URL = {!! json_encode(url('/')) !!}
-        </script>
-
-        <script src="{{ asset('assets/js/mobile.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/mobile2.js') }}"></script> --}}
-
-        {{-- <script src="{{ asset('assets/js/popup.js') }}"></script> --}}
+        <script src="{{ asset('assets/js/mobile2.js') }}"></script>
 
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
