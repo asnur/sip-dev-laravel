@@ -202,7 +202,8 @@ map.on("style.load", function () {
                 // console.log(kelurahan);
                 var kelurahanStorage = localStorage.getItem("kelurahan");
                 if (kelurahanStorage !== kelurahan) {
-                    localStorage.setItem("kelurahan", kelurahan);
+                    $("#btn-titik").show();
+                    saveKelurahan(kelurahan);
                     addSourceLayer(kelurahan);
                 }
             },
