@@ -105,6 +105,42 @@
         </div>
     </div>
 
+    <div class="info-pin-location">
+        <div class="container p-4">
+            <button type="button" class="close" id="closePin" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Lokasi yang di Simpan</span>
+            <div class="form mt-4">
+                <div class="alert alert-danger alert-dismissible fade show" id="pesanGagal" style="font-size: 10pt"
+                    role="alert">
+                    <strong>Gagal!</strong> Anda Harus Mengisi Semua Form.
+                </div>
+                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasil" style="font-size: 10pt"
+                    role="alert">
+                    <strong>Berhasil!</strong> Data Berhasil di Simpan.
+                </div>
+                <form id="formPinLocation">
+                    <label style="font-size: 10pt">Koordinat</label>
+                    <input type="text" class="form-control" id="kordinatPin" style="font-size: 8pt"
+                        placeholder="Pilih Titik Lokasi" readonly>
+                    <label class="mt-2" style="font-size: 10pt">Judul</label>
+                    <input type="text" class="form-control" id="judulPin" style="font-size: 8pt"
+                        placeholder="Masukan Judul Tempat">
+                    <label class="mt-2" style="font-size: 10pt">Catatan</label>
+                    <textarea class="form-control" id="catatanPin" style="font-size: 8pt"
+                        placeholder="Masukan Catatan" rows="5"></textarea>
+                    <a id="pinndedLocation" class="btn btn-success mt-3 text-white"
+                        style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                        Kirim</a>
+                </form>
+            </div>
+            <ol class="list-item-info-location mt-5">
+
+            </ol>
+        </div>
+    </div>
+
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
 
@@ -1312,15 +1348,14 @@
                     </button>
                     <div class="dropdown-menu" id="frameChat"
                         style="background: none; width:300px; border:none; margin-top:-10px">
-                        {{-- <iframe src="{{ url('/') }}/konsul" name="myFrame" height="450" width="100%"
-                            style="border: none;border-radius:10px;"></iframe> --}}
-                        <!-- Dropdown menu links -->
                     </div>
-                    {{-- @else
-                        <a href="{{ url('/') }}/auth/redirect" class="ri-phone-line bg-white p-2 text-secondary"
-                            style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none; text-decoration:none">
-                        </a>
-                    @endif --}}
+                </div>
+                <div class="dropleft text-center mt-3">
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" onclick="pinLocation()" id="btnPin"
+                        class="ri-pushpin-line bg-white p-1 text-secondary"
+                        style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
+                    </button>
                 </div>
                 {{-- <button class="btn btn-sm mt-1 ">
                     <div class="container dropleft">

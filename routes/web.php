@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\pinLocationController;
 use App\Http\Controllers\RequireDataChatController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Http\Request;
@@ -23,9 +24,9 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function (Request $request) {
     $status = $request->session()->get('cek-login');
-    if ($status == 'login') {
-        echo "<script>window.close();</script>";
-    }
+    // if ($status == 'login') {
+    //     echo "<script>window.close();</script>";
+    // }
     return view('layout.main');
 });
 
@@ -66,6 +67,12 @@ Route::get('/saveKelurahan/{kelurahan}', [RequireDataChatController::class, 'sav
 
 Auth::routes();
 
+
+//Pin Location
+Route::get('/getIdUser', [pinLocationController::class, 'getIdUser']);
+Route::get('/getDataPin/{id_user}', [pinLocationController::class, 'getData']);
+Route::post('/saveDataPin/{id_user}', [pinLocationController::class, 'saveData']);
+Route::post('/deleteDataPin/{id_data}', [pinLocationController::class, 'deleteData']);
 
 //For Login Google
 Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
