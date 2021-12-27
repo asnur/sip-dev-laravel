@@ -933,7 +933,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     <ol style="margin-top:-15px">
       <li style="margin-left:-25px">Rencana jalan dengan lebar ≤ 12m, maka besar GSB adalah 0,5 (Setengah) kali lebar rencana jalan;</li>
       <li style="margin-left:-25px">Rencana jalan dengan lebar 12m – 26m, maka besar GSB adalah 8m;</li>
-      <li style="margin-left:-25px">Rencana jalan dengan lebar ≥ 26m, maka besar GSB adalah 10m;</li>
+      <li style="margin-left:-25px">Rencana jalan dengan lebar > 26m, maka besar GSB adalah 10m;</li>
       <li style="margin-left:-25px">Jalan eksisting tanpa rencana, maka besar GSB adalah 2m;dan/atau</li>
       <li style="margin-left:-25px">Ketentuan GSB bangunan dapat ditiadakan untuk Kawasan Cagar Budaya atau kawasan tertentu dengan menyediakan pedestrian dan penetapannya dilakukan oleh gubernur.</li>
     </ol>
