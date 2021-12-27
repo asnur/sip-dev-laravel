@@ -1185,13 +1185,13 @@
 
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
-                                    style="font-size: 13px;text-decoration:none"
+                                    style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-100"
                                         src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
-                                    style="font-size: 13px;text-decoration:none"
+                                    style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-100"
                                         src="{{ asset('assets/gambar/irk.png') }}">IRK</a>
                             </div>
@@ -1201,28 +1201,28 @@
                                     class="text-dark font-weight-bold"><img style="width: 85%"
                                         src="{{ asset('assets/gambar/prapermohonan.png') }}">PraPermohonan</a>
                             </div>
-                            <div class="col-sm-4 text-center d-flex align-items-center">
+                            <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
                                 <a href="https://oss.go.id" target="_blank"
-                                    style="font-size: 13px; text-decoration:none"
+                                    style="font-size: 12px; text-decoration:none"
                                     class="text-dark font-weight-bold"><img
                                         src="{{ asset('assets/gambar/OSS.png') }}" class="w-100">OSS</a>
                             </div>
-                            <div class="col-sm-4 text-center d-flex align-items-center">
+                            <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
-                                    style="font-size: 13px;text-decoration:none"
+                                    style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
                                         src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-100">Pesan
                                     Ajib</a>
                             </div>
-                            <div class="col-sm-4 text-center d-flex align-items-center">
+                            <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
                                 <a href="https://simbg.pu.go.id/" target="_blank"
-                                    style="font-size: 13px;text-decoration:none"
+                                    style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-100"
                                         src="{{ asset('assets/gambar/simbg.png') }}"><span>SIMBG</span></a>
                             </div>
-                            <div class="col-sm-4 text-center">
+                            <div class="col-sm-4 mt-2 text-center">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
-                                    style="font-size: 13px;text-decoration:none"
+                                    style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-100"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}"><span>JakartaSatu</span></a>
                             </div>
