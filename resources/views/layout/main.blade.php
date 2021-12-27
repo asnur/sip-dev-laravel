@@ -1187,32 +1187,32 @@
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-100"
-                                        src="{{ asset('assets/gambar/Icon Jakevo.png') }}"></a>
+                                        src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-100"
-                                        src="{{ asset('assets/gambar/Icon IRK.png') }}"></a>
+                                        src="{{ asset('assets/gambar/irk.png') }}">IRK</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
-                                    style="font-size: 13px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-100"
-                                        src="{{ asset('assets/gambar/Icon PraPermohonan.png') }}"></a>
+                                    style="font-size: 11px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img style="width: 85%"
+                                        src="{{ asset('assets/gambar/prapermohonan.png') }}">PraPermohonan</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://oss.go.id" target="_blank"
                                     style="font-size: 13px; text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/Icon OSS.png') }}" class="w-100"></a>
+                                        src="{{ asset('assets/gambar/OSS.png') }}" class="w-100">OSS</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 13px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/Icon Pesan Ajib.png') }}"
-                                        class="w-100"></a>
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-100">Pesan
+                                    Ajib</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://simbg.pu.go.id/" target="_blank"
