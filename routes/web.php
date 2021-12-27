@@ -24,9 +24,9 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function (Request $request) {
     $status = $request->session()->get('cek-login');
-    // if ($status == 'login') {
-    //     echo "<script>window.close();</script>";
-    // }
+    if ($status == 'login') {
+        echo "<script>window.close();</script>";
+    }
     return view('layout.main');
 });
 
