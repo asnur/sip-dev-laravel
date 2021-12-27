@@ -381,22 +381,22 @@
                         <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
                     </div>
 
-                    <div class="form-check ipal_dot mt-1">
+                    {{-- <div class="form-check ipal_dot mt-1">
                         <input type="checkbox" class="form-check-input" id="ipal_dot">
                         <label class="form-check-label  text_all" for="ipal_dot">Pembuangan Air Limbah</label>
-                    </div>
+                    </div> --}}
 
-                    <div class="form-check util_multilinestring mt-1">
+                    {{-- <div class="form-check util_multilinestring mt-1">
                         <input type="checkbox" class="form-check-input" id="util_multilinestring">
                         <label class="form-check-label  text_all" for="util_multilinestring">Jaringan Pipa
                             Utilitas</label>
-                    </div>
+                    </div> --}}
 
-                    <div class="form-check phb_multilinestring mt-1">
+                    {{-- <div class="form-check phb_multilinestring mt-1">
                         <input type="checkbox" class="form-check-input" id="phb_multilinestring">
                         <label class="form-check-label  text_all" for="phb_multilinestring">Jaringan Saluran
                             Penghubung</label>
-                    </div>
+                    </div> --}}
 
                     <div class="form-check banjir_fill mt-1">
 
@@ -1186,44 +1186,44 @@
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-100"
+                                    class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-100"
+                                    class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/irk.png') }}">IRK</a>
                             </div>
                             <div class="col-sm-4 text-center d-flex align-items-center">
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
                                     style="font-size: 11px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img style="width: 85%"
+                                    class="text-dark font-weight-bold"><img style="width: 65%"
                                         src="{{ asset('assets/gambar/prapermohonan.png') }}">PraPermohonan</a>
                             </div>
                             <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
                                 <a href="https://oss.go.id" target="_blank"
                                     style="font-size: 12px; text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/OSS.png') }}" class="w-100">OSS</a>
+                                        src="{{ asset('assets/gambar/OSS.png') }}" class="w-75">OSS</a>
                             </div>
                             <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-100">Pesan
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-75">Pesan
                                     Ajib</a>
                             </div>
                             <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
                                 <a href="https://simbg.pu.go.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-100"
+                                    class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/simbg.png') }}"><span>SIMBG</span></a>
                             </div>
                             <div class="col-sm-4 mt-2 text-center">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img class="w-100"
+                                    class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}"><span>JakartaSatu</span></a>
                             </div>
                         </div>
