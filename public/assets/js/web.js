@@ -191,18 +191,22 @@ map.on("style.load", function () {
         var lngs = coornya.lng.toString();
         lats = lats.slice(0, -7);
         lngs = lngs.slice(0, -7);
-        // lat = lats;
-        // long = lngs;
-        // $.ajax({
-        //     url: `${url}/wilayah/${lngs}/${lats}`,
-        //     method: "GET",
-        //     dataType: "json",
-        //     success: (e) => {
-        //         const kelurahan = e.features[0].properties.Kelurahan;
-        //         // console.log(kelurahan);
-        //         addSourceLayer(kelurahan);
-        //     },
-        // });
+        lat = lats;
+        long = lngs;
+        $.ajax({
+            url: `${url}/wilayah/${lngs}/${lats}`,
+            method: "GET",
+            dataType: "json",
+            success: (e) => {
+                const kelurahan = e.features[0].properties.Kelurahan;
+                // console.log(kelurahan);
+                var kelurahanStorage = localStorage.getItem("kelurahan");
+                if (kelurahanStorage !== kelurahan) {
+                    localStorage.setItem("kelurahan", kelurahan);
+                    addSourceLayer(kelurahan);
+                }
+            },
+        });
 
         $(".inf-kordinat").html(
             `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
