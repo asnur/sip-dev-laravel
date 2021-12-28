@@ -5,8 +5,12 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peta Perijinan dan Investasi DKI Jakarta</title>
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title>Peta Perizinan dan Investasi DKI Jakarta</title>
 
     <link rel="icon" href="{{ asset('assets/gambar/favicon.ico') }}">
 
@@ -76,11 +80,18 @@
 
             <div class="d-flex">
                 <div class="col-md-1">
-                    <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backprodil">
-                        <span class="material-icons">
+
+                    {{-- <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backprodil">
+                        <span class="material-icons size_icons">
                             arrow_back_ios
                         </span>
-                    </a>
+                    </a> --}}
+
+                    <span class="material-icons size_icons margin_new_menu_icon" id="btn_backprodil">
+                        arrow_back_ios
+                    </span>
+
+
                 </div>
 
                 <div class="col-md-9 margin_new_menu">Profil</div>
@@ -98,7 +109,7 @@
                     <label class="text_all_mobile_permenu">Koordinat</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-kordinat rata_text_mobile">-</p>
+                    <p class="inf-kordinat rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -107,7 +118,7 @@
                     <label class="text_all_mobile_permenu">Kelurahan</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-kelurahan rata_text_mobile">-</p>
+                    <p class="inf-kelurahan rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -116,7 +127,7 @@
                     <label class="text_all_mobile_permenu">Kecamatan</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-kecamatan rata_text_mobile">-</p>
+                    <p class="inf-kecamatan rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -126,7 +137,7 @@
                     <label class="text_all_mobile_permenu">Wilayah</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-kota rata_text_mobile">-</p>
+                    <p class="inf-kota rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -135,7 +146,7 @@
                     <label class="text_all_mobile_permenu">Luas</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-luasarea rata_text_mobile">-</p>
+                    <p class="inf-luasarea rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -145,7 +156,7 @@
                     <label class="text_all_mobile_permenu">Kepadatan</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-kepadatan rata_text_mobile">-</p>
+                    <p class="inf-kepadatan rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -154,7 +165,7 @@
                     <label class="text_all_mobile_permenu">Rasio Gini</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
-                    <p class="inf-rasio rata_text_mobile">-</p>
+                    <p class="inf-rasio rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -167,7 +178,7 @@
                     <label class="text_all_mobile_permenu">Kegiatan</label>
                 </div>
                 <div class="col-md-7 text_all_permenu">
-                    <p class="inf-eksisting rata_text_mobile">-</p>
+                    <p class="inf-eksisting rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -186,7 +197,7 @@
                     <label class="text_all_mobile_permenu">Tipe Hak</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="inf-tipehak rata_text_mobile">-</p>
+                    <p class="inf-tipehak rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -195,7 +206,7 @@
                     <label class="text_all_mobile_permenu">Luas</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="inf-luasbpn rata_text_mobile">-</p>
+                    <p class="inf-luasbpn rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -207,7 +218,7 @@
                     <label class="text_all_mobile_permenu">Zona</label>
                 </div>
                 <div class="col-md-7 text_all_permenu">
-                    <p class="rata_text_mobile">Pemerintahan Nasional</p>
+                    <p class="inf-zona rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -216,7 +227,7 @@
                     <label class="text_all_mobile_permenu">Sub Zona</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">P.1 - Pemerintahan Nasional</p>
+                    <p class="inf-subzona rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -225,7 +236,7 @@
                     <label class="text_all_mobile_permenu">Blok/Subblok</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">05/003</p>
+                    <p class="inf-blok rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -234,7 +245,7 @@
                     <label class="text_all_mobile_permenu">TPZ</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">PUSAT KEGIATAN PRIMER MEDAN MERDEKA</p>
+                    <p class="inf-tpz rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -254,7 +265,7 @@
                     <label class="text_all_mobile_permenu">KDH</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">30</p>
+                    <p class="inf-kdh rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -263,7 +274,7 @@
                     <label class="text_all_mobile_permenu">KLB</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">3,5</p>
+                    <p class="inf-klb rata_text_mobile break_all">-</p>
                 </div>
             </div>
 
@@ -272,9 +283,31 @@
                     <label class="text_all_mobile_permenu">KDB</label>
                 </div>
                 <div class="col-lg-7 text_all_permenu">
-                    <p class="rata_text_mobile">50</p>
+                    <p class="inf-kdb rata_text_mobile break_all">-</p>
                 </div>
             </div>
+
+
+
+            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Bangunan
+            </p>
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-12 text_all">
+                    <label class="inf-gsb">
+                        -
+                    </label>
+                </div>
+            </div>
+
+            {{-- <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-12 text_all">
+                    <label class="inf-k-tpz w-100">
+                        -
+                    </label>
+                </div>
+            </div> --}}
+
+
 
         </div>
 
@@ -291,7 +324,7 @@
             <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backeko">
-                        <span class="material-icons">
+                        <span class="material-icons size_icons">
                             arrow_back_ios
                         </span>
                     </a>
@@ -310,13 +343,13 @@
                     <label class="text_all_permenu_mobile_permenu">Pelaku IUMK</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu_permenu">
-                    <p><span class="inf-iumk rata_text_mobile">-</span> <span>orang</span></p>
+                    <p><span class="inf-iumk rata_text_mobile break_all">-</span> <span>orang</span></p>
                 </div>
             </div>
 
             <div class="d-flex space_text row_mid_text">
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu_permenu">
-                    <label class="text_all_permenu_mobile_permenu">Total Omset</label>
+                    <label class="text_all_permenu_mobile_permenu">Total Omzet</label>
                 </div>
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu_permenu">
                     <p class="rata_text_mobile">Rp.<span class="inf-omzet">-</span> <span>per bulan</span></p>
@@ -404,7 +437,7 @@
             <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backakses">
-                        <span class="material-icons">
+                        <span class="material-icons size_icons">
                             arrow_back_ios
                         </span>
                     </a>
@@ -419,7 +452,6 @@
         <div style="margin-top: 5.5rem;" class="container">
 
 
-            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Akses</p>
             <div class="form-group w-100 mt-3 mb-0 ml-3" id="radiusSlide">
                 <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
                 <label class="font-weight-bold font_range_input" id="OutputControlRange">0 Km</label>
@@ -446,7 +478,7 @@
             <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backkbli">
-                        <span class="material-icons">
+                        <span class="material-icons size_icons">
                             arrow_back_ios
                         </span>
                     </a>
@@ -564,7 +596,7 @@
                                         <button class="btn btn-lg tombol_search border-0 borderdropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-bars"></i>
+                                            <i class="fa fa-bars fa-lg"></i>
                                         </button>
 
                                         <!-- silent dropdown -->
@@ -582,11 +614,11 @@
                                                         Zonasi</label>
                                                 </div>
 
-                                                <div class="form-check wilayahindex_fill mt-1">
+                                                {{-- <div class="form-check wilayahindex_fill mt-1">
                                                     <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
                                                     <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
                                                         Kecil</label>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="form-check pipa_multilinestring mt-1">
                                                     <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
@@ -617,9 +649,37 @@
                                     <input type="search" class="input tombol_search" id="cari_wilayah_mobile"
                                         placeholder="Cari kelurahan disini...">
 
-                                    <span class="btn-search">
-                                        <i class="ri-user-fill"></i>
-                                    </span>
+                                        @if (!\Auth::check())
+                                            <a href="{{ route('login-google') }}">
+                                            <span class="btn-search">
+                                                <i class="ri-user-fill"></i>
+                                            </span>
+                                    </a>
+                                    @else
+                                    <div class="new_login">
+                                        <div class="dropdown">
+
+                                            <img src="/profile/{{ Auth::user()->id }}.jpg"
+                                                style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+                                                <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
+                                                style="min-width: 73px; position: absolute; margin-left:-30px;">
+                                                <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();" style="font-size: 12px"><i
+                                                        class="fa fa-sign-out"></i> Logout</a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    @endif
 
                                     <div class="wm-search__dropdown">
                                         <ul class="wm-search__dropdown" role="listbox"></ul>
@@ -844,7 +904,7 @@
                             <div class="col-md-1">
                                 <a type="button" class="badge badge-primary margin_new_menu_icon" id="close"
                                     data-dismiss="modal" aria-hidden="true">
-                                    <span class="material-icons">
+                                    <span class="material-icons size_icons">
                                         arrow_back_ios
                                     </span>
                                 </a>
@@ -936,12 +996,12 @@
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
                                 href="#" target="_blank"><i class="ri-shape-line"></i></a>
                             <br>
                             <label class="size_menu size_menu_mobile">File SHP</label>
-                            </li>
+                            </li> --}}
 
                             <!-- Pending menu pin-->
 
@@ -1059,7 +1119,7 @@
 
                             <div class="d-flex space_judul row_mid_judul">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Pelaku Usaha</label>
+                                    <label class="text_all_mobile">Pemilik IUMK</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <p><span class="inf-iumk">-</span> <span>orang</span></p>
@@ -1068,7 +1128,7 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Total Omset</label>
+                                    <label class="text_all_mobile">Total Omzet</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <p><span class="inf-omzet">-</span> <span>per bulan</span></p>
@@ -1520,7 +1580,7 @@
             </div>
         </button>
 
-        <button class="btn btn-sm float-right">
+        {{-- <button class="btn btn-sm float-right">
             <div class="container">
                 <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
                     <span class="material-icons text-white">
@@ -1532,71 +1592,57 @@
 
                         <div class="grid_menu_apps">
 
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
-                                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                            src="{{ asset('assets/gambar/mobile/OSSnew.png') }}" class="w-75"></a>
-                                    <h5 class="font_menu_apps text-center font-weight-bold">
-                                        OSS
-                                    </h5>
+                            <div class="col-sm-4 kiri_konten_menu   text-center ">
+                               <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-100"
+                                        src="{{ asset('assets/gambar/jakevo.png') }}">Jakevo</a>
+                            </div>
+
+                            <div class="col-sm-4 kiri_konten_menu  text-center ">
+                                <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-100"
+                                        src="{{ asset('assets/gambar/mobile/new/irk.png') }}">IRK</a>
+                            </div>
+
+                            <div class="col-sm-4 kiri_konten_menu  text-center ">
+                                <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
+                                    style="font-size: 11px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-100"
+                                        src="{{ asset('assets/gambar/mobile/new/prapermohonan.png') }}">PraPermohonan</a>
+                            </div>
+
+                                <div class="col-sm-4 kiri_konten_menu  text-center ">
+                                    <a href="https://oss.go.id" target="_blank"
+                                    style="font-size: 12px; text-decoration:none"
+                                    class="text-dark font-weight-bold"><img
+                                        src="{{ asset('assets/gambar/mobile/new/OSS.png') }}" class="w-100">OSS</a>
                                 </div>
 
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
-                                        class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                            src="{{ asset('assets/gambar/mobile/pesan_ajib.png') }}"
-                                            class="w-75"></a>
-                                    <h5 class="font_menu_apps text-center font-weight-bold">Pesan
-                                        AJIB</h5>
-                                </div>
-
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                    class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                        src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                                    <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                                </div>
-
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://oss.go.id" target="_blank" style="text-decoration:none;"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/simbg.png') }}" class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">
-                                SIMBG
-                            </h5>
-                                </div>
-
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakarta1_logo.png') }}"
-                                    class="w-75"></a>
-                            <h5 class="font_menu_apps text-center font-weight-bold">JakartaSatu</h5>
-                                </div>
-
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                    class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                        src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                                </div>
-
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                    class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                        src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
-                                </div>
-
-                                <div class="col-sm-4 kiri_konten_menu">
-                                    <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none"
-                                class="text-dark font-weight-bold img_logo_menu_apps"><img
-                                    src="{{ asset('assets/gambar/mobile/jakevo.png') }}" class="w-75"></a>
-                                <h5 class="font_menu_apps text-center font-weight-bold">Jakevo</h5>
+                                <div class="col-sm-4 kiri_konten_menu  text-center ">
+                                    <a href="https://dpmptsp-jkt.com" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img
+                                        src="{{ asset('assets/gambar/mobile/new/pesanajib.png') }}" class="w-100">Pesan
+                                    Ajib</a>
                                 </div>
 
 
 
+                                <div class="col-sm-4 kiri_konten_menu  text-center ">
+                                    <a href="https://simbg.pu.go.id/" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-100"
+                                        src="{{ asset('assets/gambar/mobile/new/simbg.png') }}"><span>SIMBG</span></a>
+                                </div>
+
+                                <div class="col-sm-4 kiri_konten_menu  text-center ">
+                                    <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img class="w-100"
+                                        src="{{ asset('assets/gambar/mobile/new/jakarta1_logo.png') }}"><span>JakartaSatu</span></a>
+                                </div>
 
 
                         </div>
@@ -1605,7 +1651,7 @@
 
                 </div>
             </div>
-        </button>
+        </button> --}}
 
 
 
@@ -1624,7 +1670,7 @@
 
             </div>
 
-            <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+            {{-- <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <div class="container">
                     <div class="row">
@@ -1632,7 +1678,7 @@
                             style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
                     </div>
                 </div>
-            </button>
+            </button> --}}
 
         </div>
 

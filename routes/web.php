@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\KBLIPusdatin;
-
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +70,11 @@ Route::post('/setKodekbli', function (Request $request) {
     $data = $request->input('kode_kbli');
     return $request->session()->put('kode_kbli', $data);
 })->name('setKodekbli');
+
+// login dengan google
+Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleProviderCallback']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -24,6 +24,25 @@
         height: 4rem;
     } */
 
+    .new_login {
+        position: absolute;
+        top: 8px;
+        right: -15px;
+        width: 60px;
+        height: 100%;
+        /* background: #007bff; */
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .break_all {
+        word-break: break-all;
+    }
+
+    .size_icons {
+        font-size: 21px;
+    }
+
     #profil {
         display: none;
         position: fixed;
@@ -72,9 +91,11 @@
     .grid_menu_apps {
         width: 100%;
         margin: 0 auto;
+        padding: 20px;
         display: grid;
         /* grid-gap: 1rem; */
         grid-template-columns: 33% 33% 33%;
+
 
         /* width: 100%;
         display: grid;
@@ -289,8 +310,8 @@
 
     .margin_new_menu {
         margin-left: -25%;
-        font-size: 18px;
-        padding-top: 2%;
+        font-size: 20px;
+        padding-top: 1.2%;
     }
 
     .margin_new_menu_icon {
@@ -321,7 +342,7 @@
     .tempat_search .search_box {
         position: relative;
         /* width: 350px; */
-        height: 40px !important;
+        height: 45px !important;
     }
 
     .tempat_search .search_box .input {
@@ -356,9 +377,9 @@
     }
 
     .tempat_search .search_box .btn-search {
-        width: 30px;
-        height: 30px;
-        top: 7px;
+        width: 36px;
+        height: 36px;
+        top: 8px;
         right: 12px;
         border-radius: 3px;
         color: #fff;
@@ -381,6 +402,7 @@
         justify-content: left;
         position: absolute;
         z-index: 99;
+        padding-top: 2px;
     }
 
     /* .marginModal{
@@ -633,7 +655,7 @@
         background: #fff;
         max-height: 200px;
         overflow: auto;
-        top: 37px !important;
+        top: 55px !important;
         left: 1px;
     }
 
@@ -779,7 +801,7 @@
         color: #007bff;
     }
 
-    .margin_new_menu {
+    /* .margin_new_menu {
         margin-left: -30%;
         font-size: 18px;
         padding-top: 2%;
@@ -787,7 +809,7 @@
 
     .margin_new_menu_icon {
         padding-top: 4%;
-    }
+    } */
 
     .form-check-input {
         width: 17px;

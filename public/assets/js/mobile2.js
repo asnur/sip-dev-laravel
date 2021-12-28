@@ -88,8 +88,8 @@ map.on("style.load", function () {
         const coornya = e.lngLat;
         var lats = coornya.lat.toString();
         var lngs = coornya.lng.toString();
-        lats = lats.slice(0, -7);
-        lngs = lngs.slice(0, -7);
+        lats = lats.slice(0, -9);
+        lngs = lngs.slice(0, -8);
 
         $(".inf-kordinat").html(
             `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
