@@ -32,9 +32,9 @@ class pinLocationController extends Controller
         return $id;
     }
 
-    public function deleteData($id)
+    public function deleteData(Request $request)
     {
-        $data = PinLocation::find($id);
+        $data = PinLocation::find($request->input('id_data'));
 
         $data->delete();
     }
