@@ -110,7 +110,7 @@
             <button type="button" class="close" id="closePin" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span style="font-size: 13pt" class="title-info font-weight-bold">Lokasi yang di Simpan</span>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Simpan Lokasi</span>
             <div class="form mt-4">
                 <div class="alert alert-danger alert-dismissible fade show" id="pesanGagal" style="font-size: 10pt"
                     role="alert">
@@ -119,6 +119,10 @@
                 <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasil" style="font-size: 10pt"
                     role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Simpan.
+                </div>
+                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilHapus"
+                    style="font-size: 10pt" role="alert">
+                    <strong>Berhasil!</strong> Data Berhasil di Hapus.
                 </div>
                 <form id="formPinLocation">
                     <label style="font-size: 10pt">Koordinat</label>
@@ -132,12 +136,16 @@
                         placeholder="Masukan Catatan" rows="5"></textarea>
                     <a id="pinndedLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
-                        Kirim</a>
+                        Simpan</a>
                 </form>
             </div>
-            <ol class="list-item-info-location mt-5">
 
-            </ol>
+            <div class="mt-5">
+                <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
+                <ol class="list-item-info-location mt-2">
+
+                </ol>
+            </div>
         </div>
     </div>
 

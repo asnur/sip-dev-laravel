@@ -171,7 +171,9 @@ var dsc_tpz = `
     </ol>
     `;
 
-$("#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil").hide();
+$(
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus"
+).hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
@@ -321,7 +323,7 @@ map.on("style.load", function () {
         lngs = lngs.slice(0, -7);
         lat = lats;
         long = lngs;
-        $("#kordinatPin").val(`${lats},${lngs}`);
+        $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $.ajax({
             url: `${url}/wilayah/${lngs}/${lats}`,
             method: "GET",
@@ -2675,7 +2677,10 @@ function deleteDataPin(id_data, id_user) {
         },
         success: (e) => {
             getDataPin(id_user);
-            // pinLocation();
+            $("#pesanBerhasilHapus").show();
+            setTimeout(function () {
+                $("#pesanBerhasilHapus").hide();
+            }, 3000);
         },
     });
 }
@@ -2863,12 +2868,7 @@ $("#pinndedLocation").click(function () {
     var judul = $("#judulPin").val();
     var catatan = $("#catatanPin").val();
 
-    if (coor == "" && judul == "" && catatan == "") {
-        $("#pesanGagal").show();
-        setTimeout(function () {
-            $("#pesanGagal").hide();
-        }, 3000);
-    } else {
+    if (coor !== "" && judul !== "" && catatan !== "") {
         $.ajax({
             url: `${APP_URL}/getIdUser`,
             method: "GET",
@@ -2898,6 +2898,11 @@ $("#pinndedLocation").click(function () {
                 });
             },
         });
+    } else {
+        $("#pesanGagal").show();
+        setTimeout(function () {
+            $("#pesanGagal").hide();
+        }, 3000);
     }
 });
 
