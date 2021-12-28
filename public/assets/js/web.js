@@ -1101,7 +1101,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     }
 
     $(".inf-zona").html(dt.Zona);
-    $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
+    $(".inf-subzona").html(dt["Sub Zona"]);
     // $(".inf-subzona").html(dt["Sub Zona"]);
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     // $(".inf-cdtpz").html(dt["CD TPZ"] == "null" ? "-" : dt["CD TPZ"]);
