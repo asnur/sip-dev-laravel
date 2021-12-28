@@ -131,6 +131,11 @@
                     <label class="mt-2" style="font-size: 10pt">Judul</label>
                     <input type="text" class="form-control" id="judulPin" style="font-size: 8pt"
                         placeholder="Masukan Judul Tempat">
+                    <label class="mt-2" style="font-size: 10pt">Foto</label>
+                    <div class="custom-file" style="font-size: 8pt">
+                        <input type="file" class="custom-file-input" id="gambarLokasi">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
                     <textarea class="form-control" id="catatanPin" style="font-size: 8pt"
                         placeholder="Masukan Catatan" rows="5"></textarea>
@@ -845,6 +850,33 @@
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-kdb">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">KB</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-kb">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">KTB</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-ktb">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">PSL</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-psl">-</p>
                                 </div>
                             </div>
 

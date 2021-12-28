@@ -740,7 +740,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl"
     ).html("-");
 
     getRadius(e);
@@ -1100,7 +1100,8 @@ map.on(clickEvent, "zoning_fill", function (e) {
     }
 
     $(".inf-zona").html(dt.Zona);
-    $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
+    // $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
+    $(".inf-subzona").html(dt["Sub Zona"]);
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     // $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
     $("#selectTPZ").html(option_tpz);
@@ -1108,6 +1109,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
+    $(".inf-ktb").html(dt.KLB == " " ? "-" : dt.KTB);
+    $(".inf-kb").html(dt.KLB == " " ? "-" : dt.KB);
+    $(".inf-psl").html(dt.KLB == " " ? "-" : dt.PSL);
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
 
