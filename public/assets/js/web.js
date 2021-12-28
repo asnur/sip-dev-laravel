@@ -740,7 +740,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl"
     ).html("-");
 
     getRadius(e);
@@ -1059,6 +1059,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
+    console.log(dt);
     var gsb = `
     <p>Ketentuan GSB (Garis Sempadan Bangunan) terhadap GSJ (Garis Sempadan Jalan) adalah sebagai berikut:</p>
     <ol style="margin-top:-15px">
@@ -1076,7 +1077,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var data_tpz = dt["CD TPZ"];
     var arr_tpz = data_tpz.split(",");
     saveTPZ = arr_tpz;
-    if (dt["CD TPZ"] == " ") {
+    if (dt["CD TPZ"] == "null") {
         value_tpz += `
         <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>
         <p>Tidak Ada Ketentuan</p>`;
@@ -1101,13 +1102,17 @@ map.on(clickEvent, "zoning_fill", function (e) {
 
     $(".inf-zona").html(dt.Zona);
     $(".inf-subzona").html(dt["Sub Zona"] + " - " + titleCase(dt.Hirarki));
+    // $(".inf-subzona").html(dt["Sub Zona"]);
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
-    // $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
+    // $(".inf-cdtpz").html(dt["CD TPZ"] == "null" ? "-" : dt["CD TPZ"]);
     $("#selectTPZ").html(option_tpz);
-    $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
-    $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
-    $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
-    $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
+    $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
+    $(".inf-kdb").html(dt.KDB == "null" ? "-" : dt.KDB);
+    $(".inf-kdh").html(dt.KDH == "null" ? "-" : dt.KDH);
+    $(".inf-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
+    $(".inf-ktb").html(dt.KLB == "null" ? "-" : dt.KTB);
+    $(".inf-kb").html(dt.KLB == "null" ? "-" : dt.KB);
+    $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
 
