@@ -142,6 +142,7 @@
 
             <div class="mt-5">
                 <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
+                <p align="center" id="messageNoData" class="mt-5">Tidak Ada Lokasi Yang di Simpan</p>
                 <ol class="list-item-info-location mt-2">
 
                 </ol>

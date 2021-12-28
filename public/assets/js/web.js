@@ -172,7 +172,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData"
 ).hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
@@ -2645,25 +2645,31 @@ function getDataPin(id_user) {
         method: "GET",
         success: function (e) {
             var html = "";
-            for (let index = 0; index < e.length; index++) {
-                html += `<li style="margin-left:-25px; font-size:10pt;">
-                <div class="row">
-                    <div class="col-sm-10">
-                        <a style="font-weight: bold;word-break: break-all;
-                        white-space: normal; cursor: pointer;" onclick="geocoder.query('${e[index].kordinat}');addSourceLayer('${e[index].kelurahan}');">${e[index].judul}</a><br><span style="width:70%;word-break: break-all;
-                        white-space: normal;">${e[index].catatan}</span>
+            if (e != "") {
+                $("#messageNoData").hide();
+                for (let index = 0; index < e.length; index++) {
+                    html += `<li style="margin-left:-25px; font-size:10pt;">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a style="font-weight: bold;word-break: break-all;
+                            white-space: normal; cursor: pointer;" onclick="geocoder.query('${e[index].kordinat}');addSourceLayer('${e[index].kelurahan}');">${e[index].judul}</a><br><span style="width:70%;word-break: break-all;
+                            white-space: normal;">${e[index].catatan}</span>
+                        </div>
+                        <div class="col-sm-2 d-flex align-items-center">
+                        <a onclick="deleteDataPin(
+                            ${e[index].id},
+                            ${id_user}
+                        )" style="cursor:pointer;color:red;position: absolute;right: 3rem;font-size: 18px;"><i class="fa fa-trash"></i></a>
+                        </div>
                     </div>
-                    <div class="col-sm-2 d-flex align-items-center">
-                    <a onclick="deleteDataPin(
-                        ${e[index].id},
-                        ${id_user}
-                    )" style="cursor:pointer;color:red;position: absolute;right: 3rem;font-size: 18px;"><i class="fa fa-trash"></i></a>
-                    </div>
-                </div>
-            </li>`;
+                </li>`;
+                }
+                $(".list-item-info-location").html("");
+                $(".list-item-info-location").html(html);
+            } else {
+                $(".list-item-info-location").html("");
+                $("#messageNoData").show();
             }
-            $(".list-item-info-location").html("");
-            $(".list-item-info-location").html(html);
         },
     });
 }
