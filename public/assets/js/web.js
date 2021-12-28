@@ -171,7 +171,9 @@ var dsc_tpz = `
     </ol>
     `;
 
-$("#btn-titik, #btn-print").hide();
+$(
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData"
+).hide();
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
@@ -321,6 +323,7 @@ map.on("style.load", function () {
         lngs = lngs.slice(0, -7);
         lat = lats;
         long = lngs;
+        $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $.ajax({
             url: `${url}/wilayah/${lngs}/${lats}`,
             method: "GET",
@@ -2636,6 +2639,84 @@ function cekLoginChat() {
     // console.log(status);
 }
 
+function getDataPin(id_user) {
+    $.ajax({
+        url: `${APP_URL}/getDataPin/${id_user}`,
+        method: "GET",
+        success: function (e) {
+            var html = "";
+            if (e != "") {
+                $("#messageNoData").hide();
+                for (let index = 0; index < e.length; index++) {
+                    html += `<li style="margin-left:-25px; font-size:10pt;">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a style="font-weight: bold;word-break: break-all;
+                            white-space: normal; cursor: pointer;" onclick="geocoder.query('${e[index].kordinat}');addSourceLayer('${e[index].kelurahan}');">${e[index].judul}</a><br><span style="width:70%;word-break: break-all;
+                            white-space: normal;">${e[index].catatan}</span>
+                        </div>
+                        <div class="col-sm-2 d-flex align-items-center">
+                        <a onclick="deleteDataPin(
+                            ${e[index].id},
+                            ${id_user}
+                        )" style="cursor:pointer;color:red;position: absolute;right: 3rem;font-size: 18px;"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                </li>`;
+                }
+                $(".list-item-info-location").html("");
+                $(".list-item-info-location").html(html);
+            } else {
+                $(".list-item-info-location").html("");
+                $("#messageNoData").show();
+            }
+        },
+    });
+}
+
+function deleteDataPin(id_data, id_user) {
+    $.ajax({
+        url: `${APP_URL}/deleteDataPin/${id_data}`,
+        method: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: (e) => {
+            getDataPin(id_user);
+            $("#pesanBerhasilHapus").show();
+            setTimeout(function () {
+                $("#pesanBerhasilHapus").hide();
+            }, 3000);
+        },
+    });
+}
+
+function pinLocation() {
+    $.ajax({
+        url: `${APP_URL}/cekLoginChat`,
+        method: "GET",
+        success: function (e) {
+            if (e == 1) {
+                $.ajax({
+                    url: `${APP_URL}/getIdUser`,
+                    method: "GET",
+                    success: (e) => {
+                        $(".info-pin-location").show();
+                        getDataPin(e);
+                    },
+                });
+            } else {
+                window.open(
+                    APP_URL + "/auth/redirect",
+                    "_blank",
+                    "location=yes,height=570,width=520,scrollbars=yes,status=yes"
+                );
+                pinLocation();
+            }
+        },
+    });
+}
+
 $(document).on("change", "#kegiatanKewenangan", function () {
     const dis = $(this);
     selSektor = dis.val();
@@ -2788,6 +2869,49 @@ $("#closeUsaha").on("click", function (e) {
     }
 });
 
+$("#pinndedLocation").click(function () {
+    var coor = $("#kordinatPin").val();
+    var judul = $("#judulPin").val();
+    var catatan = $("#catatanPin").val();
+
+    if (coor !== "" && judul !== "" && catatan !== "") {
+        $.ajax({
+            url: `${APP_URL}/getIdUser`,
+            method: "GET",
+            success: function (e) {
+                var id_user = e;
+                $.ajax({
+                    url: `${APP_URL}/saveDataPin/${id_user}`,
+                    method: "POST",
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr("content"),
+                        judul: judul,
+                        kordinat: coor,
+                        catatan: catatan,
+                        kelurahan: localStorage.getItem("kelurahan"),
+                        id_user: id_user,
+                    },
+                    success: function (e) {
+                        $("#kordinatPin").val("");
+                        $("#judulPin").val("");
+                        $("#catatanPin").val("");
+                        $("#pesanBerhasil").show();
+                        getDataPin(id_user);
+                        setTimeout(function () {
+                            $("#pesanBerhasil").hide();
+                        }, 3000);
+                    },
+                });
+            },
+        });
+    } else {
+        $("#pesanGagal").show();
+        setTimeout(function () {
+            $("#pesanGagal").hide();
+        }, 3000);
+    }
+});
+
 $("#closeBudaya").on("click", function (e) {
     $(".info-layer-budaya").hide();
     $("#show_side_bar").hide();
@@ -2822,6 +2946,10 @@ $("#closeInvestasi").on("click", function () {
         // $("#hide_side_bar").show();
         $("#sidebar").show();
     }
+});
+
+$("#closePin").on("click", function () {
+    $(".info-pin-location").hide();
 });
 
 $("#btn-print").on("click", function () {
