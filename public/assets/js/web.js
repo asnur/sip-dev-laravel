@@ -2676,10 +2676,10 @@ function getDataPin(id_user) {
 
 function deleteDataPin(id_data, id_user) {
     $.ajax({
-        url: `${APP_URL}/deleteDataPin/${id_data}`,
+        url: `${APP_URL}/deleteDataPin`,
         method: "POST",
         data: {
-            _token: $('meta[name="csrf-token"]').attr("content"),
+            id_data: id_data,
         },
         success: (e) => {
             getDataPin(id_user);
@@ -2881,10 +2881,9 @@ $("#pinndedLocation").click(function () {
             success: function (e) {
                 var id_user = e;
                 $.ajax({
-                    url: `${APP_URL}/saveDataPin/${id_user}`,
+                    url: `${APP_URL}/saveDataPin`,
                     method: "POST",
                     data: {
-                        _token: $('meta[name="csrf-token"]').attr("content"),
                         judul: judul,
                         kordinat: coor,
                         catatan: catatan,

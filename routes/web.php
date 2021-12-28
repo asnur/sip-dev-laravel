@@ -71,8 +71,8 @@ Auth::routes();
 //Pin Location
 Route::get('/getIdUser', [pinLocationController::class, 'getIdUser']);
 Route::get('/getDataPin/{id_user}', [pinLocationController::class, 'getData']);
-Route::post('/saveDataPin/{id_user}', [pinLocationController::class, 'saveData']);
-Route::post('/deleteDataPin/{id_data}', [pinLocationController::class, 'deleteData']);
+Route::post('/saveDataPin', [pinLocationController::class, 'saveData']);
+Route::post('/deleteDataPin', [pinLocationController::class, 'deleteData']);
 
 //For Login Google
 Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
