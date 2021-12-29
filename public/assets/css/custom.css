@@ -194,14 +194,21 @@
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .dalam::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.dalam::-webkit-scrollbar-thumb {
+    background: gray;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .dalam {
-    -ms-overflow-style: none;
+    /* -ms-overflow-style: none; */
     /* IE and Edge */
-    scrollbar-width: none;
+    scrollbar-width: thin;
     /* Firefox */
 }
 
