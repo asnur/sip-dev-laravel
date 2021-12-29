@@ -19,6 +19,12 @@ class PinLocation extends Model
         'judul',
         'catatan',
         'kelurahan',
+        'tipe',
         'user_id'
     ];
+
+    public function image()
+    {
+        return $this->hasMany(imageFavorite::class, 'id_lokasi', 'id');
+    }
 }

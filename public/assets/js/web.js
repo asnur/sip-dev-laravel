@@ -173,7 +173,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData, #profile"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto"
 ).hide();
 
 $.ajax({
@@ -2661,21 +2661,24 @@ function getDataPin(id_user) {
             if (e != "") {
                 $("#messageNoData").hide();
                 for (let index = 0; index < e.length; index++) {
-                    html += `<li style="margin-left:-25px; font-size:10pt;">
+                    html += `<div style="font-size:10pt;">
                     <div class="row">
-                        <div class="col-sm-10">
+                        <div class="col-sm-3 text-center">
+                            <img src="/favorit/${e[index].image[0].name}" class="w-100" style="border-radius: 10px; height:40px">
+                        </div>
+                        <div class="col-sm-6">
                             <a style="font-weight: bold;word-break: break-all;
-                            white-space: normal; cursor: pointer;" onclick="geocoder.query('${e[index].kordinat}');addSourceLayer('${e[index].kelurahan}');">${e[index].judul}</a><br><span style="width:70%;word-break: break-all;
+                            white-space: normal; cursor: pointer;" onclick="geocoder.query('${e[index].kordinat}');addSourceLayer('${e[index].kelurahan}');">${e[index].judul} (${e[index].tipe})</a><br><span style="width:70%;word-break: break-all;
                             white-space: normal;">${e[index].catatan}</span>
                         </div>
-                        <div class="col-sm-2 d-flex align-items-center">
+                        <div class="col-sm-3 d-flex align-items-center">
                         <a onclick="deleteDataPin(
                             ${e[index].id},
                             ${id_user}
                         )" style="cursor:pointer;color:red;position: absolute;right: 3rem;font-size: 18px;"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
-                </li>`;
+                </div>`;
                 }
                 $(".list-item-info-location").html("");
                 $(".list-item-info-location").html(html);
@@ -2934,31 +2937,62 @@ $("#closeUsaha").on("click", function (e) {
     }
 });
 
-$("#pinndedLocation").click(function () {
+function preview_image() {
+    var gambarLokasi = $("#gambarLokasi").get(0).files.length;
+    $("#previewFoto").html("");
+    if (gambarLokasi > 3) {
+        $("#pesanFoto").show();
+        setTimeout(function () {
+            $("#pesanFoto").hide();
+        }, 3000);
+    } else {
+        for (var i = 0; i < gambarLokasi; i++) {
+            $("#previewFoto").append(`
+            <div class="col-md-4">
+                <img src="${URL.createObjectURL(
+                    event.target.files[i]
+                )}" class="w-100">
+            </div>
+            `);
+        }
+    }
+}
+
+$("#formPinLocation").on("submit", function (e) {
+    e.preventDefault();
     var coor = $("#kordinatPin").val();
     var judul = $("#judulPin").val();
     var catatan = $("#catatanPin").val();
+    var gambarLokasi = $("#gambarLokasi").get(0).files;
+    var formData = new FormData(this);
 
-    if (coor !== "" && judul !== "" && catatan !== "") {
+    if (
+        coor !== "" &&
+        judul !== "" &&
+        catatan !== "" &&
+        gambarLokasi.length <= 3
+    ) {
         $.ajax({
             url: `${APP_URL}/getIdUser`,
             method: "GET",
             success: function (e) {
                 var id_user = e;
+                formData.append("id_user", id_user);
+                formData.append("kelurahan", localStorage.getItem("kelurahan"));
+                // console.log(formData.get("foto"));
                 $.ajax({
                     url: `${APP_URL}/saveDataPin`,
                     method: "POST",
-                    data: {
-                        judul: judul,
-                        kordinat: coor,
-                        catatan: catatan,
-                        kelurahan: localStorage.getItem("kelurahan"),
-                        id_user: id_user,
-                    },
+                    contentType: false,
+                    processData: false,
+                    data: formData,
                     success: function (e) {
+                        console.log(e);
                         $("#kordinatPin").val("");
                         $("#judulPin").val("");
                         $("#catatanPin").val("");
+                        $("#gambarLokasi").val("");
+                        $("#previewFoto").html("");
                         $("#pesanBerhasil").show();
                         getDataPin(id_user);
                         setTimeout(function () {

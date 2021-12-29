@@ -117,6 +117,10 @@
                     role="alert">
                     <strong>Gagal!</strong> Anda Harus Mengisi Semua Form.
                 </div>
+                <div class="alert alert-danger alert-dismissible fade show" id="pesanFoto" style="font-size: 10pt"
+                    role="alert">
+                    <strong>Gagal!</strong> Maksimal 3 Foto.
+                </div>
                 <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasil" style="font-size: 10pt"
                     role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Simpan.
@@ -125,33 +129,46 @@
                     style="font-size: 10pt" role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Hapus.
                 </div>
-                <form id="formPinLocation">
+                <form id="formPinLocation" enctype="multipart/form-data">
                     <label style="font-size: 10pt">Koordinat</label>
-                    <input type="text" class="form-control" id="kordinatPin" style="font-size: 8pt"
+                    <input type="text" name="kordinat" class="form-control" id="kordinatPin" style="font-size: 8pt"
                         placeholder="Pilih Titik Lokasi" readonly>
                     <label class="mt-2" style="font-size: 10pt">Judul</label>
-                    <input type="text" class="form-control" id="judulPin" style="font-size: 8pt"
+                    <input type="text" name="judul" class="form-control" id="judulPin" style="font-size: 8pt"
                         placeholder="Masukan Judul Tempat">
+                    <label class="mt-2" style="font-size: 10pt">Tipe</label>
+                    <select name="tipe" class="form-control" id="tipePin" style="font-size: 8pt">
+                        <option value="UMK">UMK</option>
+                        <option value="Cagar Budaya">Cagar Budaya</option>
+                        <option value="Sedang di Bangun">Sedang di Bangun</option>
+                        <option value="RTH">RTH</option>
+                        <option value="Pedestrian">Pedestrian</option>
+                        <option value="di Jual">di Jual</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
                     <label class="mt-2" style="font-size: 10pt">Foto</label>
                     <div class="custom-file" style="font-size: 8pt">
-                        <input type="file" class="custom-file-input" id="gambarLokasi">
+                        <input type="file" name="foto[]" onchange="preview_image();" accept="image/*"
+                            multiple="multiple" class="custom-file-input" id="gambarLokasi">
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
+                    <div class="row mt-3" id="previewFoto">
+                    </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
-                    <textarea class="form-control" id="catatanPin" style="font-size: 8pt"
+                    <textarea class="form-control" name="catatan" id="catatanPin" style="font-size: 8pt"
                         placeholder="Masukan Catatan" rows="5"></textarea>
-                    <a id="pinndedLocation" class="btn btn-success mt-3 text-white"
+                    <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
-                        Simpan</a>
+                        Simpan</button>
                 </form>
             </div>
 
             <div class="mt-5">
                 <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
                 <p align="center" id="messageNoData" class="mt-5">Tidak Ada Lokasi Yang di Simpan</p>
-                <ol class="list-item-info-location mt-2">
+                <div class="list-item-info-location mt-2">
 
-                </ol>
+                </div>
             </div>
         </div>
     </div>

@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\imageFavorite;
 use Illuminate\Http\Request;
 use App\Models\PinLocation;
 use Illuminate\Support\Facades\Auth;
+use File;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class pinLocationController extends Controller
 {
     public function getData($id_user, Request $request)
     {
-        $data = PinLocation::where('user_id', $id_user)->orderBy('id', 'DESC')->get();
+        $data = PinLocation::where('user_id', $id_user)->with('image')->orderBy('id', 'DESC')->get();
 
         return $data;
     }
@@ -22,8 +25,25 @@ class pinLocationController extends Controller
             'kordinat' => $request->input('kordinat'),
             'catatan' => $request->input('catatan'),
             'kelurahan' => $request->input('kelurahan'),
+            'tipe' => $request->input('tipe'),
             'user_id' => $request->input('id_user')
         ]);
+
+        $lastId = PinLocation::orderBy('id', 'DESC')->first();
+
+        if ($request->hasfile('foto')) {
+            foreach ($request->file('foto') as $key => $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path() . '/favorit/', $name);
+
+                imageFavorite::create([
+                    'name' => $name,
+                    'id_lokasi' => $lastId->id
+                ]);
+            }
+        }
+
+        // FacadesFile::insert($insert);
     }
 
     public function getIdUser()
