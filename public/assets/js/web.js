@@ -30,6 +30,7 @@ var name_file = Math.floor(Math.random() * 9999);
 var status;
 var saveTPZ;
 var count = 0;
+var countOpen = 0;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -172,8 +173,21 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData, #profile"
 ).hide();
+
+$.ajax({
+    url: `${APP_URL}/cekLoginChat`,
+    method: "GET",
+    success: function (e) {
+        if (e == 1) {
+            var img = localStorage.getItem("imgProfile");
+            $("#btnLogout").attr("src", img);
+            $("#profile").show();
+            $("#btnLogin").hide();
+        }
+    },
+});
 
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
 
@@ -2616,9 +2630,9 @@ function cekLoginChat() {
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
         success: function (e) {
-            status += e;
-            var id_admin = localStorage.getItem("id_kelurahan");
-            var kelurahan = localStorage.getItem("kelurahan");
+            // status += e;
+            // var id_admin = localStorage.getItem("id_kelurahan");
+            // var kelurahan = localStorage.getItem("kelurahan");
             if (e == 1) {
                 count += 1;
                 if ($("#boxKonsul").length == 0) {
@@ -2627,14 +2641,8 @@ function cekLoginChat() {
                     style="border: none;border-radius:10px;"></iframe>`);
                 }
             } else {
-                // $("#frameChat").html("");
-                count = 0;
-                window.open(
-                    APP_URL + "/konsul",
-                    "_blank",
-                    "location=yes,height=570,width=520,scrollbars=yes,status=yes"
-                );
-                $("#btnChat").trigger("click");
+                $(".abcRioButtonContentWrapper").trigger("click");
+                localStorage.setItem("opsi", "chat");
             }
         },
     });
@@ -2711,15 +2719,67 @@ function pinLocation() {
                     },
                 });
             } else {
-                window.open(
-                    APP_URL + "/auth/redirect",
-                    "_blank",
-                    "location=yes,height=570,width=520,scrollbars=yes,status=yes"
-                );
-                pinLocation();
+                $(".abcRioButtonContentWrapper").trigger("click");
+                localStorage.setItem("opsi", "pin");
             }
         },
     });
+}
+
+function loginClick() {
+    $(".abcRioButtonContentWrapper").trigger("click");
+}
+
+function logoutClick() {
+    $.ajax({
+        url: `${APP_URL}/logout`,
+        method: "POST",
+        success: function () {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(() => {
+                $("#profile").hide();
+                $("#btnLogin").show();
+            });
+        },
+    });
+}
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    $("#btnLogin").hide();
+    $("#profile").show();
+    $("#btnLogout").attr("src", profile.getImageUrl());
+    localStorage.setItem("imgProfile", profile.getImageUrl());
+    $.ajax({
+        url: `${APP_URL}/saveUser`,
+        method: "POST",
+        data: {
+            name: profile.getName(),
+            email: profile.getEmail(),
+            provider: "google",
+            provider_id: profile.getId(),
+        },
+        success: function () {
+            $.ajax({
+                url: `${APP_URL}/getIdUser`,
+                method: "GET",
+                success: (e) => {
+                    let opsi = localStorage.getItem("opsi");
+                    if (opsi == "chat") {
+                        $("#btnChat").click();
+                    } else if (opsi == "pin") {
+                        $(".info-pin-location").show();
+                        getDataPin(e);
+                    }
+                },
+            });
+        },
+    });
+    // $("#name").text(profile.getName());
+    // $("#email").text(profile.getEmail());
+    // $("#image").attr('src', profile.getImageUrl());
+    // $(".data").css("display", "block");
+    // $(".g-signin2").css("display", "none");
 }
 
 $(document).on("change", "#kegiatanKewenangan", function () {

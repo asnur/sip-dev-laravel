@@ -14,6 +14,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+    <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
 
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}">
@@ -46,7 +47,7 @@
 <body>
 
 
-
+    <div class="g-signin2" data-onsuccess="onSignIn" style="position:absolute"></div>
     <!-- hide -->
     <button class="btn btn_hide_side_bar for_web" type="button" id="hide_side_bar">
         <i class="btn_icon_hide ri-arrow-left-s-fill fa-2x"></i>
@@ -1310,26 +1311,24 @@
             <button class="btn btn-sm">
                 <div class="container">
                     <div class="row">
-                        @if (!\Auth::check())
-                            <a href="{{ route('login-google') }}" class="ri-user-fill bg-white p-1 text-secondary"
-                                style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
-                        @else
-                            <div class="dropdown">
-                                <img src="/profile/{{ Auth::user()->id }}.jpg"
-                                    style="border-radius: 50%; width:30px;  height:30px;" id="btnLogout"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
-                                    style="min-width: 73px;">
-                                    <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();" style="font-size: 12px"><i
-                                            class="fa fa-sign-out"></i> Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                        {{-- @if (!\Auth::check()) --}}
+                        <a onclick="loginClick()" id="btnLogin" class="ri-user-fill bg-white p-1 text-secondary"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></a>
+                        {{-- @else --}}
+                        <div class="dropdown" id="profile">
+                            <img style="border-radius: 50%; width:30px;  height:30px;" id="btnLogout"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
+                                style="min-width: 73px;">
+                                <a class="dropdown-item p-0 text-center" href="#" onclick="logoutClick()"
+                                    style="font-size: 12px"><i class="fa fa-sign-out"></i> Logout</a>
+                                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form> --}}
                             </div>
-                        @endif
+                        </div>
+                        {{-- @endif --}}
                     </div>
                 </div>
             </button>
@@ -1475,6 +1474,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     {{-- @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else --}}
