@@ -15,6 +15,5 @@ class VerifyCsrfToken extends Middleware
         '/saveDataPin',
         '/deleteDataPin',
         '/saveUser',
-        '/logout'
     ];
 }

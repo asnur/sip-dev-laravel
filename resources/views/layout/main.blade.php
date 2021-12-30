@@ -566,6 +566,15 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="lokasi-tab" data-toggle="pill" href="#pills-ketentuan" role="tab"
+                                    aria-controls="pills-ketentuan" aria-selected="true"><i
+                                        class="fa fa-book"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile">Ketentuan</label>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="ekonomi-tab" data-toggle="pill" href="#pills-ekonomi" role="tab"
                                     aria-controls="pills-ekonomi" aria-selected="false"><i
@@ -797,41 +806,113 @@
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Zonasi</p>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Zona</label>
+                            <div>
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">Zona</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-zona">-</p>
+                                    </div>
                                 </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-zona">-</p>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">Sub Zona</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-subzona">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">Blok/Sub Blok</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-blok">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">TPZ</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-tpz"></p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KDH</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-kdh">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KLB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-klb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KDB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-kdb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-kb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KTB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-ktb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex margin_chart_ekonomi_mobile">
+                                    <canvas id="pie-chart-info" width="70" height="50"
+                                        style="position:absolute;z-index: -999; display:none"></canvas>
+                                </div>
+
+                                <div class="d-flex margin_chartline_ekonomi_mobile">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                                        <canvas id="bar-chart-grouped-info" width="90" height="80"
+                                            style="display: none;position:absolute;"></canvas>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Sub Zona</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-subzona">-</p>
-                                </div>
+                            <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Air Tanah</p>
+
+                            <div class="inf-air-tanah">
+
                             </div>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Blok/Sub Blok</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-blok">-</p>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">TPZ</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-tpz"></p>
-                                </div>
-                            </div>
+                    <div class="tab-pane" id="pills-ketentuan" role="tabpanel" aria-labelledby="ketentuan-tab">
+                        <div class="container">
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan</p>
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
@@ -846,51 +927,6 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KDH</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-kdh">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KLB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-klb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KDB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-kdb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-kb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KTB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-ktb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
                                     <label class="text_all_mobile">PSL</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
@@ -898,7 +934,18 @@
                                 </div>
                             </div>
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Bangunan
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-cdtpz">
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Ketentuan Bangunan
                             </p>
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
@@ -908,23 +955,17 @@
                                 </div>
                             </div>
 
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
+                            </p>
+                            <div class="text_all inf-khusus">
+                                -
+                            </div>
+
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
                                     <label class="text_all_mobile inf-k-tpz w-100">
                                         -
                                     </label>
-                                </div>
-                            </div>
-
-                            <div class="d-flex margin_chart_ekonomi_mobile">
-                                <canvas id="pie-chart-info" width="70" height="50"
-                                    style="position:absolute;z-index: -999; display:none"></canvas>
-                            </div>
-
-                            <div class="d-flex margin_chartline_ekonomi_mobile">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
-                                    <canvas id="bar-chart-grouped-info" width="90" height="80"
-                                        style="display: none;position:absolute;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -1337,7 +1378,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
                                 style="min-width: 73px;">
-                                <a class="dropdown-item p-0 text-center" href="#" onclick="logoutClick()"
+                                <a class="dropdown-item p-0 text-center" href="#" onclick="signOut()"
                                     style="font-size: 12px"><i class="fa fa-sign-out"></i> Logout</a>
                                 {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     class="d-none">

@@ -201,6 +201,7 @@ for (var i = 0; i < inputs.length; i++) {
 $(window).on("load", function () {
     localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
+    localStorage.removeItem("opsi");
 });
 
 $.ajax({
@@ -754,13 +755,14 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus"
     ).html("-");
 
     getRadius(e);
     getNJOP(e);
     getPersilBPN(e);
     getEksisting(e);
+    getAirTanah(e);
 
     const larea = dt["luas-area"] / 10000;
 
@@ -1073,7 +1075,6 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
-    console.log(dt);
     var gsb = `
     <p>Ketentuan GSB (Garis Sempadan Bangunan) terhadap GSJ (Garis Sempadan Jalan) adalah sebagai berikut:</p>
     <ol style="margin-top:-15px">
@@ -1113,6 +1114,8 @@ map.on(clickEvent, "zoning_fill", function (e) {
             `;
         }
     }
+
+    getKetentuanPSL(dt["Sub Zona"], dt.PSL);
 
     $(".inf-zona").html(dt.Zona);
     $(".inf-subzona").html(dt["Sub Zona"]);
@@ -1288,6 +1291,264 @@ function getEksisting(e) {
         },
     });
 }
+
+function getKetentuanPSL(subzona, psl) {
+    $.ajax({
+        url: `${url}/khusus/${subzona}/${psl}`,
+        method: "GET",
+        success: (e) => {
+            let data = JSON.parse(e);
+            let value_data = data.features;
+            let html = "";
+            let htmlKetentuan = "";
+            if (value_data !== null) {
+                for (let index = 0; index < value_data.length; index++) {
+                    html += `<option value="${index}">${value_data[index].properties.Kegiatan}</option>`;
+                }
+                htmlKetentuan += `
+            <p class="card-title mb-4 text-center font-weight-bold judul_utama" style="margin-top:-12px">${value_data[0].properties.Kegiatan}</p>
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Luas Lahan</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["Luas Lahan"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Lebar Muka</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["Lebar Muka"]}</p>
+                </div>
+            </div>
+            
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Rencana</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["Jarak Rencana"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Eksisting</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["Jarak Eksisting"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Samping</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["Jarak Samping"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Belakang</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["Jarak Belakang"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KDB</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["KDB"]}</p>
+                </div>
+            </div>
+            
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KTB</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["KTB"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KLB</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[0].properties["KLB"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-12 text_all">
+                    <p>${value_data[0].properties["Keterangan"]}</p>
+                </div>
+            </div>
+            `;
+            } else {
+                htmlKetentuan += `<p>Tidak Ketentuan Khusus</p>`;
+                html += "<option>Tidak Ada Kegiatan</option>";
+            }
+
+            $(".inf-khusus").html("");
+            $(".inf-khusus").html(htmlKetentuan);
+
+            $("#selectPSL").html("");
+            $("#selectPSL").html(html);
+            $("#selectPSL").on("change", function () {
+                const id = $(this).val();
+                let htmlContentChange = `
+                <p class="card-title mb-4 text-center font-weight-bold judul_utama" style="margin-top:-12px">${value_data[id].properties.Kegiatan}</p>
+                <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Luas Lahan</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["Luas Lahan"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Lebar Muka</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["Lebar Muka"]}</p>
+                </div>
+            </div>
+            
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Rencana</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["Jarak Rencana"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Eksisting</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["Jarak Eksisting"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Samping</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["Jarak Samping"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Jarak Belakang</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["Jarak Belakang"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KDB</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["KDB"]}</p>
+                </div>
+            </div>
+            
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KTB</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["KTB"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KLB</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data[id].properties["KLB"]}</p>
+                </div>
+            </div>
+
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-12 text_all">
+                    <p>${value_data[id].properties["Keterangan"]}</p>
+                </div>
+            </div>
+                `;
+                $(".inf-khusus").html("");
+                $(".inf-khusus").html(htmlContentChange);
+            });
+        },
+    });
+}
+
+function getAirTanah(e) {
+    $.ajax({
+        url: `${url}/air/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        success: (e) => {
+            const data = JSON.parse(e);
+            let value_data = data.features;
+            let html = "";
+            for (let index = 0; index < value_data.length; index++) {
+                html += `
+                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Kedalaman : ${value_data[index].properties.Kedalaman}
+                </p>
+                <div class="d-flex space_text row_mid_text">
+                    <div class="col-lg-5 text_all">
+                        <label class="text_all_mobile">Air Tanah</label>
+                    </div>
+                    <div class="col-lg-7 text_all">
+                        <p>${value_data[index].properties.Penggunaan}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex space_text row_mid_text">
+                    <div class="col-lg-5 text_all">
+                        <label class="text_all_mobile">Keterangan</label>
+                    </div>
+                    <div class="col-lg-7 text_all">
+                        <p>${value_data[index].properties.Keterangan}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex space_text row_mid_text">
+                    <div class="col-lg-5 text_all">
+                        <label class="text_all_mobile">Penggunaan</label>
+                    </div>
+                    <div class="col-lg-7 text_all">
+                        <p>${value_data[index].properties.Penggunaan}</p>
+                    </div>
+                </div>
+                `;
+            }
+
+            $(".inf-air-tanah").html("");
+            $(".inf-air-tanah").html(html);
+        },
+    });
+}
+
 function getNJOP(e) {
     // $("#dtNJOPBot").html("");
     var htmlPopupLayer = "";
@@ -2733,17 +2994,19 @@ function loginClick() {
     $(".abcRioButtonContentWrapper").trigger("click");
 }
 
-function logoutClick() {
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+        $("#profile").hide();
+        $("#btnLogin").show();
+    });
     $.ajax({
         url: `${APP_URL}/logout`,
         method: "POST",
-        success: function () {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(() => {
-                $("#profile").hide();
-                $("#btnLogin").show();
-            });
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
+        success: function () {},
     });
 }
 
@@ -2778,11 +3041,11 @@ function onSignIn(googleUser) {
             });
         },
     });
-    // $("#name").text(profile.getName());
-    // $("#email").text(profile.getEmail());
-    // $("#image").attr('src', profile.getImageUrl());
-    // $(".data").css("display", "block");
-    // $(".g-signin2").css("display", "none");
+    $("#name").text(profile.getName());
+    $("#email").text(profile.getEmail());
+    $("#image").attr("src", profile.getImageUrl());
+    $(".data").css("display", "block");
+    $(".g-signin2").css("display", "none");
 }
 
 $(document).on("change", "#kegiatanKewenangan", function () {
