@@ -1519,6 +1519,15 @@ function getAirTanah(e) {
                         <label class="text_all_mobile">Air Tanah</label>
                     </div>
                     <div class="col-lg-7 text_all">
+                        <p>${value_data[index].properties["Air Tanah"]}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex space_text row_mid_text">
+                    <div class="col-lg-5 text_all">
+                        <label class="text_all_mobile">Penggunaan</label>
+                    </div>
+                    <div class="col-lg-7 text_all">
                         <p>${value_data[index].properties.Penggunaan}</p>
                     </div>
                 </div>
@@ -1529,15 +1538,6 @@ function getAirTanah(e) {
                     </div>
                     <div class="col-lg-7 text_all">
                         <p>${value_data[index].properties.Keterangan}</p>
-                    </div>
-                </div>
-
-                <div class="d-flex space_text row_mid_text">
-                    <div class="col-lg-5 text_all">
-                        <label class="text_all_mobile">Penggunaan</label>
-                    </div>
-                    <div class="col-lg-7 text_all">
-                        <p>${value_data[index].properties.Penggunaan}</p>
                     </div>
                 </div>
                 `;

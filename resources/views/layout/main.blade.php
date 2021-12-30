@@ -916,21 +916,12 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">CD TPZ</label>
+                                    <label class="text_all_mobile">Kode TPZ</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-cdtpz">
                                         <select class="w-100" id="selectTPZ"></select>
                                     </p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">PSL</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-psl">-</p>
                                 </div>
                             </div>
 
@@ -942,6 +933,15 @@
                                     <p class="inf-cdtpz">
                                         <select class="w-100" id="selectPSL"></select>
                                     </p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">PSL</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-psl">-</p>
                                 </div>
                             </div>
 
