@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Traits\HasRoles;
+
+
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class SocialiteController extends Controller
 {
+    use AuthenticatesUsers;
+    use HasRoles;
+
     public function redirectToProvider()
     {
         return Socialite::driver('google')->redirect();
@@ -17,8 +25,8 @@ class SocialiteController extends Controller
 
     public function handleProviderCallback(Request $request)
     {
-        $user = Socialite::driver('google')->user();
-        $authUser = $this->findOrCreateUser($user, 'google');
+        $users = Socialite::driver('google')->user();
+        $authUser = $this->findOrCreateUser($users, 'google');
         Auth::login($authUser, true);
 
         $arrContextOptions = array(
@@ -27,8 +35,9 @@ class SocialiteController extends Controller
                 "verify_peer_name" => false,
             ),
         );
-        $foto = file_get_contents($user->getAvatar(), false, stream_context_create($arrContextOptions));
+        $foto = file_get_contents($users->getAvatar(), false, stream_context_create($arrContextOptions));
         File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
+
 
         // dd($foto);
         // $request->session()->put('img_profile', $user->getAvatar());
@@ -38,7 +47,23 @@ class SocialiteController extends Controller
         // } else {
         //     return redirect('/');
         // }
-        return redirect('/');
+
+        // return redirect('/');
+
+        if ($authUser->hasRole('admin')) {
+            return redirect()->route('admin.page');
+        }
+
+        return redirect()->route('user.page');
+    }
+
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->hasRole('admin')) {
+            return redirect('admin.page');
+        }
+        return redirect()->route('home');
     }
 
     public function findOrCreateUser($user, $provider)
@@ -53,6 +78,7 @@ class SocialiteController extends Controller
                 'provider' => $provider,
                 'provider_id' => $user->id
             ]);
+            $data->assignRole('user');
 
             return $data;
         }

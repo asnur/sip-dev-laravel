@@ -3,6 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
+    <meta http-equiv="X-Frame-Options" content="deny">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
@@ -1801,14 +1802,6 @@
 
                 return false;
                 }
-
-
-                var setLokasi = "{{ @route('setLokasi') }}"
-                var setKordinat = "{{ @route('setKordinat') }}"
-                var setZonasi = "{{ @route('setZonasi') }}"
-                var setEksisting = "{{ @route('setEksisting') }}"
-                var setZonasi = "{{ @route('setZonasi') }}"
-                var setKodekbli = "{{ @route('setKodekbli') }}"
 
                 var APP_URL = {!! json_encode(url('/')) !!}
 

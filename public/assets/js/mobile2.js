@@ -91,8 +91,11 @@ map.on("style.load", function () {
         lats = lats.slice(0, -9);
         lngs = lngs.slice(0, -8);
 
+        var lats2 = coornya.lat.toString();
+        var lngs2 = coornya.lng.toString();
+
         $(".inf-kordinat").html(
-            `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
+            `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats2},${lngs2}" target="_blank">${lats}, ${lngs}</a>`
         );
 
         $("#btnSHP").attr(
