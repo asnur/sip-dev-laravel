@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePinLocationTable extends Migration
+class CreateImageFavoriteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreatePinLocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('pin_location', function (Blueprint $table) {
+        Schema::create('image_favorites', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('catatan');
-            $table->string('kordinat');
-            $table->string('kelurahan');
-            $table->string('tipe');
-            $table->string('user_id');
+            $table->string('id_lokasi');
+            $table->string('name');
             // $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreatePinLocationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pin_location');
+        Schema::dropIfExists('image_favorite');
     }
 }
