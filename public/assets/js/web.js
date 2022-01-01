@@ -755,7 +755,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus, .inf-p-air-tanah, .inf-sanitasi"
     ).html("-");
 
     getRadius(e);
@@ -763,6 +763,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     getPersilBPN(e);
     getEksisting(e);
     getAirTanah(e);
+    getPenuruanAirTanah(e);
+    getSanitasi(e);
 
     const larea = dt["luas-area"] / 10000;
 
@@ -1589,6 +1591,31 @@ function getNJOP(e) {
         },
     });
 }
+
+function getPenuruanAirTanah(e) {
+    $.ajax({
+        url: `${url}/turun/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        success: (dt) => {
+            const data = JSON.parse(dt);
+            $(".inf-p-air-tanah").html("");
+            $(".inf-p-air-tanah").html(data.features[0].properties.Elevation);
+        },
+    });
+}
+
+function getSanitasi(e) {
+    $.ajax({
+        url: `${url}/sanitasi/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        success: (dt) => {
+            const data = JSON.parse(dt);
+            $(".inf-sanitasi").html("");
+            $(".inf-sanitasi").html(data.features[0].properties.Sistem);
+        },
+    });
+}
+
 function getPersilBPN(e) {
     // $("#dtBpnBot").html("");
     var htmlPopupLayer = "";
