@@ -42,14 +42,19 @@ class pinLocationController extends Controller
                 ]);
             }
         }
-
-        // FacadesFile::insert($insert);
     }
 
     public function getIdUser()
     {
         $id =  Auth::user()->id;
         return $id;
+    }
+
+    public function detailData(Request $request)
+    {
+        $data = PinLocation::with('image')->find($request->input('id'));
+
+        return $data;
     }
 
     public function deleteData(Request $request)

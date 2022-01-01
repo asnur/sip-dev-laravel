@@ -86,6 +86,7 @@ Auth::routes();
 //Pin Location
 Route::get('/getDataPin/{id_user}', [pinLocationController::class, 'getData']);
 Route::post('/saveDataPin', [pinLocationController::class, 'saveData']);
+Route::post('/detailDataPin', [pinLocationController::class, 'detailData']);
 Route::post('/deleteDataPin', [pinLocationController::class, 'deleteData']);
 
 //For Login Google

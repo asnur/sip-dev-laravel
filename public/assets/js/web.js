@@ -2949,10 +2949,10 @@ function getDataPin(id_user) {
             if (e != "") {
                 $("#messageNoData").hide();
                 for (let index = 0; index < e.length; index++) {
-                    html += `<div style="font-size:10pt;">
+                    html += `<div class="mb-3" style="font-size:10pt;">
                     <div class="row">
                         <div class="col-sm-3 text-center">
-                            <img src="/favorit/${e[index].image[0].name}" class="w-100" style="border-radius: 10px; height:40px">
+                            <img src="/favorit/${e[index].image[0].name}" class="w-100" style="border-radius: 10px; height:40px; cursor: pointer" onclick="detailDataPin(${e[index].id})">
                         </div>
                         <div class="col-sm-6">
                             <a style="font-weight: bold;word-break: break-all;
@@ -2974,6 +2974,74 @@ function getDataPin(id_user) {
                 $(".list-item-info-location").html("");
                 $("#messageNoData").show();
             }
+        },
+    });
+}
+
+function detailDataPin(id) {
+    $.ajax({
+        url: `${APP_URL}/detailDataPin`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: function (e) {
+            console.log(e);
+            $(".info-lokasi-detail").html("");
+            let html = ``;
+            html += `
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <button type="button" class="close" id="closeDetail" aria-label="Close"
+                style="position: absolute; z-index: 9; right: 1rem;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ol class="carousel-indicators">`;
+
+            for (let index = 0; index < e.image.length; index++) {
+                html += `
+                    <li data-target="#carouselExampleIndicators" data-slide-to="${index}" ${
+                    index == 0 ? "class='active'" : ""
+                }></li>
+                    `;
+            }
+
+            html += `
+            </ol>
+            <div class="carousel-inner">
+            `;
+            for (let index = 0; index < e.image.length; index++) {
+                html += `
+                <div class="carousel-item ${index == 0 ? "active" : ""}">
+                    <img class="d-block w-100"
+                        src="/favorit/${e.image[index].name}">
+                </div>
+                `;
+            }
+
+            html += `
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="container p-4">
+            <div class="mt-3">
+                <h4>${e.judul}</h4>
+                <p style="font-size: 10pt">${e.catatan}</p>
+            </div>
+        </div>
+            `;
+            $(".info-lokasi-detail").html(html);
+            $(".info-lokasi-detail").show();
+
+            $("#closeDetail").on("click", (e) => {
+                $(".info-lokasi-detail").hide();
+            });
         },
     });
 }

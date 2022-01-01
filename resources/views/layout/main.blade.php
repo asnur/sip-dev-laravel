@@ -58,6 +58,10 @@
         <i class="btn_icon_show ri-arrow-right-s-fill fa-2x"></i>
     </button>
 
+    <div class="info-lokasi-detail">
+
+    </div>
+
     <div class="info-layer">
         <div class="container p-4">
             <button type="button" class="close" id="closeSewa" aria-label="Close">
