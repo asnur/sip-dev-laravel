@@ -129,6 +129,10 @@
                     role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Simpan.
                 </div>
+                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilEdit"
+                    style="font-size: 10pt" role="alert">
+                    <strong>Berhasil!</strong> Data Berhasil di Ubah.
+                </div>
                 <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilHapus"
                     style="font-size: 10pt" role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Hapus.
@@ -164,6 +168,39 @@
                     <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
                         Simpan</button>
+                </form>
+                <form id="formPinLocationEdit" enctype="multipart/form-data">
+                    <label style="font-size: 10pt">Koordinat</label>
+                    <input type="text" name="kordinat" class="form-control" id="kordinatPinEdit"
+                        style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
+                    <input type="text" class="d-none" name="id" class="form-control" id="idPinEdit">
+                    <label class="mt-2" style="font-size: 10pt">Judul</label>
+                    <input type="text" name="judul" class="form-control" id="judulPinEdit" style="font-size: 8pt"
+                        placeholder="Masukan Judul Tempat">
+                    <label class="mt-2" style="font-size: 10pt">Tipe</label>
+                    <select name="tipe" class="form-control" id="tipePinEdit" style="font-size: 8pt">
+                        <option value="UMK">UMK</option>
+                        <option value="Cagar Budaya">Cagar Budaya</option>
+                        <option value="Sedang di Bangun">Sedang di Bangun</option>
+                        <option value="RTH">RTH</option>
+                        <option value="Pedestrian">Pedestrian</option>
+                        <option value="di Jual">di Jual</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                    <label class="mt-2" style="font-size: 10pt">Foto</label>
+                    <div class="custom-file" style="font-size: 8pt">
+                        <input type="file" name="foto[]" onchange="preview_image_edit();" accept="image/*"
+                            multiple="multiple" class="custom-file-input" id="gambarLokasiEdit">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <div class="row mt-3" id="previewFotoEdit">
+                    </div>
+                    <label class="mt-2" style="font-size: 10pt">Catatan</label>
+                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt"
+                        placeholder="Masukan Catatan" rows="5"></textarea>
+                    <button type="submit" id="pinndedLocation" class="btn btn-primary mt-3 text-white"
+                        style="font-size: 8pt; cursor: pointer;"><i class="fa fa-edit"></i>
+                        Ubah</button>
                 </form>
             </div>
 
@@ -302,7 +339,8 @@
                                                 <span class="material-icons iconn_kotak_sidebar">
                                                     post_add
                                                 </span>
-                                                <div> <a href="#" title="Buat File" class="text_all_kotak_sidebarr">Buat
+                                                <div> <a href="#" title="Buat File"
+                                                        class="text_all_kotak_sidebarr">Buat
                                                         File</a></div>
 
                                                 <span class="material-icons iconn_kotak_sidebar">

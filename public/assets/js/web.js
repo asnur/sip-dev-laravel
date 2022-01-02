@@ -173,7 +173,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #formPinLocationEdit"
 ).hide();
 
 $.ajax({
@@ -2960,10 +2960,20 @@ function getDataPin(id_user) {
                             white-space: normal;">${e[index].catatan}</span>
                         </div>
                         <div class="col-sm-3 d-flex align-items-center">
-                        <a onclick="deleteDataPin(
-                            ${e[index].id},
-                            ${id_user}
-                        )" style="cursor:pointer;color:red;position: absolute;right: 3rem;font-size: 18px;"><i class="fa fa-trash"></i></a>
+                        <div class="row">
+                            <div class="col-6 p-1">
+                                <a onclick="deleteDataPin(
+                                    ${e[index].id},
+                                    ${id_user}
+                                )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a> 
+                            </div>
+                            <div class="col-6 p-1">
+                                <a class="mt-1" onclick="editDataPin(
+                                    ${e[index].id},
+                                    ${id_user}
+                                )" style="cursor:pointer;color:blue;font-size: 18px;"><i style="margin-top:6px" class="fa fa-edit"></i></a>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>`;
@@ -2976,6 +2986,55 @@ function getDataPin(id_user) {
             }
         },
     });
+}
+
+function editDataPin(id, id_user) {
+    $("#previewFotoEdit").html("");
+    $.ajax({
+        url: `${APP_URL}/editDataPin`,
+        method: "POST",
+        data: {
+            id: id,
+            id_user: id_user,
+        },
+        success: (e) => {
+            for (var i = 0; i < e.image.length; i++) {
+                $("#previewFotoEdit").append(`
+                <div class="col-md-4 image-edit image-${i}">
+                    <img src="/favorit/${e.image[i].name}" class="w-100">
+                    <button type="button" onclick="deleteImage(${i}, ${e.image[i].id})" class="close" style="position: absolute;color: red;right:1rem;top: -0.4rem;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                `);
+            }
+            $("#formPinLocation").hide();
+            $("#formPinLocationEdit").show();
+            $("#idPinEdit").val(e.id);
+            $("#kordinatPinEdit").val(e.kordinat);
+            $("#judulPinEdit").val(e.judul);
+            $("#judulPinEdit").val(e.judul);
+            $("#tipePinEdit").val(e.tipe);
+            $("#catatanPinEdit").val(e.catatan);
+            console.log(e);
+        },
+    });
+}
+
+function deleteImage(id, id_gambar) {
+    if (id_gambar == 0) {
+        $(`.image-${id}`).remove();
+    } else {
+        $(`.image-${id}`).remove();
+        $.ajax({
+            url: `${APP_URL}/deleteImage`,
+            method: "POST",
+            data: {
+                id: id_gambar,
+            },
+            success: (e) => {},
+        });
+    }
 }
 
 function detailDataPin(id) {
@@ -3300,6 +3359,7 @@ function preview_image() {
     $("#previewFoto").html("");
     if (gambarLokasi > 3) {
         $("#pesanFoto").show();
+        $("#gambarLokasi").val("");
         setTimeout(function () {
             $("#pesanFoto").hide();
         }, 3000);
@@ -3310,6 +3370,34 @@ function preview_image() {
                 <img src="${URL.createObjectURL(
                     event.target.files[i]
                 )}" class="w-100">
+            </div>
+            `);
+        }
+    }
+}
+
+function preview_image_edit() {
+    var gambarLokasi = $("#gambarLokasiEdit").get(0).files.length;
+    // $("#previewFotoEdit").html("");
+    var jumlah = $(".image-edit").length + gambarLokasi;
+    if (jumlah > 3) {
+        $("#pesanFoto").show();
+        $("#gambarLokasiEdit").val("");
+        setTimeout(function () {
+            $("#pesanFoto").hide();
+        }, 3000);
+    } else {
+        for (var i = 0; i < gambarLokasi; i++) {
+            $("#previewFotoEdit").append(`
+            <div class="col-md-4 image-edit image-${i + jumlah - 1}">
+                <img src="${URL.createObjectURL(
+                    event.target.files[i]
+                )}" class="w-100">
+                <button type="button" onclick="deleteImage(${
+                    i + jumlah - 1
+                }, 0)" class="close" style="position: absolute;color: red;right:1rem;top: -0.4rem;">
+                        <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             `);
         }
@@ -3355,6 +3443,52 @@ $("#formPinLocation").on("submit", function (e) {
                         getDataPin(id_user);
                         setTimeout(function () {
                             $("#pesanBerhasil").hide();
+                        }, 3000);
+                    },
+                });
+            },
+        });
+    } else {
+        $("#pesanGagal").show();
+        setTimeout(function () {
+            $("#pesanGagal").hide();
+        }, 3000);
+    }
+});
+
+$("#formPinLocationEdit").on("submit", function (e) {
+    e.preventDefault();
+    var coor = $("#kordinatPinEdit").val();
+    var judul = $("#judulPinEdit").val();
+    var catatan = $("#catatanPinEdit").val();
+    var formData = new FormData(this);
+
+    if (coor !== "" && judul !== "" && catatan !== "") {
+        $.ajax({
+            url: `${APP_URL}/getIdUser`,
+            method: "GET",
+            success: function (e) {
+                var id_user = e;
+                // console.log(formData.get("foto"));
+                $.ajax({
+                    url: `${APP_URL}/saveEditDataPin`,
+                    method: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (e) {
+                        console.log(e);
+                        $("#kordinatPinEdit").val("");
+                        $("#judulPinEdit").val("");
+                        $("#catatanPinEdit").val("");
+                        $("#gambarLokasiEdit").val("");
+                        $("#previewFotoEdit").html("");
+                        $("#pesanBerhasilEdit").show();
+                        $("#formPinLocationEdit").hide();
+                        $("#formPinLocation").show();
+                        getDataPin(id_user);
+                        setTimeout(function () {
+                            $("#pesanBerhasilEdit").hide();
                         }, 3000);
                     },
                 });
