@@ -613,7 +613,7 @@
                                     aria-controls="pills-ketentuan" aria-selected="true"><i
                                         class="fa fa-book"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Ketentuan</label>
+                                <label class="size_menu size_menu_mobile">Ketentuan TPZ</label>
                             </li>
 
                             <li class="nav-item">
