@@ -1104,7 +1104,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
         `;
     } else {
         value_tpz += dsc_tpz;
-        value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan</p>`;
+        value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
         value_tpz += `
         <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
             dataabse_tpz[arr_tpz[0]].nama
@@ -3264,7 +3264,7 @@ $(document).on("change", "#selectTPZ", function () {
     var index = $(this).val();
     var value_tpz = "";
     value_tpz += dsc_tpz;
-    value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan</p>`;
+    value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
     value_tpz += `
     <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
         dataabse_tpz[saveTPZ[index]].nama
