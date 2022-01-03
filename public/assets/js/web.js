@@ -31,6 +31,7 @@ var status;
 var saveTPZ;
 var count = 0;
 var countOpen = 0;
+var arrPrint = [];
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -173,7 +174,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #formPinLocationEdit"
 ).hide();
 
 $.ajax({
@@ -755,7 +756,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus, .inf-p-air-tanah, .inf-sanitasi, .inf-tipe-bangunan"
     ).html("-");
 
     getRadius(e);
@@ -763,6 +764,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     getPersilBPN(e);
     getEksisting(e);
     getAirTanah(e);
+    getPenuruanAirTanah(e);
+    getSanitasi(e);
 
     const larea = dt["luas-area"] / 10000;
 
@@ -987,6 +990,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         separatorNum(dt["Kepadatan-Penduduk"]) + " jiwa/km2"
     );
     $(".inf-rasio").html(dt.gini);
+    $(".inf-tipe-bangunan").html(dt.Tipe);
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
@@ -1100,14 +1104,15 @@ map.on(clickEvent, "zoning_fill", function (e) {
             <option>Tidak Ada CD TPZ</option>
         `;
     } else {
+        value_tpz += dsc_tpz;
+        value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
         value_tpz += `
-        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Kode TPZ : ${
-            arr_tpz[0]
-        }<br><br>Nama TPZ : ${dataabse_tpz[arr_tpz[0]].nama}</p>
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
+            dataabse_tpz[arr_tpz[0]].nama
+        }</p>
         `;
         value_tpz += dataabse_tpz[`${arr_tpz[0]}`].pengertian;
         value_tpz += dataabse_tpz[`${arr_tpz[0]}`].ketentuan;
-        value_tpz += dsc_tpz;
         for (let index = 0; index < arr_tpz.length; index++) {
             option_tpz += `
                 <option value="${index}">${arr_tpz[index]}</option>
@@ -1123,12 +1128,12 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     // $(".inf-cdtpz").html(dt["CD TPZ"] == "null" ? "-" : dt["CD TPZ"]);
     $("#selectTPZ").html(option_tpz);
-    $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
-    $(".inf-kdb").html(dt.KDB == "null" ? "-" : dt.KDB);
-    $(".inf-kdh").html(dt.KDH == "null" ? "-" : dt.KDH);
+    // $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
+    $(".inf-kdb").html(dt.KDB == "null" ? "-" : dt.KDB + "%");
+    $(".inf-kdh").html(dt.KDH == "null" ? "-" : dt.KDH + "%");
     $(".inf-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
-    $(".inf-ktb").html(dt.KLB == "null" ? "-" : dt.KTB);
-    $(".inf-kb").html(dt.KLB == "null" ? "-" : dt.KB);
+    $(".inf-ktb").html(dt.KLB == "null" ? "-" : dt.KTB + "%");
+    $(".inf-kb").html(dt.KB == "null" ? "-" : dt.KB + " Lapis");
     $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
@@ -1402,8 +1407,8 @@ function getKetentuanPSL(subzona, psl) {
             $(".inf-khusus").html("");
             $(".inf-khusus").html(htmlKetentuan);
 
-            $("#selectPSL").html("");
-            $("#selectPSL").html(html);
+            // $("#selectPSL").html("");
+            // $("#selectPSL").html(html);
             $("#selectPSL").on("change", function () {
                 const id = $(this).val();
                 let htmlContentChange = `
@@ -1512,7 +1517,9 @@ function getAirTanah(e) {
             let html = "";
             for (let index = 0; index < value_data.length; index++) {
                 html += `
-                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Kedalaman : ${value_data[index].properties.Kedalaman}
+                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Air Tanah Kedalaman : ${value_data[
+                    index
+                ].properties.Kedalaman.slice(0, -5)} meter MBT
                 </p>
                 <div class="d-flex space_text row_mid_text">
                     <div class="col-lg-5 text_all">
@@ -1529,15 +1536,6 @@ function getAirTanah(e) {
                     </div>
                     <div class="col-lg-7 text_all">
                         <p>${value_data[index].properties.Penggunaan}</p>
-                    </div>
-                </div>
-
-                <div class="d-flex space_text row_mid_text">
-                    <div class="col-lg-5 text_all">
-                        <label class="text_all_mobile">Keterangan</label>
-                    </div>
-                    <div class="col-lg-7 text_all">
-                        <p>${value_data[index].properties.Keterangan}</p>
                     </div>
                 </div>
                 `;
@@ -1589,6 +1587,33 @@ function getNJOP(e) {
         },
     });
 }
+
+function getPenuruanAirTanah(e) {
+    $.ajax({
+        url: `${url}/turun/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        success: (dt) => {
+            const data = JSON.parse(dt);
+            let jumlah = data.features[0].properties.Elevation;
+            let fix_jumlah = jumlah * -100;
+            $(".inf-p-air-tanah").html("");
+            $(".inf-p-air-tanah").html(`${fix_jumlah} cm/tahun`);
+        },
+    });
+}
+
+function getSanitasi(e) {
+    $.ajax({
+        url: `${url}/sanitasi/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        success: (dt) => {
+            const data = JSON.parse(dt);
+            $(".inf-sanitasi").html("");
+            $(".inf-sanitasi").html(data.features[0].properties.Sistem);
+        },
+    });
+}
+
 function getPersilBPN(e) {
     // $("#dtBpnBot").html("");
     var htmlPopupLayer = "";
@@ -1925,6 +1950,8 @@ function addSourceLayer(item) {
         "ipal",
         "util",
         "phb",
+        "tol",
+        "sungai",
     ];
 
     for (var i = 0; i < api.length; i++) {
@@ -2211,6 +2238,32 @@ function addLayers() {
     });
 
     map.addLayer({
+        id: "tol_multilinestring",
+        type: "line",
+        source: "tol",
+        paint: {
+            "line-color": "orange",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "sungai_multilinestring",
+        type: "line",
+        source: "sungai",
+        paint: {
+            "line-color": "blue",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
         id: "budaya_dot",
         type: "circle",
         source: "budaya",
@@ -2306,6 +2359,34 @@ function onOffLayers() {
             showLayer("pipa_multilinestring");
         } else {
             hideLayer("pipa_multilinestring");
+        }
+    });
+
+    if ($("#tol_multilinestring").prop("checked") == true) {
+        showLayer("tol_multilinestring");
+    } else {
+        hideLayer("tol_multilinestring");
+    }
+
+    $("#tol_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("tol_multilinestring");
+        } else {
+            hideLayer("tol_multilinestring");
+        }
+    });
+
+    if ($("#sungai_multilinestring").prop("checked") == true) {
+        showLayer("sungai_multilinestring");
+    } else {
+        hideLayer("sungai_multilinestring");
+    }
+
+    $("#sungai_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("sungai_multilinestring");
+        } else {
+            hideLayer("sungai_multilinestring");
         }
     });
 
@@ -2922,10 +3003,10 @@ function getDataPin(id_user) {
             if (e != "") {
                 $("#messageNoData").hide();
                 for (let index = 0; index < e.length; index++) {
-                    html += `<div style="font-size:10pt;">
+                    html += `<div class="mb-3" style="font-size:10pt;">
                     <div class="row">
                         <div class="col-sm-3 text-center">
-                            <img src="/favorit/${e[index].image[0].name}" class="w-100" style="border-radius: 10px; height:40px">
+                            <img src="/favorit/${e[index].image[0].name}" class="w-100" style="border-radius: 10px; height:40px; cursor: pointer" onclick="detailDataPin(${e[index].id})">
                         </div>
                         <div class="col-sm-6">
                             <a style="font-weight: bold;word-break: break-all;
@@ -2933,10 +3014,20 @@ function getDataPin(id_user) {
                             white-space: normal;">${e[index].catatan}</span>
                         </div>
                         <div class="col-sm-3 d-flex align-items-center">
-                        <a onclick="deleteDataPin(
-                            ${e[index].id},
-                            ${id_user}
-                        )" style="cursor:pointer;color:red;position: absolute;right: 3rem;font-size: 18px;"><i class="fa fa-trash"></i></a>
+                        <div class="row">
+                            <div class="col-6 p-1">
+                                <a onclick="deleteDataPin(
+                                    ${e[index].id},
+                                    ${id_user}
+                                )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a> 
+                            </div>
+                            <div class="col-6 p-1">
+                                <a class="mt-1" onclick="editDataPin(
+                                    ${e[index].id},
+                                    ${id_user}
+                                )" style="cursor:pointer;color:blue;font-size: 18px;"><i style="margin-top:6px" class="fa fa-edit"></i></a>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>`;
@@ -2947,6 +3038,123 @@ function getDataPin(id_user) {
                 $(".list-item-info-location").html("");
                 $("#messageNoData").show();
             }
+        },
+    });
+}
+
+function editDataPin(id, id_user) {
+    $("#previewFotoEdit").html("");
+    $.ajax({
+        url: `${APP_URL}/editDataPin`,
+        method: "POST",
+        data: {
+            id: id,
+            id_user: id_user,
+        },
+        success: (e) => {
+            for (var i = 0; i < e.image.length; i++) {
+                $("#previewFotoEdit").append(`
+                <div class="col-md-4 image-edit image-${i}">
+                    <img src="/favorit/${e.image[i].name}" class="w-100">
+                    <button type="button" onclick="deleteImage(${i}, ${e.image[i].id})" class="close" style="position: absolute;color: red;right:1rem;top: -0.4rem;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                `);
+            }
+            $("#formPinLocation").hide();
+            $("#formPinLocationEdit").show();
+            $("#idPinEdit").val(e.id);
+            $("#kordinatPinEdit").val(e.kordinat);
+            $("#judulPinEdit").val(e.judul);
+            $("#judulPinEdit").val(e.judul);
+            $("#tipePinEdit").val(e.tipe);
+            $("#catatanPinEdit").val(e.catatan);
+            console.log(e);
+        },
+    });
+}
+
+function deleteImage(id, id_gambar) {
+    if (id_gambar == 0) {
+        $(`.image-${id}`).remove();
+    } else {
+        $(`.image-${id}`).remove();
+        $.ajax({
+            url: `${APP_URL}/deleteImage`,
+            method: "POST",
+            data: {
+                id: id_gambar,
+            },
+            success: (e) => {},
+        });
+    }
+}
+
+function detailDataPin(id) {
+    $.ajax({
+        url: `${APP_URL}/detailDataPin`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: function (e) {
+            console.log(e);
+            $(".info-lokasi-detail").html("");
+            let html = ``;
+            html += `
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <button type="button" class="close" id="closeDetail" aria-label="Close"
+                style="position: absolute; z-index: 9; right: 1rem;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ol class="carousel-indicators">`;
+
+            for (let index = 0; index < e.image.length; index++) {
+                html += `
+                    <li data-target="#carouselExampleIndicators" data-slide-to="${index}" ${
+                    index == 0 ? "class='active'" : ""
+                }></li>
+                    `;
+            }
+
+            html += `
+            </ol>
+            <div class="carousel-inner">
+            `;
+            for (let index = 0; index < e.image.length; index++) {
+                html += `
+                <div class="carousel-item ${index == 0 ? "active" : ""}">
+                    <img class="d-block w-100"
+                        src="/favorit/${e.image[index].name}">
+                </div>
+                `;
+            }
+
+            html += `
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="container p-4">
+            <div class="mt-3">
+                <h4>${e.judul}</h4>
+                <p style="font-size: 10pt">${e.catatan}</p>
+            </div>
+        </div>
+            `;
+            $(".info-lokasi-detail").html(html);
+            $(".info-lokasi-detail").show();
+
+            $("#closeDetail").on("click", (e) => {
+                $(".info-lokasi-detail").hide();
+            });
         },
     });
 }
@@ -3112,14 +3320,15 @@ $(document).on("change", "#selectTPZ", function () {
     console.log($(this).val());
     var index = $(this).val();
     var value_tpz = "";
+    value_tpz += dsc_tpz;
+    value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
     value_tpz += `
-    <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Kode TPZ : ${
-        saveTPZ[index]
-    }<br><br>Nama TPZ : ${dataabse_tpz[saveTPZ[index]].nama}</p>
+    <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
+        dataabse_tpz[saveTPZ[index]].nama
+    }</p>
     `;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].pengertian;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].ketentuan;
-    value_tpz += dsc_tpz;
     $(".inf-k-tpz").html(value_tpz);
 });
 
@@ -3205,6 +3414,7 @@ function preview_image() {
     $("#previewFoto").html("");
     if (gambarLokasi > 3) {
         $("#pesanFoto").show();
+        $("#gambarLokasi").val("");
         setTimeout(function () {
             $("#pesanFoto").hide();
         }, 3000);
@@ -3215,6 +3425,34 @@ function preview_image() {
                 <img src="${URL.createObjectURL(
                     event.target.files[i]
                 )}" class="w-100">
+            </div>
+            `);
+        }
+    }
+}
+
+function preview_image_edit() {
+    var gambarLokasi = $("#gambarLokasiEdit").get(0).files.length;
+    // $("#previewFotoEdit").html("");
+    var jumlah = $(".image-edit").length + gambarLokasi;
+    if (jumlah > 3) {
+        $("#pesanFoto").show();
+        $("#gambarLokasiEdit").val("");
+        setTimeout(function () {
+            $("#pesanFoto").hide();
+        }, 3000);
+    } else {
+        for (var i = 0; i < gambarLokasi; i++) {
+            $("#previewFotoEdit").append(`
+            <div class="col-md-4 image-edit image-${i + jumlah - 1}">
+                <img src="${URL.createObjectURL(
+                    event.target.files[i]
+                )}" class="w-100">
+                <button type="button" onclick="deleteImage(${
+                    i + jumlah - 1
+                }, 0)" class="close" style="position: absolute;color: red;right:1rem;top: -0.4rem;">
+                        <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             `);
         }
@@ -3260,6 +3498,52 @@ $("#formPinLocation").on("submit", function (e) {
                         getDataPin(id_user);
                         setTimeout(function () {
                             $("#pesanBerhasil").hide();
+                        }, 3000);
+                    },
+                });
+            },
+        });
+    } else {
+        $("#pesanGagal").show();
+        setTimeout(function () {
+            $("#pesanGagal").hide();
+        }, 3000);
+    }
+});
+
+$("#formPinLocationEdit").on("submit", function (e) {
+    e.preventDefault();
+    var coor = $("#kordinatPinEdit").val();
+    var judul = $("#judulPinEdit").val();
+    var catatan = $("#catatanPinEdit").val();
+    var formData = new FormData(this);
+
+    if (coor !== "" && judul !== "" && catatan !== "") {
+        $.ajax({
+            url: `${APP_URL}/getIdUser`,
+            method: "GET",
+            success: function (e) {
+                var id_user = e;
+                // console.log(formData.get("foto"));
+                $.ajax({
+                    url: `${APP_URL}/saveEditDataPin`,
+                    method: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (e) {
+                        console.log(e);
+                        $("#kordinatPinEdit").val("");
+                        $("#judulPinEdit").val("");
+                        $("#catatanPinEdit").val("");
+                        $("#gambarLokasiEdit").val("");
+                        $("#previewFotoEdit").html("");
+                        $("#pesanBerhasilEdit").show();
+                        $("#formPinLocationEdit").hide();
+                        $("#formPinLocation").show();
+                        getDataPin(id_user);
+                        setTimeout(function () {
+                            $("#pesanBerhasilEdit").hide();
                         }, 3000);
                     },
                 });
