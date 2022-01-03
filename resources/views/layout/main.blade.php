@@ -613,7 +613,7 @@
                                     aria-controls="pills-ketentuan" aria-selected="true"><i
                                         class="fa fa-book"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Zonasi</label>
+                                <label class="size_menu size_menu_mobile">Ketentuan</label>
                             </li>
 
                             <li class="nav-item">
@@ -633,13 +633,18 @@
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="printAll" data-toggle="pill" href="#pills-zonasi" role="tab"
-                                    aria-controls="pills-zonasi" aria-selected="false"><i
-                                        class="ri-printer-fill"></i></a>
+                            <li class="nav-item dropdown">
+                                <a class="btn btn-outline-primary text-primary btn-md tombol_menu padding_icon_navpill"
+                                    data-toggle="dropdown" aria-haspopup="true"><i class="ri-printer-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <div class="container text_all">
+                                        <input type="checkbox" id="printProfil" value="profil"> Profil<br>
+                                        <input type="checkbox" id="printZonasi" value="zonasi"> Zonasi<br>
+                                        <input type="checkbox" id="printAkses" value="akses"> Akses
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
@@ -930,7 +935,7 @@
 
 
                                 <div class="text_all">
-                                    <label>N/A</label>
+                                    <label>Tidak Menjawab</label>
                                 </div>
                                 <div class="text_all col_info">
                                     <label class="inf-pen-na">-</label>
@@ -951,8 +956,6 @@
                                 </div>
                             </div>
 
-                            <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Air Tanah</p>
-
                             <div class="inf-air-tanah">
 
                             </div>
@@ -964,7 +967,10 @@
                         <div class="container">
 
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Zonasi</p>
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Zonasi <br><span
+                                    class="w-100 text-center text_all" style="font-weight: normal">Peraturan Zonasi
+                                    sesuai Perda
+                                    1/2014</span></p>
                             <div>
                                 <div class="d-flex space_text row_mid_text">
                                     <div class="col-lg-5 text_all">
@@ -994,14 +1000,14 @@
                                 </div>
 
 
-                                <div class="d-flex space_text row_mid_text">
+                                {{-- <div class="d-flex space_text row_mid_text">
                                     <div class="col-lg-5 text_all">
                                         <label class="text_all_mobile">TPZ</label>
                                     </div>
                                     <div class="col-lg-7 text_all">
                                         <p class="inf-tpz"></p>
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="d-flex space_text row_mid_text">
@@ -1015,7 +1021,7 @@
                                     </div>
                                 </div>
 
-                                <div class="d-flex space_text row_mid_text">
+                                {{-- <div class="d-flex space_text row_mid_text">
                                     <div class="col-lg-5 text_all">
                                         <label class="text_all_mobile">Kegiatan</label>
                                     </div>
@@ -1024,7 +1030,7 @@
                                             <select class="w-100" id="selectPSL"></select>
                                         </p>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="d-flex space_text row_mid_text mt-1 mb-2">
                                     <div class="col-lg-12 text_all">
@@ -1042,7 +1048,7 @@
                                 </div>
                             </div>
 
-                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Ketentuan Bangunan
+                            {{-- <p class="card-title mt-2 text-center font-weight-bold judul_utama">Ketentuan Bangunan
                             </p>
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
@@ -1050,14 +1056,14 @@
                                         -
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
+                            {{-- <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
                             </p>
                             <div class="text_all inf-khusus">
                                 -
-                            </div>
+                            </div> --}}
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Intensitas
                             </p>
@@ -1113,6 +1119,36 @@
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-psl">-</p>
+                                </div>
+                            </div>
+
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
+                                Tata Bangunan<br><span class="w-100 text-center text_all"
+                                    style="font-weight: normal">Pedoman Tata Bangunan sesuai Pergub
+                                    135/2019</span><br><span class="w-100 text-center text_all"
+                                    style="font-weight: normal"><i>(Under Construction)</i></span>
+                            </p>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-12 text_all">
+                                    <ol>
+                                        <li style="margin-left: -25px">Lahan Perencanaan</li>
+                                        <li style="margin-left: -25px">Tata Bangunan
+                                            <br>
+                                            <ol type="a">
+                                                <li style="margin-left: -25px">GSB</li>
+                                                <li style="margin-left: -25px">Jarak Bebas</li>
+                                                <li style="margin-left: -25px">Arkade</li>
+                                                <li style="margin-left: -25px">Bangunan Tinggi</li>
+                                                <li style="margin-left: -25px">Pagar</li>
+                                                <li style="margin-left: -25px">Ramp</li>
+                                                <li style="margin-left: -25px">Parkir</li>
+                                                <li style="margin-left: -25px">Bangunan di Bawah Permukaan Tanah</li>
+                                                <li style="margin-left: -25px">Bangunan Layangan</li>
+                                            </ol>
+                                        </li>
+                                        <li style="margin-left: -25px">Intensitas</li>
+                                    </ol>
                                 </div>
                             </div>
 

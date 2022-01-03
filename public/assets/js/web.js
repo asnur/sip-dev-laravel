@@ -31,6 +31,7 @@ var status;
 var saveTPZ;
 var count = 0;
 var countOpen = 0;
+var arrPrint = [];
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -1105,9 +1106,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
         value_tpz += dsc_tpz;
         value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan</p>`;
         value_tpz += `
-        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Kode TPZ : ${
-            arr_tpz[0]
-        }<br>Nama TPZ : ${dataabse_tpz[arr_tpz[0]].nama}</p>
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
+            dataabse_tpz[arr_tpz[0]].nama
+        }</p>
         `;
         value_tpz += dataabse_tpz[`${arr_tpz[0]}`].pengertian;
         value_tpz += dataabse_tpz[`${arr_tpz[0]}`].ketentuan;
@@ -1126,12 +1127,12 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     // $(".inf-cdtpz").html(dt["CD TPZ"] == "null" ? "-" : dt["CD TPZ"]);
     $("#selectTPZ").html(option_tpz);
-    $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
-    $(".inf-kdb").html(dt.KDB == "null" ? "-" : dt.KDB);
-    $(".inf-kdh").html(dt.KDH == "null" ? "-" : dt.KDH);
+    // $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
+    $(".inf-kdb").html(dt.KDB == "null" ? "-" : dt.KDB + "%");
+    $(".inf-kdh").html(dt.KDH == "null" ? "-" : dt.KDH + "%");
     $(".inf-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
-    $(".inf-ktb").html(dt.KLB == "null" ? "-" : dt.KTB);
-    $(".inf-kb").html(dt.KLB == "null" ? "-" : dt.KB);
+    $(".inf-ktb").html(dt.KLB == "null" ? "-" : dt.KTB + "%");
+    $(".inf-kb").html(dt.KB == "null" ? "-" : dt.KB + " Lapis");
     $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
@@ -1405,8 +1406,8 @@ function getKetentuanPSL(subzona, psl) {
             $(".inf-khusus").html("");
             $(".inf-khusus").html(htmlKetentuan);
 
-            $("#selectPSL").html("");
-            $("#selectPSL").html(html);
+            // $("#selectPSL").html("");
+            // $("#selectPSL").html(html);
             $("#selectPSL").on("change", function () {
                 const id = $(this).val();
                 let htmlContentChange = `
@@ -1515,7 +1516,9 @@ function getAirTanah(e) {
             let html = "";
             for (let index = 0; index < value_data.length; index++) {
                 html += `
-                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Kedalaman : ${value_data[index].properties.Kedalaman}
+                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Air Tanah Kedalaman : ${value_data[
+                    index
+                ].properties.Kedalaman.slice(0, -5)} meter MBT
                 </p>
                 <div class="d-flex space_text row_mid_text">
                     <div class="col-lg-5 text_all">
@@ -1532,15 +1535,6 @@ function getAirTanah(e) {
                     </div>
                     <div class="col-lg-7 text_all">
                         <p>${value_data[index].properties.Penggunaan}</p>
-                    </div>
-                </div>
-
-                <div class="d-flex space_text row_mid_text">
-                    <div class="col-lg-5 text_all">
-                        <label class="text_all_mobile">Keterangan</label>
-                    </div>
-                    <div class="col-lg-7 text_all">
-                        <p>${value_data[index].properties.Keterangan}</p>
                     </div>
                 </div>
                 `;
@@ -1599,8 +1593,10 @@ function getPenuruanAirTanah(e) {
         method: "get",
         success: (dt) => {
             const data = JSON.parse(dt);
+            let jumlah = data.features[0].properties.Elevation;
+            let fix_jumlah = jumlah * -100;
             $(".inf-p-air-tanah").html("");
-            $(".inf-p-air-tanah").html(data.features[0].properties.Elevation);
+            $(".inf-p-air-tanah").html(`${fix_jumlah} cm/tahun`);
         },
     });
 }
@@ -3270,9 +3266,9 @@ $(document).on("change", "#selectTPZ", function () {
     value_tpz += dsc_tpz;
     value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan</p>`;
     value_tpz += `
-    <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Kode TPZ : ${
-        saveTPZ[index]
-    }<br>Nama TPZ : ${dataabse_tpz[saveTPZ[index]].nama}</p>
+    <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
+        dataabse_tpz[saveTPZ[index]].nama
+    }</p>
     `;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].pengertian;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].ketentuan;
