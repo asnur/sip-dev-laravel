@@ -11,7 +11,7 @@
     position: absolute;
     border-radius: 4px;
     background: #fff;
-    bottom: -5rem;
+    bottom: -8rem;
     right: 0.3rem;
 }
 
@@ -125,6 +125,16 @@
     height: 100% !important;
 }
 
+.info-lokasi-detail {
+    position: absolute;
+    z-index: 9999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
 .info-layer {
     position: absolute;
     z-index: 999;
@@ -165,6 +175,16 @@
     overflow-x: hidden;
 }
 
+.info-pin-location {
+    position: absolute;
+    z-index: 999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
 .runing-text {
     position: absolute;
     bottom: 0;
@@ -184,14 +204,21 @@
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .dalam::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.dalam::-webkit-scrollbar-thumb {
+    background: gray;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .dalam {
-    -ms-overflow-style: none;
+    /* -ms-overflow-style: none; */
     /* IE and Edge */
-    scrollbar-width: none;
+    scrollbar-width: thin;
     /* Firefox */
 }
 

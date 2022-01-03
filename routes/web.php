@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\pinLocationController;
 use App\Http\Controllers\RequireDataChatController;
 use App\Http\Controllers\SocialiteController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -22,10 +24,6 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('/', function (Request $request) {
-    $status = $request->session()->get('cek-login');
-    if ($status == 'login') {
-        echo "<script>window.close();</script>";
-    }
     return view('layout.main');
 });
 
@@ -63,9 +61,36 @@ Route::get('/cekSession', function () {
 
 //Save Data Kelurahan
 Route::get('/saveKelurahan/{kelurahan}', [RequireDataChatController::class, 'save']);
+Route::post('/saveUser', function (Request $request) {
+    $authUser = User::where('provider_id', $request->input('provider_id'))->first();
+    if ($authUser) {
+        $dataUser = $authUser;
+        // return $dataUser;
+    } else {
+        $data = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'provider' => $request->input('provider'),
+            'provider_id' => $request->input('provider_id')
+        ]);
+        $dataUser = $data;
+        // return $dataUser;
+    }
+    Auth::login($dataUser, true);
+});
+Route::get('/getIdUser', [pinLocationController::class, 'getIdUser']);
 
 Auth::routes();
 
+
+//Pin Location
+Route::get('/getDataPin/{id_user}', [pinLocationController::class, 'getData']);
+Route::post('/saveDataPin', [pinLocationController::class, 'saveData']);
+Route::post('/saveEditDataPin', [pinLocationController::class, 'saveEditData']);
+Route::post('/detailDataPin', [pinLocationController::class, 'detailData']);
+Route::post('/editDataPin', [pinLocationController::class, 'editData']);
+Route::post('/deleteDataPin', [pinLocationController::class, 'deleteData']);
+Route::post('/deleteImage', [pinLocationController::class, 'deleteImage']);
 
 //For Login Google
 Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');

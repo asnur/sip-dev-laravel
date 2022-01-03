@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class PinLocation extends Model
+{
+    use HasFactory;
+
+    protected $table = "pin_location";
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nama',
+        'kordinat',
+        'judul',
+        'catatan',
+        'kelurahan',
+        'tipe',
+        'user_id'
+    ];
+
+    public function image()
+    {
+        return $this->hasMany(imageFavorite::class, 'id_lokasi', 'id');
+    }
+}
