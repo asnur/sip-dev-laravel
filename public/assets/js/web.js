@@ -1102,14 +1102,15 @@ map.on(clickEvent, "zoning_fill", function (e) {
             <option>Tidak Ada CD TPZ</option>
         `;
     } else {
+        value_tpz += dsc_tpz;
+        value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan</p>`;
         value_tpz += `
         <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Kode TPZ : ${
             arr_tpz[0]
-        }<br><br>Nama TPZ : ${dataabse_tpz[arr_tpz[0]].nama}</p>
+        }<br>Nama TPZ : ${dataabse_tpz[arr_tpz[0]].nama}</p>
         `;
         value_tpz += dataabse_tpz[`${arr_tpz[0]}`].pengertian;
         value_tpz += dataabse_tpz[`${arr_tpz[0]}`].ketentuan;
-        value_tpz += dsc_tpz;
         for (let index = 0; index < arr_tpz.length; index++) {
             option_tpz += `
                 <option value="${index}">${arr_tpz[index]}</option>
@@ -3266,14 +3267,15 @@ $(document).on("change", "#selectTPZ", function () {
     console.log($(this).val());
     var index = $(this).val();
     var value_tpz = "";
+    value_tpz += dsc_tpz;
+    value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan</p>`;
     value_tpz += `
     <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Kode TPZ : ${
         saveTPZ[index]
-    }<br><br>Nama TPZ : ${dataabse_tpz[saveTPZ[index]].nama}</p>
+    }<br>Nama TPZ : ${dataabse_tpz[saveTPZ[index]].nama}</p>
     `;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].pengertian;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].ketentuan;
-    value_tpz += dsc_tpz;
     $(".inf-k-tpz").html(value_tpz);
 });
 
