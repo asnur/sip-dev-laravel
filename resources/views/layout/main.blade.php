@@ -821,7 +821,7 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Penurunan Air Tanah</label>
+                                    <label class="text_all_mobile">Penurunan Tanah</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <p class="inf-p-air-tanah">-</p>
