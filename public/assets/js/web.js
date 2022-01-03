@@ -756,7 +756,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus, .inf-p-air-tanah, .inf-sanitasi"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus, .inf-p-air-tanah, .inf-sanitasi, .inf-tipe-bangunan"
     ).html("-");
 
     getRadius(e);
@@ -990,6 +990,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         separatorNum(dt["Kepadatan-Penduduk"]) + " jiwa/km2"
     );
     $(".inf-rasio").html(dt.gini);
+    $(".inf-tipe-bangunan").html(dt.Tipe);
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
@@ -1949,6 +1950,8 @@ function addSourceLayer(item) {
         "ipal",
         "util",
         "phb",
+        "tol",
+        "sungai",
     ];
 
     for (var i = 0; i < api.length; i++) {
@@ -2235,6 +2238,32 @@ function addLayers() {
     });
 
     map.addLayer({
+        id: "tol_multilinestring",
+        type: "line",
+        source: "tol",
+        paint: {
+            "line-color": "orange",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "sungai_multilinestring",
+        type: "line",
+        source: "sungai",
+        paint: {
+            "line-color": "blue",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
+
+    map.addLayer({
         id: "budaya_dot",
         type: "circle",
         source: "budaya",
@@ -2330,6 +2359,34 @@ function onOffLayers() {
             showLayer("pipa_multilinestring");
         } else {
             hideLayer("pipa_multilinestring");
+        }
+    });
+
+    if ($("#tol_multilinestring").prop("checked") == true) {
+        showLayer("tol_multilinestring");
+    } else {
+        hideLayer("tol_multilinestring");
+    }
+
+    $("#tol_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("tol_multilinestring");
+        } else {
+            hideLayer("tol_multilinestring");
+        }
+    });
+
+    if ($("#sungai_multilinestring").prop("checked") == true) {
+        showLayer("sungai_multilinestring");
+    } else {
+        hideLayer("sungai_multilinestring");
+    }
+
+    $("#sungai_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("sungai_multilinestring");
+        } else {
+            hideLayer("sungai_multilinestring");
         }
     });
 

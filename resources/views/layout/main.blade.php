@@ -491,6 +491,16 @@
                         <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
                     </div>
 
+                    <div class="form-check tol_multilinestring mt-1">
+                        <input type="checkbox" class="form-check-input" id="tol_multilinestring">
+                        <label class="form-check-label  text_all" for="tol_multilinestring">Jalur Tol</label>
+                    </div>
+
+                    <div class="form-check sungai_multilinestring mt-1">
+                        <input type="checkbox" class="form-check-input" id="sungai_multilinestring">
+                        <label class="form-check-label  text_all" for="sungai_multilinestring">Aliran Sungai</label>
+                    </div>
+
                     {{-- <div class="form-check ipal_dot mt-1">
                         <input type="checkbox" class="form-check-input" id="ipal_dot">
                         <label class="form-check-label  text_all" for="ipal_dot">Pembuangan Air Limbah</label>
@@ -805,24 +815,6 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Sistem Sanitasi</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-sanitasi">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Penurunan Tanah</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-p-air-tanah">-</p>
-                                </div>
-                            </div>
-
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Persil</p>
                             <div class="d-flex row_mid_text">
                                 <div class="col-md-5 text_all">
@@ -953,6 +945,26 @@
                                         <canvas id="bar-chart-grouped-info" width="90" height="80"
                                             style="display: none;position:absolute;"></canvas>
                                     </div>
+                                </div>
+                            </div>
+
+                            <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama">Lingkungan</p>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Sistem Sanitasi</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <p class="inf-sanitasi">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Penurunan Tanah</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <p class="inf-p-air-tanah">-</p>
                                 </div>
                             </div>
 
@@ -1119,6 +1131,15 @@
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-psl">-</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Tipe Bangunan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-tipe-bangunan">-</p>
                                 </div>
                             </div>
 
