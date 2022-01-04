@@ -657,6 +657,13 @@
                                 </div>
                             </li>
                             <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" href="#"
+                                    role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                        class="ri-calculator-line"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile">Simulasi</label>
+                            </li>
+                            <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
                                     href="#" target="_blank"><i class="ri-shape-line"></i></a>
                                 <br>
@@ -1468,6 +1475,12 @@
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}"><span>JakartaSatu</span></a>
+                            </div>
+                            <div class="col-sm-4 mt-2 text-center">
+                                <a href="https://isi.or.id/" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
+                                        src="{{ asset('assets/gambar/ISI.png') }}"><span>Isi Survei</span></a>
                             </div>
                         </div>
                     </div>
