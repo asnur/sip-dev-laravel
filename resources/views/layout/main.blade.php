@@ -644,17 +644,11 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="btn btn-outline-primary text-primary btn-md tombol_menu padding_icon_navpill"
-                                    data-toggle="dropdown" aria-haspopup="true"><i class="ri-printer-fill"></i></a>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    data-toggle="pill" href="#pills-cetak" role="tab" aria-controls="pills-cetak"
+                                    aria-selected="false"><i class="ri-printer-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <div class="container text_all">
-                                        <input type="checkbox" id="printProfil" value="profil"> Profil<br>
-                                        <input type="checkbox" id="printZonasi" value="zonasi"> Zonasi<br>
-                                        <input type="checkbox" id="printAkses" value="akses"> Akses
-                                    </div>
-                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" href="#"
@@ -756,71 +750,73 @@
 
                     <div class="tab-pane active" id="pills-lokasi" role="tabpanel" aria-labelledby="lokasi-tab">
                         <div class="container">
-                            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Lokasi</p>
-
-                            <div class="d-flex space_judul row_mid_judul">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Koordinat</label>
+                            <div id="lokasi-print">
+                                <p class="card-title mt-2 text-center font-weight-bold judul_utama">Lokasi</p>
+                                <div class="d-flex space_judul row_mid_judul">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Koordinat</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kordinat">-</p>
+                                    </div>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-kordinat">-</p>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Kelurahan</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kelurahan">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Kecamatan</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kecamatan">-</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Wilayah</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kota">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Luas</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-luasarea">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Kepadatan</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kepadatan">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Rasio Gini</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-rasio">-</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kelurahan</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-kelurahan">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kecamatan</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-kecamatan">-</p>
-                                </div>
-                            </div>
-
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Wilayah</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-kota">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Luas</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-luasarea">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kepadatan</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-kepadatan">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Rasio Gini</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-rasio">-</p>
-                                </div>
-                            </div>
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Persil</p>
                             <div class="d-flex row_mid_text">
@@ -834,7 +830,7 @@
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Perkiraan Harga</label>
+                                    <label class="text_all_mobile">Perkiraan NJOP</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p class="inf-harganjop">-</p>
@@ -880,13 +876,15 @@
                             </div>
 
 
-                            <div class="d-flex margin_chart_ekonomi_mobile">
-                                <canvas id="pie-chart" width="70" height="50"></canvas>
-                            </div>
+                            <div class="all-chart">
+                                <div class="d-flex margin_chart_ekonomi_mobile">
+                                    <canvas id="pie-chart" width="70" height="50"></canvas>
+                                </div>
 
-                            <div class="d-flex margin_chartline_ekonomi_mobile">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
-                                    <canvas id="bar-chart-grouped" width="90" height="120"></canvas>
+                                <div class="d-flex margin_chartline_ekonomi_mobile">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                                        <canvas id="bar-chart-grouped" width="90" height="120"></canvas>
+                                    </div>
                                 </div>
                             </div>
 
@@ -941,6 +939,19 @@
                                 </div>
                             </div>
 
+                            <div class="row" id="chart-print">
+                                <div class="col-md-6">
+                                    <center>
+                                        <img id="pie-print" src="" width="70%">
+                                    </center>
+                                </div>
+                                <div class="col-md-6">
+                                    <center>
+                                        <img id="bar-print" src="" width="70%">
+                                    </center>
+                                </div>
+                            </div>
+
                             <div>
                                 <div class="d-flex margin_chart_ekonomi_mobile">
                                     <canvas id="pie-chart-info" width="70" height="50"
@@ -957,23 +968,23 @@
 
                             <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama">Lingkungan</p>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Sistem Sanitasi</label>
+                            <div class="container_grid">
+
+                                <div class="text_all">
+                                    <label>Sistem Sanitasi</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-sanitasi">-</p>
+                                <div class="text_all col_info">
+                                    <label class="inf-sanitasi">-</label>
+                                </div>
+
+                                <div class="text_all">
+                                    <label>Penurunan Tanah</label>
+                                </div>
+                                <div class="text_all col_info">
+                                    <label class="inf-p-air-tanah">-</label>
                                 </div>
                             </div>
 
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Penurunan Tanah</label>
-                                </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p class="inf-p-air-tanah">-</p>
-                                </div>
-                            </div>
 
                             <div class="inf-air-tanah">
 
@@ -1246,78 +1257,38 @@
                         <div class="container">
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">KBLI</p>
 
-                            {{-- <div class="d-flex ml-1">
-                                <div class="col-md-5 text_all">
-                                    <label class="text_all_mobile">Cari berdasarkan</label>
-                                </div>
-                                <div class="col-md-7 text_all cari_kodekbli cari_kodekbli_mobile">
+                            <div class="form-kbli">
+                                <div class="d-flex ml-1 margin_cari_kodelbli_mobile">
+                                    <div class="col-md-12 text_all">
+                                        <label class="text_all_mobile">Kegiatan Ruang</label>
+                                        <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                            <select class="form-control text_all" id="kegiatanRuang"
+                                                style="z-index: 9999">
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios1" value="option1" checked>
-                                        <label class="form-check-label " for="exampleRadios1">
-                                            Kegiatan
-                                        </label>
-                                    </div>
-                                    <div class="form-check margin_cari_kodelbli_mobile">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios2" value="option2">
-                                        <label class="form-check-label margin_cari_kodelbli_mobile"
-                                            for="exampleRadios2">
-                                            Lokasi
-                                        </label>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="d-flex ml-1">
-                                <div class="col-md-4 text_all">
-                                    <label class="text_all_mobile">Kegiatan</label>
-                                </div>
-                                <div class="col-md-7 text_all ml-5">
-                                    <textarea name="" id="" cols="23" rows="2"></textarea>
-                                </div>
-                            </div>
+                                <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
+                                    <div class="col-md-12 text_all">
+                                        <label class="text_all_mobile">Skala</label>
+                                        <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                            <select class="form-control" id="skala">
 
-                            <div class="d-flex ml-1">
-                                <div class="col-md-4 text_all">
-                                    <label class="text_all_mobile">Sektor</label>
-                                </div>
-                                <div class="col-md-7 text_all ml-5">
-                                    <textarea name="" id="" cols="23" rows="2"></textarea>
-                                </div>
-                            </div> --}}
-
-
-                            <div class="d-flex ml-1 margin_cari_kodelbli_mobile">
-                                <div class="col-md-12 text_all">
-                                    <label class="text_all_mobile">Kegiatan Ruang</label>
-                                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                        <select class="form-control text_all" id="kegiatanRuang" style="z-index: 9999">
-
-                                        </select>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
-                                <div class="col-md-12 text_all">
-                                    <label class="text_all_mobile">Skala</label>
-                                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                        <select class="form-control" id="skala">
+                                <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
+                                    <div class="col-md-12 text_all">
+                                        <label class="text_all_mobile">Kegiatan Kewenangan</label>
+                                        <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                            <select class="form-control" id="kegiatanKewenangan">
 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex ml-1 skala_kodekbli margin_cari_kodelbli_mobile">
-                                <div class="col-md-12 text_all">
-                                    <label class="text_all_mobile">Kegiatan Kewenangan</label>
-                                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                        <select class="form-control" id="kegiatanKewenangan">
-
-                                        </select>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1336,9 +1307,6 @@
                                 </tbody>
                             </table>
 
-                            <button class="btn btn-sm text-primary ml-0" id="btn-print"><i
-                                    class="fa fa-print"></i></button>
-
                             <div class="d-flex margin_chart_ekonomi_mobile">
                                 <canvas id="pie-chart-kbli" width="70" height="50"
                                     style="position:absolute;z-index: -999; display:none"></canvas>
@@ -1350,6 +1318,41 @@
                                         style="display: none;position:absolute;"></canvas>
                                 </div>
                             </div>
+
+
+                            <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane " id="pills-cetak" role="tabpanel">
+                        <div class="container">
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Cetak</p>
+                            <div class="form-check text_all">
+                                <input class="form-check-input position-static" type="checkbox" id="checkboxProfil"
+                                    value="profil" aria-label="..."> Profil
+                            </div>
+                            <div class="form-check text_all">
+                                <input class="form-check-input position-static" type="checkbox" id="checkboxKetentuan"
+                                    value="ketentuan" aria-label="..."> Ketentuan
+                            </div>
+                            <div class="form-check text_all">
+                                <input class="form-check-input position-static" type="checkbox" id="checkboxAkses"
+                                    value="akses" aria-label="..."> Akses
+                            </div>
+                            <div class="form-check text_all">
+                                <input class="form-check-input position-static" type="checkbox" id="checkboxKBLI"
+                                    value="kbli" aria-label="..."> KBLI
+                            </div>
+                            <button class="btn btn-sm text_all mt-3 btn-primary" id="printAll"><i
+                                    class="fa fa-print"></i>
+                                Cetak</button>
+
+
+
 
 
                             <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->

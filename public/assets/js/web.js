@@ -1001,8 +1001,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
     imgMaps = `
     <div>
-    <h1 align="center">Info Lokasi</h1>
-    <p class="font-weight-bold">Lokasi</p>
+        <h2 align="center">Info Lokasi</h2>
         <center>
           <img src="${img}" width="100%">
         </center>
@@ -1129,11 +1128,11 @@ map.on(clickEvent, "zoning_fill", function (e) {
     // $(".inf-cdtpz").html(dt["CD TPZ"] == "null" ? "-" : dt["CD TPZ"]);
     $("#selectTPZ").html(option_tpz);
     // $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
-    $(".inf-kdb").html(dt.KDB == "null" ? "-" : dt.KDB + "%");
-    $(".inf-kdh").html(dt.KDH == "null" ? "-" : dt.KDH + "%");
+    $(".inf-kdb").html(dt.KDB == "null" ? "-" : `${dt.KDB}%`);
+    $(".inf-kdh").html(dt.KDH == "null" ? "-" : `${dt.KDH}%`);
     $(".inf-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
-    $(".inf-ktb").html(dt.KLB == "null" ? "-" : dt.KTB + "%");
-    $(".inf-kb").html(dt.KB == "null" ? "-" : dt.KB + " Lapis");
+    $(".inf-ktb").html(dt.KLB == "null" ? "-" : `${dt.KTB}%`);
+    $(".inf-kb").html(dt.KB == "null" ? "-" : `${dt.KB} Lapis`);
     $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
@@ -1518,7 +1517,7 @@ function getAirTanah(e) {
             let html = "";
             for (let index = 0; index < value_data.length; index++) {
                 html += `
-                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Air Tanah Kedalaman : ${value_data[
+                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Air Tanah Kedalaman ${value_data[
                     index
                 ].properties.Kedalaman.slice(0, -5)} meter MBT
                 </p>
@@ -3643,35 +3642,60 @@ $("#btn-print").on("click", function () {
 $("#printAll").on("click", function () {
     var data_pie = $("#pie-chart-info").get(0).toDataURL("img/png");
     var data_bar = $("#bar-chart-grouped-info").get(0).toDataURL("img/png");
-    chart = `
-        <div class="row mt-5 mb-5">
-        <div class="col-md-6">
-            <center>
-              <img src="${data_pie}" width="70%">
-            </center>
-        </div>
-        <div class="col-md-6">
-          <center>
-            <img src="${data_bar}" width="70%">
-          </center>
-        </div>
-      </div>
-        `;
-    var html = [
-        imgMaps,
-        lokasi,
-        chart,
-        pendapatan,
-        zona,
-        eksisting,
-        bpn,
-        harga,
-        fasilitas,
-        kbli_data,
-    ].join("");
+
+    $("#pie-print").attr("src", data_pie);
+    $("#bar-print").attr("src", data_bar);
+    var style = `
+        <style>
+            #selectTPZ{
+                border: none;
+            }
+
+            #pills-ketentuan{
+                margin-top:100px !important;
+            }
+
+            .all-chart{
+                display: none;
+            }
+
+            #chart-print{
+                visibility: visible;
+                margin-bottom: 0px;
+            }
+
+            #radiusSlide{
+                display: none;
+            }
+
+            .form-kbli{
+                display: none;
+            }
+        </style>
+    `;
+    // var html = [
+    //     imgMaps,
+    //     lokasi,
+    //     chart,
+    //     pendapatan,
+    //     zona,
+    //     eksisting,
+    //     bpn,
+    //     harga,
+    //     fasilitas,
+    //     kbli_data,
+    // ].join("");
+
+    var profil = $("#pills-lokasi").html();
+    var poi = $("#pills-poi").html();
+    var ketentuan = $("#pills-ketentuan").html();
+    var kbli = $("#pills-kblikeg").html();
+
+    var html = [style, imgMaps, profil, ketentuan, poi, kbli].join("");
     var opt = {
-        margin: [10, 30, 10, 30],
+        margin: [10, 30, 30, 30],
         html2canvas: { scale: 2, logging: true },
+        // pagebreak: { mode: "avoid-all", before: "#page2el" },
     };
     html2pdf()
         .set(opt)
