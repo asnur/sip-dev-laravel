@@ -990,7 +990,6 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         separatorNum(dt["Kepadatan-Penduduk"]) + " jiwa/km2"
     );
     $(".inf-rasio").html(dt.gini);
-    $(".inf-tipe-bangunan").html(dt.Tipe);
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
@@ -1079,6 +1078,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
+    // console.log(dt);
     var gsb = `
     <p>Ketentuan GSB (Garis Sempadan Bangunan) terhadap GSJ (Garis Sempadan Jalan) adalah sebagai berikut:</p>
     <ol style="margin-top:-15px">
@@ -1137,6 +1137,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
+    $(".inf-tipe-bangunan").html(dt.Tipe);
 
     zona = `
     <div class="col-sm-12 mt-5 mb-5">
