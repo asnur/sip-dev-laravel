@@ -102,7 +102,7 @@
 
         <div style="margin-top: 5.5rem;" class="container">
 
-            <p class="card-title text-center font-weight-bold judul_utama">Lokasi</p>
+            {{-- <p class="card-title text-center font-weight-bold judul_utama">Lokasi</p> --}}
 
             <div class="d-flex space_judul row_mid_judul">
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
@@ -429,6 +429,90 @@
     </div>
 
 
+    <div id="form_ajib">
+        <div class="container"></div>
+            {{-- <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
+            style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+
+            <div class="d-flex">
+                <div class="col-md-1">
+
+                    <span style="padding-top: 4%; margin-left: -8%;" class="material-icons size_icons" id="btn_backeko">
+                        arrow_back_ios
+                    </span>
+
+
+                </div>
+
+                <div style="margin-left: -33%; font-size: 20px; padding-top: 1.2%;" class="col-md-9">Form Input</div>
+            </div>
+
+        </div> --}}
+
+
+            <main role="main" class="container-fluid py-2">
+
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="form-outline mb-xs-2 mb-1 md-4">
+                        {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
+                        <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-xs-2 mb-1 md-4">
+                        <label class="form-label text-muted" for="judul">Judul</label>
+                        <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
+                    </div>
+
+                    <div class="form-outline mb-xs-2 mb-2 md-4">
+                        <label class="form-label text-muted">Kategori</label>
+
+                        <select required name="kategori" class="form-control">
+                            <option selected="selected">- Pilih -</option>
+                            <option value="UMK">UMK</option>
+                            <option value="Sedang dibangun">Sedang dibangun</option>
+                            <option value="Pedestrian">Pedestrian</option>
+                            <option value="Cagar Budaya">Cagar Budaya</option>
+                            <option value="RTH">RTH</option>
+                            <option value="Dijual">Dijual</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+
+                    <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
+                        <div class="input-group custom-file-button">
+                            <label class="input-group-text" for="image">Upload Gambar</label>
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
+                    </div>
+
+
+                    <div class="form-outline mb-xs-2 mb-2 md-4">
+                        <label for="catatan">Catatan</label>
+
+                        <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
+
+                    </div>
+
+
+                    <button type="submit" name="submit"
+                        class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                        <strong>Simpan</strong>
+                    </button>
+
+                </form>
+
+            </main>
+
+
+        </div>
+</div>
+    </div>
+
+
+
     <div id="akses">
 
         <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
@@ -578,6 +662,9 @@
             </div>
             <!-- End Judul -->
 
+
+
+
             <div class="card-body color_card_body">
 
                 <!-- Search -->
@@ -590,10 +677,18 @@
                             <!-- Search Mobile -->
 
                             <div class="tempat_search for_mobile fixed-top searchh">
+
+
+
+
                                 <div class="search_box">
                                     <span class="menu">
 
-                                        <button class="btn btn-lg tombol_search border-0 borderdropdown-toggle"
+                                        <div class="gambar_logos" style="margin-top:85%;">
+                                            <img src="./assets/gambar/logo_jakpintas.png" width="70px">
+                                        </div>
+
+                                        <button style="display: none;" class="btn btn-lg tombol_search border-0 borderdropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-bars fa-lg"></i>
@@ -603,40 +698,85 @@
                                         <div class="dropdown-menu w_checkbox_dropdown_mobile"
                                             aria-labelledby="dropdownMenuButton">
 
-                                            <img src="./assets/gambar/logo_jakpintas.png" width="60px"
+                                                <img src="./assets/gambar/logo_jakpintas.png" width="60px"
                                                 class="ml-4 img-fluid" alt="Responsive image">
 
-                                            <div class="layout_checkbox_mobile">
 
-                                                <div class="form-check zoning_fill">
-                                                    <input type="checkbox" class="form-check-input" checked id="zoning_fill">
-                                                    <label class="form-check-label  text_all" for="zoning_fill">Peta
-                                                        Zonasi</label>
+                                                <div class="layout_checkbox_mobile">
+
+                                                    {{-- <div class="form-check zoning_fill">
+                                                        <input type="checkbox" class="form-check-input" checked id="zoning_fill">
+                                                        <label class="form-check-label  text_all" for="zoning_fill">Peta
+                                                            Zonasi</label>
+                                                    </div> --}}
+
+                                                    {{-- <div class="form-check wilayahindex_fill mt-1">
+                                                        <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
+                                                        <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
+                                                            Kecil</label>
+                                                    </div> --}}
+
+                                                    <div class="form-check pipa_multilinestring mt-1">
+                                                        <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
+                                                        <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                                                    </div>
+
+                                                    <div class="form-check banjir_fill mt-1">
+
+                                                        <input type="checkbox" class="form-check-input" id="banjir_fill">
+                                                        <label class="form-check-label text_all" for="banjir_fill">Terdampak
+                                                            Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
+                                                        <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
+                                                            id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                                                                                </div>
+
+
+                                                    {{-- <hr> --}}
                                                 </div>
+{{--
+                                                @role('admin')
+                                                    <p>sehat</p>
+                                                @endrole
 
-                                                {{-- <div class="form-check wilayahindex_fill mt-1">
-                                                    <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
-                                                    <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
-                                                        Kecil</label>
-                                                </div> --}}
-
-                                                <div class="form-check pipa_multilinestring mt-1">
-                                                    <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
-                                                    <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
-                                                </div>
-
-                                                <div class="form-check banjir_fill mt-1">
-
-                                                    <input type="checkbox" class="form-check-input" id="banjir_fill">
-                                                    <label class="form-check-label text_all" for="banjir_fill">Terdampak
-                                                        Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
-                                                    <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
-                                                        id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
-                                                                            </div>
+                                                @role('user')
+                                                <p>sehat</p>
+                                                @endhasrole --}}
 
 
-                                                {{-- <hr> --}}
-                                            </div>
+
+                                                {{-- @php
+                                                $admin = "Admin";
+                                                $user = "User";
+                                                $guest = "Guest"
+                                                @endphp
+
+                                                @switch($admin)
+
+                                                    @case('Admin')
+                                                        @role('admin')
+                                                            <p>sehat</p>
+                                                        @endrole
+
+                                                    @break
+
+                                                @endswitch
+
+
+                                                @switch($user)
+
+                                                @case('User')
+                                                    @role('user')
+                                                        <p>kaga</p>
+                                                    @endrole
+                                                @break
+
+
+                                            @endswitch --}}
+
+
+
+
+
 
 
 
@@ -691,6 +831,7 @@
                             </div>
 
                             <!-- End Search Mobile -->
+
 
                             <!-- Search Web -->
                             <div class="for_web input-group input-group-md mb-1">
@@ -898,6 +1039,7 @@
                 <!-- Mengatur Menu Mobile -->
 
                 <div id="popup" class="for_mobile">
+
                     <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
                         style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
                         <div class="d-flex">
@@ -917,7 +1059,7 @@
                     <iframe id="popupiframe"></iframe>
                 </div>
 
-                <div class="container container_menu for_mobile">
+                <div class="container container_menu for_mobile" id="menuu">
 
                     <div class="d-flex justify-content-center">
 
@@ -956,7 +1098,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
+                                id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
                                     aria-selected="false"><i class="ri-funds-box-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
@@ -988,13 +1130,13 @@
                                 <label class="size_menu size_menu_mobile">Akses</label>
                             </li>
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="hlm_kbli" href="" role="tab" aria-controls="pills-kblikeg"
                                     aria-selected="false"><i class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
-                            </li>
+                            </li> --}}
 
                             {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
@@ -1559,8 +1701,15 @@
 
     </div>
 
-
-
+    <div class="hide_zoning_fill">
+    <div style="position: fixed; right:6%; top:37%; color:#fff;">
+        <div class="form-check zoning_fill">
+            <input type="checkbox" class="form-check-input" checked id="zoning_fill">
+            {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
+                Zonasi</label> --}}
+        </div>
+    </div>
+</div>
 
 
 
@@ -1654,8 +1803,131 @@
         </button> --}}
 
 
+        {{-- <div style="margin-top:30%; margin-right:-2%;" class="d-flex flex-column float-right">
 
-        <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
+            <div class="p-2">
+                <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div class="container">
+                    <div class="row">
+                        <i class="ri-pushpin-line bg-white p-1 text-secondary"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                    </div>
+                </div>
+            </button>
+            </div>
+
+            <div class="p-2"> <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div class="container">
+                    <div class="row">
+                        <i class="ri-file-list-line bg-white p-1 text-secondary"
+                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                    </div>
+                </div>
+            </button>
+            </div>
+
+        </div> --}}
+
+        <div class="hide_hlm_kbli">
+        <div  style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
+
+            <div>
+                <button class="btn btn-sm mt-3">
+                <div class="container">
+                    <div class="row">
+                        <i  id="hlm_kbli" class="ri-pushpin-line bg-white text-secondary"
+                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                    </div>
+                </div>
+            </button>
+            </div>
+
+            <div>
+                <button class="btn btn-sm mt-3">
+                <div class="container">
+                    <div class="row">
+                        <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
+                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                    </div>
+                </div>
+            </button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="mt-1" style="margin-left: -10px;">
+            <div class="menuuu">
+                <ul>
+                    <li>
+                        <button class="btn btn-sm"
+                        style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                        <div class="container">
+                            <div class="row">
+                                <span class="material-icons text-primary mr-1">
+                                    apartment
+                                </span>
+                                <span class="font-weight-bold" style="margin-top: 2px">Sewa Kantor</span>
+                            </div>
+                        </div>
+                    </button>
+                    </li>
+                <li>
+                    <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            storefront
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">UKM</span>
+                    </div>
+                </div>
+            </button>
+                </li>
+
+                <li>
+                    <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                home_repair_service
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Potensial</span>
+                        </div>
+                    </div>
+                </button>
+                </li>
+
+                <li>
+                    <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                        </div>
+                    </div>
+                </button>
+                </li>
+
+                </ul>
+            </div>
+
+
+
+    </div>
+
+
+
+
+        {{-- <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
             <div class="dropdown">
 
                 <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
@@ -1670,17 +1942,10 @@
 
             </div>
 
-            {{-- <button class="btn btn-sm mt-1" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <div class="container">
-                    <div class="row">
-                        <i class="ri-mail-open-line bg-white p-1 text-secondary"
-                            style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                    </div>
-                </div>
-            </button> --}}
 
-        </div>
+
+
+        </div> --}}
 
 
 
@@ -1778,6 +2043,23 @@
                 return false;
                 }
 
+                // document.getElementById("hlm_ekonomi").onclick = function(e) {
+                //     document.getElementById("form_ajib").style.display = "block";
+                //     document.getElementById("menuu").style.display = "none";
+
+                //     document.getElementById('hlm_ekonomi').onclick = function() {
+                //         document.getElementById("form_ajib").style.display = "none";
+                //         document.getElementById("menuu").style.display = "block";
+
+                //         return true;
+                //     };
+                // return true;
+                // // }
+
+                $("#hlm_form_ajib").click(function() {
+                    $('#form_ajib').toggle();
+                });
+
 
 
                 document.getElementById("hlm_poi").onclick = function(e) {
@@ -1804,10 +2086,11 @@
 
                 var APP_URL = {!! json_encode(url('/')) !!}
 
+
         </script>
 
 
-        <script src="{{ asset('assets/js/mobile2.js') }}"></script>
+        <script src="{{ asset('assets/js/mobile.js') }}"></script>
 
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>

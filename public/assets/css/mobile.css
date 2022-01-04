@@ -24,6 +24,41 @@
         height: 4rem;
     } */
 
+    .form-header {
+        background-image: linear-gradient(111.37738709038058deg, #3d36f1 1.557291666666667%, #3d36f1 101.34895833333333%);
+        color: #fff;
+        padding-top: 1.5rem !important
+    }
+
+
+    .btn_ajib1 {
+        background-color: #3d36f1;
+        height: 50px
+    }
+
+    .btn_ajib2 {
+        background-color: #d42929;
+        height: 50px
+    }
+
+    .custom-file-button input[type=file] {
+        margin-left: -2px !important;
+    }
+
+    .custom-file-button input[type=file]::-webkit-file-upload-button {
+        display: none;
+    }
+
+    .custom-file-button input[type=file]::file-selector-button {
+        display: none;
+    }
+
+    .custom-file-button:hover label {
+        background-color: #dde0e3;
+        cursor: pointer;
+    }
+
+
     .new_login {
         position: absolute;
         top: 8px;
@@ -54,6 +89,32 @@
         overflow: scroll;
     }
 
+    .menuuu ul {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    .menuuu ul,
+    .menuuu li {
+        list-style: none;
+        display: inline-block;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .menuuu {
+        overflow: hidden;
+        line-height: 0px;
+        margin-left: 3%;
+        position: fixed;
+    }
+
+    .menuuu button {
+        display: block;
+    }
+
     #ekonomi {
         display: none;
         position: fixed;
@@ -64,6 +125,20 @@
         z-index: 999;
         overflow: scroll;
     }
+
+
+    #form_ajib {
+        display: none;
+        position: absolute;
+        bottom: -15%;
+        width: 100%;
+        /* height: 100%; */
+        background-color: white;
+        z-index: 999;
+        overflow: scroll;
+    }
+
+
 
     #akses {
         display: none;
@@ -351,7 +426,7 @@
         left: 0;
         width: 100%;
         height: 114%;
-        padding: 10px 50px;
+        padding: 10px 20px;
         border-radius: 3px;
         font-size: 15px;
     }
@@ -393,7 +468,7 @@
     }
 
     .tempat_search.searchh .search_box .input {
-        padding-right: 50px;
+        padding-right: 60px;
     }
 
     .menu {
@@ -456,8 +531,8 @@
   } */
 
     .container_menu {
-        padding-right: 40px !important;
-        padding-left: 40px !important;
+        padding-right: 65px !important;
+        padding-left: 65px !important;
     }
 
 
@@ -529,9 +604,14 @@
         font-size: 1.2rem;
     }
 
+
     .flex_container li {
         margin: 0 0 0 15px;
-        flex: 0 1 calc(30% - 8px);
+        flex: 0 1 calc(28% - 5px);
+    }
+
+    .nav {
+        flex-wrap: nowrap !important;
     }
 
     .space_judul {

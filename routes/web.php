@@ -46,7 +46,7 @@ Route::get('/', function (Request $request) {
 });
 
 Route::get('admin', function () {
-    return view('layout.mainadmin');
+    return "Halaman Admin";
 })->middleware('role:admin')->name('admin.page');
 
 Route::get('user', function () {
