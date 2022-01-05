@@ -115,7 +115,7 @@
             <button type="button" class="close" id="closePin" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span style="font-size: 13pt" class="title-info font-weight-bold">Simpan Lokasi</span>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Laporan/Pengawasan</span>
             <div class="form mt-4">
                 <div class="alert alert-danger alert-dismissible fade show" id="pesanGagal" style="font-size: 10pt"
                     role="alert">
@@ -966,7 +966,8 @@
                                 </div>
                             </div>
 
-                            <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama">Lingkungan</p>
+                            <p class="card-title mb-3 text-center font-weight-bold judul_utama"
+                                style="margin-top: 65px">Lingkungan</p>
 
                             <div class="container_grid">
 
@@ -1062,6 +1063,73 @@
                                     </div>
                                 </div> --}}
 
+
+                                <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Intensitas
+                                </p>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KDH</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-kdh">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KLB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-klb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KDB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-kdb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-kb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">KTB</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-ktb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">PSL</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-psl">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">Tipe Bangunan</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-tipe-bangunan">-</p>
+                                    </div>
+                                </div>
+
                                 <div class="d-flex space_text row_mid_text mt-1 mb-2">
                                     <div class="col-lg-12 text_all">
                                         <p style="text-align: justify">Pada lahan di lokasi ini dapat dikenakan
@@ -1095,72 +1163,6 @@
                                 -
                             </div> --}}
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Intensitas
-                            </p>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KDH</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-kdh">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KLB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-klb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KDB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-kdb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-kb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">KTB</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-ktb">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">PSL</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-psl">-</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex space_text row_mid_text">
-                                <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Tipe Bangunan</label>
-                                </div>
-                                <div class="col-lg-7 text_all">
-                                    <p class="inf-tipe-bangunan">-</p>
-                                </div>
-                            </div>
-
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
                                 Tata Bangunan<br><span class="w-100 text-center text_all"
                                     style="font-weight: normal">Pedoman Tata Bangunan sesuai Pergub
@@ -1183,7 +1185,7 @@
                                                 <li style="margin-left: -25px">Ramp</li>
                                                 <li style="margin-left: -25px">Parkir</li>
                                                 <li style="margin-left: -25px">Bangunan di Bawah Permukaan Tanah</li>
-                                                <li style="margin-left: -25px">Bangunan Layangan</li>
+                                                <li style="margin-left: -25px">Bangunan Layang</li>
                                             </ol>
                                         </li>
                                         <li style="margin-left: -25px">Intensitas</li>
@@ -1483,7 +1485,7 @@
                                 <a href="https://isi.or.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
-                                        src="{{ asset('assets/gambar/ISI.png') }}"><span>Isi Survei</span></a>
+                                        src="{{ asset('assets/gambar/ISI.png') }}"><span>ISI Survei</span></a>
                             </div>
                         </div>
                     </div>

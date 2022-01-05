@@ -741,6 +741,31 @@ map.on("mouseleave", "ipal_dot", () => {
     $(".inves").css("width", "");
 });
 
+map.on("mouseenter", "sungai_multilinestring", (e) => {
+    // console.log(e);
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.lngLat;
+    const dt = e.features[0].properties;
+    const content = `<div class="card">
+    <div class="card-body p-0">
+      <p class="mt-2 card-title">${dt["Nama"]}</p>
+    </div>`;
+
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    // $(".mapboxgl-popup-content").addClass("inves");
+    // $(this).css("width", "300px");
+});
+
+map.on("mouseleave", "sungai_multilinestring", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+    $(".inves").css("width", "");
+});
+
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
@@ -3643,8 +3668,39 @@ $("#printAll").on("click", function () {
     var data_pie = $("#pie-chart-info").get(0).toDataURL("img/png");
     var data_bar = $("#bar-chart-grouped-info").get(0).toDataURL("img/png");
 
+    var displayProfile;
+    var displayKetentuan;
+    var displayAksess;
+    var displayKBLI;
+
     $("#pie-print").attr("src", data_pie);
     $("#bar-print").attr("src", data_bar);
+
+    if ($("#checkboxProfil").attr("checked") == true) {
+        displayProfile = "block";
+    } else {
+        displayProfile = "none";
+    }
+
+    if ($("#checkboxKetentuan").attr("checked") == true) {
+        displayKetentuan = "block";
+    } else {
+        displayKetentuan = "none";
+    }
+
+    if ($("#checkboxAkses").attr("checked") == true) {
+        displayAksess = "block";
+    } else {
+        displayAksess = "none";
+    }
+
+    if ($("#checkboxKBLI").attr("checked") == true) {
+        displayKBLI = "block";
+    } else {
+        displayKBLI = "none";
+    }
+
+    // $("#checkboxProfil");
     var style = `
         <style>
             #selectTPZ{
@@ -3671,6 +3727,23 @@ $("#printAll").on("click", function () {
             .form-kbli{
                 display: none;
             }
+
+            #pills-lokasi{
+                display: ${displayProfile};
+            }
+
+            #pills-poi{
+                display: ${displayAksess};
+            }
+
+            #pills-ketentuan{
+                display: ${displayKetentuan};
+            }
+
+            #pills-kblikeg{
+                display: ${displayKBLI};
+            }
+
         </style>
     `;
     // var html = [
@@ -3691,7 +3764,7 @@ $("#printAll").on("click", function () {
     var ketentuan = $("#pills-ketentuan").html();
     var kbli = $("#pills-kblikeg").html();
 
-    var html = [style, imgMaps, profil, ketentuan, poi, kbli].join("");
+    var html = [style, imgMaps, profil, ketentuan, poi].join("");
     var opt = {
         margin: [10, 30, 30, 30],
         html2canvas: { scale: 2, logging: true },
