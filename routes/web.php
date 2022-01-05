@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UsahaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\SocialiteController;
@@ -45,6 +46,9 @@ Route::get('/', function (Request $request) {
     return view('layout.main');
 });
 
+Route::get('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'create'])->name('tambah_ajib');
+
+
 Route::get('admin', function () {
     return "Halaman Admin";
 })->middleware('role:admin')->name('admin.page');
@@ -52,5 +56,3 @@ Route::get('admin', function () {
 Route::get('user', function () {
     return view('layout.main');
 })->middleware('role:user')->name('user.page');
-
-Route::get('/create_admin', [AdminController::class, 'create_admin'])->name('create_admin');

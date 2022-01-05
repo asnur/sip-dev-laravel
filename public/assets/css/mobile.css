@@ -101,14 +101,14 @@
         white-space: nowrap;
         margin: 0;
         padding: 0;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     .menuuu {
         overflow: hidden;
         line-height: 0px;
         margin-left: 3%;
-        position: fixed;
+        /* position: fixed; */
     }
 
     .menuuu button {
@@ -503,8 +503,8 @@
 
         position: absolute;
         z-index: 99;
-        max-width: 100vh !important;
-        height: 30% !important;
+        width: 100%;
+        height: 30%;
 
         bottom: -0.1%;
 
@@ -512,10 +512,10 @@
     }
 
     .dalam {
-        height: 100% !important;
+        height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
-        max-width: 100vh;
+        width: 100%;
     }
 
     .card-body {
@@ -531,8 +531,10 @@
   } */
 
     .container_menu {
-        padding-right: 65px !important;
-        padding-left: 65px !important;
+        /* padding-right: 30px !important;
+        padding-left: 35px !important; */
+        background-color: #fff;
+        border-radius: 10px;
     }
 
 
@@ -586,9 +588,9 @@
         font-size: 13px;
     }
 
-    .color_card_body {
+    /* .color_card_body {
         background-color: #fdfffc;
-    }
+    } */
 
     .menu_active {
         margin-top: 7%;
@@ -606,7 +608,7 @@
 
 
     .flex_container li {
-        margin: 0 0 0 15px;
+        margin: 0 15px 0 15px;
         flex: 0 1 calc(28% - 5px);
     }
 

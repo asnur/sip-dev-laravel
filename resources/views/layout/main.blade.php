@@ -429,88 +429,6 @@
     </div>
 
 
-    <div id="form_ajib">
-        <div class="container"></div>
-            {{-- <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
-            style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
-
-            <div class="d-flex">
-                <div class="col-md-1">
-
-                    <span style="padding-top: 4%; margin-left: -8%;" class="material-icons size_icons" id="btn_backeko">
-                        arrow_back_ios
-                    </span>
-
-
-                </div>
-
-                <div style="margin-left: -33%; font-size: 20px; padding-top: 1.2%;" class="col-md-9">Form Input</div>
-            </div>
-
-        </div> --}}
-
-
-            <main role="main" class="container-fluid py-2">
-
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="form-outline mb-xs-2 mb-1 md-4">
-                        {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                        <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
-                    </div>
-
-                    <div class="form-outline mb-xs-2 mb-1 md-4">
-                        <label class="form-label text-muted" for="judul">Judul</label>
-                        <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
-                    </div>
-
-                    <div class="form-outline mb-xs-2 mb-2 md-4">
-                        <label class="form-label text-muted">Kategori</label>
-
-                        <select required name="kategori" class="form-control">
-                            <option selected="selected">- Pilih -</option>
-                            <option value="UMK">UMK</option>
-                            <option value="Sedang dibangun">Sedang dibangun</option>
-                            <option value="Pedestrian">Pedestrian</option>
-                            <option value="Cagar Budaya">Cagar Budaya</option>
-                            <option value="RTH">RTH</option>
-                            <option value="Dijual">Dijual</option>
-                            <option value="Lainnya">Lainnya</option>
-                        </select>
-                    </div>
-
-
-                    <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
-                        <div class="input-group custom-file-button">
-                            <label class="input-group-text" for="image">Upload Gambar</label>
-                            <input type="file" class="form-control" id="image" name="image">
-                        </div>
-                    </div>
-
-
-                    <div class="form-outline mb-xs-2 mb-2 md-4">
-                        <label for="catatan">Catatan</label>
-
-                        <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
-
-                    </div>
-
-
-                    <button type="submit" name="submit"
-                        class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
-                        <strong>Simpan</strong>
-                    </button>
-
-                </form>
-
-            </main>
-
-
-        </div>
-</div>
-    </div>
-
 
 
     <div id="akses">
@@ -1059,30 +977,35 @@
                     <iframe id="popupiframe"></iframe>
                 </div>
 
+                {{-- <div class="cobain">
+
+                </div> --}}
+
+
                 <div class="container container_menu for_mobile" id="menuu">
 
-                    <div class="d-flex justify-content-center">
 
-                        <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
-                            height="50" viewBox="0 0 172 172" style=" fill:#000000;">
-                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                                font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                                style="mix-blend-mode: normal">
-                                <path d="M0,172v-172h172v172z" fill="none"></path>
-                                <g fill="#cccccc">
-                                    <path
-                                        d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
-                                    </path>
-                                </g>
+                <div class="d-flex justify-content-center">
+
+                    <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
+                        height="50" viewBox="0 0 172 172" style=" fill:#000000;">
+                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                            <g fill="#cccccc">
+                                <path
+                                    d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                                </path>
                             </g>
-                        </svg>
+                        </g>
+                    </svg>
 
-                    </div>
+                </div>
 
-
-
-                    <div class="flex_container">
+                    <div class="d-flex justify-content-around">
+                        <div class="flex_container">
 
                         <ul class="nav nav-pills  mb-3" id="pills-tab" role="tablist">
 
@@ -1150,6 +1073,12 @@
                         </ul>
 
                     </div>
+                </div>
+
+
+
+
+
                 </div>
                 <!-- End Mengatur Menu Mobile -->
 
@@ -1859,7 +1788,7 @@
         </div>
     </div>
 
-    <div class="mt-1" style="margin-left: -10px;">
+    <div class="mt-1" style="margin-left: -10px; position:fixed;">
             <div class="menuuu">
                 <ul>
                     <li>
@@ -1886,7 +1815,7 @@
                         <span class="font-weight-bold" style="margin-top: 2px">UKM</span>
                     </div>
                 </div>
-            </button>
+                </button>
                 </li>
 
                 <li>
@@ -1952,6 +1881,65 @@
     </div>
 
 
+    <div id="form_ajib">
+
+        <main role="main" class="container-fluid py-2">
+
+            <form action="{{ url('tambah_ajib') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-outline mb-xs-2 mb-1 md-4">
+                    {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
+                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                </div>
+
+                <div class="form-outline mb-xs-2 mb-1 md-4">
+                    <label class="form-label text-muted" for="judul">Judul</label>
+                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
+                </div>
+
+                <div class="form-outline mb-xs-2 mb-2 md-4">
+                    <label class="form-label text-muted">Kategori</label>
+
+                    <select required name="kategori" class="form-control">
+                        <option selected="selected">- Pilih -</option>
+                        <option value="UMK">UMK</option>
+                        <option value="Sedang dibangun">Sedang dibangun</option>
+                        <option value="Pedestrian">Pedestrian</option>
+                        <option value="Cagar Budaya">Cagar Budaya</option>
+                        <option value="RTH">RTH</option>
+                        <option value="Dijual">Dijual</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+
+                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
+                    <div class="input-group custom-file-button">
+                        <label class="input-group-text" for="image">Upload Gambar</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                    </div>
+                </div>
+
+
+                <div class="form-outline mb-xs-2 mb-2 md-4">
+                    <label for="catatan">Catatan</label>
+
+                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
+
+                </div>
+
+
+                <button type="submit" name="submit"
+                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                    <strong>Simpan</strong>
+                </button>
+
+            </form>
+
+        </main>
+
+</div>
 
 
 
