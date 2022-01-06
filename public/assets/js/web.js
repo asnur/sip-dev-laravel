@@ -174,7 +174,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #formPinLocationEdit"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #formPinLocationEdit"
 ).hide();
 
 $.ajax({
@@ -336,7 +336,7 @@ map.on("style.load", function () {
         var lats = coornya.lat.toString();
         var lngs = coornya.lng.toString();
         lats = lats.slice(0, -7);
-        lngs = lngs.slice(0, -7);
+        lngs = lngs.slice(0, -8);
         lat = lats;
         long = lngs;
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
@@ -366,7 +366,7 @@ map.on("style.load", function () {
         });
 
         $(".inf-kordinat").html(
-            `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats},${lngs}" target="_blank">${lats}, ${lngs}</a>`
+            `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}" target="_blank">${lats}, ${lngs}</a>`
         );
 
         $("#btnSHP").attr(
@@ -3673,34 +3673,41 @@ $("#printAll").on("click", function () {
     var displayAksess;
     var displayKBLI;
 
+    var arrPrint = [];
+
+    var profil = $("#pills-lokasi").html();
+    var poi = $("#pills-poi").html();
+    var ketentuan = $("#pills-ketentuan").html();
+    var kbli = $("#pills-kblikeg").html();
+
     $("#pie-print").attr("src", data_pie);
     $("#bar-print").attr("src", data_bar);
 
-    if ($("#checkboxProfil").attr("checked") == true) {
-        displayProfile = "block";
-    } else {
-        displayProfile = "none";
+    if ($("#checkboxProfil").prop("checked") == true) {
+        arrPrint.push(profil);
     }
 
-    if ($("#checkboxKetentuan").attr("checked") == true) {
-        displayKetentuan = "block";
-    } else {
-        displayKetentuan = "none";
+    if ($("#checkboxKetentuan").prop("checked") == true) {
+        arrPrint.push(ketentuan);
     }
 
-    if ($("#checkboxAkses").attr("checked") == true) {
-        displayAksess = "block";
-    } else {
-        displayAksess = "none";
+    if ($("#checkboxAkses").prop("checked") == true) {
+        arrPrint.push(poi);
     }
 
-    if ($("#checkboxKBLI").attr("checked") == true) {
-        displayKBLI = "block";
-    } else {
-        displayKBLI = "none";
+    if ($("#checkboxKBLI").prop("checked") == true) {
+        if ($(".dtKBLI").html().length == 0) {
+            $("#pesanGagalPrint").show();
+            setTimeout(() => {
+                $("#pesanGagalPrint").hide();
+            }, 3000);
+        } else {
+            arrPrint.push(kbli);
+        }
     }
 
-    // $("#checkboxProfil");
+    var resultPrint = arrPrint.join("");
+
     var style = `
         <style>
             #selectTPZ{
@@ -3727,44 +3734,10 @@ $("#printAll").on("click", function () {
             .form-kbli{
                 display: none;
             }
-
-            #pills-lokasi{
-                display: ${displayProfile};
-            }
-
-            #pills-poi{
-                display: ${displayAksess};
-            }
-
-            #pills-ketentuan{
-                display: ${displayKetentuan};
-            }
-
-            #pills-kblikeg{
-                display: ${displayKBLI};
-            }
-
         </style>
     `;
-    // var html = [
-    //     imgMaps,
-    //     lokasi,
-    //     chart,
-    //     pendapatan,
-    //     zona,
-    //     eksisting,
-    //     bpn,
-    //     harga,
-    //     fasilitas,
-    //     kbli_data,
-    // ].join("");
 
-    var profil = $("#pills-lokasi").html();
-    var poi = $("#pills-poi").html();
-    var ketentuan = $("#pills-ketentuan").html();
-    var kbli = $("#pills-kblikeg").html();
-
-    var html = [style, imgMaps, profil, ketentuan, poi].join("");
+    var html = [style, imgMaps, resultPrint].join("");
     var opt = {
         margin: [10, 30, 30, 30],
         html2canvas: { scale: 2, logging: true },

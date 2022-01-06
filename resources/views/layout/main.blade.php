@@ -749,7 +749,7 @@
                 <div class="tab-content for_web mb-5" id="pills-tabContent">
 
                     <div class="tab-pane active" id="pills-lokasi" role="tabpanel" aria-labelledby="lokasi-tab">
-                        <div class="container">
+                        <div class="container" id="profil-print">
                             <div id="lokasi-print">
                                 <p class="card-title mt-2 text-center font-weight-bold judul_utama">Lokasi</p>
                                 <div class="d-flex space_judul row_mid_judul">
@@ -995,7 +995,7 @@
                     </div>
 
                     <div class="tab-pane" id="pills-ketentuan" role="tabpanel" aria-labelledby="ketentuan-tab">
-                        <div class="container">
+                        <div class="container" id="ketentuan-print">
 
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Zonasi <br><span
@@ -1197,7 +1197,7 @@
                     </div>
 
                     <div class="tab-pane " id="pills-poi" role="tabpanel" aria-labelledby="poi-tab">
-                        <div class="container">
+                        <div class="container" id="poi-print">
                             <p class="card-title mt-2 text-center font-weight-bold judul_utama">Akses</p>
                             <div class="form-group for_web w-100 mt-3 mb-0 ml-2" id="radiusSlide">
                                 <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
@@ -1256,7 +1256,7 @@
                     </div>
 
                     <div class="tab-pane " id="pills-kblikeg" role="tabpanel" aria-labelledby="kblikeg-tab">
-                        <div class="container">
+                        <div class="container" id="kbli-print">
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">KBLI</p>
 
                             <div class="form-kbli">
@@ -1333,6 +1333,10 @@
                     <div class="tab-pane " id="pills-cetak" role="tabpanel">
                         <div class="container">
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Cetak</p>
+                            <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalPrint"
+                                style="font-size: 10pt" role="alert">
+                                <strong>Gagal!</strong> Anda Harus Memilih KBLI.
+                            </div>
                             <div class="form-check text_all">
                                 <input class="form-check-input position-static" type="checkbox" id="checkboxProfil"
                                     value="profil" aria-label="..."> Profil
