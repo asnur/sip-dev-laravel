@@ -1342,7 +1342,8 @@
                                 <strong>Gagal!</strong> Anda Harus Memilih KBLI.
                             </div>
                             <div class="ml-3">
-                                <div class="form-check text_all">
+                                <span class="text_all font-weight-bold">Opsi Cetak</span>
+                                <div class="form-check text_all mt-1">
                                     <input class="form-check-input position-static" type="checkbox" id="checkboxProfil"
                                         value="profil" aria-label="..."> Profil
                                 </div>
