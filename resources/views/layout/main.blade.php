@@ -1831,21 +1831,19 @@
             <div class="menuuu">
                 <ul>
 
-                    <div class="d-none">
+                    <div class="d-none" >
                         <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
                         <input type="radio" id="radio_dibangun" name="radio_menu" value="radio_dibangun">
                         <input type="radio" id="radio_pedestrian" name="radio_menu" value="radio_pedestrian">
                         <input type="radio" id="radio_cagar" name="radio_menu" value="radio_cagar">
                         <input type="radio" id="radio_rth" name="radio_menu" value="radio_rth">
                         <input type="radio" id="radio_dijual" name="radio_menu" value="radio_dijual">
-                        <input type="radio" id="lainnya" name="radio_menu" value="lainnya">
+                        <input type="radio" id="radio_lainnya" name="radio_menu" value="radio_lainnya">
                     </div>
-
-
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_ukm">
                 <div class="container">
                     <div class="row">
                         <span class="material-icons text-primary mr-1">
@@ -1859,7 +1857,7 @@
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_dibangun">
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
@@ -1873,7 +1871,7 @@
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_pedestrian">
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
@@ -1892,7 +1890,7 @@
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_cagar">
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
@@ -1906,7 +1904,7 @@
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_rth">
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
@@ -1920,7 +1918,7 @@
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_dijual">
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
@@ -1934,7 +1932,7 @@
 
                 <li>
                     <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_lainnya">
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
@@ -1987,7 +1985,7 @@
 
         <main role="main" class="container-fluid py-2">
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-outline mb-xs-2 mb-1 md-4">

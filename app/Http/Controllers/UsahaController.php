@@ -60,7 +60,7 @@ class UsahaController extends Controller
             'catatan' => $request->catatan
         ]);
 
-        return redirect('data_ajib');
+        return redirect('/');
     }
 
     /**

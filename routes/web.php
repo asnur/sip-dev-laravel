@@ -46,7 +46,14 @@ Route::get('/', function (Request $request) {
     return view('layout.main');
 });
 
-Route::get('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'create'])->name('tambah_ajib');
+// Route::get('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'create'])->name('tambah_ajib');
+
+// 1
+// Route::post('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'store'])->name('tambah_ajib');
+
+// 2
+Route::resource('/ajib', UsahaController::class);
+
 
 
 Route::get('admin', function () {

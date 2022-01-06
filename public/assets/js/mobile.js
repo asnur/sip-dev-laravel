@@ -87,35 +87,106 @@ $(".menuuu").hide();
 $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").hide();
 
-document.getElementById("radio_ukm").addEventListener("click", functio_radiomenu);
-document.getElementById("radio_dibangun").addEventListener("click", functio_radiomenu);
-document.getElementById("radio_pedestrian").addEventListener("click", functio_radiomenu);
-document.getElementById("radio_cagar").addEventListener("click", functio_radiomenu);
-document.getElementById("radio_rth").addEventListener("click", functio_radiomenu);
-document.getElementById("radio_dijual").addEventListener("click", functio_radiomenu);
-document.getElementById("lainnya").addEventListener("click", functio_radiomenu);
 
 
-function functio_radiomenu() {
-    var x = document.querySelector('input[name="radio_menu"]:checked').value;
-    if (x == "radio_ukm") {
 
-    } else if (x == "radio_dibangun") {
 
-    } else if (x == "radio_pedestrian") {
+$(document).ready(function () {
 
-    } else if (x == "radio_cagar") {
+    $("#btn_ukm").on('click', function () {
 
-    } else if (x == "radio_rth") {
+        $("#radio_ukm").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_dibangun").css("background", "white");
+        $("#btn_pedestrian").css("background", "white");
+        $("#btn_cagar").css("background", "white");
+        $("#btn_rth").css("background", "white");
+        $("#btn_dijual").css("background", "white");
+        $("#btn_lainnya").css("background", "white");
 
-    } else if (x == "radio_dijual") {
 
-    } else if (x == "lainnya") {
+    });
 
-    } else {
 
-    }
-}
+    $("#btn_dibangun").on('click', function () {
+        $("#radio_dibangun").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_ukm").css("background", "white");
+        $("#btn_pedestrian").css("background", "white");
+        $("#btn_cagar").css("background", "white");
+        $("#btn_rth").css("background", "white");
+        $("#btn_dijual").css("background", "white");
+        $("#btn_lainnya").css("background", "white");
+    });
+
+
+    $("#btn_pedestrian").on('click', function () {
+        $("#radio_pedestrian").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_ukm").css("background", "white");
+        $("#btn_dibangun").css("background", "white");
+        $("#btn_cagar").css("background", "white");
+        $("#btn_rth").css("background", "white");
+        $("#btn_dijual").css("background", "white");
+        $("#btn_lainnya").css("background", "white");
+    });
+
+
+
+    $("#btn_cagar").on('click', function () {
+        $("#radio_cagar").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_ukm").css("background", "white");
+        $("#btn_dibangun").css("background", "white");
+        $("#btn_pedestrian").css("background", "white");
+        $("#btn_rth").css("background", "white");
+        $("#btn_dijual").css("background", "white");
+        $("#btn_lainnya").css("background", "white");
+
+    });
+
+    $("#btn_rth").on('click', function () {
+        $("#radio_rth").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_ukm").css("background", "white");
+        $("#btn_dibangun").css("background", "white");
+        $("#btn_pedestrian").css("background", "white");
+        $("#btn_cagar").css("background", "white");
+        $("#btn_dijual").css("background", "white");
+        $("#btn_lainnya").css("background", "white");
+    });
+
+    $("#btn_dijual").on('click', function () {
+        $("#radio_dijual").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_ukm").css("background", "white");
+        $("#btn_dibangun").css("background", "white");
+        $("#btn_pedestrian").css("background", "white");
+        $("#btn_cagar").css("background", "white");
+        $("#btn_rth").css("background", "white");
+        $("#btn_lainnya").css("background", "white");
+    });
+
+    $("#btn_lainnya").on('click', function () {
+        $("#radio_lainnya").attr('checked', true).trigger('click');
+        $(this).css("background", "orange");
+        $("#btn_ukm").css("background", "white");
+        $("#btn_dibangun").css("background", "white");
+        $("#btn_pedestrian").css("background", "white");
+        $("#btn_cagar").css("background", "white");
+        $("#btn_rth").css("background", "white");
+        $("#btn_dijual").css("background", "white");
+    });
+
+
+});
+
+
+
+
+
+
+
 
 
 map.on("style.load", function () {
@@ -129,6 +200,8 @@ map.on("style.load", function () {
 
         var lats2 = coornya.lat.toString();
         var lngs2 = coornya.lng.toString();
+
+        $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
 
         $(".inf-kordinat").html(
             `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats2},${lngs2}" target="_blank">${lats}, ${lngs}</a>`
