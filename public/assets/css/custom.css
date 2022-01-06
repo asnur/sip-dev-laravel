@@ -548,6 +548,7 @@ input[type="range"]::-moz-range-progress {
 
 .value-collapse p {
     margin-left: 0.7rem;
+    text-align: justify;
 }
 
 .container_grid .col_info {

@@ -1131,7 +1131,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
         value_tpz += dsc_tpz;
         value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
         value_tpz += `
-        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Nama TPZ : ${
+        <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">${
             dataabse_tpz[arr_tpz[0]].nama
         }</p>
         `;
