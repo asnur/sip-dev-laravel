@@ -1630,17 +1630,54 @@
 
     </div>
 
-    <div class="hide_zoning_fill">
+    {{-- <div class="hide_zoning_fill">
     <div style="position: fixed; right:6%; top:37%; color:#fff;">
+        <div class="form-check zoning_fill">
+            <input type="checkbox" class="form-check-input" checked id="zoning_fill"> --}}
+
+            {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
+                Zonasi</label> --}}
+
+        {{-- </div>
+    </div>
+</div> --}}
+
+
+
+
+<div class="hide_zoning_fill">
+
+
+    <div style="position: fixed; right:6%; top:37%; color:#fff;">
+
+
+
+
+    {{-- <div style="position: fixed; right:1%; top:37%; color:#fff;"> --}}
+
+
+
         <div class="form-check zoning_fill">
             <input type="checkbox" class="form-check-input" checked id="zoning_fill">
             {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
                 Zonasi</label> --}}
+
         </div>
+
+        {{-- <div class="col-sm-2">
+            <h6>Peta</h6>
+        </div>
+        <div style="margin-top: -10%;" class="col-sm-5">
+            <button type="button" class="btn btn-xs btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+            <div class="handle"></div>
+            </button>
+        </div> --}}
+
+
+
+
     </div>
 </div>
-
-
 
 
 
@@ -1788,22 +1825,24 @@
         </div>
     </div>
 
-    <div class="mt-1" style="margin-left: -10px; position:fixed;">
+    <div class="fixed-top" style="margin-left: -10px; margin-top:20%;">
+
+
             <div class="menuuu">
                 <ul>
-                    <li>
-                        <button class="btn btn-sm"
-                        style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                        <div class="container">
-                            <div class="row">
-                                <span class="material-icons text-primary mr-1">
-                                    apartment
-                                </span>
-                                <span class="font-weight-bold" style="margin-top: 2px">Sewa Kantor</span>
-                            </div>
-                        </div>
-                    </button>
-                    </li>
+
+                    <div class="d-none">
+                        <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
+                        <input type="radio" id="radio_dibangun" name="radio_menu" value="radio_dibangun">
+                        <input type="radio" id="radio_pedestrian" name="radio_menu" value="radio_pedestrian">
+                        <input type="radio" id="radio_cagar" name="radio_menu" value="radio_cagar">
+                        <input type="radio" id="radio_rth" name="radio_menu" value="radio_rth">
+                        <input type="radio" id="radio_dijual" name="radio_menu" value="radio_dijual">
+                        <input type="radio" id="lainnya" name="radio_menu" value="lainnya">
+                    </div>
+
+
+
                 <li>
                     <button class="btn btn-sm ml-2"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
@@ -1826,7 +1865,7 @@
                             <span class="material-icons text-primary mr-1">
                                 home_repair_service
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Potensial</span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sedang dibangun</span>
                         </div>
                     </div>
                 </button>
@@ -1840,11 +1879,74 @@
                             <span class="material-icons text-primary mr-1">
                                 location_city
                             </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Pedestrian</span>
+                        </div>
+                    </div>
+                    </button>
+                </li>
+
+
+
+
+
+
+                <li>
+                    <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
                             <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
                         </div>
                     </div>
-                </button>
+                    </button>
                 </li>
+
+                <li>
+                    <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">RTH</span>
+                        </div>
+                    </div>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Dijual</span>
+                        </div>
+                    </div>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Lainnya</span>
+                        </div>
+                    </div>
+                    </button>
+                </li>
+
+
 
                 </ul>
             </div>
@@ -1885,7 +1987,7 @@
 
         <main role="main" class="container-fluid py-2">
 
-            <form action="{{ url('tambah_ajib') }}" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-outline mb-xs-2 mb-1 md-4">

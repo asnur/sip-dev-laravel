@@ -87,8 +87,35 @@ $(".menuuu").hide();
 $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").hide();
 
+document.getElementById("radio_ukm").addEventListener("click", functio_radiomenu);
+document.getElementById("radio_dibangun").addEventListener("click", functio_radiomenu);
+document.getElementById("radio_pedestrian").addEventListener("click", functio_radiomenu);
+document.getElementById("radio_cagar").addEventListener("click", functio_radiomenu);
+document.getElementById("radio_rth").addEventListener("click", functio_radiomenu);
+document.getElementById("radio_dijual").addEventListener("click", functio_radiomenu);
+document.getElementById("lainnya").addEventListener("click", functio_radiomenu);
 
 
+function functio_radiomenu() {
+    var x = document.querySelector('input[name="radio_menu"]:checked').value;
+    if (x == "radio_ukm") {
+
+    } else if (x == "radio_dibangun") {
+
+    } else if (x == "radio_pedestrian") {
+
+    } else if (x == "radio_cagar") {
+
+    } else if (x == "radio_rth") {
+
+    } else if (x == "radio_dijual") {
+
+    } else if (x == "lainnya") {
+
+    } else {
+
+    }
+}
 
 
 map.on("style.load", function () {
