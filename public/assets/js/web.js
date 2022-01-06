@@ -174,7 +174,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #formPinLocationEdit"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit"
 ).hide();
 
 $.ajax({
@@ -3697,10 +3697,12 @@ $("#printAll").on("click", function () {
 
     if ($("#checkboxKBLI").prop("checked") == true) {
         if ($(".dtKBLI").html().length == 0) {
-            $("#pesanGagalPrint").show();
+            $("#pesanGagalPrintKBLI").show();
             setTimeout(() => {
-                $("#pesanGagalPrint").hide();
+                $("#pesanGagalPrintKBLI").hide();
             }, 3000);
+
+            return false;
         } else {
             arrPrint.push(kbli);
         }
@@ -3743,11 +3745,24 @@ $("#printAll").on("click", function () {
         html2canvas: { scale: 2, logging: true },
         // pagebreak: { mode: "avoid-all", before: "#page2el" },
     };
-    html2pdf()
-        .set(opt)
-        .from(html)
-        .output("bloburl")
-        .then((r) => {
-            window.open(r);
-        });
+
+    if (
+        $("#checkboxProfil").prop("checked") == true ||
+        $("#checkboxKetentuan").prop("checked") == true ||
+        $("#checkboxAkses").prop("checked") == true ||
+        $("#checkboxKBLI").prop("checked") == true
+    ) {
+        html2pdf()
+            .set(opt)
+            .from(html)
+            .output("bloburl")
+            .then((r) => {
+                window.open(r);
+            });
+    } else {
+        $("#pesanGagalPrint").show();
+        setTimeout(() => {
+            $("#pesanGagalPrint").hide();
+        }, 3000);
+    }
 });

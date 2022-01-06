@@ -1335,6 +1335,10 @@
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Cetak</p>
                             <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalPrint"
                                 style="font-size: 10pt" role="alert">
+                                <strong>Gagal!</strong> Anda Harus Memilih Salah Satu.
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalPrintKBLI"
+                                style="font-size: 10pt" role="alert">
                                 <strong>Gagal!</strong> Anda Harus Memilih KBLI.
                             </div>
                             <div class="form-check text_all">
