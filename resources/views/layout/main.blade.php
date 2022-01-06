@@ -1332,7 +1332,7 @@
 
                     <div class="tab-pane " id="pills-cetak" role="tabpanel">
                         <div class="container">
-                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Cetak</p>
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Opsi Cetak</p>
                             <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalPrint"
                                 style="font-size: 10pt" role="alert">
                                 <strong>Gagal!</strong> Anda Harus Memilih Salah Satu.
@@ -1342,8 +1342,7 @@
                                 <strong>Gagal!</strong> Anda Harus Memilih KBLI.
                             </div>
                             <div class="ml-3">
-                                <span class="text_all font-weight-bold">Opsi Cetak</span>
-                                <div class="form-check text_all mt-1">
+                                <div class="form-check text_all">
                                     <input class="form-check-input position-static" type="checkbox" id="checkboxProfil"
                                         value="profil" aria-label="..."> Profil
                                 </div>
@@ -1359,9 +1358,10 @@
                                     <input class="form-check-input position-static" type="checkbox" id="checkboxKBLI"
                                         value="kbli" aria-label="..."> KBLI
                                 </div>
-                                <button class="btn btn-sm text_all mt-3 btn-primary" id="printAll"><i
-                                        class="fa fa-print"></i>
-                                    Cetak</button>
+                                <center>
+                                    <button class="btn btn-sm text_all mt-3 btn-primary" id="printAll"
+                                        style="margin-right: 2.5rem;">Cetak</button>
+                                </center>
 
 
 
