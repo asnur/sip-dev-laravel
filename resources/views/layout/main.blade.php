@@ -1169,8 +1169,109 @@
                                     135/2019</span><br><span class="w-100 text-center text_all"
                                     style="font-weight: normal"><i>(Under Construction)</i></span>
                             </p>
-
-                            <div class="d-flex space_text row_mid_text">
+                            <div class="d-flex space_text row_mid_text text_all">
+                                <div id="accordion text_all" style="width: 100%">
+                                    <div>
+                                        <div class="p-0 pl-3">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_perencanaan" aria-expanded="true"
+                                                aria-controls="lahan_perencanaan">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Lahan Perencanaan
+                                            </a>
+                                        </div>
+                                        <div id="lahan_perencanaan" class="collapse show">
+                                            <div class="card-body value-collapse">
+                                                <div id="accordion text_all" style="width: 100%">
+                                                    <div>
+                                                        <div class="p-0 pl-3">
+                                                            <a class="text-dark font-weight-bold"
+                                                                data-toggle="collapse" href="#definisi_lahan"
+                                                                aria-expanded="true" aria-controls="definisi_lahan">
+                                                                <span class="collapsed"><i
+                                                                        class="fa fa-plus"></i></span>
+                                                                <span class="expanded"><i
+                                                                        class="fa fa-minus"></i></span>
+                                                                Definisi
+                                                            </a>
+                                                        </div>
+                                                        <div id="definisi_lahan" class="collapse show">
+                                                            <div class="card-body value-collapse">
+                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                    elit.
+                                                                    Porro, repellat delectus. Quaerat itaque laborum
+                                                                    numquam
+                                                                    temporibus deserunt! Soluta beatae tempore,
+                                                                    doloribus
+                                                                    rem eum possimus eligendi illo culpa dolor minima
+                                                                    id?</p>
+                                                                <div>
+                                                                    <div class="p-0 pl-3">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_a"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_a">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Lahan A
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_a" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lorem ipsum dolor sit amet consectetur
+                                                                                adipisicing elit.
+                                                                                Porro, repellat delectus. Quaerat itaque
+                                                                                laborum numquam
+                                                                                temporibus deserunt! Soluta beatae
+                                                                                tempore,
+                                                                                doloribus
+                                                                                rem eum possimus eligendi illo culpa
+                                                                                dolor
+                                                                                minima id?</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="p-0 pl-3">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_b"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_b">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Lahan B
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_b" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lorem ipsum dolor sit amet consectetur
+                                                                                adipisicing elit.
+                                                                                Porro, repellat delectus. Quaerat itaque
+                                                                                laborum numquam
+                                                                                temporibus deserunt! Soluta beatae
+                                                                                tempore,
+                                                                                doloribus
+                                                                                rem eum possimus eligendi illo culpa
+                                                                                dolor
+                                                                                minima id?</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
                                     <ol>
                                         <li style="margin-left: -25px">Lahan Perencanaan</li>
@@ -1191,7 +1292,7 @@
                                         <li style="margin-left: -25px">Intensitas</li>
                                     </ol>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

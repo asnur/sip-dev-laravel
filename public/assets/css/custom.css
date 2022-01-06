@@ -7,6 +7,11 @@
     font-family: "Roboto", sans-serif;
 }
 
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+    display: none;
+}
+
 .mapboxgl-ctrl-group {
     position: absolute;
     border-radius: 4px;
@@ -533,12 +538,20 @@ input[type="range"]::-moz-range-progress {
 
 .container_grid {
     display: grid;
-    grid-template-columns: 40% 35%;
+    grid-template-columns: 65% 35%;
     margin-left: 19%;
 }
 
+.value-collapse {
+    margin-top: -20px;
+}
+
+.value-collapse p {
+    margin-left: 0.7rem;
+}
+
 .container_grid .col_info {
-    text-align: right;
+    text-align: left;
 }
 
 .wm-search__dropdown,
