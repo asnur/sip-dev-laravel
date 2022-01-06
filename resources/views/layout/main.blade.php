@@ -1341,31 +1341,33 @@
                                 style="font-size: 10pt" role="alert">
                                 <strong>Gagal!</strong> Anda Harus Memilih KBLI.
                             </div>
-                            <div class="form-check text_all">
-                                <input class="form-check-input position-static" type="checkbox" id="checkboxProfil"
-                                    value="profil" aria-label="..."> Profil
+                            <div class="ml-3">
+                                <div class="form-check text_all">
+                                    <input class="form-check-input position-static" type="checkbox" id="checkboxProfil"
+                                        value="profil" aria-label="..."> Profil
+                                </div>
+                                <div class="form-check text_all">
+                                    <input class="form-check-input position-static" type="checkbox"
+                                        id="checkboxKetentuan" value="ketentuan" aria-label="..."> Ketentuan
+                                </div>
+                                <div class="form-check text_all">
+                                    <input class="form-check-input position-static" type="checkbox" id="checkboxAkses"
+                                        value="akses" aria-label="..."> Akses
+                                </div>
+                                <div class="form-check text_all">
+                                    <input class="form-check-input position-static" type="checkbox" id="checkboxKBLI"
+                                        value="kbli" aria-label="..."> KBLI
+                                </div>
+                                <button class="btn btn-sm text_all mt-3 btn-primary" id="printAll"><i
+                                        class="fa fa-print"></i>
+                                    Cetak</button>
+
+
+
+
+
+                                <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
                             </div>
-                            <div class="form-check text_all">
-                                <input class="form-check-input position-static" type="checkbox" id="checkboxKetentuan"
-                                    value="ketentuan" aria-label="..."> Ketentuan
-                            </div>
-                            <div class="form-check text_all">
-                                <input class="form-check-input position-static" type="checkbox" id="checkboxAkses"
-                                    value="akses" aria-label="..."> Akses
-                            </div>
-                            <div class="form-check text_all">
-                                <input class="form-check-input position-static" type="checkbox" id="checkboxKBLI"
-                                    value="kbli" aria-label="..."> KBLI
-                            </div>
-                            <button class="btn btn-sm text_all mt-3 btn-primary" id="printAll"><i
-                                    class="fa fa-print"></i>
-                                Cetak</button>
-
-
-
-
-
-                            <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
 
 
                         </div>
