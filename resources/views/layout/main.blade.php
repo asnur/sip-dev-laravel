@@ -1734,6 +1734,18 @@
             </div>
 
 
+            <div class="d-flex align-content-stretch flex-wrap justify-content-center">
+
+                <div class="form-check text-center">
+                    <h6>On/Off</h6>
+                    <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" id="izin_peta">
+                    <label for="izin_peta"></label>
+                </div>
+
+            </div>
+
+
+
             {{-- <div style="margin-top: -10%;" class="col-sm-5">
 
         </div> --}}
