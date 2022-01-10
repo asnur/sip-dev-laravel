@@ -3,6 +3,26 @@ const popupAjib = new mapboxgl.Popup({
     closeOnClick: false,
 });
 
+const markerAjib = new mapboxgl.Marker({
+    draggable: true,
+});
+
+const dragMaps = (condition) => {
+    var coorAjib = map.getCenter();
+    if (condition == 1) {
+        markerAjib.setLngLat([coorAjib.lng, coorAjib.lat]).addTo(map);
+        function onDragEnd() {
+            const lngLat = markerAjib.getLngLat();
+            console.log(lngLat);
+            $("#kordinatPinSurvey").val(`${lngLat.lng},${lngLat.lat}`);
+        }
+
+        markerAjib.on("dragend", onDragEnd);
+    } else {
+        markerAjib.remove();
+    }
+};
+
 map.on("style.load", function () {
     map.addSource("survey", {
         type: "geojson",
