@@ -1873,6 +1873,7 @@
                     <div class="container">
                         <div class="row">
                             <i id="hlm_kbli" class="ri-user-search-line bg-white text-secondary" style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+
                         </div>
                     </div>
                 </button>
