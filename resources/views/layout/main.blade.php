@@ -1709,11 +1709,19 @@
     </div>
 </div> --}}
 
+
+
+
     <div class="hide_zoning_fill">
+
 
         <div style="position: fixed; right:6%; top:30%; color:#fff;">
 
+
+
             {{-- <div style="position: fixed; right:1%; top:37%; color:#fff;"> --}}
+
+
 
             <div class="d-flex align-content-stretch flex-wrap justify-content-center">
 
@@ -1725,6 +1733,7 @@
 
             </div>
 
+
             <div class="d-flex align-content-stretch flex-wrap justify-content-center">
 
                 <div class="form-check text-center">
@@ -1735,14 +1744,22 @@
 
             </div>
 
+
             {{-- <div style="margin-top: -10%;" class="col-sm-5">
 
         </div> --}}
 
+
+
+
         </div>
     </div>
 
+
+
     <div class="p-2 dropdown for_mobile" id="more-apps" style=" z-index:9; margin-top:4rem; margin-left:5px;">
+
+
 
         <button class="btn btn-sm for_web">
             <div class="container">
