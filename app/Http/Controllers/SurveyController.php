@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usaha;
+use App\Models\Survey;
 
-class UsahaController extends Controller
+class SurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,33 @@ class UsahaController extends Controller
      */
     public function index()
     {
-        //
+        $geojson_format = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+
+        $data = Survey::all();
+
+        foreach ($data as $d) {
+            $coor = explode(",",$d->kordinat);
+            $value_data = [
+                'type' => "Feature",
+                'properties' => [
+                    'judul' => $d->judul,
+                    'kategori' => $d->kategori,
+                    'foto' => $d->foto,
+                    'catatan' => $d->catatan
+                ],
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [$coor[1],$coor[0]]
+                ]
+            ];
+
+            array_push($geojson_format['features'], $value_data);
+        }
+        
+        return json_encode($geojson_format, true);
     }
 
     /**
@@ -52,11 +78,11 @@ class UsahaController extends Controller
         $path = 'img/';
         $getimage->move($path, $fileName);
 
-        Usaha::create([
-            'koordinat' => $request->koordinat,
+        Survey::create([
+            'kordinat' => $request->koordinat,
             'judul' => $request->judul,
             'kategori' => $request->kategori,
-            'image' => $fileName,
+            'foto' => $fileName,
             'catatan' => $request->catatan
         ]);
 

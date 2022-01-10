@@ -6,6 +6,7 @@ use App\Http\Controllers\UsahaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\SurveyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,13 +53,7 @@ Route::get('/', function (Request $request) {
 // Route::post('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'store'])->name('tambah_ajib');
 
 // 2
-Route::resource('/ajib', UsahaController::class);
-
-
-
-Route::get('admin', function () {
-    return "Halaman Admin";
-})->middleware('role:admin')->name('admin.page');
+Route::resource('/ajib', SurveyController::class);
 
 Route::get('user', function () {
     return view('layout.main');

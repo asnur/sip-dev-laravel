@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostTable extends Migration
+class CreateSurveyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_usaha', function (Blueprint $table) {
+        Schema::create('survey', function (Blueprint $table) {
             $table->id();
-            $table->string('pemilikusaha');
-            $table->string('tenagakerja');
-            $table->string('latlong')->nullable();
-            $table->string('image')->nullable();
-            $table->timestamps();
+            $table->string('kordinat');
+            $table->string('judul');
+            $table->string('kategori');
+            $table->string('foto');
+            $table->integer('verifikasi')->default(0);
+            $table->string('catatan');
         });
     }
 
@@ -30,6 +31,6 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_usaha');
+        Schema::dropIfExists('survey');
     }
 }

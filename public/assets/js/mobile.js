@@ -1,4 +1,4 @@
-var url = "https://jakpintas.dpmptsp-dki.com:3000";
+var url = `${APP_URL}:3000`;
 
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -86,9 +86,6 @@ $(".menuuu").hide();
 // new1
 $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").hide();
-
-
-
 
 
 $(document).ready(function () {
@@ -224,40 +221,40 @@ map.on("style.load", function () {
     }
     map.on(clickEvent, add_marker);
 
-    map.addSource("wilayahindex", {
-        type: "geojson",
-        data: `${url}/choro`,
-    });
+    // map.addSource("wilayahindex", {
+    //     type: "geojson",
+    //     data: `${url}/choro`,
+    // });
 
-    map.addLayer({
-        id: "wilayahindex_fill",
-        type: "fill",
-        source: "wilayahindex",
-        paint: {
-            "fill-color": [
-                "interpolate",
-                ["linear"],
-                ["get", "Total omzet"],
-                0,
-                "#ffeda0",
-                5000000000,
-                "#ffe675",
-                9000000000,
-                "#ffdf52",
-                13000000000,
-                "#ffd61f",
-                17000000000,
-                "#e0b700",
-                20396854609,
-                "#caa502",
-            ],
-            "fill-opacity": 0.7,
-            "fill-outline-color": "red",
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
+    // map.addLayer({
+    //     id: "wilayahindex_fill",
+    //     type: "fill",
+    //     source: "wilayahindex",
+    //     paint: {
+    //         "fill-color": [
+    //             "interpolate",
+    //             ["linear"],
+    //             ["get", "Total omzet"],
+    //             0,
+    //             "#ffeda0",
+    //             5000000000,
+    //             "#ffe675",
+    //             9000000000,
+    //             "#ffdf52",
+    //             13000000000,
+    //             "#ffd61f",
+    //             17000000000,
+    //             "#e0b700",
+    //             20396854609,
+    //             "#caa502",
+    //         ],
+    //         "fill-opacity": 0.7,
+    //         "fill-outline-color": "red",
+    //     },
+    //     layout: {
+    //         visibility: "none",
+    //     },
+    // });
 
 });
 
