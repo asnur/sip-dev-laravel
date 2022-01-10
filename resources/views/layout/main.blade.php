@@ -1866,179 +1866,205 @@
 
         </div> --}}
 
-        <div class="hide_hlm_kbli">
-            <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
+        <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
 
-                <div>
-                    <button class="btn btn-sm mt-3">
-                        <div class="container">
-                            <div class="row">
-                                <i id="hlm_kbli" class="ri-pushpin-line bg-white text-secondary"
-                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                            </div>
+            <div>
+                <button class="btn btn-sm mt-2">
+                    <div class="container">
+                        <div class="row">
+                            <i class="ri-map-pin-range-line bg-white text-secondary"
+                                style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                         </div>
-                    </button>
-                </div>
+                    </div>
+                </button>
+            </div>
 
-                @role('surveyer')
-                    <div id="btn_tutupmenu">
+            <div>
+                <button class="btn btn-sm mt-1">
+                    <div class="container">
+                        <div class="row">
+                            <i id="hlm_kbli" class="ri-user-search-line bg-white text-secondary"
+                                style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
 
-                        <button class="btn btn-sm mt-3" data-toggle="collapse" href="#collapseExample" role="button"
-                            aria-expanded="false" aria-controls="collapseExample">
+            <div class="hide_hlm_kbli">
+                <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
+
+                    <div>
+                        <button class="btn btn-sm mt-3">
                             <div class="container">
                                 <div class="row">
-                                    {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
-                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
-
-                                    <i class="ri-file-list-line bg-white text-secondary"
+                                    <i id="hlm_kbli" class="ri-pushpin-line bg-white text-secondary"
                                         style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                                 </div>
                             </div>
                         </button>
-
-                    </div>
-                @endrole
-
-            </div>
-        </div>
-
-        <div class="fixed-top" style="margin-left: -10px; margin-top:20%;">
-
-
-            <div class="menuuu">
-                <ul>
-
-                    <div class="d-none">
-                        <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
-                        <input type="radio" id="radio_dibangun" name="radio_menu" value="radio_dibangun">
-                        <input type="radio" id="radio_pedestrian" name="radio_menu" value="radio_pedestrian">
-                        <input type="radio" id="radio_cagar" name="radio_menu" value="radio_cagar">
-                        <input type="radio" id="radio_rth" name="radio_menu" value="radio_rth">
-                        <input type="radio" id="radio_dijual" name="radio_menu" value="radio_dijual">
-                        <input type="radio" id="radio_lainnya" name="radio_menu" value="radio_lainnya">
                     </div>
 
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_ukm">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        storefront
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">UKM</span>
+                    @role('surveyer')
+                        <div id="btn_tutupmenu">
+
+                            <button class="btn btn-sm mt-3" data-toggle="collapse" href="#collapseExample" role="button"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <div class="container">
+                                    <div class="row">
+                                        {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
+                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
+
+                                        <i class="ri-file-list-line bg-white text-secondary"
+                                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
 
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
-                            id="btn_dibangun">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        home_repair_service
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">Sedang dibangun</span>
+                        </div>
+                    @endrole
+
+                </div>
+            </div>
+
+            <div class="fixed-top" style="margin-left: -10px; margin-top:20%;">
+
+
+                <div class="menuuu">
+                    <ul>
+
+                        <div class="d-none">
+                            <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
+                            <input type="radio" id="radio_dibangun" name="radio_menu" value="radio_dibangun">
+                            <input type="radio" id="radio_pedestrian" name="radio_menu" value="radio_pedestrian">
+                            <input type="radio" id="radio_cagar" name="radio_menu" value="radio_cagar">
+                            <input type="radio" id="radio_rth" name="radio_menu" value="radio_rth">
+                            <input type="radio" id="radio_dijual" name="radio_menu" value="radio_dijual">
+                            <input type="radio" id="radio_lainnya" name="radio_menu" value="radio_lainnya">
+                        </div>
+
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_ukm">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            storefront
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">UKM</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
+                        </li>
 
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
-                            id="btn_pedestrian">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        location_city
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">Pedestrian</span>
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_dibangun">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            home_repair_service
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">Sedang dibangun</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
+                        </li>
 
-
-
-
-
-
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
-                            id="btn_cagar">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        location_city
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_pedestrian">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            location_city
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">Pedestrian</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
+                        </li>
 
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_rth">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        location_city
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">RTH</span>
+
+
+
+
+
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_cagar">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            location_city
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
+                        </li>
 
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
-                            id="btn_dijual">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        location_city
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">Dijual</span>
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_rth">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            location_city
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">RTH</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
+                        </li>
 
-                    <li>
-                        <button class="btn btn-sm ml-2"
-                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
-                            id="btn_lainnya">
-                            <div class="container">
-                                <div class="row">
-                                    <span class="material-icons text-primary mr-1">
-                                        location_city
-                                    </span>
-                                    <span class="font-weight-bold" style="margin-top: 2px">Lainnya</span>
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_dijual">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            location_city
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">Dijual</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>
-                    </li>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="btn btn-sm ml-2"
+                                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                                id="btn_lainnya">
+                                <div class="container">
+                                    <div class="row">
+                                        <span class="material-icons text-primary mr-1">
+                                            location_city
+                                        </span>
+                                        <span class="font-weight-bold" style="margin-top: 2px">Lainnya</span>
+                                    </div>
+                                </div>
+                            </button>
+                        </li>
 
 
 
-                </ul>
+                    </ul>
+                </div>
+
+
+
             </div>
 
 
 
-        </div>
 
-
-
-
-        {{-- <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
+            {{-- <div id="legend btn btn-sm" style="position: absolute; right:10px; margin-top:40px;">
             <div class="dropdown">
 
                 <button class="btn btn-sm mt-3 for_web" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
@@ -2060,10 +2086,10 @@
 
 
 
-    </div>
+        </div>
 
 
-    {{-- <div class="hideshow2">
+        {{-- <div class="hideshow2">
 
         <div class="d-flex justify-content-center">
 
@@ -2093,148 +2119,148 @@
 
 
 
-    {{-- <div class="detail_omzet" id="legends"></div>
+        {{-- <div class="detail_omzet" id="legends"></div>
     <div class="detail_jumlah" id="features">
         <strong class="border-bottom">Detail Omzet</strong>
         <div id="pd">
             <p></p>
         </div>
     </div> --}}
-    <!-- End Peta -->
+        <!-- End Peta -->
 
-    <!-- Detail Omzet -->
-    <div class="detail_omzet">
-        <div class="container">
-            <div class="text_all" id="legends">
+        <!-- Detail Omzet -->
+        <div class="detail_omzet">
+            <div class="container">
+                <div class="text_all" id="legends">
+
+                </div>
+            </div>
+        </div>
+        <!-- End Detail Omzet -->
+
+        <!-- Detail Jumlah -->
+        <div class="detail_jumlah">
+            <div class="container">
+                <span class="text_all font-weight-bold">Detail Omzet</span>
+
+                <div class="text_all" id="pd">
+                </div>
 
             </div>
         </div>
-    </div>
-    <!-- End Detail Omzet -->
-
-    <!-- Detail Jumlah -->
-    <div class="detail_jumlah">
-        <div class="container">
-            <span class="text_all font-weight-bold">Detail Omzet</span>
-
-            <div class="text_all" id="pd">
-            </div>
-
-        </div>
-    </div>
-    <!-- End Detail Jumlah -->
+        <!-- End Detail Jumlah -->
 
 
 
 
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-    <!-- <script src="assets/js/bootstrap.min.js" rel="preload"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <!-- <script src="assets/js/bootstrap.min.js" rel="preload"></script> -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
-        integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-    @if (isMobileDevice())
-
-        <script>
-            document.getElementById("hlm_profil").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("profil").style.display = "block";
-                document.getElementById('btn_backprodil').onclick = function() {
-                    document.getElementById("profil").style.display = "none";
-                };
-
-                return false;
-            }
+        <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+        <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
+                integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+                integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
+        @if (isMobileDevice())
 
-            document.getElementById("hlm_ekonomi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("ekonomi").style.display = "block";
-                document.getElementById('btn_backeko').onclick = function() {
-                    document.getElementById("ekonomi").style.display = "none";
-                };
+            <script>
+                document.getElementById("hlm_profil").onclick = function(e) {
+                    e.preventDefault();
+                    document.getElementById("profil").style.display = "block";
+                    document.getElementById('btn_backprodil').onclick = function() {
+                        document.getElementById("profil").style.display = "none";
+                    };
 
-                return false;
-            }
-
-            // document.getElementById("hlm_ekonomi").onclick = function(e) {
-            //     document.getElementById("form_ajib").style.display = "block";
-            //     document.getElementById("menuu").style.display = "none";
-
-            //     document.getElementById('hlm_ekonomi').onclick = function() {
-            //         document.getElementById("form_ajib").style.display = "none";
-            //         document.getElementById("menuu").style.display = "block";
-
-            //         return true;
-            //     };
-            // return true;
-            // // }
-
-            $("#hlm_form_ajib").click(function() {
-                $('#form_ajib').toggle();
-            });
-
-
-            $("#btn_tutupmenu").click(function() {
-                $('.tutup_menus').toggle();
-            });
+                    return false;
+                }
 
 
 
-            document.getElementById("hlm_poi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("akses").style.display = "block";
-                document.getElementById('btn_backakses').onclick = function() {
-                    document.getElementById("akses").style.display = "none";
-                };
+                document.getElementById("hlm_ekonomi").onclick = function(e) {
+                    e.preventDefault();
+                    document.getElementById("ekonomi").style.display = "block";
+                    document.getElementById('btn_backeko').onclick = function() {
+                        document.getElementById("ekonomi").style.display = "none";
+                    };
 
-                return false;
-            }
+                    return false;
+                }
+
+                // document.getElementById("hlm_ekonomi").onclick = function(e) {
+                //     document.getElementById("form_ajib").style.display = "block";
+                //     document.getElementById("menuu").style.display = "none";
+
+                //     document.getElementById('hlm_ekonomi').onclick = function() {
+                //         document.getElementById("form_ajib").style.display = "none";
+                //         document.getElementById("menuu").style.display = "block";
+
+                //         return true;
+                //     };
+                // return true;
+                // // }
+
+                $("#hlm_form_ajib").click(function() {
+                    $('#form_ajib').toggle();
+                });
+
+
+                $("#btn_tutupmenu").click(function() {
+                    $('.tutup_menus').toggle();
+                });
 
 
 
-            document.getElementById("hlm_kbli").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("kbli").style.display = "block";
-                document.getElementById('btn_backkbli').onclick = function() {
-                    document.getElementById("kbli").style.display = "none";
-                };
+                document.getElementById("hlm_poi").onclick = function(e) {
+                    e.preventDefault();
+                    document.getElementById("akses").style.display = "block";
+                    document.getElementById('btn_backakses').onclick = function() {
+                        document.getElementById("akses").style.display = "none";
+                    };
 
-                return false;
-            }
-
-            var APP_URL = {!! json_encode(url('/')) !!}
-        </script>
+                    return false;
+                }
 
 
-        <script src="{{ asset('assets/js/mobile.js') }}"></script>
-        @role('surveyer')
-            <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
-        @endrole
 
-    @else
-        <script src="{{ asset('assets/js/web.js') }}"></script>
-    @endif
+                document.getElementById("hlm_kbli").onclick = function(e) {
+                    e.preventDefault();
+                    document.getElementById("kbli").style.display = "block";
+                    document.getElementById('btn_backkbli').onclick = function() {
+                        document.getElementById("kbli").style.display = "none";
+                    };
+
+                    return false;
+                }
+
+                var APP_URL = {!! json_encode(url('/')) !!}
+            </script>
+
+
+            <script src="{{ asset('assets/js/mobile.js') }}"></script>
+            @role('surveyer')
+                <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
+            @endrole
+
+        @else
+            <script src="{{ asset('assets/js/web.js') }}"></script>
+        @endif
 
 
 </body>
