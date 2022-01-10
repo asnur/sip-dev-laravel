@@ -2195,6 +2195,7 @@
 
 
     <script src="{{ asset('assets/js/mobile.js') }}"></script>
+
     @role('surveyer')
     <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
     @endrole
