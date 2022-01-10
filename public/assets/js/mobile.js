@@ -215,10 +215,10 @@ map.on("style.load", function () {
     }
     map.on(clickEvent, add_marker);
 
-    map.addSource("wilayahindex", {
-        type: "geojson",
-        data: `${url}/choro`,
-    });
+    // map.addSource("wilayahindex", {
+    //     type: "geojson",
+    //     data: `${url}/choro`,
+    // });
 
     // map.addLayer({
     //     id: "wilayahindex_fill",
