@@ -1733,6 +1733,7 @@
 
             </div>
 
+
             <div class="d-flex align-content-stretch flex-wrap justify-content-center">
 
                 <div class="form-check text-center">
@@ -1886,6 +1887,7 @@
                                     style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
 
                             <i class="ri-file-list-line bg-white text-secondary" style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+
                         </div>
                     </div>
                 </button>
