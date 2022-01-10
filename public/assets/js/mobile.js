@@ -101,7 +101,7 @@ $(".menuuu").hide();
 
 // new1
 $(".hide_hlm_kbli").hide();
-$(".hide_zoning_fill").hide();
+$(".hide_zoning_fill").show();
 
 $(document).ready(function () {
     $("#btn_ukm").on("click", function () {
@@ -570,7 +570,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
 
     $(".container.container_menu.for_mobile").show();
     $(".hide_hlm_kbli").show();
-    $(".hide_zoning_fill").show();
+    // $(".hide_zoning_fill").show();
     $(".menuuu").show();
 
     $(".gambar_logos").hide();
@@ -690,8 +690,8 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-zona").html(dt.Zona);
     $(".inf-subzona").html(dt["Sub Zona"]);
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
-    // $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
-    $("#selectTPZ").html(option_tpz);
+    $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
+    // $("#selectTPZ").html(option_tpz);
     $(".inf-tpz").html(dt.TPZ == " " ? "-" : dt.TPZ);
     $(".inf-kdb").html(dt.KDB == " " ? "-" : dt.KDB);
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
