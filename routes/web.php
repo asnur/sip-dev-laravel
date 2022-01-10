@@ -22,14 +22,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function (Request $request) {
-//     $status = $request->session()->get('cek-login');
-//     if ($status == 'login') {
-//         echo "<script>window.close();</script>";
-//     }
-//     return view('layout.main');
-// });
-
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
 Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
@@ -37,7 +29,7 @@ Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenang
 
 // login dengan google
 Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
-Route::get('/auth/google/callback', [SocialiteController::class, 'handleProviderCallback']);
+Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 Auth::routes();
 
@@ -47,14 +39,6 @@ Route::get('/', function (Request $request) {
     return view('layout.main');
 });
 
-// Route::get('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'create'])->name('tambah_ajib');
-
-// 1
-// Route::post('/tambah_ajib', [App\Http\Controllers\UsahaController::class, 'store'])->name('tambah_ajib');
-
-// 2
-Route::resource('/ajib', SurveyController::class);
-
-Route::get('user', function () {
-    return view('layout.main');
-})->middleware('role:user')->name('user.page');
+Route::group(['middleware' => ['role:surveyer']], function () {
+    Route::resource('/ajib', SurveyController::class);
+});

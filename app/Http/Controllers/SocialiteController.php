@@ -38,23 +38,7 @@ class SocialiteController extends Controller
         $foto = file_get_contents($users->getAvatar(), false, stream_context_create($arrContextOptions));
         File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
 
-
-        // dd($foto);
-        // $request->session()->put('img_profile', $user->getAvatar());
-
-        // if ($request->session()->get('access_chat')) {
-        //     return redirect('/konsul');
-        // } else {
-        //     return redirect('/');
-        // }
-
-        // return redirect('/');
-
-        if ($authUser->hasRole('admin')) {
-            return redirect()->route('admin.page');
-        }
-
-        return redirect()->route('user.page');
+        return redirect()->to('/');
     }
 
 

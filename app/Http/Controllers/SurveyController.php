@@ -22,7 +22,7 @@ class SurveyController extends Controller
         $data = Survey::all();
 
         foreach ($data as $d) {
-            $coor = explode(",",$d->kordinat);
+            $coor = explode(",", $d->kordinat);
             $value_data = [
                 'type' => "Feature",
                 'properties' => [
@@ -33,13 +33,13 @@ class SurveyController extends Controller
                 ],
                 'geometry' => [
                     'type' => 'Point',
-                    'coordinates' => [$coor[1],$coor[0]]
+                    'coordinates' => [$coor[1], $coor[0]]
                 ]
             ];
 
             array_push($geojson_format['features'], $value_data);
         }
-        
+
         return json_encode($geojson_format, true);
     }
 

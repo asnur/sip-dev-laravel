@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
 
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <title>Peta Perizinan dan Investasi DKI Jakarta</title>
 
@@ -371,7 +370,8 @@
             </div>
 
 
-            <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama text_all_permenu">Pendapatan Rata-Rata
+            <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama text_all_permenu">Pendapatan
+                Rata-Rata
                 Per Bulan</p>
 
             <!-- Ekonomi pendapatan baru start -->
@@ -461,8 +461,8 @@
                 <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
                 <label class="font-weight-bold font_range_input" id="OutputControlRange">0 Km</label>
 
-                <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange"
-                    min="500" max="3000" step="500" value="1000">
+                <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange" min="500"
+                    max="3000" step="500" value="1000">
             </div>
             <br>
             <div class="accordion tabListFasilitas" id="PoiCollabse">
@@ -563,65 +563,6 @@
 
     </div>
 
-    <div id="form_ajib">
-
-        <main role="main" class="container-fluid py-2">
-
-            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-
-                <div class="form-outline mb-xs-2 mb-1 md-4">
-                    {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
-                </div>
-
-                <div class="form-outline mb-xs-2 mb-1 md-4">
-                    <label class="form-label text-muted" for="judul">Judul</label>
-                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
-                </div>
-
-                <div class="form-outline mb-xs-2 mb-2 md-4">
-                    <label class="form-label text-muted">Kategori</label>
-
-                    <select required name="kategori" class="form-control">
-                        <option selected="selected">- Pilih -</option>
-                        <option value="UMK">UMK</option>
-                        <option value="Sedang dibangun">Sedang dibangun</option>
-                        <option value="Pedestrian">Pedestrian</option>
-                        <option value="Cagar Budaya">Cagar Budaya</option>
-                        <option value="RTH">RTH</option>
-                        <option value="Dijual">Dijual</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
-
-
-                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
-                    <div class="input-group custom-file-button">
-                        <label class="input-group-text" for="image">Upload Gambar</label>
-                        <input type="file" class="form-control" id="image" name="image">
-                    </div>
-                </div>
-
-
-                <div class="form-outline mb-xs-2 mb-2 md-4">
-                    <label for="catatan">Catatan</label>
-
-                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
-
-                </div>
-
-
-                <button type="submit" name="submit"
-                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
-                    <strong>Simpan</strong>
-                </button>
-
-            </form>
-
-        </main>
-    </div>
-
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
 
@@ -635,12 +576,14 @@
 
                                 <div class="form-outline mb-xs-2 mb-1 md-4">
                                     {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                                    <input required type="hidden" id="kordinatPinSurvey"
+                                        placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
                                 </div>
 
                                 <div class="form-outline mb-xs-2 mb-1 md-4">
                                     <label class="form-label text-muted" for="judul">Judul</label>
-                                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
+                                    <input required type="text" name="judul" class="form-control"
+                                        placeholder="Masukan Judul Tempat" />
                                 </div>
 
                                 <div class="form-outline mb-xs-2 mb-2 md-4">
@@ -670,7 +613,8 @@
                                 <div class="form-outline mb-xs-2 mb-2 md-4">
                                     <label for="catatan">Catatan</label>
 
-                                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
+                                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan"
+                                        name="catatan" rows="3"></textarea>
 
                                 </div>
 
@@ -729,7 +673,8 @@
                                             <img src="./assets/gambar/logo_jakpintas.png" width="70px">
                                         </div>
 
-                                        <button style="display: none;" class="btn btn-lg tombol_search border-0 borderdropdown-toggle"
+                                        <button style="display: none;"
+                                            class="btn btn-lg tombol_search border-0 borderdropdown-toggle"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-bars fa-lg"></i>
@@ -739,43 +684,47 @@
                                         <div class="dropdown-menu w_checkbox_dropdown_mobile"
                                             aria-labelledby="dropdownMenuButton">
 
-                                                <img src="./assets/gambar/logo_jakpintas.png" width="60px"
+                                            <img src="./assets/gambar/logo_jakpintas.png" width="60px"
                                                 class="ml-4 img-fluid" alt="Responsive image">
 
 
-                                                <div class="layout_checkbox_mobile">
+                                            <div class="layout_checkbox_mobile">
 
-                                                    {{-- <div class="form-check zoning_fill">
+                                                {{-- <div class="form-check zoning_fill">
                                                         <input type="checkbox" class="form-check-input" checked id="zoning_fill">
                                                         <label class="form-check-label  text_all" for="zoning_fill">Peta
                                                             Zonasi</label>
                                                     </div> --}}
 
-                                                    {{-- <div class="form-check wilayahindex_fill mt-1">
+                                                {{-- <div class="form-check wilayahindex_fill mt-1">
                                                         <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
                                                         <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
                                                             Kecil</label>
                                                     </div> --}}
 
-                                                    <div class="form-check pipa_multilinestring mt-1">
-                                                        <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
-                                                        <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
-                                                    </div>
-
-                                                    <div class="form-check banjir_fill mt-1">
-
-                                                        <input type="checkbox" class="form-check-input" id="banjir_fill">
-                                                        <label class="form-check-label text_all" for="banjir_fill">Terdampak
-                                                            Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
-                                                        <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
-                                                            id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
-                                                                                </div>
-
-
-                                                    {{-- <hr> --}}
+                                                <div class="form-check pipa_multilinestring mt-1">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="pipa_multilinestring">
+                                                    <label class="form-check-label  text_all"
+                                                        for="pipa_multilinestring">Jaringan Pipa PDAM</label>
                                                 </div>
-{{--
-                                                @role('admin')
+
+                                                <div class="form-check banjir_fill mt-1">
+
+                                                    <input type="checkbox" class="form-check-input" id="banjir_fill">
+                                                    <label class="form-check-label text_all"
+                                                        for="banjir_fill">Terdampak
+                                                        Banjir <span class="font_range_input"
+                                                            id="tahunBanjir">2015</span></label>
+                                                    <input type="range" style="height: 6px;"
+                                                        class="form-control-range mt-3 w-75" id="ControlTahunBanjir"
+                                                        min="2015" max="2020" step="1" value="2015">
+                                                </div>
+
+
+                                                {{-- <hr> --}}
+                                            </div>
+                                            {{-- @role('admin')
                                                     <p>sehat</p>
                                                 @endrole
 
@@ -785,7 +734,7 @@
 
 
 
-                                                {{-- @php
+                                            {{-- @php
                                                 $admin = "Admin";
                                                 $user = "User";
                                                 $guest = "Guest"
@@ -830,36 +779,38 @@
                                     <input type="search" class="input tombol_search" id="cari_wilayah_mobile"
                                         placeholder="Cari kelurahan disini...">
 
-                                        @if (!\Auth::check())
-                                            <a href="{{ route('login-google') }}">
+                                    @if (!\Auth::check())
+                                        <a href="{{ route('login-google') }}">
                                             <span class="btn-search">
                                                 <i class="ri-user-fill"></i>
                                             </span>
-                                    </a>
+                                        </a>
                                     @else
-                                    <div class="new_login">
-                                        <div class="dropdown">
+                                        <div class="new_login">
+                                            <div class="dropdown">
 
-                                            <img src="/profile/{{ Auth::user()->id }}.jpg"
-                                                style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="/profile/{{ Auth::user()->id }}.jpg"
+                                                    style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 
-                                                <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
-                                                style="min-width: 73px; position: absolute; margin-left:-30px;">
-                                                <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();" style="font-size: 12px"><i
-                                                        class="fa fa-sign-out"></i> Logout</a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                    class="d-none">
-                                                    @csrf
-                                                </form>
+                                                <div class="dropdown-menu dropdown-menu-right mt-1 p-1"
+                                                    aria-labelledby="btnLogout"
+                                                    style="min-width: 73px; position: absolute; margin-left:-30px;">
+                                                    <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();"
+                                                        style="font-size: 12px"><i class="fa fa-sign-out"></i>
+                                                        Logout</a>
+                                                    <form id="logout-form" action="{{ route('logout') }}"
+                                                        method="POST" class="d-none">
+                                                        @csrf
+                                                    </form>
+                                                </div>
+
+
+
                                             </div>
-
-
-
                                         </div>
-                                    </div>
                                     @endif
 
                                     <div class="wm-search__dropdown">
@@ -1107,52 +1058,52 @@
 
                 <div class="tutup_menus">
 
-                <div class="container container_menu fixed-bottom for_mobile" id="menuu">
+                    <div class="container container_menu fixed-bottom for_mobile" id="menuu">
 
 
-                    <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
 
-                        <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
-                            height="50" viewBox="0 0 172 172" style=" fill:#000000;">
-                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                                font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                                style="mix-blend-mode: normal">
-                                <path d="M0,172v-172h172v172z" fill="none"></path>
-                                <g fill="#cccccc">
-                                    <path
-                                        d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
-                                    </path>
+                            <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
+                                height="50" viewBox="0 0 172 172" style=" fill:#000000;">
+                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
+                                    stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                                    text-anchor="none" style="mix-blend-mode: normal">
+                                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                                    <g fill="#cccccc">
+                                        <path
+                                            d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                                        </path>
+                                    </g>
                                 </g>
-                            </g>
-                        </svg>
+                            </svg>
 
-                    </div>
+                        </div>
 
-                    <div class="d-flex justify-content-around">
-                        <div class="flex_container">
+                        <div class="d-flex justify-content-around">
+                            <div class="flex_container">
 
-                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
-                                <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
-                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                        id="hlm_profil" href="" role="tab" aria-controls="pills-lokasi"
-                                        aria-selected="true"><i class="fa fa-map-marker"></i></a>
+                                        <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                            id="hlm_profil" href="" role="tab" aria-controls="pills-lokasi"
+                                            aria-selected="true"><i class="fa fa-map-marker"></i></a>
 
-                                    <br>
-                                    <label class="size_menu size_menu_mobile">Profil</label>
-                                </li>
+                                        <br>
+                                        <label class="size_menu size_menu_mobile">Profil</label>
+                                    </li>
 
-                                <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                    <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
-                                        aria-selected="false"><i class="ri-funds-box-fill"></i></a>
-                                    <br>
-                                    <label class="size_menu size_menu_mobile">Ekonomi</label>
-                                </li>
+                                    <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                        <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                            id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
+                                            aria-selected="false"><i class="ri-funds-box-fill"></i></a>
+                                        <br>
+                                        <label class="size_menu size_menu_mobile">Ekonomi</label>
+                                    </li>
 
-                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                     <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                         id="hlm_zonasi" href="" role="tab"
                                         aria-controls="pills-zonasi" aria-selected="false"><i
@@ -1161,7 +1112,7 @@
                                     <label class="size_menu size_menu_mobile">Zonasi</label>
                                 </li> --}}
 
-                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                     <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                         id="hlm_persil" href="" role="tab"
                                         aria-controls="pills-persil" aria-selected="false"><i
@@ -1170,15 +1121,15 @@
                                     <label class="size_menu size_menu_mobile">Persil</label>
                                 </li> --}}
 
-                                <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
-                                        href="" role="tab" aria-controls="pills-poi" aria-selected="false"><i
-                                            class="fa fa-crosshairs"></i></a>
-                                    <br>
-                                    <label class="size_menu size_menu_mobile">Akses</label>
-                                </li>
+                                    <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                        <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                            id="hlm_poi" href="" role="tab" aria-controls="pills-poi"
+                                            aria-selected="false"><i class="fa fa-crosshairs"></i></a>
+                                        <br>
+                                        <label class="size_menu size_menu_mobile">Akses</label>
+                                    </li>
 
-                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                     <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                         id="hlm_kbli" href="" role="tab" aria-controls="pills-kblikeg"
                                         aria-selected="false"><i class="ri-user-search-fill"></i></a>
@@ -1186,24 +1137,24 @@
                                     <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                                 </li> --}}
 
-                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                     <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
                                     href="#" target="_blank"><i class="ri-shape-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
                                 </li> --}}
 
-                                <!-- Pending menu pin-->
+                                    <!-- Pending menu pin-->
 
-                            </ul>
+                                </ul>
 
+                            </div>
                         </div>
+
+
+
+
                     </div>
-
-
-
-
-                </div>
                 </div>
                 <!-- End Mengatur Menu Mobile -->
 
@@ -1760,49 +1711,50 @@
         <div class="form-check zoning_fill">
             <input type="checkbox" class="form-check-input" checked id="zoning_fill"> --}}
 
-            {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
+    {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
                 Zonasi</label> --}}
 
-        {{-- </div>
+    {{-- </div>
     </div>
 </div> --}}
 
 
 
 
-<div class="hide_zoning_fill">
+    <div class="hide_zoning_fill">
 
 
-    <div style="position: fixed; right:6%; top:37%; color:#fff;">
-
-
-
-
-    {{-- <div style="position: fixed; right:1%; top:37%; color:#fff;"> --}}
+        <div style="position: fixed; right:6%; top:37%; color:#fff;">
 
 
 
-        <div class="form-check zoning_fill d-none">
-            <input type="checkbox" class="form-check-input" checked id="zoning_fill">
-            {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
+
+            {{-- <div style="position: fixed; right:1%; top:37%; color:#fff;"> --}}
+
+
+
+            <div class="form-check zoning_fill d-none">
+                <input type="checkbox" class="form-check-input" checked id="zoning_fill">
+                {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
                 Zonasi</label> --}}
 
+            </div>
+
+            <div class="col-sm-2">
+                <h6>Peta</h6>
+            </div>
+            <div style="margin-top: -10%;" class="col-sm-5">
+                <button type="button" class="btn btn-xs btn-toggle" data-toggle="button" aria-pressed="false"
+                    autocomplete="off">
+                    <div class="handle"></div>
+                </button>
+            </div>
+
+
+
+
         </div>
-
-        <div class="col-sm-2">
-            <h6>Peta</h6>
-        </div>
-        <div style="margin-top: -10%;" class="col-sm-5">
-            <button type="button" class="btn btn-xs btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-            <div class="handle"></div>
-            </button>
-        </div>
-
-
-
-
     </div>
-</div>
 
 
 
@@ -1922,47 +1874,48 @@
         </div> --}}
 
         <div class="hide_hlm_kbli">
-        <div  style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
+            <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
 
-            <div>
-                <button class="btn btn-sm mt-3">
-                <div class="container">
-                    <div class="row">
-                        <i  id="hlm_kbli" class="ri-pushpin-line bg-white text-secondary"
-                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                    </div>
-                </div>
-            </button>
-            </div>
-
-            <div id="btn_tutupmenu">
-
-                <button class="btn btn-sm mt-3" data-toggle="collapse" href="#collapseExample"
-                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div>
+                    <button class="btn btn-sm mt-3">
                         <div class="container">
                             <div class="row">
-                                {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
-                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
-
-                                    <i  class="ri-file-list-line bg-white text-secondary"
+                                <i id="hlm_kbli" class="ri-pushpin-line bg-white text-secondary"
                                     style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                             </div>
                         </div>
-                </button>
+                    </button>
+                </div>
+
+                @role('surveyer')
+                    <div id="btn_tutupmenu">
+
+                        <button class="btn btn-sm mt-3" data-toggle="collapse" href="#collapseExample" role="button"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            <div class="container">
+                                <div class="row">
+                                    {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
+                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
+
+                                    <i class="ri-file-list-line bg-white text-secondary"
+                                        style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                                </div>
+                            </div>
+                        </button>
+
+                    </div>
+                @endrole
 
             </div>
-
-
         </div>
-    </div>
 
-    <div class="fixed-top" style="margin-left: -10px; margin-top:20%;">
+        <div class="fixed-top" style="margin-left: -10px; margin-top:20%;">
 
 
             <div class="menuuu">
                 <ul>
 
-                    <div class="d-none" >
+                    <div class="d-none">
                         <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
                         <input type="radio" id="radio_dibangun" name="radio_menu" value="radio_dibangun">
                         <input type="radio" id="radio_pedestrian" name="radio_menu" value="radio_pedestrian">
@@ -1972,108 +1925,113 @@
                         <input type="radio" id="radio_lainnya" name="radio_menu" value="radio_lainnya">
                     </div>
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_ukm">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            storefront
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">UKM</span>
-                    </div>
-                </div>
-                </button>
-                </li>
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_ukm">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        storefront
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">UKM</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_dibangun">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                home_repair_service
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Sedang dibangun</span>
-                        </div>
-                    </div>
-                </button>
-                </li>
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                            id="btn_dibangun">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        home_repair_service
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">Sedang dibangun</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_pedestrian">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Pedestrian</span>
-                        </div>
-                    </div>
-                    </button>
-                </li>
-
-
-
-
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                            id="btn_pedestrian">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        location_city
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">Pedestrian</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
 
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_cagar">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-                        </div>
-                    </div>
-                    </button>
-                </li>
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_rth">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">RTH</span>
-                        </div>
-                    </div>
-                    </button>
-                </li>
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_dijual">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Dijual</span>
-                        </div>
-                    </div>
-                    </button>
-                </li>
 
-                <li>
-                    <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_lainnya">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Lainnya</span>
-                        </div>
-                    </div>
-                    </button>
-                </li>
+
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                            id="btn_cagar">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        location_city
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_rth">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        location_city
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">RTH</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                            id="btn_dijual">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        location_city
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">Dijual</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button class="btn btn-sm ml-2"
+                            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000"
+                            id="btn_lainnya">
+                            <div class="container">
+                                <div class="row">
+                                    <span class="material-icons text-primary mr-1">
+                                        location_city
+                                    </span>
+                                    <span class="font-weight-bold" style="margin-top: 2px">Lainnya</span>
+                                </div>
+                            </div>
+                        </button>
+                    </li>
 
 
 
@@ -2082,7 +2040,7 @@
 
 
 
-    </div>
+        </div>
 
 
 
@@ -2204,8 +2162,7 @@
     @if (isMobileDevice())
 
         <script>
-
-                document.getElementById("hlm_profil").onclick = function(e) {
+            document.getElementById("hlm_profil").onclick = function(e) {
                 e.preventDefault();
                 document.getElementById("profil").style.display = "block";
                 document.getElementById('btn_backprodil').onclick = function() {
@@ -2213,11 +2170,11 @@
                 };
 
                 return false;
-                }
+            }
 
 
 
-                document.getElementById("hlm_ekonomi").onclick = function(e) {
+            document.getElementById("hlm_ekonomi").onclick = function(e) {
                 e.preventDefault();
                 document.getElementById("ekonomi").style.display = "block";
                 document.getElementById('btn_backeko').onclick = function() {
@@ -2225,33 +2182,33 @@
                 };
 
                 return false;
-                }
+            }
 
-                // document.getElementById("hlm_ekonomi").onclick = function(e) {
-                //     document.getElementById("form_ajib").style.display = "block";
-                //     document.getElementById("menuu").style.display = "none";
+            // document.getElementById("hlm_ekonomi").onclick = function(e) {
+            //     document.getElementById("form_ajib").style.display = "block";
+            //     document.getElementById("menuu").style.display = "none";
 
-                //     document.getElementById('hlm_ekonomi').onclick = function() {
-                //         document.getElementById("form_ajib").style.display = "none";
-                //         document.getElementById("menuu").style.display = "block";
+            //     document.getElementById('hlm_ekonomi').onclick = function() {
+            //         document.getElementById("form_ajib").style.display = "none";
+            //         document.getElementById("menuu").style.display = "block";
 
-                //         return true;
-                //     };
-                // return true;
-                // // }
+            //         return true;
+            //     };
+            // return true;
+            // // }
 
-                $("#hlm_form_ajib").click(function() {
-                    $('#form_ajib').toggle();
-                });
-
-
-                $("#btn_tutupmenu").click(function() {
-                    $('.tutup_menus').toggle();
-                });
+            $("#hlm_form_ajib").click(function() {
+                $('#form_ajib').toggle();
+            });
 
 
+            $("#btn_tutupmenu").click(function() {
+                $('.tutup_menus').toggle();
+            });
 
-                document.getElementById("hlm_poi").onclick = function(e) {
+
+
+            document.getElementById("hlm_poi").onclick = function(e) {
                 e.preventDefault();
                 document.getElementById("akses").style.display = "block";
                 document.getElementById('btn_backakses').onclick = function() {
@@ -2259,11 +2216,11 @@
                 };
 
                 return false;
-                }
+            }
 
 
 
-                document.getElementById("hlm_kbli").onclick = function(e) {
+            document.getElementById("hlm_kbli").onclick = function(e) {
                 e.preventDefault();
                 document.getElementById("kbli").style.display = "block";
                 document.getElementById('btn_backkbli').onclick = function() {
@@ -2271,15 +2228,16 @@
                 };
 
                 return false;
-                }
+            }
 
-                var APP_URL = {!! json_encode(url('/')) !!}
-
-
+            var APP_URL = {!! json_encode(url('/')) !!}
         </script>
 
 
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
+        @role('surveyer')
+            <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
+        @endrole
 
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
