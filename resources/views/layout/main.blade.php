@@ -563,6 +563,67 @@
 
     </div>
 
+    <div id="form_ajib">
+
+        <main role="main" class="container-fluid py-2">
+
+            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-outline mb-xs-2 mb-1 md-4">
+                    {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
+                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat"
+                        class="form-control" />
+                </div>
+
+                <div class="form-outline mb-xs-2 mb-1 md-4">
+                    <label class="form-label text-muted" for="judul">Judul</label>
+                    <input required type="text" name="judul" class="form-control"
+                        placeholder="Masukan Judul Tempat" />
+                </div>
+
+                <div class="form-outline mb-xs-2 mb-2 md-4">
+                    <label class="form-label text-muted">Kategori</label>
+
+                    <select required name="kategori" class="form-control">
+                        <option selected="selected">- Pilih -</option>
+                        <option value="UMK">UMK</option>
+                        <option value="Sedang dibangun">Sedang dibangun</option>
+                        <option value="Pedestrian">Pedestrian</option>
+                        <option value="Cagar Budaya">Cagar Budaya</option>
+                        <option value="RTH">RTH</option>
+                        <option value="Dijual">Dijual</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+
+                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
+                    <div class="input-group custom-file-button">
+                        <label class="input-group-text" for="image">Upload Gambar</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                    </div>
+                </div>
+
+
+                <div class="form-outline mb-xs-2 mb-2 md-4">
+                    <label for="catatan">Catatan</label>
+
+                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan"
+                        rows="3"></textarea>
+
+                </div>
+
+
+                <button type="submit" name="submit"
+                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                    <strong>Simpan</strong>
+                </button>
+
+            </form>
+
+        </main>
+    </div>
 
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
@@ -577,8 +638,8 @@
 
                                 <div class="form-outline mb-xs-2 mb-1 md-4">
                                     {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                                    <input required type="hidden" id="kordinatPinSurvey"
-                                        placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi"
+                                        name="koordinat" class="form-control" />
                                 </div>
 
                                 <div class="form-outline mb-xs-2 mb-1 md-4">
@@ -1896,24 +1957,23 @@
                     </button>
                 </div>
 
-                @role('surveyer')
-                    <div id="btn_tutupmenu">
+                <div id="btn_tutupmenu">
 
-                        <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button"
-                            aria-expanded="false" aria-controls="collapseExample">
-                            <div class="container">
-                                <div class="row">
-                                    {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
+                    <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        <div class="container">
+                            <div class="row">
+                                {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
                                     style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
 
-                                    <i class="ri-file-list-line bg-white text-secondary"
-                                        style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                                </div>
+                                <i class="ri-file-list-line bg-white text-secondary"
+                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                             </div>
-                        </button>
+                        </div>
+                    </button>
 
-                    </div>
-                @endrole
+                </div>
+
 
             </div>
         </div>
@@ -2243,9 +2303,7 @@
 
 
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
-        @role('surveyer')
-            <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
-        @endrole
+
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
