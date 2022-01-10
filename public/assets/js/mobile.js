@@ -74,9 +74,33 @@ const draw = new MapboxDraw({
 });
 map.addControl(new mapboxgl.NavigationControl());
 
+
+// Add geolocate control to the map.
+// Initialize the geolocate control.
+let geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+});
+// Add the control to the map.
+map.addControl(geolocate);
+map.on("load", function () {
+    geolocate.trigger(); // add this if you want to fire it by code instead of the button
+});
+geolocate.on("geolocate", locateUser);
+
+function locateUser(e) {
+    console.log("A geolocate event has occurred.");
+    console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
+}
+
+
+
 $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
+
 
 
 $(".container.container_menu.for_mobile").hide();
@@ -89,6 +113,7 @@ $(".hide_zoning_fill").hide();
 
 
 $(document).ready(function () {
+
 
     $("#btn_ukm").on('click', function () {
 
