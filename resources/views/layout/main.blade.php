@@ -1724,7 +1724,7 @@
     <div class="hide_zoning_fill">
 
 
-        <div style="position: fixed; right:6%; top:37%; color:#fff;">
+        <div style="position: fixed; right:6%; top:36%; color:#fff;">
 
 
 
@@ -1732,22 +1732,14 @@
             {{-- <div style="position: fixed; right:1%; top:37%; color:#fff;"> --}}
 
 
+            <div class="d-flex align-content-stretch flex-wrap justify-content-center">
 
-            <div class="form-check zoning_fill d-none">
-                <input type="checkbox" class="form-check-input" checked id="zoning_fill">
-                {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
-                Zonasi</label> --}}
+                <div class="form-check zoning_fill text-center">
+                    <h6>Zonasi</h6>
+                    <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" checked id="zoning_fill">
+                    <label for="zoning_fill"></label>
+                </div>
 
-            </div>
-
-            <div class="col-sm-2">
-                <h6>Peta</h6>
-            </div>
-            <div style="margin-top: -10%;" class="col-sm-5">
-                <button type="button" class="btn btn-xs btn-toggle" data-toggle="button" aria-pressed="false"
-                    autocomplete="off">
-                    <div class="handle"></div>
-                </button>
             </div>
 
 

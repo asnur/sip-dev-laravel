@@ -688,7 +688,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
         `;
     }
     $(".inf-zona").html(dt.Zona);
-    $(".inf-subzona").html(dt["Sub Zona"] + " - " + dt.Hirarki);
+    $(".inf-subzona").html(dt["Sub Zona"]);
     $(".inf-blok").html(dt["Kode Blok"] + "/" + dt["Sub Blok"]);
     // $(".inf-cdtpz").html(dt["CD TPZ"] == " " ? "-" : dt["CD TPZ"]);
     $("#selectTPZ").html(option_tpz);
