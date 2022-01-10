@@ -1879,21 +1879,6 @@
                 </button>
 
             </div>
-            <div id="btn_tutupmenu">
-
-                <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <div class="container">
-                        <div class="row">
-                            {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
-                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
-
-                            <i class="ri-file-list-line bg-white text-secondary" style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-
-                        </div>
-                    </div>
-                </button>
-
-            </div>
             @role('surveyer')
             <div id="btn_tutupmenu">
 
