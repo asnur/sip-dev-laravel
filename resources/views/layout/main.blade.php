@@ -1866,6 +1866,7 @@
                         </div>
                     </div>
                 </button>
+
             </div>
             @role('surveyer')
             <div id="btn_tutupmenu">
