@@ -4,6 +4,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    overscroll-behavior: contain;
+}
+
 .marker {
     background-image: url("/assets/gambar/location-pin.png");
     background-size: cover;
@@ -24,7 +28,7 @@
         height: 4rem;
     } */
 
-    .btn-toggle {
+    /* .btn-toggle {
         margin: 0 4rem;
         padding: 0;
         position: relative;
@@ -250,7 +254,64 @@
 
     .btn-toggle.btn-secondary.active {
         background-color: #ff8300;
+    } */
+
+
+    .cmn-toggle {
+        position: absolute;
+        margin-left: -99px;
+        visibility: hidden;
     }
+
+    .cmn-toggle+label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        user-select: none;
+    }
+
+    input.cmn-toggle-round+label {
+        padding: 2px;
+        width: 45px;
+        height: 24px;
+        background-color: #dddddd;
+        border-radius: 60px;
+    }
+
+    input.cmn-toggle-round+label:before,
+    input.cmn-toggle-round+label:after {
+        display: block;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        content: "";
+    }
+
+    input.cmn-toggle-round+label:before {
+        right: 1px;
+        background-color: #f1f1f1;
+        border-radius: 60px;
+        transition: background 0.4s;
+    }
+
+    input.cmn-toggle-round+label:after {
+        width: 19px;
+        background-color: #fff;
+        border-radius: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: margin 0.4s;
+    }
+
+    input.cmn-toggle-round:checked+label:before {
+        background-color: #8ce196;
+    }
+
+    input.cmn-toggle-round:checked+label:after {
+        margin-left: 23px;
+    }
+
 
     .form-header {
         background-image: linear-gradient(111.37738709038058deg, #3d36f1 1.557291666666667%, #3d36f1 101.34895833333333%);
@@ -315,6 +376,11 @@
         background-color: white;
         z-index: 999;
         overflow: scroll;
+    }
+
+    .pos_menu {
+        margin-left: -10px;
+        top: 0;
     }
 
     .menuuu ul {
@@ -533,7 +599,8 @@
 
     /* ALL FONT PAGE INI */
     .text_all_permenu {
-        font-size: 17px;
+        font-size: 16px;
+        letter-spacing: 0.5px;
     }
 
     .margin_conten_permenu {
@@ -642,6 +709,7 @@
 
     .margin_new_menu_icon {
         padding-top: 4%;
+        margin-left: -5px;
     }
 
     .form-check-input {
@@ -1058,7 +1126,8 @@
 
     /* ALL FONT PAGE INI */
     .text_all_permenu {
-        font-size: 17px;
+        font-size: 16px;
+        letter-spacing: 0.5px;
     }
 
     .margin_conten_permenu {

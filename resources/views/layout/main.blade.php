@@ -103,9 +103,9 @@
         </div>
 
 
-        <div style="margin-top: 5.5rem;" class="container">
+        <div style="margin-top: 5rem;" class="container">
 
-            {{-- <p class="card-title text-center font-weight-bold judul_utama">Lokasi</p> --}}
+            <p class="card-title mt-2 text-center font-weight-bold judul_utama">Lokasi</p>
 
             <div class="d-flex space_judul row_mid_judul">
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
@@ -258,7 +258,7 @@
                 </div>
                 <div class="col-lg-7 text_all_permenu">
                     <p class="inf-cdtpz rata_text_mobile">
-                        <select class="w-100" id="selectTPZ"></select>
+                        {{-- <select class="w-100" id="selectTPZ"></select> --}}
                     </p>
                 </div>
             </div>
@@ -292,7 +292,7 @@
 
 
 
-            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Bangunan
+            {{-- <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Bangunan
             </p>
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-12 text_all">
@@ -300,7 +300,7 @@
                         -
                     </label>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-12 text_all">
@@ -327,7 +327,7 @@
             <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backeko">
-                        <span class="material-icons size_icons">
+                        <span class="material-icons margin_new_menu_icon size_icons">
                             arrow_back_ios
                         </span>
                     </a>
@@ -342,19 +342,19 @@
         <div style="margin-top: 5.5rem;" class="container">
 
             <div class="d-flex space_judul row_mid_judul">
-                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu_permenu">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
                     <label class="text_all_permenu_mobile_permenu">Pelaku IUMK</label>
                 </div>
-                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu_permenu">
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
                     <p><span class="inf-iumk rata_text_mobile break_all">-</span> <span>orang</span></p>
                 </div>
             </div>
 
             <div class="d-flex space_text row_mid_text">
-                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu_permenu">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
                     <label class="text_all_permenu_mobile_permenu">Total Omzet</label>
                 </div>
-                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu_permenu">
+                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
                     <p class="rata_text_mobile">Rp.<span class="inf-omzet">-</span> <span>per bulan</span></p>
                 </div>
             </div>
@@ -442,7 +442,7 @@
             <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backakses">
-                        <span class="material-icons size_icons">
+                        <span class="material-icons margin_new_menu_icon size_icons">
                             arrow_back_ios
                         </span>
                     </a>
@@ -454,7 +454,7 @@
         </div>
 
 
-        <div style="margin-top: 5.5rem;" class="container">
+        <div style="margin-top: 5.2rem;" class="container">
 
 
             <div class="form-group w-100 mt-3 mb-0 ml-3" id="radiusSlide">
@@ -627,8 +627,8 @@
 
             <div class="pos_ajib">
                 <div class="collapse" id="collapseExample">
-                    <div style="background-color: #fff;">
-                        <main role="main" class="container-fluid py-2">
+                    <div style="background-color: #fff; padding: 20px; border-radius:10px;">
+                        <main role="main" class="container-fluid">
 
                             <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -1773,7 +1773,7 @@
 <div class="hide_zoning_fill">
 
 
-    <div style="position: fixed; right:6%; top:37%; color:#fff;">
+    <div style="position: fixed; right:6%; top:36%; color:#fff;">
 
 
 
@@ -1782,21 +1782,22 @@
 
 
 
-        <div class="form-check zoning_fill d-none">
-            <input type="checkbox" class="form-check-input" checked id="zoning_fill">
-            {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
-                Zonasi</label> --}}
+
+
+        <div class="d-flex align-content-stretch flex-wrap justify-content-center">
+
+            <div class="form-check zoning_fill text-center">
+                <h6>Zonasi</h6>
+                <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" checked id="zoning_fill">
+                <label for="zoning_fill"></label>
+            </div>
 
         </div>
 
-        <div class="col-sm-2">
-            <h6>Peta</h6>
-        </div>
-        <div style="margin-top: -10%;" class="col-sm-5">
-            <button type="button" class="btn btn-xs btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-            <div class="handle"></div>
-            </button>
-        </div>
+
+        {{-- <div style="margin-top: -10%;" class="col-sm-5">
+
+        </div> --}}
 
 
 
@@ -1925,10 +1926,21 @@
         <div  style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
 
             <div>
-                <button class="btn btn-sm mt-3">
+                <button class="btn btn-sm mt-2">
                 <div class="container">
                     <div class="row">
-                        <i  id="hlm_kbli" class="ri-pushpin-line bg-white text-secondary"
+                        <i class="ri-map-pin-range-line bg-white text-secondary"
+                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                    </div>
+                </div>
+            </button>
+            </div>
+
+            <div>
+                <button class="btn btn-sm mt-1">
+                <div class="container">
+                    <div class="row">
+                        <i id="hlm_kbli" class="ri-user-search-line bg-white text-secondary"
                             style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                     </div>
                 </div>
@@ -1937,7 +1949,7 @@
 
             <div id="btn_tutupmenu">
 
-                <button class="btn btn-sm mt-3" data-toggle="collapse" href="#collapseExample"
+                <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample"
                     role="button" aria-expanded="false" aria-controls="collapseExample">
                         <div class="container">
                             <div class="row">
@@ -1956,8 +1968,7 @@
         </div>
     </div>
 
-    <div class="fixed-top" style="margin-left: -10px; margin-top:20%;">
-
+    <div class="pos_menu">
 
             <div class="menuuu">
                 <ul>
@@ -1973,7 +1984,7 @@
                     </div>
 
                 <li>
-                    <button class="btn btn-sm ml-2"
+                    <button class="btn btn-sm ml-1"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_ukm">
                 <div class="container">
                     <div class="row">
@@ -1992,7 +2003,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
-                                home_repair_service
+                                maps_home_work
                             </span>
                             <span class="font-weight-bold" style="margin-top: 2px">Sedang dibangun</span>
                         </div>
@@ -2006,7 +2017,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
-                                location_city
+                                add_road
                             </span>
                             <span class="font-weight-bold" style="margin-top: 2px">Pedestrian</span>
                         </div>
@@ -2025,7 +2036,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
-                                location_city
+                                museum
                             </span>
                             <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
                         </div>
@@ -2039,7 +2050,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
-                                location_city
+                                grass
                             </span>
                             <span class="font-weight-bold" style="margin-top: 2px">RTH</span>
                         </div>
@@ -2053,7 +2064,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
-                                location_city
+                                receipt_long
                             </span>
                             <span class="font-weight-bold" style="margin-top: 2px">Dijual</span>
                         </div>
@@ -2067,7 +2078,7 @@
                     <div class="container">
                         <div class="row">
                             <span class="material-icons text-primary mr-1">
-                                location_city
+                                more
                             </span>
                             <span class="font-weight-bold" style="margin-top: 2px">Lainnya</span>
                         </div>
