@@ -1860,16 +1860,6 @@
         <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
 
             <div>
-                <button class="btn btn-sm mt-2">
-                    <div class="container">
-                        <div class="row">
-                            <i class="ri-map-pin-range-line bg-white text-secondary" style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                        </div>
-                    </div>
-                </button>
-            </div>
-
-            <div>
                 <button class="btn btn-sm mt-1">
                     <div class="container">
                         <div class="row">
