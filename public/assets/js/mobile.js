@@ -1,4 +1,5 @@
-var url = `${APP_URL}:3000`;
+// var url = `${APP_URL}:3000`;
+var url = `https://jakpintas.dpmptsp-dki.com:3000`;
 
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -44,9 +45,7 @@ $(document).on("input change", "#ControlTahunBanjir", function () {
     $("#tahunBanjir").html(tahun);
 });
 
-
 $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
-
 
 function titleCase(str) {
     str = str.toLowerCase().split(" ");
@@ -55,8 +54,6 @@ function titleCase(str) {
     }
     return str.join(" ");
 }
-
-
 
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
@@ -74,14 +71,13 @@ const draw = new MapboxDraw({
 });
 map.addControl(new mapboxgl.NavigationControl());
 
-
 // Add geolocate control to the map.
 // Initialize the geolocate control.
 let geolocate = new mapboxgl.GeolocateControl({
     positionOptions: {
-        enableHighAccuracy: true
+        enableHighAccuracy: true,
     },
-    trackUserLocation: true
+    trackUserLocation: true,
 });
 // Add the control to the map.
 map.addControl(geolocate);
@@ -95,29 +91,20 @@ function locateUser(e) {
     console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
 }
 
-
-
 $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
 
-
-
 $(".container.container_menu.for_mobile").hide();
 $(".menuuu").hide();
-
 
 // new1
 $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").show();
 
-
 $(document).ready(function () {
-
-
-    $("#btn_ukm").on('click', function () {
-
-        $("#radio_ukm").attr('checked', true).trigger('click');
+    $("#btn_ukm").on("click", function () {
+        $("#radio_ukm").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_dibangun").css("background", "white");
         $("#btn_pedestrian").css("background", "white");
@@ -125,13 +112,10 @@ $(document).ready(function () {
         $("#btn_rth").css("background", "white");
         $("#btn_dijual").css("background", "white");
         $("#btn_lainnya").css("background", "white");
-
-
     });
 
-
-    $("#btn_dibangun").on('click', function () {
-        $("#radio_dibangun").attr('checked', true).trigger('click');
+    $("#btn_dibangun").on("click", function () {
+        $("#radio_dibangun").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_ukm").css("background", "white");
         $("#btn_pedestrian").css("background", "white");
@@ -141,9 +125,8 @@ $(document).ready(function () {
         $("#btn_lainnya").css("background", "white");
     });
 
-
-    $("#btn_pedestrian").on('click', function () {
-        $("#radio_pedestrian").attr('checked', true).trigger('click');
+    $("#btn_pedestrian").on("click", function () {
+        $("#radio_pedestrian").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_ukm").css("background", "white");
         $("#btn_dibangun").css("background", "white");
@@ -153,10 +136,8 @@ $(document).ready(function () {
         $("#btn_lainnya").css("background", "white");
     });
 
-
-
-    $("#btn_cagar").on('click', function () {
-        $("#radio_cagar").attr('checked', true).trigger('click');
+    $("#btn_cagar").on("click", function () {
+        $("#radio_cagar").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_ukm").css("background", "white");
         $("#btn_dibangun").css("background", "white");
@@ -164,11 +145,10 @@ $(document).ready(function () {
         $("#btn_rth").css("background", "white");
         $("#btn_dijual").css("background", "white");
         $("#btn_lainnya").css("background", "white");
-
     });
 
-    $("#btn_rth").on('click', function () {
-        $("#radio_rth").attr('checked', true).trigger('click');
+    $("#btn_rth").on("click", function () {
+        $("#radio_rth").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_ukm").css("background", "white");
         $("#btn_dibangun").css("background", "white");
@@ -178,8 +158,8 @@ $(document).ready(function () {
         $("#btn_lainnya").css("background", "white");
     });
 
-    $("#btn_dijual").on('click', function () {
-        $("#radio_dijual").attr('checked', true).trigger('click');
+    $("#btn_dijual").on("click", function () {
+        $("#radio_dijual").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_ukm").css("background", "white");
         $("#btn_dibangun").css("background", "white");
@@ -189,8 +169,8 @@ $(document).ready(function () {
         $("#btn_lainnya").css("background", "white");
     });
 
-    $("#btn_lainnya").on('click', function () {
-        $("#radio_lainnya").attr('checked', true).trigger('click');
+    $("#btn_lainnya").on("click", function () {
+        $("#radio_lainnya").attr("checked", true).trigger("click");
         $(this).css("background", "orange");
         $("#btn_ukm").css("background", "white");
         $("#btn_dibangun").css("background", "white");
@@ -199,17 +179,7 @@ $(document).ready(function () {
         $("#btn_rth").css("background", "white");
         $("#btn_dijual").css("background", "white");
     });
-
-
 });
-
-
-
-
-
-
-
-
 
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
@@ -233,7 +203,6 @@ map.on("style.load", function () {
             "href",
             `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
         );
-
     });
     // Marker onclick
     const el = document.createElement("div");
@@ -280,15 +249,9 @@ map.on("style.load", function () {
             visibility: "none",
         },
     });
-
 });
 
-
-
-
-
 map.on(clickEvent, "wilayah_fill", function (e) {
-
     var dt = e.features[0].properties;
     // console.log(dt);
     $(".dtKBLI").html("");
@@ -318,11 +281,13 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         type: "pie",
         data: {
             labels: ["Produksi", "Perdagangan", "Jasa"],
-            datasets: [{
-                label: "Kelurahan",
-                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-                data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
-            }, ],
+            datasets: [
+                {
+                    label: "Kelurahan",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                    data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
+                },
+            ],
         },
         options: {
             title: {
@@ -337,10 +302,12 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         type: "bar",
         data: {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
-            datasets: [{
-                backgroundColor: "#3e95cd",
-                data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
-            }, ],
+            datasets: [
+                {
+                    backgroundColor: "#3e95cd",
+                    data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
+                },
+            ],
         },
         options: {
             // title: {
@@ -352,20 +319,24 @@ map.on(clickEvent, "wilayah_fill", function (e) {
                 display: false,
             },
             scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Jumlah",
-                        padding: 20,
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Jumlah",
+                            padding: 20,
+                        },
                     },
-                }, ],
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Usia",
-                        padding: 20,
+                ],
+                xAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Usia",
+                            padding: 20,
+                        },
                     },
-                }, ],
+                ],
             },
             bezierCurve: false,
             animation: 0,
@@ -601,10 +572,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     // $(".hide_zoning_fill").show();
     $(".menuuu").show();
 
-
     $(".gambar_logos").hide();
-
-
 
     $(".dtKBLI").html("");
     var dataabse_tpz = {
@@ -775,8 +743,6 @@ map.on(clickEvent, "zoning_fill", function (e) {
     });
 });
 
-
-
 function getEksisting(e) {
     // $("#dtEksistingBot").html("");
     var htmlPopupLayer = "";
@@ -793,13 +759,13 @@ function getEksisting(e) {
             const dtResp = JSON.parse(dt);
             if (dtResp.features != null) {
                 const prop = dtResp.features[0].properties;
-                $(".inf-eksisting").html((prop.Kegiatan));
+                $(".inf-eksisting").html(prop.Kegiatan);
                 eksisting = `
                   <div class="col-sm-12">
                   <div class="row">
                         <div class="col-sm-12 font-weight-bold">Persil Tanah</div>
                         <div class="col-sm-4">Lahan Eksisting</div>
-                        <div class="col-sm-8">${(prop.Kegiatan)}</div>
+                        <div class="col-sm-8">${prop.Kegiatan}</div>
                       </div>
                     </div>
                     </tbody>
@@ -1035,7 +1001,6 @@ function getRadius(e) {
     // $(".infoLokasi").show();
 }
 
-
 //Cari Wilayah
 
 $("#cari_wilayah_mobile").bindWithDelay(
@@ -1183,7 +1148,6 @@ var geocoder = new MapboxGeocoder({
 
 map.addControl(geocoder);
 
-
 //add source layer
 function addSourceLayer(item) {
     var api = [
@@ -1286,10 +1250,8 @@ function addSourceLayer(item) {
     onOffLayers();
 }
 
-
 //add layer
 function addLayers() {
-
     map.addLayer({
         id: "wilayah_fill",
         type: "fill",
@@ -1342,8 +1304,6 @@ function addLayers() {
             visibility: "none",
         },
     });
-
-
 }
 
 function showLayer(layer) {
@@ -1425,9 +1385,7 @@ function onOffLayers() {
             hideLayer("banjir_fill");
         }
     });
-
 }
-
 
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
@@ -1437,11 +1395,9 @@ $(document).on("click", ".wilayah-select", function () {
     const text = $(this).text();
     $("#cari_wilayah_mobile").val(text);
 
-
     geocoder.query(coor);
     addSourceLayer(kel);
 });
-
 
 function separatorNum(val) {
     if (typeof val === "undefined" || val === null || val === "null") {
