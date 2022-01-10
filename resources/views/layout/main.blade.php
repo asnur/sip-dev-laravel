@@ -1711,7 +1711,7 @@
 
     <div class="hide_zoning_fill">
 
-        <div style="position: fixed; right:6%; top:36%; color:#fff;">
+        <div style="position: fixed; right:6%; top:30%; color:#fff;">
 
             <div class="d-flex align-content-stretch flex-wrap justify-content-center">
 
