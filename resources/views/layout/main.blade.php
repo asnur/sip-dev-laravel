@@ -73,6 +73,9 @@
 
 
 
+
+
+
     <div id="profil">
 
         <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
@@ -486,7 +489,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-9 margin_new_menu">Akses</div>
+                <div class="col-md-9 margin_new_menu">KBLI</div>
             </div>
 
         </div>
@@ -560,10 +563,130 @@
 
     </div>
 
+    <div id="form_ajib">
 
+        <main role="main" class="container-fluid py-2">
+
+            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-outline mb-xs-2 mb-1 md-4">
+                    {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
+                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                </div>
+
+                <div class="form-outline mb-xs-2 mb-1 md-4">
+                    <label class="form-label text-muted" for="judul">Judul</label>
+                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
+                </div>
+
+                <div class="form-outline mb-xs-2 mb-2 md-4">
+                    <label class="form-label text-muted">Kategori</label>
+
+                    <select required name="kategori" class="form-control">
+                        <option selected="selected">- Pilih -</option>
+                        <option value="UMK">UMK</option>
+                        <option value="Sedang dibangun">Sedang dibangun</option>
+                        <option value="Pedestrian">Pedestrian</option>
+                        <option value="Cagar Budaya">Cagar Budaya</option>
+                        <option value="RTH">RTH</option>
+                        <option value="Dijual">Dijual</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+
+                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
+                    <div class="input-group custom-file-button">
+                        <label class="input-group-text" for="image">Upload Gambar</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                    </div>
+                </div>
+
+
+                <div class="form-outline mb-xs-2 mb-2 md-4">
+                    <label for="catatan">Catatan</label>
+
+                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
+
+                </div>
+
+
+                <button type="submit" name="submit"
+                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                    <strong>Simpan</strong>
+                </button>
+
+            </form>
+
+        </main>
+    </div>
 
     <div class="pembungkus " id="sidebar">
         <div class="dalam">
+
+            <div class="pos_ajib">
+                <div class="collapse" id="collapseExample">
+                    <div style="background-color: #fff;">
+                        <main role="main" class="container-fluid py-2">
+
+                            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+
+                                <div class="form-outline mb-xs-2 mb-1 md-4">
+                                    {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
+                                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                                </div>
+
+                                <div class="form-outline mb-xs-2 mb-1 md-4">
+                                    <label class="form-label text-muted" for="judul">Judul</label>
+                                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
+                                </div>
+
+                                <div class="form-outline mb-xs-2 mb-2 md-4">
+                                    <label class="form-label text-muted">Kategori</label>
+
+                                    <select required name="kategori" class="form-control">
+                                        <option selected="selected">- Pilih -</option>
+                                        <option value="UMK">UMK</option>
+                                        <option value="Sedang dibangun">Sedang dibangun</option>
+                                        <option value="Pedestrian">Pedestrian</option>
+                                        <option value="Cagar Budaya">Cagar Budaya</option>
+                                        <option value="RTH">RTH</option>
+                                        <option value="Dijual">Dijual</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+
+
+                                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
+                                    <div class="input-group custom-file-button">
+                                        <label class="input-group-text" for="image">Upload Gambar</label>
+                                        <input type="file" class="form-control" id="image" name="image">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-outline mb-xs-2 mb-2 md-4">
+                                    <label for="catatan">Catatan</label>
+
+                                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
+
+                                </div>
+
+
+                                <button type="submit" name="submit"
+                                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                                    <strong>Simpan</strong>
+                                </button>
+
+                            </form>
+
+                        </main>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Judul -->
             <div class="kotak_judul for_web">
@@ -982,103 +1105,105 @@
                 </div> --}}
 
 
-                <div class="container container_menu for_mobile" id="menuu">
+                <div class="tutup_menus">
+
+                <div class="container container_menu fixed-bottom for_mobile" id="menuu">
 
 
-                <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
 
-                    <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
-                        height="50" viewBox="0 0 172 172" style=" fill:#000000;">
-                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                            style="mix-blend-mode: normal">
-                            <path d="M0,172v-172h172v172z" fill="none"></path>
-                            <g fill="#cccccc">
-                                <path
-                                    d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
-                                </path>
+                        <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
+                            height="50" viewBox="0 0 172 172" style=" fill:#000000;">
+                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                                font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                                style="mix-blend-mode: normal">
+                                <path d="M0,172v-172h172v172z" fill="none"></path>
+                                <g fill="#cccccc">
+                                    <path
+                                        d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                                    </path>
+                                </g>
                             </g>
-                        </g>
-                    </svg>
+                        </svg>
 
-                </div>
+                    </div>
 
                     <div class="d-flex justify-content-around">
                         <div class="flex_container">
 
-                        <ul class="nav nav-pills  mb-3" id="pills-tab" role="tablist">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_profil" href="" role="tab" aria-controls="pills-lokasi"
-                                    aria-selected="true"><i class="fa fa-map-marker"></i></a>
+                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                        id="hlm_profil" href="" role="tab" aria-controls="pills-lokasi"
+                                        aria-selected="true"><i class="fa fa-map-marker"></i></a>
 
+                                    <br>
+                                    <label class="size_menu size_menu_mobile">Profil</label>
+                                </li>
+
+                                <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
+                                        aria-selected="false"><i class="ri-funds-box-fill"></i></a>
+                                    <br>
+                                    <label class="size_menu size_menu_mobile">Ekonomi</label>
+                                </li>
+
+                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                        id="hlm_zonasi" href="" role="tab"
+                                        aria-controls="pills-zonasi" aria-selected="false"><i
+                                            class="ri-map-2-fill"></i></a>
+                                    <br>
+                                    <label class="size_menu size_menu_mobile">Zonasi</label>
+                                </li> --}}
+
+                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                        id="hlm_persil" href="" role="tab"
+                                        aria-controls="pills-persil" aria-selected="false"><i
+                                            class="ri-home-4-fill"></i></a>
+                                    <br>
+                                    <label class="size_menu size_menu_mobile">Persil</label>
+                                </li> --}}
+
+                                <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
+                                        href="" role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                            class="fa fa-crosshairs"></i></a>
+                                    <br>
+                                    <label class="size_menu size_menu_mobile">Akses</label>
+                                </li>
+
+                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                        id="hlm_kbli" href="" role="tab" aria-controls="pills-kblikeg"
+                                        aria-selected="false"><i class="ri-user-search-fill"></i></a>
+                                    <br>
+                                    <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
+                                </li> --}}
+
+                                {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
+                                    <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
+                                    href="#" target="_blank"><i class="ri-shape-line"></i></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Profil</label>
-                            </li>
+                                <label class="size_menu size_menu_mobile">File SHP</label>
+                                </li> --}}
 
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
-                                    aria-selected="false"><i class="ri-funds-box-fill"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile">Ekonomi</label>
-                            </li>
+                                <!-- Pending menu pin-->
 
-                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_zonasi" href="" role="tab"
-                                    aria-controls="pills-zonasi" aria-selected="false"><i
-                                        class="ri-map-2-fill"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile">Zonasi</label>
-                            </li> --}}
+                            </ul>
 
-                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_persil" href="" role="tab"
-                                    aria-controls="pills-persil" aria-selected="false"><i
-                                        class="ri-home-4-fill"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile">Persil</label>
-                            </li> --}}
-
-                            <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi"
-                                    href="" role="tab" aria-controls="pills-poi" aria-selected="false"><i
-                                        class="fa fa-crosshairs"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile">Akses</label>
-                            </li>
-
-                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="hlm_kbli" href="" role="tab" aria-controls="pills-kblikeg"
-                                    aria-selected="false"><i class="ri-user-search-fill"></i></a>
-                                <br>
-                                <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
-                            </li> --}}
-
-                            {{-- <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
-                                href="#" target="_blank"><i class="ri-shape-line"></i></a>
-                            <br>
-                            <label class="size_menu size_menu_mobile">File SHP</label>
-                            </li> --}}
-
-                            <!-- Pending menu pin-->
-
-                        </ul>
-
+                        </div>
                     </div>
+
+
+
+
                 </div>
-
-
-
-
-
                 </div>
                 <!-- End Mengatur Menu Mobile -->
 
@@ -1657,21 +1782,21 @@
 
 
 
-        <div class="form-check zoning_fill">
+        <div class="form-check zoning_fill d-none">
             <input type="checkbox" class="form-check-input" checked id="zoning_fill">
             {{-- <label class="form-check-label  text_all" for="zoning_fill">Peta
                 Zonasi</label> --}}
 
         </div>
 
-        {{-- <div class="col-sm-2">
+        <div class="col-sm-2">
             <h6>Peta</h6>
         </div>
         <div style="margin-top: -10%;" class="col-sm-5">
             <button type="button" class="btn btn-xs btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
             <div class="handle"></div>
             </button>
-        </div> --}}
+        </div>
 
 
 
@@ -1810,15 +1935,21 @@
             </button>
             </div>
 
-            <div>
-                <button class="btn btn-sm mt-3">
-                <div class="container">
-                    <div class="row">
-                        <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
-                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                    </div>
-                </div>
-            </button>
+            <div id="btn_tutupmenu">
+
+                <button class="btn btn-sm mt-3" data-toggle="collapse" href="#collapseExample"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="container">
+                            <div class="row">
+                                {{-- <i  id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
+                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i> --}}
+
+                                    <i  class="ri-file-list-line bg-white text-secondary"
+                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                            </div>
+                        </div>
+                </button>
+
             </div>
 
 
@@ -1981,65 +2112,30 @@
     </div>
 
 
-    <div id="form_ajib">
+    {{-- <div class="hideshow2">
 
-        <main role="main" class="container-fluid py-2">
+        <div class="d-flex justify-content-center">
 
-            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-
-                <div class="form-outline mb-xs-2 mb-1 md-4">
-                    {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
-                </div>
-
-                <div class="form-outline mb-xs-2 mb-1 md-4">
-                    <label class="form-label text-muted" for="judul">Judul</label>
-                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
-                </div>
-
-                <div class="form-outline mb-xs-2 mb-2 md-4">
-                    <label class="form-label text-muted">Kategori</label>
-
-                    <select required name="kategori" class="form-control">
-                        <option selected="selected">- Pilih -</option>
-                        <option value="UMK">UMK</option>
-                        <option value="Sedang dibangun">Sedang dibangun</option>
-                        <option value="Pedestrian">Pedestrian</option>
-                        <option value="Cagar Budaya">Cagar Budaya</option>
-                        <option value="RTH">RTH</option>
-                        <option value="Dijual">Dijual</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
+                <svg style="margin-top:-7px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
+                    height="50" viewBox="0 0 172 172" style=" fill:#000000;">
+                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                        style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#cccccc">
+                            <path
+                                d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                            </path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+    </div> --}}
 
 
-                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
-                    <div class="input-group custom-file-button">
-                        <label class="input-group-text" for="image">Upload Gambar</label>
-                        <input type="file" class="form-control" id="image" name="image">
-                    </div>
-                </div>
 
 
-                <div class="form-outline mb-xs-2 mb-2 md-4">
-                    <label for="catatan">Catatan</label>
-
-                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
-
-                </div>
-
-
-                <button type="submit" name="submit"
-                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
-                    <strong>Simpan</strong>
-                </button>
-
-            </form>
-
-        </main>
-
-</div>
 
 
 
@@ -2146,6 +2242,11 @@
 
                 $("#hlm_form_ajib").click(function() {
                     $('#form_ajib').toggle();
+                });
+
+
+                $("#btn_tutupmenu").click(function() {
+                    $('.tutup_menus').toggle();
                 });
 
 
