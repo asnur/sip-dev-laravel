@@ -823,11 +823,13 @@
 
                                             <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout" style="min-width: 73px; position: absolute; margin-left:-30px;">
                                                 <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();" style="font-size: 12px"><i class="fa fa-sign-out"></i> Logout</a>
+                                                document.getElementById('logout-form').submit();" style="font-size: 12px"><i class="fa fa-sign-out"></i>
+                                                    Logout</a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                                     @csrf
                                                 </form>
                                             </div>
+
 
 
 
