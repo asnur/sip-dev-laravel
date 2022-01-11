@@ -1158,7 +1158,7 @@
                                     <label class="text_all_mobile">Kegiatan</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p class="inf-cdtpz">
+                                    <p>
                                         <select class="w-100" id="selectPSL"></select>
                                     </p>
                                 </div>
@@ -1168,11 +1168,15 @@
                                     <label class="text_all_mobile">Kegiatan Khusus</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
-                                    <p class="inf-cdtpz">
+                                    <p>
                                         <select class="w-100" id="selectKhusus"></select>
                                     </p>
                                 </div>
                             </div>
+                            <div class="isi-ketentuan-khusus mt-4">
+
+                            </div>
+
 
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
@@ -1783,6 +1787,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     {{-- @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else --}}
