@@ -99,7 +99,7 @@ $(
 
 $(".container.container_menu.for_mobile").hide();
 $(".menuuu").hide();
-
+$("#btnDrag").css("visibility", "hidden");
 // new1
 $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").show();

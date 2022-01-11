@@ -23,6 +23,24 @@ const dragMaps = (condition) => {
     }
 };
 
+$("#izin_peta").change(() => {
+    if ($("#izin_peta").prop("checked") == true) {
+        console.log("checked");
+        dragMaps(1);
+    } else {
+        dragMaps(0);
+    }
+});
+
+$("#collapseSurvey").on("shown.bs.collapse", () => {
+    $("#btnDrag").css("visibility", "visible");
+    console.log("show");
+});
+
+$("#collapseSurvey").on("hidden.bs.collapse", () => {
+    $("#btnDrag").css("visibility", "hidden");
+});
+
 map.on("style.load", function () {
     map.addSource("survey", {
         type: "geojson",
