@@ -764,7 +764,7 @@
     <div id='map' style='width: 100%; height: 100%; position: fixed;'></div>
 
 
-    <div class="hide_zoning_fill">
+    {{-- <div class="hide_zoning_fill">
         <div style="position: fixed; right:6%; top:30%; color:#fff;">
             <div class="d-flex align-content-stretch flex-wrap justify-content-center">
                 <div class="form-check zoning_fill text-center">
@@ -783,6 +783,35 @@
             </div>
 
         </div>
+    </div> --}}
+
+    <div class="hide_zoning_fill">
+
+        <div style="position: fixed; right:6%; top:30%; color:#fff;">
+
+            <div class="d-flex align-content-stretch flex-wrap justify-content-center">
+
+                <div class="form-check zoning_fill text-center">
+                    <h6>Zonasi</h6>
+                    <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" checked id="zoning_fill">
+                    <label for="zoning_fill"></label>
+                </div>
+
+            </div>
+            @role('surveyer')
+                <div class="d-flex align-content-stretch flex-wrap justify-content-center" id="btnDrag">
+
+                    <div class="form-check text-center">
+                        <h6>On/Off</h6>
+                        <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" id="izin_peta">
+                        <label for="izin_peta"></label>
+                    </div>
+
+                </div>
+            @endrole
+
+        </div>
+
     </div>
 
 
@@ -798,7 +827,7 @@
 
         <div class="hide_hlm_kbli">
             <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
-
+{{--
                 @role('surveyer')
 
                 <div id="btn_drag">
@@ -811,7 +840,7 @@
                     </button>
                 </div>
 
-                @endrole
+                @endrole --}}
 
                 <div>
                     <button class="btn btn-sm mt-1">
