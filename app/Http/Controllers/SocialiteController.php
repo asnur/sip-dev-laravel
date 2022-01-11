@@ -38,6 +38,9 @@ class SocialiteController extends Controller
         $foto = file_get_contents($users->getAvatar(), false, stream_context_create($arrContextOptions));
         File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
 
+        // dd($authUser);
+        // die();
+
         return redirect()->to('/');
     }
 
