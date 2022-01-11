@@ -1,0 +1,9 @@
+#accordionSidebar {
+    background: rgb(253, 213, 62);
+    background: linear-gradient(
+        352deg,
+        rgba(253, 213, 62, 1) 0%,
+        rgba(253, 99, 10, 1) 23%,
+        rgba(52, 152, 219, 1) 59%
+    );
+}

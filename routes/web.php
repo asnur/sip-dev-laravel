@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
@@ -74,6 +75,7 @@ Route::post('/saveUser', function (Request $request) {
             'provider_id' => $request->input('provider_id')
         ]);
         $dataUser = $data;
+        $data->assignRole('user');
         // return $dataUser;
     }
     Auth::login($dataUser, true);
@@ -97,3 +99,8 @@ Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])
 Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Admin Page
+Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('home-admin');
+});
