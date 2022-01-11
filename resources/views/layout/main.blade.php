@@ -1774,6 +1774,19 @@
     {{-- @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else --}}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-213546852-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-213546852-1');
+    </script>
+
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>

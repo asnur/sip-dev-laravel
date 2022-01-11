@@ -2,6 +2,7 @@
 /public/hot
 /public/pdf_file/*
 /public/favorit/*
+/public/img/*
 # !/public/profile
 # /public/profile/*
 /vendor
