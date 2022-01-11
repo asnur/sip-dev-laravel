@@ -434,7 +434,7 @@
 
                 <div class="form-outline mb-xs-2 mb-1 md-4">
                     {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                    <input required type="hidden" id="kordinatPin" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                    <input required type="hidden" id="kordinatPinSurvey" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-1 md-4">

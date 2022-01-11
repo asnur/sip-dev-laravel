@@ -63,6 +63,8 @@ class SurveyController extends Controller
     {
         // dd($request->all());
 
+        $id_user = auth()->user()->id;
+
         $this->validate($request, [
             'koordinat' => 'required',
             'judul' => 'required',
@@ -83,7 +85,8 @@ class SurveyController extends Controller
             'judul' => $request->judul,
             'kategori' => $request->kategori,
             'foto' => $fileName,
-            'catatan' => $request->catatan
+            'catatan' => $request->catatan,
+            'id_user' => $id_user
         ]);
 
         return redirect('/');
