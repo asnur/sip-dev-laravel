@@ -774,13 +774,14 @@
                 </div>
             </div>
 
-            <div class="d-flex align-content-stretch flex-wrap justify-content-center">
+            <div id="btnDrag" class="d-flex align-content-stretch flex-wrap justify-content-center">
                 <div class="form-check text-center">
                     <h6>On/Off</h6>
                     <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" id="izin_peta">
                     <label for="izin_peta"></label>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -1035,15 +1036,15 @@
         }
 
 
-        document.getElementById("hlm_kbli").onclick = function(e) {
-            e.preventDefault();
-            document.getElementById("kbli").style.display = "block";
-            document.getElementById('btn_backkbli').onclick = function() {
-                document.getElementById("kbli").style.display = "none";
-            };
+        // document.getElementById("hlm_kbli").onclick = function(e) {
+        //     e.preventDefault();
+        //     document.getElementById("kbli").style.display = "block";
+        //     document.getElementById('btn_backkbli').onclick = function() {
+        //         document.getElementById("kbli").style.display = "none";
+        //     };
 
-            return false;
-        }
+        //     return false;
+        // }
 
     </script>
 

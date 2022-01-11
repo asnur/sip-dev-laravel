@@ -19,6 +19,7 @@ class CreateSurveyTable extends Migration
             $table->string('judul');
             $table->string('kategori');
             $table->string('foto');
+            $table->string('id_user');
             $table->integer('verifikasi')->default(0);
             $table->string('catatan');
         });
