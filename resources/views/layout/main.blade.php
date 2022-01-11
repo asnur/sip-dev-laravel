@@ -37,12 +37,7 @@
 
 
     @if (isMobileDevice())
-    <script>
-        var APP_URL = {
-            !!json_encode(url('/')) !!
-        }
 
-    </script>
 
     <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
     @else
@@ -2192,11 +2187,12 @@
             return false;
         }
 
-        var APP_URL = {
-            !!json_encode(url('/')) !!
-        }
-
     </script>
+
+    <script>
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
+
 
 
     <script src="{{ asset('assets/js/mobile.js') }}"></script>
