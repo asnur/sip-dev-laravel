@@ -2748,13 +2748,29 @@ $(document).on("click", ".wilayah-select", function () {
     budaya = [];
     budaya = getDataBudaya(kel);
     // console.log(coor.split(","));
-    var coord = coor.split(",");
     console.log(coor);
     saveKelurahan(kel);
     // setKelurahanSession(kel);
     geocoder.query(coor);
     addSourceLayer(kel);
+    cekProyek(coor);
+    // showLayer("investasi_dot");
 });
+
+function cekProyek(coor) {
+    var coord = coor.split(",");
+    $.ajax({
+        url: `${url}/project/${coord[1]}/${coord[0]}`,
+        method: "GET",
+        success: function (e) {
+            const dt = JSON.parse(e);
+            console.log(dt.features);
+            if (dt.features !== null) {
+                showLayer("investasi_dot");
+            }
+        },
+    });
+}
 
 function saveKelurahan(kel) {
     localStorage.setItem("kelurahan", kel);
