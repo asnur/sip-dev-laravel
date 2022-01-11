@@ -1052,18 +1052,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="d-flex space_text row_mid_text">
-                                    <div class="col-lg-5 text_all">
-                                        <label class="text_all_mobile">Kegiatan</label>
-                                    </div>
-                                    <div class="col-lg-7 text_all">
-                                        <p class="inf-cdtpz">
-                                            <select class="w-100" id="selectPSL"></select>
-                                        </p>
-                                    </div>
-                                </div> --}}
-
-
                                 <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Intensitas
                                 </p>
 
@@ -1162,6 +1150,30 @@
                             <div class="text_all inf-khusus">
                                 -
                             </div> --}}
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
+                            </p>
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-cdtpz">
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan Khusus</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p class="inf-cdtpz">
+                                        <select class="w-100" id="selectKhusus"></select>
+                                    </p>
+                                </div>
+                            </div>
+
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
                                 Tata Bangunan<br><span class="w-100 text-center text_all"

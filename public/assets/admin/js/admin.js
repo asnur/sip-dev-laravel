@@ -58,7 +58,7 @@ const filterAnalytics = (periode) => {
                     labels: e[0],
                     datasets: [
                         {
-                            label: "Earnings",
+                            label: "Jumlah",
                             lineTension: 0.3,
                             backgroundColor: "rgba(78, 115, 223, 0.05)",
                             borderColor: "rgba(78, 115, 223, 1)",
