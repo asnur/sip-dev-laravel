@@ -26,6 +26,9 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('/', function (Request $request) {
+    if (isMobileDevice()) {
+        return redirect()->to('/mobile');
+    }
     return view('layout.main');
 });
 
