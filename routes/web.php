@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
@@ -104,3 +105,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home-admin');
 });
+
+Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
