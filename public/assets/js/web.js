@@ -1332,6 +1332,7 @@ function getKetentuanPSL(subzona, psl) {
             let html = "";
             let htmlKetentuan = "";
             if (value_data !== null) {
+                html += `<option>Pilih...</option>`;
                 for (let index = 0; index < value_data.length; index++) {
                     html += `<option value="${value_data[index].Kegiatan}">${value_data[index].Kegiatan}</option>`;
                 }
@@ -1457,6 +1458,7 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
             let value_data = data.features[0].properties;
             let html = "";
             // console.log(value_data[0].Kegiatan);
+            html += `<option>Pilih...</option>`;
             if (value_data !== null) {
                 for (let index = 0; index < value_data.length; index++) {
                     html += `<option value="${value_data[index]["Ketentuan Khusus"]}">${value_data[index]["Ketentuan Khusus"]}</option>`;
