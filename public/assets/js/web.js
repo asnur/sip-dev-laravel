@@ -1433,12 +1433,12 @@ function getKetentuanPSL(subzona, psl) {
             // $(".inf-khusus").html("");
             // $(".inf-khusus").html(htmlKetentuan);
 
-            $("#selectKhusus").html("");
             $("#selectPSL").html("");
-            $(".isi-ketentuan-khusus").html("");
             $("#selectPSL").html(html);
             $("#selectPSL").on("change", function () {
                 const kegiatan = $(this).val();
+                $("#selectKhusus").html("");
+                $(".isi-ketentuan-khusus").html("");
 
                 getKegiatanKhusus(subzona, psl, kegiatan);
 
@@ -1485,7 +1485,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let data = JSON.parse(e);
             let value_data = data.features[0].properties;
             let html = "";
-            console.log(value_data);
+            // console.log(value_data);
             html += `
             <div class="d-flex space_text row_mid_text">
             <div class="col-lg-5 text_all">
