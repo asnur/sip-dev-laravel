@@ -57,6 +57,7 @@ map.on("style.load", function () {
             "circle-radius": 4,
             "circle-opacity": 0.8,
         },
+        fillter: ["==", ["get", "kategori"], "Sedang dibangun"],
         layout: {
             visibility: "visible",
         },
