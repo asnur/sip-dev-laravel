@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Storage;
 
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -36,7 +37,8 @@ class SocialiteController extends Controller
             ),
         );
         $foto = file_get_contents($users->getAvatar(), false, stream_context_create($arrContextOptions));
-        File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
+        // File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
+        Storage::disk('public')->put('profile/' . $authUser->id . '.jpg', $foto);
 
         // dd($authUser);
         // die();

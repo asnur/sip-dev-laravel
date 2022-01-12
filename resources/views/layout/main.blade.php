@@ -607,7 +607,10 @@
                                     <div class="new_login">
                                         <div class="dropdown">
 
-                                            <img src="/profile/{{ Auth::user()->id }}.jpg" style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{-- <img src="/profile/{{ Auth::user()->id }}.jpg" style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> --}}
+
+
+                                            <img src="{{ url('storage/profile/'.Auth::user()->id) }}.jpg" style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 
                                             <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout" style="min-width: 73px; position: absolute; margin-left:-30px;">
