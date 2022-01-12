@@ -90,7 +90,7 @@ geolocate.on("geolocate", locateUser);
 function locateUser(e) {
     $("#kordinatPinSurvey").val(`${e.coords.longitude},${e.coords.latitude}`);
     console.log("A geolocate event has occurred.");
-    console.log("lng:" + e.coords.longitude + ", lat:" + e.coords.latitude);
+    console.log("lng:" + e.coords.z + ", lat:" + e.coords.latitude);
 }
 
 $(

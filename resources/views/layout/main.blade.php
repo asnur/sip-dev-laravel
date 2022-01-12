@@ -561,8 +561,8 @@
 
                                     <span class="menu">
 
-                                        <div class="gambar_logos" style="margin-top:85%;">
-                                            <img src="./assets/gambar/logo_jakpintas.png" width="70px">
+                                        <div class="gambar_logos" style="margin-top:75%;">
+                                            <img src="./assets/gambar/mobile/iconptsp.png" width="70px">
                                         </div>
 
                                         <button style="display: none;" class="btn btn-lg tombol_search border-0 borderdropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

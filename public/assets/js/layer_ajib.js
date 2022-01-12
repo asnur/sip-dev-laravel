@@ -14,7 +14,7 @@ const dragMaps = (condition) => {
         function onDragEnd() {
             const lngLat = markerAjib.getLngLat();
             console.log(lngLat);
-            $("#kordinatPinSurvey").val(`${lngLat.lng},${lngLat.lat}`);
+            $("#kordinatPinSurvey").val(`${lngLat.lat},${lngLat.lng}`);
         }
 
         markerAjib.on("dragend", onDragEnd);
@@ -57,7 +57,7 @@ map.on("style.load", function () {
             "circle-radius": 4,
             "circle-opacity": 0.8,
         },
-        fillter: ["==", ["get", "kategori"], "Sedang dibangun"],
+        // filter: ["=  =", ["get", "kategori"], "Lainnya"],
         layout: {
             visibility: "visible",
         },
