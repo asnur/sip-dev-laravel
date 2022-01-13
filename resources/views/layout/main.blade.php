@@ -920,11 +920,7 @@
             </div>
         </div>
 
-        <div class="pos_menu fixed-top">
-            <div class="menuuu">
-                <ul>
-
-                    <div class="d-none">
+        <div class="d-none">
                         <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
                         <input type="radio" id="radio_dibangun" name="radio_menu" value="radio_dibangun">
                         <input type="radio" id="radio_pedestrian" name="radio_menu" value="radio_pedestrian">
@@ -933,7 +929,9 @@
                         <input type="radio" id="radio_dijual" name="radio_menu" value="radio_dijual">
                         <input type="radio" id="radio_lainnya" name="radio_menu" value="radio_lainnya">
                     </div>
-
+        <div class="pos_menu fixed-top">
+            <div class="menuuu">
+                <ul>
                     <li>
                         <button class="btn btn-sm ml-1" style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_ukm">
                             <div class="container">

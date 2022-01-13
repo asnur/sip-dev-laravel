@@ -41,85 +41,195 @@ $("#collapseSurvey").on("hidden.bs.collapse", () => {
     $("#btnDrag").css("visibility", "hidden");
 });
 
-$(document).ready(function () {
-    $("#btn_ukm").on("click", function () {
-        $("#radio_ukm").attr("checked", true).trigger("click");
-        $("#iumk_fill").trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_dibangun").on("click", function () {
-        $("#radio_dibangun").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_pedestrian").on("click", function () {
-        $("#radio_pedestrian").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_cagar").on("click", function () {
-        $("#radio_cagar").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_rth").on("click", function () {
-        $("#radio_rth").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_dijual").on("click", function () {
-        $("#radio_dijual").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_lainnya").on("click", function () {
-        $("#radio_lainnya").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-    });
+// ukm
+$("#radio_ukm").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("umk_fill");
+        hideLayer("sedangdibangun");
+        hideLayer("pendestrian");
+        hideLayer("cagarbudaya");
+        hideLayer("lainnya");
+        hideLayer("rth");
+        hideLayer("dijual");
+    } else {
+        hideLayer("umk_fill");
+    }
 });
+
+$("#btn_ukm").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_ukm").trigger("click");
+    $("#btn_dibangun").css("background", "white");
+    $("#btn_pedestrian").css("background", "white");
+    $("#btn_cagar").css("background", "white");
+    $("#btn_rth").css("background", "white");
+    $("#btn_dijual").css("background", "white");
+    $("#btn_lainnya").css("background", "white");
+});
+
+// sedang dibangun
+$("#radio_dibangun").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("sedangdibangun");
+        hideLayer("umk_fill");
+        hideLayer("pendestrian");
+        hideLayer("cagarbudaya");
+        hideLayer("lainnya");
+        hideLayer("rth");
+        hideLayer("dijual");
+    } else {
+        hideLayer("sedangdibangun");
+    }
+});
+
+$("#btn_dibangun").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_dibangun").trigger("click");
+    $("#btn_ukm").css("background", "white");
+    $("#btn_pedestrian").css("background", "white");
+    $("#btn_cagar").css("background", "white");
+    $("#btn_rth").css("background", "white");
+    $("#btn_dijual").css("background", "white");
+    $("#btn_lainnya").css("background", "white");
+});
+
+// sedang pendestrian
+$("#radio_pedestrian").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("pendestrian");
+        hideLayer("umk_fill");
+        hideLayer("sedangdibangun");
+        hideLayer("cagarbudaya");
+        hideLayer("lainnya");
+        hideLayer("rth");
+        hideLayer("dijual");
+    } else {
+        hideLayer("pendestrian");
+    }
+});
+
+$("#btn_pedestrian").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_pedestrian").trigger("click");
+    $("#btn_ukm").css("background", "white");
+    $("#btn_dibangun").css("background", "white");
+    $("#btn_cagar").css("background", "white");
+    $("#btn_rth").css("background", "white");
+    $("#btn_dijual").css("background", "white");
+    $("#btn_lainnya").css("background", "white");
+});
+
+// sedang cagarbudaya
+$("#radio_cagar").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("cagarbudaya");
+        hideLayer("umk_fill");
+        hideLayer("sedangdibangun");
+        hideLayer("pendestrian");
+        hideLayer("lainnya");
+        hideLayer("rth");
+        hideLayer("dijual");
+    } else {
+        hideLayer("cagarbudaya");
+    }
+});
+
+$("#btn_cagar").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_cagar").trigger("click");
+    $("#btn_ukm").css("background", "white");
+    $("#btn_pedestrian").css("background", "white");
+    $("#btn_rth").css("background", "white");
+    $("#btn_dijual").css("background", "white");
+    $("#btn_lainnya").css("background", "white");
+    $("#btn_dibangun").css("background", "white");
+});
+
+// sedang lainnya
+$("#radio_lainnya").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("lainnya");
+        hideLayer("umk_fill");
+        hideLayer("sedangdibangun");
+        hideLayer("pendestrian");
+        hideLayer("cagarbudaya");
+        hideLayer("rth");
+        hideLayer("dijual");
+    } else {
+        hideLayer("lainnya");
+    }
+});
+
+$("#btn_lainnya").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_lainnya").trigger("click");
+    $("#btn_ukm").css("background", "white");
+    $("#btn_dibangun").css("background", "white");
+    $("#btn_pedestrian").css("background", "white");
+    $("#btn_cagar").css("background", "white");
+    $("#btn_rth").css("background", "white");
+    $("#btn_dijual").css("background", "white");
+});
+
+// sedang rth
+$("#radio_rth").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("rth");
+        hideLayer("umk_fill");
+        hideLayer("sedangdibangun");
+        hideLayer("pendestrian");
+        hideLayer("cagarbudaya");
+        hideLayer("lainnya");
+        hideLayer("dijual");
+    } else {
+        hideLayer("rth");
+    }
+});
+
+$("#btn_rth").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_rth").trigger("click");
+    $("#btn_ukm").css("background", "white");
+    $("#btn_dibangun").css("background", "white");
+    $("#btn_pedestrian").css("background", "white");
+    $("#btn_cagar").css("background", "white");
+    $("#btn_lainnya").css("background", "white");
+    $("#btn_dijual").css("background", "white");
+});
+
+// sedang dijual
+$("#radio_dijual").change(function () {
+    if ($(this).prop("checked") == true) {
+        showLayer("dijual");
+        hideLayer("umk_fill");
+        hideLayer("sedangdibangun");
+        hideLayer("pendestrian");
+        hideLayer("cagarbudaya");
+        hideLayer("lainnya");
+        hideLayer("rth");
+    } else {
+        hideLayer("dijual");
+    }
+});
+
+$("#btn_dijual").click(function () {
+    $(this).css("background", "orange");
+    $("#radio_dijual").trigger("click");
+    $("#btn_ukm").css("background", "white");
+    $("#btn_dibangun").css("background", "white");
+    $("#btn_pedestrian").css("background", "white");
+    $("#btn_cagar").css("background", "white");
+    $("#btn_lainnya").css("background", "white");
+    $("#btn_rth").css("background", "white");
+});
+
+function showLayer(layer) {
+    map.setLayoutProperty(layer, "visibility", "visible");
+}
+
+function hideLayer(layer) {
+    map.setLayoutProperty(layer, "visibility", "none");
+}
 
 map.on("style.load", function () {
     map.addSource("survey", {
@@ -144,7 +254,7 @@ map.on("style.load", function () {
     });
 
     map.addLayer({
-        id: "iumk_fill",
+        id: "umk_fill",
         type: "circle",
         source: "survey",
         paint: {
@@ -292,11 +402,10 @@ map.on("mouseleave", "survey_ajib", function () {
 });
 
 // UMK
-map.on("mouseenter", "iumk_fill", function (e) {
+map.on("mouseenter", "umk_fill", function (e) {
     let data = e.features[0].properties;
     const coordinates = e.features[0].geometry.coordinates.slice();
     // console.log(data);
-    showLayer("iumk_fill");
     map.getCanvas().style.cursor = "pointer";
     const content = `<div class="p-0">
     <div class="imgcard-container">
@@ -316,7 +425,7 @@ map.on("mouseenter", "iumk_fill", function (e) {
     popupAjib.setLngLat(coordinates).setHTML(content).addTo(map);
 });
 
-map.on("mouseleave", "iumk_fill", function () {
+map.on("mouseleave", "umk_fill", function () {
     map.getCanvas().style.cursor = "";
     popupAjib.remove();
 });
