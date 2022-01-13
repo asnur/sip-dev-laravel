@@ -1,9 +1,43 @@
+const sum = (accumulator, a) => {
+    return accumulator + a;
+};
+
+const logout = () => {
+    $("#form-logout").submit();
+};
+
+const editUser = (id, name, email, role) => {
+    $("#idUser").val("");
+    $("#namaUser").val("");
+    $("#emailUser").val("");
+    $("#roleUser").val("");
+
+    $("#idUser").val(id);
+    $("#namaUser").val(name);
+    $("#emailUser").val(email);
+    $("#roleUser").val(role);
+};
+
+const editPegawai = (id, name, email, penempatan) => {
+    $("#idUser").val("");
+    $("#namaUser").val("");
+    $("#emailUser").val("");
+    $("#penempatanUser").val("");
+
+    $("#idUser").val(id);
+    $("#namaUser").val(name);
+    $("#emailUser").val(email);
+    $("#penempatanUser").val(penempatan);
+};
+
+$("#table-surveyer").DataTable();
+
 $.ajax({
     url: `/analytics/1`,
     method: "GET",
     success: (e) => {
         $(".inf-pengunjung").text(0);
-        $(".inf-pengunjung").text(e[1]);
+        $(".inf-pengunjung").text(e[1].reduce(sum, 0));
     },
 });
 

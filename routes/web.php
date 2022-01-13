@@ -30,7 +30,7 @@ Route::get('/', function (Request $request) {
         return redirect()->to('/mobile');
     }
     return view('layout.main');
-});
+})->name('home');
 
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
@@ -102,11 +102,20 @@ Route::post('/deleteImage', [pinLocationController::class, 'deleteImage']);
 Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])->name('login-google');
 Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Admin Page
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home-admin');
+    Route::get('/role', [AdminController::class, 'role_management'])->name('role');
+    Route::get('/user', [AdminController::class, 'user_management'])->name('user');
+    Route::post('/addUser', [AdminController::class, 'add_user'])->name('add-user');
+    Route::post('/editUser', [AdminController::class, 'update_user'])->name('update-user');
+    Route::delete('/deleteUser', [AdminController::class, 'delete_user'])->name('delete-user');
+    Route::get('/pegawaiAjib', [AdminController::class, 'pegawai_ajib'])->name('pegawai');
+    Route::post('/pegawaiAjib', [AdminController::class, 'add_pegawai_ajib'])->name('add-pegawai');
+    Route::put('/pegawaiAjib', [AdminController::class, 'update_pegawai_ajib'])->name('update-pegawai');
+    Route::delete('/pegawaiAjib', [AdminController::class, 'delete_pegawai_ajib'])->name('delete-pegawai');
 });
 
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
