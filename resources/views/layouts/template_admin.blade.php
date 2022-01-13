@@ -83,7 +83,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('kinerja-pegawai') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Kinerja Ajib</span></a>
             </li>

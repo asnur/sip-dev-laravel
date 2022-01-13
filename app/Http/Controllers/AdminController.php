@@ -116,4 +116,9 @@ class AdminController extends Controller
 
         return redirect()->route('pegawai');
     }
+
+    public function kinerja_pegawai_ajib()
+    {
+        return view('admin.kinerja');
+    }
 }

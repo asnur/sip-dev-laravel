@@ -116,6 +116,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/pegawaiAjib', [AdminController::class, 'add_pegawai_ajib'])->name('add-pegawai');
     Route::put('/pegawaiAjib', [AdminController::class, 'update_pegawai_ajib'])->name('update-pegawai');
     Route::delete('/pegawaiAjib', [AdminController::class, 'delete_pegawai_ajib'])->name('delete-pegawai');
+    Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
 });
 
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
