@@ -98,7 +98,7 @@ $(
 ).css("visibility", "hidden");
 
 $(".container.container_menu.for_mobile").hide();
-$(".menuuu").hide();
+// $(".menuuu").hide();
 
 // new1
 $(".hide_hlm_kbli").hide();
@@ -494,7 +494,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".container.container_menu.for_mobile").show();
     $(".hide_hlm_kbli").show();
     // $(".hide_zoning_fill").show();
-    $(".menuuu").show();
+    // $(".menuuu").show();
 
     $(".gambar_logos").hide();
 

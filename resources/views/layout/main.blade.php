@@ -609,7 +609,7 @@
 
                                     <span class="menu">
 
-                                        <div class="gambar_logos" style="margin-top:75%;">
+                                        <div class="gambar_logos" style="margin-top:155%;">
                                             <img src="./assets/gambar/mobile/iconptsp.png" width="70px">
                                         </div>
 

@@ -446,8 +446,9 @@ body {
     }
 
     .pos_menu {
-        margin-left: -10px;
+        margin-left: 1px;
         top: 9%;
+        width: 45vh;
     }
 
     .menuuu ul {
@@ -471,7 +472,8 @@ body {
         list-style: none;
         display: inline-block;
         white-space: nowrap;
-        margin: 0;
+        /* margin: 0; */
+        margin-left: -2px;
         padding: 0;
         /* overflow: hidden; */
     }
