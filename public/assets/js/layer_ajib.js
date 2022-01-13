@@ -438,7 +438,7 @@ map.on("mouseenter", "sedangdibangun", function (e) {
     map.getCanvas().style.cursor = "pointer";
     const content = `<div class="p-0">
     <div class="imgcard-container">
-      <img src="/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
+      <img src="mobile/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
     </div>
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${data["judul"]}</h6>
