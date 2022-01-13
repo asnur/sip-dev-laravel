@@ -1,5 +1,5 @@
-// var url = `${APP_URL}:3000`;
-var url = `https://jakpintas.dpmptsp-dki.com:3000`;
+var url = `${APP_URL}:3000`;
+// var url = `https://jakpintas.dpmptsp-dki.com:3000`;
 
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -104,85 +104,6 @@ $(".menuuu").hide();
 $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").show();
 
-$(document).ready(function () {
-    $("#btn_ukm").on("click", function () {
-        $("#radio_ukm").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_dibangun").on("click", function () {
-        $("#radio_dibangun").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_pedestrian").on("click", function () {
-        $("#radio_pedestrian").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_cagar").on("click", function () {
-        $("#radio_cagar").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_rth").on("click", function () {
-        $("#radio_rth").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_dijual").on("click", function () {
-        $("#radio_dijual").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_lainnya").css("background", "white");
-    });
-
-    $("#btn_lainnya").on("click", function () {
-        $("#radio_lainnya").attr("checked", true).trigger("click");
-        $(this).css("background", "orange");
-        $("#btn_ukm").css("background", "white");
-        $("#btn_dibangun").css("background", "white");
-        $("#btn_pedestrian").css("background", "white");
-        $("#btn_cagar").css("background", "white");
-        $("#btn_rth").css("background", "white");
-        $("#btn_dijual").css("background", "white");
-    });
-});
-
 map.on("style.load", function () {
     map.on(clickEvent, function (e) {
         // console.log(e);
@@ -190,7 +111,7 @@ map.on("style.load", function () {
         var lats = coornya.lat.toString();
         var lngs = coornya.lng.toString();
         lats = lats.slice(0, -9);
-        lngs = lngs.slice(0, -8);
+        lngs = lngs.slice(0, -9);
 
         var lats2 = coornya.lat.toString();
         var lngs2 = coornya.lng.toString();
@@ -257,6 +178,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
     $(".dtKBLI").html("");
+    $("#radiusSlide").show();
     setAttrClick = e;
 
     // console.log(dt);
@@ -933,7 +855,7 @@ function getRadius(e) {
                     <div class="row row_mid_judul2">
                     <div class="col-md-12 flex-column">
                         <button type="button"
-                            class="btn btn-md btn-block text-left text_all text_poi1 tombol_search"
+                            class="btn btn-md btn-block text-left text_all tombol_search"
                             data-toggle="collapse" data-target="#${dt[0].name}" aria-expanded="true"
                             aria-controls="collapsePoiOne">
                             <b class="text_all_mobile">${dt[0].name}</b>
@@ -955,11 +877,11 @@ function getRadius(e) {
                     const dta = dt[az];
                     htmlContent += `
                     <li style="list-style:none" class="listgroup-cust align-items-center text_all">
-                        <div class="d-flex">
-                            <div class="col-md-8">
+                        <div class="d-flex bd-highlight">
+                            <div class="w-75 bd-highlight break_all akses_data">
                             ${dta.fasilitas}
                             </div>
-                            <div class="col-md-4 text-right">
+                            <div class="bd-highlight text-right">
                             <span>${Math.round(dta.jarak) / 1000} km</span>
                             </div>
                         </div>

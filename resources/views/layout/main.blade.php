@@ -64,8 +64,10 @@
 
     <div id="profil">
 
-        <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
-            <div class="d-flex">
+        <div class="card">
+            <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+
+                {{-- <div class="d-flex">
 
                 <div class="col-md-1">
                     <span class="material-icons size_icons margin_new_menu_icon" id="btn_backprodil">
@@ -75,8 +77,23 @@
 
                 <div class="col-md-9 margin_new_menu">Profil</div>
 
+            </div> --}}
+
+                <div class="d-flex bd-highlight">
+
+                    <div class="w-50 bd-highlight">
+                        <span class="material-icons size_icons margin_new_menu_icon" id="btn_backprodil">
+                            arrow_back_ios
+                        </span>
+                    </div>
+
+                    <div style="font-size: 20px; margin-left:-1.5rem;" class="w-50 bd-highlight align-self-center">Profil</div>
+
+                </div>
+
             </div>
         </div>
+
 
 
         <div style="margin-top: 5rem;" class="container">
@@ -168,7 +185,7 @@
 
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all_permenu">
-                    <label class="text_all_mobile_permenu">Perkiraan Harga</label>
+                    <label class="text_all_mobile_permenu">Perkiraan NJOP</label>
                 </div>
 
                 <div class="col-lg-7 text_all_permenu">
@@ -220,7 +237,7 @@
 
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all_permenu">
-                    <label class="text_all_mobile_permenu">Blok/Subblok</label>
+                    <label class="text_all_mobile_permenu">Blok/Sub Blok</label>
                 </div>
 
                 <div class="col-lg-7 text_all_permenu">
@@ -240,7 +257,7 @@
 
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all_permenu">
-                    <label class="text_all_mobile_permenu">CD_TPZ</label>
+                    <label class="text_all_mobile_permenu">Kode TPZ</label>
                 </div>
 
                 <div class="col-lg-7 text_all_permenu">
@@ -289,7 +306,7 @@
 
         <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
-            <div class="d-flex">
+            {{-- <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backeko">
                         <span class="material-icons margin_new_menu_icon size_icons">
@@ -299,11 +316,27 @@
                 </div>
 
                 <div class="col-md-9 margin_new_menu">Ekonomi</div>
+            </div> --}}
+
+
+            <div class="d-flex bd-highlight">
+
+                <div class="w-50 bd-highlight">
+                    <span class="material-icons size_icons margin_new_menu_icon" id="btn_backeko">
+                        arrow_back_ios
+                    </span>
+                </div>
+
+                <div style="font-size: 20px; margin-left:-1.5rem;" class="w-50 bd-highlight align-self-center">Ekonomi</div>
+
             </div>
+
+
+
         </div>
 
 
-        <div style="margin-top: 5.5rem;" class="container">
+        <div style="margin-top: 5rem;" class="container">
             <div class="d-flex space_judul row_mid_judul">
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
                     <label class="text_all_permenu_mobile_permenu">Pelaku IUMK</label>
@@ -316,7 +349,7 @@
 
             <div class="d-flex space_text row_mid_text">
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all_permenu">
-                    <label class="text_all_permenu_mobile_permenu">Total Omzet</label>
+                    <label class="text_all_permenu_mobile_permenu">Total Omset</label>
                 </div>
 
                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all_permenu">
@@ -395,7 +428,7 @@
 
         <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
-            <div class="d-flex">
+            {{-- <div class="d-flex">
                 <div class="col-md-1">
                     <a type="button" class="badge badge-primary margin_new_menu_icon" id="btn_backakses">
                         <span class="material-icons margin_new_menu_icon size_icons">
@@ -406,11 +439,26 @@
 
                 <div class="col-md-9 margin_new_menu">Akses</div>
 
+            </div> --}}
+
+
+            <div class="d-flex bd-highlight">
+
+                <div class="w-50 bd-highlight">
+                    <span class="material-icons size_icons margin_new_menu_icon" id="btn_backakses">
+                        arrow_back_ios
+                    </span>
+                </div>
+
+                <div style="font-size: 20px; margin-left:-1.5rem;" class="w-50 bd-highlight align-self-center">Akses</div>
+
             </div>
+
+
         </div>
 
 
-        <div style="margin-top: 5.2rem;" class="container">
+        <div style="margin-top: 5rem;" class="container">
 
             <div class="form-group w-100 mt-3 mb-0 ml-3" id="radiusSlide">
                 <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
@@ -432,21 +480,21 @@
             <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <div class="form-outline mb-xs-2 mb-1 md-4">
+                <div class="form-outline mb-xs-2 mb-3 md-4">
                     {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
                     <input required type="hidden" id="kordinatPinSurvey" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
                 </div>
 
-                <div class="form-outline mb-xs-2 mb-1 md-4">
-                    <label class="form-label text-muted" for="judul">Judul</label>
-                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Judul Tempat" />
+                <div class="form-outline mb-xs-2 mb-4 md-4">
+                    {{-- <label class="form-label text-muted" for="judul">Judul</label> --}}
+                    <input required type="text" name="judul" class="form-control" placeholder="Masukan Nama Tempat" />
                 </div>
 
-                <div class="form-outline mb-xs-2 mb-2 md-4">
-                    <label class="form-label text-muted">Kategori</label>
+                <div class="form-outline mb-xs-2 mb-4 md-4">
+                    {{-- <label class="form-label text-muted">Kategori</label> --}}
 
                     <select required name="kategori" class="form-control">
-                        <option selected="selected">- Pilih -</option>
+                        <option selected="selected">- Pilih Kategori -</option>
                         <option value="UMK">UMK</option>
                         <option value="Sedang dibangun">Sedang dibangun</option>
                         <option value="Pedestrian">Pedestrian</option>
@@ -458,7 +506,7 @@
                 </div>
 
 
-                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-2 md-4">
+                <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-4 md-4">
                     <div class="input-group custom-file-button">
                         <label class="input-group-text" for="image">Upload Gambar</label>
                         <input type="file" class="form-control" id="image" name="image">
@@ -466,8 +514,8 @@
                 </div>
 
 
-                <div class="form-outline mb-xs-2 mb-2 md-4">
-                    <label for="catatan">Catatan</label>
+                <div class="form-outline mb-xs-2 mb-4 md-4">
+                    {{-- <label for="catatan">Catatan</label> --}}
 
                     <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan" rows="3"></textarea>
 
@@ -607,7 +655,7 @@
                                     <div class="new_login">
                                         <div class="dropdown">
 
-                                            {{-- <img src="/profile/{{ Auth::user()->id }}.jpg" style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> --}}
+                                            {{-- <img src="/profile/{{ Auth::user()->id }}.jpg" style="border-radius: 50%; width:36px; height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> --}}
 
 
                                             <img src="{{ url('profile/'.Auth::user()->id) }}.jpg" style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -802,15 +850,15 @@
 
             </div>
             @role('surveyer')
-                <div class="d-flex align-content-stretch flex-wrap justify-content-center" id="btnDrag">
+            <div class="d-flex align-content-stretch flex-wrap justify-content-center" id="btnDrag">
 
-                    <div class="form-check text-center">
-                        <h6>On/Off</h6>
-                        <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" id="izin_peta">
-                        <label for="izin_peta"></label>
-                    </div>
-
+                <div class="form-check text-center">
+                    <h6>On/Off</h6>
+                    <input type="checkbox" class="cmn-toggle cmn-toggle-round mb-1" id="izin_peta">
+                    <label for="izin_peta"></label>
                 </div>
+
+            </div>
             @endrole
 
         </div>
@@ -830,7 +878,7 @@
 
         <div class="hide_hlm_kbli">
             <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
-{{--
+                {{--
                 @role('surveyer')
 
                 <div id="btn_drag">
