@@ -461,10 +461,10 @@ body {
         overflow-y: scroll;
     }
 
-    /* .menuuu ul::-webkit-scrollbar {
-        display: none; */
-    /* for Chrome, Safari, and Opera */
-    /* } */
+    .menuuu ul::-webkit-scrollbar {
+        display: none;
+        /* for Chrome, Safari, and Opera */
+    }
 
     .menuuu ul,
     .menuuu li {
