@@ -928,6 +928,9 @@
             <input type="radio" id="radio_lainnya" name="radio_menu" value="radio_lainnya">
         </div>
 
+
+        @role('surveyer')
+
         <div class="gambar_logos" style="margin-top:15%;">
             <img src="./assets/gambar/mobile/iconptsp.png" width="70px">
         </div>
@@ -1035,6 +1038,7 @@
                 </ul>
             </div>
 
+
             <div class="off_layer_ukm">
                 <button class="btn btn-sm ml-2" style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="btn_off_layer_ukm">
                     <div class="container">
@@ -1120,6 +1124,8 @@
                         </div>
                 </button>
             </div>
+
+            @endrole
 
 
 
