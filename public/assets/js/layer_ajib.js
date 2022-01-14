@@ -23,6 +23,33 @@ const dragMaps = (condition) => {
     }
 };
 
+//Tracking Cordinate AJib
+
+const sendCordinates = () => {
+    navigator.geolocation.getCurrentPosition((coor) => {
+        let lat = coor.coords.latitude;
+        let long = coor.coords.longitude;
+        $.ajax({
+            url: `${APP_URL}/tracking`,
+            method: "POST",
+            data: {
+                lat: lat.toString(),
+                lng: long.toString(),
+                id_user: id_surveyer,
+            },
+            success: (e) => {
+                console.log(e);
+            },
+        });
+        // console.log(lat, long);
+    });
+};
+
+//Interval Send Cordinates
+setInterval(() => {
+    sendCordinates();
+}, 1000 * 60 * 5);
+
 $("#izin_peta").change(() => {
     if ($("#izin_peta").prop("checked") == true) {
         console.log("checked");

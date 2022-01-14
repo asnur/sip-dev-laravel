@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,4 +42,5 @@ Route::get('/', function (Request $request) {
 
 Route::group(['middleware' => ['role:surveyer']], function () {
     Route::resource('/ajib', SurveyController::class);
+    Route::post('/tracking', [TrackingController::class, 'index']);
 });
