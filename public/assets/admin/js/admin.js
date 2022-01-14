@@ -30,8 +30,6 @@ const editPegawai = (id, name, email, penempatan) => {
     $("#penempatanUser").val(penempatan);
 };
 
-$("#table-surveyer").DataTable();
-
 $.ajax({
     url: `/analytics/1`,
     method: "GET",

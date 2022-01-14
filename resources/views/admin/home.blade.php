@@ -59,7 +59,8 @@
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $pegawai_ajib }}</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ count($pegawai_ajib) }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -151,16 +152,22 @@
                     <div class="card-body">
                         <table class="table table-striped" id="table-surveyer">
                             <thead>
-                                <th>Nama</th>
-                                <th>Kecamatan</th>
-                                <th>Jumlah Titik</th>
-                                <th>Jarak Tempuh</th>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Penempatan</th>
+                                    <th>Jumlah Titik</th>
+                                    <th>Jarak Tempuh</th>
+                                </tr>
                             </thead>
                             <tbody>
-                                <td>Asnur</td>
-                                <td>Cibinong</td>
-                                <td>30</td>
-                                <td>50Km</td>
+                                @foreach ($pegawai_ajib as $pa)
+                                    <tr>
+                                        <td>{{ $pa->name }}</td>
+                                        <td>{{ $pa->penempatan }}</td>
+                                        <td>{{ $pa->tracking_count }}</td>
+                                        <td class="ajib-{{ $pa->id }}" onload="addText({!! $pa->id !!})"></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

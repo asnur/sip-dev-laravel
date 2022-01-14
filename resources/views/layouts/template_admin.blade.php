@@ -357,6 +357,12 @@
     <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/countTracking.js') }}"></script>
+    <script>
+        addText(1340)
+
+        $("#table-surveyer").DataTable();
+    </script>
 
 </body>
 

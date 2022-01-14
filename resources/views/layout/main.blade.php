@@ -1154,6 +1154,11 @@
                             </p>
 
                             <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-12 text_all mb-3 text-center">
+                                    <label class="text_all_mobile">Kesesuaian Kegiatan Berdasar Tabel ITBX</label>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
                                     <label class="text_all_mobile">Kegiatan</label>
                                 </div>
@@ -1163,6 +1168,38 @@
                                     </p>
                                 </div>
                             </div>
+                            <div class="d-flex space_text row_mid_text mb-2">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Status</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <span class="inf-status-ketentuan">-</span>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text mb-3">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Keterangan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <span class="inf-keterangan-ketentuan">-</span>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text text-justify mb-3">
+                                <div class="col-lg-12 text_all">
+                                    <label>Pada lahan di lokasi ini dimungkin untuk penerapan ketentuan khusus sebagai
+                                        berikut:</label>
+                                </div>
+                            </div>
+                            {{-- <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div> --}}
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
                                     <label class="text_all_mobile">Kegiatan Khusus</label>

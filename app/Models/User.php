@@ -45,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tracking()
+    {
+        return $this->hasMany(Tracking::class, 'id_user', 'id');
+    }
 }

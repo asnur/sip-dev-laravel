@@ -1334,7 +1334,7 @@ function getKetentuanPSL(subzona, psl) {
             if (value_data !== null) {
                 html += `<option>Pilih...</option>`;
                 for (let index = 0; index < value_data.length; index++) {
-                    html += `<option value="${value_data[index].Kegiatan}">${value_data[index].Kegiatan}</option>`;
+                    html += `<option value="${value_data[index].Kegiatan}" data-id="${index}">${value_data[index].Kegiatan}</option>`;
                 }
                 //     htmlKetentuan += `
                 // <p class="card-title mb-4 text-center font-weight-bold judul_utama" style="margin-top:-12px">${value_data[0].properties.Kegiatan}</p>
@@ -1437,6 +1437,16 @@ function getKetentuanPSL(subzona, psl) {
             $("#selectPSL").html(html);
             $("#selectPSL").on("change", function () {
                 const kegiatan = $(this).val();
+                let index = $(this).find(":selected").data("id");
+                // console.log(value_data);
+                $(".inf-status-ketentuan").html("");
+                $(".inf-status-ketentuan").html(
+                    titleCase(value_data[index].Ketentuan)
+                );
+                $(".inf-keterangan-ketentuan").html("");
+                $(".inf-keterangan-ketentuan").html(
+                    titleCase(value_data[index].Substansi)
+                );
                 $("#selectKhusus").html("");
                 $(".isi-ketentuan-khusus").html("");
 
@@ -1445,6 +1455,7 @@ function getKetentuanPSL(subzona, psl) {
                 // $(".inf-khusus").html("");
                 // $(".inf-khusus").html(htmlContentChange);
             });
+            $("#selectPSL").val(value_data[0].Kegiatan).trigger("change");
         },
     });
 }
@@ -1461,7 +1472,7 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
             html += `<option>Pilih...</option>`;
             if (value_data !== null) {
                 for (let index = 0; index < value_data.length; index++) {
-                    html += `<option value="${value_data[index]["Ketentuan Khusus"]}">${value_data[index]["Ketentuan Khusus"]}</option>`;
+                    html += `<option value="${value_data[index]["Jenis"]}">${value_data[index]["Jenis"]}</option>`;
                 }
             } else {
                 // htmlKetentuan += `<p>Tidak Ketentuan Khusus</p>`;
@@ -1473,6 +1484,7 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
                 var ketentuan = $(this).val();
                 getKetentuanKhusus(subzona, psl, kegiatan, ketentuan);
             });
+            $("#selectKhusus").val(value_data[0]["Jenis"]).trigger("change");
         },
     });
 }
@@ -1483,9 +1495,9 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
         method: "GET",
         success: (e) => {
             let data = JSON.parse(e);
-            let value_data = data.features[0].properties;
+            let value_data = data.features[0].properties[0];
             let html = "";
-            // console.log(value_data);
+            console.log(value_data);
             html += `
             <div class="d-flex space_text row_mid_text">
             <div class="col-lg-5 text_all">
@@ -1525,10 +1537,10 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
 
         <div class="d-flex space_text row_mid_text">
             <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">Luas Lahan Maksimal</label>
+                <label class="text_all_mobile">Luas Lahan Minimal</label>
             </div>
             <div class="col-lg-7 text_all">
-                <p>${value_data["Luas Lahan Maksimal"]}</p>
+                <p>${value_data["Luas lahan minimal"]}</p>
             </div>
         </div>
 
@@ -1537,7 +1549,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                 <label class="text_all_mobile">Ketentuan Khusus</label>
             </div>
             <div class="col-lg-7 text_all">
-                <p>${value_data["Ketentuan Khusus"]}</p>
+                <p>${value_data["Substansi"]}</p>
             </div>
         </div>
 
@@ -1546,7 +1558,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                 <label class="text_all_mobile">Syarat Lainnya</label>
             </div>
             <div class="col-lg-7 text_all">
-                <p>${value_data["Syarat Lainnya"]}</p>
+                <p>${value_data["Syarat lainnya"]}</p>
             </div>
         </div>
             `;

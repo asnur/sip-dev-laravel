@@ -12,12 +12,12 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $pegawai_ajib = User::whereHas(
+        $pegawai_ajib = User::withCount('tracking')->whereHas(
             'roles',
             function ($q) {
                 $q->where('name', 'surveyer');
             }
-        )->get()->count();
+        )->get();
 
         return view('admin.home', compact(['pegawai_ajib']));
     }
