@@ -1150,8 +1150,6 @@
                             <div class="text_all inf-khusus">
                                 -
                             </div> --}}
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
-                            </p>
 
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all mb-3 text-center">
@@ -1184,6 +1182,8 @@
                                     <span class="inf-keterangan-ketentuan">-</span>
                                 </div>
                             </div>
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
+                            </p>
                             <div class="d-flex space_text row_mid_text text-justify mb-3">
                                 <div class="col-lg-12 text_all">
                                     <label>Pada lahan di lokasi ini dimungkin untuk penerapan ketentuan khusus sebagai

@@ -1499,14 +1499,6 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let html = "";
             console.log(value_data);
             html += `
-            <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">Kegiatan</label>
-            </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data.Kegiatan}</p>
-            </div>
-        </div>
 
         <div class="d-flex space_text row_mid_text">
             <div class="col-lg-5 text_all">
@@ -1541,15 +1533,6 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             </div>
             <div class="col-lg-7 text_all">
                 <p>${value_data["Luas lahan minimal"]}</p>
-            </div>
-        </div>
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">Ketentuan Khusus</label>
-            </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data["Substansi"]}</p>
             </div>
         </div>
 
