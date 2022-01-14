@@ -68,10 +68,29 @@ $("#collapseSurvey").on("hidden.bs.collapse", () => {
     $("#btnDrag").css("visibility", "hidden");
 });
 
+$(".off_layer_ukm").hide();
+$(".off_layer_dibangun").hide();
+$(".off_layer_pedestrian").hide();
+$(".off_layer_cagarbudaya").hide();
+$(".off_layer_rth").hide();
+$(".off_layer_dijual").hide();
+$(".off_layer_lainnya").hide();
+
+$(".gambar_logos2").hide();
+
 // ukm
 $("#radio_ukm").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("umk_fill");
+        $(".off_layer_ukm").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_dibangun").hide();
+        $(".off_layer_pedestrian").hide();
+        $(".off_layer_cagarbudaya").hide();
+        $(".off_layer_rth").hide();
+        $(".off_layer_dijual").hide();
+        $(".off_layer_lainnya").hide();
         hideLayer("sedangdibangun");
         hideLayer("pendestrian");
         hideLayer("cagarbudaya");
@@ -98,6 +117,15 @@ $("#btn_ukm").click(function () {
 $("#radio_dibangun").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("sedangdibangun");
+        $(".off_layer_dibangun").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_ukm").hide();
+        $(".off_layer_pedestrian").hide();
+        $(".off_layer_cagarbudaya").hide();
+        $(".off_layer_rth").hide();
+        $(".off_layer_dijual").hide();
+        $(".off_layer_lainnya").hide();
         hideLayer("umk_fill");
         hideLayer("pendestrian");
         hideLayer("cagarbudaya");
@@ -124,6 +152,15 @@ $("#btn_dibangun").click(function () {
 $("#radio_pedestrian").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("pendestrian");
+        $(".off_layer_pedestrian").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_ukm").hide();
+        $(".off_layer_dibangun").hide();
+        $(".off_layer_cagarbudaya").hide();
+        $(".off_layer_rth").hide();
+        $(".off_layer_dijual").hide();
+        $(".off_layer_lainnya").hide();
         hideLayer("umk_fill");
         hideLayer("sedangdibangun");
         hideLayer("cagarbudaya");
@@ -150,6 +187,15 @@ $("#btn_pedestrian").click(function () {
 $("#radio_cagar").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("cagarbudaya");
+        $(".off_layer_cagarbudaya").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_ukm").hide();
+        $(".off_layer_dibangun").hide();
+        $(".off_layer_pedestrian").hide();
+        $(".off_layer_rth").hide();
+        $(".off_layer_dijual").hide();
+        $(".off_layer_lainnya").hide();
         hideLayer("umk_fill");
         hideLayer("sedangdibangun");
         hideLayer("pendestrian");
@@ -176,6 +222,15 @@ $("#btn_cagar").click(function () {
 $("#radio_lainnya").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("lainnya");
+        $(".off_layer_lainnya").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_ukm").hide();
+        $(".off_layer_dibangun").hide();
+        $(".off_layer_pedestrian").hide();
+        $(".off_layer_cagarbudaya").hide();
+        $(".off_layer_rth").hide();
+        $(".off_layer_dijual").hide();
         hideLayer("umk_fill");
         hideLayer("sedangdibangun");
         hideLayer("pendestrian");
@@ -202,6 +257,15 @@ $("#btn_lainnya").click(function () {
 $("#radio_rth").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("rth");
+        $(".off_layer_rth").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_ukm").hide();
+        $(".off_layer_dibangun").hide();
+        $(".off_layer_pedestrian").hide();
+        $(".off_layer_cagarbudaya").hide();
+        $(".off_layer_dijual").hide();
+        $(".off_layer_lainnya").hide();
         hideLayer("umk_fill");
         hideLayer("sedangdibangun");
         hideLayer("pendestrian");
@@ -228,6 +292,15 @@ $("#btn_rth").click(function () {
 $("#radio_dijual").change(function () {
     if ($(this).prop("checked") == true) {
         showLayer("dijual");
+        $(".off_layer_dijual").show();
+        $(".gambar_logos2").show();
+        $(".gambar_logos").hide();
+        $(".off_layer_ukm").hide();
+        $(".off_layer_dibangun").hide();
+        $(".off_layer_pedestrian").hide();
+        $(".off_layer_cagarbudaya").hide();
+        $(".off_layer_rth").hide();
+        $(".off_layer_lainnya").hide();
         hideLayer("umk_fill");
         hideLayer("sedangdibangun");
         hideLayer("pendestrian");
@@ -457,6 +530,15 @@ map.on("mouseleave", "umk_fill", function () {
     popupAjib.remove();
 });
 
+$("#btn_off_layer_ukm").on("click", function (e) {
+    $(".off_layer_ukm").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_ukm").css("background", "white");
+    hideLayer("umk_fill");
+    $("#radio_ukm").prop("checked", false);
+});
+
 // SEDANG DIBANGUN
 map.on("mouseenter", "sedangdibangun", function (e) {
     let data = e.features[0].properties;
@@ -484,6 +566,15 @@ map.on("mouseenter", "sedangdibangun", function (e) {
 map.on("mouseleave", "sedangdibangun", function () {
     map.getCanvas().style.cursor = "";
     popupAjib.remove();
+});
+
+$("#btn_off_layer_dibangun").on("click", function (e) {
+    $(".off_layer_dibangun").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_dibangun").css("background", "white");
+    hideLayer("sedangdibangun");
+    $("#radio_dibangun").prop("checked", false);
 });
 
 // PENDESTRIAN
@@ -515,6 +606,15 @@ map.on("mouseleave", "pendestrian", function () {
     popupAjib.remove();
 });
 
+$("#btn_off_layer_pedestrian").on("click", function (e) {
+    $(".off_layer_pedestrian").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_pedestrian").css("background", "white");
+    hideLayer("sedangdibangun");
+    $("#radio_pedestrian").prop("checked", false);
+});
+
 // CAGAR BUDAYA
 map.on("mouseenter", "cagarbudaya", function (e) {
     let data = e.features[0].properties;
@@ -542,6 +642,15 @@ map.on("mouseenter", "cagarbudaya", function (e) {
 map.on("mouseleave", "cagarbudaya", function () {
     map.getCanvas().style.cursor = "";
     popupAjib.remove();
+});
+
+$("#btn_off_layer_cagarbudaya").on("click", function (e) {
+    $(".off_layer_cagarbudaya").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_cagar").css("background", "white");
+    hideLayer("cagarbudaya");
+    $("#radio_cagar").prop("checked", false);
 });
 
 // LAINNYA
@@ -573,6 +682,15 @@ map.on("mouseleave", "lainnya", function () {
     popupAjib.remove();
 });
 
+$("#btn_off_layer_lainnya").on("click", function (e) {
+    $(".off_layer_lainnya").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_lainnya").css("background", "white");
+    hideLayer("lainnya");
+    $("#radio_lainnya").prop("checked", false);
+});
+
 // RTH
 map.on("mouseenter", "rth", function (e) {
     let data = e.features[0].properties;
@@ -602,6 +720,15 @@ map.on("mouseleave", "rth", function () {
     popupAjib.remove();
 });
 
+$("#btn_off_layer_rth").on("click", function (e) {
+    $(".off_layer_rth").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_rth").css("background", "white");
+    hideLayer("rth");
+    $("#radio_rth").prop("checked", false);
+});
+
 // DIJUAL
 map.on("mouseenter", "dijual", function (e) {
     let data = e.features[0].properties;
@@ -629,4 +756,13 @@ map.on("mouseenter", "dijual", function (e) {
 map.on("mouseleave", "dijual", function () {
     map.getCanvas().style.cursor = "";
     popupAjib.remove();
+});
+
+$("#btn_off_layer_dijual").on("click", function (e) {
+    $(".off_layer_dijual").hide();
+    $(".gambar_logos").show();
+    $(".gambar_logos2").hide();
+    $("#btn_dijual").css("background", "white");
+    hideLayer("dijual");
+    $("#radio_dijual").prop("checked", false);
 });

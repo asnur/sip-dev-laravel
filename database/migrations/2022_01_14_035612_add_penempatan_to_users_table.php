@@ -14,7 +14,7 @@ class AddPenempatanToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('penempatan');
+            $table->string('penempatan')->nullable();
         });
     }
 
