@@ -489,25 +489,27 @@
 
         <main role="main" class="container-fluid py-2">
 
-            <form action="{{ route('ajib.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('ajib.store') }}" id="formAjib" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-outline mb-xs-2 mb-3 md-4">
                     {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
                     <input required type="hidden" id="kordinatPinSurvey" placeholder="Pilih Titik Lokasi"
                         name="koordinat" class="form-control" />
+                    <input required type="hidden" id="idPinSurvey" placeholder="Pilih Titik Lokasi" name="id"
+                        class="form-control" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label class="form-label text-muted" for="judul">Judul</label> --}}
-                    <input required type="text" name="judul" class="form-control"
+                    <input required type="text" id="judulPinSurvey" name="judul" class="form-control"
                         placeholder="Masukan Nama Tempat" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label class="form-label text-muted">Kategori</label> --}}
 
-                    <select required name="kategori" class="form-control">
+                    <select required name="kategori" id="kategoriPinSurvey" class="form-control">
                         <option selected="selected">- Pilih Kategori -</option>
                         <option value="UMK">UMK</option>
                         <option value="Sedang dibangun">Sedang dibangun</option>
@@ -531,7 +533,7 @@
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label for="catatan">Catatan</label> --}}
 
-                    <textarea class="form-control" id="catetan" placeholder="Masukan Catatan" name="catatan"
+                    <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukan Catatan" name="catatan"
                         rows="3"></textarea>
 
                 </div>
@@ -539,7 +541,17 @@
 
                 <button type="submit" name="submit"
                     class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
-                    <strong>Simpan</strong>
+                    <strong id="storeText">Simpan</strong>
+                </button>
+
+            </form>
+            <form action="{{ route('delete-survey') }}" method="POST" id="deleteForm">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" id="deleteSurveyPin" name="id">
+                <button type="submit" name="submit"
+                    class="btn btn_ajib2 btn-danger btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                    <strong>Hapus</strong>
                 </button>
 
             </form>
@@ -1289,6 +1301,14 @@
 
             $("#btn_tutupmenu").click(function() {
                 $('#form_kbli').hide()
+                $("#deleteForm").hide();
+                $("#idPinSurvey").val("");
+                $("#kordinatPinSurvey").val("");
+                $("#image").val("");
+                $("#kategoriPinSurvey").val("");
+                $("#catatanPinSurvey").val("");
+                $("#judulPinSurvey").val("");
+                // $("#formAjib").reset()
                 // $('.tutup_menus').toggle();
             });
 

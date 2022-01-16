@@ -8,7 +8,11 @@ const markerAjib = new mapboxgl.Marker({
     draggable: true,
 });
 
+$("#deleteForm").hide();
+
 const findKelurahan = (lng, lat) => {
+    // if (map.getLayer("survey_ajib") !== undefined) {
+    // }
     $.ajax({
         url: `${url}/wilayah/${lng}/${lat}`,
         method: "GET",
@@ -19,11 +23,11 @@ const findKelurahan = (lng, lat) => {
             console.log(saveKelurahan, kelurahan);
             if (saveKelurahan !== kelurahan) {
                 addSourceLayer(kelurahan);
+                map.moveLayer("zoning_fill", "survey_ajib");
                 localStorage.setItem("kelurahan", kelurahan);
             }
         },
     });
-
     $.ajax({
         url: `${url}/zonasi/${lng}/${lat}`,
         method: "GET",
@@ -537,11 +541,32 @@ map.on("mouseenter", "survey_ajib", function (e) {
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
+
+    $("#form_ajib").show();
+    $("#idPinSurvey").val("");
+    $("#idPinSurvey").val(data["id"]);
+    $("#deleteSurveyPin").val("");
+    $("#deleteSurveyPin").val(data["id"]);
+    $("#kordinatPinSurvey").val("");
+    $("#kordinatPinSurvey").val(data["kordinat"]);
+    $("#kategoriPinSurvey").val("");
+    $("#kategoriPinSurvey").val(data["kategori"]);
+    $("#catatanPinSurvey").val("");
+    $("#catatanPinSurvey").val(data["catatan"]);
+    $("#judulPinSurvey").val("");
+    $("#judulPinSurvey").val(data["judul"]);
+    $("#deleteForm").show();
     popupAjib.setLngLat(coordinates).setHTML(content).addTo(map);
 });
 
 map.on("mouseleave", "survey_ajib", function () {
     map.getCanvas().style.cursor = "";
+    // $("#form_ajib").hide();
+    // $("#idPinSurvey").val("");
+    // $("#kordinatPinSurvey").val("");
+    // $("#kategoriPinSurvey").val("");
+    // $("#catatanPinSurvey").val("");
+    // $("#judulPinSurvey").val("");
     popupAjib.remove();
 });
 

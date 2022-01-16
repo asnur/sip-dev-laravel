@@ -95,6 +95,7 @@ function locateUser(e) {
         success: (e) => {
             let kelurahan = e.features[0].properties.Kelurahan;
             addSourceLayer(kelurahan);
+            map.moveLayer("zoning_fill", "survey_ajib");
             localStorage.setItem("kelurahan", kelurahan);
         },
     });
