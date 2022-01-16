@@ -95,8 +95,30 @@ function locateUser(e) {
         success: (e) => {
             let kelurahan = e.features[0].properties.Kelurahan;
             addSourceLayer(kelurahan);
-            map.moveLayer("zoning_fill", "survey_ajib");
+            if (map.getLayer("survey_ajib") !== undefined) {
+                map.moveLayer("zoning_fill", "survey_ajib");
+            }
             localStorage.setItem("kelurahan", kelurahan);
+        },
+    });
+
+    $.ajax({
+        url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
+        method: "GET",
+        dataType: "json",
+        success: (e) => {
+            let dt = e.features[0].properties;
+            dropDownKegiatan(dt["Sub Zona"]);
+            $("#kegiatanRuang").change(function () {
+                $("#skala").html("");
+                var sel = $(this).select2("val");
+                // console.log(sel);
+                DropdownSkala(dt["Sub Zona"], sel);
+                $("#skala").change(function () {
+                    var skala = $(this).select2("val");
+                    dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+                });
+            });
         },
     });
     $("#kordinatPinSurvey").val(`${e.coords.latitude},${e.coords.longitude}`);
@@ -112,7 +134,7 @@ $(".container.container_menu.for_mobile").hide();
 // $(".menuuu").hide();
 
 // new1
-$(".hide_hlm_kbli").hide();
+// $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").show();
 
 map.on("style.load", function () {

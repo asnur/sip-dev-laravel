@@ -539,24 +539,29 @@
                 </div>
 
 
-                <button type="submit" name="submit"
-                    class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
-                    <strong id="storeText">Simpan</strong>
-                </button>
-
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" name="submit"
+                            class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                            <strong id="storeText">Simpan</strong>
+                        </button>
+                    </div>
             </form>
-            <form action="{{ route('delete-survey') }}" method="POST" id="deleteForm">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" id="deleteSurveyPin" name="id">
-                <button type="submit" name="submit"
-                    class="btn btn_ajib2 btn-danger btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
-                    <strong>Hapus</strong>
-                </button>
+            <div class="col-6">
+                <form action="{{ route('delete-survey') }}" method="POST" id="deleteForm">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" id="deleteSurveyPin" name="id">
+                    <button
+                        class="btn btn_ajib2 btn-danger btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                        <strong>Hapus</strong>
+                    </button>
+                </form>
+            </div>
+    </div>
 
-            </form>
 
-        </main>
+    </main>
     </div>
 
     <div id="form_kbli">
@@ -1303,7 +1308,7 @@
                 $('#form_kbli').hide()
                 $("#deleteForm").hide();
                 $("#idPinSurvey").val("");
-                $("#kordinatPinSurvey").val("");
+                // $("#kordinatPinSurvey").val("");
                 $("#image").val("");
                 $("#kategoriPinSurvey").val("");
                 $("#catatanPinSurvey").val("");
