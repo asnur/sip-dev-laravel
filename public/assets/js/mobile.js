@@ -82,15 +82,25 @@ let geolocate = new mapboxgl.GeolocateControl({
 // Add the control to the map.
 map.addControl(geolocate);
 map.on("load", function () {
-    // geolocate.trigger(); // add this if you want to fire it by code instead of the button
+    geolocate.trigger(); // add this if you want to fire it by code instead of the button
 });
 
 geolocate.on("geolocate", locateUser);
 
 function locateUser(e) {
-    $("#kordinatPinSurvey").val(`${e.coords.longitude},${e.coords.latitude}`);
+    $.ajax({
+        url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
+        method: "GET",
+        dataType: "json",
+        success: (e) => {
+            let kelurahan = e.features[0].properties.Kelurahan;
+            addSourceLayer(kelurahan);
+            localStorage.setItem("kelurahan", kelurahan);
+        },
+    });
+    $("#kordinatPinSurvey").val(`${e.coords.latitude},${e.coords.longitude}`);
     console.log("A geolocate event has occurred.");
-    console.log("lng:" + e.coords.z + ", lat:" + e.coords.latitude);
+    // console.log("lng:" + e.coords.z + ", lat:" + e.coords.latitude);
 }
 
 $(
@@ -105,38 +115,38 @@ $(".hide_hlm_kbli").hide();
 $(".hide_zoning_fill").show();
 
 map.on("style.load", function () {
-    map.on(clickEvent, function (e) {
-        // console.log(e);
-        const coornya = e.lngLat;
-        var lats = coornya.lat.toString();
-        var lngs = coornya.lng.toString();
-        lats = lats.slice(0, -9);
-        lngs = lngs.slice(0, -9);
+    // map.on("click", function (e) {
+    //     // console.log(e);
+    //     const coornya = e.lngLat;
+    //     var lats = coornya.lat.toString();
+    //     var lngs = coornya.lng.toString();
+    //     lats = lats.slice(0, -9);
+    //     lngs = lngs.slice(0, -9);
 
-        var lats2 = coornya.lat.toString();
-        var lngs2 = coornya.lng.toString();
+    //     var lats2 = coornya.lat.toString();
+    //     var lngs2 = coornya.lng.toString();
 
-        $("#kordinatPinSurvey").val(`${coornya.lat},${coornya.lng}`);
+    //     $("#kordinatPinSurvey").val(`${coornya.lat},${coornya.lng}`);
 
-        $(".inf-kordinat").html(
-            `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats2},${lngs2}" target="_blank">${lats}, ${lngs}</a>`
-        );
+    //     $(".inf-kordinat").html(
+    //         `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${lats2},${lngs2}" target="_blank">${lats}, ${lngs}</a>`
+    //     );
 
-        $("#btnSHP").attr(
-            "href",
-            `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
-        );
-    });
+    //     $("#btnSHP").attr(
+    //         "href",
+    //         `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
+    //     );
+    // });
     // Marker onclick
     const el = document.createElement("div");
     el.className = "marker";
     var marker = new mapboxgl.Marker(el);
 
-    function add_marker(event) {
-        var coordinates = event.lngLat;
-        marker.setLngLat(coordinates).addTo(map);
-    }
-    map.on(clickEvent, add_marker);
+    // function add_marker(event) {
+    //     var coordinates = event.lngLat;
+    //     marker.setLngLat(coordinates).addTo(map);
+    // }
+    // map.on(clickEvent, add_marker);
 
     // map.addSource("wilayahindex", {
     //     type: "geojson",
@@ -174,9 +184,9 @@ map.on("style.load", function () {
     // });
 });
 
-map.on(clickEvent, "wilayah_fill", function (e) {
+map.on("getwilayah", "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
-    // console.log(dt);
+    console.log(e);
     $(".dtKBLI").html("");
     $("#radiusSlide").show();
     setAttrClick = e;
@@ -485,13 +495,13 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     // }
 });
 
-map.on(clickEvent, "zoning_fill", function (e) {
+map.on("click", "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     var gsb = "";
 
-    // console.log(proyek);
+    console.log(e.features);
 
-    $(".container.container_menu.for_mobile").show();
+    // $(".container.container_menu.for_mobile").show();
     $(".hide_hlm_kbli").show();
     // $(".hide_zoning_fill").show();
     // $(".menuuu").show();
@@ -1060,7 +1070,7 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     localGeocoder: coordinatesGeocoder,
     mapboxgl: mapboxgl,
-    // marker: false,
+    marker: false,
     reverseGeocode: true,
     flyTo: {
         easing: function (t) {

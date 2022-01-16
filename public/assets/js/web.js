@@ -547,17 +547,6 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-kdh").html(dt.KDH == " " ? "-" : dt.KDH);
     $(".inf-klb").html(dt.KLB == " " ? "-" : dt.KLB);
     $(".inf-gsb").html(gsb);
-    dropDownKegiatan(dt["Sub Zona"]);
-    $("#kegiatanRuang").change(function () {
-        $("#skala").html("");
-        var sel = $(this).select2("val");
-        // console.log(sel);
-        DropdownSkala(dt["Sub Zona"], sel);
-        $("#skala").change(function () {
-            var skala = $(this).select2("val");
-            dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
-        });
-    });
 });
 
 function getIumk(e) {

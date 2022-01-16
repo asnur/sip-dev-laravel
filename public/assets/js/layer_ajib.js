@@ -1,3 +1,4 @@
+let kelurahan;
 const popupAjib = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false,
@@ -7,19 +8,62 @@ const markerAjib = new mapboxgl.Marker({
     draggable: true,
 });
 
+const findKelurahan = (lng, lat) => {
+    $.ajax({
+        url: `${url}/wilayah/${lng}/${lat}`,
+        method: "GET",
+        dataType: "json",
+        success: (e) => {
+            let kelurahan = e.features[0].properties.Kelurahan;
+            let saveKelurahan = localStorage.getItem("kelurahan");
+            console.log(saveKelurahan, kelurahan);
+            if (saveKelurahan !== kelurahan) {
+                addSourceLayer(kelurahan);
+                localStorage.setItem("kelurahan", kelurahan);
+            }
+        },
+    });
+
+    $.ajax({
+        url: `${url}/zonasi/${lng}/${lat}`,
+        method: "GET",
+        dataType: "json",
+        success: (e) => {
+            let dt = e.features[0].properties;
+            dropDownKegiatan(dt["Sub Zona"]);
+            $("#kegiatanRuang").change(function () {
+                $("#skala").html("");
+                var sel = $(this).select2("val");
+                // console.log(sel);
+                DropdownSkala(dt["Sub Zona"], sel);
+                $("#skala").change(function () {
+                    var skala = $(this).select2("val");
+                    dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+                });
+            });
+        },
+    });
+};
+
+const wilayah = async (lng, lat) => {};
+
 const dragMaps = (condition) => {
     var coorAjib = map.getCenter();
     if (condition == 1) {
         markerAjib.setLngLat([coorAjib.lng, coorAjib.lat]).addTo(map);
-        function onDragEnd() {
+        const onDragEnd = (e) => {
             const lngLat = markerAjib.getLngLat();
-            console.log(lngLat);
+            $(".hide_hlm_kbli").show();
+            findKelurahan(lngLat.lng, lngLat.lat);
+            $("#form_kbli").hide();
+            $("#form_ajib").show();
             $("#kordinatPinSurvey").val(`${lngLat.lat},${lngLat.lng}`);
-        }
+        };
 
         markerAjib.on("dragend", onDragEnd);
     } else {
         markerAjib.remove();
+        $(".hide_hlm_kbli").hide();
     }
 };
 
@@ -349,7 +393,7 @@ map.on("style.load", function () {
         },
         // filter: ["==", ["get", "kategori"], "Lainnya"],
         layout: {
-            visibility: "none",
+            visibility: "visible",
         },
     });
 
@@ -480,7 +524,7 @@ map.on("mouseenter", "survey_ajib", function (e) {
     map.getCanvas().style.cursor = "pointer";
     const content = `<div class="p-0">
     <div class="imgcard-container">
-      <img src="/mobile/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
+      <img src="/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
     </div>
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${data["judul"]}</h6>
