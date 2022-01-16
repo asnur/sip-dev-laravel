@@ -1168,7 +1168,7 @@
                             </div>
                             <div class="d-flex space_text row_mid_text mb-2">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Status</label>
+                                    <label class="text_all_mobile">Ketentuan Perizinan</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <span class="inf-status-ketentuan">-</span>
@@ -1202,7 +1202,7 @@
                             </div> --}}
                             <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-5 text_all">
-                                    <label class="text_all_mobile">Kegiatan Khusus</label>
+                                    <label class="text_all_mobile">Ketentuan Khusus</label>
                                 </div>
                                 <div class="col-lg-7 text_all">
                                     <p>

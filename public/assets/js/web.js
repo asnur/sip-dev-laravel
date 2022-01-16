@@ -1472,7 +1472,7 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
             html += `<option>Pilih...</option>`;
             if (value_data !== null) {
                 for (let index = 0; index < value_data.length; index++) {
-                    html += `<option value="${value_data[index]["Jenis"]}">${value_data[index]["Jenis"]}</option>`;
+                    html += `<option value="${value_data[index]["Jenis"]}" data-id="${index}">${value_data[index]["Jenis"]}</option>`;
                 }
             } else {
                 // htmlKetentuan += `<p>Tidak Ketentuan Khusus</p>`;
@@ -1482,9 +1482,16 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
             $("#selectKhusus").html(html);
             $("#selectKhusus").on("change", function () {
                 var ketentuan = $(this).val();
-                getKetentuanKhusus(subzona, psl, kegiatan, ketentuan);
+                let index = $(this).find(":selected").data("id");
+                if (value_data[index]["Ketentuan Khusus"] !== "TIDAK BERLAKU") {
+                    getKetentuanKhusus(subzona, psl, kegiatan, ketentuan);
+                }
             });
-            $("#selectKhusus").val(value_data[0]["Jenis"]).trigger("change");
+            if (value_data[0]["Ketentuan Khusus"] !== "TIDAK BERLAKU") {
+                $("#selectKhusus")
+                    .val(value_data[0]["Jenis"])
+                    .trigger("change");
+            }
         },
     });
 }
@@ -1497,54 +1504,54 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let data = JSON.parse(e);
             let value_data = data.features[0].properties[0];
             let html = "";
-            console.log(value_data);
+            // console.log(value_data);
             html += `
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">KB Maksimal</label>
+    
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KB Maksimal</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data["KB Maksimal"]}</p>
+                </div>
             </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data["KB Maksimal"]}</p>
+    
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KDB Maksimal</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data["KDB Maksimal"] * 100}%</p>
+                </div>
             </div>
-        </div>
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">KDB Maksimal</label>
+    
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">KLB Maksimal</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data["KLB Maksimal"]}</p>
+                </div>
             </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data["KDB Maksimal"] * 100}%</p>
+    
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Luas Lahan Minimal</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data["Luas lahan minimal"]}</p>
+                </div>
             </div>
-        </div>
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">KLB Maksimal</label>
+    
+            <div class="d-flex space_text row_mid_text">
+                <div class="col-lg-5 text_all">
+                    <label class="text_all_mobile">Syarat Lainnya</label>
+                </div>
+                <div class="col-lg-7 text_all">
+                    <p>${value_data["Syarat lainnya"]}</p>
+                </div>
             </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data["KLB Maksimal"]}</p>
-            </div>
-        </div>
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">Luas Lahan Minimal</label>
-            </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data["Luas lahan minimal"]}</p>
-            </div>
-        </div>
-
-        <div class="d-flex space_text row_mid_text">
-            <div class="col-lg-5 text_all">
-                <label class="text_all_mobile">Syarat Lainnya</label>
-            </div>
-            <div class="col-lg-7 text_all">
-                <p>${value_data["Syarat lainnya"]}</p>
-            </div>
-        </div>
-            `;
+                `;
             $(".isi-ketentuan-khusus").html("");
             $(".isi-ketentuan-khusus").html(html);
             // if (value_data !== null) {
