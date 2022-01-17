@@ -83,6 +83,7 @@ let geolocate = new mapboxgl.GeolocateControl({
 map.addControl(geolocate);
 map.on("load", function () {
     localStorage.removeItem("kelurahan");
+    localStorage.removeItem("subzona");
     geolocate.trigger(); // add this if you want to fire it by code instead of the button
 });
 
