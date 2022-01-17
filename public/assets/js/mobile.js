@@ -99,6 +99,7 @@ function locateUser(e) {
             let current_subzona = localStorage.getItem("subzona");
             if (current_subzona !== dt["Sub Zona"]) {
                 console.log(dt["Sub Zona"]);
+                localStorage.setItem("subzona", dt["Sub Zona"]);
                 dropDownKegiatan(dt["Sub Zona"]);
                 $("#kegiatanRuang").change(function () {
                     $("#skala").html("");
