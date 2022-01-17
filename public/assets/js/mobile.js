@@ -88,39 +88,41 @@ map.on("load", function () {
 geolocate.on("geolocate", locateUser);
 
 function locateUser(e) {
-    $.ajax({
-        url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
-        method: "GET",
-        dataType: "json",
-        success: (e) => {
-            let kelurahan = e.features[0].properties.Kelurahan;
-            addSourceLayer(kelurahan);
-            if (map.getLayer("survey_ajib") !== undefined) {
-                map.moveLayer("zoning_fill", "survey_ajib");
-            }
-            localStorage.setItem("kelurahan", kelurahan);
-        },
-    });
+    if (map.getLayer("zoning_fill" !== undefined)) {
+        $.ajax({
+            url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
+            method: "GET",
+            dataType: "json",
+            success: (e) => {
+                let kelurahan = e.features[0].properties.Kelurahan;
+                addSourceLayer(kelurahan);
+                if (map.getLayer("survey_ajib") !== undefined) {
+                    map.moveLayer("zoning_fill", "survey_ajib");
+                }
+                localStorage.setItem("kelurahan", kelurahan);
+            },
+        });
 
-    $.ajax({
-        url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
-        method: "GET",
-        dataType: "json",
-        success: (e) => {
-            let dt = e.features[0].properties;
-            dropDownKegiatan(dt["Sub Zona"]);
-            $("#kegiatanRuang").change(function () {
-                $("#skala").html("");
-                var sel = $(this).select2("val");
-                // console.log(sel);
-                DropdownSkala(dt["Sub Zona"], sel);
-                $("#skala").change(function () {
-                    var skala = $(this).select2("val");
-                    dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+        $.ajax({
+            url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
+            method: "GET",
+            dataType: "json",
+            success: (e) => {
+                let dt = e.features[0].properties;
+                dropDownKegiatan(dt["Sub Zona"]);
+                $("#kegiatanRuang").change(function () {
+                    $("#skala").html("");
+                    var sel = $(this).select2("val");
+                    // console.log(sel);
+                    DropdownSkala(dt["Sub Zona"], sel);
+                    $("#skala").change(function () {
+                        var skala = $(this).select2("val");
+                        dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+                    });
                 });
-            });
-        },
-    });
+            },
+        });
+    }
     $("#kordinatPinSurvey").val(`${e.coords.latitude},${e.coords.longitude}`);
     console.log("A geolocate event has occurred.");
     // console.log("lng:" + e.coords.z + ", lat:" + e.coords.latitude);
