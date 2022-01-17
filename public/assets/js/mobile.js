@@ -82,33 +82,23 @@ let geolocate = new mapboxgl.GeolocateControl({
 // Add the control to the map.
 map.addControl(geolocate);
 map.on("load", function () {
+    localStorage.removeItem("kelurahan");
     geolocate.trigger(); // add this if you want to fire it by code instead of the button
 });
 
 geolocate.on("geolocate", locateUser);
 
 function locateUser(e) {
-    if (map.getLayer("zoning_fill") == undefined) {
-        $.ajax({
-            url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
-            method: "GET",
-            dataType: "json",
-            success: (e) => {
-                let kelurahan = e.features[0].properties.Kelurahan;
-                addSourceLayer(kelurahan);
-                if (map.getLayer("survey_ajib") !== undefined) {
-                    map.moveLayer("zoning_fill", "survey_ajib");
-                }
-                localStorage.setItem("kelurahan", kelurahan);
-            },
-        });
-
-        $.ajax({
-            url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
-            method: "GET",
-            dataType: "json",
-            success: (e) => {
-                let dt = e.features[0].properties;
+    let current_kelurahan = localStorage.getItem("kelurahan");
+    $.ajax({
+        url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
+        method: "GET",
+        dataType: "json",
+        success: (e) => {
+            let dt = e.features[0].properties;
+            let current_subzona = localStorage.getItem("subzona");
+            if (current_subzona !== dt["Sub Zona"]) {
+                console.log(dt["Sub Zona"]);
                 dropDownKegiatan(dt["Sub Zona"]);
                 $("#kegiatanRuang").change(function () {
                     $("#skala").html("");
@@ -120,9 +110,26 @@ function locateUser(e) {
                         dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
                     });
                 });
-            },
-        });
-    }
+            }
+        },
+    });
+
+    $.ajax({
+        url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
+        method: "GET",
+        dataType: "json",
+        success: (e) => {
+            let kelurahan = e.features[0].properties.Kelurahan;
+            if (current_kelurahan !== kelurahan) {
+                addSourceLayer(kelurahan);
+            }
+            if (map.getLayer("survey_ajib") !== undefined) {
+                map.moveLayer("zoning_fill", "survey_ajib");
+            }
+            localStorage.setItem("kelurahan", kelurahan);
+        },
+    });
+
     $("#kordinatPinSurvey").val(`${e.coords.latitude},${e.coords.longitude}`);
     console.log("A geolocate event has occurred.");
     // console.log("lng:" + e.coords.z + ", lat:" + e.coords.latitude);
