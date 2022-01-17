@@ -88,7 +88,7 @@ map.on("load", function () {
 geolocate.on("geolocate", locateUser);
 
 function locateUser(e) {
-    if (map.getLayer("zoning_fill" !== undefined)) {
+    if (map.getLayer("zoning_fill") == undefined) {
         $.ajax({
             url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
             method: "GET",
