@@ -32,17 +32,22 @@ const findKelurahan = (lng, lat) => {
         dataType: "json",
         success: (e) => {
             let dt = e.features[0].properties;
-            dropDownKegiatan(dt["Sub Zona"]);
-            $("#kegiatanRuang").change(function () {
-                $("#skala").html("");
-                var sel = $(this).select2("val");
-                // console.log(sel);
-                DropdownSkala(dt["Sub Zona"], sel);
-                $("#skala").change(function () {
-                    var skala = $(this).select2("val");
-                    dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+            let current_subzona = localStorage.getItem("subzona");
+            if (current_subzona !== dt["Sub Zona"]) {
+                console.log(dt["Sub Zona"]);
+                localStorage.setItem("subzona", dt["Sub Zona"]);
+                dropDownKegiatan(dt["Sub Zona"]);
+                $("#kegiatanRuang").change(function () {
+                    $("#skala").html("");
+                    var sel = $(this).select2("val");
+                    // console.log(sel);
+                    DropdownSkala(dt["Sub Zona"], sel);
+                    $("#skala").change(function () {
+                        var skala = $(this).select2("val");
+                        dropDownKegiatanKewenangan(dt["Sub Zona"], sel, skala);
+                    });
                 });
-            });
+            }
         },
     });
 };
@@ -73,9 +78,17 @@ const dragMaps = (condition) => {
         // markerAjib.on("dragend", onDragEnd);
     } else {
         markerAjib.remove();
-        $(".hide_hlm_kbli").hide();
+        // $(".hide_hlm_kbli").hide();
     }
 };
+
+$("#kategoriPinSurvey").on("change", () => {
+    if ($("#kategoriPinSurvey").val() == "UMK") {
+        $("#form_kbli").show();
+    } else {
+        $("#form_kbli").hide();
+    }
+});
 
 //Tracking Cordinate AJib
 

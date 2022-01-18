@@ -1387,6 +1387,7 @@ function dropDownKegiatan(subzona) {
             $("#kegiatanRuang").html("");
             $("#skala").html("");
             $("#kegiatanKewenangan").html("");
+            $(".dtKBLI").html("");
             var htmlContent = "";
             $("#btn-print").hide();
             htmlContent += `<option>Pilih...</option>`;

@@ -488,10 +488,18 @@
     <div id="form_ajib">
 
         <main role="main" class="container-fluid py-2">
+            <div class="row">
+                <div class="col-6 pt-1">
+                    <a id="chooseOnMap" class="btn btn-sm" style="background: skyblue; color:white"><i
+                            class="fa fa-map"></i> Pilih Lewat Peta</a>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
 
-            <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
-                <span aria-hidden="true">&times;</span>
-            </button>
             <form action="{{ route('ajib.store') }}" id="formAjib" method="POST" enctype="multipart/form-data">
                 @csrf
 
@@ -562,59 +570,60 @@
                     </button>
                 </form>
             </div>
+            {{-- <h1>Test</h1> --}}
+            <div id="form_kbli">
+
+                <div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+
+                    <div class="d-flex ml-5 margin_cari_kodelbli_mobile">
+                        <div class="col-md-12 text_all">
+                            <label class="text_all_mobile_kbli">Kegiatan Ruang</label>
+                            <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                <select class="form-control text_all" id="kegiatanRuang"
+                                    style="z-index: 9999"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
+                        <div class="col-md-12 text_all">
+                            <label class="text_all_mobile_kbli">Skala</label>
+                            <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                <select class="form-control" id="skala"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
+                        <div class="col-md-12 text_all">
+                            <label class="text_all_mobile_kbli">Kegiatan Kewenangan</label>
+                            <div class="form-group input-group-sm cari_kodekbli_option_mobile">
+                                <select class="form-control" id="kegiatanKewenangan"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dtKBLI"></div>
+
+                    <div class="d-flex margin_chart_ekonomi_mobile">
+                        <canvas id="pie-chart-kbli" width="70" height="50"
+                            style="position:absolute;z-index: -999; display:none"></canvas>
+                    </div>
+
+                    <div class="d-flex margin_chartline_ekonomi_mobile">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                            <canvas id="bar-chart-grouped-kbli" width="90" height="80"
+                                style="display: none;position:absolute;"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
     </div>
 
 
     </main>
-    </div>
-
-    <div id="form_kbli">
-
-        <div style="margin-top: 1.5rem; margin-bottom: 1.5rem;" class="container">
-
-            <div class="d-flex ml-5 margin_cari_kodelbli_mobile">
-                <div class="col-md-12 text_all">
-                    <label class="text_all_mobile_kbli">Kegiatan Ruang</label>
-                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                        <select class="form-control text_all" id="kegiatanRuang" style="z-index: 9999"></select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
-                <div class="col-md-12 text_all">
-                    <label class="text_all_mobile_kbli">Skala</label>
-                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                        <select class="form-control" id="skala"></select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
-                <div class="col-md-12 text_all">
-                    <label class="text_all_mobile_kbli">Kegiatan Kewenangan</label>
-                    <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                        <select class="form-control" id="kegiatanKewenangan"></select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dtKBLI"></div>
-
-            <div class="d-flex margin_chart_ekonomi_mobile">
-                <canvas id="pie-chart-kbli" width="70" height="50"
-                    style="position:absolute;z-index: -999; display:none"></canvas>
-            </div>
-
-            <div class="d-flex margin_chartline_ekonomi_mobile">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
-                    <canvas id="bar-chart-grouped-kbli" width="90" height="80"
-                        style="display: none;position:absolute;"></canvas>
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
 
@@ -902,7 +911,7 @@
         </div>
     </div> --}}
 
-    <div class="hide_zoning_fill">
+    <div class="hide_zoning_fill d-none">
 
         <div style="position: fixed; right:1%; top:18rem; color:#fff;">
 
@@ -947,9 +956,10 @@
             </div>
         </button>
 
-        <div class="hide_hlm_kbli">
-            <div style="position:fixed; right:2%; top: 10rem" class="d-flex flex-column float-right">
-                {{-- @role('surveyer')
+        @if (Auth::check())
+            <div class="hide_hlm_kbli">
+                <div style="position:fixed; right:2%; top: 10rem" class="d-flex flex-column float-right">
+                    {{-- @role('surveyer')
 
                 <div id="btn_drag">
                     <button class="btn btn-sm mt-2">
@@ -963,35 +973,36 @@
 
                 @endrole --}}
 
-                <div>
-                    <button class="btn btn-sm mt-1">
-                        <div class="container">
-                            <div class="row">
-                                <i id="hlm_form_kbli" class="ri-community-line bg-white text-secondary"
-                                    style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                            </div>
-                        </div>
-                    </button>
-                </div>
-
-                @role('surveyer')
-
-                    <div id="btn_tutupmenu">
-                        <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button"
-                            aria-expanded="false" aria-controls="collapseExample">
+                    <div>
+                        <button class="btn btn-sm mt-1">
                             <div class="container">
                                 <div class="row">
-                                    <i id="hlm_form_ajib" class="ri-pushpin-line bg-white text-secondary"
-                                        style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                                    <i id="hlm_form_kbli" class="ri-map-2-line text-secondary"
+                                        style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px; background:white;"></i>
                                 </div>
                             </div>
                         </button>
                     </div>
 
-                @endrole
+                    @role('surveyer')
 
+                        <div id="btn_tutupmenu">
+                            <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <div class="container">
+                                    <div class="row">
+                                        <i id="hlm_form_ajib" class="ri-pushpin-line bg-white text-secondary"
+                                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                    @endrole
+
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="d-none">
             <input type="radio" id="radio_ukm" name="radio_menu" value="radio_ukm">
@@ -1297,19 +1308,45 @@
             //     };
             // return true;
             // // }
+            $(window).on('load', () => {
+                if ($("#zoning_fill").prop("checked") == true) {
+                    $("#hlm_form_kbli").css('background', 'orange')
+                } else {
+                    $("#hlm_form_kbli").css('background', 'white')
+                }
+            })
 
             $("#hlm_form_kbli").click(function() {
-                $('#form_kbli').toggle();
+                $("#zoning_fill").trigger("click")
                 $("#form_ajib").hide()
+            });
+            $("#zoning_fill").on("change", () => {
+                if ($("#zoning_fill").prop("checked") == true) {
+                    $("#hlm_form_kbli").css('background', 'orange')
+                } else {
+                    $("#hlm_form_kbli").css('background', 'white')
+                }
+            });
+
+            $("#chooseOnMap").click(() => {
+                $("#izin_peta").trigger("click")
+            })
+
+            $("#izin_peta").on("change", () => {
+                if ($("#izin_peta").prop("checked") == true) {
+                    $("#chooseOnMap").css('background', 'orange')
+                } else {
+                    $("#chooseOnMap").css('background', 'skyblue')
+                }
             });
 
             $("#hlm_form_ajib").click(function() {
-                $('#form_ajib').toggle();
+                $('#form_ajib').show();
             });
 
 
             $("#btn_tutupmenu").click(function() {
-                $('#form_kbli').hide()
+                // $('#form_kbli').hide()
                 $("#deleteForm").hide();
                 $("#idPinSurvey").val("");
                 // $("#kordinatPinSurvey").val("");
