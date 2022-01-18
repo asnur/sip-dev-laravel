@@ -489,6 +489,9 @@
 
         <main role="main" class="container-fluid py-2">
 
+            <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
+                <span aria-hidden="true">&times;</span>
+            </button>
             <form action="{{ route('ajib.store') }}" id="formAjib" method="POST" enctype="multipart/form-data">
                 @csrf
 
@@ -503,13 +506,13 @@
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label class="form-label text-muted" for="judul">Judul</label> --}}
                     <input required type="text" id="judulPinSurvey" name="judul" class="form-control"
-                        placeholder="Masukan Nama Tempat" />
+                        placeholder="Masukan Nama Tempat" required="required" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label class="form-label text-muted">Kategori</label> --}}
 
-                    <select required name="kategori" id="kategoriPinSurvey" class="form-control">
+                    <select required name="kategori" id="kategoriPinSurvey" class="form-control" required="required">
                         <option selected="selected">- Pilih Kategori -</option>
                         <option value="UMK">UMK</option>
                         <option value="Sedang dibangun">Sedang dibangun</option>
@@ -525,8 +528,9 @@
                 <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-4 md-4">
                     <div class="input-group custom-file-button">
                         <label class="input-group-text" for="image">Upload Gambar</label>
-                        <input type="file" class="form-control" id="image" name="image">
+                        <input type="file" class="form-control" id="image" name="image" required="required">
                     </div>
+                    <img src="" class="mt-3" id="previewImage" style="width: 100%; height:200px;">
                 </div>
 
 
@@ -534,7 +538,7 @@
                     {{-- <label for="catatan">Catatan</label> --}}
 
                     <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukan Catatan" name="catatan"
-                        rows="3"></textarea>
+                        rows="3" required="required"></textarea>
 
                 </div>
 
@@ -900,7 +904,7 @@
 
     <div class="hide_zoning_fill">
 
-        <div style="position: fixed; right:1%; top:30%; color:#fff;">
+        <div style="position: fixed; right:1%; top:18rem; color:#fff;">
 
             <div class="d-flex align-content-stretch flex-wrap justify-content-center mb-2">
 
@@ -914,7 +918,7 @@
 
             </div>
             @role('surveyer')
-                <div class="d-flex align-content-stretch flex-wrap justify-content-center" id="btnDrag">
+                <div class="d-flex align-content-stretch mt-3 flex-wrap justify-content-center" id="btnDrag">
 
                     <div class="form-check text-center">
                         <h6>Pin Lokasi</h6>
@@ -944,7 +948,7 @@
         </button>
 
         <div class="hide_hlm_kbli">
-            <div style="position:fixed; right:2%;" class="d-flex flex-column mt-5 float-right">
+            <div style="position:fixed; right:2%; top: 10rem" class="d-flex flex-column float-right">
                 {{-- @role('surveyer')
 
                 <div id="btn_drag">
@@ -963,7 +967,7 @@
                     <button class="btn btn-sm mt-1">
                         <div class="container">
                             <div class="row">
-                                <i id="hlm_form_kbli" class="ri-user-search-line bg-white text-secondary"
+                                <i id="hlm_form_kbli" class="ri-community-line bg-white text-secondary"
                                     style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                             </div>
                         </div>
@@ -977,7 +981,7 @@
                             aria-expanded="false" aria-controls="collapseExample">
                             <div class="container">
                                 <div class="row">
-                                    <i id="hlm_form_ajib" class="ri-file-list-line bg-white text-secondary"
+                                    <i id="hlm_form_ajib" class="ri-pushpin-line bg-white text-secondary"
                                         style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
                                 </div>
                             </div>

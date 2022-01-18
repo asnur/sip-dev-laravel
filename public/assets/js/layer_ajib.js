@@ -528,14 +528,14 @@ map.on("mouseenter", "survey_ajib", function (e) {
     map.getCanvas().style.cursor = "pointer";
     const content = `<div class="p-0">
     <div class="imgcard-container">
-      <img src="/mobile/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
+    <img src="/mobile/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
     </div>
     <div class="card-body p-2">
-      <h6 class="mt-0 mb-2 card-title border-bottom">${data["judul"]}</h6>
-      <div style="line-height: 1.2;">
-        <span class="d-block"><b>Kategori :</b> ${data["kategori"]}</span>
-        <span class="d-block"> ${data["catatan"]}</span>
-      </div>
+    <h6 class="mt-0 mb-2 card-title border-bottom">${data["judul"]}</h6>
+    <div style="line-height: 1.2;">
+    <span class="d-block"><b>Kategori :</b> ${data["kategori"]}</span>
+    <span class="d-block"> ${data["catatan"]}</span>
+    </div>
     </div>`;
 
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -556,11 +556,13 @@ map.on("mouseenter", "survey_ajib", function (e) {
     $("#judulPinSurvey").val("");
     $("#judulPinSurvey").val(data["judul"]);
     $("#deleteForm").show();
+    $("#image").prop("required", false);
     popupAjib.setLngLat(coordinates).setHTML(content).addTo(map);
 });
 
 map.on("mouseleave", "survey_ajib", function () {
     map.getCanvas().style.cursor = "";
+    // $("#image").prop("required", true);
     // $("#form_ajib").hide();
     // $("#idPinSurvey").val("");
     // $("#kordinatPinSurvey").val("");
@@ -568,6 +570,27 @@ map.on("mouseleave", "survey_ajib", function () {
     // $("#catatanPinSurvey").val("");
     // $("#judulPinSurvey").val("");
     popupAjib.remove();
+});
+
+$("#previewImage").hide();
+
+$("#closeForm").click(() => {
+    $("#image").prop("required", true);
+    $("#previewImage").hide();
+    $("#form_ajib").hide();
+});
+
+const priviewImage = (input) => {
+    let reader = new FileReader();
+    reader.onload = (e) => {
+        $("#previewImage").show();
+        $("#previewImage").attr("src", e.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
+};
+
+$("#image").change(function () {
+    priviewImage(this);
 });
 
 // UMK
