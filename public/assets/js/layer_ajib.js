@@ -5,14 +5,12 @@ const popupAjib = new mapboxgl.Popup({
 });
 
 const markerAjib = new mapboxgl.Marker({
-    draggable: true,
+    // draggable: true,
 });
 
 $("#deleteForm").hide();
 
 const findKelurahan = (lng, lat) => {
-    // if (map.getLayer("survey_ajib") !== undefined) {
-    // }
     $.ajax({
         url: `${url}/wilayah/${lng}/${lat}`,
         method: "GET",
@@ -49,22 +47,30 @@ const findKelurahan = (lng, lat) => {
     });
 };
 
-const wilayah = async (lng, lat) => {};
-
 const dragMaps = (condition) => {
     var coorAjib = map.getCenter();
     if (condition == 1) {
-        markerAjib.setLngLat([coorAjib.lng, coorAjib.lat]).addTo(map);
-        const onDragEnd = (e) => {
+        markerAjib.setLngLat(map.getCenter()).addTo(map);
+        map.on("drag", () => {
+            markerAjib.setLngLat(map.getCenter());
+        });
+        map.on("dragend", () => {
+            markerAjib.setLngLat(map.getCenter());
             const lngLat = markerAjib.getLngLat();
-            $(".hide_hlm_kbli").show();
             findKelurahan(lngLat.lng, lngLat.lat);
-            $("#form_kbli").hide();
-            $("#form_ajib").show();
             $("#kordinatPinSurvey").val(`${lngLat.lat},${lngLat.lng}`);
-        };
+        });
+        // markerAjib.setLngLat([coorAjib.lng, coorAjib.lat]).addTo(map);
+        // const onDragEnd = (e) => {
+        //     const lngLat = markerAjib.getLngLat();
+        //     $(".hide_hlm_kbli").show();
+        //     findKelurahan(lngLat.lng, lngLat.lat);
+        //     $("#form_kbli").hide();
+        //     $("#form_ajib").show();
+        //     $("#kordinatPinSurvey").val(`${lngLat.lat},${lngLat.lng}`);
+        // };
 
-        markerAjib.on("dragend", onDragEnd);
+        // markerAjib.on("dragend", onDragEnd);
     } else {
         markerAjib.remove();
         $(".hide_hlm_kbli").hide();
