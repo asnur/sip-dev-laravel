@@ -699,7 +699,7 @@
                                     </span>
 
                                     <input type="search" class="input tombol_search" id="cari_wilayah_mobile"
-                                        placeholder="Cari kelurahan disini...">
+                                        placeholder="Cari kelurahan disini..." autocomplete="off">
 
                                     @if (!\Auth::check())
                                         <a href="{{ route('login-google') }}">
