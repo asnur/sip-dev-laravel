@@ -1120,15 +1120,7 @@ map.addControl(geocoder);
 
 //add source layer
 function addSourceLayer(item) {
-    var api = [
-        "wilayah",
-        "zoning",
-        "iumk",
-        "sewa",
-        "investasi",
-        "pipa",
-        "budaya",
-    ];
+    var api = ["wilayah", "zoning", "iumk"];
 
     for (var i = 0; i < api.length; i++) {
         const dt = api[i];
@@ -1243,6 +1235,21 @@ function addLayers() {
         paint: {
             "fill-color": ["get", "fill"],
             "fill-opacity": 1,
+        },
+        layout: {
+            visibility: "visible",
+        },
+    });
+    map.addLayer({
+        id: "iumk_fill",
+        type: "circle",
+        source: "iumk",
+        paint: {
+            "circle-color": "#4264fb",
+            "circle-stroke-color": "#ffff00",
+            "circle-stroke-width": 1,
+            "circle-radius": 4,
+            "circle-opacity": 0.8,
         },
         layout: {
             visibility: "visible",

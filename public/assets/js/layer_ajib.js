@@ -408,8 +408,8 @@ map.on("style.load", function () {
         type: "circle",
         source: "survey",
         paint: {
-            "circle-color": "#4264fb",
-            "circle-stroke-color": "#ffff00",
+            "circle-color": "red",
+            "circle-stroke-color": "#ffffff",
             "circle-stroke-width": 2,
             "circle-radius": 4,
             "circle-opacity": 0.8,
