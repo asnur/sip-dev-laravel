@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Survey;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
@@ -19,7 +20,7 @@ class SurveyController extends Controller
             'features' => []
         ];
 
-        $data = Survey::all();
+        $data = Survey::where('id_user', Auth::user()->id)->get();
 
         foreach ($data as $d) {
             $coor = explode(",", $d->kordinat);
