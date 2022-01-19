@@ -124,11 +124,11 @@ function locateUser(e) {
             let kelurahan = e.features[0].properties.Kelurahan;
             if (current_kelurahan !== kelurahan) {
                 addSourceLayer(kelurahan);
+                localStorage.setItem("kelurahan", kelurahan);
             }
             if (map.getLayer("survey_ajib") !== undefined) {
                 map.moveLayer("zoning_fill", "survey_ajib");
             }
-            localStorage.setItem("kelurahan", kelurahan);
         },
     });
 
@@ -1362,9 +1362,12 @@ $(document).on("click", ".wilayah-select", function () {
     const kel = $(this).data("wilayah");
     const text = $(this).text();
     $("#cari_wilayah_mobile").val(text);
+    // $(".mapboxgl-ctrl-geolocate").click();
+    geolocate.trigger();
 
     geocoder.query(coor);
     addSourceLayer(kel);
+    localStorage.setItem("kelurahan", kel);
     if (map.getLayer("survey_ajib") !== undefined) {
         map.moveLayer("zoning_fill", "survey_ajib");
     }
