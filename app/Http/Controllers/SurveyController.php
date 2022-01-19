@@ -63,16 +63,16 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // dd($request->id);
 
         $id_user = auth()->user()->id;
 
         $validateFile = "";
         if ($request->id !== null) {
-            $validateFile = 'file|image|mimes:jpeg,png,jpg|max:10240';
+            $validateFile = 'file|image|mimes:jpeg,png,jpg';
         } else {
-            $validateFile = 'required|file|image|mimes:jpeg,png,jpg|max:10240';
+            $validateFile = 'required|file|image|mimes:jpeg,png,jpg';
         }
 
         $this->validate($request, [
