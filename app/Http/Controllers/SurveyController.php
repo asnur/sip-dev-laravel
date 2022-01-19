@@ -63,7 +63,7 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         // dd($request->id);
 
         $id_user = auth()->user()->id;
