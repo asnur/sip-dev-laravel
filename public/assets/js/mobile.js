@@ -1252,7 +1252,7 @@ function addLayers() {
             "circle-opacity": 0.8,
         },
         layout: {
-            visibility: "visible",
+            visibility: "none",
         },
     });
 
