@@ -542,7 +542,7 @@
                 </div>
 
 
-                <div class="form-outline mb-xs-2 mb-4 md-4">
+                <div class="form-outline mb-xs-2 md-4">
                     {{-- <label for="catatan">Catatan</label> --}}
 
                     <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukan Catatan" name="catatan"
@@ -550,7 +550,43 @@
 
                 </div>
 
+                <div id="form_kbli" class="mt-3 mb-4">
 
+                    <div class="form-outline mb-xs-2 mb-4 md-4">
+
+                        <label>Kegiatan Ruang</label>
+
+                        <select class="form-control p-3 text_all" id="kegiatanRuang" style="z-index: 9999"></select>
+                    </div>
+
+                    <div class="skala_kodekbli form-outline mb-xs-2 mb-4 md-4">
+
+                        <label>Skala</label>
+                        <select class="form-control p-3" id="skala"></select>
+                    </div>
+
+                    <div class="skala_kodekbli form-outline mb-xs-2 mb-4 md-4">
+                        <label>Kegiatan Kewenangan</label>
+                        <select class="form-control p-3" id="kegiatanKewenangan"></select>
+                    </div>
+
+                    <div class="dtKBLI"></div>
+
+                    <div class="d-flex margin_chart_ekonomi_mobile">
+                        <canvas id="pie-chart-kbli" width="70" height="50"
+                            style="position:absolute;z-index: -999; display:none"></canvas>
+                    </div>
+
+                    <div class="d-flex margin_chartline_ekonomi_mobile">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
+                            <canvas id="bar-chart-grouped-kbli" width="90" height="80"
+                                style="display: none;position:absolute;"></canvas>
+                        </div>
+                    </div>
+
+
+
+                </div>
                 <div class="row">
                     <div class="col-6">
                         <button type="submit" name="submit"
@@ -571,55 +607,6 @@
                 </form>
             </div>
             {{-- <h1>Test</h1> --}}
-            <div id="form_kbli">
-
-                <div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
-
-                    <div class="d-flex ml-5 margin_cari_kodelbli_mobile">
-                        <div class="col-md-12 text_all">
-                            <label class="text_all_mobile_kbli">Kegiatan Ruang</label>
-                            <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                <select class="form-control text_all" id="kegiatanRuang"
-                                    style="z-index: 9999"></select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
-                        <div class="col-md-12 text_all">
-                            <label class="text_all_mobile_kbli">Skala</label>
-                            <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                <select class="form-control" id="skala"></select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex ml-5 skala_kodekbli margin_cari_kodelbli_mobile">
-                        <div class="col-md-12 text_all">
-                            <label class="text_all_mobile_kbli">Kegiatan Kewenangan</label>
-                            <div class="form-group input-group-sm cari_kodekbli_option_mobile">
-                                <select class="form-control" id="kegiatanKewenangan"></select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dtKBLI"></div>
-
-                    <div class="d-flex margin_chart_ekonomi_mobile">
-                        <canvas id="pie-chart-kbli" width="70" height="50"
-                            style="position:absolute;z-index: -999; display:none"></canvas>
-                    </div>
-
-                    <div class="d-flex margin_chartline_ekonomi_mobile">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
-                            <canvas id="bar-chart-grouped-kbli" width="90" height="80"
-                                style="display: none;position:absolute;"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
     </div>
 
 

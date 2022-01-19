@@ -45,7 +45,9 @@ $(document).on("input change", "#ControlTahunBanjir", function () {
     $("#tahunBanjir").html(tahun);
 });
 
-$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2({
+    theme: "bootstrap4",
+});
 
 function titleCase(str) {
     str = str.toLowerCase().split(" ");
@@ -1362,8 +1364,8 @@ $(document).on("click", ".wilayah-select", function () {
     const kel = $(this).data("wilayah");
     const text = $(this).text();
     $("#cari_wilayah_mobile").val(text);
-    // $(".mapboxgl-ctrl-geolocate").click();
-    geolocate.trigger();
+    // $(".mapboxgl-ctrl-geolocate").prop("aria-pressed", false).click();
+    // geolocate.trigger();
 
     geocoder.query(coor);
     addSourceLayer(kel);
