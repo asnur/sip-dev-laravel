@@ -155,7 +155,7 @@ $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
 
-$(".container.container_menu.for_mobile").hide();
+// $(".container.container_menu.for_mobile").hide();
 // $(".menuuu").hide();
 
 // new1
