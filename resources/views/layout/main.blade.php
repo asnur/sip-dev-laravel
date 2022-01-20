@@ -491,8 +491,7 @@
         <main role="main" class="container-fluid py-2">
             <div class="row">
                 <div class="col-6 pt-1">
-                    <a id="chooseOnMap" class="btn btn-sm" style="background: skyblue; color:white"><i
-                            class="fa fa-map"></i> Pilih Lewat Peta</a>
+                    <a id="chooseOnMap" class="btn btn-sm border rounded-pill">Pilih Lewat Peta</a>
                 </div>
                 <div class="col-6">
                     <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
@@ -876,8 +875,8 @@
                     @role('surveyer')
 
                         <div id="btn_tutupmenu">
-                            <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button"
-                                aria-expanded="false" aria-controls="collapseExample">
+                            <button id="btn-pin" class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample"
+                                role="button" aria-expanded="false" aria-controls="collapseExample">
                                 <div class="container">
                                     <div class="row">
                                         <i id="hlm_form_ajib" class="ri-pushpin-line bg-white text-secondary"
@@ -1199,7 +1198,9 @@
             // // }
             $(window).on('load', () => {
                 if ($("#zoning_fill").prop("checked") == true) {
-                    $("#hlm_form_kbli").css('background', 'orange')
+                    $("#hlm_form_kbli").css('background', '#636e72')
+                    $("#hlm_form_kbli").removeClass('text-secondary')
+                    $("#hlm_form_kbli").css('color', 'white')
                 } else {
                     $("#hlm_form_kbli").css('background', 'white')
                 }
@@ -1211,9 +1212,12 @@
             });
             $("#zoning_fill").on("change", () => {
                 if ($("#zoning_fill").prop("checked") == true) {
-                    $("#hlm_form_kbli").css('background', 'orange')
+                    $("#hlm_form_kbli").css('background', '#636e72')
+                    $("#hlm_form_kbli").removeClass('text-secondary')
+                    $("#hlm_form_kbli").css('color', 'white')
                 } else {
                     $("#hlm_form_kbli").css('background', 'white')
+                    $("#hlm_form_kbli").addClass('text-secondary')
                 }
             });
 
@@ -1223,14 +1227,20 @@
 
             $("#izin_peta").on("change", () => {
                 if ($("#izin_peta").prop("checked") == true) {
-                    $("#chooseOnMap").css('background', 'orange')
+                    $("#chooseOnMap").css('background', '#636e72')
+                    $("#chooseOnMap").css('color', 'white')
                 } else {
-                    $("#chooseOnMap").css('background', 'skyblue')
+                    $("#chooseOnMap").css('background', 'none')
+                    $("#chooseOnMap").css('color', 'black')
                 }
             });
 
             $("#hlm_form_ajib").click(function() {
                 $('#form_ajib').show();
+                $(this).removeClass('bg-white')
+                $(this).removeClass('text-secondary')
+                $(this).css('background', '#636e72')
+                $(this).css('color', 'white')
             });
 
 

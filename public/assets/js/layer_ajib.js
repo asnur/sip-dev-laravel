@@ -599,6 +599,8 @@ $("#closeForm").click(() => {
     $("#image").prop("required", true);
     $("#previewImage").hide();
     $("#form_ajib").hide();
+    $("#hlm_form_ajib").css("background", "white");
+    $("#hlm_form_ajib").addClass("text-secondary");
 });
 
 const priviewImage = (input) => {
