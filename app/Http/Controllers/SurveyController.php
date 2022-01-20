@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Survey;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class SurveyController extends Controller
 {
@@ -88,9 +89,11 @@ class SurveyController extends Controller
 
         if ($request->hasFile('image')) {
             $fileName = "$request->judul" . "_" . time() . "_" . $getimage->getClientOriginalName();
-
+            $img = Image::make($getimage->getRealPath());
             $path = 'img/';
-            $getimage->move($path, $fileName);
+            $img->resize(400, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($path . '/' . $fileName);
         }
 
         if ($request->id !== null) {

@@ -65,6 +65,11 @@ const dragMaps = (condition) => {
             markerAjib.setLngLat(map.getCenter());
             const lngLat = markerAjib.getLngLat();
             findKelurahan(lngLat.lng, lngLat.lat);
+            $("#preview-cord").text(
+                `${lngLat.lat.toString().slice(0, 9)}, ${lngLat.lng
+                    .toString()
+                    .slice(0, 9)}`
+            );
             $("#kordinatPinSurvey").val(`${lngLat.lat},${lngLat.lng}`);
         });
         // markerAjib.setLngLat([coorAjib.lng, coorAjib.lat]).addTo(map);

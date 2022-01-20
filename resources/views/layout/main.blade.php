@@ -491,7 +491,9 @@
         <main role="main" class="container-fluid py-2">
             <div class="row">
                 <div class="col-6 pt-1">
-                    <a id="chooseOnMap" class="btn btn-sm border rounded-pill">Pilih Lewat Peta</a>
+                    <a id="chooseOnMap" class="btn btn-sm border rounded-pill">Pilih lewat peta</a>
+                    <div class="mb-2"></div>
+                    <span id="preview-cord" class="text-primary ml-2 text_all">-</span>
                 </div>
                 <div class="col-6">
                     <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
@@ -514,7 +516,7 @@
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label class="form-label text-muted" for="judul">Judul</label> --}}
                     <input required type="text" id="judulPinSurvey" name="judul" class="form-control"
-                        placeholder="Masukan Nama Tempat" required="required" />
+                        placeholder="Masukkan nama tempat" required="required" autocomplete="off" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
@@ -535,7 +537,7 @@
 
                 <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-4 md-4">
                     <div class="input-group custom-file-button">
-                        <label class="input-group-text" for="image">Upload Gambar</label>
+                        <label class="input-group-text" for="image">Upload gambar</label>
                         <input type="file" class="form-control" id="image" name="image" required="required">
                     </div>
                     <img src="" class="mt-3" id="previewImage" style="width: 100%; height:200px;">
@@ -545,8 +547,8 @@
                 <div class="form-outline mb-xs-2 md-4">
                     {{-- <label for="catatan">Catatan</label> --}}
 
-                    <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukan Catatan" name="catatan"
-                        rows="3" required="required"></textarea>
+                    <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukkan catatan"
+                        name="catatan" rows="3" required="required"></textarea>
 
                 </div>
 
@@ -686,7 +688,7 @@
                                     </span>
 
                                     <input type="search" class="input tombol_search" id="cari_wilayah_mobile"
-                                        placeholder="Cari kelurahan disini..." autocomplete="off">
+                                        placeholder="Masukkan alamat di sini..." autocomplete="off">
 
                                     @if (!\Auth::check())
                                         <a href="{{ route('login-google') }}">

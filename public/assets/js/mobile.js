@@ -93,6 +93,9 @@ geolocate.on("geolocate", locateUser);
 
 function locateUser(e) {
     let current_kelurahan = localStorage.getItem("kelurahan");
+    let lat = e.coords.latitude.toString();
+    let lng = e.coords.longitude.toString();
+    $("#preview-cord").text(`${lat.slice(0, 9)}, ${lng.slice(0, 9)}`);
     $.ajax({
         url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
         method: "GET",
