@@ -13,6 +13,11 @@
 
     <link rel="icon" href="{{ asset('assets/gambar/favicon.ico') }}">
 
+
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
 
@@ -27,15 +32,11 @@
     <!-- MAPBOX -->
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css"
-        type="text/css">
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
-        type="text/css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css" type="text/css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -43,7 +44,7 @@
 
     @if (isMobileDevice())
 
-        <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mobile.css') }}">
 
     @endif
 
@@ -70,8 +71,7 @@
     <div id="profil">
 
         <div class="card">
-            <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
-                style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+            <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
                 {{-- <div class="d-flex">
 
@@ -311,8 +311,7 @@
 
     <div id="ekonomi">
 
-        <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
-            style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+        <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
             {{-- <div class="d-flex">
                 <div class="col-md-1">
@@ -435,8 +434,7 @@
 
     <div id="akses">
 
-        <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
-            style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+        <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
 
             {{-- <div class="d-flex">
                 <div class="col-md-1">
@@ -475,8 +473,7 @@
                 <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
                 <label class="font-weight-bold font_range_input" id="OutputControlRange">0 Km</label>
 
-                <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange" min="500"
-                    max="3000" step="500" value="1000">
+                <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange" min="500" max="3000" step="500" value="1000">
             </div>
             <br>
 
@@ -490,8 +487,7 @@
         <main role="main" class="container-fluid py-2">
             <div class="row">
                 <div class="col-6 pt-1">
-                    <a id="chooseOnMap" class="btn btn-sm" style="background: skyblue; color:white"><i
-                            class="fa fa-map"></i> Pilih Lewat Peta</a>
+                    <a id="chooseOnMap" class="btn btn-sm" style="background: skyblue; color:white"><i class="fa fa-map"></i> Pilih Lewat Peta</a>
                 </div>
                 <div class="col-6">
                     <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
@@ -505,16 +501,13 @@
 
                 <div class="form-outline mb-xs-2 mb-3 md-4">
                     {{-- <label class="form-label text-muted" for="koordinat">Koordinat</label> --}}
-                    <input required type="hidden" id="kordinatPinSurvey" placeholder="Pilih Titik Lokasi"
-                        name="koordinat" class="form-control" />
-                    <input required type="hidden" id="idPinSurvey" placeholder="Pilih Titik Lokasi" name="id"
-                        class="form-control" />
+                    <input required type="hidden" id="kordinatPinSurvey" placeholder="Pilih Titik Lokasi" name="koordinat" class="form-control" />
+                    <input required type="hidden" id="idPinSurvey" placeholder="Pilih Titik Lokasi" name="id" class="form-control" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
                     {{-- <label class="form-label text-muted" for="judul">Judul</label> --}}
-                    <input required type="text" id="judulPinSurvey" name="judul" class="form-control"
-                        placeholder="Masukan Nama Tempat" required="required" />
+                    <input required type="text" id="judulPinSurvey" name="judul" class="form-control" placeholder="Masukan Nama Tempat" required="required" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
@@ -542,13 +535,919 @@
                 </div>
 
 
-                <div class="form-outline mb-xs-2 md-4">
+                <div class="form-outline mb-2 mb-xs-2 md-4">
                     {{-- <label for="catatan">Catatan</label> --}}
 
-                    <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukan Catatan" name="catatan"
-                        rows="3" required="required"></textarea>
+                    <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukan Catatan" name="catatan" rows="3" required="required"></textarea>
 
                 </div>
+
+
+                <div class="slick-form-data">
+
+                    {{-- identitas --}}
+                    <div class="identitas1">
+
+                        <div class="form-group">
+                        <label><small>Apakah sudah memiliki NIB?</small></label>
+                        <select
+                            class="form-control form-control-sm"
+                            name="kategori_nib"
+                            id="kategori_nib"
+                            required="required"
+                        >
+                            <option value="">- Pilih -</option>
+                            <option value="">Option 1</option>
+                            <option value="">Option 1</option>
+                        </select>
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Nomor Izin Berusaha (NIB)</small></label>
+                        <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            name="nib"
+                            id="nib"
+                            placeholder="Masukan Nomor Izin Berusaha"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Apakah sudah memiliki IUMK?</small></label>
+                        <select
+                            class="form-control form-control-sm"
+                            name="kategori_iumk"
+                            id="kategori_iumk"
+                            required="required"
+                        >
+                            <option value="">- Pilih -</option>
+                            <option value="">Option 1</option>
+                            <option value="">Option 1</option>
+                        </select>
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Jenis Pelaku Usaha</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="jepe_usaha"
+                            id="jepe_usaha"
+                            placeholder="Masukan Jenis Pelaku Usaha"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>NIK</small></label>
+                        <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            name="nik"
+                            id="nik"
+                            placeholder="Masukan NIK Anda"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Nama Lengkap</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="nama_lengkap"
+                            id="nama_lengkap"
+                            placeholder="Masukan Nama Lengkap"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Jenis Kelamin</small></label>
+                        <select
+                            class="form-control form-control-sm"
+                            name="jenis_kelamin"
+                            id="jenis_kelamin"
+                            required="required"
+                        >
+                            <option value="">- Pilih -</option>
+                            <option value="Pria">Pria</option>
+                            <option value="Wanita">Wanita</option>
+                        </select>
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Tempat Lahir</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="tempat_lahir"
+                            id="tempat_lahir"
+                            placeholder="Masukan Tempat Lahir"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Tanggal Lahir</small></label>
+                        <input
+                            type="date"
+                            class="form-control form-control-sm"
+                            name="tgl_lahir"
+                            id="tgl_lahir"
+                            placeholder="Masukan Nama Lengkap"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Alamat</small></label>
+                        <textarea
+                            class="form-control"
+                            rows="2"
+                            name="alamat"
+                            id="alamat"
+                            placeholder="Masukan Alamat"
+                            required="required"
+                        ></textarea>
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+                    </div>
+
+                    {{-- identitas2 --}}
+                    <div class="identitas2">
+                        <div class="form-group">
+                        <label><small>Kelurahan/Desa</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="kel_desa"
+                            id="kel_desa"
+                            placeholder="Masukan Nama Kelurahan"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Kecamatan</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="kecamatan"
+                            id="kecamatan"
+                            placeholder="Masukan Nama Kecamatan"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Kabupaten/Kota</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="kab_kota"
+                            id="kab_kota"
+                            placeholder="Masukan Nama Kabupaten/Kota"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Provinsi</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="prov"
+                            id="prov"
+                            placeholder="Masukan Nama Provinsi"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Kode Pos</small></label>
+                        <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            name="kode_pos"
+                            id="kode_pos"
+                            placeholder="Masukan Kode Pos"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Alamat Email</small></label>
+                        <input
+                            type="email"
+                            class="form-control form-control-sm"
+                            name="email"
+                            id="email"
+                            placeholder="Masukan Alamat Email"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Nomor Telepon Seluler</small></label>
+                        <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            name="no_telepon"
+                            id="no_telepon"
+                            placeholder="Masukan Nama Nomor Telepo Seluler"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>NPWP Pribadi</small></label>
+                        <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            name="npwp"
+                            id="npwp"
+                            placeholder="Masukan NPWP Pribadi"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Nomor BPJS Ketenagakerjaan</small></label>
+                        <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            name="bpjs_ketenagakerjaan"
+                            id="bpjs_ketenagakerjaan"
+                            placeholder="Masukan Nomor BPJS Ketenagakerjaan"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+
+                        <div class="form-group">
+                        <label><small>Nomor BPJS Kesehatan</small></label>
+                        <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            name="bpjs_kesehatan"
+                            id="bpjs_kesehatan"
+                            placeholder="Masukan Nomor BPJS Kesehatan"
+                            required="required"
+                        />
+                        <div class="invalid-feedback">Periksa kembali inputan.</div>
+                        </div>
+                    </div>
+
+                    {{-- kegiatan_usaha --}}
+                    <div class="kegiatan_usaha">
+
+                         <div class="form-group">
+                            <label><small>Jenis Kegiatan Usaha</small></label>
+                            <select
+                                class="form-control form-control-sm"
+                                name="jeke_usaha"
+                                id="jeke_usaha"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 1</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kegiatan Ruang</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="kegiatan_ruang"
+                                id="kegiatan_ruang"
+                                placeholder="Masukan Kegiatan Ruang"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Skala Modal/Omset</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="omset"
+                                id="omset"
+                                placeholder="Masukan Skala Modal/Omset"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kegiatan Kewenangan</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="keg_kewenangan"
+                                id="keg_kewenangan"
+                                placeholder="Masukan Kegiatan Kewenangan"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kode KBLI</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="kode_kbli"
+                                id="kode_kbli"
+                                placeholder="Masukan Kode KBLI"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kegiatan</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="kegiatan"
+                                id="kegiatan"
+                                placeholder="Masukan Kegiatan"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Risiko</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="resiko"
+                                id="resiko"
+                                placeholder="Masukan Risiko"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>ITBX</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="itbx"
+                                id="itbx"
+                                placeholder="Masukan ITBX"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                    </div>
+
+                    {{-- identitas_usaha1 --}}
+                    <div class="identitas_usaha1">
+
+                        <div class="form-group">
+                            <label><small>NPWP Usaha</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="npwp_usaha"
+                                id="npwp_usaha"
+                                placeholder="Masukan NPWP Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Nama Usaha/Kegiatan</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="nama_usahakegiatan"
+                                id="nama_usahakegiatan"
+                                placeholder="Masukan Nama Usaha/Kegiatan"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah Kegiatan Usaha ini berada di lokasi yang sama
+                                dengan kegiatan usaha sebelumnya?</small
+                                ></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="kegiatan_lokasiusaha"
+                                id="kegiatan_lokasiusaha"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 1</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Lokasi Kegiatan Usaha</small></label>
+                            <select
+                                class="form-control form-control-sm"
+                                name="lokasi_kegiatanusaha"
+                                id="lokasi_kegiatanusaha"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 1</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Luas Lahan Usaha</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="luas_lahanusaha"
+                                id="luas_lahanusaha"
+                                placeholder="Masukan Jenis Pelaku Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Alamat Usaha</small></label>
+                            <textarea
+                                class="form-control"
+                                rows="2"
+                                name="alamat_usaha"
+                                id="alamat_usaha"
+                                placeholder="Masukan Alamat"
+                                required="required"
+                            ></textarea>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kelurahan Usaha</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="kel_usaha"
+                                id="kel_usaha"
+                                placeholder="Masukan Nama Kelurahan Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kecamatan Usaha</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="kec_usaha"
+                                id="kec_usaha"
+                                placeholder="Masukan Nama Kecamatan Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kabupaten/Kota Usaha</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="kabkota_usaha"
+                                id="kabkota_usaha"
+                                placeholder="Masukan Kabupaten/Kota Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kode Pos Usaha</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="kodepos_usaha"
+                                id="kodepos_usaha"
+                                placeholder="Masukan Nama Kode Pos Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah kegiatan usaha ini sudah berjalan?</small
+                                ></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="kegiatan_usahaberjalan"
+                                id="kegiatan_usahaberjalan"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                    </div>
+
+                    {{-- identitas_usaha2 --}}
+                    <div class="identitas_usaha2">
+
+                                                    <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah Anda akan melakukan pembangunan gedung?</small
+                                ></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="kategori_pembangunangedung"
+                                id="kategori_pembangunangedung"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small>Sudah berapa lama usaha berjalan?</small></label
+                            >
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="lama_usahaberjalan"
+                                id="lama_usahaberjalan"
+                                placeholder="Masukan Nama "
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Modal Usaha</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="modal_usaha"
+                                id="modal_usaha"
+                                placeholder="Masukan Nama Modal Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Omset Usaha</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="omset_usaha"
+                                id="omset_usaha"
+                                placeholder="Masukan Nama Omset Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah sudah memiliki perizinan berusaha yang
+                                sebelumnya?</small
+                                ></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="perizinan_before_usaha"
+                                id="perizinan_before_usaha"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small
+                                >Jangka waktu perkiraan beroperasi/produksi
+                                </small></label
+                            >
+                            <input
+                                type="date"
+                                class="form-control form-control-sm"
+                                name="jangka_operasi"
+                                id="jangka_operasi"
+                                placeholder="Masukan Nama Nomor Telepo Seluler"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Deskripsi Kegiatan Usaha</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="des_kegiatanusaha"
+                                id="des_kegiatanusaha"
+                                placeholder="Masukan Nama Deskripsi Kegiatan Usaha"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Jumlah Tenaga Kerja Indonesia</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="jumlah_tenagakerja"
+                                id="jumlah_tenagakerja"
+                                placeholder="Masukan Jumlah Tenaga Kerja Indonesia"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Jenis Produk/Jasa</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="jenis_produk"
+                                id="jenis_produk"
+                                placeholder="Masukan Nama Jenis Produk/Jasa"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Kapasitas (per tahun)</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="kapasitas_usaha"
+                                id="kapasitas_usaha"
+                                placeholder="Masukan Kapasitas (per tahun)"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Satuan Kapasitas</small></label>
+                            <select
+                                class="form-control form-control-sm"
+                                name="satuan_kapasitas_usaha"
+                                id="satuan_kapasitas_usaha"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                    </div>
+
+                    {{-- informasi_lainnya --}}
+                    <div class="informasi_lainnya">
+
+                        <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah Anda sudah memiliki Sertifikat SNI?</small
+                                ></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="kategori_sertifikat_sni"
+                                id="kategori_sertifikat_sni"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Nomor Sertifikat SNI</small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="nomor_sni"
+                                id="nomor_sni"
+                                placeholder="Masukan Nomor Sertifikat SNI"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Skala Modal/Omset</small></label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="omset"
+                                id="omset"
+                                placeholder="Masukan Skala Modal/Omset"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Masa mulai berlaku SNI</small></label>
+                            <input
+                                type="date"
+                                class="form-control form-control-sm"
+                                name="mulai_berlaku_sni"
+                                id="mulai_berlaku_sni"
+                                placeholder="Masukan Masa mulai berlaku SNI"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Masa akhir berlaku SNI</small></label>
+                            <input
+                                type="date"
+                                class="form-control form-control-sm"
+                                name="akhir_berlaku_sni"
+                                id="akhir_berlaku_sni"
+                                placeholder="Masukan Masa akhir berlaku SNI"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah Anda sudah memiliki Sertifikat Halal?</small
+                                ></label
+                            >
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                name="kategori_sertifikat_halal"
+                                id="kategori_sertifikat_halal"
+                                placeholder="Masukan Sertifikat"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Nomor Sertifikat Halal </small></label>
+                            <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                name="nomor_sertifikat_halal"
+                                id="nomor_sertifikat_halal"
+                                placeholder="Masukan Nomor Sertifikat Halal "
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Tanggal Terbit Sertifikat Halal</small></label>
+                            <input
+                                type="date"
+                                class="form-control form-control-sm"
+                                name="tglterbit_sertifikat"
+                                id="tglterbit_sertifikat"
+                                placeholder="Masukan Tanggal Terbit Sertifikat"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small>Tanggal Berakhir Sertifikat Halal</small></label
+                            >
+                            <input
+                                type="date"
+                                class="form-control form-control-sm"
+                                name="tglberakhir_sertifikat"
+                                id="tglberakhir_sertifikat"
+                                placeholder="Masukan Tanggal Berakhir Sertifikat"
+                                required="required"
+                            />
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small
+                                >Apakah sudah memiliki persetujuan lingkungan?</small
+                                ></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="persetujuan_lingkungan"
+                                id="persetujuan_lingkungan"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label
+                                ><small>Jenis dokumen Persetujuan Lingkungan</small></label
+                            >
+                            <select
+                                class="form-control form-control-sm"
+                                name="jenis_persetujuan_lingkungan"
+                                id="jenis_persetujuan_lingkungan"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 1</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                            <div class="form-group">
+                            <label><small>Apakah ingin melanjutkan ke IMB?</small></label>
+                            <select
+                                class="form-control form-control-sm"
+                                name="imb"
+                                id="imb"
+                                required="required"
+                            >
+                                <option value="">- Pilih -</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 1</option>
+                            </select>
+                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                            </div>
+
+                    </div>
+                </div>
+
+
 
                 <div id="form_kbli" class="mt-3 mb-4">
 
@@ -573,14 +1472,12 @@
                     <div class="dtKBLI"></div>
 
                     <div class="d-flex margin_chart_ekonomi_mobile">
-                        <canvas id="pie-chart-kbli" width="70" height="50"
-                            style="position:absolute;z-index: -999; display:none"></canvas>
+                        <canvas id="pie-chart-kbli" width="70" height="50" style="position:absolute;z-index: -999; display:none"></canvas>
                     </div>
 
                     <div class="d-flex margin_chartline_ekonomi_mobile">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
-                            <canvas id="bar-chart-grouped-kbli" width="90" height="80"
-                                style="display: none;position:absolute;"></canvas>
+                            <canvas id="bar-chart-grouped-kbli" width="90" height="80" style="display: none;position:absolute;"></canvas>
                         </div>
                     </div>
 
@@ -589,8 +1486,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button type="submit" name="submit"
-                            class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                        <button type="submit" name="submit" class="btn btn_ajib1 btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
                             <strong id="storeText">Simpan</strong>
                         </button>
                     </div>
@@ -600,8 +1496,7 @@
                     @csrf
                     @method('DELETE')
                     <input type="hidden" id="deleteSurveyPin" name="id">
-                    <button
-                        class="btn btn_ajib2 btn-danger btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
+                    <button class="btn btn_ajib2 btn-danger btn-block mb-xs-2 mt-3 mb-md-4 col mb-3 text-light rounded">
                         <strong>Hapus</strong>
                     </button>
                 </form>
@@ -644,40 +1539,29 @@
 
                                     <span class="menu">
 
-                                        <button style="display: none;"
-                                            class="btn btn-lg tombol_search border-0 borderdropdown-toggle"
-                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
+                                        <button style="display: none;" class="btn btn-lg tombol_search border-0 borderdropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-bars fa-lg"></i>
                                         </button>
 
                                         <!-- silent dropdown -->
-                                        <div class="dropdown-menu w_checkbox_dropdown_mobile"
-                                            aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu w_checkbox_dropdown_mobile" aria-labelledby="dropdownMenuButton">
 
-                                            <img src="./assets/gambar/logo_jakpintas.png" width="60px"
-                                                class="ml-4 img-fluid" alt="Responsive image">
+                                            <img src="./assets/gambar/logo_jakpintas.png" width="60px" class="ml-4 img-fluid" alt="Responsive image">
 
 
                                             <div class="layout_checkbox_mobile">
 
                                                 <div class="form-check pipa_multilinestring mt-1">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="pipa_multilinestring">
-                                                    <label class="form-check-label  text_all"
-                                                        for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                                                    <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
+                                                    <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
                                                 </div>
 
                                                 <div class="form-check banjir_fill mt-1">
 
                                                     <input type="checkbox" class="form-check-input" id="banjir_fill">
-                                                    <label class="form-check-label text_all"
-                                                        for="banjir_fill">Terdampak
-                                                        Banjir <span class="font_range_input"
-                                                            id="tahunBanjir">2015</span></label>
-                                                    <input type="range" style="height: 6px;"
-                                                        class="form-control-range mt-3 w-75" id="ControlTahunBanjir"
-                                                        min="2015" max="2020" step="1" value="2015">
+                                                    <label class="form-check-label text_all" for="banjir_fill">Terdampak
+                                                        Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
+                                                    <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75" id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
                                                 </div>
 
 
@@ -685,42 +1569,35 @@
                                         </div>
                                     </span>
 
-                                    <input type="search" class="input tombol_search" id="cari_wilayah_mobile"
-                                        placeholder="Cari kelurahan disini..." autocomplete="off">
+                                    <input type="search" class="input tombol_search" id="cari_wilayah_mobile" placeholder="Cari kelurahan disini..." autocomplete="off">
 
                                     @if (!\Auth::check())
-                                        <a href="{{ route('login-google') }}">
-                                            <span class="btn-search">
-                                                <i class="ri-user-fill"></i>
-                                            </span>
-                                        </a>
+                                    <a href="{{ route('login-google') }}">
+                                        <span class="btn-search">
+                                            <i class="ri-user-fill"></i>
+                                        </span>
+                                    </a>
                                     @else
-                                        <div class="new_login">
-                                            <div class="dropdown">
+                                    <div class="new_login">
+                                        <div class="dropdown">
 
-                                                {{-- <img src="/profile/{{ Auth::user()->id }}.jpg" style="border-radius: 50%; width:36px; height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> --}}
-
-
-                                                <img src="{{ url('profile/' . Auth::user()->id) }}.jpg"
-                                                    style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{-- <img src="/profile/{{ Auth::user()->id }}.jpg" style="border-radius: 50%; width:36px; height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> --}}
 
 
-                                                <div class="dropdown-menu dropdown-menu-right mt-1 p-1"
-                                                    aria-labelledby="btnLogout"
-                                                    style="min-width: 73px; position: absolute; margin-left:-30px;">
-                                                    <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();"
-                                                        style="font-size: 12px"><i class="fa fa-sign-out"></i>
-                                                        Logout</a>
-                                                    <form id="logout-form" action="{{ route('logout') }}"
-                                                        method="POST" class="d-none">
-                                                        @csrf
-                                                    </form>
-                                                </div>
+                                            <img src="{{ url('profile/' . Auth::user()->id) }}.jpg" style="border-radius: 50%; width:36px;  height:36px;" id="btnLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
+
+                                            <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout" style="min-width: 73px; position: absolute; margin-left:-30px;">
+                                                <a class="dropdown-item p-0 text-center" href="#" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();" style="font-size: 12px"><i class="fa fa-sign-out"></i>
+                                                    Logout</a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
                                             </div>
+
                                         </div>
+                                    </div>
                                     @endif
 
                                     <div class="wm-search__dropdown">
@@ -746,12 +1623,10 @@
 
                 <div id="popup" class="for_mobile">
 
-                    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
-                        style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
+                    <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top" style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
                         <div class="d-flex">
                             <div class="col-md-1">
-                                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close"
-                                    data-dismiss="modal" aria-hidden="true">
+                                <a type="button" class="badge badge-primary margin_new_menu_icon" id="close" data-dismiss="modal" aria-hidden="true">
                                     <span class="material-icons size_icons">
                                         arrow_back_ios
                                     </span>
@@ -773,16 +1648,11 @@
 
                         <div class="d-flex justify-content-center">
 
-                            <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50"
-                                height="50" viewBox="0 0 172 172" style=" fill:#000000;">
-                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
-                                    stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
-                                    text-anchor="none" style="mix-blend-mode: normal">
+                            <svg style="margin-top:-15px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 172 172" style=" fill:#000000;">
+                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                                     <path d="M0,172v-172h172v172z" fill="none"></path>
                                     <g fill="#cccccc">
-                                        <path
-                                            d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                                        <path d="M21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
                                         </path>
                                     </g>
                                 </g>
@@ -797,18 +1667,14 @@
 
                                     <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
 
-                                        <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                            id="hlm_profil" href="" role="tab" aria-controls="pills-lokasi"
-                                            aria-selected="true"><i class="fa fa-map-marker"></i></a>
+                                        <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_profil" href="" role="tab" aria-controls="pills-lokasi" aria-selected="true"><i class="fa fa-map-marker"></i></a>
 
                                         <br>
                                         <label class="size_menu size_menu_mobile">Profil</label>
                                     </li>
 
                                     <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                        <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                            id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi"
-                                            aria-selected="false"><i class="ri-funds-box-fill"></i></a>
+                                        <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_ekonomi" href="" role="tab" aria-controls="pills-ekonomi" aria-selected="false"><i class="ri-funds-box-fill"></i></a>
                                         <br>
                                         <label class="size_menu size_menu_mobile">Ekonomi</label>
                                     </li>
@@ -832,9 +1698,7 @@
                                 </li> --}}
 
                                     <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                        <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                            id="hlm_poi" href="" role="tab" aria-controls="pills-poi"
-                                            aria-selected="false"><i class="fa fa-crosshairs"></i></a>
+                                        <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="hlm_poi" href="" role="tab" aria-controls="pills-poi" aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                         <br>
                                         <label class="size_menu size_menu_mobile">Akses</label>
                                     </li>
@@ -914,17 +1778,17 @@
 
             </div>
             @role('surveyer')
-                <div class="d-flex align-content-stretch mt-3 flex-wrap justify-content-center" id="btnDrag">
+            <div class="d-flex align-content-stretch mt-3 flex-wrap justify-content-center" id="btnDrag">
 
-                    <div class="form-check text-center">
-                        <h6>Pin Lokasi</h6>
-                        <div class="checkbox checkbox-primary checkbox-circle" style="margin-top: -10px;">
-                            <input type="checkbox" class="mb-1" id="izin_peta">
-                            <label for="izin_peta"></label>
-                        </div>
+                <div class="form-check text-center">
+                    <h6>Pin Lokasi</h6>
+                    <div class="checkbox checkbox-primary checkbox-circle" style="margin-top: -10px;">
+                        <input type="checkbox" class="mb-1" id="izin_peta">
+                        <label for="izin_peta"></label>
                     </div>
-
                 </div>
+
+            </div>
             @endrole
 
         </div>
@@ -937,16 +1801,15 @@
         <button class="btn btn-sm for_web">
             <div class="container">
                 <div class="row">
-                    <i class="ri-user-fill bg-white p-1 text-secondary"
-                        style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
+                    <i class="ri-user-fill bg-white p-1 text-secondary" style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
                 </div>
             </div>
         </button>
 
         @if (Auth::check())
-            <div class="hide_hlm_kbli">
-                <div style="position:fixed; right:2%; top: 10rem" class="d-flex flex-column float-right">
-                    {{-- @role('surveyer')
+        <div class="hide_hlm_kbli">
+            <div style="position:fixed; right:2%; top: 10rem" class="d-flex flex-column float-right">
+                {{-- @role('surveyer')
 
                 <div id="btn_drag">
                     <button class="btn btn-sm mt-2">
@@ -960,35 +1823,32 @@
 
                 @endrole --}}
 
-                    <div>
-                        <button class="btn btn-sm mt-1">
-                            <div class="container">
-                                <div class="row">
-                                    <i id="hlm_form_kbli" class="ri-map-2-line text-secondary"
-                                        style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px; background:white;"></i>
-                                </div>
+                <div>
+                    <button class="btn btn-sm mt-1">
+                        <div class="container">
+                            <div class="row">
+                                <i id="hlm_form_kbli" class="ri-map-2-line text-secondary" style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px; background:white;"></i>
                             </div>
-                        </button>
-                    </div>
-
-                    @role('surveyer')
-
-                        <div id="btn_tutupmenu">
-                            <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                <div class="container">
-                                    <div class="row">
-                                        <i id="hlm_form_ajib" class="ri-pushpin-line bg-white text-secondary"
-                                            style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
-                                    </div>
-                                </div>
-                            </button>
                         </div>
-
-                    @endrole
-
+                    </button>
                 </div>
+
+                @role('surveyer')
+
+                <div id="btn_tutupmenu">
+                    <button class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="container">
+                            <div class="row">
+                                <i id="hlm_form_ajib" class="ri-pushpin-line bg-white text-secondary" style="border-radius: 50%; width:35px; height:35px; font-size:24px; padding: -6px"></i>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                @endrole
+
             </div>
+        </div>
         @endif
 
         <div class="d-none">
@@ -1004,7 +1864,7 @@
 
         @role('surveyer')
 
-            {{-- <div class="gambar_logos" style="margin-top:15%;">
+        {{-- <div class="gambar_logos" style="margin-top:15%;">
                 <img src="./assets/gambar/mobile/iconptsp.png" width="70px">
             </div>
 
@@ -1239,6 +2099,9 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- Slick JS -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
@@ -1252,135 +2115,153 @@
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
-        integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js" integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     @if (isMobileDevice())
 
-        <script>
-            document.getElementById("hlm_profil").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("profil").style.display = "block";
-                document.getElementById('btn_backprodil').onclick = function() {
-                    document.getElementById("profil").style.display = "none";
-                };
+    <script>
+        document.getElementById("hlm_profil").onclick = function(e) {
+            e.preventDefault();
+            document.getElementById("profil").style.display = "block";
+            document.getElementById('btn_backprodil').onclick = function() {
+                document.getElementById("profil").style.display = "none";
+            };
 
-                return false;
+            return false;
+        }
+
+        document.getElementById("hlm_ekonomi").onclick = function(e) {
+            e.preventDefault();
+            document.getElementById("ekonomi").style.display = "block";
+            document.getElementById('btn_backeko').onclick = function() {
+                document.getElementById("ekonomi").style.display = "none";
+            };
+
+            return false;
+        }
+
+        // document.getElementById("hlm_ekonomi").onclick = function(e) {
+        //     document.getElementById("form_ajib").style.display = "block";
+        //     document.getElementById("menuu").style.display = "none";
+
+        //     document.getElementById('hlm_ekonomi').onclick = function() {
+        //         document.getElementById("form_ajib").style.display = "none";
+        //         document.getElementById("menuu").style.display = "block";
+
+        //         return true;
+        //     };
+        // return true;
+        // // }
+        $(window).on('load', () => {
+            if ($("#zoning_fill").prop("checked") == true) {
+                $("#hlm_form_kbli").css('background', 'orange')
+            } else {
+                $("#hlm_form_kbli").css('background', 'white')
             }
+        })
 
-            document.getElementById("hlm_ekonomi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("ekonomi").style.display = "block";
-                document.getElementById('btn_backeko').onclick = function() {
-                    document.getElementById("ekonomi").style.display = "none";
-                };
-
-                return false;
+        $("#hlm_form_kbli").click(function() {
+            $("#zoning_fill").trigger("click")
+            $("#form_ajib").hide()
+        });
+        $("#zoning_fill").on("change", () => {
+            if ($("#zoning_fill").prop("checked") == true) {
+                $("#hlm_form_kbli").css('background', 'orange')
+            } else {
+                $("#hlm_form_kbli").css('background', 'white')
             }
+        });
 
-            // document.getElementById("hlm_ekonomi").onclick = function(e) {
-            //     document.getElementById("form_ajib").style.display = "block";
-            //     document.getElementById("menuu").style.display = "none";
+        $("#chooseOnMap").click(() => {
+            $("#izin_peta").trigger("click")
+        })
 
-            //     document.getElementById('hlm_ekonomi').onclick = function() {
-            //         document.getElementById("form_ajib").style.display = "none";
-            //         document.getElementById("menuu").style.display = "block";
-
-            //         return true;
-            //     };
-            // return true;
-            // // }
-            $(window).on('load', () => {
-                if ($("#zoning_fill").prop("checked") == true) {
-                    $("#hlm_form_kbli").css('background', 'orange')
-                } else {
-                    $("#hlm_form_kbli").css('background', 'white')
-                }
-            })
-
-            $("#hlm_form_kbli").click(function() {
-                $("#zoning_fill").trigger("click")
-                $("#form_ajib").hide()
-            });
-            $("#zoning_fill").on("change", () => {
-                if ($("#zoning_fill").prop("checked") == true) {
-                    $("#hlm_form_kbli").css('background', 'orange')
-                } else {
-                    $("#hlm_form_kbli").css('background', 'white')
-                }
-            });
-
-            $("#chooseOnMap").click(() => {
-                $("#izin_peta").trigger("click")
-            })
-
-            $("#izin_peta").on("change", () => {
-                if ($("#izin_peta").prop("checked") == true) {
-                    $("#chooseOnMap").css('background', 'orange')
-                } else {
-                    $("#chooseOnMap").css('background', 'skyblue')
-                }
-            });
-
-            $("#hlm_form_ajib").click(function() {
-                $('#form_ajib').show();
-            });
-
-
-            $("#btn_tutupmenu").click(function() {
-                // $('#form_kbli').hide()
-                $("#deleteForm").hide();
-                $("#idPinSurvey").val("");
-                // $("#kordinatPinSurvey").val("");
-                $("#image").val("");
-                $("#kategoriPinSurvey").val("");
-                $("#catatanPinSurvey").val("");
-                $("#judulPinSurvey").val("");
-                // $("#formAjib").reset()
-                // $('.tutup_menus').toggle();
-            });
-
-            document.getElementById("hlm_poi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("akses").style.display = "block";
-                document.getElementById('btn_backakses').onclick = function() {
-                    document.getElementById("akses").style.display = "none";
-                };
-
-                return false;
+        $("#izin_peta").on("change", () => {
+            if ($("#izin_peta").prop("checked") == true) {
+                $("#chooseOnMap").css('background', 'orange')
+            } else {
+                $("#chooseOnMap").css('background', 'skyblue')
             }
+        });
+
+        $("#hlm_form_ajib").click(function() {
+            $('#form_ajib').show();
+        });
 
 
-            // document.getElementById("hlm_kbli").onclick = function(e) {
-            //     e.preventDefault();
-            //     document.getElementById("kbli").style.display = "block";
-            //     document.getElementById('btn_backkbli').onclick = function() {
-            //         document.getElementById("kbli").style.display = "none";
-            //     };
+        $("#btn_tutupmenu").click(function() {
+            // $('#form_kbli').hide()
+            $("#deleteForm").hide();
+            $("#idPinSurvey").val("");
+            // $("#kordinatPinSurvey").val("");
+            $("#image").val("");
+            $("#kategoriPinSurvey").val("");
+            $("#catatanPinSurvey").val("");
+            $("#judulPinSurvey").val("");
+            // $("#formAjib").reset()
+            // $('.tutup_menus').toggle();
+        });
 
-            //     return false;
-            // }
-        </script>
+        document.getElementById("hlm_poi").onclick = function(e) {
+            e.preventDefault();
+            document.getElementById("akses").style.display = "block";
+            document.getElementById('btn_backakses').onclick = function() {
+                document.getElementById("akses").style.display = "none";
+            };
+
+            return false;
+        }
+
+
+        // document.getElementById("hlm_kbli").onclick = function(e) {
+        //     e.preventDefault();
+        //     document.getElementById("kbli").style.display = "block";
+        //     document.getElementById('btn_backkbli').onclick = function() {
+        //         document.getElementById("kbli").style.display = "none";
+        //     };
+
+        //     return false;
+        // }
+
+        // SLICK
+
+        $(document).ready(function () {
+            $(".slick-form-data").slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            });
+        });
+
+
+
+
+        // $(document).ready(function(){
+        //     $('.slider').slick({
+        //     autoplay: true,
+        //     autoplaySpeed: 2500,
+        //     });
+        // });
+
+    </script>
 
         <script>
             var APP_URL = {!! json_encode(url('/')) !!}
         </script>
 
-        <script src="{{ asset('assets/js/mobile.js') }}"></script>
+    <script src="{{ asset('assets/js/mobile.js') }}"></script>
 
-        @role('surveyer')
-            <script>
-                let id_surveyer = {!! Auth::user()->id !!}
-            </script>
-            <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
-        @endrole
+    @role('surveyer')
+        <script>
+            let id_surveyer = {!! Auth::user()->id !!}
+        </script>
+
+    <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
+    @endrole
     @else
-        <script src="{{ asset('assets/js/web.js') }}"></script>
+    <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
 
 
