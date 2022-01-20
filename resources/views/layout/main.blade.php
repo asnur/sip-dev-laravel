@@ -745,7 +745,7 @@
 
                 <!-- Mengatur Menu Mobile -->
 
-                <div id="popup" class="for_mobile">
+                {{-- <div id="popup" class="for_mobile">
 
                     <div class="card-header text-white bg-primary font-weight-bold judul_utama fixed-top"
                         style="box-shadow: 2px 2px 2px rgba(99, 97, 97, 0.8);">
@@ -764,7 +764,7 @@
                     </div>
 
                     <iframe id="popupiframe"></iframe>
-                </div>
+                </div> --}}
 
 
 
