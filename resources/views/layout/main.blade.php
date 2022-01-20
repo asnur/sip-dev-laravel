@@ -511,6 +511,8 @@
                         name="koordinat" class="form-control" />
                     <input required type="hidden" id="idPinSurvey" placeholder="Pilih Titik Lokasi" name="id"
                         class="form-control" />
+                    <input required type="hidden" id="kbliPinSurvey" placeholder="Pilih Titik Lokasi" name="kbli"
+                        class="form-control" />
                 </div>
 
                 <div class="form-outline mb-xs-2 mb-4 md-4">
@@ -546,10 +548,14 @@
 
 
                 <div class="form-outline mb-xs-2 md-4">
-                    {{-- <label for="catatan">Catatan</label> --}}
+                    <label for="catatan">Lingvis (Lingkungan Visual)</label>
 
-                    <textarea class="form-control" id="catatanPinSurvey" placeholder="Masukkan catatan"
-                        name="catatan" rows="3" required="required"></textarea>
+                    <textarea class="form-control mb-4" id="catatanPinSurvey" placeholder="Deskripsi..." name="catatan"
+                        rows="3"></textarea>
+                    <textarea class="form-control mb-4" id="permasalahanPinSurvey" placeholder="Permasalahan..."
+                        name="permasalahan" rows="3"></textarea>
+                    <textarea class="form-control mb-4" id="solusiPinSurvey" placeholder="Usulan Solusi..."
+                        name="solusi" rows="3"></textarea>
 
                 </div>
 

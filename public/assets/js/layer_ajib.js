@@ -90,9 +90,10 @@ const dragMaps = (condition) => {
 };
 
 $("#kategoriPinSurvey").on("change", () => {
-    if ($("#kategoriPinSurvey").val() == "UMK") {
+    if ($("#kategoriPinSurvey").val() == "UMKM") {
         $("#form_kbli").show();
     } else {
+        $("#kbliPinSurvey").val("");
         $("#form_kbli").hide();
     }
 });
@@ -554,12 +555,17 @@ map.on("mouseenter", "survey_ajib", function (e) {
     map.getCanvas().style.cursor = "pointer";
     const content = `<div class="p-0">
     <div class="imgcard-container">
-    <img src="/mobile/img/${data["foto"]}" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
+    <img src="/mobile/img/${
+        data["foto"]
+    }" class="card-img-top" style="width: 200px;height: 160px;object-fit: cover; margin-bottom:-100px">
     </div>
     <div class="card-body p-2">
     <h6 class="mt-0 mb-2 card-title border-bottom">${data["judul"]}</h6>
     <div style="line-height: 1.2;">
     <span class="d-block"><b>Kategori :</b> ${data["kategori"]}</span>
+    <span class="${
+        data["kbli"] == "null" ? "d-none" : "d-block"
+    }"><b>KBLI :</b> ${data["kbli"]}</span>
     <span class="d-block"> ${data["catatan"]}</span>
     </div>
     </div>`;
@@ -579,6 +585,10 @@ map.on("mouseenter", "survey_ajib", function (e) {
     $("#kategoriPinSurvey").val(data["kategori"]);
     $("#catatanPinSurvey").val("");
     $("#catatanPinSurvey").val(data["catatan"]);
+    $("#permasalahanPinSurvey").val("");
+    $("#permasalahanPinSurvey").val(data["permasalahan"]);
+    $("#solusiPinSurvey").val("");
+    $("#solusiPinSurvey").val(data["solusi"]);
     $("#judulPinSurvey").val("");
     $("#judulPinSurvey").val(data["judul"]);
     $("#deleteForm").show();

@@ -33,7 +33,10 @@ class SurveyController extends Controller
                     'kategori' => $d->kategori,
                     'foto' => $d->foto,
                     'catatan' => $d->catatan,
-                    'kordinat' => $d->kordinat
+                    'permasalahan' => $d->permasalahan,
+                    'solusi' => $d->solusi,
+                    'kordinat' => $d->kordinat,
+                    'kbli' => $d->kbli
                 ],
                 'geometry' => [
                     'type' => 'Point',
@@ -82,7 +85,6 @@ class SurveyController extends Controller
             'judul' => 'required',
             'kategori' => 'required',
             'image' => $validateFile,
-            'catatan' => 'required',
         ]);
 
         $getimage = $request->file('image');
@@ -102,6 +104,9 @@ class SurveyController extends Controller
             $data->judul = $request->judul;
             $data->kategori = $request->kategori;
             $data->catatan = $request->catatan;
+            $data->permasalahan = $request->permasalahan;
+            $data->solusi = $request->solusi;
+            $data->kbli = $request->kbli;
             if ($request->hasFile('image')) {
                 $data->foto = $fileName;
             }
@@ -114,6 +119,9 @@ class SurveyController extends Controller
                 'kategori' => $request->kategori,
                 'foto' => $fileName,
                 'catatan' => $request->catatan,
+                'permasalahan' => $request->permasalahan,
+                'solusi' => $request->solusi,
+                'kbli' => $request->kbli,
                 'id_user' => $id_user
             ]);
         }

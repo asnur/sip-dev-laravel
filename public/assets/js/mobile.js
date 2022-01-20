@@ -1528,6 +1528,7 @@ $(document).on("change", "#kegiatanKewenangan", function () {
     $("#btn-print").show();
     // console.log(data_kbli);
     var tblSel = "";
+    $("#kbliPinSurvey").val(data_kbli[selSektor]["Kode KBLI"]);
     tblSel += `
 
     <div class="d-flex space_judul row_mid_judul">
