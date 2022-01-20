@@ -490,12 +490,12 @@
 
         <main role="main" class="container-fluid py-2">
             <div class="row">
-                <div class="col-6 pt-1">
+                <div class="col-8 pt-1">
                     <a id="chooseOnMap" class="btn btn-sm border rounded-pill">Pilih lewat peta</a>
                     <div class="mb-2"></div>
                     <span id="preview-cord" class="text-primary ml-2 text_all">-</span>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <button type="button" class="close mt-1 mb-2 mr-2" id="closeForm">
                         <span aria-hidden="true">&times;</span>
                     </button>
