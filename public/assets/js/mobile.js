@@ -1371,8 +1371,9 @@ $(document).on("click", ".wilayah-select", function () {
     const kel = $(this).data("wilayah");
     const text = $(this).text();
     $("#cari_wilayah_mobile").val(text);
-    // $(".mapboxgl-ctrl-geolocate").prop("aria-pressed", false).click();
-    // geolocate.trigger();
+    if ($(".mapboxgl-ctrl-geolocate-active").length == 1) {
+        $(".mapboxgl-ctrl-geolocate").click();
+    }
 
     geocoder.query(coor);
     addSourceLayer(kel);
