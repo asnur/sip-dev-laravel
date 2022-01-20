@@ -1165,25 +1165,25 @@
     @if (isMobileDevice())
 
         <script>
-            document.getElementById("hlm_profil").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("profil").style.display = "block";
-                document.getElementById('btn_backprodil').onclick = function() {
-                    document.getElementById("profil").style.display = "none";
-                };
+            // document.getElementById("hlm_profil").onclick = function(e) {
+            //     e.preventDefault();
+            //     document.getElementById("profil").style.display = "block";
+            //     document.getElementById('btn_backprodil').onclick = function() {
+            //         document.getElementById("profil").style.display = "none";
+            //     };
 
-                return false;
-            }
+            //     return false;
+            // }
 
-            document.getElementById("hlm_ekonomi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("ekonomi").style.display = "block";
-                document.getElementById('btn_backeko').onclick = function() {
-                    document.getElementById("ekonomi").style.display = "none";
-                };
+            // document.getElementById("hlm_ekonomi").onclick = function(e) {
+            //     e.preventDefault();
+            //     document.getElementById("ekonomi").style.display = "block";
+            //     document.getElementById('btn_backeko').onclick = function() {
+            //         document.getElementById("ekonomi").style.display = "none";
+            //     };
 
-                return false;
-            }
+            //     return false;
+            // }
 
             // document.getElementById("hlm_ekonomi").onclick = function(e) {
             //     document.getElementById("form_ajib").style.display = "block";
@@ -1247,15 +1247,15 @@
                 // $('.tutup_menus').toggle();
             });
 
-            document.getElementById("hlm_poi").onclick = function(e) {
-                e.preventDefault();
-                document.getElementById("akses").style.display = "block";
-                document.getElementById('btn_backakses').onclick = function() {
-                    document.getElementById("akses").style.display = "none";
-                };
+            // document.getElementById("hlm_poi").onclick = function(e) {
+            //     e.preventDefault();
+            //     document.getElementById("akses").style.display = "block";
+            //     document.getElementById('btn_backakses').onclick = function() {
+            //         document.getElementById("akses").style.display = "none";
+            //     };
 
-                return false;
-            }
+            //     return false;
+            // }
 
 
             // document.getElementById("hlm_kbli").onclick = function(e) {
