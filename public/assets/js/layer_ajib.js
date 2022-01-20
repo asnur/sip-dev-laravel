@@ -57,9 +57,11 @@ const dragMaps = (condition) => {
     if (condition == 1) {
         markerAjib.setLngLat(map.getCenter()).addTo(map);
         map.on("drag", () => {
+            $("#form_ajib").hide();
             markerAjib.setLngLat(map.getCenter());
         });
         map.on("dragend", () => {
+            $("#form_ajib").show();
             markerAjib.setLngLat(map.getCenter());
             const lngLat = markerAjib.getLngLat();
             findKelurahan(lngLat.lng, lngLat.lat);
