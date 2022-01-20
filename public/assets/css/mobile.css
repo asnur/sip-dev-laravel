@@ -6,6 +6,7 @@
 
 body {
     overscroll-behavior: contain;
+    touch-action: pan-x pan-y;
 }
 
 .marker {
