@@ -49,6 +49,18 @@ $("#kegiatanRuang, #skala, #kegiatanKewenangan").select2({
     theme: "bootstrap4",
 });
 
+document.addEventListener(
+    "touchstart",
+    (e) => {
+        if (e.touches.lenght > 1) {
+            e.preventDefault();
+        }
+    },
+    {
+        passive: false,
+    }
+);
+
 function titleCase(str) {
     str = str.toLowerCase().split(" ");
     for (var i = 0; i < str.length; i++) {
