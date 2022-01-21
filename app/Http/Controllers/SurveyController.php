@@ -21,7 +21,11 @@ class SurveyController extends Controller
             'features' => []
         ];
 
-        $data = Survey::where('id_user', Auth::user()->id)->get();
+        if (Auth::user()->hasRole('admin')) {
+            $data = Survey::all();
+        } else {
+            $data = Survey::where('id_user', Auth::user()->id)->get();
+        }
 
         foreach ($data as $d) {
             $coor = explode(",", $d->kordinat);

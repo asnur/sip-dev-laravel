@@ -823,7 +823,7 @@
                 </div>
 
             </div>
-            @role('surveyer')
+            @role('admin')
                 <div class="d-flex align-content-stretch mt-3 flex-wrap justify-content-center" id="btnDrag">
 
                     <div class="form-check text-center">
@@ -881,7 +881,7 @@
                         </button>
                     </div>
 
-                    @role('surveyer')
+                    @hasanyrole('surveyer|admin')
 
                         <div id="btn_tutupmenu">
                             <button id="btn-pin" class="btn btn-sm mt-1" data-toggle="collapse" href="#collapseExample"
@@ -895,7 +895,7 @@
                             </button>
                         </div>
 
-                    @endrole
+                    @endhasanyrole
 
                 </div>
             </div>
@@ -1294,12 +1294,12 @@
 
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
 
-        @role('surveyer')
+        @hasanyrole('surveyer|admin')
             <script>
                 let id_surveyer = {!! Auth::user()->id !!}
             </script>
             <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
-        @endrole
+        @endhasanyrole
     @else
         <script src="{{ asset('assets/js/web.js') }}"></script>
     @endif
