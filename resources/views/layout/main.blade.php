@@ -823,7 +823,7 @@
                 </div>
 
             </div>
-            @role('admin')
+            @hasanyrole('surveyer|admin')
                 <div class="d-flex align-content-stretch mt-3 flex-wrap justify-content-center" id="btnDrag">
 
                     <div class="form-check text-center">
@@ -835,7 +835,7 @@
                     </div>
 
                 </div>
-            @endrole
+            @endhasanyrole
 
         </div>
 
