@@ -543,908 +543,489 @@
                 </div>
 
 
-                <div class="slick-form-data">
+                <div id="slick-form-data" class="slick-slider">
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
 
-                    {{-- identitas --}}
-                    <div class="identitas1">
+                        {{-- identitas --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
+                                <div class="form-group">
+                                    <label><small>Apakah sudah memiliki NIB?</small></label>
+                                    <select class="form-control form-control-sm" name="kategori_nib" id="kategori_nib" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Apakah sudah memiliki NIB?</small></label>
-                        <select
-                            class="form-control form-control-sm"
-                            name="kategori_nib"
-                            id="kategori_nib"
-                            required="required"
-                        >
-                            <option value="">- Pilih -</option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                        </select>
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Nomor Izin Berusaha (NIB)</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="nib" id="nib" placeholder="Masukan Nomor Izin Berusaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Nomor Izin Berusaha (NIB)</small></label>
-                        <input
-                            type="number"
-                            class="form-control form-control-sm"
-                            name="nib"
-                            id="nib"
-                            placeholder="Masukan Nomor Izin Berusaha"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Apakah sudah memiliki IUMK?</small></label>
+                                    <select class="form-control form-control-sm" name="kategori_iumk" id="kategori_iumk" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Apakah sudah memiliki IUMK?</small></label>
-                        <select
-                            class="form-control form-control-sm"
-                            name="kategori_iumk"
-                            id="kategori_iumk"
-                            required="required"
-                        >
-                            <option value="">- Pilih -</option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                        </select>
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Jenis Pelaku Usaha</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="jepe_usaha" id="jepe_usaha" placeholder="Masukan Jenis Pelaku Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Jenis Pelaku Usaha</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="jepe_usaha"
-                            id="jepe_usaha"
-                            placeholder="Masukan Jenis Pelaku Usaha"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>NIK</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="nik" id="nik" placeholder="Masukan NIK Anda" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>NIK</small></label>
-                        <input
-                            type="number"
-                            class="form-control form-control-sm"
-                            name="nik"
-                            id="nik"
-                            placeholder="Masukan NIK Anda"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Nama Lengkap</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="nama_lengkap" id="nama_lengkap" placeholder="Masukan Nama Lengkap" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Nama Lengkap</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="nama_lengkap"
-                            id="nama_lengkap"
-                            placeholder="Masukan Nama Lengkap"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Jenis Kelamin</small></label>
+                                    <select class="form-control form-control-sm" name="jenis_kelamin" id="jenis_kelamin" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="Pria">Pria</option>
+                                        <option value="Wanita">Wanita</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Jenis Kelamin</small></label>
-                        <select
-                            class="form-control form-control-sm"
-                            name="jenis_kelamin"
-                            id="jenis_kelamin"
-                            required="required"
-                        >
-                            <option value="">- Pilih -</option>
-                            <option value="Pria">Pria</option>
-                            <option value="Wanita">Wanita</option>
-                        </select>
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Tempat Lahir</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="tempat_lahir" id="tempat_lahir" placeholder="Masukan Tempat Lahir" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Tempat Lahir</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="tempat_lahir"
-                            id="tempat_lahir"
-                            placeholder="Masukan Tempat Lahir"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
+                                <div class="form-group">
+                                    <label><small>Tanggal Lahir</small></label>
+                                    <input type="date" class="form-control form-control-sm" name="tgl_lahir" id="tgl_lahir" placeholder="Masukan Nama Lengkap" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                        <label><small>Tanggal Lahir</small></label>
-                        <input
-                            type="date"
-                            class="form-control form-control-sm"
-                            name="tgl_lahir"
-                            id="tgl_lahir"
-                            placeholder="Masukan Nama Lengkap"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Alamat</small></label>
-                        <textarea
-                            class="form-control"
-                            rows="2"
-                            name="alamat"
-                            id="alamat"
-                            placeholder="Masukan Alamat"
-                            required="required"
-                        ></textarea>
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-                    </div>
-
-                    {{-- identitas2 --}}
-                    <div class="identitas2">
-                        <div class="form-group">
-                        <label><small>Kelurahan/Desa</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="kel_desa"
-                            id="kel_desa"
-                            placeholder="Masukan Nama Kelurahan"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Kecamatan</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="kecamatan"
-                            id="kecamatan"
-                            placeholder="Masukan Nama Kecamatan"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Kabupaten/Kota</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="kab_kota"
-                            id="kab_kota"
-                            placeholder="Masukan Nama Kabupaten/Kota"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Provinsi</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="prov"
-                            id="prov"
-                            placeholder="Masukan Nama Provinsi"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Kode Pos</small></label>
-                        <input
-                            type="number"
-                            class="form-control form-control-sm"
-                            name="kode_pos"
-                            id="kode_pos"
-                            placeholder="Masukan Kode Pos"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Alamat Email</small></label>
-                        <input
-                            type="email"
-                            class="form-control form-control-sm"
-                            name="email"
-                            id="email"
-                            placeholder="Masukan Alamat Email"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Nomor Telepon Seluler</small></label>
-                        <input
-                            type="number"
-                            class="form-control form-control-sm"
-                            name="no_telepon"
-                            id="no_telepon"
-                            placeholder="Masukan Nama Nomor Telepo Seluler"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>NPWP Pribadi</small></label>
-                        <input
-                            type="number"
-                            class="form-control form-control-sm"
-                            name="npwp"
-                            id="npwp"
-                            placeholder="Masukan NPWP Pribadi"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Nomor BPJS Ketenagakerjaan</small></label>
-                        <input
-                            type="number"
-                            class="form-control form-control-sm"
-                            name="bpjs_ketenagakerjaan"
-                            id="bpjs_ketenagakerjaan"
-                            placeholder="Masukan Nomor BPJS Ketenagakerjaan"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-
-                        <div class="form-group">
-                        <label><small>Nomor BPJS Kesehatan</small></label>
-                        <input
-                            type="text"
-                            class="form-control form-control-sm"
-                            name="bpjs_kesehatan"
-                            id="bpjs_kesehatan"
-                            placeholder="Masukan Nomor BPJS Kesehatan"
-                            required="required"
-                        />
-                        <div class="invalid-feedback">Periksa kembali inputan.</div>
-                        </div>
-                    </div>
-
-                    {{-- kegiatan_usaha --}}
-                    <div class="kegiatan_usaha">
-
-                         <div class="form-group">
-                            <label><small>Jenis Kegiatan Usaha</small></label>
-                            <select
-                                class="form-control form-control-sm"
-                                name="jeke_usaha"
-                                id="jeke_usaha"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 1</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                <div class="form-group">
+                                    <label><small>Alamat</small></label>
+                                    <textarea class="form-control" rows="2" name="alamat" id="alamat" placeholder="Masukan Alamat" required="required"></textarea>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                            <label><small>Kegiatan Ruang</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="kegiatan_ruang"
-                                id="kegiatan_ruang"
-                                placeholder="Masukan Kegiatan Ruang"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Skala Modal/Omset</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="omset"
-                                id="omset"
-                                placeholder="Masukan Skala Modal/Omset"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Kegiatan Kewenangan</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="keg_kewenangan"
-                                id="keg_kewenangan"
-                                placeholder="Masukan Kegiatan Kewenangan"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Kode KBLI</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="kode_kbli"
-                                id="kode_kbli"
-                                placeholder="Masukan Kode KBLI"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Kegiatan</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="kegiatan"
-                                id="kegiatan"
-                                placeholder="Masukan Kegiatan"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Risiko</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="resiko"
-                                id="resiko"
-                                placeholder="Masukan Risiko"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>ITBX</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="itbx"
-                                id="itbx"
-                                placeholder="Masukan ITBX"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                        </div>
 
                     </div>
 
-                    {{-- identitas_usaha1 --}}
-                    <div class="identitas_usaha1">
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- identitas2 --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
+                                <div class="form-group">
+                                    <label><small>Kelurahan/Desa</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kel_desa" id="kel_desa" placeholder="Masukan Nama Kelurahan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                        <div class="form-group">
-                            <label><small>NPWP Usaha</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="npwp_usaha"
-                                id="npwp_usaha"
-                                placeholder="Masukan NPWP Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Kecamatan</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kecamatan" id="kecamatan" placeholder="Masukan Nama Kecamatan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Nama Usaha/Kegiatan</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="nama_usahakegiatan"
-                                id="nama_usahakegiatan"
-                                placeholder="Masukan Nama Usaha/Kegiatan"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Kabupaten/Kota</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kab_kota" id="kab_kota" placeholder="Masukan Nama Kabupaten/Kota" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah Kegiatan Usaha ini berada di lokasi yang sama
-                                dengan kegiatan usaha sebelumnya?</small
-                                ></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="kegiatan_lokasiusaha"
-                                id="kegiatan_lokasiusaha"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 1</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Provinsi</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="prov" id="prov" placeholder="Masukan Nama Provinsi" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Lokasi Kegiatan Usaha</small></label>
-                            <select
-                                class="form-control form-control-sm"
-                                name="lokasi_kegiatanusaha"
-                                id="lokasi_kegiatanusaha"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 1</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Kode Pos</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="kode_pos" id="kode_pos" placeholder="Masukan Kode Pos" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Luas Lahan Usaha</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="luas_lahanusaha"
-                                id="luas_lahanusaha"
-                                placeholder="Masukan Jenis Pelaku Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Alamat Email</small></label>
+                                    <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Masukan Alamat Email" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Alamat Usaha</small></label>
-                            <textarea
-                                class="form-control"
-                                rows="2"
-                                name="alamat_usaha"
-                                id="alamat_usaha"
-                                placeholder="Masukan Alamat"
-                                required="required"
-                            ></textarea>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Nomor Telepon Seluler</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="no_telepon" id="no_telepon" placeholder="Masukan Nama Nomor Telepo Seluler" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Kelurahan Usaha</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="kel_usaha"
-                                id="kel_usaha"
-                                placeholder="Masukan Nama Kelurahan Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>NPWP Pribadi</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="npwp" id="npwp" placeholder="Masukan NPWP Pribadi" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Kecamatan Usaha</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="kec_usaha"
-                                id="kec_usaha"
-                                placeholder="Masukan Nama Kecamatan Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                                <div class="form-group">
+                                    <label><small>Nomor BPJS Ketenagakerjaan</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="bpjs_ketenagakerjaan" id="bpjs_ketenagakerjaan" placeholder="Masukan Nomor BPJS Ketenagakerjaan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
 
-                            <div class="form-group">
-                            <label><small>Kabupaten/Kota Usaha</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="kabkota_usaha"
-                                id="kabkota_usaha"
-                                placeholder="Masukan Kabupaten/Kota Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                <div class="form-group">
+                                    <label><small>Nomor BPJS Kesehatan</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="bpjs_kesehatan" id="bpjs_kesehatan" placeholder="Masukan Nomor BPJS Kesehatan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="form-group">
-                            <label><small>Kode Pos Usaha</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="kodepos_usaha"
-                                id="kodepos_usaha"
-                                placeholder="Masukan Nama Kode Pos Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- kegiatan_usaha --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
 
-                            <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah kegiatan usaha ini sudah berjalan?</small
-                                ></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="kegiatan_usahaberjalan"
-                                id="kegiatan_usahaberjalan"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                <div class="form-group">
+                                    <label><small>Jenis Kegiatan Usaha</small></label>
+                                    <select class="form-control form-control-sm" name="jeke_usaha" id="jeke_usaha" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kegiatan Ruang</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kegiatan_ruang" id="kegiatan_ruang" placeholder="Masukan Kegiatan Ruang" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Skala Modal/Omset</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="omset" id="omset" placeholder="Masukan Skala Modal/Omset" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kegiatan Kewenangan</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="keg_kewenangan" id="keg_kewenangan" placeholder="Masukan Kegiatan Kewenangan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kode KBLI</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="kode_kbli" id="kode_kbli" placeholder="Masukan Kode KBLI" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kegiatan</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kegiatan" id="kegiatan" placeholder="Masukan Kegiatan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Risiko</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="resiko" id="resiko" placeholder="Masukan Risiko" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>ITBX</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="itbx" id="itbx" placeholder="Masukan ITBX" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
                             </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- identitas_usaha1 --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
+                                <div class="form-group">
+                                    <label><small>NPWP Usaha</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="npwp_usaha" id="npwp_usaha" placeholder="Masukan NPWP Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Nama Usaha/Kegiatan</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="nama_usahakegiatan" id="nama_usahakegiatan" placeholder="Masukan Nama Usaha/Kegiatan" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Apakah Kegiatan Usaha ini berada di lokasi yang sama
+                                            dengan kegiatan usaha sebelumnya?</small></label>
+                                    <select class="form-control form-control-sm" name="kegiatan_lokasiusaha" id="kegiatan_lokasiusaha" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Lokasi Kegiatan Usaha</small></label>
+                                    <select class="form-control form-control-sm" name="lokasi_kegiatanusaha" id="lokasi_kegiatanusaha" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Luas Lahan Usaha</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="luas_lahanusaha" id="luas_lahanusaha" placeholder="Masukan Jenis Pelaku Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Alamat Usaha</small></label>
+                                    <textarea class="form-control" rows="2" name="alamat_usaha" id="alamat_usaha" placeholder="Masukan Alamat" required="required"></textarea>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kelurahan Usaha</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kel_usaha" id="kel_usaha" placeholder="Masukan Nama Kelurahan Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kecamatan Usaha</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kec_usaha" id="kec_usaha" placeholder="Masukan Nama Kecamatan Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kabupaten/Kota Usaha</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kabkota_usaha" id="kabkota_usaha" placeholder="Masukan Kabupaten/Kota Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kode Pos Usaha</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="kodepos_usaha" id="kodepos_usaha" placeholder="Masukan Nama Kode Pos Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Apakah kegiatan usaha ini sudah berjalan?</small></label>
+                                    <select class="form-control form-control-sm" name="kegiatan_usahaberjalan" id="kegiatan_usahaberjalan" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- identitas_usaha2 --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
+                                <div class="form-group">
+                                    <label><small>Apakah Anda akan melakukan pembangunan gedung?</small></label>
+                                    <select class="form-control form-control-sm" name="kategori_pembangunangedung" id="kategori_pembangunangedung" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Sudah berapa lama usaha berjalan?</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="lama_usahaberjalan" id="lama_usahaberjalan" placeholder="Masukan Nama " required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Modal Usaha</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="modal_usaha" id="modal_usaha" placeholder="Masukan Nama Modal Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Omset Usaha</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="omset_usaha" id="omset_usaha" placeholder="Masukan Nama Omset Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Apakah sudah memiliki perizinan berusaha yang
+                                            sebelumnya?</small></label>
+                                    <select class="form-control form-control-sm" name="perizinan_before_usaha" id="perizinan_before_usaha" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Jangka waktu perkiraan beroperasi/produksi
+                                        </small></label>
+                                    <input type="date" class="form-control form-control-sm" name="jangka_operasi" id="jangka_operasi" placeholder="Masukan Nama Nomor Telepo Seluler" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Deskripsi Kegiatan Usaha</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="des_kegiatanusaha" id="des_kegiatanusaha" placeholder="Masukan Nama Deskripsi Kegiatan Usaha" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Jumlah Tenaga Kerja Indonesia</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="jumlah_tenagakerja" id="jumlah_tenagakerja" placeholder="Masukan Jumlah Tenaga Kerja Indonesia" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Jenis Produk/Jasa</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="jenis_produk" id="jenis_produk" placeholder="Masukan Nama Jenis Produk/Jasa" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Kapasitas (per tahun)</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="kapasitas_usaha" id="kapasitas_usaha" placeholder="Masukan Kapasitas (per tahun)" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Satuan Kapasitas</small></label>
+                                    <select class="form-control form-control-sm" name="satuan_kapasitas_usaha" id="satuan_kapasitas_usaha" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- informasi_lainnya --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
+
+                                <div class="form-group">
+                                    <label><small>Apakah Anda sudah memiliki Sertifikat SNI?</small></label>
+                                    <select class="form-control form-control-sm" name="kategori_sertifikat_sni" id="kategori_sertifikat_sni" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Nomor Sertifikat SNI</small></label>
+                                    <input type="number" class="form-control form-control-sm" name="nomor_sni" id="nomor_sni" placeholder="Masukan Nomor Sertifikat SNI" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Skala Modal/Omset</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="omset" id="omset" placeholder="Masukan Skala Modal/Omset" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Masa mulai berlaku SNI</small></label>
+                                    <input type="date" class="form-control form-control-sm" name="mulai_berlaku_sni" id="mulai_berlaku_sni" placeholder="Masukan Masa mulai berlaku SNI" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Masa akhir berlaku SNI</small></label>
+                                    <input type="date" class="form-control form-control-sm" name="akhir_berlaku_sni" id="akhir_berlaku_sni" placeholder="Masukan Masa akhir berlaku SNI" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Apakah Anda sudah memiliki Sertifikat Halal?</small></label>
+                                    <input type="text" class="form-control form-control-sm" name="kategori_sertifikat_halal" id="kategori_sertifikat_halal" placeholder="Masukan Sertifikat" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Nomor Sertifikat Halal </small></label>
+                                    <input type="number" class="form-control form-control-sm" name="nomor_sertifikat_halal" id="nomor_sertifikat_halal" placeholder="Masukan Nomor Sertifikat Halal " required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Tanggal Terbit Sertifikat Halal</small></label>
+                                    <input type="date" class="form-control form-control-sm" name="tglterbit_sertifikat" id="tglterbit_sertifikat" placeholder="Masukan Tanggal Terbit Sertifikat" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Tanggal Berakhir Sertifikat Halal</small></label>
+                                    <input type="date" class="form-control form-control-sm" name="tglberakhir_sertifikat" id="tglberakhir_sertifikat" placeholder="Masukan Tanggal Berakhir Sertifikat" required="required" />
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Apakah sudah memiliki persetujuan lingkungan?</small></label>
+                                    <select class="form-control form-control-sm" name="persetujuan_lingkungan" id="persetujuan_lingkungan" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Jenis dokumen Persetujuan Lingkungan</small></label>
+                                    <select class="form-control form-control-sm" name="jenis_persetujuan_lingkungan" id="jenis_persetujuan_lingkungan" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><small>Apakah ingin melanjutkan ke IMB?</small></label>
+                                    <select class="form-control form-control-sm" name="imb" id="imb" required="required">
+                                        <option value="">- Pilih -</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 1</option>
+                                    </select>
+                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
 
-                    {{-- identitas_usaha2 --}}
-                    <div class="identitas_usaha2">
-
-                                                    <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah Anda akan melakukan pembangunan gedung?</small
-                                ></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="kategori_pembangunangedung"
-                                id="kategori_pembangunangedung"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small>Sudah berapa lama usaha berjalan?</small></label
-                            >
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="lama_usahaberjalan"
-                                id="lama_usahaberjalan"
-                                placeholder="Masukan Nama "
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Modal Usaha</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="modal_usaha"
-                                id="modal_usaha"
-                                placeholder="Masukan Nama Modal Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Omset Usaha</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="omset_usaha"
-                                id="omset_usaha"
-                                placeholder="Masukan Nama Omset Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah sudah memiliki perizinan berusaha yang
-                                sebelumnya?</small
-                                ></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="perizinan_before_usaha"
-                                id="perizinan_before_usaha"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small
-                                >Jangka waktu perkiraan beroperasi/produksi
-                                </small></label
-                            >
-                            <input
-                                type="date"
-                                class="form-control form-control-sm"
-                                name="jangka_operasi"
-                                id="jangka_operasi"
-                                placeholder="Masukan Nama Nomor Telepo Seluler"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Deskripsi Kegiatan Usaha</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="des_kegiatanusaha"
-                                id="des_kegiatanusaha"
-                                placeholder="Masukan Nama Deskripsi Kegiatan Usaha"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Jumlah Tenaga Kerja Indonesia</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="jumlah_tenagakerja"
-                                id="jumlah_tenagakerja"
-                                placeholder="Masukan Jumlah Tenaga Kerja Indonesia"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Jenis Produk/Jasa</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="jenis_produk"
-                                id="jenis_produk"
-                                placeholder="Masukan Nama Jenis Produk/Jasa"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Kapasitas (per tahun)</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="kapasitas_usaha"
-                                id="kapasitas_usaha"
-                                placeholder="Masukan Kapasitas (per tahun)"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Satuan Kapasitas</small></label>
-                            <select
-                                class="form-control form-control-sm"
-                                name="satuan_kapasitas_usaha"
-                                id="satuan_kapasitas_usaha"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                    </div>
-
-                    {{-- informasi_lainnya --}}
-                    <div class="informasi_lainnya">
-
-                        <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah Anda sudah memiliki Sertifikat SNI?</small
-                                ></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="kategori_sertifikat_sni"
-                                id="kategori_sertifikat_sni"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Nomor Sertifikat SNI</small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="nomor_sni"
-                                id="nomor_sni"
-                                placeholder="Masukan Nomor Sertifikat SNI"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Skala Modal/Omset</small></label>
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="omset"
-                                id="omset"
-                                placeholder="Masukan Skala Modal/Omset"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Masa mulai berlaku SNI</small></label>
-                            <input
-                                type="date"
-                                class="form-control form-control-sm"
-                                name="mulai_berlaku_sni"
-                                id="mulai_berlaku_sni"
-                                placeholder="Masukan Masa mulai berlaku SNI"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Masa akhir berlaku SNI</small></label>
-                            <input
-                                type="date"
-                                class="form-control form-control-sm"
-                                name="akhir_berlaku_sni"
-                                id="akhir_berlaku_sni"
-                                placeholder="Masukan Masa akhir berlaku SNI"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah Anda sudah memiliki Sertifikat Halal?</small
-                                ></label
-                            >
-                            <input
-                                type="text"
-                                class="form-control form-control-sm"
-                                name="kategori_sertifikat_halal"
-                                id="kategori_sertifikat_halal"
-                                placeholder="Masukan Sertifikat"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Nomor Sertifikat Halal </small></label>
-                            <input
-                                type="number"
-                                class="form-control form-control-sm"
-                                name="nomor_sertifikat_halal"
-                                id="nomor_sertifikat_halal"
-                                placeholder="Masukan Nomor Sertifikat Halal "
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Tanggal Terbit Sertifikat Halal</small></label>
-                            <input
-                                type="date"
-                                class="form-control form-control-sm"
-                                name="tglterbit_sertifikat"
-                                id="tglterbit_sertifikat"
-                                placeholder="Masukan Tanggal Terbit Sertifikat"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small>Tanggal Berakhir Sertifikat Halal</small></label
-                            >
-                            <input
-                                type="date"
-                                class="form-control form-control-sm"
-                                name="tglberakhir_sertifikat"
-                                id="tglberakhir_sertifikat"
-                                placeholder="Masukan Tanggal Berakhir Sertifikat"
-                                required="required"
-                            />
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small
-                                >Apakah sudah memiliki persetujuan lingkungan?</small
-                                ></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="persetujuan_lingkungan"
-                                id="persetujuan_lingkungan"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label
-                                ><small>Jenis dokumen Persetujuan Lingkungan</small></label
-                            >
-                            <select
-                                class="form-control form-control-sm"
-                                name="jenis_persetujuan_lingkungan"
-                                id="jenis_persetujuan_lingkungan"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 1</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                            <div class="form-group">
-                            <label><small>Apakah ingin melanjutkan ke IMB?</small></label>
-                            <select
-                                class="form-control form-control-sm"
-                                name="imb"
-                                id="imb"
-                                required="required"
-                            >
-                                <option value="">- Pilih -</option>
-                                <option value="">Option 1</option>
-                                <option value="">Option 1</option>
-                            </select>
-                            <div class="invalid-feedback">Periksa kembali inputan.</div>
-                            </div>
-
-                    </div>
                 </div>
 
 
@@ -2226,37 +1807,26 @@
         // }
 
         // SLICK
-
-        $(document).ready(function () {
-            $(".slick-form-data").slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
+        $(document).ready(function() {
+            // $(window).on('load', function() {
+            $("#slick-form-data").slick({
+                dots: true,
+                variableWidth: true,
             });
         });
 
-
-
-
-        // $(document).ready(function(){
-        //     $('.slider').slick({
-        //     autoplay: true,
-        //     autoplaySpeed: 2500,
-        //     });
-        // });
-
     </script>
 
-        <script>
-            var APP_URL = {!! json_encode(url('/')) !!}
-        </script>
+    <script>
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
 
     <script src="{{ asset('assets/js/mobile.js') }}"></script>
 
     @role('surveyer')
-        <script>
-            let id_surveyer = {!! Auth::user()->id !!}
-        </script>
+    <script>
+        let id_surveyer = {!! Auth::user()->id !!}
+    </script>
 
     <script src="{{ asset('assets/js/layer_ajib.js') }}"></script>
     @endrole

@@ -256,6 +256,65 @@ body {
         background-color: #ff8300;
     } */
 
+    /* @media (min-width: 390px) and (max-width: 413px) {
+        .slick-track {
+            width: 4680px !important;
+        }
+        .slick-slide {
+            width: 360px !important;
+        }
+    }
+    @media (min-width: 414px) {
+        .slick-track {
+            width: 4992px !important;
+        }
+        .slick-slide {
+            width: 384px !important;
+        }
+    } */
+
+    /* Responsive */
+    @media (min-width: 239px) and (max-width: 360px) {
+        .slick-slide {
+            width: 329px;
+        }
+    }
+
+    /* Iphone SE */
+    @media (min-width: 361px) and (max-width: 389px) {
+        .slick-slide {
+            width: 343px;
+        }
+    }
+
+    /* Iphone 12 */
+    @media (min-width: 390px) and (max-width: 392px) {
+        .slick-slide {
+            width: 358px;
+        }
+    }
+
+    /* Pixel */
+    @media (min-width: 393px) and (max-width: 411px) {
+        .slick-slide {
+            width: 361px;
+        }
+    }
+
+    /* Samsung S20 */
+    @media (min-width: 412px) and (max-width: 413px) {
+        .slick-slide {
+            width: 380px;
+        }
+    }
+
+    /* Iphone XR */
+    @media (min-width: 414px) and (max-width: 420px) {
+        .slick-slide {
+            width: 383px;
+        }
+    }
+
     .akses_data {
         padding: 0 2rem 0 1rem;
     }
