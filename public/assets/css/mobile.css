@@ -690,8 +690,12 @@ body {
     .search_mobile {
         width: 100%;
         /* position: absolute; */
-        z-index: 99;
+        z-index: 9;
         /* margin-top: -80vh; */
+    }
+
+    .select2-container {
+        z-index: 9999;
     }
 
     .dropdown-menu {

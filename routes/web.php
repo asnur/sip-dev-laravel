@@ -96,7 +96,7 @@ Route::get('/', function (Request $request) {
 //     }
 // });
 
-Route::group(['middleware' => ['role:surveyer']], function () {
+Route::group(['middleware' => ['role:surveyer|admin']], function () {
     Route::resource('/ajib', SurveyController::class);
     Route::post('/tracking', [TrackingController::class, 'index']);
     Route::delete('/delete-survey', [SurveyController::class, 'destroy'])->name('delete-survey');
