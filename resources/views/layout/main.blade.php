@@ -1231,6 +1231,9 @@
             });
 
             $("#chooseOnMap").click(() => {
+                if ($(".mapboxgl-ctrl-geolocate-active").length == 1) {
+                    $(".mapboxgl-ctrl-geolocate").click();
+                }
                 $("#izin_peta").trigger("click")
             })
 
