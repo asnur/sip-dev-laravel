@@ -527,7 +527,7 @@
                     <select required name="kategori" id="kategoriPinSurvey" class="form-control" required="required">
                         <option selected="selected">- Pilih Kategori -</option>
                         <option value="UMKM">UMKM</option>
-                        <option value="IMB Kampung Priotitas">IMB Kampung Priotitas</option>
+                        <option value="IMB Kampung Prioritas">IMB Kampung Prioritas</option>
                         <option value="Sedang dibangun">Sedang dibangun</option>
                         <option value="Pedestrian">Pedestrian</option>
                         <option value="Cagar Budaya">Cagar Budaya</option>
