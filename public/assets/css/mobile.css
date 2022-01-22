@@ -512,6 +512,7 @@ body {
         background-color: white;
         z-index: 9999;
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     #form_kbli {
