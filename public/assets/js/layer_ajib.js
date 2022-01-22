@@ -20,8 +20,8 @@ const findKelurahan = (lng, lat) => {
             let saveKelurahan = localStorage.getItem("kelurahan");
             console.log(saveKelurahan, kelurahan);
             if (saveKelurahan !== kelurahan) {
-                addSourceLayer(kelurahan);
-                map.moveLayer("zoning_fill", "survey_ajib");
+                // addSourceLayer(kelurahan);
+                // map.moveLayer("zoning_fill", "survey_ajib");
                 localStorage.setItem("kelurahan", kelurahan);
             }
         },

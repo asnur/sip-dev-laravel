@@ -870,7 +870,7 @@
 
                 @endrole --}}
 
-                    <div>
+                    {{-- <div>
                         <button class="btn btn-sm mt-1">
                             <div class="container">
                                 <div class="row">
@@ -879,7 +879,7 @@
                                 </div>
                             </div>
                         </button>
-                    </div>
+                    </div> --}}
 
                     @hasanyrole('surveyer|admin')
 

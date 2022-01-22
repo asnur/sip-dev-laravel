@@ -128,12 +128,12 @@ function locateUser(e) {
         success: (e) => {
             let kelurahan = e.features[0].properties.Kelurahan;
             if (current_kelurahan !== kelurahan) {
-                addSourceLayer(kelurahan);
+                // addSourceLayer(kelurahan);
                 localStorage.setItem("kelurahan", kelurahan);
             }
-            if (map.getLayer("survey_ajib") !== undefined) {
-                map.moveLayer("zoning_fill", "survey_ajib");
-            }
+            // if (map.getLayer("survey_ajib") !== undefined) {
+            //     map.moveLayer("zoning_fill", "survey_ajib");
+            // }
         },
     });
 
@@ -1109,7 +1109,7 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     localGeocoder: coordinatesGeocoder,
     mapboxgl: mapboxgl,
-    marker: false,
+    // marker: false,
     reverseGeocode: true,
     flyTo: {
         easing: function (t) {
@@ -1379,11 +1379,11 @@ $(document).on("click", ".wilayah-select", function () {
     }
 
     geocoder.query(coor);
-    addSourceLayer(kel);
+    // addSourceLayer(kel);
     localStorage.setItem("kelurahan", kel);
-    if (map.getLayer("survey_ajib") !== undefined) {
-        map.moveLayer("zoning_fill", "survey_ajib");
-    }
+    // if (map.getLayer("survey_ajib") !== undefined) {
+    //     map.moveLayer("zoning_fill", "survey_ajib");
+    // }
 });
 
 function separatorNum(val) {
