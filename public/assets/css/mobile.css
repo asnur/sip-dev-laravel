@@ -511,8 +511,7 @@ body {
         height: 100%;
         background-color: white;
         z-index: 9999;
-        overflow: scroll;
-        -webkit-overflow-scrolling: touch;
+        overflow: auto;
     }
 
     #form_kbli {
