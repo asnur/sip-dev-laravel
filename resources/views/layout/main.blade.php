@@ -541,7 +541,8 @@
                 <div style="margin-top:12px;" class="form-outline mb-xs-2 mb-4 md-4">
                     <div class="input-group custom-file-button">
                         <label class="input-group-text" for="image">Upload gambar</label>
-                        <input type="file" class="form-control" id="image" name="image" required="required">
+                        <input type="file" class="form-control" id="image" name="image" required="required"
+                            accept="image/*">
                     </div>
                     <img src="" class="mt-3" id="previewImage" style="width: 100%; height:200px;">
                 </div>

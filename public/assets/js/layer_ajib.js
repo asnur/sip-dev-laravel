@@ -624,7 +624,12 @@ const priviewImage = (input) => {
         $("#previewImage").show();
         $("#previewImage").attr("src", e.target.result);
     };
-    reader.readAsDataURL(input.files[0]);
+    if (input.files[0].size >= 2097152) {
+        alert("Maksimum File 2 MB");
+        $("#image").val("");
+    } else {
+        reader.readAsDataURL(input.files[0]);
+    }
 };
 
 $("#image").change(function () {
