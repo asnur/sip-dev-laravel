@@ -625,7 +625,12 @@ const priviewImage = (input) => {
         $("#previewImage").attr("src", e.target.result);
     };
     if (input.files[0].size >= 2097152) {
-        alert("Maksimum File 2 MB");
+        // alert("Maksimum File 2 MB");
+        Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "Ukuran File Maksimal 2 MB!",
+        });
         $("#image").val("");
     } else {
         reader.readAsDataURL(input.files[0]);
