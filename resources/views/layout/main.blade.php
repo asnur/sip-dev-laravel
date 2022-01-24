@@ -543,7 +543,8 @@
                 </div>
 
 
-                <div id="slick-form-data" class="slick-slider">
+                <div class="slick_form">
+
                     <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
 
                         {{-- identitas --}}
@@ -749,14 +750,6 @@
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
-                        {{-- identitas_usaha1 --}}
-                        <div class="d-flex justify-content-center">
-                            <div class="slick-slide">
                                 <div class="form-group">
                                     <label><small>NPWP Usaha</small></label>
                                     <input type="number" class="form-control form-control-sm" name="npwp_usaha" id="npwp_usaha" placeholder="Masukan NPWP Usaha" required="required" />
@@ -768,6 +761,15 @@
                                     <input type="text" class="form-control form-control-sm" name="nama_usahakegiatan" id="nama_usahakegiatan" placeholder="Masukan Nama Usaha/Kegiatan" required="required" />
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- identitas_usaha1 --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
 
                                 <div class="form-group">
                                     <label><small>Apakah Kegiatan Usaha ini berada di lokasi yang sama
@@ -836,14 +838,6 @@
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
-                        {{-- identitas_usaha2 --}}
-                        <div class="d-flex justify-content-center">
-                            <div class="slick-slide">
                                 <div class="form-group">
                                     <label><small>Apakah Anda akan melakukan pembangunan gedung?</small></label>
                                     <select class="form-control form-control-sm" name="kategori_pembangunangedung" id="kategori_pembangunangedung" required="required">
@@ -853,6 +847,16 @@
                                     </select>
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                        {{-- identitas_usaha2 --}}
+                        <div class="d-flex justify-content-center">
+                            <div class="slick-slide">
+
 
                                 <div class="form-group">
                                     <label><small>Sudah berapa lama usaha berjalan?</small></label>
@@ -924,6 +928,7 @@
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
 
+
                             </div>
                         </div>
                     </div>
@@ -943,15 +948,10 @@
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
 
+
                                 <div class="form-group">
                                     <label><small>Nomor Sertifikat SNI</small></label>
                                     <input type="number" class="form-control form-control-sm" name="nomor_sni" id="nomor_sni" placeholder="Masukan Nomor Sertifikat SNI" required="required" />
-                                    <div class="invalid-feedback">Periksa kembali inputan.</div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label><small>Skala Modal/Omset</small></label>
-                                    <input type="text" class="form-control form-control-sm" name="omset" id="omset" placeholder="Masukan Skala Modal/Omset" required="required" />
                                     <div class="invalid-feedback">Periksa kembali inputan.</div>
                                 </div>
 
@@ -1683,6 +1683,9 @@
     <!-- Slick JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+    <script src="{{ asset('assets/js/slick.js') }}"></script>
+
+
     <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
@@ -1807,12 +1810,9 @@
         // }
 
         // SLICK
-        $(document).ready(function() {
-            // $(window).on('load', function() {
-            $("#slick-form-data").slick({
-                dots: true,
-                variableWidth: true,
-            });
+        $(".slick_form").slick({
+            dots: true,
+            variableWidth: true
         });
 
     </script>

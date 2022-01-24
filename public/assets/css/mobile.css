@@ -283,7 +283,7 @@ body {
     /* Iphone SE */
     @media (min-width: 361px) and (max-width: 389px) {
         .slick-slide {
-            width: 343px;
+            width: 342px;
         }
     }
 
