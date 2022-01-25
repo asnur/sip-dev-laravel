@@ -44,6 +44,7 @@ class SocialiteController extends Controller
                 'provider' => $provider,
                 'provider_id' => $user->id
             ]);
+            $authUser->assignRole('user');
 
             return $data;
         }

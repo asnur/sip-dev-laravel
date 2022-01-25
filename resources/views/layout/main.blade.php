@@ -1052,18 +1052,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="d-flex space_text row_mid_text">
-                                    <div class="col-lg-5 text_all">
-                                        <label class="text_all_mobile">Kegiatan</label>
-                                    </div>
-                                    <div class="col-lg-7 text_all">
-                                        <p class="inf-cdtpz">
-                                            <select class="w-100" id="selectPSL"></select>
-                                        </p>
-                                    </div>
-                                </div> --}}
-
-
                                 <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Intensitas
                                 </p>
 
@@ -1163,14 +1151,180 @@
                                 -
                             </div> --}}
 
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-12 text_all mb-3 text-center">
+                                    <label class="text_all_mobile">Kesesuaian Kegiatan Berdasar Tabel ITBX</label>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text mb-2">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Ketentuan Perizinan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <span class="inf-status-ketentuan">-</span>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text mb-3">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Keterangan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <span class="inf-keterangan-ketentuan">-</span>
+                                </div>
+                            </div>
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
+                            </p>
+                            <div class="d-flex space_text row_mid_text text-justify mb-3">
+                                <div class="col-lg-12 text_all">
+                                    <label>Pada lahan di lokasi ini dimungkin untuk penerapan ketentuan khusus sebagai
+                                        berikut:</label>
+                                </div>
+                            </div>
+                            {{-- <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div> --}}
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Ketentuan Khusus</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectKhusus"></select>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="isi-ketentuan-khusus mt-4">
+
+                            </div>
+
+
+
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
                                 Tata Bangunan<br><span class="w-100 text-center text_all"
                                     style="font-weight: normal">Pedoman Tata Bangunan sesuai Pergub
                                     135/2019</span><br><span class="w-100 text-center text_all"
                                     style="font-weight: normal"><i>(Under Construction)</i></span>
                             </p>
-
-                            <div class="d-flex space_text row_mid_text">
+                            <div class="d-flex space_text row_mid_text text_all">
+                                <div id="accordion text_all" style="width: 100%">
+                                    <div>
+                                        <div class="p-0 pl-3">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_perencanaan" aria-expanded="true"
+                                                aria-controls="lahan_perencanaan">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Lahan Perencanaan
+                                            </a>
+                                        </div>
+                                        <div id="lahan_perencanaan" class="collapse show">
+                                            <div class="card-body value-collapse">
+                                                <div id="accordion text_all" style="width: 100%">
+                                                    <div>
+                                                        <div class="p-0 pl-3">
+                                                            <a class="text-dark font-weight-bold"
+                                                                data-toggle="collapse" href="#definisi_lahan"
+                                                                aria-expanded="true" aria-controls="definisi_lahan">
+                                                                <span class="collapsed"><i
+                                                                        class="fa fa-plus"></i></span>
+                                                                <span class="expanded"><i
+                                                                        class="fa fa-minus"></i></span>
+                                                                Definisi
+                                                            </a>
+                                                        </div>
+                                                        <div id="definisi_lahan" class="collapse show">
+                                                            <div class="card-body value-collapse">
+                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                    elit.
+                                                                    Porro, repellat delectus. Quaerat itaque laborum
+                                                                    numquam
+                                                                    temporibus deserunt! Soluta beatae tempore,
+                                                                    doloribus
+                                                                    rem eum possimus eligendi illo culpa dolor minima
+                                                                    id?</p>
+                                                                <div>
+                                                                    <div class="p-0 pl-3">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_a"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_a">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Lahan A
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_a" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lorem ipsum dolor sit amet consectetur
+                                                                                adipisicing elit.
+                                                                                Porro, repellat delectus. Quaerat itaque
+                                                                                laborum numquam
+                                                                                temporibus deserunt! Soluta beatae
+                                                                                tempore,
+                                                                                doloribus
+                                                                                rem eum possimus eligendi illo culpa
+                                                                                dolor
+                                                                                minima id?</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="p-0 pl-3">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_b"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_b">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Lahan B
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_b" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lorem ipsum dolor sit amet consectetur
+                                                                                adipisicing elit.
+                                                                                Porro, repellat delectus. Quaerat itaque
+                                                                                laborum numquam
+                                                                                temporibus deserunt! Soluta beatae
+                                                                                tempore,
+                                                                                doloribus
+                                                                                rem eum possimus eligendi illo culpa
+                                                                                dolor
+                                                                                minima id?</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
                                     <ol>
                                         <li style="margin-left: -25px">Lahan Perencanaan</li>
@@ -1191,7 +1345,7 @@
                                         <li style="margin-left: -25px">Intensitas</li>
                                     </ol>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -1670,9 +1824,23 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     {{-- @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else --}}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-213546852-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-213546852-1');
+    </script>
+
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>
