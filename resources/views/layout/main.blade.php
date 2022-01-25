@@ -1052,18 +1052,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="d-flex space_text row_mid_text">
-                                    <div class="col-lg-5 text_all">
-                                        <label class="text_all_mobile">Kegiatan</label>
-                                    </div>
-                                    <div class="col-lg-7 text_all">
-                                        <p class="inf-cdtpz">
-                                            <select class="w-100" id="selectPSL"></select>
-                                        </p>
-                                    </div>
-                                </div> --}}
-
-
                                 <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Intensitas
                                 </p>
 
@@ -1162,6 +1150,71 @@
                             <div class="text_all inf-khusus">
                                 -
                             </div> --}}
+
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-12 text_all mb-3 text-center">
+                                    <label class="text_all_mobile">Kesesuaian Kegiatan Berdasar Tabel ITBX</label>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text mb-2">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Ketentuan Perizinan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <span class="inf-status-ketentuan">-</span>
+                                </div>
+                            </div>
+                            <div class="d-flex space_text row_mid_text mb-3">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Keterangan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <span class="inf-keterangan-ketentuan">-</span>
+                                </div>
+                            </div>
+                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Ketentuan Khusus
+                            </p>
+                            <div class="d-flex space_text row_mid_text text-justify mb-3">
+                                <div class="col-lg-12 text_all">
+                                    <label>Pada lahan di lokasi ini dimungkin untuk penerapan ketentuan khusus sebagai
+                                        berikut:</label>
+                                </div>
+                            </div>
+                            {{-- <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Kegiatan</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectPSL"></select>
+                                    </p>
+                                </div>
+                            </div> --}}
+                            <div class="d-flex space_text row_mid_text">
+                                <div class="col-lg-5 text_all">
+                                    <label class="text_all_mobile">Ketentuan Khusus</label>
+                                </div>
+                                <div class="col-lg-7 text_all">
+                                    <p>
+                                        <select class="w-100" id="selectKhusus"></select>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="isi-ketentuan-khusus mt-4">
+
+                            </div>
+
+
 
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
                                 Tata Bangunan<br><span class="w-100 text-center text_all"
@@ -1771,6 +1824,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     {{-- @if (isMobileDevice())
         <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else --}}

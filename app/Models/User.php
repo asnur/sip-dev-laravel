@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'provider',
         'provider_id',
+        'penempatan'
     ];
 
     /**
@@ -44,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tracking()
+    {
+        return $this->hasMany(Tracking::class, 'id_user', 'id');
+    }
+
+    public function survey()
+    {
+        return $this->hasMany(Survey::class, 'id_user', 'id');
+    }
 }
