@@ -164,7 +164,7 @@
                                     <tr>
                                         <td>{{ $pa->name }}</td>
                                         <td>{{ $pa->penempatan }}</td>
-                                        <td>{{ $pa->tracking_count }}</td>
+                                        <td>{{ $pa->survey_count }}</td>
                                         <td class="ajib-{{ $pa->id }}" onload="addText({!! $pa->id !!})"></td>
                                     </tr>
                                 @endforeach

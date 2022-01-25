@@ -353,15 +353,17 @@
 
     <!-- Page level custom scripts -->
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script> --}}
+    <script>
+        var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
     <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
     <script src="{{ asset('assets/admin/js/countTracking.js') }}"></script>
     <script>
-        addText(1340)
-
-        $("#table-surveyer").DataTable();
+        addText();
     </script>
 
 </body>

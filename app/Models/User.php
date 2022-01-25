@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tracking::class, 'id_user', 'id');
     }
+
+    public function survey()
+    {
+        return $this->hasMany(Survey::class, 'id_user', 'id');
+    }
 }
