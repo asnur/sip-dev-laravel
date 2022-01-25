@@ -6,6 +6,53 @@ const logout = () => {
     $("#form-logout").submit();
 };
 
+$("#selectSurveyer").select2();
+
+$("#tableKinerja").DataTable();
+
+$("#selectSurveyer").on("change", function () {
+    var data = $("#selectSurveyer").select2("val");
+    // $("#test").val(data);
+    $.ajax({
+        url: `${APP_URL}/admin/kinerja`,
+        method: "POST",
+        beforeSend: () => {
+            let html = `
+            <td colspan="3">
+                <center>
+                    <div class="spinner-border" role="status" style="font-size: 20pt">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </center>
+            </td>
+            `;
+            $("#dataSurvey").html("");
+            $("#dataSurvey").html(html);
+        },
+        data: {
+            id: data,
+            _token: $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: (e) => {
+            let data = e;
+            let html = "";
+            $("#tableKinerja").DataTable().destroy();
+            $("#dataSurvey").html("");
+            data.forEach((e) => {
+                html += `
+                    <tr>
+                        <td>${e.judul}</td>
+                        <td><img src="https://jakpintas.dpmptsp-dki.com/mobile/img/${e.foto}" class="w-100" style="height:100px; object-fit:cover;"></td>
+                        <td>${e.kategori}</td>
+                    </tr>
+                `;
+                $("#dataSurvey").html(html);
+            });
+            $("#tableKinerja").DataTable();
+        },
+    });
+});
+
 const editUser = (id, name, email, role) => {
     $("#idUser").val("");
     $("#namaUser").val("");
@@ -38,6 +85,13 @@ $.ajax({
         $(".inf-pengunjung").text(e[1].reduce(sum, 0));
     },
 });
+
+let url = document.URL;
+let arrURL = url.split("/");
+
+if (arrURL[4] == "kinerja") {
+    $("#selectSurveyer").val(0).trigger("change");
+}
 
 // Set new default font family and font color to mimic Bootstrap's default styling
 (Chart.defaults.global.defaultFontFamily = "Nunito"),
@@ -160,10 +214,12 @@ const filterAnalytics = (periode) => {
     });
 };
 
-$(window).on("load", () => {
-    filterAnalytics(8);
-});
+if (arrURL[4] == undefined) {
+    $(window).on("load", () => {
+        filterAnalytics(8);
+    });
 
-setInterval(() => {
-    filterAnalytics(localStorage.getItem("interval"));
-}, 10000);
+    setInterval(() => {
+        filterAnalytics(localStorage.getItem("interval"));
+    }, 10000);
+}
