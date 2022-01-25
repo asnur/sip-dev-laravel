@@ -22,7 +22,9 @@ class AdminController extends Controller
             }
         )->get();
 
-        return view('admin.home', compact(['pegawai_ajib']));
+        $survey = Survey::all();
+
+        return view('admin.home', compact(['pegawai_ajib', 'survey']));
     }
 
     public function role_management()
@@ -122,7 +124,14 @@ class AdminController extends Controller
 
     public function kinerja_pegawai_ajib()
     {
-        return view('admin.kinerja');
+        $pegawai_ajib = User::whereHas(
+            'roles',
+            function ($q) {
+                $q->where('name', 'surveyer');
+            }
+        )->get();
+
+        return view('admin.kinerja', compact(['pegawai_ajib']));
     }
 
     public function track_cord()
@@ -131,5 +140,16 @@ class AdminController extends Controller
         $data = DB::select('SELECT  id_user, CONCAT("[",GROUP_CONCAT("[", kordinat ,"]"),"]") as kordinat FROM tracking GROUP BY id_user');
 
         return $data;
+    }
+
+    public function kinerja(Request $request)
+    {
+        if ($request->id == 0) {
+            $data = Survey::all();
+            return $data;
+        } else {
+            $data = Survey::where('id_user', $request->id)->get();
+            return $data;
+        }
     }
 }

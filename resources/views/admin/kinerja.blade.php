@@ -98,11 +98,28 @@
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Kinerja Pegawai Ajib</h6>
-
+                        <select id="selectSurveyer" tabindex="-1"
+                            class="d-none d-sm-inline-block form-control shadow-sm w-25">
+                            <option value="0">Semua Pegawai</option>
+                            @foreach ($pegawai_ajib as $pa)
+                                <option value="{{ $pa->id }}">{{ $pa->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
+                        <table class="table table-striped" id="tableKinerja">
+                            <thead>
+                                <tr>
+                                    <th>Nama Tempat</th>
+                                    <th>Foto</th>
+                                    <th>Kategori</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataSurvey">
 
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
