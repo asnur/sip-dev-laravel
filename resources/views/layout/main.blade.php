@@ -545,7 +545,7 @@
 
                 <div class="slick_form">
 
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                    <div style="margin-right:2px;" class="slick_left card p-3">
 
                         {{-- identitas --}}
                         <div class="d-flex justify-content-center">
@@ -626,7 +626,7 @@
 
                     </div>
 
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                    <div style="margin-left: 2px; margin-right:2px;" class="slick_left card p-3">
                         {{-- identitas2 --}}
                         <div class="d-flex justify-content-center">
                             <div class="slick-slide">
@@ -693,7 +693,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                    <div style="margin-left: 2px; margin-right:2px;" class="slick_left card p-3">
                         {{-- kegiatan_usaha --}}
                         <div class="d-flex justify-content-center">
                             <div class="slick-slide">
@@ -766,7 +766,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                    <div style="margin-left: 2px; margin-right:2px;" class="slick_left card p-3">
                         {{-- identitas_usaha1 --}}
                         <div class="d-flex justify-content-center">
                             <div class="slick-slide">
@@ -852,7 +852,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                    <div style="margin-left: 2px; margin-right:2px;" class="slick_left card p-3">
                         {{-- identitas_usaha2 --}}
                         <div class="d-flex justify-content-center">
                             <div class="slick-slide">
@@ -933,7 +933,7 @@
                         </div>
                     </div>
 
-                    <div style="margin-left: 2px; margin-right:2px;" class="card p-3">
+                    <div style="margin-left: 2px; margin-right:2px;" class="slick_left card p-3">
                         {{-- informasi_lainnya --}}
                         <div class="d-flex justify-content-center">
                             <div class="slick-slide">
@@ -1683,7 +1683,7 @@
     <!-- Slick JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    <script src="{{ asset('assets/js/slick.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/slick.js') }}"></script> --}}
 
 
     <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
@@ -1812,7 +1812,11 @@
         // SLICK
         $(".slick_form").slick({
             dots: true,
-            variableWidth: true
+            variableWidth: true,
+            infinite: true,
+            centerMode: true,
+            slidesToShow: 5,
+            slidesToScroll: 1
         });
 
     </script>

@@ -1269,18 +1269,18 @@ function addLayers() {
         },
     });
 
-    map.addLayer({
-        id: "pipa_multilinestring",
-        type: "line",
-        source: "pipa",
-        paint: {
-            "line-color": "#fff",
-            "line-width": 3,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
+    // map.addLayer({
+    //     id: "pipa_multilinestring",
+    //     type: "line",
+    //     source: "pipa",
+    //     paint: {
+    //         "line-color": "#fff",
+    //         "line-width": 3,
+    //     },
+    //     layout: {
+    //         visibility: "none",
+    //     },
+    // });
 }
 
 function showLayer(layer) {
@@ -1335,19 +1335,19 @@ function onOffLayers() {
         }
     });
 
-    if ($("#pipa_multilinestring").prop("checked") == true) {
-        showLayer("pipa_multilinestring");
-    } else {
-        hideLayer("pipa_multilinestring");
-    }
+    // if ($("#pipa_multilinestring").prop("checked") == true) {
+    //     showLayer("pipa_multilinestring");
+    // } else {
+    //     hideLayer("pipa_multilinestring");
+    // }
 
-    $("#pipa_multilinestring").change(function () {
-        if ($(this).prop("checked") == true) {
-            showLayer("pipa_multilinestring");
-        } else {
-            hideLayer("pipa_multilinestring");
-        }
-    });
+    // $("#pipa_multilinestring").change(function () {
+    //     if ($(this).prop("checked") == true) {
+    //         showLayer("pipa_multilinestring");
+    //     } else {
+    //         hideLayer("pipa_multilinestring");
+    //     }
+    // });
 
     if ($("#banjir_fill").prop("checked") == true) {
         showLayer("banjir_fill");
