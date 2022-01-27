@@ -1441,11 +1441,11 @@ function getKetentuanPSL(subzona, psl) {
                 // console.log(value_data);
                 $(".inf-status-ketentuan").html("");
                 $(".inf-status-ketentuan").html(
-                    titleCase(value_data[index].Ketentuan)
+                    value_data[index]["Ketentuan Perizinan"]
                 );
                 $(".inf-keterangan-ketentuan").html("");
                 $(".inf-keterangan-ketentuan").html(
-                    titleCase(value_data[index].Substansi)
+                    value_data[index].Substansi
                 );
                 $("#selectKhusus").html("");
                 $(".isi-ketentuan-khusus").html("");
@@ -1466,13 +1466,17 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
         method: "GET",
         success: (e) => {
             let data = JSON.parse(e);
-            let value_data = data.features[0].properties;
+            let value_data = data.features[0];
             let html = "";
             // console.log(value_data[0].Kegiatan);
             html += `<option>Pilih...</option>`;
             if (value_data !== null) {
-                for (let index = 0; index < value_data.length; index++) {
-                    html += `<option value="${value_data[index]["Jenis"]}" data-id="${index}">${value_data[index]["Jenis"]}</option>`;
+                for (
+                    let index = 0;
+                    index < value_data.properties.length;
+                    index++
+                ) {
+                    html += `<option value="${value_data.properties[index]["Jenis Ketentuan Khusus"]}" data-id="${index}">${value_data.properties[index]["Jenis Ketentuan Khusus"]}</option>`;
                 }
             } else {
                 // htmlKetentuan += `<p>Tidak Ketentuan Khusus</p>`;
@@ -1483,13 +1487,19 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
             $("#selectKhusus").on("change", function () {
                 var ketentuan = $(this).val();
                 let index = $(this).find(":selected").data("id");
-                if (value_data[index]["Ketentuan Khusus"] !== "TIDAK BERLAKU") {
+                if (
+                    value_data.properties[index]["Ketentuan Perizinan"] !==
+                    "TIDAK BERLAKU"
+                ) {
                     getKetentuanKhusus(subzona, psl, kegiatan, ketentuan);
                 }
             });
-            if (value_data[0]["Ketentuan Khusus"] !== "TIDAK BERLAKU") {
+            if (
+                value_data.properties[0]["Ketentuan Perizinan"] !==
+                "TIDAK BERLAKU"
+            ) {
                 $("#selectKhusus")
-                    .val(value_data[0]["Jenis"])
+                    .val(value_data.properties[0]["Jenis Ketentuan Khusus"])
                     .trigger("change");
             }
         },
@@ -1539,7 +1549,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <label class="text_all_mobile">Luas Lahan Minimal</label>
                 </div>
                 <div class="col-lg-7 text_all">
-                    <p>${value_data["Luas lahan minimal"]}</p>
+                    <p>${value_data["Luas Lahan Minimal"]}</p>
                 </div>
             </div>
     
@@ -1548,7 +1558,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <label class="text_all_mobile">Syarat Lainnya</label>
                 </div>
                 <div class="col-lg-7 text_all">
-                    <p>${value_data["Syarat lainnya"]}</p>
+                    <p>${value_data["Syarat Lainnya"]}</p>
                 </div>
             </div>
                 `;
@@ -3298,9 +3308,9 @@ function signOut() {
     $.ajax({
         url: `${APP_URL}/logout`,
         method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        },
+        // headers: {
+        //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        // },
         success: function () {},
     });
 }

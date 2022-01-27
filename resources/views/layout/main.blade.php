@@ -1251,14 +1251,16 @@
                                                         </div>
                                                         <div id="definisi_lahan" class="collapse show">
                                                             <div class="card-body value-collapse">
-                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                                                                    elit.
-                                                                    Porro, repellat delectus. Quaerat itaque laborum
-                                                                    numquam
-                                                                    temporibus deserunt! Soluta beatae tempore,
-                                                                    doloribus
-                                                                    rem eum possimus eligendi illo culpa dolor minima
-                                                                    id?</p>
+                                                                <p>lahan efektif yang direncanakan untuk kegiatan
+                                                                    pemanfaatan ruang, dapat berbentuk superblok, blok,
+                                                                    subblok Dan/atau kaveling/persil/perpetakan
+                                                                <div class="ml-3">
+                                                                    <a target="_blank"
+                                                                        href="{{ asset('pdf_bangunan/I. PPT LAHAN PERENCANAAN.pdf') }}"><i
+                                                                            class="fa fa-file-pdf-o text-danger"></i>
+                                                                        Selengkapnya</a>
+                                                                </div>
+                                                                </p>
                                                                 <div>
                                                                     <div class="p-0 pl-3">
                                                                         <a class="text-dark font-weight-bold"
@@ -1269,21 +1271,20 @@
                                                                                     class="fa fa-plus"></i></span>
                                                                             <span class="expanded"><i
                                                                                     class="fa fa-minus"></i></span>
-                                                                            Lahan A
+                                                                            Satu Intensitas
                                                                         </a>
                                                                     </div>
                                                                     <div id="lahan_a" class="collapse">
                                                                         <div class="card-body value-collapse">
-                                                                            <p>Lorem ipsum dolor sit amet consectetur
-                                                                                adipisicing elit.
-                                                                                Porro, repellat delectus. Quaerat itaque
-                                                                                laborum numquam
-                                                                                temporibus deserunt! Soluta beatae
-                                                                                tempore,
-                                                                                doloribus
-                                                                                rem eum possimus eligendi illo culpa
-                                                                                dolor
-                                                                                minima id?</p>
+                                                                            <p>Lahan perencanaan yang memiliki satu
+                                                                                intensitas pemanfaatan ruang pada satu
+                                                                                subzona.</p>
+                                                                            <div class="ml-3">
+                                                                                <a target="_blank"
+                                                                                    href="{{ asset('pdf_bangunan/I.1 PPT LAHAN PERENCANAAN - SATU INTENSITAS.pdf') }}"><i
+                                                                                        class="fa fa-file-pdf-o text-danger"></i>
+                                                                                    Selengkapnya</a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1297,21 +1298,102 @@
                                                                                     class="fa fa-plus"></i></span>
                                                                             <span class="expanded"><i
                                                                                     class="fa fa-minus"></i></span>
-                                                                            Lahan B
+                                                                            Lebih Dari Satu Intensitas
                                                                         </a>
                                                                     </div>
                                                                     <div id="lahan_b" class="collapse">
                                                                         <div class="card-body value-collapse">
-                                                                            <p>Lorem ipsum dolor sit amet consectetur
-                                                                                adipisicing elit.
-                                                                                Porro, repellat delectus. Quaerat itaque
-                                                                                laborum numquam
-                                                                                temporibus deserunt! Soluta beatae
-                                                                                tempore,
-                                                                                doloribus
-                                                                                rem eum possimus eligendi illo culpa
-                                                                                dolor
-                                                                                minima id?</p>
+                                                                            <p>Lahan perencanaan yang memiliki lebih
+                                                                                dari satu intensitas pemanfaatan ruang
+                                                                                pada satu subzona.</p>
+                                                                            <div class="ml-3">
+                                                                                <a target="_blank"
+                                                                                    href="{{ asset('pdf_bangunan/I.2 PPT LAHAN PERENCANAAN - LEBIH DARI SATU INTENSITAS.pdf') }}"><i
+                                                                                        class="fa fa-file-pdf-o text-danger"></i>
+                                                                                    Selengkapnya</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="p-0 pl-3">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_c"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_b">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Dipisahkan Prasarana
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_c" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lahan Perencanaan yang masih satu
+                                                                                kepemilikan, yang dibatasi dan/atau
+                                                                                dipisahkan prasarana kota.</p>
+                                                                            <div class="ml-3">
+                                                                                <a target="_blank"
+                                                                                    href="{{ asset('pdf_bangunan/I.3 PPT LAHAN PERENCANAAN - DIPISAHKAN PRASARANA.pdf') }}"><i
+                                                                                        class="fa fa-file-pdf-o text-danger"></i>
+                                                                                    Selengkapnya</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="p-0 pl-3">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_d"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_b">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Lebih Dari Satu Zona
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_d" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lahan perencanaan yang memiliki lebih
+                                                                                dari satu zona.</p>
+                                                                            <div class="ml-3">
+                                                                                <a target="_blank"
+                                                                                    href="{{ asset('pdf_bangunan/I.4 PPT LAHAN PERENCANAAN - LEBIH DARI SATU ZONA.pdf') }}"><i
+                                                                                        class="fa fa-file-pdf-o text-danger"></i>
+                                                                                    Selengkapnya</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="p-0 pl-3" style="
+                                                                    width: 120%;
+                                                                ">
+                                                                        <a class="text-dark font-weight-bold"
+                                                                            data-toggle="collapse" href="#lahan_e"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="lahan_b">
+                                                                            <span class="collapsed"><i
+                                                                                    class="fa fa-plus"></i></span>
+                                                                            <span class="expanded"><i
+                                                                                    class="fa fa-minus"></i></span>
+                                                                            Lebih Dari Satu Zona Dipisahkan Prasarana
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="lahan_e" class="collapse">
+                                                                        <div class="card-body value-collapse">
+                                                                            <p>Lahan perencanaan yang berada di lebih
+                                                                                dari satu zona, serta dibatasi dan/atau
+                                                                                dipisahkan prasarana kota.</p>
+                                                                            <div class="ml-3">
+                                                                                <a target="_blank"
+                                                                                    href="{{ asset('pdf_bangunan/I.5 PPT LAHAN PERENCANAAN - LEBIH DARI SATU ZONA DIPISAHKAN PRASARANA.pdf') }}"><i
+                                                                                        class="fa fa-file-pdf-o text-danger"></i>
+                                                                                    Selengkapnya</a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1631,7 +1713,8 @@
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-75">Pesan
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}"
+                                        class="w-75">Pesan
                                     Ajib</a>
                             </div>
                             <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
