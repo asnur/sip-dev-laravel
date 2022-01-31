@@ -1219,11 +1219,136 @@
                             <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">
                                 Tata Bangunan<br><span class="w-100 text-center text_all"
                                     style="font-weight: normal">Pedoman Tata Bangunan sesuai Pergub
-                                    135/2019</span><br><span class="w-100 text-center text_all"
-                                    style="font-weight: normal"><i>(Under Construction)</i></span>
+                                    135/2019</span>
                             </p>
                             <div class="d-flex space_text row_mid_text text_all">
-                                <div id="accordion text_all" style="width: 100%">
+                                <div class="col-lg-12 text_all">
+                                    <div>
+                                        <label class="text-center w-100 text-dark font-weight-bold">Lahan
+                                            Perencanaan</label><br>
+                                        <label class="text-dark font-weight-bold">Definisi</label>
+                                    </div>
+                                    <p class="text-justify">
+                                        lahan efektif yang direncanakan untuk kegiatan
+                                        pemanfaatan ruang, dapat berbentuk superblok, blok,
+                                        subblok Dan/atau kaveling/persil/perpetakan
+                                    </p>
+                                    <div>
+                                        <div class="p-0">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_a" aria-expanded="false" aria-controls="lahan_a">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Satu Intensitas
+                                            </a>
+                                        </div>
+                                        <div id="lahan_a" class="collapse">
+                                            <div class="card-body value-collapse">
+                                                <p>Lahan perencanaan yang memiliki satu
+                                                    intensitas pemanfaatan ruang pada satu
+                                                    subzona.</p>
+                                                <div class="ml-3">
+                                                    <a target="_blank"
+                                                        href="{{ asset('pdf_bangunan/I.1 PPT LAHAN PERENCANAAN - SATU INTENSITAS.pdf') }}"><i
+                                                            class="fa fa-file-pdf-o text-danger"></i>
+                                                        Selengkapnya</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="p-0">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_b" aria-expanded="false" aria-controls="lahan_b">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Lebih Dari Satu Intensitas
+                                            </a>
+                                        </div>
+                                        <div id="lahan_b" class="collapse">
+                                            <div class="card-body value-collapse">
+                                                <p>Lahan perencanaan yang memiliki lebih
+                                                    dari satu intensitas pemanfaatan ruang
+                                                    pada satu subzona.</p>
+                                                <div class="ml-3">
+                                                    <a target="_blank"
+                                                        href="{{ asset('pdf_bangunan/I.2 PPT LAHAN PERENCANAAN - LEBIH DARI SATU INTENSITAS.pdf') }}"><i
+                                                            class="fa fa-file-pdf-o text-danger"></i>
+                                                        Selengkapnya</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="p-0">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_c" aria-expanded="false" aria-controls="lahan_b">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Dipisahkan Prasarana
+                                            </a>
+                                        </div>
+                                        <div id="lahan_c" class="collapse">
+                                            <div class="card-body value-collapse">
+                                                <p>Lahan Perencanaan yang masih satu
+                                                    kepemilikan, yang dibatasi dan/atau
+                                                    dipisahkan prasarana kota.</p>
+                                                <div class="ml-3">
+                                                    <a target="_blank"
+                                                        href="{{ asset('pdf_bangunan/I.3 PPT LAHAN PERENCANAAN - DIPISAHKAN PRASARANA.pdf') }}"><i
+                                                            class="fa fa-file-pdf-o text-danger"></i>
+                                                        Selengkapnya</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="p-0">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_d" aria-expanded="false" aria-controls="lahan_b">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Lebih Dari Satu Zona
+                                            </a>
+                                        </div>
+                                        <div id="lahan_d" class="collapse">
+                                            <div class="card-body value-collapse">
+                                                <p>Lahan perencanaan yang memiliki lebih
+                                                    dari satu zona.</p>
+                                                <div class="ml-3">
+                                                    <a target="_blank"
+                                                        href="{{ asset('pdf_bangunan/I.4 PPT LAHAN PERENCANAAN - LEBIH DARI SATU ZONA.pdf') }}"><i
+                                                            class="fa fa-file-pdf-o text-danger"></i>
+                                                        Selengkapnya</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="p-0">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#lahan_e" aria-expanded="false" aria-controls="lahan_b">
+                                                <span class="collapsed"><i class="fa fa-plus"></i></span>
+                                                <span class="expanded"><i class="fa fa-minus"></i></span>
+                                                Lebih Dari Satu Zona Dipisahkan Prasarana
+                                            </a>
+                                        </div>
+                                        <div id="lahan_e" class="collapse">
+                                            <div class="card-body value-collapse">
+                                                <p>Lahan perencanaan yang berada di lebih
+                                                    dari satu zona, serta dibatasi dan/atau
+                                                    dipisahkan prasarana kota.</p>
+                                                <div class="ml-3">
+                                                    <a target="_blank"
+                                                        href="{{ asset('pdf_bangunan/I.5 PPT LAHAN PERENCANAAN - LEBIH DARI SATU ZONA DIPISAHKAN PRASARANA.pdf') }}"><i
+                                                            class="fa fa-file-pdf-o text-danger"></i>
+                                                        Selengkapnya</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div id="accordion text_all" style="width: 100%">
                                     <div>
                                         <div class="p-0 pl-3">
                                             <a class="text-dark font-weight-bold" data-toggle="collapse"
@@ -1369,9 +1494,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div>
-                                                                    <div class="p-0 pl-3" style="
-                                                                    width: 120%;
-                                                                ">
+                                                                    <div class="p-0 pl-3">
                                                                         <a class="text-dark font-weight-bold"
                                                                             data-toggle="collapse" href="#lahan_e"
                                                                             aria-expanded="false"
@@ -1404,7 +1527,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             {{-- <div class="d-flex space_text row_mid_text">
                                 <div class="col-lg-12 text_all">
