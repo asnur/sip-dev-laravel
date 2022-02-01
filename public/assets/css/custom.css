@@ -551,6 +551,16 @@ input[type="range"]::-moz-range-progress {
     text-align: justify;
 }
 
+.pdf_file {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+#list-ketentuan li {
+    margin-left: -25px;
+    text-align: justify;
+}
+
 .container_grid .col_info {
     text-align: left;
 }
