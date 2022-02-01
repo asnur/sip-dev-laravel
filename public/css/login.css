@@ -1,0 +1,19 @@
+body {
+    background: url("https://c4.wallpaperflare.com/wallpaper/702/43/725/jakarta-city-cityscape-wallpaper-preview.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.input-group-text {
+    background: none;
+    border-right: none;
+}
+
+.form-control {
+    border-left: none;
+}
+
+.card-header {
+    background: none;
+    border: none;
+}
