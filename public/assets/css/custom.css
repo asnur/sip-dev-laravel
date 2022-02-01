@@ -547,7 +547,17 @@ input[type="range"]::-moz-range-progress {
 }
 
 .value-collapse p {
-    margin-left: 0.7rem;
+    /* margin-left: 0.7rem; */
+    text-align: justify;
+}
+
+.pdf_file {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+#list-ketentuan li {
+    margin-left: -25px;
     text-align: justify;
 }
 
