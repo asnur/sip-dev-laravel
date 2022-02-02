@@ -18,7 +18,7 @@ class AdminController extends Controller
         $pegawai_ajib = User::withCount('survey')->whereHas(
             'roles',
             function ($q) {
-                $q->where('name', 'surveyer');
+                $q->where('name', 'disable-surveyer');
             }
         )->get();
 
@@ -79,7 +79,7 @@ class AdminController extends Controller
         $pegawai_ajib = User::whereHas(
             'roles',
             function ($q) {
-                $q->where('name', 'surveyer');
+                $q->where('name', 'disable-surveyer');
             }
         )->get();
         $role = Role::all();
@@ -127,7 +127,7 @@ class AdminController extends Controller
         $pegawai_ajib = User::whereHas(
             'roles',
             function ($q) {
-                $q->where('name', 'surveyer');
+                $q->where('name', 'disable-surveyer');
             }
         )->get();
 
