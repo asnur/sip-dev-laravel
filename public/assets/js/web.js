@@ -2877,7 +2877,7 @@ function getDataBudaya(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${APP_URL}/kbli/${subzona}`,
+        url: `${url}/kblia2/${subzona}`,
         method: "get",
         dataType: "json",
         success: function (e) {
@@ -2887,7 +2887,7 @@ function dropDownKegiatan(subzona) {
             var htmlContent = "";
             $("#btn-print").hide();
             htmlContent += `<option>Pilih...</option>`;
-            var data = e;
+            var data = e.features[0].properties;
             for (i in data) {
                 // console.log(data[i]["Kegiatan Ruang"]);
                 htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
@@ -2901,13 +2901,13 @@ function DropdownSkala(zonasi, sel) {
     var resHTML = "";
     $("#kegiatanKewenangan").html("");
     $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+        url: `${url}/kblib2/${zonasi}/${sel}`,
         method: "get",
         dataType: "json",
         success: function (res) {
             $("#btn-print").hide();
             if (res != null) {
-                const prop = res;
+                const prop = res.features[0].properties;
                 var jmlh = [];
                 resHTML += "<option>Pilih....</option>";
                 resHTML += "<optgroup label='Modal'>";
@@ -2977,14 +2977,14 @@ function DropdownSkala(zonasi, sel) {
 
 function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+        url: `${url}/kblic2/${zonasi}/${sel}/${skala}`,
         method: "get",
         dataType: "json",
         success: function (res) {
             var resHTML = "";
             if (res != null) {
-                const prop = res;
-                data_kbli = res;
+                const prop = res.features[0].properties;
+                data_kbli = res.features[0].properties;
                 resHTML += "<option>Pilih....</option>";
                 for (var i in prop) {
                     resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;

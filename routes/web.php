@@ -7,6 +7,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
 use App\Http\Controllers\RequireDataChatController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\SurveyerController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -115,6 +116,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/pegawaiAjib', [AdminController::class, 'delete_pegawai_ajib'])->name('delete-pegawai');
     Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
+    Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
 });
 
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
