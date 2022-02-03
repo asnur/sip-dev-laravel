@@ -8,6 +8,11 @@ const map = new mapboxgl.Map({
     preserveDrawingBuffer: true,
 });
 
+const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false,
+});
+
 map.on("style.load", () => {
     map.addSource("titik-survey", {
         type: "geojson", //geojson,video,image,canvas
@@ -34,6 +39,42 @@ map.on("style.load", () => {
 $(
     ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
 ).css("visibility", "hidden");
+
+map.on("mouseenter", "titik-survey", (e) => {
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const data = e.features[0].properties;
+    const content = `
+    <div class="p-0">
+        <div class="imgcard-container">
+            <img src="https://jakpintas.dpmptsp-dki.com/img-survey/${
+                data["foto"]
+            }" class="card-img-top" style="width: 100%;height: 100px;object-fit: cover;">
+        </div>
+        <div class="card-body p-2">
+            <h6 class="mt-0 mb-2 card-title border-bottom">${data["judul"]}</h6>
+            <div style="line-height: 1.2;">
+                <span class="d-block"><b>Kategori :</b> ${
+                    data["kategori"]
+                }</span>
+                <span class="${
+                    data["kbli"] == "null" ? "d-none" : "d-block"
+                }"><b>KBLI :</b> ${data["kbli"]}</span>
+                <span class="d-block"> ${data["catatan"]}</span>
+            </div>
+        </div>
+    </div>`;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    popup.setLngLat(coordinates).setHTML(content).addTo(map);
+});
+
+map.on("mouseleave", "titik-survey", () => {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+});
 
 const sum = (accumulator, a) => {
     return accumulator + a;
