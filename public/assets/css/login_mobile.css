@@ -1,0 +1,59 @@
+/* Google Poppins Font CDN Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background: url("/assets/gambar/mobile/bg.png") no-repeat;
+    /* background: url("/assets/mobile/new/bg.png"); */
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.pembungkus_login {
+    padding: 40px 0 40px 0;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-attachment: fixed;
+    background-size: contain;
+    min-height: 100%;
+}
+.pembungkus_login .logo img {
+    max-width: 50%;
+    width: 200px;
+}
+.pembungkus_login input {
+    background-color: #f5f8fa;
+    border-color: #f5f8fa;
+    color: #5e6278;
+}
+.pembungkus_login input:focus {
+    box-shadow: none;
+}
+.pembungkus_login .submit_btn {
+    padding: 15px;
+    font-weight: 500;
+}
+.pembungkus_login .login_with {
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+}
+.pembungkus_login .submit_btn:focus,
+.pembungkus_login .login_with:focus {
+    box-shadow: none;
+}
+.pembungkus_login .login_with:hover {
+    background-color: #e3e3e3;
+    border-color: #e3e3e3;
+}
+.pembungkus_login .login_with img {
+    max-width: 8%;
+}

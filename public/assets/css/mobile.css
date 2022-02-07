@@ -22,240 +22,72 @@ body {
 @media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
-    /* .card {
-        background-color: dodgerblue;
-        color: white;
-        padding: 1rem;
-        height: 4rem;
-    } */
+    /* Responsive */
+    @media (min-width: 239px) and (max-width: 360px) {
+        .slick-slide {
+            width: 320px;
+            margin-left: 12px;
+        }
 
-    /* .btn-toggle {
-        margin: 0 4rem;
-        padding: 0;
-        position: relative;
-        border: none;
-        height: 1.5rem;
-        width: 3rem;
-        border-radius: 1.5rem;
-        color: #6b7381;
-        background: #bdc1c8;
+        .slick_left {
+            margin-left: 156.5px;
+        }
     }
 
-    .btn-toggle:focus,
-    .btn-toggle.focus,
-    .btn-toggle:focus.active,
-    .btn-toggle.focus.active {
-        outline: none;
+    /* Iphone SE */
+    @media (min-width: 361px) and (max-width: 389px) {
+        .slick-slide {
+            width: 330px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 165px;
+        }
     }
 
-    .btn-toggle:before,
-    .btn-toggle:after {
-        line-height: 1.5rem;
-        width: 4rem;
-        text-align: center;
-        font-weight: 600;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        position: absolute;
-        bottom: 0;
-        transition: opacity 0.25s;
+    /* Iphone 12 */
+    @media (min-width: 390px) and (max-width: 392px) {
+        .slick-slide {
+            width: 350px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 172px;
+        }
     }
 
-    .btn-toggle:before {
-        content: 'Off';
-        left: -4rem;
+    /* Pixel */
+    @media (min-width: 393px) and (max-width: 411px) {
+        .slick-slide {
+            width: 361px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 172px;
+        }
     }
 
-    .btn-toggle:after {
-        content: 'On';
-        right: -4rem;
-        opacity: 0.5;
+    /* Samsung S20 */
+    @media (min-width: 412px) and (max-width: 413px) {
+        .slick-slide {
+            width: 380px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 165px;
+        }
     }
 
-    .btn-toggle>.handle {
-        position: absolute;
-        top: 0.1875rem;
-        left: 0.1875rem;
-        width: 1.125rem;
-        height: 1.125rem;
-        border-radius: 1.125rem;
-        background: #fff;
-        transition: left 0.25s;
+    /* Iphone XR */
+    @media (min-width: 414px) and (max-width: 420px) {
+        .slick-slide {
+            width: 372px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 183px;
+        }
     }
-
-    .btn-toggle.active {
-        transition: background-color 0.25s;
-    }
-
-    .btn-toggle.active>.handle {
-        left: 1.6875rem;
-        transition: left 0.25s;
-    }
-
-    .btn-toggle.active:before {
-        opacity: 0.5;
-    }
-
-    .btn-toggle.active:after {
-        opacity: 1;
-    }
-
-    .btn-toggle.btn-sm:before,
-    .btn-toggle.btn-sm:after {
-        line-height: -0.5rem;
-        color: #fff;
-        letter-spacing: 0.75px;
-        left: 0.4125rem;
-        width: 2.325rem;
-    }
-
-    .btn-toggle.btn-sm:before {
-        text-align: right;
-    }
-
-    .btn-toggle.btn-sm:after {
-        text-align: left;
-        opacity: 0;
-    }
-
-    .btn-toggle.btn-sm.active:before {
-        opacity: 0;
-    }
-
-    .btn-toggle.btn-sm.active:after {
-        opacity: 1;
-    }
-
-    .btn-toggle.btn-xs:before,
-    .btn-toggle.btn-xs:after {
-        display: none;
-    }
-
-    .btn-toggle:before,
-    .btn-toggle:after {
-        color: #6b7381;
-    }
-
-    .btn-toggle.active {
-        background-color: #29b5a8;
-    }
-
-
-    .btn-toggle.btn-xs {
-        margin: 0 0;
-        padding: 0;
-        position: relative;
-        border: none;
-        height: 1rem;
-        width: 2rem;
-        border-radius: 1rem;
-    }
-
-    .btn-toggle.btn-xs:focus,
-    .btn-toggle.btn-xs.focus,
-    .btn-toggle.btn-xs:focus.active,
-    .btn-toggle.btn-xs.focus.active {
-        outline: none;
-    }
-
-    .btn-toggle.btn-xs:before,
-    .btn-toggle.btn-xs:after {
-        line-height: 1rem;
-        width: 0;
-        text-align: center;
-        font-weight: 600;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        position: absolute;
-        bottom: 0;
-        transition: opacity 0.25s;
-    }
-
-    .btn-toggle.btn-xs:before {
-        content: 'Off';
-        left: 0;
-    }
-
-    .btn-toggle.btn-xs:after {
-        content: 'On';
-        right: 0;
-        opacity: 0.5;
-    }
-
-    .btn-toggle.btn-xs>.handle {
-        position: absolute;
-        top: 0.125rem;
-        left: 0.125rem;
-        width: 0.75rem;
-        height: 0.75rem;
-        border-radius: 0.75rem;
-        background: #fff;
-        transition: left 0.25s;
-    }
-
-    .btn-toggle.btn-xs.active {
-        transition: background-color 0.25s;
-    }
-
-    .btn-toggle.btn-xs.active>.handle {
-        left: 1.125rem;
-        transition: left 0.25s;
-    }
-
-    .btn-toggle.btn-xs.active:before {
-        opacity: 0.5;
-    }
-
-    .btn-toggle.btn-xs.active:after {
-        opacity: 1;
-    }
-
-    .btn-toggle.btn-xs.btn-sm:before,
-    .btn-toggle.btn-xs.btn-sm:after {
-        line-height: -1rem;
-        color: #fff;
-        letter-spacing: 0.75px;
-        left: 0.275rem;
-        width: 1.55rem;
-    }
-
-    .btn-toggle.btn-xs.btn-sm:before {
-        text-align: right;
-    }
-
-    .btn-toggle.btn-xs.btn-sm:after {
-        text-align: left;
-        opacity: 0;
-    }
-
-    .btn-toggle.btn-xs.btn-sm.active:before {
-        opacity: 0;
-    }
-
-    .btn-toggle.btn-xs.btn-sm.active:after {
-        opacity: 1;
-    }
-
-    .btn-toggle.btn-xs.btn-xs:before,
-    .btn-toggle.btn-xs.btn-xs:after {
-        display: none;
-    }
-
-    .btn-toggle.btn-secondary {
-        color: #6b7381;
-        background: #bdc1c8;
-    }
-
-    .btn-toggle.btn-secondary:before,
-    .btn-toggle.btn-secondary:after {
-        color: #6b7381;
-    }
-
-    .btn-toggle.btn-secondary.active {
-        background-color: #ff8300;
-    } */
 
     .akses_data {
         padding: 0 2rem 0 1rem;
@@ -507,16 +339,43 @@ body {
 
     #form_ajib {
         display: none;
-        position: absolute;
+        /* position: absolute; */
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
-        bottom: -25%;
+        /* bottom: -25%; */
+        /* top: 50%; */
         width: 100%;
         height: 100%;
-        background-color: white;
+        /* background-color: white; */
         z-index: 991;
-        overflow: auto;
+        /* overflow: auto; */
+        overflow: hidden;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .pembungkus_form_ajib {
+        overflow: hidden;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+    }
+    .card {
+        /* position: absolute; */
+        overflow: auto;
+        top: 50%;
+        transition: top 0.5s;
+    }
+    .card.top_form {
+        top: 8%;
+    }
+
+    .hideshow_form {
+        height: 6px;
+        width: 30%;
+        border-radius: 5px;
+        background-color: #dcd9d9;
+        margin: 0 auto;
+        cursor: pointer;
     }
 
     #form_kbli {

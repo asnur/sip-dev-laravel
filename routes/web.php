@@ -8,6 +8,7 @@ use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\LoginController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,13 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
 Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
+
+// login manual
+Route::get('/login-account', [LoginController::class, 'FormLogin'])->name('login-mobile');
+// Route::get('/signup-account', [LoginController::class, 'Signup']);
+
+// Aksi login
+Route::post('/login-account', [LoginController::class, 'authenticate']);
 
 
 // login dengan google
