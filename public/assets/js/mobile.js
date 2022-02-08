@@ -1148,6 +1148,13 @@ function addSourceLayer(item) {
             $(".closeCollapse").hide();
             $("#radiusSlide").hide();
         }
+        if (map.getLayer(dt + "_label")) {
+            map.removeLayer(dt + "_label");
+            // $("#menus").html("");
+            $(".lblLayer").hide();
+            $(".closeCollapse").hide();
+            $("#radiusSlide").hide();
+        }
         if (map.getLayer(dt + "_multilinestring")) {
             map.removeLayer(dt + "_multilinestring");
             // $("#menus").html("");
@@ -1243,6 +1250,18 @@ function addLayers() {
             visibility: "visible",
         },
     });
+
+    map.addLayer({
+        id: "zoning_label",
+        type: "symbol",
+        source: "zoning",
+        layout: {
+            "text-field": "{Sub Zona}",
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 12,
+        },
+    });
+
     map.addLayer({
         id: "iumk_fill",
         type: "circle",
