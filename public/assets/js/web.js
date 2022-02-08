@@ -1159,7 +1159,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var data_tpz = dt["CD TPZ"];
     var arr_tpz = data_tpz.split(",");
     saveTPZ = arr_tpz;
-    if (dt["CD TPZ"] == "null") {
+    if (dt["CD TPZ"] == "null" || dt["CD TPZ"] == 0) {
         value_tpz += `
         <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>
         <p>Tidak Ada Ketentuan</p>`;
