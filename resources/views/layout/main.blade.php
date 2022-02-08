@@ -3852,6 +3852,7 @@
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

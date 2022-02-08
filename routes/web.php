@@ -5,6 +5,7 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\RequireDataChatController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyerController;
@@ -83,6 +84,18 @@ Route::post('/saveUser', function (Request $request) {
     Auth::login($dataUser, true);
 });
 Route::get('/getIdUser', [pinLocationController::class, 'getIdUser']);
+
+Route::get('/print', [PrintController::class, 'print'])->name('print');
+Route::post('/save_image', [PrintController::class, 'save_image'])->name('save-image');
+Route::post('/save_wilayah', [PrintController::class, 'save_wilayah'])->name('save-wilayah');
+Route::post('/save_kordinat', [PrintController::class, 'save_kordinat'])->name('save-kordinat');
+Route::post('/save_eksisting', [PrintController::class, 'save_eksisting'])->name('save-eksisting');
+Route::post('/save_njop', [PrintController::class, 'save_njop'])->name('save-njop');
+Route::post('/save_bpn', [PrintController::class, 'save_bpn'])->name('save-bpn');
+Route::post('/save_chart_pie', [PrintController::class, 'save_chart_pie'])->name('save-chart_pie');
+Route::post('/save_chart_bar', [PrintController::class, 'save_chart_bar'])->name('save-chart_bar');
+Route::post('/save_sanitasi', [PrintController::class, 'save_sanitasi'])->name('save-sanitasi');
+Route::post('/save_turun', [PrintController::class, 'save_turun'])->name('save-turun');
 
 Auth::routes();
 
