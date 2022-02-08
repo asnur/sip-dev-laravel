@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+.dalam_kotakjudul {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 100%;
+    padding-top: 4%;
+}
+
+.TextHead {
+    padding-right: 5%;
+    color: #414042;
+    font-size: 13pt;
+    font-weight: bold;
+    letter-spacing: 0.7px;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+.subjudul {
+    padding: 2px;
+    font-size: 16px;
+    padding-left: 10px;
+    border-radius: 10px;
+    padding-right: 10px;
+    background: #0956c6;
+}
+
+.img_pdf_judul {
+    width: 5%;
+    margin-top: -0.2em;
+}
+
+.bg_pdf_judul {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.img_pdf {
+    width: 3.7%;
+}
+
+.img_imb {
+    width: 12.2%;
+}
+
+.set_link {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+.size_font {
+    font-size: 13px;
+}
