@@ -1023,6 +1023,15 @@
 
                                 <div class="d-flex space_text row_mid_text">
                                     <div class="col-lg-5 text_all">
+                                        <label class="text_all_mobile">ID Sub Blok</label>
+                                    </div>
+                                    <div class="col-lg-7 text_all">
+                                        <p class="inf-id-sub-blok">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-lg-5 text_all">
                                         <label class="text_all_mobile">Blok/Sub Blok</label>
                                     </div>
                                     <div class="col-lg-7 text_all">
@@ -3645,6 +3654,12 @@
                                     class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
                                         src="{{ asset('assets/gambar/ISI.png') }}"><span>ISI Survei</span></a>
                             </div>
+                            <div class="col-sm-4 mt-2 text-center">
+                                <a href="https://bankdki.co.id/en/product-services/micro-sme/2016-11-24-20-19-48/kredit-umkm"
+                                    target="_blank" style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
+                                        src="{{ asset('assets/gambar/dki.png') }}"><span>Bank DKI</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3837,6 +3852,7 @@
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

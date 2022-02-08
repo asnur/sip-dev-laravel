@@ -341,6 +341,14 @@ map.on("style.load", function () {
         long = lngs;
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $.ajax({
+            url: `${APP_URL}/save_kordinat`,
+            method: "POST",
+            data: {
+                kordinat: [coornya.lat, coornya.lng],
+            },
+            success: () => {},
+        });
+        $.ajax({
             url: `${url}/wilayah/${lngs}/${lats}`,
             method: "GET",
             dataType: "json",
@@ -769,6 +777,16 @@ map.on("mouseleave", "sungai_multilinestring", () => {
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
+    // localStorage.setItem("wilayah", JSON.stringify(dt));
+
+    $.ajax({
+        url: `${APP_URL}/save_wilayah`,
+        method: "POST",
+        data: {
+            wilayah: dt,
+        },
+        success: () => {},
+    });
     $(".dtKBLI").html("");
     setAttrClick = e;
     $("#hide_side_bar").hide();
@@ -781,7 +799,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("hr.for_web").show();
     $(".btn_hide_side_bar.for_web").show();
     $(
-        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus, .inf-p-air-tanah, .inf-sanitasi, .inf-tipe-bangunan"
+        ".inf-iumk, .inf-omzet, .inf-pen-05, .inf-pen-610, .inf-pen-1115, .inf-pen-1620, .inf-pen-20, .inf-pen-na, .inf-kordinat, .inf-kelurahan, .inf-kecamatan, .inf-kota, .inf-luasarea, .inf-kepadatan, .inf-rasio, .inf-zona, .inf-subzona, .inf-blok, .inf-eksisting, .inf-harganjop, .inf-tpz, .inf-kdh, .inf-klb, .inf-kdb, .inf-kdh, .inf-gsb, .inf-k-tpz, .inf-kb, .inf-ktb, .inf-psl, .inf-khusus, .inf-p-air-tanah, .inf-sanitasi, .inf-tipe-bangunan, .inf-id-sub-blok"
     ).html("-");
 
     getRadius(e);
@@ -818,7 +836,13 @@ map.on(clickEvent, "wilayah_fill", function (e) {
                 display: true,
             },
             bezierCurve: false,
-            animation: 0,
+            animation: {
+                onComplete: function () {
+                    $.post(`${APP_URL}/save_chart_pie`, {
+                        pie: pie.toBase64Image(),
+                    });
+                },
+            },
         },
     });
 
@@ -863,7 +887,13 @@ map.on(clickEvent, "wilayah_fill", function (e) {
                 ],
             },
             bezierCurve: false,
-            animation: 0,
+            animation: {
+                onComplete: function () {
+                    $.post(`${APP_URL}/save_chart_bar`, {
+                        bar: bar.toBase64Image(),
+                    });
+                },
+            },
         },
     });
 
@@ -1018,6 +1048,15 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
+    $.ajax({
+        type: "POST",
+        url: `${APP_URL}/save_image`,
+        data: {
+            img: img,
+        },
+        success: () => {},
+    });
+
     var width = $("#screenshotPlaceholder").width();
     var height = $("#screenshotPlaceholder").height();
     var imgHTML = `<img class="img-snapshot" src="${img}" width="${width}" height="${height}"/>`;
@@ -1162,6 +1201,7 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-gsb").html(gsb);
     $(".inf-k-tpz").html(value_tpz);
     $(".inf-tipe-bangunan").html(dt.Tipe);
+    $(".inf-id-sub-blok").html(dt["ID Sub Blok"]);
 
     zona = `
     <div class="col-sm-12 mt-5 mb-5">
@@ -1300,6 +1340,9 @@ function getEksisting(e) {
             if (dtResp.features != null) {
                 const prop = dtResp.features[0].properties;
                 $(".inf-eksisting").html(titleCase(prop.Kegiatan));
+                $.post(`${APP_URL}/save_eksisting`, {
+                    eksisting: prop.Kegiatan,
+                });
                 eksisting = `
                   <div class="col-sm-12">
                   <div class="row">
@@ -1647,6 +1690,7 @@ function getNJOP(e) {
 
             hrg_min = separatorNum(prop.Min);
             hrg_max = separatorNum(prop.Max);
+            $.post(`${APP_URL}/save_njop`, { njop: [prop.Min, prop.Max] });
 
             harga = `
             <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
@@ -1673,6 +1717,7 @@ function getPenuruanAirTanah(e) {
             let fix_jumlah = jumlah * -100;
             $(".inf-p-air-tanah").html("");
             $(".inf-p-air-tanah").html(`${fix_jumlah} cm/tahun`);
+            $.post(`${APP_URL}/save_turun`, { turun: fix_jumlah });
         },
     });
 }
@@ -1685,6 +1730,9 @@ function getSanitasi(e) {
             const data = JSON.parse(dt);
             $(".inf-sanitasi").html("");
             $(".inf-sanitasi").html(data.features[0].properties.Sistem);
+            $.post(`${APP_URL}/save_sanitasi`, {
+                sanitasi: data.features[0].properties.Sistem,
+            });
         },
     });
 }
@@ -1707,6 +1755,7 @@ function getPersilBPN(e) {
                 const prop = dtResp.features[0].properties;
                 $(".inf-tipehak").html(prop.Tipe);
                 $(".inf-luasbpn").html(separatorNum(prop.Luas) + " m&sup2;");
+                $.post(`${APP_URL}/save_bpn`, { bpn: [prop.Tipe, prop.Luas] });
                 bpn = `
                     <div class="col-sm-12">
                       <div class="row">
@@ -2065,6 +2114,13 @@ function addSourceLayer(item) {
             $(".closeCollapse").hide();
             $("#radiusSlide").hide();
         }
+        if (map.getLayer(dt + "_label")) {
+            map.removeLayer(dt + "_label");
+            // $("#menus").html("");
+            $(".lblLayer").hide();
+            $(".closeCollapse").hide();
+            $("#radiusSlide").hide();
+        }
         if (map.getSource(dt)) {
             map.removeSource(dt);
             // $("#menus").html("");
@@ -2155,12 +2211,26 @@ function addLayers() {
         id: "zoning_fill",
         type: "fill",
         source: "zoning",
+        layout: {
+            "text-field": "test",
+        },
         paint: {
             "fill-color": ["get", "fill"],
             "fill-opacity": 1,
         },
         layout: {
             visibility: "none",
+        },
+    });
+
+    map.addLayer({
+        id: "zoning_label",
+        type: "symbol",
+        source: "zoning",
+        layout: {
+            "text-field": "{Sub Zona}",
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 12,
         },
     });
 
@@ -2877,7 +2947,7 @@ function getDataBudaya(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${APP_URL}/kbli/${subzona}`,
+        url: `${url}/kblia2/${subzona}`,
         method: "get",
         dataType: "json",
         success: function (e) {
@@ -2887,7 +2957,7 @@ function dropDownKegiatan(subzona) {
             var htmlContent = "";
             $("#btn-print").hide();
             htmlContent += `<option>Pilih...</option>`;
-            var data = e;
+            var data = e.features[0].properties;
             for (i in data) {
                 // console.log(data[i]["Kegiatan Ruang"]);
                 htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
@@ -2901,13 +2971,13 @@ function DropdownSkala(zonasi, sel) {
     var resHTML = "";
     $("#kegiatanKewenangan").html("");
     $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+        url: `${url}/kblib2/${zonasi}/${sel}`,
         method: "get",
         dataType: "json",
         success: function (res) {
             $("#btn-print").hide();
             if (res != null) {
-                const prop = res;
+                const prop = res.features[0].properties;
                 var jmlh = [];
                 resHTML += "<option>Pilih....</option>";
                 resHTML += "<optgroup label='Modal'>";
@@ -2977,14 +3047,14 @@ function DropdownSkala(zonasi, sel) {
 
 function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+        url: `${url}/kblic2/${zonasi}/${sel}/${skala}`,
         method: "get",
         dataType: "json",
         success: function (res) {
             var resHTML = "";
             if (res != null) {
-                const prop = res;
-                data_kbli = res;
+                const prop = res.features[0].properties;
+                data_kbli = res.features[0].properties;
                 resHTML += "<option>Pilih....</option>";
                 for (var i in prop) {
                     resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
