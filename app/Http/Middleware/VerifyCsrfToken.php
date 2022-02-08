@@ -19,6 +19,16 @@ class VerifyCsrfToken extends Middleware
         '/detailDataPin',
         '/saveUser',
         '/deleteImage',
-        '/logout'
+        '/logout',
+        '/save_image',
+        '/save_wilayah',
+        '/save_kordinat',
+        '/save_eksisting',
+        '/save_njop',
+        '/save_bpn',
+        '/save_chart_pie',
+        '/save_chart_bar',
+        '/save_sanitasi',
+        '/save_turun',
     ];
 }
