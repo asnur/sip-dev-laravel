@@ -19,6 +19,7 @@
     <!-- Icon -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/remix-icon/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pitchtoggle.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
@@ -474,16 +475,17 @@
                     <div class="form-check investasi_line" style="display: none;"><input id="investasi_line"
                             name="investasi_line" class="form-check-input mt-1" type="checkbox"><label
                             for="investasi_line" class="form-check-label text_all">Investasi3</label></div> --}}
-                    <div class="form-check zoning_fill">
-                        <input type="checkbox" class="form-check-input" checked id="zoning_fill">
-                        <label class="form-check-label  text_all" for="zoning_fill">Peta
-                            Zonasi</label>
-                    </div>
 
                     <div class="form-check wilayahindex_fill mt-1">
                         <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
                         <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
                             Kecil</label>
+                    </div>
+
+                    <div class="form-check zoning_fill mt-1">
+                        <input type="checkbox" class="form-check-input" id="zoning_fill">
+                        <label class="form-check-label  text_all" for="zoning_fill">Peta
+                            Zonasi</label>
                     </div>
 
                     <div class="form-check pipa_multilinestring mt-1">
@@ -3860,6 +3862,7 @@
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="{{ asset('assets/js/pitchtoggle.js') }}"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

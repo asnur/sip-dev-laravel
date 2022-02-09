@@ -313,6 +313,7 @@ const draw = new MapboxDraw({
     },
 });
 map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new PitchToggle({ minpitchzoom: 15 }));
 
 // map.addControl(draw);
 
@@ -345,7 +346,7 @@ map.on("style.load", function () {
             "source-layer": "building",
             filter: ["==", "extrude", "true"],
             type: "fill-extrusion",
-            minzoom: 15,
+            minzoom: 10,
             paint: {
                 "fill-extrusion-color": "#aaa",
 
@@ -356,18 +357,18 @@ map.on("style.load", function () {
                     "interpolate",
                     ["linear"],
                     ["zoom"],
-                    15,
+                    10,
                     0,
-                    15.05,
+                    10.05,
                     ["get", "height"],
                 ],
                 "fill-extrusion-base": [
                     "interpolate",
                     ["linear"],
                     ["zoom"],
-                    15,
+                    10,
                     0,
-                    15.05,
+                    10.05,
                     ["get", "min_height"],
                 ],
                 "fill-extrusion-opacity": 0.6,
@@ -2276,6 +2277,7 @@ function addLayers() {
             "text-field": "{Sub Zona}",
             "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
             "text-size": 12,
+            visibility: "none",
         },
     });
 
@@ -2532,15 +2534,19 @@ function onOffLayers() {
     //Peta Zonasi
     if ($("#zoning_fill").prop("checked") == true) {
         showLayer("zoning_fill");
+        showLayer("zoning_label");
     } else {
         hideLayer("zoning_fill");
+        hideLayer("zoning_label");
     }
 
     $("#zoning_fill").change(function () {
         if ($(this).prop("checked") == true) {
             showLayer("zoning_fill");
+            showLayer("zoning_label");
         } else {
             hideLayer("zoning_fill");
+            hideLayer("zoning_label");
         }
     });
 
