@@ -3660,6 +3660,13 @@
                                     class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
                                         src="{{ asset('assets/gambar/dki.png') }}"><span>Bank DKI</span></a>
                             </div>
+                            <div class="col-sm-4 mt-2 text-center">
+                                <a href="/dokumen-dasar-dan-panduan" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img style="margin-top:-6px"
+                                        src="{{ asset('assets/gambar/referensi.png') }}"
+                                        class="w-75"><span>Referensi</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
