@@ -31,12 +31,12 @@
 }
 
 .img_pdf_judul {
-    width: 5%;
+    width: 7%;
     margin-top: -0.2em;
 }
 
 .bg_pdf_judul {
-    background-color: #007bff;
+    background-color: #516beb;
     color: #fff;
     border-radius: 5px;
 }
@@ -46,7 +46,7 @@
 }
 
 .img_imb {
-    width: 12.2%;
+    width: 14.2%;
 }
 
 .set_link {

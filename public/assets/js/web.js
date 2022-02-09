@@ -615,8 +615,8 @@ map.on("mouseenter", "investasi_fill", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
-        
-        
+
+
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -642,7 +642,7 @@ map.on("mouseenter", "investasi_line", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -668,7 +668,7 @@ map.on("mouseenter", "investasi_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -695,7 +695,7 @@ map.on("mouseenter", "budaya_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Name"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px">${dt["Keterangan"]}</span>      
+      <span class="d-block" style="width: 300px">${dt["Keterangan"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -722,8 +722,8 @@ map.on("mouseenter", "ipal_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Sistem"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px">${dt["Alamat"]}</span>      
-      <span class="d-block" style="width: 300px">Kapasitas : ${dt["Kapasitas"]}</span>      
+      <span class="d-block" style="width: 300px">${dt["Alamat"]}</span>
+      <span class="d-block" style="width: 300px">Kapasitas : ${dt["Kapasitas"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -1517,7 +1517,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let html = "";
             // console.log(value_data);
             html += `
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">KB Maksimal</label>
@@ -1526,7 +1526,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["KB Maksimal"]}</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">KDB Maksimal</label>
@@ -1535,7 +1535,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["KDB Maksimal"] * 100}%</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">KLB Maksimal</label>
@@ -1544,7 +1544,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["KLB Maksimal"]}</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">Luas Lahan Minimal</label>
@@ -1553,7 +1553,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["Luas Lahan Minimal"]}</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">Syarat Lainnya</label>
@@ -1718,7 +1718,7 @@ function getPersilBPN(e) {
                             prop.Luas
                         )} m&sup2;</div>
                         <div class="col-sm-4">Harga</div>
-                        
+
                   `;
             }
         },
@@ -1817,7 +1817,7 @@ function getRadius(e) {
                 for (var az in dt) {
                     const dta = dt[az];
                     htmlContent += `
-                    <li style="list-style:none" class="listgroup-cust align-items-center text_all"> 
+                    <li style="list-style:none" class="listgroup-cust align-items-center text_all">
                         <div class="row">
                             <div class="col-md-8 text_all">
                             ${dta.fasilitas}
@@ -3117,7 +3117,7 @@ function getDataPin(id_user) {
                                 <a onclick="deleteDataPin(
                                     ${e[index].id},
                                     ${id_user}
-                                )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a> 
+                                )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
                             <div class="col-6 p-1">
                                 <a class="mt-1" onclick="editDataPin(

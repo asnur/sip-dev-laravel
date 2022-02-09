@@ -269,7 +269,7 @@
     </div>
 
     {{-- Footer --}}
-    <div class="container px-3 mt-1">
+    {{-- <div class="container px-3 mt-1">
 
         <footer class="py-4 border-top">
 
@@ -304,7 +304,7 @@
             </div>
 
         </footer>
-    </div>
+    </div> --}}
 
     <!-- JS -->
     <script src="{{ asset('assets/bootstrap5/js/bootstrap.bundle.min.js') }}"></script>
