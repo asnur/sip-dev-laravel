@@ -665,6 +665,12 @@
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
                             </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="btnAndalalin" href="#" target="_blank"><i class="ri-e-bike-2-line"></i></a>
+                                <br>
+                                <label class="size_menu size_menu_mobile">Andalalin</label>
+                            </li>
                             <!-- Pending menu pin-->
 
                         </ul>

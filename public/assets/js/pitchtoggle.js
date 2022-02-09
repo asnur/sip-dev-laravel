@@ -1,5 +1,5 @@
 class PitchToggle {
-    constructor({ bearing = -20, pitch = 90, minpitchzoom = 15 }) {
+    constructor({ bearing = 0, pitch = 90, minpitchzoom = 15 }) {
         this._bearing = bearing;
         this._pitch = pitch;
         this._minpitchzoom = minpitchzoom;

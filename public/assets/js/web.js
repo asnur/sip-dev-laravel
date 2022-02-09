@@ -427,6 +427,10 @@ map.on("style.load", function () {
             "href",
             `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
         );
+        $("#btnAndalalin").attr(
+            "href",
+            `https://jakevo.jakarta.go.id/waypoint-maps?lat=${lats}&lng=${lngs}`
+        );
     });
     // Marker onclick
     const el = document.createElement("div");
