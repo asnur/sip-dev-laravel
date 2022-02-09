@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\PagePDFController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +132,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
     Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
+    Route::get('/dokumen-dasar-dan-panduan', [PagePDFController::class, 'Dokumen']);
 });
 
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
