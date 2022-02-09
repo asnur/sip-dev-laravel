@@ -33,13 +33,11 @@ Route::get('/', function (Request $request) {
     return view('layout.main');
 })->name('home');
 
+
+//KBLI PUSDATIN
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
 Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
-
-//For PDF Fitur
-// Route::post('/setKelurahan/{kelurahan}', [PDFController::class, 'setKelurahan']);
-// Route::post('/savePDF', [PDFController::class, 'savePDF']);
 
 //cek Login Chat
 Route::get('/cekLoginChat', function (Request $request) {
@@ -51,6 +49,7 @@ Route::get('/cekLoginChat', function (Request $request) {
     }
 });
 
+//Login Status
 Route::get('/statusLogin', function (Request $request) {
     $status = $request->session()->get('cek-login');
 
@@ -87,6 +86,8 @@ Route::post('/saveUser', function (Request $request) {
 });
 Route::get('/getIdUser', [pinLocationController::class, 'getIdUser']);
 
+
+//Print PDF Route
 Route::get('/print', [PrintController::class, 'print'])->name('print');
 Route::post('/save_image', [PrintController::class, 'save_image'])->name('save-image');
 Route::post('/save_wilayah', [PrintController::class, 'save_wilayah'])->name('save-wilayah');
@@ -98,6 +99,9 @@ Route::post('/save_chart_pie', [PrintController::class, 'save_chart_pie'])->name
 Route::post('/save_chart_bar', [PrintController::class, 'save_chart_bar'])->name('save-chart_bar');
 Route::post('/save_sanitasi', [PrintController::class, 'save_sanitasi'])->name('save-sanitasi');
 Route::post('/save_turun', [PrintController::class, 'save_turun'])->name('save-turun');
+
+//Dokumen Dasar
+Route::get('/dokumen-dasar-dan-panduan', [PagePDFController::class, 'Dokumen']);
 
 Auth::routes();
 
@@ -132,7 +136,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
     Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
-    Route::get('/dokumen-dasar-dan-panduan', [PagePDFController::class, 'Dokumen']);
 });
 
+//Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
