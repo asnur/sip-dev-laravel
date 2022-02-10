@@ -1207,6 +1207,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
       <li style="margin-left:-25px">Ketentuan GSB bangunan dapat ditiadakan untuk Kawasan Cagar Budaya atau kawasan tertentu dengan menyediakan pedestrian dan penetapannya dilakukan oleh gubernur.</li>
     </ol>
     `;
+    if ($("#checkboxKBLI").prop("checked") == true) {
+        $("#checkboxKBLI").trigger("click");
+    }
     // console.log(proyek);
     $(".dtKBLI").html("");
     var value_tpz = ``;

@@ -473,7 +473,9 @@ $kbli = session('kbli');
                     </div>
                 </div>
             </div>
-            <div class="page-break"></div>
+            @if ($ketentuan_tpz[0] !== null)
+                <div class="page-break"></div>
+            @endif
             <div class="border-container p-1">
                 <div class="row-content">
                     <div class="border-bottom-container w-100" style="vertical-align: middle">
