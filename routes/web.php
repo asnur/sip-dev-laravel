@@ -99,6 +99,12 @@ Route::post('/save_chart_pie', [PrintController::class, 'save_chart_pie'])->name
 Route::post('/save_chart_bar', [PrintController::class, 'save_chart_bar'])->name('save-chart_bar');
 Route::post('/save_sanitasi', [PrintController::class, 'save_sanitasi'])->name('save-sanitasi');
 Route::post('/save_turun', [PrintController::class, 'save_turun'])->name('save-turun');
+Route::post('/save_air_tanah', [PrintController::class, 'save_air_tanah'])->name('save-air-tanah');
+Route::post('/save_zoning', [PrintController::class, 'save_zoning'])->name('save-zoning');
+Route::post('/save_ketentuan_tpz', [PrintController::class, 'save_ketentuan_tpz'])->name('save-ketentuan-tpz');
+Route::post('/save_poi', [PrintController::class, 'save_poi'])->name('save-poi');
+Route::post('/save_kbli', [PrintController::class, 'save_kbli'])->name('save-kbli');
+Route::post('/check_print', [PrintController::class, 'check_print'])->name('check-print');
 
 //Dokumen Dasar
 Route::get('/dokumen-dasar-dan-panduan', [PagePDFController::class, 'Dokumen']);

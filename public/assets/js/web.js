@@ -203,6 +203,10 @@ $(window).on("load", function () {
     localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
+    $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
+    $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
+    $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
 });
 
 $.ajax({
@@ -1192,6 +1196,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
+    $.post(`${APP_URL}/save_zoning`, { zoning: dt });
     var gsb = `
     <p>Ketentuan GSB (Garis Sempadan Bangunan) terhadap GSJ (Garis Sempadan Jalan) adalah sebagai berikut:</p>
     <ol style="margin-top:-15px">
@@ -1216,6 +1221,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
         option_tpz += `
             <option>Tidak Ada CD TPZ</option>
         `;
+        $.post(`${APP_URL}/save_ketentuan_tpz`, {
+            ketentuan_tpz: [null, null, null, null],
+        });
     } else {
         value_tpz += dsc_tpz;
         value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
@@ -1231,6 +1239,14 @@ map.on(clickEvent, "zoning_fill", function (e) {
                 <option value="${index}">${arr_tpz[index]}</option>
             `;
         }
+        $.post(`${APP_URL}/save_ketentuan_tpz`, {
+            ketentuan_tpz: [
+                0,
+                dataabse_tpz[saveTPZ[0]].nama,
+                dataabse_tpz[`${saveTPZ[0]}`].pengertian,
+                dataabse_tpz[`${saveTPZ[0]}`].ketentuan,
+            ],
+        });
     }
 
     getKetentuanPSL(dt["Sub Zona"], dt.PSL);
@@ -1683,6 +1699,7 @@ function getAirTanah(e) {
             const data = JSON.parse(e);
             let value_data = data.features;
             let html = "";
+            $.post(`${APP_URL}/save_air_tanah`, { air_tanah: value_data });
             for (let index = 0; index < value_data.length; index++) {
                 html += `
                 <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Air Tanah Kedalaman ${value_data[
@@ -1887,9 +1904,11 @@ function getRadius(e) {
             }
 
             var obj = groupBy(cat, "name");
+            let poi = {};
+            let name_poi = [];
             for (var as in obj) {
                 const dt = obj[as];
-
+                // console.log(dt);
                 htmlContent += `
                     <div class="row row_mid_judul2">
                     <div class="col-md-12 flex-column">
@@ -1910,10 +1929,15 @@ function getRadius(e) {
                 <div class="col-sm-8">
                 `;
 
-                // console.log(dt[0].name);
+                Object.assign(poi, { [dt[0].name]: [] });
+                name_poi.push(dt[0].name);
 
                 for (var az in dt) {
                     const dta = dt[az];
+                    poi[dt[0].name].push({
+                        fasilitas: dta.fasilitas,
+                        jarak: Math.round(dta.jarak) / 1000,
+                    });
                     htmlContent += `
                     <li style="list-style:none" class="listgroup-cust align-items-center text_all"> 
                         <div class="row">
@@ -1943,6 +1967,10 @@ function getRadius(e) {
             </div>`;
                 fasilitas += `</div>`;
             }
+            // console.log(poi);
+            $.post(`${APP_URL}/save_poi`, {
+                poi: [getRadVal / 1000, poi, name_poi],
+            });
             $(".tabListFasilitas").html(htmlContent);
         },
         error: function (error) {
@@ -3485,6 +3513,7 @@ $(document).on("change", "#kegiatanKewenangan", function () {
     $(".dtKBLI").html("");
     $("#btn-print").show();
     // console.log(data_kbli);
+    $.post(`${APP_URL}/save_kbli`, { kbli: data_kbli[selSektor] });
     var tblSel = "";
     tblSel += `
       <tr>
@@ -3541,6 +3570,7 @@ $(document).on("change", "#selectTPZ", function () {
     $(".inf-k-tpz").html("");
     console.log($(this).val());
     var index = $(this).val();
+
     var value_tpz = "";
     value_tpz += dsc_tpz;
     value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
@@ -3551,6 +3581,14 @@ $(document).on("change", "#selectTPZ", function () {
     `;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].pengertian;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].ketentuan;
+    $.post(`${APP_URL}/save_ketentuan_tpz`, {
+        ketentuan_tpz: [
+            index,
+            dataabse_tpz[saveTPZ[index]].nama,
+            dataabse_tpz[`${saveTPZ[index]}`].pengertian,
+            dataabse_tpz[`${saveTPZ[index]}`].ketentuan,
+        ],
+    });
     $(".inf-k-tpz").html(value_tpz);
 });
 
@@ -3949,17 +3987,61 @@ $("#printAll").on("click", function () {
         $("#checkboxAkses").prop("checked") == true ||
         $("#checkboxKBLI").prop("checked") == true
     ) {
-        html2pdf()
-            .set(opt)
-            .from(html)
-            .output("bloburl")
-            .then((r) => {
-                window.open(r);
-            });
+        window.open(`${APP_URL}/print`);
+        // html2pdf()
+        //     .set(opt)
+        //     .from(html)
+        //     .output("bloburl")
+        //     .then((r) => {
+        //         window.open(r);
+        //     });
     } else {
         $("#pesanGagalPrint").show();
         setTimeout(() => {
             $("#pesanGagalPrint").hide();
         }, 3000);
+    }
+});
+
+$("#checkboxProfil").change(() => {
+    if ($("#checkboxProfil").prop("checked") == true) {
+        $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 1 });
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
+    }
+});
+
+$("#checkboxKetentuan").change(() => {
+    if ($("#checkboxKetentuan").prop("checked") == true) {
+        $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 1 });
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
+    }
+});
+
+$("#checkboxAkses").change(() => {
+    if ($("#checkboxAkses").prop("checked") == true) {
+        $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 1 });
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
+    }
+});
+
+$("#checkboxKBLI").change(() => {
+    if ($("#checkboxKBLI").prop("checked") == true) {
+        if ($(".dtKBLI").html().length == 0) {
+            $("#pesanGagalPrintKBLI").show();
+            setTimeout(() => {
+                $("#pesanGagalPrintKBLI").hide();
+            }, 3000);
+            $("#checkboxKBLI").trigger("click");
+        } else {
+            $.post(`${APP_URL}/check_print`, {
+                kategeori: "kbli-data",
+                status: 1,
+            });
+        }
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
     }
 });
