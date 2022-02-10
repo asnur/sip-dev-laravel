@@ -10,9 +10,9 @@ class PrintController extends Controller
     public function print()
     {
         // dd(session('ketentuan_tpz'));
+        return view('print');
         $pdf = PDF::loadView('print');
         return $pdf->stream();
-        // return view('print');
     }
 
     public function save_image(Request $request)
