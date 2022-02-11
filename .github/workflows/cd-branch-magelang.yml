@@ -23,8 +23,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}
           port: 22
           script: |
-            cd /var/www/html/magelang
-            git clone https://github.com/asnur/sip-dev-laravel -b magelang
+            cd /var/www/html/magelang/sip-dev-laravel
             git pull origin magelang
             chown -R $USER:www-data storage
             chmod -R 775 storage
