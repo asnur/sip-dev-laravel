@@ -223,7 +223,7 @@
                 <div class="dalam_kotakjudul">
                     <div>
                         <div class="text-center">
-                            <img src="assets/gambar/logo_jakpintas.png" width="70px">
+                            <img src="assets/gambar/logo_magelang.png" width="50px" height="60px">
                         </div>
                     </div>
                     <div style="margin-top: 1%;">
@@ -621,25 +621,21 @@
 
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="lokasi-tab" data-toggle="pill" href="#pills-ketentuan" role="tab"
-                                    aria-controls="pills-ketentuan" aria-selected="true"><i
-                                        class="fa fa-book"></i></a>
+                                    id="lokasi-tab" data-toggle="pill" href="#"><i class="fa fa-book"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ketentuan</label>
                             </li>
 
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
-                                    data-toggle="pill" href="#pills-poi" role="tab" aria-controls="pills-poi"
-                                    aria-selected="false"><i class="fa fa-crosshairs"></i></a>
+                                    data-toggle="pill" href="#"><i class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Akses</label>
                             </li>
 
                             <li class="nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" data-toggle="pill" href="#pills-kblikeg" role="tab"
-                                    aria-controls="pills-kblikeg" aria-selected="false"><i
+                                    id="kblikeg-tab" data-toggle="pill" href="#"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
@@ -647,27 +643,25 @@
 
                             <li class="nav-item dropdown">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    data-toggle="pill" href="#pills-cetak" role="tab" aria-controls="pills-cetak"
-                                    aria-selected="false"><i class="ri-printer-fill"></i></a>
+                                    data-toggle="pill" href="#"><i class="ri-printer-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" href="#"
-                                    role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" href="#"><i
                                         class="ri-calculator-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simulasi</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
-                                    href="#" target="_blank"><i class="ri-shape-line"></i></a>
+                                    href="#"><i class="ri-shape-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="btnAndalalin" href="#" target="_blank"><i class="ri-e-bike-2-line"></i></a>
+                                    id="btnAndalalin" href="#"><i class="ri-e-bike-2-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Andalalin</label>
                             </li>
@@ -769,7 +763,7 @@
                                     </div>
                                 </div>
 
-                                <div class="d-flex space_text row_mid_text">
+                                {{-- <div class="d-flex space_text row_mid_text">
                                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
                                         <label class="text_all_mobile">Kelurahan</label>
                                     </div>
@@ -785,7 +779,7 @@
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                         <p class="inf-kecamatan">-</p>
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="d-flex space_text row_mid_text">
@@ -817,16 +811,163 @@
 
                                 <div class="d-flex space_text row_mid_text">
                                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                        <label class="text_all_mobile">Rasio Gini</label>
+                                        <label class="text_all_mobile">Jumlah Penduduk</label>
                                     </div>
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                         <p class="inf-rasio">-</p>
                                     </div>
                                 </div>
+
+                                <p class="card-title mt-2 text-center font-weight-bold judul_utama">Data Umur Penduduk
+                                </p>
+                                <div class="d-flex space_judul row_mid_judul">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">0-5 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-05th">-</p>
+                                    </div>
+                                </div>
+
+                                {{-- <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Kelurahan</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kelurahan">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Kecamatan</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-kecamatan">-</p>
+                                    </div>
+                                </div> --}}
+
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">5-10 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-510th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">10-15 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-1015th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">15-20 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-1520th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">20-35 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-2035th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">35-40 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-3540th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">40-45 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-4045th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">45-50 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-4550th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">50-55 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-5055th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">55-60 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-5560th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">60-65 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-6065th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">65-70 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-6570th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">70-75 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-7075th">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">>75 Tahun</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-75th">-</p>
+                                    </div>
+                                </div>
                             </div>
 
 
-                            <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Persil</p>
+                            {{-- <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Persil</p>
                             <div class="d-flex row_mid_text">
                                 <div class="col-md-5 text_all">
                                     <label class="text_all_mobile">Kegiatan</label>
@@ -997,7 +1138,7 @@
 
                             <div class="inf-air-tanah">
 
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
