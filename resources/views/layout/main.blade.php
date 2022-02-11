@@ -3744,7 +3744,7 @@
             style="position:absolute; right:-15px; z-index:999; width:8rem">
             <button class="btn btn-sm">
                 <div class="container">
-                    <div class="row" id="dropdownMenuButton1" data-toggle="dropdown">
+                    <div class="row" id="dropdownMenuButton1">
                         <span class="material-icons text-white">
                             apps
                         </span>
