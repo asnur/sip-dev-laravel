@@ -25,7 +25,6 @@ jobs:
           script: |
             cd /var/www/html/magelang
             git clone https://github.com/asnur/sip-dev-laravel -b magelang
-            cd magelang
             git pull origin magelang
             chown -R $USER:www-data storage
             chmod -R 775 storage
