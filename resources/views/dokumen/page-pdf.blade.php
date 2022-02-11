@@ -111,7 +111,7 @@
                                     <img class="img_imb" src="{{ asset('assets/gambar/page/deskripsi.png') }}" alt="logo" /><span class="size_font"> IMB Kelurahan </span>
                             </div>
                             </a>
-                            <span class="size_font">Non-Hunian > 8 Lantai</span>
+                            <span class="size_font">Hunian ≤ 2 Lantai</span>
                         </div>
                     </li>
 
