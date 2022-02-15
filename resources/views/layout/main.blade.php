@@ -37,10 +37,15 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+        type="text/css">
+
 
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="datetime" content="{{ date('Y-m-d') }}" />
     {{-- <meta name="Access-Control-Allow-Headers" value="Content-Type" /> --}}
 
 </head>
@@ -667,7 +672,10 @@
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="btnAndalalin" href="#" target="_blank"><i class="ri-e-bike-2-line"></i></a>
+                                    data-toggle="pill" href="#pills-andalalin" role="tab" aria-controls="pills-cetak"
+                                    aria-selected="false"><i class="ri-e-bike-2-line"></i><span
+                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
+
                                 <br>
                                 <label class="size_menu size_menu_mobile">Andalalin</label>
                             </li>
@@ -3539,6 +3547,81 @@
 
                     </div>
 
+                    <div class="tab-pane " id="pills-andalalin" role="tabpanel">
+                        <div class="container">
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Andalalin</p>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text_all">
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="enable-direction" type="checkbox" value=""
+                                            id="defaultCheck1">
+                                        <label class="form-check-label font-weight-bold" for="defaultCheck1"
+                                            style="margin-top:2px">
+                                            Cek Lalu Lintas
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inf-andalalin">
+                                <div class="d-flex space_judul row_mid_judul">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Titik A</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-titika">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Titik B</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-titikb">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Jarak Antar Titik</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-titik">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text_all">
+                                        <table class="table-bordered mt-4 w-100">
+                                            <thead>
+                                                <tr>
+                                                    <td class="font-weight-bold" align="center"
+                                                        style="vertical-align: middle; padding:7px;">Jam
+                                                    </td>
+                                                    <td class="font-weight-bold" align="center"
+                                                        style="vertical-align: middle; padding:7px;">
+                                                        Kecepatan</td>
+                                                    <td class="font-weight-bold" align="center"
+                                                        style="vertical-align: middle; padding:7px;">
+                                                        Waktu Tempuh</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="inf-direction-data">
+                                                {{-- <tr>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr> --}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
 
                     <!-- PENDING Content Pin,Komen,kbliLokasi,Kalkulator,HBU-->
 
@@ -3869,6 +3952,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{{ asset('assets/js/pitchtoggle.js') }}"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

@@ -174,7 +174,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, .inf-andalalin"
 ).hide();
 
 $.ajax({
@@ -203,6 +203,7 @@ $(window).on("load", function () {
     localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    localStorage.setItem("direction", 0);
     $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
@@ -319,6 +320,102 @@ const draw = new MapboxDraw({
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new PitchToggle({ minpitchzoom: 15 }));
 
+const directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+    steps: false,
+    waypointDraggable: true,
+    geometries: "polyline",
+    controls: { instructions: true },
+});
+
+$("#enable-direction").change(() => {
+    if ($("#enable-direction").prop("checked") == true) {
+        map.addControl(directions, "top-left");
+        localStorage.setItem("direction", 1);
+        $(".mapboxgl-ctrl-directions").css("visibility", "hidden");
+        $(".mapboxgl-ctrl-directions").css("z-index", "-9");
+        console.log("checked");
+    } else {
+        console.log("unchecked");
+        map.removeControl(directions);
+        localStorage.setItem("direction", 0);
+        $(".inf-andalalin").hide();
+    }
+});
+
+let hourTime = ["06:00", "09:00", "12:00", "15:00", "18:00"];
+
+directions.on("route", (e) => {
+    $(".inf-andalalin").show();
+    let data = e.route[0].legs[0].steps;
+    let distance = e.route[0].distance / 1000;
+    console.log(e);
+    $(".inf-titik").html(distance.toFixed(2) + " km");
+    $(".inf-titika").html(
+        data[0].name == ""
+            ? data[0].intersections[0].location[1] +
+                  "," +
+                  data[0].intersections[0].location[0]
+            : data[0].name
+    );
+    $(".inf-titikb").html(
+        data[data.length - 1].name == ""
+            ? data[data.length - 1].intersections[0].location[1] +
+                  "," +
+                  data[data.length - 1].intersections[0].location[0]
+            : data[data.length - 1].name
+    );
+    let from = $('input[placeholder="Choose a starting place"]').val();
+    let to = $('input[placeholder="Choose destination"]').val();
+    let way = [from, to];
+    $(".inf-direction-data").html("");
+    hourTime.forEach((el) => {
+        estimation_direction(el, way);
+    });
+    console.log($('input[placeholder="Choose a starting place"]').val());
+    console.log($('input[placeholder="Choose destination"]').val());
+});
+
+const estimation_direction = (time, way) => {
+    let date = $('meta[name="datetime"]').attr("content");
+    $.get(
+        `https://api.mapbox.com/directions/v5/mapbox/driving/${way[0]};${way[1]}?access_token=${mapboxgl.accessToken}&depart_at=${date}T${time}`
+    ).done((data) => {
+        let data_direction = data.routes[0];
+        console.log(data_direction);
+        let duration = data_direction.duration / 60;
+        let distance = data_direction.distance / 1000;
+        let speed = distance / (data_direction.duration / 3600);
+
+        let html = "";
+        let coor = "";
+
+        if (speed.toFixed(2) >= 15) {
+            color = "#2ecc71";
+        } else if (speed.toFixed(2) >= 5) {
+            color = "#f1c40f";
+        } else if (speed.toFixed(2) >= 1) {
+            color = "#e74c3c";
+        } else {
+            color = "#c0392b";
+        }
+
+        html += `
+            <tr>
+                <td align="center" style="color:${color}">${time}</td>
+                <td align="center" style="color:${color}">${speed.toFixed(
+            2
+        )} km/jam</td>
+                <td align="center" style="color:${color}">${duration.toFixed(
+            0
+        )} menit</td>
+            </tr>
+        `;
+
+        $(".inf-direction-data").append(html);
+    });
+};
+
 // map.addControl(draw);
 
 // map.on("draw.create");
@@ -418,7 +515,9 @@ map.on("style.load", function () {
                     budaya = [];
                     budaya = getDataBudaya(kelurahan);
                     saveKelurahan(kelurahan);
-                    addSourceLayer(kelurahan);
+                    if (localStorage.getItem("direction") == 0) {
+                        addSourceLayer(kelurahan);
+                    }
                 }
             },
         });
@@ -431,10 +530,10 @@ map.on("style.load", function () {
             "href",
             `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
         );
-        $("#btnAndalalin").attr(
-            "href",
-            `https://jakevo.jakarta.go.id/waypoint-maps?lat=${lats}&lng=${lngs}`
-        );
+        // $("#btnAndalalin").attr(
+        //     "href",
+        //     `https://jakevo.jakarta.go.id/waypoint-maps?lat=${lats}&lng=${lngs}`
+        // );
     });
     // Marker onclick
     const el = document.createElement("div");
@@ -443,9 +542,12 @@ map.on("style.load", function () {
 
     function add_marker(event) {
         var coordinates = event.lngLat;
-        marker.setLngLat(coordinates).addTo(map);
+        if (localStorage.getItem("direction") == 0) {
+            marker.setLngLat(coordinates).addTo(map);
+        }
     }
-    map.on(clickEvent, add_marker);
+
+    map.on("click", add_marker);
 
     map.addSource("wilayahindex", {
         type: "geojson",
@@ -2922,7 +3024,9 @@ $(document).on("click", ".wilayah-select", function () {
     saveKelurahan(kel);
     // setKelurahanSession(kel);
     geocoder.query(coor);
-    addSourceLayer(kel);
+    if (localStorage.getItem("direction") == 0) {
+        addSourceLayer(kel);
+    }
     cekProyek(coor);
     // showLayer("investasi_dot");
 });
@@ -3555,7 +3659,7 @@ $(document).on("change", "#kegiatanKewenangan", function () {
 });
 
 $(
-    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
+    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo, .mapboxgl-ctrl-directions"
 ).css("visibility", "hidden");
 
 $(document).on("change", "input:radio[name=layer]", function () {
