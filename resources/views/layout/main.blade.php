@@ -618,7 +618,7 @@
                             <li class="nav-item">
                                 <a class="active btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="lokasi-tab" data-toggle="pill" href="#pills-lokasi" role="tab"
-                                    aria-controls="pills-lokasi" aria-selected="true"><i
+                                    aria-controls="pills-lokasi" id="profil-tab" aria-selected="true"><i
                                         class="fa fa-map-marker"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Profil</label>
@@ -626,7 +626,7 @@
 
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="lokasi-tab" data-toggle="pill" href="#pills-ketentuan" role="tab"
+                                    id="ketentuan-tab" data-toggle="pill" href="#pills-ketentuan" role="tab"
                                     aria-controls="pills-ketentuan" aria-selected="true"><i
                                         class="fa fa-book"></i></a>
                                 <br>
@@ -643,7 +643,7 @@
 
                             <li class="nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" data-toggle="pill" href="#pills-kblikeg" role="tab"
+                                    id="kblikeg-tab" data-toggle="pill" id="kbli-tab" href="#pills-kblikeg" role="tab"
                                     aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
@@ -652,14 +652,15 @@
 
                             <li class="nav-item dropdown">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    data-toggle="pill" href="#pills-cetak" role="tab" aria-controls="pills-cetak"
-                                    aria-selected="false"><i class="ri-printer-fill"></i></a>
+                                    data-toggle="pill" href="#pills-cetak" id="cetak-tab" role="tab"
+                                    aria-controls="pills-cetak" aria-selected="false"><i
+                                        class="ri-printer-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" href="#"
-                                    role="tab" aria-controls="pills-poi" aria-selected="false"><i
+                                    role="tab" aria-controls="pills-poi" id="simulasi-tab" aria-selected="false"><i
                                         class="ri-calculator-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simulasi</label>
@@ -672,7 +673,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    data-toggle="pill" href="#pills-andalalin" role="tab" aria-controls="pills-cetak"
+                                    data-toggle="pill" href="#pills-andalalin" role="tab" id="andalalin-tab"
                                     aria-selected="false"><i class="ri-e-bike-2-line"></i><span
                                         class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
 
@@ -704,7 +705,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="lokasi-tab" href="menu/lokasi.html" role="tab" aria-controls="pills-lokasi"
+                                    href="menu/lokasi.html" role="tab" aria-controls="pills-lokasi"
                                     aria-selected="true"><i class="fa fa-map-marker"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Lokasi</label>
@@ -712,7 +713,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="ekonomi-tab" href="menu/ekonomi.html" role="tab" aria-controls="pills-ekonomi"
+                                    href="menu/ekonomi.html" role="tab" aria-controls="pills-ekonomi"
                                     aria-selected="false"><i class="ri-funds-box-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ekonomi</label>
@@ -720,7 +721,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="zonasi-tab" href="menu/zonasi.html" role="tab" aria-controls="pills-zonasi"
+                                    href="menu/zonasi.html" role="tab" aria-controls="pills-zonasi"
                                     aria-selected="false"><i class="ri-map-2-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Zonasi</label>
@@ -728,14 +729,14 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="persil-tab" href="menu/persil.html" role="tab" aria-controls="pills-persil"
+                                    href="menu/persil.html" role="tab" aria-controls="pills-persil"
                                     aria-selected="false"><i class="ri-home-4-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Persil</label>
                             </li>
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     href="menu/poi.html" role="tab" aria-controls="pills-poi" aria-selected="false"><i
                                         class="fa fa-crosshairs"></i></a>
                                 <br>
@@ -744,7 +745,7 @@
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" href="menu/kode-kbli.html" role="tab" aria-controls="pills-kblikeg"
+                                    href="menu/kode-kbli.html" role="tab" aria-controls="pills-kblikeg"
                                     aria-selected="false"><i class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">Kode KBLI</label>
@@ -3552,7 +3553,7 @@
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Andalalin</p>
                             <div class="d-flex space_judul row_mid_judul">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text_all">
-                                    <div class="form-check">
+                                    <div class="form-check d-none">
                                         <input class="form-check-input" id="enable-direction" type="checkbox" value=""
                                             id="defaultCheck1">
                                         <label class="form-check-label font-weight-bold" for="defaultCheck1"
@@ -3607,11 +3608,31 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="inf-direction-data">
-                                                {{-- <tr>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                </tr> --}}
+                                                <tr class="inf-direction-06">
+                                                    <td align="center">06:00</td>
+                                                    <td align="center" class="inf-kecepatan-06">-</td>
+                                                    <td align="center" class="inf-tempuh-06">-</td>
+                                                </tr>
+                                                <tr class="inf-direction-09">
+                                                    <td align="center">09:00</td>
+                                                    <td align="center" class="inf-kecepatan-09">-</td>
+                                                    <td align="center" class="inf-tempuh-09">-</td>
+                                                </tr>
+                                                <tr class="inf-direction-12">
+                                                    <td align="center">12:00</td>
+                                                    <td align="center" class="inf-kecepatan-12">-</td>
+                                                    <td align="center" class="inf-tempuh-12">-</td>
+                                                </tr>
+                                                <tr class="inf-direction-15">
+                                                    <td align="center">15:00</td>
+                                                    <td align="center" class="inf-kecepatan-15">-</td>
+                                                    <td align="center" class="inf-tempuh-15">-</td>
+                                                </tr>
+                                                <tr class="inf-direction-18">
+                                                    <td align="center">18:00</td>
+                                                    <td align="center" class="inf-kecepatan-18">-</td>
+                                                    <td align="center" class="inf-tempuh-18">-</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

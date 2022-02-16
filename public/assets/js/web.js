@@ -174,7 +174,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, .inf-andalalin"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit"
 ).hide();
 
 $.ajax({
@@ -320,6 +320,25 @@ const draw = new MapboxDraw({
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new PitchToggle({ minpitchzoom: 15 }));
 
+$(
+    "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP"
+).on("click", () => {
+    if ($("#enable-direction").prop("checked") == true) {
+        $("#enable-direction").trigger("click");
+        $("#enable-direction").prop("disabled", true);
+    }
+});
+
+$("#andalalin-tab").on("click", () => {
+    if ($("#enable-direction").prop("checked") !== true) {
+        $(
+            ".inf-titika, .inf-titikb, .inf-titik, .inf-kecepatan-06, .inf-tempuh-06, .inf-kecepatan-09, .inf-tempuh-09, .inf-kecepatan-12, .inf-tempuh-12, .inf-kecepatan-15, .inf-tempuh-15, .inf-kecepatan-18, .inf-tempuh-18"
+        ).html("-");
+        $("#enable-direction").prop("disabled", false);
+        $("#enable-direction").trigger("click");
+    }
+});
+
 const directions = new MapboxDirections({
     accessToken: mapboxgl.accessToken,
     steps: false,
@@ -339,17 +358,14 @@ $("#enable-direction").change(() => {
         console.log("unchecked");
         map.removeControl(directions);
         localStorage.setItem("direction", 0);
-        $(".inf-andalalin").hide();
     }
 });
 
 let hourTime = ["06:00", "09:00", "12:00", "15:00", "18:00"];
 
 directions.on("route", (e) => {
-    $(".inf-andalalin").show();
     let data = e.route[0].legs[0].steps;
     let distance = e.route[0].distance / 1000;
-    console.log(e);
     $(".inf-titik").html(distance.toFixed(2) + " km");
     $(".inf-titika").html(
         data[0].name == ""
@@ -365,15 +381,18 @@ directions.on("route", (e) => {
                   data[data.length - 1].intersections[0].location[0]
             : data[data.length - 1].name
     );
-    let from = $('input[placeholder="Choose a starting place"]').val();
-    let to = $('input[placeholder="Choose destination"]').val();
+    let from =
+        data[0].intersections[0].location[0] +
+        "," +
+        data[0].intersections[0].location[1];
+    let to =
+        data[data.length - 1].intersections[0].location[0] +
+        "," +
+        data[data.length - 1].intersections[0].location[1];
     let way = [from, to];
-    $(".inf-direction-data").html("");
     hourTime.forEach((el) => {
         estimation_direction(el, way);
     });
-    console.log($('input[placeholder="Choose a starting place"]').val());
-    console.log($('input[placeholder="Choose destination"]').val());
 });
 
 const estimation_direction = (time, way) => {
@@ -382,7 +401,6 @@ const estimation_direction = (time, way) => {
         `https://api.mapbox.com/directions/v5/mapbox/driving/${way[0]};${way[1]}?access_token=${mapboxgl.accessToken}&depart_at=${date}T${time}`
     ).done((data) => {
         let data_direction = data.routes[0];
-        console.log(data_direction);
         let duration = data_direction.duration / 60;
         let distance = data_direction.distance / 1000;
         let speed = distance / (data_direction.duration / 3600);
@@ -400,19 +418,13 @@ const estimation_direction = (time, way) => {
             color = "#c0392b";
         }
 
-        html += `
-            <tr>
-                <td align="center" style="color:${color}">${time}</td>
-                <td align="center" style="color:${color}">${speed.toFixed(
-            2
-        )} km/jam</td>
-                <td align="center" style="color:${color}">${duration.toFixed(
-            0
-        )} menit</td>
-            </tr>
-        `;
-
-        $(".inf-direction-data").append(html);
+        $(`.inf-direction-${time.substring(0, 2)}`).css("color", color);
+        $(`.inf-kecepatan-${time.substring(0, 2)}`).html(
+            `${speed.toFixed(2)} km/jam`
+        );
+        $(`.inf-tempuh-${time.substring(0, 2)}`).html(
+            `${duration.toFixed(0)} menit`
+        );
     });
 };
 
