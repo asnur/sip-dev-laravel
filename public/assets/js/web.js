@@ -2681,6 +2681,7 @@ function onOffLayers() {
     if ($("#zoning_fill").prop("checked") == true) {
         showLayer("zoning_fill");
         showLayer("zoning_label");
+        map.moveLayer("zoning_fill", "add-3d-buildings");
     } else {
         hideLayer("zoning_fill");
         hideLayer("zoning_label");
@@ -2690,6 +2691,7 @@ function onOffLayers() {
         if ($(this).prop("checked") == true) {
             showLayer("zoning_fill");
             showLayer("zoning_label");
+            map.moveLayer("zoning_fill", "add-3d-buildings");
         } else {
             hideLayer("zoning_fill");
             hideLayer("zoning_label");
