@@ -3550,7 +3550,8 @@
 
                     <div class="tab-pane " id="pills-andalalin" role="tabpanel">
                         <div class="container">
-                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Andalalin</p>
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Analisa Dampak Lalu
+                                Lintas</p>
                             <div class="d-flex space_judul row_mid_judul">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text_all">
                                     <div class="form-check d-none">
@@ -3565,26 +3566,32 @@
                             </div>
                             <div class="inf-andalalin">
                                 <div class="d-flex space_judul row_mid_judul">
-                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <div class=" col-lg-5 text_all">
                                         <label class="text_all_mobile">Titik A</label>
                                     </div>
-                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                        <p class="inf-titika">-</p>
+                                    <div class="col-lg-7 text_all">
+                                        <p>
+                                            <input type="text" style="font-size: 11px" class="inf-titika w-100"
+                                                placeholder="Pilih Titik A" readonly>
+                                        </p>
                                     </div>
                                 </div>
 
                                 <div class="d-flex space_text row_mid_text">
-                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <div class=" col-lg-5 text_all">
                                         <label class="text_all_mobile">Titik B</label>
                                     </div>
-                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                        <p class="inf-titikb">-</p>
+                                    <div class="col-lg-7 text_all">
+                                        <p>
+                                            <input type="text" style="font-size: 11px" class="inf-titikb w-100"
+                                                placeholder="Pilih Titik B" readonly>
+                                        </p>
                                     </div>
                                 </div>
 
                                 <div class="d-flex space_text row_mid_text">
                                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                        <label class="text_all_mobile">Jarak Antar Titik</label>
+                                        <label class="text_all_mobile">Jarak</label>
                                     </div>
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                         <p class="inf-titik">-</p>
@@ -3601,10 +3608,10 @@
                                                     </td>
                                                     <td class="font-weight-bold" align="center"
                                                         style="vertical-align: middle; padding:7px;">
-                                                        Kecepatan</td>
+                                                        Kecepatan (km/jam)</td>
                                                     <td class="font-weight-bold" align="center"
                                                         style="vertical-align: middle; padding:7px;">
-                                                        Waktu Tempuh</td>
+                                                        Waktu Tempuh (menit)</td>
                                                 </tr>
                                             </thead>
                                             <tbody class="inf-direction-data">
@@ -3635,6 +3642,27 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+
+                                        <div class="row mt-4">
+                                            <div class="col-md-2 text-left">
+                                                <span style="margin-left: -5px">Lancar</span>
+                                            </div>
+                                            <div class="col-md-2" style="background-color: #2ecc71">
+
+                                            </div>
+                                            <div class="col-md-2" style="background-color: #f1c40f">
+
+                                            </div>
+                                            <div class="col-md-2" style="background-color: #e74c3c">
+
+                                            </div>
+                                            <div class="col-md-2" style="background-color: #c0392b">
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <span style="margin-left: -5px">Padat</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

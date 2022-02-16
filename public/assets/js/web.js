@@ -332,8 +332,9 @@ $(
 $("#andalalin-tab").on("click", () => {
     if ($("#enable-direction").prop("checked") !== true) {
         $(
-            ".inf-titika, .inf-titikb, .inf-titik, .inf-kecepatan-06, .inf-tempuh-06, .inf-kecepatan-09, .inf-tempuh-09, .inf-kecepatan-12, .inf-tempuh-12, .inf-kecepatan-15, .inf-tempuh-15, .inf-kecepatan-18, .inf-tempuh-18"
+            ".inf-titik, .inf-kecepatan-06, .inf-tempuh-06, .inf-kecepatan-09, .inf-tempuh-09, .inf-kecepatan-12, .inf-tempuh-12, .inf-kecepatan-15, .inf-tempuh-15, .inf-kecepatan-18, .inf-tempuh-18"
         ).html("-");
+        $(".inf-titika, .inf-titikb").val("");
         $("#enable-direction").prop("disabled", false);
         $("#enable-direction").trigger("click");
     }
@@ -367,14 +368,14 @@ directions.on("route", (e) => {
     let data = e.route[0].legs[0].steps;
     let distance = e.route[0].distance / 1000;
     $(".inf-titik").html(distance.toFixed(2) + " km");
-    $(".inf-titika").html(
+    $(".inf-titika").val(
         data[0].name == ""
             ? data[0].intersections[0].location[1] +
                   "," +
                   data[0].intersections[0].location[0]
             : data[0].name
     );
-    $(".inf-titikb").html(
+    $(".inf-titikb").val(
         data[data.length - 1].name == ""
             ? data[data.length - 1].intersections[0].location[1] +
                   "," +
@@ -419,12 +420,8 @@ const estimation_direction = (time, way) => {
         }
 
         $(`.inf-direction-${time.substring(0, 2)}`).css("color", color);
-        $(`.inf-kecepatan-${time.substring(0, 2)}`).html(
-            `${speed.toFixed(2)} km/jam`
-        );
-        $(`.inf-tempuh-${time.substring(0, 2)}`).html(
-            `${duration.toFixed(0)} menit`
-        );
+        $(`.inf-kecepatan-${time.substring(0, 2)}`).html(`${speed.toFixed(2)}`);
+        $(`.inf-tempuh-${time.substring(0, 2)}`).html(`${duration.toFixed(0)}`);
     });
 };
 
