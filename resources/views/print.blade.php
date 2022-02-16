@@ -12,12 +12,6 @@
 
     <title>Print PDF</title>
     <style>
-        /*!
- * Bootstrap v4.1.3 (https://getbootstrap.com/)
- * Copyright 2011-2018 The Bootstrap Authors
- * Copyright 2011-2018 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
         :root {
             --blue: #007bff;
             --indigo: #6610f2;
@@ -10027,7 +10021,7 @@
                 can be of the full height and width !
              **/
         @page {
-            /* margin: 100px 25px; */
+            margin: 80px 20px;
         }
 
         .page-break {
@@ -10062,7 +10056,7 @@
             position: fixed;
             bottom: -20px;
             left: 0px;
-            right: 0px;
+            right: 5rem;
             height: 50px;
 
             /** Extra personal styles **/
@@ -10135,7 +10129,9 @@ $kbli = session('kbli');
         Di Cetak pada tanggal {{ date('d M Y') }}
     </footer>
     <main>
-        <h3 align="center" class="mb-1">Ringkasan Informasi</h3>
+        <center>
+            <span style="font-size:25px" class="text-center font-weight-bold mb-1">Ringkasan Informasi</span>
+        </center>
         <p class="font-weight-bold">Peta Lokasi</p>
         <img src="{{ session('img') }}" id="map" style="width: 100%;">
         @if (session('profil') == 1)
