@@ -190,7 +190,7 @@ $.ajax({
     },
 });
 
-$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+$("#kegiatanRuang, #skala, #kegiatanKewenangan, #selectSimulasi").select2();
 
 var layerList = document.getElementById("menu");
 var inputs = layerList.getElementsByTagName("input");
