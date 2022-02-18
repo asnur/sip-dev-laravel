@@ -51,7 +51,7 @@
 </head>
 
 @php
-$option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartment', 'Rumah Susun', 'Asrama', 'Klinik / Puskesmas', 'Rumah sakit Mewah', 'Rumah Sakit Menengah', 'Rumah Sakit Umum', 'Sekolah Dasar', 'SLTP', 'SLTA', 'Perguruan Tinggi', 'Rumah Toko   /   Rumah Kantor', 'Gedung Kantor', 'Toserba (toko serba ada, mall, department store)', 'Pabrik / Industri', 'Stasiun / Terminal', 'Bandara Udara *', 'Restoran', 'Gedung Pertunjukan', 'Gedung Bioskop', 'Hotel Melati s/d Bintang 2', 'Hotel Bintang 3 ke atas', 'Gedung Peribadatan', 'Perpustakaan', 'Bar', 'Perkumpulan Sosial', 'Klab Malam', 'Gedung Pertemuan', 'Laboratorium', 'Pasar Tradisional / Modern', 'Lainnya'];
+$option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'Asrama', 'Klinik / Puskesmas', 'Rumah sakit Mewah', 'Rumah Sakit Menengah', 'Rumah Sakit Umum', 'Sekolah Dasar', 'SLTP', 'SLTA', 'Perguruan Tinggi', 'Rumah Toko   /   Rumah Kantor', 'Gedung Kantor', 'Toserba (toko serba ada, mall, department store)', 'Pabrik / Industri', 'Stasiun / Terminal', 'Bandara Udara *', 'Restoran', 'Gedung Pertunjukan', 'Gedung Bioskop', 'Hotel Melati s/d Bintang 2', 'Hotel Bintang 3 ke atas', 'Gedung Peribadatan', 'Perpustakaan', 'Bar', 'Perkumpulan Sosial', 'Klab Malam', 'Gedung Pertemuan', 'Laboratorium', 'Pasar Tradisional / Modern', 'Lainnya'];
 @endphp
 
 <body>
@@ -665,7 +665,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartment', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     data-toggle="pill" href="#pills-simulasi" role="tab" aria-controls="pills-poi"
-                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i></a>
+                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i><span
+                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simulasi</label>
                             </li>
@@ -4449,7 +4450,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartment', 'Rumah Susun', 'A
                                 </div>
                             </div>
 
-                            <p class="card-title mt-4 text-center font-weight-bold judul_utama">Profil Lokasi
+                            <p class="card-title mt-4 mb-4 text-center font-weight-bold judul_utama">Profil Lokasi
                             </p>
 
                             <div class="d-flex space_judul row_mid_text">
@@ -4485,105 +4486,106 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartment', 'Rumah Susun', 'A
                                 </div>
                             </div>
 
-                            <p class="card-title mt-4 text-center font-weight-bold judul_utama">Asumsi
+                            <p class="card-title mt-4 mb-4 text-center font-weight-bold judul_utama">Asumsi
                             </p>
 
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <label class="text_all_mobile">Pemakaian Air</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-pmkair">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <label class="text_all_mobile">Debit Air Limbah</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-dbtairlimbah">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <label class="text_all_mobile">Sampah</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-sampah">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <label class="text_all_mobile">Standar Luas Bangunan</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-stdluasbangunan">-</p>
                                 </div>
                             </div>
 
-                            <p class="card-title mt-4 text-center font-weight-bold judul_utama">Kalkulasi Dampak
+                            <p class="card-title mt-4 mb-4 text-center font-weight-bold judul_utama">Kalkulasi Dampak
                                 Lingkungan
                             </p>
 
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Luas Limpasan Air Hujan</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-luaslimpahan">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Luas Bangunan</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-luasbangunan">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Jumlah Orang</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-jmlorang">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Kebutuhan Air Bersih</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-kebutuhanairbersih">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Produksi Limbah</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-produksilimbah">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Produksi Sampah</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-produksisampah">-</p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Volume Limpasan Air Hujan</label>
                                 </div>
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-volumlimpasanairhujan">-</p>
                                 </div>
                             </div>
 
 
-                            <p class="card-title mt-4 text-center font-weight-bold judul_utama">Kalkulasi Nilai Aset
+                            <p class="card-title mt-4 mb-4 text-center font-weight-bold judul_utama">Kalkulasi Nilai
+                                Aset
                             </p>
 
                             <div class="d-flex space_judul row_mid_text">

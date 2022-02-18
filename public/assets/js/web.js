@@ -32,6 +32,8 @@ var saveTPZ;
 var count = 0;
 var countOpen = 0;
 var arrPrint = [];
+var luasSimulasi;
+var KDH, KLB, NJOP;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -203,6 +205,7 @@ $(window).on("load", function () {
     localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    localStorage.setItem("simulasi", "");
     localStorage.setItem("direction", 0);
     $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
@@ -1307,6 +1310,11 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
+    if (localStorage.getItem("simulasi") !== "") {
+        let simulasi = localStorage.getItem("simulasi");
+        getSimulasi(simulasi);
+    }
+
     $.post(`${APP_URL}/save_zoning`, { zoning: dt });
     var gsb = `
     <p>Ketentuan GSB (Garis Sempadan Bangunan) terhadap GSJ (Garis Sempadan Jalan) adalah sebagai berikut:</p>
@@ -1374,7 +1382,11 @@ map.on(clickEvent, "zoning_fill", function (e) {
     // $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
     $(".inf-kdb").html(dt.KDB == "null" ? "-" : `${dt.KDB}%`);
     $(".inf-kdh").html(dt.KDH == "null" ? "-" : `${dt.KDH}%`);
+    $(".inf-simulasi-kdh").html(dt.KDH == "null" ? "-" : `${dt.KDH}%`);
+    KDH = dt.KDH;
     $(".inf-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
+    $(".inf-simulasi-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
+    KLB = dt.KLB;
     $(".inf-ktb").html(dt.KLB == "null" ? "-" : `${dt.KTB}%`);
     $(".inf-kb").html(dt.KB == "null" ? "-" : `${dt.KB} Lapis`);
     $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
@@ -1861,8 +1873,14 @@ function getNJOP(e) {
         success: function (dt) {
             const dtResp = JSON.parse(dt);
             const prop = dtResp.features[0].properties;
+            NJOP = prop.Max;
             if (dtResp.features != null) {
                 $(".inf-harganjop").html(
+                    `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
+                        prop.Max
+                    )} per m&sup2;`
+                );
+                $(".inf-simulasi-njop").html(
                     `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
                         prop.Max
                     )} per m&sup2;`
@@ -1934,8 +1952,12 @@ function getPersilBPN(e) {
             const dtResp = JSON.parse(dt);
             if (dtResp.features != null) {
                 const prop = dtResp.features[0].properties;
+                luasSimulasi = prop.Luas;
                 $(".inf-tipehak").html(prop.Tipe);
                 $(".inf-luasbpn").html(separatorNum(prop.Luas) + " m&sup2;");
+                $(".inf-simulasi-luaslahan").html(
+                    separatorNum(prop.Luas) + " m&sup2;"
+                );
                 $.post(`${APP_URL}/save_bpn`, { bpn: [prop.Tipe, prop.Luas] });
                 bpn = `
                     <div class="col-sm-12">
@@ -4162,4 +4184,109 @@ $("#checkboxKBLI").change(() => {
     } else {
         $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
     }
+});
+
+const getSimulasi = (e) => {
+    $.ajax({
+        url: `${url}/simulasi/${e}`,
+        type: "GET",
+        dataType: "JSON",
+        success: (data) => {
+            let data_simulasi = data.features[0].properties;
+            $(".inf-simulasi-pmkair").html(
+                data_simulasi.Air + " lt/penghuni/hari"
+            );
+            $(".inf-simulasi-dbtairlimbah").html(
+                data_simulasi.Limbah + " lt/penghuni/hari"
+            );
+            $(".inf-simulasi-sampah").html(
+                data_simulasi.Sampah + " kg/Orang/Hari"
+            );
+            $(".inf-simulasi-stdluasbangunan").html(
+                separatorNum(data_simulasi.Standar) + " m<sup>3</sup>"
+            );
+            $(".inf-simulasi-luaslimpahan").html(
+                `${separatorNum(
+                    Math.ceil(luasSimulasi * (1 - KDH / 100))
+                )} m<up>3</up>/Hari`
+            );
+            $(".inf-simulasi-luasbangunan").html(
+                `${separatorNum(
+                    Math.ceil(luasSimulasi * parseFloat(KLB.replace(",", ".")))
+                )} m<sup>2</sup>`
+            );
+            $(".inf-simulasi-jmlorang").html(
+                `${separatorNum(
+                    Math.ceil(
+                        (luasSimulasi * parseFloat(KLB.replace(",", "."))) /
+                            data_simulasi.Standar
+                    )
+                )} Orang`
+            );
+            $(".inf-simulasi-kebutuhanairbersih").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Air *
+                            ((luasSimulasi *
+                                parseFloat(KLB.replace(",", "."))) /
+                                data_simulasi.Standar)
+                    )
+                )} lt/Hari`
+            );
+            $(".inf-simulasi-produksilimbah").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Air *
+                            ((luasSimulasi *
+                                parseFloat(KLB.replace(",", "."))) /
+                                data_simulasi.Standar)
+                    )
+                )} lt/Hari`
+            );
+            $(".inf-simulasi-produksisampah").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Sampah *
+                            ((luasSimulasi *
+                                parseFloat(KLB.replace(",", "."))) /
+                                data_simulasi.Standar)
+                    )
+                )} kg/Hari`
+            );
+            $(".inf-simulasi-volumlimpasanairhujan").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Hujan * (luasSimulasi * (1 - KDH / 100))
+                    )
+                )} m<sup>3</sup>/Hari`
+            );
+            $(".inf-simulasi-nilaitanah").html(
+                `Rp. ${separatorNum(luasSimulasi * NJOP)}`
+            );
+            $(".inf-simulasi-nilaibangunan").html(
+                `Rp. ${separatorNum(
+                    Math.ceil(
+                        luasSimulasi * parseFloat(KLB.replace(",", "."))
+                    ) * 3000000
+                )}`
+            );
+
+            $(".inf-simulasi-totalnilai").html(
+                `Rp. ${separatorNum(
+                    luasSimulasi * NJOP +
+                        Math.ceil(
+                            luasSimulasi * parseFloat(KLB.replace(",", "."))
+                        ) *
+                            3000000
+                )}`
+            );
+            // console.log(data_simulasi);
+        },
+    });
+};
+
+$("#selectSimulasi").on("change", () => {
+    let value = $("#selectSimulasi").select2("val");
+    localStorage.setItem("simulasi", value);
+    getSimulasi(value);
 });
