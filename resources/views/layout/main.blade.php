@@ -484,6 +484,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="form-check investasi_line" style="display: none;"><input id="investasi_line"
                             name="investasi_line" class="form-check-input mt-1" type="checkbox"><label
                             for="investasi_line" class="form-check-label text_all">Investasi3</label></div> --}}
+                    <div class="form-check zoning_fill mt-1">
+                        <input type="checkbox" class="form-check-input" id="zoning_fill" checked>
+                        <label class="form-check-label  text_all" for="zoning_fill">Peta
+                            Zonasi</label>
+                    </div>
 
                     <div class="form-check wilayahindex_fill mt-1">
                         <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
@@ -491,11 +496,6 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             Kecil</label>
                     </div>
 
-                    <div class="form-check zoning_fill mt-1">
-                        <input type="checkbox" class="form-check-input" id="zoning_fill">
-                        <label class="form-check-label  text_all" for="zoning_fill">Peta
-                            Zonasi</label>
-                    </div>
 
                     <div class="form-check pipa_multilinestring mt-1">
                         <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
@@ -679,8 +679,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     data-toggle="pill" href="#pills-andalalin" role="tab" id="andalalin-tab"
-                                    aria-selected="false"><i class="ri-e-bike-2-line"></i><span
-                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
+                                    aria-selected="false"><i class="ri-e-bike-2-line"></i></a>
 
                                 <br>
                                 <label class="size_menu size_menu_mobile">Andalalin</label>
@@ -4594,6 +4593,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <p class="inf-simulasi-nilaitanah">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_text">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Biaya Bangunan</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <p><input type="number" id="biayaBangunan" value="3000000" style="font-size: 11px">
+                                    </p>
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">

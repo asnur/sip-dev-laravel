@@ -1690,7 +1690,7 @@ function getKetentuanPSL(subzona, psl) {
                 // $(".inf-khusus").html("");
                 // $(".inf-khusus").html(htmlContentChange);
             });
-            $("#selectPSL").val(value_data[0].Kegiatan).trigger("change");
+            // $("#selectPSL").val(value_data[0].Kegiatan).trigger("change");
         },
     });
 }
@@ -4267,7 +4267,7 @@ const getSimulasi = (e) => {
                 `Rp. ${separatorNum(
                     Math.ceil(
                         luasSimulasi * parseFloat(KLB.replace(",", "."))
-                    ) * 3000000
+                    ) * $("#biayaBangunan").val()
                 )}`
             );
 
@@ -4277,9 +4277,29 @@ const getSimulasi = (e) => {
                         Math.ceil(
                             luasSimulasi * parseFloat(KLB.replace(",", "."))
                         ) *
-                            3000000
+                            $("#biayaBangunan").val()
                 )}`
             );
+
+            $("#biayaBangunan").on("keyup", () => {
+                $(".inf-simulasi-nilaibangunan").html(
+                    `Rp. ${separatorNum(
+                        Math.ceil(
+                            luasSimulasi * parseFloat(KLB.replace(",", "."))
+                        ) * $("#biayaBangunan").val()
+                    )}`
+                );
+
+                $(".inf-simulasi-totalnilai").html(
+                    `Rp. ${separatorNum(
+                        luasSimulasi * NJOP +
+                            Math.ceil(
+                                luasSimulasi * parseFloat(KLB.replace(",", "."))
+                            ) *
+                                $("#biayaBangunan").val()
+                    )}`
+                );
+            });
             // console.log(data_simulasi);
         },
     });
