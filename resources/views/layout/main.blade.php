@@ -4588,7 +4588,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </p>
 
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <label class="text_all_mobile">Nilai Tanah</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
@@ -4596,8 +4596,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
-                                    <label class="text_all_mobile">Biaya Bangunan</label>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Biaya Bangunan /m<sup>2</sup></label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                     <p><input type="number" id="biayaBangunan" value="3000000" style="font-size: 11px">
@@ -4605,7 +4605,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <label class="text_all_mobile">Nilai Bangunan</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
@@ -4613,7 +4613,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <label class="text_all_mobile">Total Nilai</label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">

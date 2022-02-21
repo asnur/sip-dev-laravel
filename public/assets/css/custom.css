@@ -614,3 +614,15 @@ input[type="range"]::-moz-range-progress {
 }
 
 /* Mobile 768*/
+
+/* Chrome, Safari, Edge, Opera */
+#biayaBangunan::-webkit-outer-spin-button,
+#biayaBangunan::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+#biayaBangunan[type="number"] {
+    -moz-appearance: textfield;
+}
