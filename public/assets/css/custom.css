@@ -626,3 +626,7 @@ input[type="range"]::-moz-range-progress {
 #biayaBangunan[type="number"] {
     -moz-appearance: textfield;
 }
+
+.mapboxgl-ctrl-group:nth-child(3) {
+    bottom: -15.5rem;
+}

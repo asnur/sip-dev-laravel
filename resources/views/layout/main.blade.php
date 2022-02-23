@@ -5126,6 +5126,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     </script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{{ asset('assets/js/pitchtoggle.js') }}"></script>
+    <script src="{{ asset('assets/js/circle.js') }}"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}

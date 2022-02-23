@@ -206,7 +206,9 @@ $(window).on("load", function () {
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
     localStorage.setItem("simulasi", "");
-    localStorage.setItem("direction", 0);
+    localStorage.setItem("direction", 1);
+    localStorage.setItem("circleDraw", 0);
+    localStorage.setItem("polygonDraw", 0);
     $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
@@ -317,11 +319,14 @@ const draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
         polygon: true,
-        trash: true,
+        // trash: true,
     },
+    defaultMode: "simple_select",
 });
+
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new PitchToggle({ minpitchzoom: 15 }));
+// map.addControl(new CircleToggle({ radius: 1500 }));
 
 $(
     "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP"
@@ -354,14 +359,14 @@ const directions = new MapboxDirections({
 $("#enable-direction").change(() => {
     if ($("#enable-direction").prop("checked") == true) {
         map.addControl(directions, "top-left");
-        localStorage.setItem("direction", 1);
+        localStorage.setItem("direction", 2);
         $(".mapboxgl-ctrl-directions").css("visibility", "hidden");
         $(".mapboxgl-ctrl-directions").css("z-index", "-9");
         console.log("checked");
     } else {
         console.log("unchecked");
         map.removeControl(directions);
-        localStorage.setItem("direction", 0);
+        localStorage.setItem("direction", 1);
     }
 });
 
@@ -428,9 +433,61 @@ const estimation_direction = (time, way) => {
     });
 };
 
-// map.addControl(draw);
+map.addControl(draw);
+$(".mapboxgl-ctrl-group:eq(2)").append(
+    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
+);
+$(".mapboxgl-ctrl-group:eq(2)").append(
+    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
+);
+let Circle;
+const addCircle = (lat, lng, mode) => {
+    Circle = new MapboxCircle({ lat: lat, lng: lng }, 150, {
+        editable: true,
+        minRadius: 150,
+        // maxRadius: 15000,
+        fillColor: "yellow",
+    });
+    if (mode == 1) {
+        if (map.getLayer("circle-radius-handles-0") == undefined) {
+            Circle.addTo(map);
+        }
+    }
+};
 
-// map.on("draw.create");
+const removeCircle = () => {
+    map.removeLayer("circle-stroke-0");
+    map.removeLayer("circle-fill-0");
+    map.removeLayer("circle-center-handle-0");
+    map.removeLayer("circle-radius-handles-0");
+    map.removeSource("circle-source-0");
+    map.removeSource("circle-center-handle-source-0");
+    map.removeSource("circle-radius-handles-source-0");
+};
+
+$("#circleDraw").on("click", () => {
+    localStorage.setItem("circleDraw", 1);
+});
+
+$(".mapbox-gl-draw_polygon").on("click", () => {
+    localStorage.setItem("polygonDraw", 1);
+});
+
+$("#deleteDraw").on("click", () => {
+    draw.deleteAll();
+    localStorage.setItem("circleDraw", 0);
+    removeCircle();
+});
+
+map.on("draw.create", (e) => {
+    let coordinate = e.features[0].geometry.coordinates[0];
+    let fix_coordinate = "";
+    coordinate.forEach((el) => {
+        fix_coordinate += el[0] + " " + el[1] + ",";
+        console.log(el);
+    });
+    console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
+});
 // map.on("draw.delete");
 // map.on("draw.update");
 
@@ -498,6 +555,10 @@ map.on("style.load", function () {
         lngs = lngs.slice(0, -8);
         lat = lats;
         long = lngs;
+
+        if (localStorage.getItem("circleDraw") == 1) {
+            addCircle(coornya.lat, coornya.lng, 1);
+        }
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $.ajax({
             url: `${APP_URL}/save_kordinat`,
@@ -527,7 +588,11 @@ map.on("style.load", function () {
                     budaya = [];
                     budaya = getDataBudaya(kelurahan);
                     saveKelurahan(kelurahan);
-                    if (localStorage.getItem("direction") == 0) {
+                    if (
+                        localStorage.getItem("direction") == 1 &&
+                        localStorage.getItem("circleDraw") == 0 &&
+                        localStorage.getItem("polygonDraw") == 0
+                    ) {
                         addSourceLayer(kelurahan);
                     }
                 }
@@ -554,7 +619,11 @@ map.on("style.load", function () {
 
     function add_marker(event) {
         var coordinates = event.lngLat;
-        if (localStorage.getItem("direction") == 0) {
+        if (
+            localStorage.getItem("direction") == 1 &&
+            localStorage.getItem("circleDraw") == 0 &&
+            localStorage.getItem("polygonDraw") == 0
+        ) {
             marker.setLngLat(coordinates).addTo(map);
         }
     }
@@ -3057,7 +3126,7 @@ $(document).on("click", ".wilayah-select", function () {
     saveKelurahan(kel);
     // setKelurahanSession(kel);
     geocoder.query(coor);
-    if (localStorage.getItem("direction") == 0) {
+    if (localStorage.getItem("direction") == 1) {
         addSourceLayer(kel);
     }
     cekProyek(coor);
