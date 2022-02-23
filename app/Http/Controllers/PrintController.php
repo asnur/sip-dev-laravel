@@ -9,10 +9,10 @@ class PrintController extends Controller
 {
     public function print()
     {
-        // dd(session('chart_pie'));
+        // dd(session('ketentuan_tpz'));
+        // return view('print');
         $pdf = PDF::loadView('print');
         return $pdf->stream();
-        // return view('print');
     }
 
     public function save_image(Request $request)
@@ -73,5 +73,43 @@ class PrintController extends Controller
     {
         $turun = $request->input('turun');
         $request->session()->put('turun', $turun);
+    }
+
+    public function save_air_tanah(Request $request)
+    {
+        $air_tanah = $request->input('air_tanah');
+        $request->session()->put('air_tanah', $air_tanah);
+    }
+
+    public function save_zoning(Request $request)
+    {
+        $zoning = $request->input('zoning');
+        $request->session()->put('zoning', $zoning);
+    }
+
+    public function save_ketentuan_tpz(Request $request)
+    {
+        $ketentuan_tpz = $request->input('ketentuan_tpz');
+        $request->session()->put('ketentuan_tpz', $ketentuan_tpz);
+    }
+
+    public function save_poi(Request $request)
+    {
+        $poi = $request->input('poi');
+        $request->session()->put('poi', $poi);
+    }
+
+    public function save_kbli(Request $request)
+    {
+        $kbli = $request->input('kbli');
+        $request->session()->put('kbli', $kbli);
+    }
+
+    public function check_print(Request $request)
+    {
+        $kategori = $request->input('kategeori');
+        $status = $request->input('status');
+
+        return $request->session()->put($kategori, $status);
     }
 }

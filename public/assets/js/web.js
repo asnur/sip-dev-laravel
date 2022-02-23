@@ -32,6 +32,8 @@ var saveTPZ;
 var count = 0;
 var countOpen = 0;
 var arrPrint = [];
+var luasSimulasi;
+var KDH, KLB, NJOP;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -190,7 +192,7 @@ $.ajax({
     },
 });
 
-$("#kegiatanRuang, #skala, #kegiatanKewenangan").select2();
+$("#kegiatanRuang, #skala, #kegiatanKewenangan, #selectSimulasi").select2();
 
 var layerList = document.getElementById("menu");
 var inputs = layerList.getElementsByTagName("input");
@@ -203,6 +205,14 @@ $(window).on("load", function () {
     localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    localStorage.setItem("simulasi", "");
+    localStorage.setItem("direction", 1);
+    localStorage.setItem("circleDraw", 0);
+    localStorage.setItem("polygonDraw", 0);
+    $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
+    $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
+    $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
+    $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
 });
 
 $.ajax({
@@ -309,14 +319,175 @@ const draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
         polygon: true,
-        trash: true,
+        // trash: true,
     },
+    defaultMode: "simple_select",
 });
+
 map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new PitchToggle({ minpitchzoom: 15 }));
+// map.addControl(new CircleToggle({ radius: 1500 }));
 
-// map.addControl(draw);
+$(
+    "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP"
+).on("click", () => {
+    if ($("#enable-direction").prop("checked") == true) {
+        $("#enable-direction").trigger("click");
+        $("#enable-direction").prop("disabled", true);
+    }
+});
 
-// map.on("draw.create");
+$("#andalalin-tab").on("click", () => {
+    if ($("#enable-direction").prop("checked") !== true) {
+        $(
+            ".inf-titik, .inf-kecepatan-06, .inf-tempuh-06, .inf-kecepatan-09, .inf-tempuh-09, .inf-kecepatan-12, .inf-tempuh-12, .inf-kecepatan-15, .inf-tempuh-15, .inf-kecepatan-18, .inf-tempuh-18"
+        ).html("-");
+        $(".inf-titika, .inf-titikb").val("");
+        $("#enable-direction").prop("disabled", false);
+        $("#enable-direction").trigger("click");
+    }
+});
+
+const directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+    steps: false,
+    waypointDraggable: true,
+    geometries: "polyline",
+    controls: { instructions: true },
+});
+
+$("#enable-direction").change(() => {
+    if ($("#enable-direction").prop("checked") == true) {
+        map.addControl(directions, "top-left");
+        localStorage.setItem("direction", 2);
+        $(".mapboxgl-ctrl-directions").css("visibility", "hidden");
+        $(".mapboxgl-ctrl-directions").css("z-index", "-9");
+        console.log("checked");
+    } else {
+        console.log("unchecked");
+        map.removeControl(directions);
+        localStorage.setItem("direction", 1);
+    }
+});
+
+let hourTime = ["06:00", "09:00", "12:00", "15:00", "18:00"];
+
+directions.on("route", (e) => {
+    let data = e.route[0].legs[0].steps;
+    let distance = e.route[0].distance / 1000;
+    $(".inf-titik").html(distance.toFixed(2) + " km");
+    $(".inf-titika").val(
+        data[0].name == ""
+            ? data[0].intersections[0].location[1] +
+                  "," +
+                  data[0].intersections[0].location[0]
+            : data[0].name
+    );
+    $(".inf-titikb").val(
+        data[data.length - 1].name == ""
+            ? data[data.length - 1].intersections[0].location[1] +
+                  "," +
+                  data[data.length - 1].intersections[0].location[0]
+            : data[data.length - 1].name
+    );
+    let from =
+        data[0].intersections[0].location[0] +
+        "," +
+        data[0].intersections[0].location[1];
+    let to =
+        data[data.length - 1].intersections[0].location[0] +
+        "," +
+        data[data.length - 1].intersections[0].location[1];
+    let way = [from, to];
+    hourTime.forEach((el) => {
+        estimation_direction(el, way);
+    });
+});
+
+const estimation_direction = (time, way) => {
+    let date = $('meta[name="datetime"]').attr("content");
+    $.get(
+        `https://api.mapbox.com/directions/v5/mapbox/driving/${way[0]};${way[1]}?access_token=${mapboxgl.accessToken}&depart_at=${date}T${time}`
+    ).done((data) => {
+        let data_direction = data.routes[0];
+        let duration = data_direction.duration / 60;
+        let distance = data_direction.distance / 1000;
+        let speed = distance / (data_direction.duration / 3600);
+
+        let html = "";
+        let coor = "";
+
+        if (speed.toFixed(2) >= 15) {
+            color = "#2ecc71";
+        } else if (speed.toFixed(2) >= 5) {
+            color = "#f1c40f";
+        } else if (speed.toFixed(2) >= 1) {
+            color = "#e74c3c";
+        } else {
+            color = "#c0392b";
+        }
+
+        $(`.inf-direction-${time.substring(0, 2)}`).css("color", color);
+        $(`.inf-kecepatan-${time.substring(0, 2)}`).html(`${speed.toFixed(2)}`);
+        $(`.inf-tempuh-${time.substring(0, 2)}`).html(`${duration.toFixed(0)}`);
+    });
+};
+
+map.addControl(draw);
+$(".mapboxgl-ctrl-group:eq(2)").append(
+    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
+);
+$(".mapboxgl-ctrl-group:eq(2)").append(
+    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
+);
+let Circle;
+const addCircle = (lat, lng, mode) => {
+    Circle = new MapboxCircle({ lat: lat, lng: lng }, 150, {
+        editable: true,
+        minRadius: 150,
+        // maxRadius: 15000,
+        fillColor: "yellow",
+    });
+    if (mode == 1) {
+        if (map.getLayer("circle-radius-handles-0") == undefined) {
+            Circle.addTo(map);
+        }
+    }
+};
+
+const removeCircle = () => {
+    map.removeLayer("circle-stroke-0");
+    map.removeLayer("circle-fill-0");
+    map.removeLayer("circle-center-handle-0");
+    map.removeLayer("circle-radius-handles-0");
+    map.removeSource("circle-source-0");
+    map.removeSource("circle-center-handle-source-0");
+    map.removeSource("circle-radius-handles-source-0");
+};
+
+$("#circleDraw").on("click", () => {
+    localStorage.setItem("circleDraw", 1);
+});
+
+$(".mapbox-gl-draw_polygon").on("click", () => {
+    localStorage.setItem("polygonDraw", 1);
+});
+
+$("#deleteDraw").on("click", () => {
+    draw.deleteAll();
+    localStorage.setItem("circleDraw", 0);
+    removeCircle();
+});
+
+map.on("draw.create", (e) => {
+    let coordinate = e.features[0].geometry.coordinates[0];
+    let fix_coordinate = "";
+    coordinate.forEach((el) => {
+        fix_coordinate += el[0] + " " + el[1] + ",";
+        console.log(el);
+    });
+    console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
+});
 // map.on("draw.delete");
 // map.on("draw.update");
 
@@ -330,6 +501,51 @@ map.loadImage(
 
 map.on("style.load", function () {
     // onOffLayers();
+    const layers = map.getStyle().layers;
+    const labelLayerId = layers.find(
+        (layer) => layer.type === "symbol" && layer.layout["text-field"]
+    ).id;
+
+    // The 'building' layer in the Mapbox Streets
+    // vector tileset contains building height data
+    // from OpenStreetMap.
+    map.addLayer(
+        {
+            id: "add-3d-buildings",
+            source: "composite",
+            "source-layer": "building",
+            filter: ["==", "extrude", "true"],
+            type: "fill-extrusion",
+            minzoom: 10,
+            paint: {
+                "fill-extrusion-color": "#aaa",
+
+                // Use an 'interpolate' expression to
+                // add a smooth transition effect to
+                // the buildings as the user zooms in.
+                "fill-extrusion-height": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    10,
+                    0,
+                    10.05,
+                    ["get", "height"],
+                ],
+                "fill-extrusion-base": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    10,
+                    0,
+                    10.05,
+                    ["get", "min_height"],
+                ],
+                "fill-extrusion-opacity": 0.6,
+            },
+        },
+        labelLayerId
+    );
     map.on(clickEvent, function (e) {
         // console.log(e);
         const coornya = e.lngLat;
@@ -339,6 +555,10 @@ map.on("style.load", function () {
         lngs = lngs.slice(0, -8);
         lat = lats;
         long = lngs;
+
+        if (localStorage.getItem("circleDraw") == 1) {
+            addCircle(coornya.lat, coornya.lng, 1);
+        }
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $.ajax({
             url: `${APP_URL}/save_kordinat`,
@@ -368,7 +588,13 @@ map.on("style.load", function () {
                     budaya = [];
                     budaya = getDataBudaya(kelurahan);
                     saveKelurahan(kelurahan);
-                    addSourceLayer(kelurahan);
+                    if (
+                        localStorage.getItem("direction") == 1 &&
+                        localStorage.getItem("circleDraw") == 0 &&
+                        localStorage.getItem("polygonDraw") == 0
+                    ) {
+                        addSourceLayer(kelurahan);
+                    }
                 }
             },
         });
@@ -381,6 +607,10 @@ map.on("style.load", function () {
             "href",
             `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
         );
+        // $("#btnAndalalin").attr(
+        //     "href",
+        //     `https://jakevo.jakarta.go.id/waypoint-maps?lat=${lats}&lng=${lngs}`
+        // );
     });
     // Marker onclick
     const el = document.createElement("div");
@@ -389,9 +619,16 @@ map.on("style.load", function () {
 
     function add_marker(event) {
         var coordinates = event.lngLat;
-        marker.setLngLat(coordinates).addTo(map);
+        if (
+            localStorage.getItem("direction") == 1 &&
+            localStorage.getItem("circleDraw") == 0 &&
+            localStorage.getItem("polygonDraw") == 0
+        ) {
+            marker.setLngLat(coordinates).addTo(map);
+        }
     }
-    map.on(clickEvent, add_marker);
+
+    map.on("click", add_marker);
 
     map.addSource("wilayahindex", {
         type: "geojson",
@@ -1142,6 +1379,12 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 map.on(clickEvent, "zoning_fill", function (e) {
     var dt = e.features[0].properties;
     // console.log(dt);
+    if (localStorage.getItem("simulasi") !== "") {
+        let simulasi = localStorage.getItem("simulasi");
+        getSimulasi(simulasi);
+    }
+
+    $.post(`${APP_URL}/save_zoning`, { zoning: dt });
     var gsb = `
     <p>Ketentuan GSB (Garis Sempadan Bangunan) terhadap GSJ (Garis Sempadan Jalan) adalah sebagai berikut:</p>
     <ol style="margin-top:-15px">
@@ -1152,6 +1395,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
       <li style="margin-left:-25px">Ketentuan GSB bangunan dapat ditiadakan untuk Kawasan Cagar Budaya atau kawasan tertentu dengan menyediakan pedestrian dan penetapannya dilakukan oleh gubernur.</li>
     </ol>
     `;
+    if ($("#checkboxKBLI").prop("checked") == true) {
+        $("#checkboxKBLI").trigger("click");
+    }
     // console.log(proyek);
     $(".dtKBLI").html("");
     var value_tpz = ``;
@@ -1159,13 +1405,16 @@ map.on(clickEvent, "zoning_fill", function (e) {
     var data_tpz = dt["CD TPZ"];
     var arr_tpz = data_tpz.split(",");
     saveTPZ = arr_tpz;
-    if (dt["CD TPZ"] == "null") {
+    if (dt["CD TPZ"] == "null" || dt["CD TPZ"] == 0) {
         value_tpz += `
         <p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>
         <p>Tidak Ada Ketentuan</p>`;
         option_tpz += `
             <option>Tidak Ada CD TPZ</option>
         `;
+        $.post(`${APP_URL}/save_ketentuan_tpz`, {
+            ketentuan_tpz: [null, null, null, null],
+        });
     } else {
         value_tpz += dsc_tpz;
         value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
@@ -1181,6 +1430,14 @@ map.on(clickEvent, "zoning_fill", function (e) {
                 <option value="${index}">${arr_tpz[index]}</option>
             `;
         }
+        $.post(`${APP_URL}/save_ketentuan_tpz`, {
+            ketentuan_tpz: [
+                0,
+                dataabse_tpz[saveTPZ[0]].nama,
+                dataabse_tpz[`${saveTPZ[0]}`].pengertian,
+                dataabse_tpz[`${saveTPZ[0]}`].ketentuan,
+            ],
+        });
     }
 
     getKetentuanPSL(dt["Sub Zona"], dt.PSL);
@@ -1194,7 +1451,11 @@ map.on(clickEvent, "zoning_fill", function (e) {
     // $(".inf-tpz").html(dt.TPZ == "null" ? "-" : dt.TPZ);
     $(".inf-kdb").html(dt.KDB == "null" ? "-" : `${dt.KDB}%`);
     $(".inf-kdh").html(dt.KDH == "null" ? "-" : `${dt.KDH}%`);
+    $(".inf-simulasi-kdh").html(dt.KDH == "null" ? "-" : `${dt.KDH}%`);
+    KDH = dt.KDH;
     $(".inf-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
+    $(".inf-simulasi-klb").html(dt.KLB == "null" ? "-" : dt.KLB);
+    KLB = dt.KLB;
     $(".inf-ktb").html(dt.KLB == "null" ? "-" : `${dt.KTB}%`);
     $(".inf-kb").html(dt.KB == "null" ? "-" : `${dt.KB} Lapis`);
     $(".inf-psl").html(dt.KLB == "null" ? "-" : dt.PSL);
@@ -1498,7 +1759,7 @@ function getKetentuanPSL(subzona, psl) {
                 // $(".inf-khusus").html("");
                 // $(".inf-khusus").html(htmlContentChange);
             });
-            $("#selectPSL").val(value_data[0].Kegiatan).trigger("change");
+            // $("#selectPSL").val(value_data[0].Kegiatan).trigger("change");
         },
     });
 }
@@ -1633,6 +1894,7 @@ function getAirTanah(e) {
             const data = JSON.parse(e);
             let value_data = data.features;
             let html = "";
+            $.post(`${APP_URL}/save_air_tanah`, { air_tanah: value_data });
             for (let index = 0; index < value_data.length; index++) {
                 html += `
                 <p class="card-title mt-2 mb-4 text-center font-weight-bold judul_utama">Air Tanah Kedalaman ${value_data[
@@ -1680,8 +1942,14 @@ function getNJOP(e) {
         success: function (dt) {
             const dtResp = JSON.parse(dt);
             const prop = dtResp.features[0].properties;
+            NJOP = prop.Max;
             if (dtResp.features != null) {
                 $(".inf-harganjop").html(
+                    `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
+                        prop.Max
+                    )} per m&sup2;`
+                );
+                $(".inf-simulasi-njop").html(
                     `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
                         prop.Max
                     )} per m&sup2;`
@@ -1753,8 +2021,12 @@ function getPersilBPN(e) {
             const dtResp = JSON.parse(dt);
             if (dtResp.features != null) {
                 const prop = dtResp.features[0].properties;
+                luasSimulasi = prop.Luas;
                 $(".inf-tipehak").html(prop.Tipe);
                 $(".inf-luasbpn").html(separatorNum(prop.Luas) + " m&sup2;");
+                $(".inf-simulasi-luaslahan").html(
+                    separatorNum(prop.Luas) + " m&sup2;"
+                );
                 $.post(`${APP_URL}/save_bpn`, { bpn: [prop.Tipe, prop.Luas] });
                 bpn = `
                     <div class="col-sm-12">
@@ -1837,9 +2109,11 @@ function getRadius(e) {
             }
 
             var obj = groupBy(cat, "name");
+            let poi = {};
+            let name_poi = [];
             for (var as in obj) {
                 const dt = obj[as];
-
+                // console.log(dt);
                 htmlContent += `
                     <div class="row row_mid_judul2">
                     <div class="col-md-12 flex-column">
@@ -1860,10 +2134,15 @@ function getRadius(e) {
                 <div class="col-sm-8">
                 `;
 
-                // console.log(dt[0].name);
+                Object.assign(poi, { [dt[0].name]: [] });
+                name_poi.push(dt[0].name);
 
                 for (var az in dt) {
                     const dta = dt[az];
+                    poi[dt[0].name].push({
+                        fasilitas: dta.fasilitas,
+                        jarak: Math.round(dta.jarak) / 1000,
+                    });
                     htmlContent += `
                     <li style="list-style:none" class="listgroup-cust align-items-center text_all"> 
                         <div class="row">
@@ -1893,6 +2172,10 @@ function getRadius(e) {
             </div>`;
                 fasilitas += `</div>`;
             }
+            // console.log(poi);
+            $.post(`${APP_URL}/save_poi`, {
+                poi: [getRadVal / 1000, poi, name_poi],
+            });
             $(".tabListFasilitas").html(htmlContent);
         },
         error: function (error) {
@@ -2231,6 +2514,7 @@ function addLayers() {
             "text-field": "{Sub Zona}",
             "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
             "text-size": 12,
+            visibility: "none",
         },
     });
 
@@ -2487,15 +2771,21 @@ function onOffLayers() {
     //Peta Zonasi
     if ($("#zoning_fill").prop("checked") == true) {
         showLayer("zoning_fill");
+        showLayer("zoning_label");
+        map.moveLayer("zoning_fill", "add-3d-buildings");
     } else {
         hideLayer("zoning_fill");
+        hideLayer("zoning_label");
     }
 
     $("#zoning_fill").change(function () {
         if ($(this).prop("checked") == true) {
             showLayer("zoning_fill");
+            showLayer("zoning_label");
+            map.moveLayer("zoning_fill", "add-3d-buildings");
         } else {
             hideLayer("zoning_fill");
+            hideLayer("zoning_label");
         }
     });
 
@@ -2836,7 +3126,9 @@ $(document).on("click", ".wilayah-select", function () {
     saveKelurahan(kel);
     // setKelurahanSession(kel);
     geocoder.query(coor);
-    addSourceLayer(kel);
+    if (localStorage.getItem("direction") == 1) {
+        addSourceLayer(kel);
+    }
     cekProyek(coor);
     // showLayer("investasi_dot");
 });
@@ -3430,6 +3722,7 @@ $(document).on("change", "#kegiatanKewenangan", function () {
     $(".dtKBLI").html("");
     $("#btn-print").show();
     // console.log(data_kbli);
+    $.post(`${APP_URL}/save_kbli`, { kbli: data_kbli[selSektor] });
     var tblSel = "";
     tblSel += `
       <tr>
@@ -3468,7 +3761,7 @@ $(document).on("change", "#kegiatanKewenangan", function () {
 });
 
 $(
-    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo"
+    ".mapboxgl-ctrl.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-geocoder.mapboxgl-ctrl, a.mapboxgl-ctrl-logo, .mapboxgl-ctrl-directions"
 ).css("visibility", "hidden");
 
 $(document).on("change", "input:radio[name=layer]", function () {
@@ -3486,6 +3779,7 @@ $(document).on("change", "#selectTPZ", function () {
     $(".inf-k-tpz").html("");
     console.log($(this).val());
     var index = $(this).val();
+
     var value_tpz = "";
     value_tpz += dsc_tpz;
     value_tpz += `<p class="card-title mt-2 mb-2 text-center font-weight-bold judul_utama">Ketentuan TPZ</p>`;
@@ -3496,6 +3790,14 @@ $(document).on("change", "#selectTPZ", function () {
     `;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].pengertian;
     value_tpz += dataabse_tpz[`${saveTPZ[index]}`].ketentuan;
+    $.post(`${APP_URL}/save_ketentuan_tpz`, {
+        ketentuan_tpz: [
+            index,
+            dataabse_tpz[saveTPZ[index]].nama,
+            dataabse_tpz[`${saveTPZ[index]}`].pengertian,
+            dataabse_tpz[`${saveTPZ[index]}`].ketentuan,
+        ],
+    });
     $(".inf-k-tpz").html(value_tpz);
 });
 
@@ -3894,17 +4196,186 @@ $("#printAll").on("click", function () {
         $("#checkboxAkses").prop("checked") == true ||
         $("#checkboxKBLI").prop("checked") == true
     ) {
-        html2pdf()
-            .set(opt)
-            .from(html)
-            .output("bloburl")
-            .then((r) => {
-                window.open(r);
-            });
+        window.open(`${APP_URL}/print`);
+        // html2pdf()
+        //     .set(opt)
+        //     .from(html)
+        //     .output("bloburl")
+        //     .then((r) => {
+        //         window.open(r);
+        //     });
     } else {
         $("#pesanGagalPrint").show();
         setTimeout(() => {
             $("#pesanGagalPrint").hide();
         }, 3000);
     }
+});
+
+$("#checkboxProfil").change(() => {
+    if ($("#checkboxProfil").prop("checked") == true) {
+        $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 1 });
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
+    }
+});
+
+$("#checkboxKetentuan").change(() => {
+    if ($("#checkboxKetentuan").prop("checked") == true) {
+        $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 1 });
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
+    }
+});
+
+$("#checkboxAkses").change(() => {
+    if ($("#checkboxAkses").prop("checked") == true) {
+        $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 1 });
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
+    }
+});
+
+$("#checkboxKBLI").change(() => {
+    if ($("#checkboxKBLI").prop("checked") == true) {
+        if ($(".dtKBLI").html().length == 0) {
+            $("#pesanGagalPrintKBLI").show();
+            setTimeout(() => {
+                $("#pesanGagalPrintKBLI").hide();
+            }, 3000);
+            $("#checkboxKBLI").trigger("click");
+        } else {
+            $.post(`${APP_URL}/check_print`, {
+                kategeori: "kbli-data",
+                status: 1,
+            });
+        }
+    } else {
+        $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
+    }
+});
+
+const getSimulasi = (e) => {
+    $.ajax({
+        url: `${url}/simulasi/${e}`,
+        type: "GET",
+        dataType: "JSON",
+        success: (data) => {
+            let data_simulasi = data.features[0].properties;
+            $(".inf-simulasi-pmkair").html(
+                data_simulasi.Air + " lt/penghuni/hari"
+            );
+            $(".inf-simulasi-dbtairlimbah").html(
+                data_simulasi.Limbah + " lt/penghuni/hari"
+            );
+            $(".inf-simulasi-sampah").html(
+                data_simulasi.Sampah + " kg/Orang/Hari"
+            );
+            $(".inf-simulasi-stdluasbangunan").html(
+                separatorNum(data_simulasi.Standar) + " m<sup>3</sup>"
+            );
+            $(".inf-simulasi-luaslimpahan").html(
+                `${separatorNum(
+                    Math.ceil(luasSimulasi * (1 - KDH / 100))
+                )} m<up>3</up>/Hari`
+            );
+            $(".inf-simulasi-luasbangunan").html(
+                `${separatorNum(
+                    Math.ceil(luasSimulasi * parseFloat(KLB.replace(",", ".")))
+                )} m<sup>2</sup>`
+            );
+            $(".inf-simulasi-jmlorang").html(
+                `${separatorNum(
+                    Math.ceil(
+                        (luasSimulasi * parseFloat(KLB.replace(",", "."))) /
+                            data_simulasi.Standar
+                    )
+                )} Orang`
+            );
+            $(".inf-simulasi-kebutuhanairbersih").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Air *
+                            ((luasSimulasi *
+                                parseFloat(KLB.replace(",", "."))) /
+                                data_simulasi.Standar)
+                    )
+                )} lt/Hari`
+            );
+            $(".inf-simulasi-produksilimbah").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Air *
+                            ((luasSimulasi *
+                                parseFloat(KLB.replace(",", "."))) /
+                                data_simulasi.Standar)
+                    )
+                )} lt/Hari`
+            );
+            $(".inf-simulasi-produksisampah").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Sampah *
+                            ((luasSimulasi *
+                                parseFloat(KLB.replace(",", "."))) /
+                                data_simulasi.Standar)
+                    )
+                )} kg/Hari`
+            );
+            $(".inf-simulasi-volumlimpasanairhujan").html(
+                `${separatorNum(
+                    Math.ceil(
+                        data_simulasi.Hujan * (luasSimulasi * (1 - KDH / 100))
+                    )
+                )} m<sup>3</sup>/Hari`
+            );
+            $(".inf-simulasi-nilaitanah").html(
+                `Rp. ${separatorNum(luasSimulasi * NJOP)}`
+            );
+            $(".inf-simulasi-nilaibangunan").html(
+                `Rp. ${separatorNum(
+                    Math.ceil(
+                        luasSimulasi * parseFloat(KLB.replace(",", "."))
+                    ) * $("#biayaBangunan").val()
+                )}`
+            );
+
+            $(".inf-simulasi-totalnilai").html(
+                `Rp. ${separatorNum(
+                    luasSimulasi * NJOP +
+                        Math.ceil(
+                            luasSimulasi * parseFloat(KLB.replace(",", "."))
+                        ) *
+                            $("#biayaBangunan").val()
+                )}`
+            );
+
+            $("#biayaBangunan").on("keyup", () => {
+                $(".inf-simulasi-nilaibangunan").html(
+                    `Rp. ${separatorNum(
+                        Math.ceil(
+                            luasSimulasi * parseFloat(KLB.replace(",", "."))
+                        ) * $("#biayaBangunan").val()
+                    )}`
+                );
+
+                $(".inf-simulasi-totalnilai").html(
+                    `Rp. ${separatorNum(
+                        luasSimulasi * NJOP +
+                            Math.ceil(
+                                luasSimulasi * parseFloat(KLB.replace(",", "."))
+                            ) *
+                                $("#biayaBangunan").val()
+                    )}`
+                );
+            });
+            // console.log(data_simulasi);
+        },
+    });
+};
+
+$("#selectSimulasi").on("change", () => {
+    let value = $("#selectSimulasi").select2("val");
+    localStorage.setItem("simulasi", value);
+    getSimulasi(value);
 });
