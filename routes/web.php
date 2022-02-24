@@ -136,6 +136,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
     Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
+
+    Route::get('/fetch-surveyer', [AdminController::class, 'fetchSurveyer'])->name('fetch-surveyer');
 });
 
 //Analytics Page

@@ -24,7 +24,26 @@ class AdminController extends Controller
 
         $survey = Survey::all();
 
-        return view('admin.home', compact(['pegawai_ajib', 'survey']));
+        $latest = Survey::join('users', 'users.id', '=', 'survey.id_user')
+            ->select('users.*', 'survey.*')
+            ->orderBy('survey.id', 'Desc')
+            ->take(1)
+            ->get();
+
+        return view('admin.home', compact(['pegawai_ajib', 'survey', 'latest']));
+    }
+
+    public function fetchSurveyer()
+    {
+        $latests = Survey::join('users', 'users.id', '=', 'survey.id_user')
+            ->select('users.*', 'survey.*')
+            ->orderBy('survey.id', 'Desc')
+            ->take(1)
+            ->get();
+
+        return response()->json([
+            'surveyer' => $latests,
+        ]);
     }
 
     public function role_management()
