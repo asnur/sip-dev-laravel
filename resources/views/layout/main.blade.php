@@ -5041,7 +5041,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
         </div>
         {{-- <div style="z-index: 999; position: absolute; right:6px; top:100px;">
-            
+
         </div> --}}
     </div>
     {{-- <div class="detail_omzet" id="legends"></div>

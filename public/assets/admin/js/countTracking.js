@@ -13,7 +13,17 @@ const addText = () => {
                     $(`.ajib-${e.id_user}`).text(`${length.toFixed(2)} KM`);
                 }
             });
-            $("#table-surveyer").DataTable();
+            $(document).ready(function () {
+                $("#table-surveyer").DataTable({
+                    ordering: true,
+                    columnDefs: [
+                        { orderSequence: ["desc", "asc"], targets: [0] },
+                        { orderSequence: ["desc", "asc"], targets: [1] },
+                        { orderSequence: ["desc", "asc"], targets: [2] },
+                        { orderSequence: ["desc", "asc"], targets: [3] },
+                    ],
+                });
+            });
         },
     });
 };
