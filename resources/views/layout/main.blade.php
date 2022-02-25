@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+
 
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
@@ -546,13 +548,13 @@
                         <ul class="nav nav-pills w-100" id="pills-tab" role="tablist">
 
                             <li class="nav-item">
-                                <a class="active btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="lokasi-tab" data-toggle="pill" href="#pills-lokasi" role="tab" aria-controls="pills-lokasi" aria-selected="true"><i class="fa fa-map-marker"></i></a>
+                                <a class="active btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="lokasi-tab" data-toggle="pill" href="#pills-lokasi" role="tab" aria-controls="pills-lokasi" id="profil-tab" aria-selected="true"><i class="fa fa-map-marker"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Profil</label>
                             </li>
 
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="lokasi-tab" data-toggle="pill" href="#pills-ketentuan" role="tab" aria-controls="pills-ketentuan" aria-selected="true"><i class="fa fa-book"></i></a>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="ketentuan-tab" data-toggle="pill" href="#pills-ketentuan" role="tab" aria-controls="pills-ketentuan" aria-selected="true"><i class="fa fa-book"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Ketentuan</label>
                             </li>
@@ -564,18 +566,18 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="kblikeg-tab" data-toggle="pill" href="#pills-kblikeg" role="tab" aria-controls="pills-kblikeg" aria-selected="false"><i class="ri-user-search-fill"></i></a>
+                                <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="kblikeg-tab" data-toggle="pill" id="kbli-tab" href="#pills-kblikeg" role="tab" aria-controls="pills-kblikeg" aria-selected="false"><i class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" data-toggle="pill" href="#pills-cetak" role="tab" aria-controls="pills-cetak" aria-selected="false"><i class="ri-printer-fill"></i></a>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" data-toggle="pill" href="#pills-cetak" id="cetak-tab" role="tab" aria-controls="pills-cetak" aria-selected="false"><i class="ri-printer-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Cetak</label>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" href="#" role="tab" aria-controls="pills-poi" aria-selected="false"><i class="ri-calculator-line"></i></a>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" data-toggle="pill" href="#pills-simulasi" role="tab" aria-controls="pills-poi" id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i><span class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simulasi</label>
                             </li>
@@ -583,6 +585,12 @@
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP" href="#" target="_blank"><i class="ri-shape-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" data-toggle="pill" href="#pills-andalalin" role="tab" id="andalalin-tab" aria-selected="false"><i class="ri-e-bike-2-line"></i></a>
+
+                                <br>
+                                <label class="size_menu size_menu_mobile">Andalalin</label>
                             </li>
                             <!-- Pending menu pin-->
 
