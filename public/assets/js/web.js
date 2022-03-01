@@ -469,7 +469,9 @@ $("#circleDraw").on("click", () => {
     localStorage.setItem("circleDraw", 1);
 });
 
-$(".mapbox-gl-draw_polygon").on("click", () => {
+$(".mapbox-gl-draw_polygon").attr("id", "polygonDraw");
+
+$("#polygonDraw").on("click", () => {
     localStorage.setItem("polygonDraw", 1);
 });
 
@@ -4272,12 +4274,12 @@ const getSimulasi = (e) => {
                 data_simulasi.Sampah + " kg/Orang/Hari"
             );
             $(".inf-simulasi-stdluasbangunan").html(
-                separatorNum(data_simulasi.Standar) + " m<sup>3</sup>"
+                separatorNum(data_simulasi.Standar) + " m<sup>2</sup>"
             );
             $(".inf-simulasi-luaslimpahan").html(
                 `${separatorNum(
                     Math.ceil(luasSimulasi * (1 - KDH / 100))
-                )} m<up>3</up>/Hari`
+                )} m<sup>3</sup>/Hari`
             );
             $(".inf-simulasi-luasbangunan").html(
                 `${separatorNum(
@@ -4308,7 +4310,8 @@ const getSimulasi = (e) => {
                         data_simulasi.Air *
                             ((luasSimulasi *
                                 parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar)
+                                data_simulasi.Standar) *
+                            (80 / 100)
                     )
                 )} lt/Hari`
             );
@@ -4336,7 +4339,7 @@ const getSimulasi = (e) => {
                 `Rp. ${separatorNum(
                     Math.ceil(
                         luasSimulasi * parseFloat(KLB.replace(",", "."))
-                    ) * $("#biayaBangunan").val()
+                    ) * $("#biayaBangunan").val().replaceAll(".", "")
                 )}`
             );
 
@@ -4346,16 +4349,17 @@ const getSimulasi = (e) => {
                         Math.ceil(
                             luasSimulasi * parseFloat(KLB.replace(",", "."))
                         ) *
-                            $("#biayaBangunan").val()
+                            $("#biayaBangunan").val().replaceAll(".", "")
                 )}`
             );
 
             $("#biayaBangunan").on("keyup", () => {
+                console.log($("#biayaBangunan").val().replaceAll(".", ""));
                 $(".inf-simulasi-nilaibangunan").html(
                     `Rp. ${separatorNum(
                         Math.ceil(
                             luasSimulasi * parseFloat(KLB.replace(",", "."))
-                        ) * $("#biayaBangunan").val()
+                        ) * $("#biayaBangunan").val().replaceAll(".", "")
                     )}`
                 );
 
@@ -4365,7 +4369,7 @@ const getSimulasi = (e) => {
                             Math.ceil(
                                 luasSimulasi * parseFloat(KLB.replace(",", "."))
                             ) *
-                                $("#biayaBangunan").val()
+                                $("#biayaBangunan").val().replaceAll(".", "")
                     )}`
                 );
             });
