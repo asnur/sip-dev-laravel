@@ -4280,7 +4280,7 @@ const getSimulasi = (e) => {
             $(".inf-simulasi-luaslimpahan").html(
                 `${separatorNum(
                     Math.ceil(luasSimulasi * (1 - KDH / 100))
-                )} m<sup>3</sup>/Hari`
+                )} m<sup>2</sup>/Hari`
             );
             $(".inf-simulasi-luasbangunan").html(
                 `${separatorNum(

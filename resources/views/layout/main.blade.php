@@ -668,7 +668,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i><span
                                         class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Simling</label>
+                                <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
