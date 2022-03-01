@@ -4264,7 +4264,16 @@ const getSimulasi = (e) => {
         type: "GET",
         dataType: "JSON",
         success: (data) => {
+            let jumlah_orang = 0;
             let data_simulasi = data.features[0].properties;
+            if (e == "Rumah Mewah" || e == "Rumah Biasa") {
+                jumlah_orang = 5;
+            } else {
+                jumlah_orang = Math.ceil(
+                    (luasSimulasi * parseFloat(KLB.replace(",", "."))) /
+                        data_simulasi.Standar
+                );
+            }
             $(".inf-simulasi-pmkair").html(
                 data_simulasi.Air + " lt/penghuni/hari"
             );
@@ -4288,42 +4297,21 @@ const getSimulasi = (e) => {
                 )} m<sup>2</sup>`
             );
             $(".inf-simulasi-jmlorang").html(
-                `${separatorNum(
-                    Math.ceil(
-                        (luasSimulasi * parseFloat(KLB.replace(",", "."))) /
-                            data_simulasi.Standar
-                    )
-                )} Orang`
+                `${separatorNum(jumlah_orang)} Orang`
             );
             $(".inf-simulasi-kebutuhanairbersih").html(
                 `${separatorNum(
-                    Math.ceil(
-                        data_simulasi.Air *
-                            ((luasSimulasi *
-                                parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar)
-                    )
+                    Math.ceil(data_simulasi.Air * jumlah_orang)
                 )} lt/Hari`
             );
             $(".inf-simulasi-produksilimbah").html(
                 `${separatorNum(
-                    Math.ceil(
-                        data_simulasi.Air *
-                            ((luasSimulasi *
-                                parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar) *
-                            (80 / 100)
-                    )
+                    Math.ceil(data_simulasi.Air * jumlah_orang * (80 / 100))
                 )} lt/Hari`
             );
             $(".inf-simulasi-produksisampah").html(
                 `${separatorNum(
-                    Math.ceil(
-                        data_simulasi.Sampah *
-                            ((luasSimulasi *
-                                parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar)
-                    )
+                    Math.ceil(data_simulasi.Sampah * jumlah_orang)
                 )} kg/Hari`
             );
             $(".inf-simulasi-volumlimpasanairhujan").html(
