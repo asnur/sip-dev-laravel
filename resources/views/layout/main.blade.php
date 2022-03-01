@@ -4531,26 +4531,18 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
                             <div class="d-flex space_judul row_mid_text">
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Produksi Limbah</label>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
-                                    <p class="inf-simulasi-produksilimbah">-</p>
-                                </div>
-                            </div>
-                            <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Produksi Sampah</label>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
-                                    <p class="inf-simulasi-produksisampah">-</p>
-                                </div>
-                            </div>
-                            <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Volume Limpasan Air Hujan</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-volumlimpasanairhujan">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_text">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
+                                    <label class="text_all_mobile">Jumlah Orang</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p class="inf-simulasi-jmlorang">-</p>
                                 </div>
                             </div>
 
@@ -4576,10 +4568,18 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
                             <div class="d-flex space_judul row_mid_text">
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Jumlah Orang</label>
+                                    <label class="text_all_mobile">Produksi Limbah</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
-                                    <p class="inf-simulasi-jmlorang">-</p>
+                                    <p class="inf-simulasi-produksilimbah">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_text">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
+                                    <label class="text_all_mobile">Produksi Sampah</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p class="inf-simulasi-produksisampah">-</p>
                                 </div>
                             </div>
 
