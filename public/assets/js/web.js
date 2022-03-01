@@ -4268,12 +4268,14 @@ const getSimulasi = (e) => {
             let data_simulasi = data.features[0].properties;
             if (e == "Rumah Mewah" || e == "Rumah Biasa") {
                 jumlah_orang = 5;
-                $("#stdluasbangunan").hide();
+                $("#stdluasbangunan").removeClass("d-flex");
+                $("#stdluasbangunan").addClass("d-none");
             } else {
                 jumlah_orang = Math.ceil(
                     (luasSimulasi * parseFloat(KLB.replace(",", "."))) / 9
                 );
-                $("#stdluasbangunan").show();
+                $("#stdluasbangunan").removeClass("d-none");
+                $("#stdluasbangunan").addClass("d-flex");
             }
             $(".inf-simulasi-pmkair").html(
                 data_simulasi.Air + " lt/penghuni/hari"
