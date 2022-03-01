@@ -4268,11 +4268,12 @@ const getSimulasi = (e) => {
             let data_simulasi = data.features[0].properties;
             if (e == "Rumah Mewah" || e == "Rumah Biasa") {
                 jumlah_orang = 5;
+                $(".inf-simulasi-stdluasbangunan").hide();
             } else {
                 jumlah_orang = Math.ceil(
-                    (luasSimulasi * parseFloat(KLB.replace(",", "."))) /
-                        data_simulasi.Standar
+                    (luasSimulasi * parseFloat(KLB.replace(",", "."))) / 9
                 );
+                $(".inf-simulasi-stdluasbangunan").show();
             }
             $(".inf-simulasi-pmkair").html(
                 data_simulasi.Air + " lt/penghuni/hari"
@@ -4284,7 +4285,7 @@ const getSimulasi = (e) => {
                 data_simulasi.Sampah + " kg/Orang/Hari"
             );
             $(".inf-simulasi-stdluasbangunan").html(
-                separatorNum(data_simulasi.Standar) + " m<sup>2</sup>"
+                separatorNum(9) + " m<sup>2</sup>"
             );
             $(".inf-simulasi-luaslimpahan").html(
                 `${separatorNum(
