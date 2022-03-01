@@ -4268,12 +4268,12 @@ const getSimulasi = (e) => {
             let data_simulasi = data.features[0].properties;
             if (e == "Rumah Mewah" || e == "Rumah Biasa") {
                 jumlah_orang = 5;
-                $(".inf-simulasi-stdluasbangunan").hide();
+                $("#stdluasbangunan").hide();
             } else {
                 jumlah_orang = Math.ceil(
                     (luasSimulasi * parseFloat(KLB.replace(",", "."))) / 9
                 );
-                $(".inf-simulasi-stdluasbangunan").show();
+                $("#stdluasbangunan").show();
             }
             $(".inf-simulasi-pmkair").html(
                 data_simulasi.Air + " lt/penghuni/hari"
