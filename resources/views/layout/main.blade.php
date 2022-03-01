@@ -4512,14 +4512,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <p class="inf-simulasi-sampah">-</p>
                                 </div>
                             </div>
-                            <div class="d-flex space_judul row_mid_text">
+                            {{-- <div class="d-flex space_judul row_mid_text">
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Standar Luas Bangunan</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-stdluasbangunan">-</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="d-flex space_judul row_mid_text">
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
