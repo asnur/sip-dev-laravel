@@ -615,9 +615,9 @@ map.on("style.load", function () {
         // );
     });
     // Marker onclick
-    const el = document.createElement("div");
-    el.className = "marker";
-    var marker = new mapboxgl.Marker(el);
+    // const el = document.createElement("div");
+    // el.className = "marker";
+    var marker = new mapboxgl.Marker();
 
     function add_marker(event) {
         var coordinates = event.lngLat;
@@ -626,6 +626,7 @@ map.on("style.load", function () {
             localStorage.getItem("circleDraw") == 0 &&
             localStorage.getItem("polygonDraw") == 0
         ) {
+            geocoder._removeMarker();
             marker.setLngLat(coordinates).addTo(map);
         }
     }
