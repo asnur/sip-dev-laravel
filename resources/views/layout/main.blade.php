@@ -4568,7 +4568,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
                             <div class="d-flex space_judul row_mid_text">
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Produksi Limbah</label>
+                                    <label class="text_all_mobile">Produksi Limbah Cair</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-produksilimbah">-</p>
