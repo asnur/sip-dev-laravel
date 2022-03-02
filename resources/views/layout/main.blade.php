@@ -84,6 +84,25 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
         </div>
     </div>
 
+    <div class="info-layer-digitasi">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeDigitasi" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi</span>
+            <div class="list-item mt-5">
+                <div class="w-100 text-center" id="loadDigitasi">
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div class="w-100" id="dataDigitasi">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="info-layer-usaha">
         <div class="container p-4">
             <button type="button" class="close" id="closeUsaha" aria-label="Close">

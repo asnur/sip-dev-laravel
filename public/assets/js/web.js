@@ -435,8 +435,11 @@ const estimation_direction = (time, way) => {
 
 map.addControl(draw);
 $(".mapboxgl-ctrl-group:eq(2)").append(
-    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
+    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-polygon bg-danger" id="polygonDraw" title="polygon"></button>`
 );
+// $(".mapboxgl-ctrl-group:eq(2)").append(
+//     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
+// );
 $(".mapboxgl-ctrl-group:eq(2)").append(
     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
 );
@@ -456,42 +459,126 @@ const addCircle = (lat, lng, mode) => {
 };
 
 const removeCircle = () => {
-    map.removeLayer("circle-stroke-0");
-    map.removeLayer("circle-fill-0");
-    map.removeLayer("circle-center-handle-0");
-    map.removeLayer("circle-radius-handles-0");
-    map.removeSource("circle-source-0");
-    map.removeSource("circle-center-handle-source-0");
-    map.removeSource("circle-radius-handles-source-0");
+    if (map.getLayer("circle-radius-handles-0") !== undefined) {
+        map.removeLayer("circle-stroke-0");
+        map.removeLayer("circle-fill-0");
+        map.removeLayer("circle-center-handle-0");
+        map.removeLayer("circle-radius-handles-0");
+        map.removeSource("circle-source-0");
+        map.removeSource("circle-center-handle-source-0");
+        map.removeSource("circle-radius-handles-source-0");
+    }
+    if (map.getLayer("digitasi") !== undefined) {
+        map.removeLayer("digitasi");
+        map.removeSource("digitasi");
+    }
 };
 
 $("#circleDraw").on("click", () => {
     localStorage.setItem("circleDraw", 1);
 });
 
-$(".mapbox-gl-draw_polygon").attr("id", "polygonDraw");
+$(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").hide();
 
 $("#polygonDraw").on("click", () => {
+    $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
 });
 
 $("#deleteDraw").on("click", () => {
     draw.deleteAll();
     localStorage.setItem("circleDraw", 0);
+    localStorage.setItem("polygonDraw", 0);
     removeCircle();
 });
+
+const getDigitasi = (coor) => {
+    $.ajax({
+        url: `${url}/digitasi`,
+        method: "POST",
+        data: {
+            kordinat: coor,
+        },
+        beforeSend: () => {
+            $("#loadDigitasi").show();
+            $("#dataDigitasi").hide();
+        },
+        success: (data) => {
+            $("#loadDigitasi").hide();
+            $("#dataDigitasi").show();
+            let data_layer = JSON.parse(data);
+            if (map.getLayer("digitasi") !== undefined) {
+                map.removeLayer("digitasi");
+                map.removeSource("digitasi");
+            }
+            map.addSource("digitasi", { type: "geojson", data: data_layer });
+            map.addLayer({
+                id: "digitasi",
+                type: "fill",
+                source: "digitasi",
+                paint: {
+                    "fill-color": ["get", "fill"],
+                    "fill-opacity": 1,
+                },
+            });
+        },
+    });
+
+    $.ajax({
+        url: `${url}/digitasi-bpn`,
+        method: "POST",
+        data: {
+            kordinat: coor,
+        },
+        success: (data) => {
+            let bpn = JSON.parse(data);
+            let data_bpn = bpn.features;
+            let html = ``;
+            $("#dataDigitasi").html("");
+            data_bpn.forEach((e) => {
+                html += `
+                <div class="row w-100 mb-2 p-3 border shadow rounded">
+                <div class="col-md-10">
+                        <span>Tipe Hak : ${e.properties.Tipe}</span><br>
+                        <span>Luas : ${e.properties.Luas} m<sup>2</sup></span>
+                    </div>
+                    <div class="col-md-2">
+                        <span style="cursor: pointer" onclick="geocoder.query('${e.geometry.coordinates[1]},${e.geometry.coordinates[0]}')" class="text-danger h1"><i class="fa fa-map-marker"></i></span>
+                        </div>
+                        </div>
+                        `;
+                // console.log(e);
+            });
+            $("#dataDigitasi").html(html);
+            // console.log(data_bpn);
+        },
+    });
+};
 
 map.on("draw.create", (e) => {
     let coordinate = e.features[0].geometry.coordinates[0];
     let fix_coordinate = "";
     coordinate.forEach((el) => {
         fix_coordinate += el[0] + " " + el[1] + ",";
-        console.log(el);
+        // console.log(el);
     });
-    console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
+    let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
+    getDigitasi(coor);
+    $(".info-layer-digitasi").show();
+    // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 // map.on("draw.delete");
-// map.on("draw.update");
+map.on("draw.update", (e) => {
+    let coordinate = e.features[0].geometry.coordinates[0];
+    let fix_coordinate = "";
+    coordinate.forEach((el) => {
+        fix_coordinate += el[0] + " " + el[1] + ",";
+        // console.log(el);
+    });
+    let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
+    getDigitasi(coor);
+    // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
+});
 
 map.loadImage(
     `/assets/gambar/baseline_directions_subway_black_24dp.png`,
@@ -3879,6 +3966,11 @@ $("#closeUsaha").on("click", function (e) {
         // $("#hide_side_bar").show();
         $("#sidebar").show();
     }
+});
+
+$("#closeDigitasi").on("click", () => {
+    $(".info-layer-digitasi").hide();
+    $("#deleteDraw").trigger("click");
 });
 
 function preview_image() {
