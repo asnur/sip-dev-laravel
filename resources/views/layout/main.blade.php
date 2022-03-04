@@ -466,9 +466,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <button class="btn btn-secondary tombol_search border-left-0 border" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                                    <button class="btn btn-primary tombol_search border-left-0 border" type="button"
+                                    <button class="btn tombol_search border-left-0 border" type="button"
                                         id="polygonDraw">
-                                        <i class="ri-shape-line"></i>
+                                        <i class="ri-shape-line"></i><span class="bg-danger p-1 rounded text-white"
+                                            style="font-size: 8px;margin-top: -1rem;
+                                            position: absolute;">BETA</span>
                                     </button>
                                 </span>
                             </div>
