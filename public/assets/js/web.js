@@ -434,9 +434,6 @@ const estimation_direction = (time, way) => {
 };
 
 map.addControl(draw);
-$(".mapboxgl-ctrl-group:eq(2)").append(
-    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-polygon bg-danger" id="polygonDraw" title="polygon"></button>`
-);
 // $(".mapboxgl-ctrl-group:eq(2)").append(
 //     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
 // );
@@ -556,6 +553,10 @@ const getDigitasi = (coor) => {
 };
 
 map.on("draw.create", (e) => {
+    const data = draw.getAll();
+    const area = turf.area(data);
+    const rounded_area = Math.round(area * 100) / 100;
+    const fixArea = rounded_area / 10000;
     let coordinate = e.features[0].geometry.coordinates[0];
     let fix_coordinate = "";
     coordinate.forEach((el) => {
@@ -563,20 +564,34 @@ map.on("draw.create", (e) => {
         // console.log(el);
     });
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
-    getDigitasi(coor);
-    $(".info-layer-digitasi").show();
+    if (fixArea <= 10) {
+        getDigitasi(coor);
+        $(".info-layer-digitasi").show();
+    } else {
+        alert("Batas Luas Area Digitasi Minimal 10 Ha");
+    }
+    // console.log(coor);
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 // map.on("draw.delete");
 map.on("draw.update", (e) => {
     let coordinate = e.features[0].geometry.coordinates[0];
+    const data = draw.getAll();
+    const area = turf.area(data);
+    const rounded_area = Math.round(area * 100) / 100;
+    const fixArea = rounded_area / 10000;
     let fix_coordinate = "";
     coordinate.forEach((el) => {
         fix_coordinate += el[0] + " " + el[1] + ",";
         // console.log(el);
     });
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
-    getDigitasi(coor);
+    if (fixArea <= 10) {
+        getDigitasi(coor);
+        $(".info-layer-digitasi").show();
+    } else {
+        alert("Batas Luas Area Digitasi Minimal 10 Ha");
+    }
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 

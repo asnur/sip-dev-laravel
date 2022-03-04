@@ -89,7 +89,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <button type="button" class="close" id="closeDigitasi" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi</span>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi<sup
+                    class="bg-danger text-white p-1 rounded ml-2">BETA</sup></span>
             <div class="list-item mt-5">
                 <div class="w-100 text-center" id="loadDigitasi">
                     <div class="spinner-border text-dark" role="status">
@@ -464,6 +465,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <span class="input-group-append">
                                     <button class="btn btn-secondary tombol_search border-left-0 border" type="button">
                                         <i class="fa fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-primary tombol_search border-left-0 border" type="button"
+                                        id="polygonDraw">
+                                        <i class="ri-shape-line"></i>
                                     </button>
                                 </span>
                             </div>
@@ -5150,6 +5155,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <script src="{{ asset('assets/js/circle.js') }}"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
     <script src="{{ asset('assets/js/jquery.masknumber.js') }}"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>
