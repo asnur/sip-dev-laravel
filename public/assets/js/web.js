@@ -437,9 +437,9 @@ map.addControl(draw);
 // $(".mapboxgl-ctrl-group:eq(2)").append(
 //     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
 // );
-$(".mapboxgl-ctrl-group:eq(2)").append(
-    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
-);
+// $(".mapboxgl-ctrl-group:eq(2)").append(
+//     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
+// );
 let Circle;
 const addCircle = (lat, lng, mode) => {
     Circle = new MapboxCircle({ lat: lat, lng: lng }, 150, {
@@ -551,6 +551,18 @@ const getDigitasi = (coor) => {
         },
     });
 };
+
+$(document).on("keydown", function (event) {
+    if (event.key == "Escape") {
+        if (localStorage.getItem("polygonDraw") == 1) {
+            $("#closeDigitasi").click();
+            draw.deleteAll();
+            localStorage.setItem("circleDraw", 0);
+            localStorage.setItem("polygonDraw", 0);
+            removeCircle();
+        }
+    }
+});
 
 map.on("draw.create", (e) => {
     const data = draw.getAll();
