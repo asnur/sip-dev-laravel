@@ -568,7 +568,7 @@ map.on("draw.create", (e) => {
         getDigitasi(coor);
         $(".info-layer-digitasi").show();
     } else {
-        alert("Batas Luas Area Digitasi Minimal 10 Ha");
+        alert("Batas Luas Area Digitasi Maksimal 10 Ha");
     }
     // console.log(coor);
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
@@ -590,7 +590,7 @@ map.on("draw.update", (e) => {
         getDigitasi(coor);
         $(".info-layer-digitasi").show();
     } else {
-        alert("Batas Luas Area Digitasi Minimal 10 Ha");
+        alert("Batas Luas Area Digitasi Maksimal 10 Ha");
     }
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
