@@ -24,25 +24,41 @@ class AdminController extends Controller
 
         $survey = Survey::all();
 
-        $latest = Survey::join('users', 'users.id', '=', 'survey.id_user')
+        $get_id = Survey::join('users', 'users.id', '=', 'survey.id_user')
             ->select('users.*', 'survey.*')
             ->orderBy('survey.id', 'Desc')
-            ->take(1)
+            ->take(50)
             ->get();
 
-        return view('admin.home', compact(['pegawai_ajib', 'survey', 'latest']));
+        // $get_id = DB::table('users.*', 'survey.*')->join('users', 'users.id', '=', 'survey.id_user');
+
+        return view('admin.home', compact(['pegawai_ajib', 'survey', 'get_id']));
     }
 
     public function fetchSurveyer()
     {
-        $latests = Survey::join('users', 'users.id', '=', 'survey.id_user')
+        $surveyers = Survey::join('users', 'users.id', '=', 'survey.id_user')
             ->select('users.*', 'survey.*')
             ->orderBy('survey.id', 'Desc')
             ->take(1)
             ->get();
 
         return response()->json([
-            'surveyer' => $latests,
+            'surveyer' => $surveyers,
+        ]);
+    }
+
+    public function dataTerbaru($id_data_terbaru)
+    {
+        $get_terbaru = Survey::join('users', 'users.id', '=', 'survey.id_user')
+            ->select('users.*', 'survey.*')
+            ->orderBy('survey.id', 'Desc')
+            ->where('survey.id', $id_data_terbaru)
+            ->take(1)
+            ->get();
+
+        return response()->json([
+            'terbaru' => $get_terbaru,
         ]);
     }
 

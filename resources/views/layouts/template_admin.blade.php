@@ -355,6 +355,9 @@
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    @if (Request::is('admin'))
+        <script src="{{ asset('assets/admin/js/monitoringMap.js') }}"></script>
+    @endif
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
     <script src="{{ asset('assets/admin/js/countTracking.js') }}"></script>
 

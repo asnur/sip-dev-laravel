@@ -1,4 +1,5 @@
-var url = `${APP_URL}:3000`;
+// var url = `${APP_URL}:3000`;
+var url = `https://jakpintas.dpmptsp-dki.com:3000`;
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
 let popUpHarga;
