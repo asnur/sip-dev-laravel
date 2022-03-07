@@ -480,6 +480,13 @@ $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").hide();
 $("#polygonDraw").on("click", () => {
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
+    localStorage.setItem("polygonOptions", "Digitasi");
+});
+
+$("#btnSHP").on("click", () => {
+    $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
+    localStorage.setItem("polygonDraw", 1);
+    localStorage.setItem("polygonOptions", "SHP");
 });
 
 $("#deleteDraw").on("click", () => {
@@ -552,7 +559,7 @@ const getDigitasi = (coor) => {
     });
 };
 
-$(document).on("keydown", function (event) {
+$("body").on("keydown", function (event) {
     if (event.key == "Escape") {
         if (localStorage.getItem("polygonDraw") == 1) {
             $("#closeDigitasi").click();
@@ -565,6 +572,7 @@ $(document).on("keydown", function (event) {
 });
 
 map.on("draw.create", (e) => {
+    let drawOptions = localStorage.getItem("polygonOptions");
     const data = draw.getAll();
     const area = turf.area(data);
     const rounded_area = Math.round(area * 100) / 100;
@@ -576,17 +584,39 @@ map.on("draw.create", (e) => {
         // console.log(el);
     });
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
-    if (fixArea <= 30) {
-        getDigitasi(coor);
-        $(".info-layer-digitasi").show();
+    if (drawOptions !== "Digitasi") {
+        // alert("layer Draw");
+        Swal.fire({
+            title: "Apakah Anda Ingin Mendownload File SHP?",
+            icon: "question",
+            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
+            showCloseButton: true,
+            showDenyButton: true,
+            focusConfirm: false,
+            confirmButtonText: '<i class="fa fa-download"></i> Download',
+            // confirmButtonAriaLabel: "Thumbs up, great!",
+            denyButtonText: '<i class="fa fa-remove"></i> Batal',
+            // cancelButtonAriaLabel: "Thumbs down",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                exportSHP();
+            }
+        });
     } else {
-        alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+        if (fixArea <= 30) {
+            getDigitasi(coor);
+            $(".info-layer-digitasi").show();
+        } else {
+            alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+        }
     }
+
     // console.log(coor);
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 // map.on("draw.delete");
 map.on("draw.update", (e) => {
+    let drawOptions = localStorage.getItem("polygonOptions");
     let coordinate = e.features[0].geometry.coordinates[0];
     const data = draw.getAll();
     const area = turf.area(data);
@@ -598,14 +628,46 @@ map.on("draw.update", (e) => {
         // console.log(el);
     });
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
-    if (fixArea <= 30) {
-        getDigitasi(coor);
-        $(".info-layer-digitasi").show();
+    if (drawOptions !== "Digitasi") {
+        // alert("layer Draw");
+        Swal.fire({
+            title: "Apakah Anda Ingin Mendownload File SHP?",
+            icon: "question",
+            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
+            showCloseButton: true,
+            showDenyButton: true,
+            focusConfirm: false,
+            confirmButtonText: '<i class="fa fa-download"></i> Download',
+            // confirmButtonAriaLabel: "Thumbs up, great!",
+            denyButtonText: '<i class="fa fa-remove"></i> Batal',
+            // cancelButtonAriaLabel: "Thumbs down",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                exportSHP();
+            }
+        });
     } else {
-        alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+        if (fixArea <= 30) {
+            getDigitasi(coor);
+            $(".info-layer-digitasi").show();
+        } else {
+            alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+        }
     }
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
+
+const exportSHP = () => {
+    var options = {
+        folder: "Digitasi",
+        types: {
+            polygon: "Digitasi",
+        },
+        name_file: "Digitasi",
+    };
+    // a GeoJSON bridge for features
+    shpwrite.download(draw.getAll(), options);
+};
 
 map.loadImage(
     `/assets/gambar/baseline_directions_subway_black_24dp.png`,
@@ -719,10 +781,10 @@ map.on("style.load", function () {
             `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}" target="_blank">${lats}, ${lngs}</a>`
         );
 
-        $("#btnSHP").attr(
-            "href",
-            `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
-        );
+        // $("#btnSHP").attr(
+        //     "href",
+        //     `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
+        // );
         // $("#btnAndalalin").attr(
         //     "href",
         //     `https://jakevo.jakarta.go.id/waypoint-maps?lat=${lats}&lng=${lngs}`
@@ -3997,7 +4059,12 @@ $("#closeUsaha").on("click", function (e) {
 
 $("#closeDigitasi").on("click", () => {
     $(".info-layer-digitasi").hide();
-    $("#deleteDraw").trigger("click");
+    if (localStorage.getItem("polygonDraw") == 1) {
+        draw.deleteAll();
+        localStorage.setItem("circleDraw", 0);
+        localStorage.setItem("polygonDraw", 0);
+        removeCircle();
+    }
 });
 
 function preview_image() {

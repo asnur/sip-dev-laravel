@@ -698,7 +698,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
-                                    href="#" target="_blank"><i class="ri-shape-line"></i></a>
+                                    data-toggle="pill" href="#" role="tab" aria-controls="pills-cetak"
+                                    aria-selected="false"><i class="ri-shape-line"></i><span
+                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
                             </li>
@@ -5155,9 +5157,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{{ asset('assets/js/pitchtoggle.js') }}"></script>
     <script src="{{ asset('assets/js/circle.js') }}"></script>
+    <script src="{{ asset('assets/js/shpwrite.js') }}"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
     <script src="{{ asset('assets/js/jquery.masknumber.js') }}"></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>
