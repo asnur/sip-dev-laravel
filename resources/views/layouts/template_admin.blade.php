@@ -21,11 +21,15 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
+
     <link href="{{ asset('assets/admin/img/favicon.ico') }}" rel="icon">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
 
@@ -216,58 +220,55 @@
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle"
                                             src="{{ asset('assets/admin/img/undraw_profile_1.svg') }}" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="{{ asset('assets/admin/img/undraw_profile_2.svg') }}" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="{{ asset('assets/admin/img/undraw_profile_2.svg') }}" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy
-                                            with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because
-                                            someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                                    Messages</a>
-                            </div>
-                        </li>
+                        <div class="status-indicator bg-success"></div>
+            </div>
+            <div class="font-weight-bold">
+                <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                    problem I've been having.</div>
+                <div class="small text-gray-500">Emily Fowler · 58m</div>
+            </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="{{ asset('assets/admin/img/undraw_profile_2.svg') }}" alt="...">
+                    <div class="status-indicator"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how
+                        would you like them sent to you?</div>
+                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="{{ asset('assets/admin/img/undraw_profile_2.svg') }}" alt="...">
+                    <div class="status-indicator bg-warning"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy
+                        with
+                        the progress so far, keep up the good work!</div>
+                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                    <div class="status-indicator bg-success"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because
+                        someone
+                        told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Read More
+                Messages</a>
+        </div>
+        </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div> --}}
+        <div class="topbar-divider d-none d-sm-block"></div> --}}
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -303,13 +304,13 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+            {{-- <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2021</span>
+            </div>
+        </div>
+    </footer> --}}
             <!-- End of Footer -->
 
         </div>
@@ -361,16 +362,22 @@
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
     </script>
+
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script> --}}
     <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    @if (Request::is('admin'))
+        <script src="{{ asset('assets/admin/js/monitoringMap.js') }}"></script>
+    @endif
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
     <script src="{{ asset('assets/admin/js/countTracking.js') }}"></script>
+
     <script>
         addText();
+        dataTebaruRealtime();
     </script>
 
 </body>

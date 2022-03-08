@@ -84,6 +84,26 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
         </div>
     </div>
 
+    <div class="info-layer-digitasi">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeDigitasi" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi<sup
+                    class="bg-danger text-white p-1 rounded ml-2">BETA</sup></span>
+            <div class="list-item mt-5">
+                <div class="w-100 text-center" id="loadDigitasi">
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div class="w-100" id="dataDigitasi">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="info-layer-usaha">
         <div class="container p-4">
             <button type="button" class="close" id="closeUsaha" aria-label="Close">
@@ -446,6 +466,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <button class="btn btn-secondary tombol_search border-left-0 border" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
+                                    <button class="btn tombol_search border-left-0 border" type="button"
+                                        id="polygonDraw">
+                                        <i class="ri-shape-line"></i><span class="bg-danger p-1 rounded text-white"
+                                            style="font-size: 8px;margin-top: -1rem;
+                                            position: absolute;">BETA</span>
+                                    </button>
                                 </span>
                             </div>
                             <!-- End Search Web -->
@@ -668,11 +694,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i><span
                                         class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">Simulasi</label>
+                                <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
-                                    href="#" target="_blank"><i class="ri-shape-line"></i></a>
+                                    data-toggle="pill" href="#" role="tab" aria-controls="pills-cetak"
+                                    aria-selected="false"><i class="ri-shape-line"></i><span
+                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
                             </li>
@@ -682,7 +710,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     aria-selected="false"><i class="ri-e-bike-2-line"></i></a>
 
                                 <br>
-                                <label class="size_menu size_menu_mobile">Andalalin</label>
+                                <label class="size_menu size_menu_mobile">Simlalin</label>
                             </li>
                             <!-- Pending menu pin-->
 
@@ -4489,7 +4517,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </p>
 
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Pemakaian Air</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
@@ -4497,7 +4525,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Debit Air Limbah</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
@@ -4505,15 +4533,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                             </div>
                             <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Sampah</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-sampah">-</p>
                                 </div>
                             </div>
-                            <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                            <div class="d-flex space_judul row_mid_text" id="stdluasbangunan">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
                                     <label class="text_all_mobile">Standar Luas Bangunan</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
@@ -4521,7 +4549,32 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                             </div>
 
-                            <p class="card-title mt-4 mb-4 text-center font-weight-bold judul_utama">Kalkulasi Dampak
+                            <div class="d-flex space_judul row_mid_text">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
+                                    <label class="text_all_mobile">Kebutuhan Air Bersih</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p class="inf-simulasi-kebutuhanairbersih">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_text">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
+                                    <label class="text_all_mobile">Volume Limpasan Air Hujan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p class="inf-simulasi-volumlimpasanairhujan">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_text">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
+                                    <label class="text_all_mobile">Jumlah Orang</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p class="inf-simulasi-jmlorang">-</p>
+                                </div>
+                            </div>
+
+                            <p class="card-title mt-4 mb-4 text-center font-weight-bold judul_utama">Kalkulasi Beban
                                 Lingkungan
                             </p>
 
@@ -4543,23 +4596,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
                             <div class="d-flex space_judul row_mid_text">
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Jumlah Orang</label>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
-                                    <p class="inf-simulasi-jmlorang">-</p>
-                                </div>
-                            </div>
-                            <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Kebutuhan Air Bersih</label>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
-                                    <p class="inf-simulasi-kebutuhanairbersih">-</p>
-                                </div>
-                            </div>
-                            <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Produksi Limbah</label>
+                                    <label class="text_all_mobile">Produksi Limbah Cair</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-produksilimbah">-</p>
@@ -4571,14 +4608,6 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
                                     <p class="inf-simulasi-produksisampah">-</p>
-                                </div>
-                            </div>
-                            <div class="d-flex space_judul row_mid_text">
-                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text_all">
-                                    <label class="text_all_mobile">Volume Limpasan Air Hujan</label>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
-                                    <p class="inf-simulasi-volumlimpasanairhujan">-</p>
                                 </div>
                             </div>
 
@@ -4600,7 +4629,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <label class="text_all_mobile">Biaya Bangunan /m<sup>2</sup></label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p><input type="number" id="biayaBangunan" value="3000000" style="font-size: 11px">
+                                    <p><input class="text-right number-separator" value="3.000.000" id="biayaBangunan"
+                                            style="font-size: 11px">
                                     </p>
                                 </div>
                             </div>
@@ -5041,7 +5071,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
         </div>
         {{-- <div style="z-index: 999; position: absolute; right:6px; top:100px;">
-            
+
         </div> --}}
     </div>
     {{-- <div class="detail_omzet" id="legends"></div>
@@ -5127,7 +5157,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{{ asset('assets/js/pitchtoggle.js') }}"></script>
     <script src="{{ asset('assets/js/circle.js') }}"></script>
+    <script src="{{ asset('assets/js/shpwrite.js') }}"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <script src="{{ asset('assets/js/jquery.masknumber.js') }}"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

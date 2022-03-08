@@ -434,12 +434,12 @@ const estimation_direction = (time, way) => {
 };
 
 map.addControl(draw);
-$(".mapboxgl-ctrl-group:eq(2)").append(
-    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
-);
-$(".mapboxgl-ctrl-group:eq(2)").append(
-    `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
-);
+// $(".mapboxgl-ctrl-group:eq(2)").append(
+//     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
+// );
+// $(".mapboxgl-ctrl-group:eq(2)").append(
+//     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_trash" id="deleteDraw" title="Delete"></button>`
+// );
 let Circle;
 const addCircle = (lat, lng, mode) => {
     Circle = new MapboxCircle({ lat: lat, lng: lng }, 150, {
@@ -456,40 +456,218 @@ const addCircle = (lat, lng, mode) => {
 };
 
 const removeCircle = () => {
-    map.removeLayer("circle-stroke-0");
-    map.removeLayer("circle-fill-0");
-    map.removeLayer("circle-center-handle-0");
-    map.removeLayer("circle-radius-handles-0");
-    map.removeSource("circle-source-0");
-    map.removeSource("circle-center-handle-source-0");
-    map.removeSource("circle-radius-handles-source-0");
+    if (map.getLayer("circle-radius-handles-0") !== undefined) {
+        map.removeLayer("circle-stroke-0");
+        map.removeLayer("circle-fill-0");
+        map.removeLayer("circle-center-handle-0");
+        map.removeLayer("circle-radius-handles-0");
+        map.removeSource("circle-source-0");
+        map.removeSource("circle-center-handle-source-0");
+        map.removeSource("circle-radius-handles-source-0");
+    }
+    if (map.getLayer("digitasi") !== undefined) {
+        map.removeLayer("digitasi");
+        map.removeSource("digitasi");
+    }
 };
 
 $("#circleDraw").on("click", () => {
     localStorage.setItem("circleDraw", 1);
 });
 
-$(".mapbox-gl-draw_polygon").on("click", () => {
+$(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").hide();
+
+$("#polygonDraw").on("click", () => {
+    $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
+    localStorage.setItem("polygonOptions", "Digitasi");
+});
+
+$("#btnSHP").on("click", () => {
+    $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
+    localStorage.setItem("polygonDraw", 1);
+    localStorage.setItem("polygonOptions", "SHP");
 });
 
 $("#deleteDraw").on("click", () => {
     draw.deleteAll();
     localStorage.setItem("circleDraw", 0);
+    localStorage.setItem("polygonDraw", 0);
     removeCircle();
 });
 
+const getDigitasi = (coor) => {
+    $.ajax({
+        url: `${url}/digitasi`,
+        method: "POST",
+        data: {
+            kordinat: coor,
+        },
+        beforeSend: () => {
+            $("#loadDigitasi").show();
+            $("#dataDigitasi").hide();
+        },
+        success: (data) => {
+            $("#loadDigitasi").hide();
+            $("#dataDigitasi").show();
+            let data_layer = JSON.parse(data);
+            if (map.getLayer("digitasi") !== undefined) {
+                map.removeLayer("digitasi");
+                map.removeSource("digitasi");
+            }
+            map.addSource("digitasi", { type: "geojson", data: data_layer });
+            map.addLayer({
+                id: "digitasi",
+                type: "fill",
+                source: "digitasi",
+                paint: {
+                    "fill-color": ["get", "fill"],
+                    "fill-opacity": 1,
+                },
+            });
+        },
+    });
+
+    $.ajax({
+        url: `${url}/digitasi-bpn`,
+        method: "POST",
+        data: {
+            kordinat: coor,
+        },
+        success: (data) => {
+            let bpn = JSON.parse(data);
+            let data_bpn = bpn.features;
+            let html = ``;
+            $("#dataDigitasi").html("");
+            data_bpn.forEach((e) => {
+                html += `
+                <div class="row w-100 mb-2 p-3 border shadow rounded">
+                <div class="col-md-10">
+                        <span>Tipe Hak : ${e.properties.Tipe}</span><br>
+                        <span>Luas : ${e.properties.Luas} m<sup>2</sup></span>
+                    </div>
+                    <div class="col-md-2">
+                        <span style="cursor: pointer" onclick="geocoder.query('${e.geometry.coordinates[1]},${e.geometry.coordinates[0]}')" class="text-danger h1"><i class="fa fa-map-marker"></i></span>
+                        </div>
+                        </div>
+                        `;
+                // console.log(e);
+            });
+            $("#dataDigitasi").html(html);
+            // console.log(data_bpn);
+        },
+    });
+};
+
+$("body").on("keydown", function (event) {
+    if (event.key == "Escape") {
+        if (localStorage.getItem("polygonDraw") == 1) {
+            $("#closeDigitasi").click();
+            draw.deleteAll();
+            localStorage.setItem("circleDraw", 0);
+            localStorage.setItem("polygonDraw", 0);
+            removeCircle();
+        }
+    }
+});
+
 map.on("draw.create", (e) => {
+    let drawOptions = localStorage.getItem("polygonOptions");
+    const data = draw.getAll();
+    const area = turf.area(data);
+    const rounded_area = Math.round(area * 100) / 100;
+    const fixArea = rounded_area / 10000;
     let coordinate = e.features[0].geometry.coordinates[0];
     let fix_coordinate = "";
     coordinate.forEach((el) => {
         fix_coordinate += el[0] + " " + el[1] + ",";
-        console.log(el);
+        // console.log(el);
     });
-    console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
+    let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
+    if (drawOptions !== "Digitasi") {
+        // alert("layer Draw");
+        Swal.fire({
+            title: "Apakah Anda Ingin Mendownload File SHP?",
+            icon: "question",
+            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
+            showCloseButton: true,
+            showDenyButton: true,
+            focusConfirm: false,
+            confirmButtonText: '<i class="fa fa-download"></i> Download',
+            // confirmButtonAriaLabel: "Thumbs up, great!",
+            denyButtonText: '<i class="fa fa-remove"></i> Batal',
+            // cancelButtonAriaLabel: "Thumbs down",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                exportSHP();
+            }
+        });
+    } else {
+        if (fixArea <= 30) {
+            getDigitasi(coor);
+            $(".info-layer-digitasi").show();
+        } else {
+            alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+        }
+    }
+
+    // console.log(coor);
+    // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 // map.on("draw.delete");
-// map.on("draw.update");
+map.on("draw.update", (e) => {
+    let drawOptions = localStorage.getItem("polygonOptions");
+    let coordinate = e.features[0].geometry.coordinates[0];
+    const data = draw.getAll();
+    const area = turf.area(data);
+    const rounded_area = Math.round(area * 100) / 100;
+    const fixArea = rounded_area / 10000;
+    let fix_coordinate = "";
+    coordinate.forEach((el) => {
+        fix_coordinate += el[0] + " " + el[1] + ",";
+        // console.log(el);
+    });
+    let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
+    if (drawOptions !== "Digitasi") {
+        // alert("layer Draw");
+        Swal.fire({
+            title: "Apakah Anda Ingin Mendownload File SHP?",
+            icon: "question",
+            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
+            showCloseButton: true,
+            showDenyButton: true,
+            focusConfirm: false,
+            confirmButtonText: '<i class="fa fa-download"></i> Download',
+            // confirmButtonAriaLabel: "Thumbs up, great!",
+            denyButtonText: '<i class="fa fa-remove"></i> Batal',
+            // cancelButtonAriaLabel: "Thumbs down",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                exportSHP();
+            }
+        });
+    } else {
+        if (fixArea <= 30) {
+            getDigitasi(coor);
+            $(".info-layer-digitasi").show();
+        } else {
+            alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+        }
+    }
+    // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
+});
+
+const exportSHP = () => {
+    var options = {
+        folder: "Digitasi",
+        types: {
+            polygon: "Digitasi",
+        },
+        name_file: "Digitasi",
+    };
+    // a GeoJSON bridge for features
+    shpwrite.download(draw.getAll(), options);
+};
 
 map.loadImage(
     `/assets/gambar/baseline_directions_subway_black_24dp.png`,
@@ -603,19 +781,19 @@ map.on("style.load", function () {
             `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}" target="_blank">${lats}, ${lngs}</a>`
         );
 
-        $("#btnSHP").attr(
-            "href",
-            `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
-        );
+        // $("#btnSHP").attr(
+        //     "href",
+        //     `https://jakartagis.maps.arcgis.com/apps/webappviewer/index.html?id=8cbdcc76c2874ad384c545102dc57e5e&center=${lngs};${lats}&level=20`
+        // );
         // $("#btnAndalalin").attr(
         //     "href",
         //     `https://jakevo.jakarta.go.id/waypoint-maps?lat=${lats}&lng=${lngs}`
         // );
     });
     // Marker onclick
-    const el = document.createElement("div");
-    el.className = "marker";
-    var marker = new mapboxgl.Marker(el);
+    // const el = document.createElement("div");
+    // el.className = "marker";
+    var marker = new mapboxgl.Marker();
 
     function add_marker(event) {
         var coordinates = event.lngLat;
@@ -624,6 +802,7 @@ map.on("style.load", function () {
             localStorage.getItem("circleDraw") == 0 &&
             localStorage.getItem("polygonDraw") == 0
         ) {
+            geocoder._removeMarker();
             marker.setLngLat(coordinates).addTo(map);
         }
     }
@@ -860,8 +1039,8 @@ map.on("mouseenter", "investasi_fill", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
-        
-        
+
+
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -887,7 +1066,7 @@ map.on("mouseenter", "investasi_line", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -913,7 +1092,7 @@ map.on("mouseenter", "investasi_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -940,7 +1119,7 @@ map.on("mouseenter", "budaya_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Name"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px">${dt["Keterangan"]}</span>      
+      <span class="d-block" style="width: 300px">${dt["Keterangan"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -967,8 +1146,8 @@ map.on("mouseenter", "ipal_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Sistem"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px">${dt["Alamat"]}</span>      
-      <span class="d-block" style="width: 300px">Kapasitas : ${dt["Kapasitas"]}</span>      
+      <span class="d-block" style="width: 300px">${dt["Alamat"]}</span>
+      <span class="d-block" style="width: 300px">Kapasitas : ${dt["Kapasitas"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -1820,7 +1999,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let html = "";
             // console.log(value_data);
             html += `
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">KB Maksimal</label>
@@ -1829,7 +2008,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["KB Maksimal"]}</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">KDB Maksimal</label>
@@ -1838,7 +2017,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["KDB Maksimal"] * 100}%</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">KLB Maksimal</label>
@@ -1847,7 +2026,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["KLB Maksimal"]}</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">Luas Lahan Minimal</label>
@@ -1856,7 +2035,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <p>${value_data["Luas Lahan Minimal"]}</p>
                 </div>
             </div>
-    
+
             <div class="d-flex space_text row_mid_text">
                 <div class="col-lg-5 text_all">
                     <label class="text_all_mobile">Syarat Lainnya</label>
@@ -2038,7 +2217,7 @@ function getPersilBPN(e) {
                             prop.Luas
                         )} m&sup2;</div>
                         <div class="col-sm-4">Harga</div>
-                        
+
                   `;
             }
         },
@@ -2144,7 +2323,7 @@ function getRadius(e) {
                         jarak: Math.round(dta.jarak) / 1000,
                     });
                     htmlContent += `
-                    <li style="list-style:none" class="listgroup-cust align-items-center text_all"> 
+                    <li style="list-style:none" class="listgroup-cust align-items-center text_all">
                         <div class="row">
                             <div class="col-md-8 text_all">
                             ${dta.fasilitas}
@@ -3478,7 +3657,7 @@ function getDataPin(id_user) {
                                 <a onclick="deleteDataPin(
                                     ${e[index].id},
                                     ${id_user}
-                                )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a> 
+                                )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
                             <div class="col-6 p-1">
                                 <a class="mt-1" onclick="editDataPin(
@@ -3878,6 +4057,16 @@ $("#closeUsaha").on("click", function (e) {
     }
 });
 
+$("#closeDigitasi").on("click", () => {
+    $(".info-layer-digitasi").hide();
+    if (localStorage.getItem("polygonDraw") == 1) {
+        draw.deleteAll();
+        localStorage.setItem("circleDraw", 0);
+        localStorage.setItem("polygonDraw", 0);
+        removeCircle();
+    }
+});
+
 function preview_image() {
     var gambarLokasi = $("#gambarLokasi").get(0).files.length;
     $("#previewFoto").html("");
@@ -4261,7 +4450,19 @@ const getSimulasi = (e) => {
         type: "GET",
         dataType: "JSON",
         success: (data) => {
+            let jumlah_orang = 0;
             let data_simulasi = data.features[0].properties;
+            if (e == "Rumah Mewah" || e == "Rumah Biasa") {
+                jumlah_orang = 5;
+                $("#stdluasbangunan").removeClass("d-flex");
+                $("#stdluasbangunan").addClass("d-none");
+            } else {
+                jumlah_orang = Math.ceil(
+                    (luasSimulasi * parseFloat(KLB.replace(",", "."))) / 9
+                );
+                $("#stdluasbangunan").removeClass("d-none");
+                $("#stdluasbangunan").addClass("d-flex");
+            }
             $(".inf-simulasi-pmkair").html(
                 data_simulasi.Air + " lt/penghuni/hari"
             );
@@ -4272,12 +4473,12 @@ const getSimulasi = (e) => {
                 data_simulasi.Sampah + " kg/Orang/Hari"
             );
             $(".inf-simulasi-stdluasbangunan").html(
-                separatorNum(data_simulasi.Standar) + " m<sup>3</sup>"
+                separatorNum(9) + " m<sup>2</sup>"
             );
             $(".inf-simulasi-luaslimpahan").html(
                 `${separatorNum(
                     Math.ceil(luasSimulasi * (1 - KDH / 100))
-                )} m<up>3</up>/Hari`
+                )} m<sup>2</sup>/Hari`
             );
             $(".inf-simulasi-luasbangunan").html(
                 `${separatorNum(
@@ -4285,41 +4486,21 @@ const getSimulasi = (e) => {
                 )} m<sup>2</sup>`
             );
             $(".inf-simulasi-jmlorang").html(
-                `${separatorNum(
-                    Math.ceil(
-                        (luasSimulasi * parseFloat(KLB.replace(",", "."))) /
-                            data_simulasi.Standar
-                    )
-                )} Orang`
+                `${separatorNum(jumlah_orang)} Orang`
             );
             $(".inf-simulasi-kebutuhanairbersih").html(
                 `${separatorNum(
-                    Math.ceil(
-                        data_simulasi.Air *
-                            ((luasSimulasi *
-                                parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar)
-                    )
+                    Math.ceil(data_simulasi.Air * jumlah_orang)
                 )} lt/Hari`
             );
             $(".inf-simulasi-produksilimbah").html(
                 `${separatorNum(
-                    Math.ceil(
-                        data_simulasi.Air *
-                            ((luasSimulasi *
-                                parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar)
-                    )
+                    Math.ceil(data_simulasi.Air * jumlah_orang * (80 / 100))
                 )} lt/Hari`
             );
             $(".inf-simulasi-produksisampah").html(
                 `${separatorNum(
-                    Math.ceil(
-                        data_simulasi.Sampah *
-                            ((luasSimulasi *
-                                parseFloat(KLB.replace(",", "."))) /
-                                data_simulasi.Standar)
-                    )
+                    Math.ceil(data_simulasi.Sampah * jumlah_orang)
                 )} kg/Hari`
             );
             $(".inf-simulasi-volumlimpasanairhujan").html(
@@ -4336,7 +4517,7 @@ const getSimulasi = (e) => {
                 `Rp. ${separatorNum(
                     Math.ceil(
                         luasSimulasi * parseFloat(KLB.replace(",", "."))
-                    ) * $("#biayaBangunan").val()
+                    ) * $("#biayaBangunan").val().replaceAll(".", "")
                 )}`
             );
 
@@ -4346,16 +4527,17 @@ const getSimulasi = (e) => {
                         Math.ceil(
                             luasSimulasi * parseFloat(KLB.replace(",", "."))
                         ) *
-                            $("#biayaBangunan").val()
+                            $("#biayaBangunan").val().replaceAll(".", "")
                 )}`
             );
 
             $("#biayaBangunan").on("keyup", () => {
+                console.log($("#biayaBangunan").val().replaceAll(".", ""));
                 $(".inf-simulasi-nilaibangunan").html(
                     `Rp. ${separatorNum(
                         Math.ceil(
                             luasSimulasi * parseFloat(KLB.replace(",", "."))
-                        ) * $("#biayaBangunan").val()
+                        ) * $("#biayaBangunan").val().replaceAll(".", "")
                     )}`
                 );
 
@@ -4365,7 +4547,7 @@ const getSimulasi = (e) => {
                             Math.ceil(
                                 luasSimulasi * parseFloat(KLB.replace(",", "."))
                             ) *
-                                $("#biayaBangunan").val()
+                                $("#biayaBangunan").val().replaceAll(".", "")
                     )}`
                 );
             });
