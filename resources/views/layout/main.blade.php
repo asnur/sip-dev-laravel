@@ -8,7 +8,7 @@
     @if (isMobileDevice())
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @endif
-    <title>Peta Perizinan dan Investasi DKI Jakarta</title>
+    <title>Peta Perizinan dan Investasi Kabupaten Magelang</title>
 
     <link rel="icon" href="assets/gambar/favicon.ico">
 
