@@ -450,46 +450,53 @@ map.on("style.load", function () {
     }
     map.on(clickEvent, add_marker);
 
-    // map.addSource("wilayahindex", {
-    //     type: "geojson",
-    //     data: `${url}/choro`,
-    // });
+    map.addSource("wilayahindex", {
+        type: "geojson",
+        data: `${url}/choro`,
+    });
 
-    // map.addLayer({
-    //     id: "wilayahindex_fill",
-    //     type: "fill",
-    //     source: "wilayahindex",
-    //     paint: {
-    //         "fill-color": [
-    //             "interpolate",
-    //             ["linear"],
-    //             ["get", "Total omzet"],
-    //             0,
-    //             "#ffeda0",
-    //             5000000000,
-    //             "#ffe675",
-    //             9000000000,
-    //             "#ffdf52",
-    //             13000000000,
-    //             "#ffd61f",
-    //             17000000000,
-    //             "#e0b700",
-    //             20396854609,
-    //             "#caa502",
-    //         ],
-    //         "fill-opacity": 0.7,
-    //         "fill-outline-color": "red",
-    //     },
-    //     layout: {
-    //         visibility: "none",
-    //     },
-    // });
+    map.addLayer({
+        id: "wilayahindex_fill",
+        type: "fill",
+        source: "wilayahindex",
+        paint: {
+            "fill-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "Total Omzet"],
+                0,
+                "#ffeda0",
+                300000000,
+                "#ffe675",
+                400000000,
+                "#ffdf52",
+                500000000,
+                "#ffd61f",
+                600000000,
+                "#e0b700",
+                700000000,
+                "#caa502",
+            ],
+            "fill-opacity": 0.7,
+            "fill-outline-color": "red",
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
 });
 
 map.on("load", function () {
     // getSektorKBLI();
 
-    const layers = ["0-4M", "5M-8M", "9M-12M", "13M-16M", "17M-20M", "> 20M"];
+    const layers = [
+        "0-300J",
+        "300J-400J",
+        "400J-500J",
+        "500J-600J",
+        "600J-700J",
+        "> 700J",
+    ];
     const colors = [
         "#ffeda0",
         "#ffe675",
@@ -516,18 +523,18 @@ map.on("load", function () {
         legend.appendChild(item);
     });
 
-    // map.on("mousemove", ({ point }) => {
-    //     const states = map.queryRenderedFeatures(point, {
-    //         layers: ["wilayahindex_fill"],
-    //     });
-    //     document.getElementById("pd").innerHTML = states.length
-    //         ? `<div>Kelurahan : ${
-    //               states[0].properties.Kelurahan
-    //           }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
-    //               states[0].properties["Total omzet"]
-    //           )}</strong></em></p>`
-    //         : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
-    // });
+    map.on("mousemove", ({ point }) => {
+        const states = map.queryRenderedFeatures(point, {
+            layers: ["wilayahindex_fill"],
+        });
+        document.getElementById("pd").innerHTML = states.length
+            ? `<div>Kelurahan : ${
+                  states[0].properties.Kelurahan
+              }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
+                  states[0].properties["Total Omzet"]
+              )}</strong></em></p>`
+            : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+    });
 
     // map.on("dblclick", (e) => {
     //     const states = map.queryRenderedFeatures(e.point, {
@@ -547,7 +554,7 @@ map.on("load", function () {
         // });
     });
 
-    // onOffLayers();
+    onOffLayers();
 });
 
 map.on("mouseenter", "wilayah_fill", function () {
@@ -557,25 +564,17 @@ map.on("mouseleave", "wilayah_fill", function () {
     map.getCanvas().style.cursor = "default";
 });
 
-map.on("mouseenter", "iumk_fill", (e) => {
+map.on("mouseenter", "ukm_fill", (e) => {
     map.getCanvas().style.cursor = "pointer";
     const coordinates = e.features[0].geometry.coordinates.slice();
     const dt = e.features[0].properties;
-    const nosk = dt["Nomor SK"];
-    const splitsk = nosk.split("/");
-    const noskfix =
-        splitsk[0] + "/**/*****************/*/*****/**/" + splitsk[6];
     const content = `<div class="card">
-    <div class="imgcard-container">
-      <img src="#" class="card-img-top" id="imgCardIUMK" alt="${dt["Nama Usaha"]}" style="height: 160px;object-fit: cover;display:none;">
-    </div>
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama Usaha"]}</h6>
       <div style="line-height: 1.2;">
-        <span class="d-block"><b>Pemilik Usaha :</b> ${dt["Pemilik Usaha"]}</span>
-        <span class="d-block"><b>No. SK :</b> ${noskfix}</span>
-        <span class="d-block"><b>Jenis Usaha :</b> ${dt["Jenis Usaha"]}</span>
-        <span class="d-block"><b>Tenaga Kerja :</b> ${dt["Tenaga Kerja"]} Orang</span></div>
+        <span class="d-block"><b>Omzet :</b> ${dt["Omzet"]}</span>
+        <span class="d-block"><b>Jenis :</b> ${dt["Jenis"]}</span>
+        <span class="d-block"><b>Tenaga Kerja :</b> ${dt["Pegawai"]} Orang</span></div>
       </div>
     </div>`;
 
@@ -588,7 +587,7 @@ map.on("mouseenter", "iumk_fill", (e) => {
     }, 500);
 });
 
-map.on("mouseleave", "iumk_fill", () => {
+map.on("mouseleave", "ukm_fill", () => {
     map.getCanvas().style.cursor = "";
     popup.remove();
 });
@@ -860,7 +859,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     ).html("-");
 
     // getRadius(e);
-    // getNJOP(e);
+    getNJOP(e);
     // getPersilBPN(e);
     // getEksisting(e);
     // getAirTanah(e);
@@ -1749,47 +1748,47 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 //     });
 // }
 
-// function getNJOP(e) {
-//     // $("#dtNJOPBot").html("");
-//     var htmlPopupLayer = "";
-//     $.ajax({
-//         url: `${url}/njop/${e.lngLat.lng}/${e.lngLat.lat}`,
-//         method: "get",
-//         contentType: false,
-//         processData: false,
-//         cache: false,
-//         beforeSend: function () {
-//             // $('.map-loading').show()
-//         },
-//         success: function (dt) {
-//             const dtResp = JSON.parse(dt);
-//             const prop = dtResp.features[0].properties;
-//             if (dtResp.features != null) {
-//                 $(".inf-harganjop").html(
-//                     `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
-//                         prop.Max
-//                     )} per m&sup2;`
-//                 );
-//             }
+function getNJOP(e) {
+    // $("#dtNJOPBot").html("");
+    // var htmlPopupLayer = "";
+    $.ajax({
+        url: `${url}/njop/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        contentType: false,
+        processData: false,
+        cache: false,
+        beforeSend: function () {
+            // $('.map-loading').show()
+        },
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            const prop = dtResp.features[0].properties;
+            if (dtResp.features != null) {
+                $(".inf-njop").html(
+                    `Rp ${separatorNum(prop.NJOP)} per m&sup2;`
+                );
+            } else {
+                $(".inf-njop").html(`Rp 0 per m&sup2;`);
+            }
 
-//             hrg_min = separatorNum(prop.Min);
-//             hrg_max = separatorNum(prop.Max);
-//             $.post(`${APP_URL}/save_njop`, { njop: [prop.Min, prop.Max] });
+            // hrg_min = separatorNum(prop.Min);
+            // hrg_max = separatorNum(prop.Max);
+            //     $.post(`${APP_URL}/save_njop`, { njop: [prop.Min, prop.Max] });
 
-//             harga = `
-//             <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
-//             </div>
-//           </div>
-//             `;
-//         },
-//         error: function (error) {
-//             console.log(error);
-//         },
-//         complete: function (e) {
-//             // $('.map-loading').hide()
-//         },
-//     });
-// }
+            //     harga = `
+            //     <div class="col-sm-8">Rp. ${hrg_min} - Rp. ${hrg_max} per meter persegi</div>
+            //     </div>
+            //   </div>
+            //     `;
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+}
 
 // function getPenuruanAirTanah(e) {
 //     $.ajax({
@@ -2166,11 +2165,12 @@ map.addControl(geocoder);
 function addSourceLayer(item) {
     var api = [
         "wilayah",
-        // "zoning",
+        "zoning",
         // "iumk",
         // "sewa",
         // "investasi",
-        // "pipa",
+        "pipa",
+        "ukm",
         // "budaya",
         // "ipal",
         // "util",
@@ -2283,7 +2283,7 @@ function addLayers() {
         source: "wilayah",
         paint: {
             "fill-color": "#00FFFF",
-            "fill-opacity": 0.6,
+            "fill-opacity": 0.1,
             "fill-outline-color": "red",
             // "line-width": 1,
         },
@@ -2303,21 +2303,18 @@ function addLayers() {
     //     'visibility': 'visible'
     //   },
     // });
-    // map.addLayer({
-    //     id: "zoning_fill",
-    //     type: "fill",
-    //     source: "zoning",
-    //     layout: {
-    //         "text-field": "test",
-    //     },
-    //     paint: {
-    //         "fill-color": ["get", "fill"],
-    //         "fill-opacity": 1,
-    //     },
-    //     layout: {
-    //         visibility: "none",
-    //     },
-    // });
+    map.addLayer({
+        id: "zoning_fill",
+        type: "fill",
+        source: "zoning",
+        paint: {
+            "fill-color": ["get", "fill"],
+            "fill-opacity": 1,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
 
     // map.addLayer({
     //     id: "zoning_label",
@@ -2415,21 +2412,21 @@ function addLayers() {
     //     'visibility': 'visible'
     //   },
     // });
-    // map.addLayer({
-    //     id: "iumk_fill",
-    //     type: "circle",
-    //     source: "iumk",
-    //     paint: {
-    //         "circle-color": "#4264fb",
-    //         "circle-stroke-color": "#ffff00",
-    //         "circle-stroke-width": 1,
-    //         "circle-radius": 4,
-    //         "circle-opacity": 0.8,
-    //     },
-    //     layout: {
-    //         visibility: "none",
-    //     },
-    // });
+    map.addLayer({
+        id: "ukm_fill",
+        type: "circle",
+        source: "ukm",
+        paint: {
+            "circle-color": "#4264fb",
+            "circle-stroke-color": "#ffff00",
+            "circle-stroke-width": 1,
+            "circle-radius": 4,
+            "circle-opacity": 0.8,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
     // map.addLayer({
     //     id: "sewa_fill",
     //     type: "circle",
@@ -2446,18 +2443,18 @@ function addLayers() {
     //     },
     // });
 
-    // map.addLayer({
-    //     id: "pipa_multilinestring",
-    //     type: "line",
-    //     source: "pipa",
-    //     paint: {
-    //         "line-color": "#fff",
-    //         "line-width": 3,
-    //     },
-    //     layout: {
-    //         visibility: "none",
-    //     },
-    // });
+    map.addLayer({
+        id: "pipa_multilinestring",
+        type: "line",
+        source: "pipa",
+        paint: {
+            "line-color": "blue",
+            "line-width": 3,
+        },
+        layout: {
+            visibility: "none",
+        },
+    });
 
     // map.addLayer({
     //     id: "util_multilinestring",
@@ -2559,55 +2556,55 @@ function switchLayer(layer) {
 
 function onOffLayers() {
     //Wilayah
-    // if ($("#wilayahindex_fill").prop("checked") == true) {
-    //     showLayer("wilayahindex_fill");
-    //     $(".detail_omzet").show();
-    //     $(".detail_jumlah").show();
-    // } else {
-    //     hideLayer("wilayahindex_fill");
-    //     $(".detail_omzet").hide();
-    //     $(".detail_jumlah").hide();
-    // }
-    // $("#wilayahindex_fill").change(function () {
-    //     if ($(this).prop("checked") == true) {
-    //         showLayer("wilayahindex_fill");
-    //         $(".detail_omzet").show();
-    //         $(".detail_jumlah").show();
-    //     } else {
-    //         hideLayer("wilayahindex_fill");
-    //         $(".detail_omzet").hide();
-    //         $(".detail_jumlah").hide();
-    //     }
-    // });
-    // //Peta Zonasi
-    // if ($("#zoning_fill").prop("checked") == true) {
-    //     showLayer("zoning_fill");
-    //     showLayer("zoning_label");
-    // } else {
-    //     hideLayer("zoning_fill");
-    //     hideLayer("zoning_label");
-    // }
-    // $("#zoning_fill").change(function () {
-    //     if ($(this).prop("checked") == true) {
-    //         showLayer("zoning_fill");
-    //         showLayer("zoning_label");
-    //     } else {
-    //         hideLayer("zoning_fill");
-    //         hideLayer("zoning_label");
-    //     }
-    // });
-    // if ($("#pipa_multilinestring").prop("checked") == true) {
-    //     showLayer("pipa_multilinestring");
-    // } else {
-    //     hideLayer("pipa_multilinestring");
-    // }
-    // $("#pipa_multilinestring").change(function () {
-    //     if ($(this).prop("checked") == true) {
-    //         showLayer("pipa_multilinestring");
-    //     } else {
-    //         hideLayer("pipa_multilinestring");
-    //     }
-    // });
+    if ($("#wilayahindex_fill").prop("checked") == true) {
+        showLayer("wilayahindex_fill");
+        $(".detail_omzet").show();
+        $(".detail_jumlah").show();
+    } else {
+        hideLayer("wilayahindex_fill");
+        $(".detail_omzet").hide();
+        $(".detail_jumlah").hide();
+    }
+    $("#wilayahindex_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("wilayahindex_fill");
+            $(".detail_omzet").show();
+            $(".detail_jumlah").show();
+        } else {
+            hideLayer("wilayahindex_fill");
+            $(".detail_omzet").hide();
+            $(".detail_jumlah").hide();
+        }
+    });
+    //Peta Zonasi
+    if ($("#zoning_fill").prop("checked") == true) {
+        showLayer("zoning_fill");
+        // showLayer("zoning_label");
+    } else {
+        hideLayer("zoning_fill");
+        // hideLayer("zoning_label");
+    }
+    $("#zoning_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("zoning_fill");
+            // showLayer("zoning_label");
+        } else {
+            hideLayer("zoning_fill");
+            // hideLayer("zoning_label");
+        }
+    });
+    if ($("#pipa_multilinestring").prop("checked") == true) {
+        showLayer("pipa_multilinestring");
+    } else {
+        hideLayer("pipa_multilinestring");
+    }
+    $("#pipa_multilinestring").change(function () {
+        if ($(this).prop("checked") == true) {
+            showLayer("pipa_multilinestring");
+        } else {
+            hideLayer("pipa_multilinestring");
+        }
+    });
     // if ($("#tol_multilinestring").prop("checked") == true) {
     //     showLayer("tol_multilinestring");
     // } else {
@@ -2681,54 +2678,56 @@ function onOffLayers() {
     //     }
     // });
     // //Sebaran Usaha mikro kecil
-    // $("#iumk_fill").change(function () {
-    //     if ($(this).prop("checked") == true) {
-    //         $(".info-layer-usaha").show();
-    //         showLayer("iumk_fill");
-    //         hideLayer("sewa_fill");
-    //         hideLayer("investasi_fill");
-    //         hideLayer("investasi_dot");
-    //         hideLayer("investasi_line");
-    //         hideLayer("budaya_dot");
-    //         $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-    //         $(".list-item-usaha").html("");
-    //         $("#hide_side_bar").hide();
-    //         var content = "";
-    //         var infoUsaha = sebaran_usaha[0].features;
-    //         for (
-    //             let index = 0;
-    //             index < sebaran_usaha[0].features.length;
-    //             index++
-    //         ) {
-    //             var coord = [
-    //                 infoUsaha[index]["properties"]["Lat"],
-    //                 infoUsaha[index]["properties"]["Long"],
-    //             ];
-    //             content += `
-    //             <div class="item mb-3">
-    //             <div class="row">
-    //                 <div class="col-4">
-    //                     <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="">
-    //                 </div>
-    //                 <div class="col-8">
-    //                     <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>
-    //                     <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pemilik Usaha :
-    //                         <span>${infoUsaha[index]["properties"]["Pemilik Usaha"]}</span></label>
-    //                     <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Jenis Usaha :
-    //                         <span>${infoUsaha[index]["properties"]["Jenis Usaha"]}</span></label>
-    //                     <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Tenaga Kerja : <span>${infoUsaha[index]["properties"]["Tenaga Kerja"]}
-    //                             Orang</span></label>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //             `;
-    //             getIumkForInfo(coord, `#imgUsaha-${index}`);
-    //         }
-    //         $(".list-item-usaha").html(content);
-    //     } else {
-    //         hideLayer("iumk_fill");
-    //     }
-    // });
+    $("#iumk_fill").change(function () {
+        if ($(this).prop("checked") == true) {
+            // $(".info-layer-usaha").show();
+            showLayer("ukm_fill");
+            $("#iumk").css("background", "orange");
+            // hideLayer("sewa_fill");
+            // hideLayer("investasi_fill");
+            // hideLayer("investasi_dot");
+            // hideLayer("investasi_line");
+            // hideLayer("budaya_dot");
+            // $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+            // $(".list-item-usaha").html("");
+            // $("#hide_side_bar").hide();
+            // var content = "";
+            // var infoUsaha = sebaran_usaha[0].features;
+            // for (
+            //     let index = 0;
+            //     index < sebaran_usaha[0].features.length;
+            //     index++
+            // ) {
+            //     var coord = [
+            //         infoUsaha[index]["properties"]["Lat"],
+            //         infoUsaha[index]["properties"]["Long"],
+            //     ];
+            //     content += `
+            //     <div class="item mb-3">
+            //     <div class="row">
+            //         <div class="col-4">
+            //             <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="">
+            //         </div>
+            //         <div class="col-8">
+            //             <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>
+            //             <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pemilik Usaha :
+            //                 <span>${infoUsaha[index]["properties"]["Pemilik Usaha"]}</span></label>
+            //             <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Jenis Usaha :
+            //                 <span>${infoUsaha[index]["properties"]["Jenis Usaha"]}</span></label>
+            //             <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Tenaga Kerja : <span>${infoUsaha[index]["properties"]["Tenaga Kerja"]}
+            //                     Orang</span></label>
+            //         </div>
+            //     </div>
+            // </div>
+            //     `;
+            //     getIumkForInfo(coord, `#imgUsaha-${index}`);
+            // }
+            // $(".list-item-usaha").html(content);
+        } else {
+            hideLayer("ukm_fill");
+            $("#iumk").css("background", "white");
+        }
+    });
     // //Harga Sewa Kantor
     // $("#sewa_fill").change(function () {
     //     if ($(this).prop("checked") == true) {
@@ -3596,16 +3595,15 @@ $(
 //     $(".info-layer-budaya").hide();
 // });
 
-// $("#iumk").click(function () {
-//     $(this).css("background", "orange");
-//     $("#sewa_kantor").css("background", "white");
-//     $("#proyek").css("background", "white");
-//     $("#cagar").css("background", "white");
-//     $("#iumk_fill").trigger("click");
-//     $(".info-layer").hide();
-//     $(".info-layer-investasi").hide();
-//     $(".info-layer-budaya").hide();
-// });
+$("#iumk").click(function () {
+    // $("#sewa_kantor").css("background", "white");
+    // $("#proyek").css("background", "white");
+    // $("#cagar").css("background", "white");
+    $("#iumk_fill").trigger("click");
+    // $(".info-layer").hide();
+    // $(".info-layer-investasi").hide();
+    // $(".info-layer-budaya").hide();
+});
 
 // $("#proyek").click(function () {
 //     $(this).css("background", "orange");

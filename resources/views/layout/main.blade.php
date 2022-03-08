@@ -540,7 +540,7 @@
                     <div class="form-check iumk_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="radio" name="layer" class="form-check-input" id="iumk_fill">
+                                <input type="checkbox" name="layer" class="form-check-input" id="iumk_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="iumk_fill">Sebaran Usaha Mikro Kecil</label>
                             </li>
@@ -806,6 +806,15 @@
                                     </div>
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                         <p class="inf-kepadatan">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">NJOP</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-njop">-</p>
                                     </div>
                                 </div>
 
