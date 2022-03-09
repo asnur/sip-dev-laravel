@@ -696,6 +696,44 @@ map.on("style.load", function () {
         },
         labelLayerId
     );
+    map.addSource("mapbox-dem", {
+        type: "raster-dem",
+        url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+        tileSize: 512,
+        maxzoom: 14,
+    });
+    map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
+
+    map.addLayer({
+        id: "sky",
+        type: "sky",
+        paint: {
+            // set up the sky layer to use a color gradient
+            "sky-type": "gradient",
+            // the sky will be lightest in the center and get darker moving radially outward
+            // this simulates the look of the sun just below the horizon
+            "sky-gradient": [
+                "interpolate",
+                ["linear"],
+                ["sky-radial-progress"],
+                0.8,
+                "rgba(135, 206, 235, 1.0)",
+                1,
+                "rgba(0,0,0,0.1)",
+            ],
+            "sky-gradient-center": [0, 0],
+            "sky-gradient-radius": 90,
+            "sky-opacity": [
+                "interpolate",
+                ["exponential", 0.1],
+                ["zoom"],
+                5,
+                0,
+                22,
+                1,
+            ],
+        },
+    });
     map.on(clickEvent, function (e) {
         // console.log(e);
         const coornya = e.lngLat;
@@ -765,7 +803,7 @@ map.on("style.load", function () {
     // Marker onclick
     // const el = document.createElement("div");
     // el.className = "marker";
-    var marker = new mapboxgl.Marker();
+    var marker = new mapboxgl.Marker({ color: "skyblue" });
 
     function add_marker(event) {
         var coordinates = event.lngLat;
@@ -2489,7 +2527,9 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     localGeocoder: coordinatesGeocoder,
     mapboxgl: mapboxgl,
-    // marker: false,
+    marker: {
+        color: "skyblue",
+    },
     reverseGeocode: true,
     flyTo: {
         easing: function (t) {
