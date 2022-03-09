@@ -56,6 +56,23 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
 <body>
 
+    <div class="modal fade bd-example-modal-sm" id="downloadSHP" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="modal-title mb-3">
+                        <h4>Unduh File SHP ?</h4>
+                    </div>
+                    <button class="btn btn-sm btn-success" onclick="exportSHP()"><i class="fa fa-download"></i>
+                        Download</button>
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>
+                        Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="g-signin2" data-onsuccess="onSignIn" style="position:absolute"></div>
     <!-- hide -->
@@ -691,8 +708,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     data-toggle="pill" href="#pills-simulasi" role="tab" aria-controls="pills-poi"
-                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i><span
-                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
+                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>

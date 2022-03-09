@@ -586,22 +586,7 @@ map.on("draw.create", (e) => {
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
     if (drawOptions !== "Digitasi") {
         // alert("layer Draw");
-        Swal.fire({
-            title: "Apakah Anda Ingin Mendownload File SHP?",
-            icon: "question",
-            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
-            showCloseButton: true,
-            showDenyButton: true,
-            focusConfirm: false,
-            confirmButtonText: '<i class="fa fa-download"></i> Download',
-            // confirmButtonAriaLabel: "Thumbs up, great!",
-            denyButtonText: '<i class="fa fa-remove"></i> Batal',
-            // cancelButtonAriaLabel: "Thumbs down",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                exportSHP();
-            }
-        });
+        $("#downloadSHP").modal("show");
     } else {
         if (fixArea <= 30) {
             getDigitasi(coor);
@@ -630,22 +615,7 @@ map.on("draw.update", (e) => {
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
     if (drawOptions !== "Digitasi") {
         // alert("layer Draw");
-        Swal.fire({
-            title: "Apakah Anda Ingin Mendownload File SHP?",
-            icon: "question",
-            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
-            showCloseButton: true,
-            showDenyButton: true,
-            focusConfirm: false,
-            confirmButtonText: '<i class="fa fa-download"></i> Download',
-            // confirmButtonAriaLabel: "Thumbs up, great!",
-            denyButtonText: '<i class="fa fa-remove"></i> Batal',
-            // cancelButtonAriaLabel: "Thumbs down",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                exportSHP();
-            }
-        });
+        $("#downloadSHP").modal("show");
     } else {
         if (fixArea <= 30) {
             getDigitasi(coor);
@@ -659,7 +629,8 @@ map.on("draw.update", (e) => {
 
 const exportSHP = () => {
     var options = {
-        folder: "Digitasi",
+        folder: false,
+        filename: "Digitasi",
         types: {
             polygon: "Digitasi",
         },
@@ -667,6 +638,7 @@ const exportSHP = () => {
     };
     // a GeoJSON bridge for features
     shpwrite.download(draw.getAll(), options);
+    $("#downloadSHP").modal("hide");
 };
 
 map.loadImage(
