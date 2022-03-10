@@ -627,14 +627,19 @@ map.on("draw.update", (e) => {
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 
+$("#formSHP").on("submit", (e) => {
+    e.preventDefault();
+    exportSHP();
+});
+
 const exportSHP = () => {
+    let name = $("#nameFileSHP").val();
     var options = {
         folder: false,
-        filename: "Digitasi",
+        filename: name,
         types: {
-            polygon: "Digitasi",
+            polygon: name,
         },
-        name_file: "Digitasi",
     };
     // a GeoJSON bridge for features
     shpwrite.download(draw.getAll(), options);
@@ -3127,7 +3132,7 @@ function onOffLayers() {
                 <div class="item mb-3">
                 <div class="row">
                     <div class="col-4">
-                        <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="">
+                        <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63749.jpg">
                     </div>
                     <div class="col-8">
                         <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>

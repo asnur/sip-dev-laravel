@@ -55,23 +55,26 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 @endphp
 
 <body>
-
-    <div class="modal fade bd-example-modal-sm" id="downloadSHP" tabindex="-1" role="dialog"
-        aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <div class="modal-title mb-3">
-                        <h4>Unduh File SHP ?</h4>
+    <form id="formSHP">
+        <div class="modal fade bd-example-modal-sm" id="downloadSHP" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="modal-title mb-3">
+                            <h5>Unduh File SHP ?</h5>
+                            <input type="text" id="nameFileSHP" class="form-control form-control-sm"
+                                placeholder="Nama File" required>
+                        </div>
+                        <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-download"></i>
+                            Download</button>
+                        <button class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>
+                            Batal</button>
                     </div>
-                    <button class="btn btn-sm btn-success" onclick="exportSHP()"><i class="fa fa-download"></i>
-                        Download</button>
-                    <button class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>
-                        Batal</button>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
 
     <div class="g-signin2" data-onsuccess="onSignIn" style="position:absolute"></div>
