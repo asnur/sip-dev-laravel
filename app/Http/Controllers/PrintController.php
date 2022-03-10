@@ -87,10 +87,22 @@ class PrintController extends Controller
         $request->session()->put('zoning', $zoning);
     }
 
+    public function save_itbx(Request $request)
+    {
+        $itbx = $request->input('itbx');
+        $request->session()->put('itbx', $itbx);
+    }
+
     public function save_ketentuan_tpz(Request $request)
     {
         $ketentuan_tpz = $request->input('ketentuan_tpz');
         $request->session()->put('ketentuan_tpz', $ketentuan_tpz);
+    }
+
+    public function save_ketentuan_khusus(Request $request)
+    {
+        $ketentuan_khusus = $request->input('ketentuan_khusus');
+        $request->session()->put('ketentuan_khusus', $ketentuan_khusus);
     }
 
     public function save_poi(Request $request)

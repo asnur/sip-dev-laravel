@@ -1932,6 +1932,13 @@ function getKetentuanPSL(subzona, psl) {
                 const kegiatan = $(this).val();
                 let index = $(this).find(":selected").data("id");
                 // console.log(value_data);
+                $.post(`${APP_URL}/save_itbx`, {
+                    itbx: [
+                        kegiatan,
+                        value_data[index]["Ketentuan Perizinan"],
+                        value_data[index].Substansi,
+                    ],
+                });
                 $(".inf-status-ketentuan").html("");
                 $(".inf-status-ketentuan").html(
                     value_data[index]["Ketentuan Perizinan"]
@@ -2008,6 +2015,10 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let value_data = data.features[0].properties[0];
             let html = "";
             // console.log(value_data);
+            let kdb_maksimal =
+                value_data["KDB Maksimal"] !== "TIDAK DIATUR"
+                    ? `${value_data["KDB Maksimal"] * 100}%`
+                    : value_data["KDB Maksimal"];
             html += `
 
             <div class="d-flex space_text row_mid_text">
@@ -2024,7 +2035,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <label class="text_all_mobile">KDB Maksimal</label>
                 </div>
                 <div class="col-lg-7 text_all">
-                    <p>${value_data["KDB Maksimal"] * 100}%</p>
+                    <p>${kdb_maksimal}</p>
                 </div>
             </div>
 
@@ -2055,6 +2066,16 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                 </div>
             </div>
                 `;
+            $.post(`${APP_URL}/save_ketentuan_khusus`, {
+                ketentuan_khusus: [
+                    ketentuan,
+                    value_data["KB Maksimal"],
+                    kdb_maksimal,
+                    value_data["KLB Maksimal"],
+                    value_data["Luas Lahan Minimal"],
+                    value_data["Syarat Lainnya"],
+                ],
+            });
             $(".isi-ketentuan-khusus").html("");
             $(".isi-ketentuan-khusus").html(html);
             // if (value_data !== null) {
