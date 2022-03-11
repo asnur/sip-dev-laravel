@@ -55,6 +55,26 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 @endphp
 
 <body>
+    <form id="formSHP">
+        <div class="modal fade bd-example-modal-sm" id="downloadSHP" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="modal-title mb-3">
+                            <h5>Unduh File SHP ?</h5>
+                            <input type="text" id="nameFileSHP" class="form-control form-control-sm"
+                                placeholder="Nama File" required>
+                        </div>
+                        <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-download"></i>
+                            Download</button>
+                        <button class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i>
+                            Batal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 
     <div class="g-signin2" data-onsuccess="onSignIn" style="position:absolute"></div>
@@ -691,8 +711,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     data-toggle="pill" href="#pills-simulasi" role="tab" aria-controls="pills-poi"
-                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i><span
-                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
+                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>

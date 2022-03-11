@@ -10016,7 +10016,7 @@
 
     </style>
     <style>
-        /** 
+        /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -10114,9 +10114,11 @@ $bpn = session('bpn');
 $air_tanah = session('air_tanah');
 $zona = session('zoning');
 $ketentuan_tpz = session('ketentuan_tpz');
+$ketentuan_khusus = session('ketentuan_khusus');
 $poi = session('poi');
 $CD_TPZ = $zona['CD TPZ'] == null ? null : explode(',', $zona['CD TPZ']);
 $kbli = session('kbli');
+$itbx = session('itbx');
 @endphp
 
 <body>
@@ -10479,6 +10481,94 @@ $kbli = session('kbli');
                     </div>
                 </div>
             </div>
+            @if (session()->has('itbx'))
+                <br>
+                <div class="border-container p-1">
+                    <div class="row-content">
+                        <div class="border-bottom-container w-100" style="vertical-align: middle">
+                            <span class="font-weight-bold" style="vertical-align: middle">Kesesuaian Kegiatan Berdasar
+                                Tabel ITBX</span>
+                        </div>
+                        <div class="column left">
+                            <span>Kegiatan</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $itbx[0] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>Ketentuan Perizinan</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $itbx[1] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>Keterangan</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $itbx[2] }}</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="border-container p-1">
+                    <div class="row-content">
+                        <div class="border-bottom-container w-100" style="vertical-align: middle">
+                            <span class="font-weight-bold" style="vertical-align: middle">Ketentuan Khusus</span>
+                        </div>
+                        <div class="column left">
+                            <span>Ketentuan Khusus</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $ketentuan_khusus[0] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>KB Maksimal</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $ketentuan_khusus[1] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>KDB Maksimal</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $ketentuan_khusus[2] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>KLB Maksimal</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $ketentuan_khusus[3] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>Luas Lahan Minimal</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $ketentuan_khusus[4] }}</span>
+                        </div>
+                    </div>
+                    <div class="row-content">
+                        <div class="column left">
+                            <span>Syarat Lainnya</span>
+                        </div>
+                        <div class="column right">
+                            <span>{{ $ketentuan_khusus[5] }}</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            @endif
             @if ($ketentuan_tpz[0] !== null)
                 <div class="page-break"></div>
             @endif

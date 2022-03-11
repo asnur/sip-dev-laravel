@@ -33,8 +33,10 @@ class VerifyCsrfToken extends Middleware
         '/save_air_tanah',
         '/save_zoning',
         '/save_ketentuan_tpz',
+        '/save_ketentuan_khusus',
         '/save_poi',
         '/save_kbli',
         '/check_print',
+        '/save_itbx',
     ];
 }

@@ -101,7 +101,9 @@ Route::post('/save_sanitasi', [PrintController::class, 'save_sanitasi'])->name('
 Route::post('/save_turun', [PrintController::class, 'save_turun'])->name('save-turun');
 Route::post('/save_air_tanah', [PrintController::class, 'save_air_tanah'])->name('save-air-tanah');
 Route::post('/save_zoning', [PrintController::class, 'save_zoning'])->name('save-zoning');
+Route::post('/save_itbx', [PrintController::class, 'save_itbx'])->name('save-itbx');
 Route::post('/save_ketentuan_tpz', [PrintController::class, 'save_ketentuan_tpz'])->name('save-ketentuan-tpz');
+Route::post('/save_ketentuan_khusus', [PrintController::class, 'save_ketentuan_khusus'])->name('save-ketentuan-khusus');
 Route::post('/save_poi', [PrintController::class, 'save_poi'])->name('save-poi');
 Route::post('/save_kbli', [PrintController::class, 'save_kbli'])->name('save-kbli');
 Route::post('/check_print', [PrintController::class, 'check_print'])->name('check-print');

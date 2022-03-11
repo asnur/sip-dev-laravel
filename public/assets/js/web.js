@@ -586,22 +586,7 @@ map.on("draw.create", (e) => {
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
     if (drawOptions !== "Digitasi") {
         // alert("layer Draw");
-        Swal.fire({
-            title: "Apakah Anda Ingin Mendownload File SHP?",
-            icon: "question",
-            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
-            showCloseButton: true,
-            showDenyButton: true,
-            focusConfirm: false,
-            confirmButtonText: '<i class="fa fa-download"></i> Download',
-            // confirmButtonAriaLabel: "Thumbs up, great!",
-            denyButtonText: '<i class="fa fa-remove"></i> Batal',
-            // cancelButtonAriaLabel: "Thumbs down",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                exportSHP();
-            }
-        });
+        $("#downloadSHP").modal("show");
     } else {
         if (fixArea <= 30) {
             getDigitasi(coor);
@@ -630,22 +615,7 @@ map.on("draw.update", (e) => {
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
     if (drawOptions !== "Digitasi") {
         // alert("layer Draw");
-        Swal.fire({
-            title: "Apakah Anda Ingin Mendownload File SHP?",
-            icon: "question",
-            text: "Jika Anda Ingin Mendownload Pilih Tombol Download",
-            showCloseButton: true,
-            showDenyButton: true,
-            focusConfirm: false,
-            confirmButtonText: '<i class="fa fa-download"></i> Download',
-            // confirmButtonAriaLabel: "Thumbs up, great!",
-            denyButtonText: '<i class="fa fa-remove"></i> Batal',
-            // cancelButtonAriaLabel: "Thumbs down",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                exportSHP();
-            }
-        });
+        $("#downloadSHP").modal("show");
     } else {
         if (fixArea <= 30) {
             getDigitasi(coor);
@@ -657,16 +627,23 @@ map.on("draw.update", (e) => {
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
 });
 
+$("#formSHP").on("submit", (e) => {
+    e.preventDefault();
+    exportSHP();
+});
+
 const exportSHP = () => {
+    let name = $("#nameFileSHP").val();
     var options = {
-        folder: "Digitasi",
+        folder: false,
+        filename: name,
         types: {
-            polygon: "Digitasi",
+            polygon: name,
         },
-        name_file: "Digitasi",
     };
     // a GeoJSON bridge for features
     shpwrite.download(draw.getAll(), options);
+    $("#downloadSHP").modal("hide");
 };
 
 map.loadImage(
@@ -724,6 +701,44 @@ map.on("style.load", function () {
         },
         labelLayerId
     );
+    // map.addSource("mapbox-dem", {
+    //     type: "raster-dem",
+    //     url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+    //     tileSize: 512,
+    //     maxzoom: 14,
+    // });
+    // map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
+
+    // map.addLayer({
+    //     id: "sky",
+    //     type: "sky",
+    //     paint: {
+    //         // set up the sky layer to use a color gradient
+    //         "sky-type": "gradient",
+    //         // the sky will be lightest in the center and get darker moving radially outward
+    //         // this simulates the look of the sun just below the horizon
+    //         "sky-gradient": [
+    //             "interpolate",
+    //             ["linear"],
+    //             ["sky-radial-progress"],
+    //             0.8,
+    //             "rgba(135, 206, 235, 1.0)",
+    //             1,
+    //             "rgba(0,0,0,0.1)",
+    //         ],
+    //         "sky-gradient-center": [0, 0],
+    //         "sky-gradient-radius": 90,
+    //         "sky-opacity": [
+    //             "interpolate",
+    //             ["exponential", 0.1],
+    //             ["zoom"],
+    //             5,
+    //             0,
+    //             22,
+    //             1,
+    //         ],
+    //     },
+    // });
     map.on(clickEvent, function (e) {
         // console.log(e);
         const coornya = e.lngLat;
@@ -793,7 +808,7 @@ map.on("style.load", function () {
     // Marker onclick
     // const el = document.createElement("div");
     // el.className = "marker";
-    var marker = new mapboxgl.Marker();
+    var marker = new mapboxgl.Marker({ color: "skyblue" });
 
     function add_marker(event) {
         var coordinates = event.lngLat;
@@ -1922,6 +1937,13 @@ function getKetentuanPSL(subzona, psl) {
                 const kegiatan = $(this).val();
                 let index = $(this).find(":selected").data("id");
                 // console.log(value_data);
+                $.post(`${APP_URL}/save_itbx`, {
+                    itbx: [
+                        kegiatan,
+                        value_data[index]["Ketentuan Perizinan"],
+                        value_data[index].Substansi,
+                    ],
+                });
                 $(".inf-status-ketentuan").html("");
                 $(".inf-status-ketentuan").html(
                     value_data[index]["Ketentuan Perizinan"]
@@ -1998,6 +2020,10 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
             let value_data = data.features[0].properties[0];
             let html = "";
             // console.log(value_data);
+            let kdb_maksimal =
+                value_data["KDB Maksimal"] !== "TIDAK DIATUR"
+                    ? `${value_data["KDB Maksimal"] * 100}%`
+                    : value_data["KDB Maksimal"];
             html += `
 
             <div class="d-flex space_text row_mid_text">
@@ -2014,7 +2040,7 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                     <label class="text_all_mobile">KDB Maksimal</label>
                 </div>
                 <div class="col-lg-7 text_all">
-                    <p>${value_data["KDB Maksimal"] * 100}%</p>
+                    <p>${kdb_maksimal}</p>
                 </div>
             </div>
 
@@ -2045,6 +2071,16 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
                 </div>
             </div>
                 `;
+            $.post(`${APP_URL}/save_ketentuan_khusus`, {
+                ketentuan_khusus: [
+                    ketentuan,
+                    value_data["KB Maksimal"],
+                    kdb_maksimal,
+                    value_data["KLB Maksimal"],
+                    value_data["Luas Lahan Minimal"],
+                    value_data["Syarat Lainnya"],
+                ],
+            });
             $(".isi-ketentuan-khusus").html("");
             $(".isi-ketentuan-khusus").html(html);
             // if (value_data !== null) {
@@ -2517,7 +2553,9 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     localGeocoder: coordinatesGeocoder,
     mapboxgl: mapboxgl,
-    // marker: false,
+    marker: {
+        color: "skyblue",
+    },
     reverseGeocode: true,
     flyTo: {
         easing: function (t) {
@@ -3094,7 +3132,7 @@ function onOffLayers() {
                 <div class="item mb-3">
                 <div class="row">
                     <div class="col-4">
-                        <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="">
+                        <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="/assets/gambar/load.svg">
                     </div>
                     <div class="col-8">
                         <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>

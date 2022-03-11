@@ -7,6 +7,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+.swal2-popup {
+    font-size: 2rem;
+}
+
 [aria-expanded="false"] > .expanded,
 [aria-expanded="true"] > .collapsed {
     display: none;

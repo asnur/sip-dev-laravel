@@ -21785,8 +21785,23 @@ exports.inflateUndermine = inflateUndermine;
 
                     module.exports = function (gj, options) {
                         zip(gj, options).then(function (content) {
-                            location.href =
+                            // location.href =
+                            //     "data:application/zip;base64," + content;
+
+                            var link = document.createElement("a");
+                            link.href =
                                 "data:application/zip;base64," + content;
+                            link.rel = "noopener";
+                            if (
+                                (options && options.filename) ||
+                                options.folder
+                            ) {
+                                link.download =
+                                    (options.filename || options.folder) +
+                                    ".zip";
+                            }
+                            link.click();
+                            delete link;
                         });
                     };
                 },
@@ -22265,11 +22280,16 @@ exports.inflateUndermine = inflateUndermine;
 
                         module.exports = function (gj, options) {
                             var zip = new JSZip(),
-                                layers = zip.folder(
-                                    options && options.folder
-                                        ? options.folder
-                                        : "layers"
-                                );
+                                layers;
+                            if (
+                                options &&
+                                options.folder &&
+                                typeof options.folder === "string"
+                            ) {
+                                layers = zip.folder(options.folder);
+                            } else {
+                                layers = zip;
+                            }
 
                             [
                                 geojson.point(gj),
@@ -22328,6 +22348,9 @@ exports.inflateUndermine = inflateUndermine;
                             }
 
                             return zip.generateAsync(generateOptions);
+                            // .then((content) => {
+                            //     saveAs(content, "Digitasi.zip");
+                            // });
                         };
                     }.call(this, require("_process")));
                 },
