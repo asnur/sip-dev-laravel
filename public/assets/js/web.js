@@ -219,9 +219,6 @@ $.ajax({
     url: `${url}/text`,
     method: "GET",
     dataType: "json",
-    headers: {
-        Authorization: "Bearer eyJ0eXAiOXXXXXXX",
-    },
     beforeSend: function () {
         $(".runing-text").html("");
     },
