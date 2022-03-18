@@ -34,6 +34,7 @@ var countOpen = 0;
 var arrPrint = [];
 var luasSimulasi;
 var KDH, KLB, NJOP;
+var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -762,8 +763,15 @@ map.on("style.load", function () {
             success: () => {},
         });
         $.ajax({
-            url: `${url}/wilayah/${lngs}/${lats}`,
-            method: "GET",
+            url: `${url}/wilayah`,
+            method: "PUT",
+            data: {
+                lat: lats,
+                lng: lngs,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
             dataType: "json",
             success: (e) => {
                 const kelurahan = e.features[0].properties.Kelurahan;
@@ -824,38 +832,50 @@ map.on("style.load", function () {
 
     map.on("click", add_marker);
 
-    map.addSource("wilayahindex", {
-        type: "geojson",
-        data: `${url}/choro`,
-    });
-
-    map.addLayer({
-        id: "wilayahindex_fill",
-        type: "fill",
-        source: "wilayahindex",
-        paint: {
-            "fill-color": [
-                "interpolate",
-                ["linear"],
-                ["get", "Total omzet"],
-                0,
-                "#ffeda0",
-                5000000000,
-                "#ffe675",
-                9000000000,
-                "#ffdf52",
-                13000000000,
-                "#ffd61f",
-                17000000000,
-                "#e0b700",
-                20396854609,
-                "#caa502",
-            ],
-            "fill-opacity": 0.7,
-            "fill-outline-color": "red",
+    $.ajax({
+        url: `${url}/choro`,
+        method: "GET",
+        dataType: "json",
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
-        layout: {
-            visibility: "none",
+        success: (e) => {
+            console.log(e);
+            map.addSource("wilayahindex", {
+                type: "geojson",
+                data: e,
+            });
+
+            map.addLayer({
+                id: "wilayahindex_fill",
+                type: "fill",
+                source: "wilayahindex",
+                paint: {
+                    "fill-color": [
+                        "interpolate",
+                        ["linear"],
+                        ["get", "Total omzet"],
+                        0,
+                        "#ffeda0",
+                        5000000000,
+                        "#ffe675",
+                        9000000000,
+                        "#ffdf52",
+                        13000000000,
+                        "#ffd61f",
+                        17000000000,
+                        "#e0b700",
+                        20396854609,
+                        "#caa502",
+                    ],
+                    "fill-opacity": 0.7,
+                    "fill-outline-color": "red",
+                },
+                layout: {
+                    visibility: "none",
+                },
+            });
+            onOffLayers();
         },
     });
 });
@@ -2424,8 +2444,15 @@ $("#cari_wilayah").bindWithDelay(
             if (query.indexOf("-") > -1) {
                 const koor = query.split(",");
                 $.ajax({
-                    url: `${url}/wilayah/${koor[1]}/${koor[0]}`,
-                    method: "get",
+                    url: `${url}/wilayah`,
+                    method: "PUT",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    data: {
+                        lat: koor[0],
+                        lng: koor[1],
+                    },
                     dataType: "json",
                     beforeSend: function () {
                         // ('.map-loading').show()
@@ -2456,8 +2483,14 @@ $("#cari_wilayah").bindWithDelay(
                 });
             } else {
                 $.ajax({
-                    url: `${url}/search/${query}`,
-                    method: "get",
+                    url: `${url}/search`,
+                    method: "PUT",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    data: {
+                        keyword: query,
+                    },
                     dataType: "json",
                     beforeSend: function () {
                         // $('.map-loading').show()
@@ -2629,9 +2662,24 @@ function addSourceLayer(item) {
             $("#radiusSlide").hide();
         }
 
-        map.addSource(dt, {
-            type: "geojson",
-            data: url + "/" + dt + "/" + item,
+        $.ajax({
+            url: `${url}/${dt}`,
+            type: "POST",
+            dataType: "json",
+            data: {
+                kelurahan: item,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            success: (data) => {
+                map.addSource(dt, {
+                    type: "geojson",
+                    data: data,
+                });
+                addLayers(dt);
+                onOffLayers();
+            },
         });
     }
 
@@ -2671,30 +2719,248 @@ function addSourceLayer(item) {
         });
     });
 
-    addLayers();
-
     $(".lblLayer").show();
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
     // $('').show()
-    onOffLayers();
 }
 
 //add layer
-function addLayers() {
-    map.addLayer({
-        id: "wilayah_fill",
-        type: "fill",
-        source: "wilayah",
-        paint: {
-            "fill-color": "#00FFFF",
-            "fill-opacity": 0.1,
-            "fill-outline-color": "red",
-        },
-        layout: {
-            visibility: "visible",
-        },
-    });
+function addLayers(layer) {
+    if (layer == "wilayah") {
+        map.addLayer({
+            id: "wilayah_fill",
+            type: "fill",
+            source: "wilayah",
+            paint: {
+                "fill-color": "#00FFFF",
+                "fill-opacity": 0.1,
+                "fill-outline-color": "red",
+            },
+            layout: {
+                visibility: "visible",
+            },
+        });
+    } else if (layer == "zoning") {
+        map.addLayer({
+            id: "zoning_fill",
+            type: "fill",
+            source: "zoning",
+            layout: {
+                "text-field": "test",
+            },
+            paint: {
+                "fill-color": ["get", "fill"],
+                "fill-opacity": 1,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+
+        map.addLayer({
+            id: "zoning_label",
+            type: "symbol",
+            source: "zoning",
+            layout: {
+                "text-field": "{Sub Zona}",
+                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                "text-size": 12,
+                visibility: "none",
+            },
+        });
+    } else if (layer == "investasi") {
+        map.addLayer({
+            id: "investasi_fill",
+            type: "fill",
+            source: "investasi",
+            paint: {
+                "fill-color": "#888888",
+                "fill-opacity": 0.4,
+            },
+            filter: ["==", "$type", "Polygon"],
+            layout: {
+                visibility: "none",
+            },
+        });
+
+        map.addLayer({
+            id: "investasi_dot",
+            type: "symbol",
+            source: "investasi",
+            // paint: {
+            //   "circle-radius": 6,
+            //   "circle-color": "#B42222",
+            //   "circle-stroke-color": "#ffffff",
+            //   "circle-stroke-width": 2,
+            // },
+            filter: ["==", "$type", "Point"],
+            layout: {
+                "icon-image": "point",
+                "icon-size": 1,
+                visibility: "none",
+            },
+        });
+        map.addLayer({
+            id: "investasi_line",
+            type: "line",
+            source: "investasi",
+            layout: {
+                "line-join": "round",
+                "line-cap": "round",
+            },
+            paint: {
+                "line-color": "#888",
+                "line-width": 8,
+            },
+            filter: ["==", "$type", "LineString"],
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "banjir") {
+        map.addLayer({
+            id: "banjir_fill",
+            type: "fill",
+            source: "banjir",
+            paint: {
+                "fill-color": "#2980b9",
+                "fill-opacity": 0.9,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "iumk") {
+        map.addLayer({
+            id: "iumk_fill",
+            type: "circle",
+            source: "iumk",
+            paint: {
+                "circle-color": "#4264fb",
+                "circle-stroke-color": "#ffff00",
+                "circle-stroke-width": 1,
+                "circle-radius": 4,
+                "circle-opacity": 0.8,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "sewa") {
+        map.addLayer({
+            id: "sewa_fill",
+            type: "circle",
+            source: "sewa",
+            paint: {
+                "circle-color": "#ff0000",
+                "circle-stroke-color": "#ffffff",
+                "circle-stroke-width": 1,
+                "circle-radius": 4,
+                "circle-opacity": 0.8,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "pipa") {
+        map.addLayer({
+            id: "pipa_multilinestring",
+            type: "line",
+            source: "pipa",
+            paint: {
+                "line-color": "#fff",
+                "line-width": 3,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "util") {
+        map.addLayer({
+            id: "util_multilinestring",
+            type: "line",
+            source: "util",
+            paint: {
+                "line-color": "orange",
+                "line-width": 3,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "phb") {
+        map.addLayer({
+            id: "phb_multilinestring",
+            type: "line",
+            source: "phb",
+            paint: {
+                "line-color": "#FC427B",
+                "line-width": 3,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "tol") {
+        map.addLayer({
+            id: "tol_multilinestring",
+            type: "line",
+            source: "tol",
+            paint: {
+                "line-color": "orange",
+                "line-width": 3,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "sungai") {
+        map.addLayer({
+            id: "sungai_multilinestring",
+            type: "line",
+            source: "sungai",
+            paint: {
+                "line-color": "blue",
+                "line-width": 3,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "budaya") {
+        map.addLayer({
+            id: "budaya_dot",
+            type: "circle",
+            source: "budaya",
+            paint: {
+                "circle-color": "#27ae60",
+                "circle-stroke-color": "#ffffff",
+                "circle-stroke-width": 1,
+                "circle-radius": 4,
+                "circle-opacity": 0.8,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "ipal") {
+        map.addLayer({
+            id: "ipal_dot",
+            type: "circle",
+            source: "ipal",
+            paint: {
+                "circle-color": "#e67e22",
+                "circle-stroke-color": "#ffffff",
+                "circle-stroke-width": 1,
+                "circle-radius": 4,
+                "circle-opacity": 0.8,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    }
     // map.addLayer({
     //   'id': 'njop_fill',
     //   'type': 'fill',
@@ -2707,95 +2973,7 @@ function addLayers() {
     //     'visibility': 'visible'
     //   },
     // });
-    map.addLayer({
-        id: "zoning_fill",
-        type: "fill",
-        source: "zoning",
-        layout: {
-            "text-field": "test",
-        },
-        paint: {
-            "fill-color": ["get", "fill"],
-            "fill-opacity": 1,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
 
-    map.addLayer({
-        id: "zoning_label",
-        type: "symbol",
-        source: "zoning",
-        layout: {
-            "text-field": "{Sub Zona}",
-            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-            "text-size": 12,
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "investasi_fill",
-        type: "fill",
-        source: "investasi",
-        paint: {
-            "fill-color": "#888888",
-            "fill-opacity": 0.4,
-        },
-        filter: ["==", "$type", "Polygon"],
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "investasi_dot",
-        type: "symbol",
-        source: "investasi",
-        // paint: {
-        //   "circle-radius": 6,
-        //   "circle-color": "#B42222",
-        //   "circle-stroke-color": "#ffffff",
-        //   "circle-stroke-width": 2,
-        // },
-        filter: ["==", "$type", "Point"],
-        layout: {
-            "icon-image": "point",
-            "icon-size": 1,
-            visibility: "none",
-        },
-    });
-    map.addLayer({
-        id: "investasi_line",
-        type: "line",
-        source: "investasi",
-        layout: {
-            "line-join": "round",
-            "line-cap": "round",
-        },
-        paint: {
-            "line-color": "#888",
-            "line-width": 8,
-        },
-        filter: ["==", "$type", "LineString"],
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "banjir_fill",
-        type: "fill",
-        source: "banjir",
-        paint: {
-            "fill-color": "#2980b9",
-            "fill-opacity": 0.9,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
     // map.addLayer({
     //   'id': 'bpn_fill',
     //   'type': 'fill',
@@ -2819,133 +2997,6 @@ function addLayers() {
     //     'visibility': 'visible'
     //   },
     // });
-    map.addLayer({
-        id: "iumk_fill",
-        type: "circle",
-        source: "iumk",
-        paint: {
-            "circle-color": "#4264fb",
-            "circle-stroke-color": "#ffff00",
-            "circle-stroke-width": 1,
-            "circle-radius": 4,
-            "circle-opacity": 0.8,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-    map.addLayer({
-        id: "sewa_fill",
-        type: "circle",
-        source: "sewa",
-        paint: {
-            "circle-color": "#ff0000",
-            "circle-stroke-color": "#ffffff",
-            "circle-stroke-width": 1,
-            "circle-radius": 4,
-            "circle-opacity": 0.8,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "pipa_multilinestring",
-        type: "line",
-        source: "pipa",
-        paint: {
-            "line-color": "#fff",
-            "line-width": 3,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "util_multilinestring",
-        type: "line",
-        source: "util",
-        paint: {
-            "line-color": "orange",
-            "line-width": 3,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "phb_multilinestring",
-        type: "line",
-        source: "phb",
-        paint: {
-            "line-color": "#FC427B",
-            "line-width": 3,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "tol_multilinestring",
-        type: "line",
-        source: "tol",
-        paint: {
-            "line-color": "orange",
-            "line-width": 3,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "sungai_multilinestring",
-        type: "line",
-        source: "sungai",
-        paint: {
-            "line-color": "blue",
-            "line-width": 3,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "budaya_dot",
-        type: "circle",
-        source: "budaya",
-        paint: {
-            "circle-color": "#27ae60",
-            "circle-stroke-color": "#ffffff",
-            "circle-stroke-width": 1,
-            "circle-radius": 4,
-            "circle-opacity": 0.8,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "ipal_dot",
-        type: "circle",
-        source: "ipal",
-        paint: {
-            "circle-color": "#e67e22",
-            "circle-stroke-color": "#ffffff",
-            "circle-stroke-width": 1,
-            "circle-radius": 4,
-            "circle-opacity": 0.8,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
 }
 
 function showLayer(layer) {
@@ -2961,8 +3012,10 @@ function switchLayer(layer) {
     map.setStyle("mapbox://styles/menthoelsr/" + layerId);
 }
 
-function onOffLayers() {
+function onOffLayers(layer) {
     //Wilayah
+    if (layer) {
+    }
     if ($("#wilayahindex_fill").prop("checked") == true) {
         showLayer("wilayahindex_fill");
         $(".detail_omzet").show();
