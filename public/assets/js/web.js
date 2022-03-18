@@ -1240,6 +1240,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     getAirTanah(e);
     getPenuruanAirTanah(e);
     getSanitasi(e);
+    getRTRW(e);
 
     const larea = dt["luas-area"] / 10000;
 
@@ -2219,6 +2220,20 @@ function getSanitasi(e) {
         },
     });
 }
+
+const getRTRW = (e) => {
+    $.ajax({
+        url: `${url}/wilayahrtrw/${e.lngLat.lng}/${e.lngLat.lat}`,
+        method: "get",
+        dataType: "json",
+        success: function (e) {
+            console.log(e);
+            $(".inf-rtrw").html(
+                e.features[0].properties.RT + "/" + e.features[0].properties.RW
+            );
+        },
+    });
+};
 
 function getPersilBPN(e) {
     // $("#dtBpnBot").html("");
