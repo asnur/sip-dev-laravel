@@ -2229,6 +2229,7 @@ function getSanitasi(e) {
 
 const getRTRW = (e) => {
     $.ajax({
+        url: `${url}/rtrw`,
         method: "PUT",
         headers: {
             Authorization: `Bearer ${token}`,
