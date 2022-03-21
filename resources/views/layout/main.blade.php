@@ -213,8 +213,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="row mt-3" id="previewFoto">
                     </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
-                    <textarea class="form-control" name="catatan" id="catatanPin" style="font-size: 8pt"
-                        placeholder="Masukan Catatan" rows="5"></textarea>
+                    <textarea class="form-control" name="catatan" id="catatanPin" style="font-size: 8pt" placeholder="Masukan Catatan"
+                        rows="5"></textarea>
                     <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
                         Simpan</button>
@@ -246,8 +246,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="row mt-3" id="previewFotoEdit">
                     </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
-                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt"
-                        placeholder="Masukan Catatan" rows="5"></textarea>
+                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt" placeholder="Masukan Catatan"
+                        rows="5"></textarea>
                     <button type="submit" id="pinndedLocation" class="btn btn-primary mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-edit"></i>
                         Ubah</button>
@@ -826,6 +826,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     </div>
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                         <p class="inf-kordinat">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Rt/Rw</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-rtrw">-</p>
                                     </div>
                                 </div>
 

@@ -1071,7 +1071,9 @@ map.on("mouseenter", "investasi_fill", (e) => {
     const content = `<div class="card">
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
+      <span class="d-block" style="width: 300px"><b>Rencana Proyek :</b> ${dt["Rencana_Proyek"]}</span>
+      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${dt["Luas_Lahan"]}</span>
+      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${dt["Total_Investasi"]}</span>
 
 
     </div>`;
@@ -1099,7 +1101,9 @@ map.on("mouseenter", "investasi_line", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
+      <span class="d-block" style="width: 300px"><b>Rencana Proyek :</b> ${dt["Rencana_Proyek"]}</span>
+      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${dt["Luas_Lahan"]}</span>
+      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${dt["Total_Investasi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -1125,7 +1129,9 @@ map.on("mouseenter", "investasi_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
+      <span class="d-block" style="width: 300px"><b>Rencana Proyek :</b> ${dt["Rencana_Proyek"]}</span>
+      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${dt["Luas_Lahan"]}</span>
+      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${dt["Total_Investasi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -1258,6 +1264,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     getAirTanah(e);
     getPenuruanAirTanah(e);
     getSanitasi(e);
+    getRTRW(e);
 
     const larea = dt["luas-area"] / 10000;
 
@@ -2293,6 +2300,27 @@ function getSanitasi(e) {
         },
     });
 }
+
+const getRTRW = (e) => {
+    $.ajax({
+        url: `${url}/rtrw`,
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
+        dataType: "json",
+        success: function (e) {
+            console.log(e);
+            $(".inf-rtrw").html(
+                e.features[0].properties.RT + "/" + e.features[0].properties.RW
+            );
+        },
+    });
+};
 
 function getPersilBPN(e) {
     // $("#dtBpnBot").html("");
@@ -3439,8 +3467,38 @@ function onOffLayers(layer) {
                     ) {
                         content += `
                             <li class="item mb-3" style="margin-left:-20px">
-                                <span style="font-size: 11pt" class="font-weight-bold">${infoProyek[index]["properties"]["Nama"]}</span>
-                                <label style="font-size: 13px;">${infoProyek[index]["properties"]["Deskripsi"]}</label>
+                                <span style="font-size: 11pt" class="font-weight-bold">${
+                                    infoProyek[index]["properties"]["Nama"]
+                                }</span>
+                                <ol type="a">
+                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Rencana Proyek</b> : ${
+                                        infoProyek[index]["properties"][
+                                            "Rencana_Proyek"
+                                        ] == ""
+                                            ? "-"
+                                            : infoProyek[index]["properties"][
+                                                  "Rencana_Proyek"
+                                              ]
+                                    }</li>
+                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Luas Lahan</b> : ${
+                                        infoProyek[index]["properties"][
+                                            "Luas_Lahan"
+                                        ] == ""
+                                            ? "-"
+                                            : infoProyek[index]["properties"][
+                                                  "Luas_Lahan"
+                                              ]
+                                    }</li>
+                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Total Investasi</b> : ${
+                                        infoProyek[index]["properties"][
+                                            "Total_Investasi"
+                                        ] == ""
+                                            ? "-"
+                                            : infoProyek[index]["properties"][
+                                                  "Total_Investasi"
+                                              ]
+                                    }</li>
+                                </ol>
                             </li>
                         `;
                     }
