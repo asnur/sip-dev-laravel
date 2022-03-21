@@ -3677,8 +3677,14 @@ function getDataBudaya(kel) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${url}/kblia2/${subzona}`,
-        method: "get",
+        url: `${url}/kbli1`,
+        method: "POST",
+        data: {
+            subzona: subzona,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: function (e) {
             $("#kegiatanRuang").html("");
@@ -3701,8 +3707,15 @@ function DropdownSkala(zonasi, sel) {
     var resHTML = "";
     $("#kegiatanKewenangan").html("");
     $.ajax({
-        url: `${url}/kblib2/${zonasi}/${sel}`,
-        method: "get",
+        url: `${url}/kbli2`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            subzona: zonasi,
+            kegiatan: sel,
+        },
         dataType: "json",
         success: function (res) {
             $("#btn-print").hide();
@@ -3777,8 +3790,16 @@ function DropdownSkala(zonasi, sel) {
 
 function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     $.ajax({
-        url: `${url}/kblic2/${zonasi}/${sel}/${skala}`,
-        method: "get",
+        url: `${url}/kbli3`,
+        method: "post",
+        data: {
+            subzona: zonasi,
+            kegiatan: sel,
+            skala: skala,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: function (res) {
             var resHTML = "";
