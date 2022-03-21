@@ -831,6 +831,20 @@ map.on("style.load", function () {
     }
 
     map.on("click", add_marker);
+});
+
+map.on("load", function () {
+    // getSektorKBLI();
+
+    const layers = ["0-4M", "5M-8M", "9M-12M", "13M-16M", "17M-20M", "> 20M"];
+    const colors = [
+        "#ffeda0",
+        "#ffe675",
+        "#ffdf52",
+        "#ffd61f",
+        "#e0b700",
+        "#caa502",
+    ];
 
     $.ajax({
         url: `${url}/choro`,
@@ -840,7 +854,6 @@ map.on("style.load", function () {
             Authorization: `Bearer ${token}`,
         },
         success: (e) => {
-            console.log(e);
             map.addSource("wilayahindex", {
                 type: "geojson",
                 data: e,
@@ -875,23 +888,21 @@ map.on("style.load", function () {
                     visibility: "none",
                 },
             });
-            onOffLayers();
+            onOffLayers("wilayahindex");
+            map.on("mousemove", ({ point }) => {
+                const states = map.queryRenderedFeatures(point, {
+                    layers: ["wilayahindex_fill"],
+                });
+                document.getElementById("pd").innerHTML = states.length
+                    ? `<div>Kelurahan : ${
+                          states[0].properties.Kelurahan
+                      }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
+                          states[0].properties["Total omzet"]
+                      )}</strong></em></p>`
+                    : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+            });
         },
     });
-});
-
-map.on("load", function () {
-    // getSektorKBLI();
-
-    const layers = ["0-4M", "5M-8M", "9M-12M", "13M-16M", "17M-20M", "> 20M"];
-    const colors = [
-        "#ffeda0",
-        "#ffe675",
-        "#ffdf52",
-        "#ffd61f",
-        "#e0b700",
-        "#caa502",
-    ];
 
     // create legend
     const legend = document.getElementById("legends");
@@ -908,19 +919,6 @@ map.on("load", function () {
         item.appendChild(key);
         item.appendChild(value);
         legend.appendChild(item);
-    });
-
-    map.on("mousemove", ({ point }) => {
-        const states = map.queryRenderedFeatures(point, {
-            layers: ["wilayahindex_fill"],
-        });
-        document.getElementById("pd").innerHTML = states.length
-            ? `<div>Kelurahan : ${
-                  states[0].properties.Kelurahan
-              }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
-                  states[0].properties["Total omzet"]
-              )}</strong></em></p>`
-            : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
     });
 
     map.on("dblclick", (e) => {
@@ -1802,11 +1800,18 @@ function getEksisting(e) {
     // $("#dtEksistingBot").html("");
     var htmlPopupLayer = "";
     $.ajax({
-        url: `${url}/eksisting/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
-        contentType: false,
-        processData: false,
-        cache: false,
+        url: `${url}/eksisting`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
+        // contentType: false,
+        // processData: false,
+        // cache: false,
         beforeSend: function () {
             // $('.map-loading').show()
         },
@@ -1842,8 +1847,15 @@ function getEksisting(e) {
 
 function getKetentuanPSL(subzona, psl) {
     $.ajax({
-        url: `${url}/khusus/${subzona}/${psl}`,
-        method: "GET",
+        url: `${url}/khusus1`,
+        method: "POST",
+        data: {
+            subzona: subzona,
+            psl: psl,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         success: (e) => {
             let data = JSON.parse(e);
             let value_data = data.features[0].properties;
@@ -1987,8 +1999,16 @@ function getKetentuanPSL(subzona, psl) {
 
 function getKegiatanKhusus(subzona, psl, kegiatan) {
     $.ajax({
-        url: `${url}/khusus/${subzona}/${psl}/${kegiatan}`,
-        method: "GET",
+        url: `${url}/khusus2`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            subzona: subzona,
+            psl: psl,
+            kegiatan: kegiatan,
+        },
         success: (e) => {
             let data = JSON.parse(e);
             let value_data = data.features[0];
@@ -2033,8 +2053,17 @@ function getKegiatanKhusus(subzona, psl, kegiatan) {
 
 function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
     $.ajax({
-        url: `${url}/khusus/${subzona}/${psl}/${kegiatan}/${ketentuan}`,
-        method: "GET",
+        url: `${url}/khusus3`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            subzona: subzona,
+            psl: psl,
+            kegiatan: kegiatan,
+            ketentuan: ketentuan,
+        },
         success: (e) => {
             let data = JSON.parse(e);
             let value_data = data.features[0].properties[0];
@@ -2123,8 +2152,15 @@ function getKetentuanKhusus(subzona, psl, kegiatan, ketentuan) {
 
 function getAirTanah(e) {
     $.ajax({
-        url: `${url}/air/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
+        url: `${url}/air`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lng: e.lngLat.lng,
+            lat: e.lngLat.lat,
+        },
         success: (e) => {
             const data = JSON.parse(e);
             let value_data = data.features;
@@ -2166,11 +2202,15 @@ function getNJOP(e) {
     // $("#dtNJOPBot").html("");
     var htmlPopupLayer = "";
     $.ajax({
-        url: `${url}/njop/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
-        contentType: false,
-        processData: false,
-        cache: false,
+        url: `${url}/njop`,
+        method: "POST",
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         beforeSend: function () {
             // $('.map-loading').show()
         },
@@ -2212,8 +2252,15 @@ function getNJOP(e) {
 
 function getPenuruanAirTanah(e) {
     $.ajax({
-        url: `${url}/turun/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
+        url: `${url}/turun`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
         success: (dt) => {
             const data = JSON.parse(dt);
             let jumlah = data.features[0].properties.Elevation;
@@ -2227,8 +2274,15 @@ function getPenuruanAirTanah(e) {
 
 function getSanitasi(e) {
     $.ajax({
-        url: `${url}/sanitasi/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
+        url: `${url}/sanitasi`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
         success: (dt) => {
             const data = JSON.parse(dt);
             $(".inf-sanitasi").html("");
@@ -2244,11 +2298,15 @@ function getPersilBPN(e) {
     // $("#dtBpnBot").html("");
     var htmlPopupLayer = "";
     $.ajax({
-        url: `${url}/bpn/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
-        contentType: false,
-        processData: false,
-        cache: false,
+        url: `${url}/bpn`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
         beforeSend: function () {
             // $('.map-loading').show()
         },
@@ -2289,11 +2347,16 @@ function getRadius(e) {
     var tblRadData = "";
     var getRadVal = $("#ControlRange").val();
     $.ajax({
-        url: `${url}/lon/${e.lngLat.lng}/lat/${e.lngLat.lat}/rad/${getRadVal}`,
-        method: "get",
-        contentType: false,
-        processData: false,
-        cache: false,
+        url: `${url}/poi`,
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+            rad: getRadVal,
+        },
         beforeSend: function () {
             // $('.map-loading').show()
             // $("#forDataRad").html("");
@@ -2600,6 +2663,29 @@ var geocoder = new MapboxGeocoder({
 
 map.addControl(geocoder);
 
+const banjir = (kelurahan, tahun) => {
+    $.ajax({
+        url: `${url}/banjir`,
+        type: "POST",
+        dataType: "json",
+        data: {
+            kelurahan: kelurahan,
+            tahun: tahun,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        success: (e) => {
+            map.addSource("banjir", {
+                type: "geojson",
+                data: e,
+            });
+            addLayers("banjir");
+            onOffLayers("banjir");
+        },
+    });
+};
+
 //add source layer
 function addSourceLayer(item) {
     var api = [
@@ -2610,9 +2696,9 @@ function addSourceLayer(item) {
         "investasi",
         "pipa",
         "budaya",
-        "ipal",
-        "util",
-        "phb",
+        // "ipal",
+        // "util",
+        // "phb",
         "tol",
         "sungai",
     ];
@@ -2678,7 +2764,7 @@ function addSourceLayer(item) {
                     data: data,
                 });
                 addLayers(dt);
-                onOffLayers();
+                onOffLayers(dt);
             },
         });
     }
@@ -2691,34 +2777,53 @@ function addSourceLayer(item) {
         map.removeSource("banjir");
     }
 
-    map.addSource("banjir", {
-        type: "geojson",
-        data: `${url}/banjir/${item}/${tahun}`,
-    });
+    banjir(localStorage.getItem("kelurahan"), tahun);
 
     $("#ControlTahunBanjir").change(function () {
         var layer = map.getLayer("banjir_fill");
-        var condition = layer.visibility == "visible" ? "visible" : "none";
+        // var condition = layer.visibility == "visible" ? "visible" : "none";
         map.removeLayer("banjir_fill");
         map.removeSource("banjir");
-        map.addSource("banjir", {
-            type: "geojson",
-            data: `${url}/banjir/${item}/${tahun}`,
-        });
-        map.addLayer({
-            id: "banjir_fill",
-            type: "fill",
-            source: "banjir",
-            paint: {
-                "fill-color": "#2980b9",
-                "fill-opacity": 0.9,
-            },
-            layout: {
-                visibility: condition,
-            },
-        });
-    });
 
+        banjir(localStorage.getItem("kelurahan"), tahun);
+        // map.addSource("banjir", {
+        //     type: "geojson",
+        //     data: `${url}/banjir/${item}/${tahun}`,
+        // });
+        // banjir();
+        // $.ajax({
+        //     url: `${url}/banjir`,
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: {
+        //         kelurahan: item,
+        //         tahun: tahun,
+        //     },
+        //     headers: {
+        //         Authorization: `Bearer ${token}`,
+        //     },
+        //     success: (e) => {
+        //         map.addSource("banjir", {
+        //             type: "geojson",
+        //             data: e,
+        //         });
+        //         addLayers("banjir");
+        //     },
+        // });
+        // map.addLayer({
+        //     id: "banjir_fill",
+        //     type: "fill",
+        //     source: "banjir",
+        //     paint: {
+        //         "fill-color": "#2980b9",
+        //         "fill-opacity": 0.9,
+        //     },
+        //     layout: {
+        //         visibility: condition,
+        //     },
+        // });
+    });
+    // banjir();
     $(".lblLayer").show();
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
@@ -3014,20 +3119,8 @@ function switchLayer(layer) {
 
 function onOffLayers(layer) {
     //Wilayah
-    if (layer) {
-    }
-    if ($("#wilayahindex_fill").prop("checked") == true) {
-        showLayer("wilayahindex_fill");
-        $(".detail_omzet").show();
-        $(".detail_jumlah").show();
-    } else {
-        hideLayer("wilayahindex_fill");
-        $(".detail_omzet").hide();
-        $(".detail_jumlah").hide();
-    }
-
-    $("#wilayahindex_fill").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "wilayahindex") {
+        if ($("#wilayahindex_fill").prop("checked") == true) {
             showLayer("wilayahindex_fill");
             $(".detail_omzet").show();
             $(".detail_jumlah").show();
@@ -3036,20 +3129,22 @@ function onOffLayers(layer) {
             $(".detail_omzet").hide();
             $(".detail_jumlah").hide();
         }
-    });
-
-    //Peta Zonasi
-    if ($("#zoning_fill").prop("checked") == true) {
-        showLayer("zoning_fill");
-        showLayer("zoning_label");
-        map.moveLayer("zoning_fill", "add-3d-buildings");
-    } else {
-        hideLayer("zoning_fill");
-        hideLayer("zoning_label");
+        $("#wilayahindex_fill").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("wilayahindex_fill");
+                $(".detail_omzet").show();
+                $(".detail_jumlah").show();
+            } else {
+                hideLayer("wilayahindex_fill");
+                $(".detail_omzet").hide();
+                $(".detail_jumlah").hide();
+            }
+        });
     }
 
-    $("#zoning_fill").change(function () {
-        if ($(this).prop("checked") == true) {
+    //Peta Zonasi
+    if (layer == "zoning") {
+        if ($("#zoning_fill").prop("checked") == true) {
             showLayer("zoning_fill");
             showLayer("zoning_label");
             map.moveLayer("zoning_fill", "add-3d-buildings");
@@ -3057,322 +3152,364 @@ function onOffLayers(layer) {
             hideLayer("zoning_fill");
             hideLayer("zoning_label");
         }
-    });
 
-    if ($("#pipa_multilinestring").prop("checked") == true) {
-        showLayer("pipa_multilinestring");
-    } else {
-        hideLayer("pipa_multilinestring");
+        $("#zoning_fill").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("zoning_fill");
+                showLayer("zoning_label");
+                map.moveLayer("zoning_fill", "add-3d-buildings");
+            } else {
+                hideLayer("zoning_fill");
+                hideLayer("zoning_label");
+            }
+        });
     }
 
-    $("#pipa_multilinestring").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "pipa") {
+        if ($("#pipa_multilinestring").prop("checked") == true) {
             showLayer("pipa_multilinestring");
         } else {
             hideLayer("pipa_multilinestring");
         }
-    });
 
-    if ($("#tol_multilinestring").prop("checked") == true) {
-        showLayer("tol_multilinestring");
-    } else {
-        hideLayer("tol_multilinestring");
+        $("#pipa_multilinestring").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("pipa_multilinestring");
+            } else {
+                hideLayer("pipa_multilinestring");
+            }
+        });
     }
 
-    $("#tol_multilinestring").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "tol") {
+        if ($("#tol_multilinestring").prop("checked") == true) {
             showLayer("tol_multilinestring");
         } else {
             hideLayer("tol_multilinestring");
         }
-    });
 
-    if ($("#sungai_multilinestring").prop("checked") == true) {
-        showLayer("sungai_multilinestring");
-    } else {
-        hideLayer("sungai_multilinestring");
+        $("#tol_multilinestring").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("tol_multilinestring");
+            } else {
+                hideLayer("tol_multilinestring");
+            }
+        });
     }
 
-    $("#sungai_multilinestring").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "sungai") {
+        if ($("#sungai_multilinestring").prop("checked") == true) {
             showLayer("sungai_multilinestring");
         } else {
             hideLayer("sungai_multilinestring");
         }
-    });
 
-    if ($("#util_multilinestring").prop("checked") == true) {
-        showLayer("util_multilinestring");
-    } else {
-        hideLayer("util_multilinestring");
+        $("#sungai_multilinestring").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("sungai_multilinestring");
+            } else {
+                hideLayer("sungai_multilinestring");
+            }
+        });
     }
 
-    $("#util_multilinestring").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "util") {
+        if ($("#util_multilinestring").prop("checked") == true) {
             showLayer("util_multilinestring");
         } else {
             hideLayer("util_multilinestring");
         }
-    });
 
-    if ($("#phb_multilinestring").prop("checked") == true) {
-        showLayer("phb_multilinestring");
-    } else {
-        hideLayer("phb_multilinestring");
+        $("#util_multilinestring").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("util_multilinestring");
+            } else {
+                hideLayer("util_multilinestring");
+            }
+        });
     }
 
-    $("#phb_multilinestring").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "phb") {
+        if ($("#phb_multilinestring").prop("checked") == true) {
             showLayer("phb_multilinestring");
         } else {
             hideLayer("phb_multilinestring");
         }
-    });
 
-    if ($("#banjir_fill").prop("checked") == true) {
-        showLayer("banjir_fill");
-    } else {
-        hideLayer("banjir_fill");
+        $("#phb_multilinestring").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("phb_multilinestring");
+            } else {
+                hideLayer("phb_multilinestring");
+            }
+        });
     }
 
-    $("#banjir_fill").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "banjir") {
+        if ($("#banjir_fill").prop("checked") == true) {
             showLayer("banjir_fill");
         } else {
             hideLayer("banjir_fill");
         }
-    });
 
-    if ($("#ipal_dot").prop("checked") == true) {
-        showLayer("ipal_dot");
-    } else {
-        hideLayer("ipal_dot");
+        $("#banjir_fill").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("banjir_fill");
+            } else {
+                hideLayer("banjir_fill");
+            }
+        });
     }
 
-    $("#ipal_dot").change(function () {
-        if ($(this).prop("checked") == true) {
+    if (layer == "ipal") {
+        if ($("#ipal_dot").prop("checked") == true) {
             showLayer("ipal_dot");
         } else {
             hideLayer("ipal_dot");
         }
-    });
 
-    //Sebaran Usaha mikro kecil
-    $("#iumk_fill").change(function () {
-        if ($(this).prop("checked") == true) {
-            $(".info-layer-usaha").show();
-            showLayer("iumk_fill");
-            hideLayer("sewa_fill");
-            hideLayer("investasi_fill");
-            hideLayer("investasi_dot");
-            hideLayer("investasi_line");
-            hideLayer("budaya_dot");
-            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-            $(".list-item-usaha").html("");
-            $("#hide_side_bar").hide();
-            var content = "";
-            var infoUsaha = sebaran_usaha[0].features;
-            for (
-                let index = 0;
-                index < sebaran_usaha[0].features.length;
-                index++
-            ) {
-                var coord = [
-                    infoUsaha[index]["properties"]["Lat"],
-                    infoUsaha[index]["properties"]["Long"],
-                ];
-                content += `
-                <div class="item mb-3">
-                <div class="row">
-                    <div class="col-4">
-                        <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="/assets/gambar/load.svg">
-                    </div>
-                    <div class="col-8">
-                        <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>
-                        <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pemilik Usaha :
-                            <span>${infoUsaha[index]["properties"]["Pemilik Usaha"]}</span></label>
-                        <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Jenis Usaha :
-                            <span>${infoUsaha[index]["properties"]["Jenis Usaha"]}</span></label>
-                        <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Tenaga Kerja : <span>${infoUsaha[index]["properties"]["Tenaga Kerja"]}
-                                Orang</span></label>
-                    </div>
-                </div>
-            </div>
-                `;
-                getIumkForInfo(coord, `#imgUsaha-${index}`);
+        $("#ipal_dot").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("ipal_dot");
+            } else {
+                hideLayer("ipal_dot");
             }
-            $(".list-item-usaha").html(content);
-        } else {
-            hideLayer("iumk_fill");
-        }
-    });
+        });
+    }
 
-    //Harga Sewa Kantor
-    $("#sewa_fill").change(function () {
-        if ($(this).prop("checked") == true) {
-            showLayer("sewa_fill");
-            hideLayer("iumk_fill");
-            hideLayer("investasi_fill");
-            hideLayer("investasi_dot");
-            hideLayer("investasi_line");
-            hideLayer("budaya_dot");
-            $(".list-item").html("");
-            var infoHarga = popUpHarga[0].features;
-            $(".info-layer").show();
-            var content = "";
-            // console.log(infoHarga);
-            if (infoHarga !== null) {
+    if (layer == "iumk") {
+        //Sebaran Usaha mikro kecil
+        $("#iumk_fill").change(function () {
+            if ($(this).prop("checked") == true) {
+                $(".info-layer-usaha").show();
+                showLayer("iumk_fill");
+                hideLayer("sewa_fill");
+                hideLayer("investasi_fill");
+                hideLayer("investasi_dot");
+                hideLayer("investasi_line");
+                hideLayer("budaya_dot");
+                $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+                $(".list-item-usaha").html("");
                 $("#hide_side_bar").hide();
+                var content = "";
+                var infoUsaha = sebaran_usaha[0].features;
                 for (
                     let index = 0;
-                    index < popUpHarga[0].features.length;
+                    index < sebaran_usaha[0].features.length;
                     index++
                 ) {
-                    const pop = new mapboxgl.Popup({
-                        closeButton: false,
-                    })
-                        .setLngLat(infoHarga[index]["geometry"]["coordinates"])
-                        .setHTML(
-                            `Rp. ${separatorNum(
-                                infoHarga[index]["properties"]["Sewa"]
-                            )}`
-                        )
-                        .addTo(map);
-
-                    $(".mapboxgl-popup-content").css("background", "green");
-                    $(".mapboxgl-popup-content").css("color", "white");
-                    $(".mapboxgl-popup-tip").css("border-top-color", "green");
-                    $(".mapboxgl-popup-tip").css(
-                        "border-bottom-color",
-                        "green"
-                    );
+                    var coord = [
+                        infoUsaha[index]["properties"]["Lat"],
+                        infoUsaha[index]["properties"]["Long"],
+                    ];
                     content += `
                     <div class="item mb-3">
                     <div class="row">
                         <div class="col-4">
-                            <img width="100px" height="90px" style="object-fit: cover; border-radius:15px"
-                                src="http://jakpintas.dpmptsp-dki.com/rent/${
-                                    infoHarga[index]["properties"]["Foto"]
-                                }">
+                            <img id="imgUsaha-${index}" width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="/assets/gambar/load.svg">
                         </div>
                         <div class="col-8">
-                            <p style="font-size: 11pt;margin-bottom:-1px" class="font-weight-bold" class="inf-nama-kantor">${
-                                infoHarga[index]["properties"]["Nama"]
-                            }</p>
-                            <lable style="font-size: 13px; line-height:1; margin-bottom: -13px;" class="inf-alamat-sewa"><span>${
-                                infoHarga[index]["properties"]["Alamat"]
-                            }</span></lable>
-                            <p style="font-size: 13px; line-height:0; margin-top:10px !important;" class="inf-harga-sewa"> <span>Rp. ${separatorNum(
-                                infoHarga[index]["properties"]["Sewa"]
-                            )}</span></p>
+                            <span style="font-size: 11pt" class="font-weight-bold" class="inf-nama-kantor">${infoUsaha[index]["properties"]["Nama Usaha"]}</span>
+                            <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pemilik Usaha :
+                                <span>${infoUsaha[index]["properties"]["Pemilik Usaha"]}</span></label>
+                            <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Jenis Usaha :
+                                <span>${infoUsaha[index]["properties"]["Jenis Usaha"]}</span></label>
+                            <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Tenaga Kerja : <span>${infoUsaha[index]["properties"]["Tenaga Kerja"]}
+                                    Orang</span></label>
                         </div>
                     </div>
                 </div>
                     `;
+                    getIumkForInfo(coord, `#imgUsaha-${index}`);
                 }
-                $(".list-item").html(content);
+                $(".list-item-usaha").html(content);
             } else {
-                content = `<p style="font-size: 13px;">Tidak Ada Data</p>`;
-                $(".list-item").html(content);
-            }
-
-            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
-                "display",
-                ""
-            );
-            window.stop();
-        } else {
-            hideLayer("sewa_fill");
-            $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-        }
-    });
-
-    //proyek_potensial
-    $("#investasi_fill").change(function () {
-        if ($(this).prop("checked") == true) {
-            var infoProyek = proyek[0].features;
-            $(".info-layer-investasi").show();
-            if (infoProyek !== null) {
-                showLayer("investasi_fill");
                 hideLayer("iumk_fill");
-                hideLayer("sewa_fill");
+            }
+        });
+    }
+
+    if (layer == "sewa") {
+        //Harga Sewa Kantor
+        $("#sewa_fill").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("sewa_fill");
+                hideLayer("iumk_fill");
+                hideLayer("investasi_fill");
+                hideLayer("investasi_dot");
+                hideLayer("investasi_line");
                 hideLayer("budaya_dot");
-                $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-                $(".list-item-investasi").html("");
+                $(".list-item").html("");
+                var infoHarga = popUpHarga[0].features;
+                $(".info-layer").show();
                 var content = "";
-                for (
-                    let index = 0;
-                    index < proyek[0].features.length;
-                    index++
-                ) {
-                    content += `
-                        <li class="item mb-3" style="margin-left:-20px">
-                            <span style="font-size: 11pt" class="font-weight-bold">${infoProyek[index]["properties"]["Nama"]}</span>
-                            <label style="font-size: 13px;">${infoProyek[index]["properties"]["Deskripsi"]}</label>
-                        </li>
-                    `;
+                // console.log(infoHarga);
+                if (infoHarga !== null) {
+                    $("#hide_side_bar").hide();
+                    for (
+                        let index = 0;
+                        index < popUpHarga[0].features.length;
+                        index++
+                    ) {
+                        const pop = new mapboxgl.Popup({
+                            closeButton: false,
+                        })
+                            .setLngLat(
+                                infoHarga[index]["geometry"]["coordinates"]
+                            )
+                            .setHTML(
+                                `Rp. ${separatorNum(
+                                    infoHarga[index]["properties"]["Sewa"]
+                                )}`
+                            )
+                            .addTo(map);
+
+                        $(".mapboxgl-popup-content").css("background", "green");
+                        $(".mapboxgl-popup-content").css("color", "white");
+                        $(".mapboxgl-popup-tip").css(
+                            "border-top-color",
+                            "green"
+                        );
+                        $(".mapboxgl-popup-tip").css(
+                            "border-bottom-color",
+                            "green"
+                        );
+                        content += `
+                        <div class="item mb-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <img width="100px" height="90px" style="object-fit: cover; border-radius:15px"
+                                    src="http://jakpintas.dpmptsp-dki.com/rent/${
+                                        infoHarga[index]["properties"]["Foto"]
+                                    }">
+                            </div>
+                            <div class="col-8">
+                                <p style="font-size: 11pt;margin-bottom:-1px" class="font-weight-bold" class="inf-nama-kantor">${
+                                    infoHarga[index]["properties"]["Nama"]
+                                }</p>
+                                <lable style="font-size: 13px; line-height:1; margin-bottom: -13px;" class="inf-alamat-sewa"><span>${
+                                    infoHarga[index]["properties"]["Alamat"]
+                                }</span></lable>
+                                <p style="font-size: 13px; line-height:0; margin-top:10px !important;" class="inf-harga-sewa"> <span>Rp. ${separatorNum(
+                                    infoHarga[index]["properties"]["Sewa"]
+                                )}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                        `;
+                    }
+                    $(".list-item").html(content);
+                } else {
+                    content = `<p style="font-size: 13px;">Tidak Ada Data</p>`;
+                    $(".list-item").html(content);
                 }
-                $(".list-item-investasi").html(content);
+
+                $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").css(
+                    "display",
+                    ""
+                );
                 window.stop();
             } else {
-                content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
-                $(".list-item-investasi").html(content);
-            }
-        } else {
-            hideLayer("investasi_fill");
-        }
-    });
-
-    $("#investasi_dot").change(function () {
-        if ($(this).prop("checked") == true) {
-            showLayer("investasi_dot");
-        } else {
-            hideLayer("investasi_dot");
-        }
-    });
-
-    $("#investasi_line").change(function () {
-        if ($(this).prop("checked") == true) {
-            showLayer("investasi_line");
-        } else {
-            hideLayer("investasi_line");
-        }
-    });
-
-    $("#budaya_dot").change(function () {
-        if ($(this).prop("checked") == true) {
-            var infoBudaya = budaya[0].features;
-            $(".info-layer-budaya").show();
-            if (infoBudaya !== null) {
-                showLayer("budaya_dot");
-                hideLayer("iumk_fill");
                 hideLayer("sewa_fill");
-                hideLayer("investasi_fill");
                 $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-                $(".list-item-budaya").html("");
-                var content = "";
-                for (
-                    let index = 0;
-                    index < budaya[0].features.length;
-                    index++
-                ) {
-                    content += `
-                        <li class="item mb-3" style="margin-left:-20px">
-                            <span style="font-size: 11pt" class="font-weight-bold">${infoBudaya[index]["properties"]["Name"]}</span>
-                            <label style="font-size: 13px;">${infoBudaya[index]["properties"]["Keterangan"]}</label>
-                        </li>
-                    `;
-                }
-                $(".list-item-budaya").html(content);
-                // window.stop();
-            } else {
-                content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
-                $(".list-item-budaya").html(content);
             }
-        } else {
-            hideLayer("budaya_dot");
-        }
-    });
+        });
+    }
+
+    if (layer == "investasi") {
+        //proyek_potensial
+        $("#investasi_fill").change(function () {
+            if ($(this).prop("checked") == true) {
+                var infoProyek = proyek[0].features;
+                $(".info-layer-investasi").show();
+                if (infoProyek !== null) {
+                    showLayer("investasi_fill");
+                    hideLayer("iumk_fill");
+                    hideLayer("sewa_fill");
+                    hideLayer("budaya_dot");
+                    $(
+                        "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
+                    ).remove();
+                    $(".list-item-investasi").html("");
+                    var content = "";
+                    for (
+                        let index = 0;
+                        index < proyek[0].features.length;
+                        index++
+                    ) {
+                        content += `
+                            <li class="item mb-3" style="margin-left:-20px">
+                                <span style="font-size: 11pt" class="font-weight-bold">${infoProyek[index]["properties"]["Nama"]}</span>
+                                <label style="font-size: 13px;">${infoProyek[index]["properties"]["Deskripsi"]}</label>
+                            </li>
+                        `;
+                    }
+                    $(".list-item-investasi").html(content);
+                    window.stop();
+                } else {
+                    content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
+                    $(".list-item-investasi").html(content);
+                }
+            } else {
+                hideLayer("investasi_fill");
+            }
+        });
+
+        $("#investasi_dot").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("investasi_dot");
+            } else {
+                hideLayer("investasi_dot");
+            }
+        });
+
+        $("#investasi_line").change(function () {
+            if ($(this).prop("checked") == true) {
+                showLayer("investasi_line");
+            } else {
+                hideLayer("investasi_line");
+            }
+        });
+    }
+
+    if (layer == "budaya") {
+        $("#budaya_dot").change(function () {
+            if ($(this).prop("checked") == true) {
+                var infoBudaya = budaya[0].features;
+                $(".info-layer-budaya").show();
+                if (infoBudaya !== null) {
+                    showLayer("budaya_dot");
+                    hideLayer("iumk_fill");
+                    hideLayer("sewa_fill");
+                    hideLayer("investasi_fill");
+                    $(
+                        "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
+                    ).remove();
+                    $(".list-item-budaya").html("");
+                    var content = "";
+                    for (
+                        let index = 0;
+                        index < budaya[0].features.length;
+                        index++
+                    ) {
+                        content += `
+                            <li class="item mb-3" style="margin-left:-20px">
+                                <span style="font-size: 11pt" class="font-weight-bold">${infoBudaya[index]["properties"]["Name"]}</span>
+                                <label style="font-size: 13px;">${infoBudaya[index]["properties"]["Keterangan"]}</label>
+                            </li>
+                        `;
+                    }
+                    $(".list-item-budaya").html(content);
+                    // window.stop();
+                } else {
+                    content = '<p style="font-size: 13px;">Tidak Ada Data</p>';
+                    $(".list-item-budaya").html(content);
+                }
+            } else {
+                hideLayer("budaya_dot");
+            }
+        });
+    }
 }
 
 $(document).on("click", ".wilayah-select", function () {
@@ -3406,8 +3543,15 @@ $(document).on("click", ".wilayah-select", function () {
 function cekProyek(coor) {
     var coord = coor.split(",");
     $.ajax({
-        url: `${url}/project/${coord[1]}/${coord[0]}`,
-        method: "GET",
+        url: `${url}/project`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: coord[0],
+            lng: coord[1],
+        },
         success: function (e) {
             const dt = JSON.parse(e);
             console.log(dt.features);
@@ -3443,8 +3587,14 @@ function getDataSewa(kel) {
     var data = [];
     setTimeout(function () {
         $.ajax({
-            url: `${url}/sewa/${kel}`,
-            method: "GET",
+            url: `${url}/sewa`,
+            method: "POST",
+            data: {
+                kelurahan: kel,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
             dataType: "json",
             success: function (e) {
                 // console.log(e);
@@ -3460,8 +3610,14 @@ function getDataSebaranUsaha(kel) {
     var data = [];
     setTimeout(function () {
         $.ajax({
-            url: `${url}/iumk/${kel}`,
-            method: "GET",
+            url: `${url}/iumk`,
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            data: {
+                kelurahan: kel,
+            },
             dataType: "json",
             success: function (e) {
                 // console.log(e);
@@ -3477,8 +3633,14 @@ function getDataProyek(kel) {
     var data = [];
     setTimeout(function () {
         $.ajax({
-            url: `${url}/investasi/${kel}`,
-            method: "GET",
+            url: `${url}/investasi`,
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            data: {
+                kelurahan: kel,
+            },
             dataType: "json",
             success: function (e) {
                 // console.log(e);
@@ -3494,8 +3656,14 @@ function getDataBudaya(kel) {
     var data = [];
     setTimeout(function () {
         $.ajax({
-            url: `${url}/budaya/${kel}`,
-            method: "GET",
+            url: `${url}/budaya`,
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            data: {
+                kelurahan: kel,
+            },
             dataType: "json",
             success: function (e) {
                 // console.log(e);
@@ -4537,8 +4705,14 @@ $("#checkboxKBLI").change(() => {
 
 const getSimulasi = (e) => {
     $.ajax({
-        url: `${url}/simulasi/${e}`,
-        type: "GET",
+        url: `${url}/simulasi`,
+        type: "POST",
+        data: {
+            peruntukan: e,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "JSON",
         success: (data) => {
             let jumlah_orang = 0;
