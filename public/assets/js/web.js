@@ -1070,10 +1070,20 @@ map.on("mouseenter", "investasi_fill", (e) => {
     const dt = e.features[0].properties;
     const content = `<div class="card">
     <div class="card-body p-2">
-      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
-      <span class="d-block" style="width: 300px"><b>Rencana Proyek :</b> ${dt["Rencana_Proyek"]}</span>
-      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${dt["Luas_Lahan"]}</span>
-      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${dt["Total_Investasi"]}</span>
+      <h6 class="mt-0 mb-2 card-title border-bottom">${
+          dt["Rencana_Proyek"]
+      }</h6>
+      <span class="d-block" style="width: 300px"><b>Pemilik Proyek :</b> ${
+          dt["Nama"]
+      }</span>
+      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
+          dt["Luas_Lahan"] == "" ? "" : `${dt["Luas_Lahan"]} m<sup>2</sup>`
+      }</span>
+      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${
+          dt["Total_Investasi"] == ""
+              ? ""
+              : `Rp. ${separatorNum(dt["Total_Investasi"])}`
+      }</span>
 
 
     </div>`;
@@ -1099,11 +1109,18 @@ map.on("mouseenter", "investasi_line", (e) => {
     const dt = e.features[0].properties;
     const content = `<div class="card">
     <div class="card-body p-2">
-      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
-      <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Rencana Proyek :</b> ${dt["Rencana_Proyek"]}</span>
-      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${dt["Luas_Lahan"]}</span>
-      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${dt["Total_Investasi"]}</span>
+    <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Rencana_Proyek"]}</h6>
+    <span class="d-block" style="width: 300px"><b>Pemilik Proyek :</b> ${
+        dt["Nama"]
+    }</span>
+    <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
+        dt["Luas_Lahan"] == "" ? "" : `${dt["Luas_Lahan"]} m<sup>2</sup>`
+    }</span>
+    <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${
+        dt["Total_Investasi"] == ""
+            ? ""
+            : `Rp. ${separatorNum(dt["Total_Investasi"])}`
+    }</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -1127,11 +1144,18 @@ map.on("mouseenter", "investasi_dot", (e) => {
     const dt = e.features[0].properties;
     const content = `<div class="card">
     <div class="card-body p-2">
-      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
-      <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Rencana Proyek :</b> ${dt["Rencana_Proyek"]}</span>
-      <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${dt["Luas_Lahan"]}</span>
-      <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${dt["Total_Investasi"]}</span>
+    <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Rencana_Proyek"]}</h6>
+    <span class="d-block" style="width: 300px"><b>Pemilik Proyek :</b> ${
+        dt["Nama"]
+    }</span>
+    <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
+        dt["Luas_Lahan"] == "" ? "" : `${dt["Luas_Lahan"]} m<sup>2</sup>`
+    }</span>
+    <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${
+        dt["Total_Investasi"] == ""
+            ? ""
+            : `Rp. ${separatorNum(dt["Total_Investasi"])}`
+    }</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -3468,35 +3492,37 @@ function onOffLayers(layer) {
                         content += `
                             <li class="item mb-3" style="margin-left:-20px">
                                 <span style="font-size: 11pt" class="font-weight-bold">${
-                                    infoProyek[index]["properties"]["Nama"]
+                                    infoProyek[index]["properties"][
+                                        "Rencana_Proyek"
+                                    ]
                                 }</span>
                                 <ol type="a">
-                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Rencana Proyek</b> : ${
+                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Pemilik Proyek</b> : ${
                                         infoProyek[index]["properties"][
-                                            "Rencana_Proyek"
+                                            "Nama"
                                         ] == ""
-                                            ? "-"
+                                            ? ""
                                             : infoProyek[index]["properties"][
-                                                  "Rencana_Proyek"
+                                                  "Nama"
                                               ]
                                     }</li>
                                     <li style="font-size:13px;margin-left:-1.6rem"><b>Luas Lahan</b> : ${
                                         infoProyek[index]["properties"][
                                             "Luas_Lahan"
                                         ] == ""
-                                            ? "-"
-                                            : infoProyek[index]["properties"][
-                                                  "Luas_Lahan"
-                                              ]
+                                            ? ""
+                                            : `${infoProyek[index]["properties"]["Luas_Lahan"]} m<sup>2</sup>`
                                     }</li>
                                     <li style="font-size:13px;margin-left:-1.6rem"><b>Total Investasi</b> : ${
                                         infoProyek[index]["properties"][
                                             "Total_Investasi"
                                         ] == ""
-                                            ? "-"
-                                            : infoProyek[index]["properties"][
-                                                  "Total_Investasi"
-                                              ]
+                                            ? ""
+                                            : `Rp. ${separatorNum(
+                                                  infoProyek[index][
+                                                      "properties"
+                                                  ]["Total_Investasi"]
+                                              )}`
                                     }</li>
                                 </ol>
                             </li>
