@@ -2229,8 +2229,14 @@ function getSanitasi(e) {
 
 const getRTRW = (e) => {
     $.ajax({
-        url: `${url}/wilayahrtrw/${e.lngLat.lng}/${e.lngLat.lat}`,
-        method: "get",
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
         dataType: "json",
         success: function (e) {
             console.log(e);
