@@ -1073,11 +1073,9 @@ map.on("mouseenter", "investasi_fill", (e) => {
     const dt = e.features[0].properties;
     const content = `<div class="card">
     <div class="card-body p-2">
-      <h6 class="mt-0 mb-2 card-title border-bottom">${
-          dt["Rencana_Proyek"]
-      }</h6>
+      <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <span class="d-block" style="width: 300px"><b>Pemilik Proyek :</b> ${
-          dt["Nama"]
+          dt["Pemilik"]
       }</span>
       <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
           dt["Luas_Lahan"] == ""
@@ -1117,9 +1115,9 @@ map.on("mouseenter", "investasi_line", (e) => {
     const dt = e.features[0].properties;
     const content = `<div class="card">
     <div class="card-body p-2">
-    <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Rencana_Proyek"]}</h6>
+    <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
     <span class="d-block" style="width: 300px"><b>Pemilik Proyek :</b> ${
-        dt["Nama"]
+        dt["Pemilik"]
     }</span>
     <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
         dt["Luas_Lahan"] == ""
@@ -1157,9 +1155,9 @@ map.on("mouseenter", "investasi_dot", (e) => {
     const dt = e.features[0].properties;
     const content = `<div class="card">
     <div class="card-body p-2">
-    <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Rencana_Proyek"]}</h6>
+    <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
     <span class="d-block" style="width: 300px"><b>Pemilik Proyek :</b> ${
-        dt["Nama"]
+        dt["Pemilik"]
     }</span>
     <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
         dt["Luas_Lahan"] == ""
@@ -3516,16 +3514,16 @@ function onOffLayers(layer) {
                                 },${
                             infoProyek[index]["geometry"]["coordinates"][0]
                         }')" class="font-weight-bold">${
-                            infoProyek[index]["properties"]["Rencana_Proyek"]
+                            infoProyek[index]["properties"]["Nama"]
                         }</a>
                                 <ul style="list-style:none">
                                     <li style="font-size:13px;margin-left:-2.4rem">${
                                         infoProyek[index]["properties"][
-                                            "Nama"
+                                            "Pemilik"
                                         ] == ""
                                             ? ""
                                             : infoProyek[index]["properties"][
-                                                  "Nama"
+                                                  "Pemilik"
                                               ]
                                     }</li>
                                     <li style="font-size:13px;margin-left:-2.4rem"><b>Luas Lahan</b> : ${
