@@ -1,4 +1,4 @@
-var url = `${APP_URL}:3443`;
+var url = `https://jakpintas.dpmptsp-dki.com:3443`;
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
 let popUpHarga;
@@ -647,13 +647,10 @@ const exportSHP = () => {
     $("#downloadSHP").modal("hide");
 };
 
-map.loadImage(
-    `/assets/gambar/baseline_directions_subway_black_24dp.png`,
-    function (error, image) {
-        if (error) throw error;
-        map.addImage("point", image);
-    }
-);
+map.loadImage(`/assets/gambar/project-management.png`, function (error, image) {
+    if (error) throw error;
+    map.addImage("point", image);
+});
 
 map.on("style.load", function () {
     // onOffLayers();
@@ -3496,8 +3493,8 @@ function onOffLayers(layer) {
                                         "Rencana_Proyek"
                                     ]
                                 }</span>
-                                <ol type="a">
-                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Pemilik Proyek</b> : ${
+                                <ul style="list-style:none">
+                                    <li style="font-size:13px;margin-left:-2.4rem"><b>Pemilik Proyek</b> : ${
                                         infoProyek[index]["properties"][
                                             "Nama"
                                         ] == ""
@@ -3506,14 +3503,14 @@ function onOffLayers(layer) {
                                                   "Nama"
                                               ]
                                     }</li>
-                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Luas Lahan</b> : ${
+                                    <li style="font-size:13px;margin-left:-2.4rem"><b>Luas Lahan</b> : ${
                                         infoProyek[index]["properties"][
                                             "Luas_Lahan"
                                         ] == ""
                                             ? ""
                                             : `${infoProyek[index]["properties"]["Luas_Lahan"]} m<sup>2</sup>`
                                     }</li>
-                                    <li style="font-size:13px;margin-left:-1.6rem"><b>Total Investasi</b> : ${
+                                    <li style="font-size:13px;margin-left:-2.4rem"><b>Total Investasi</b> : ${
                                         infoProyek[index]["properties"][
                                             "Total_Investasi"
                                         ] == ""
@@ -3524,7 +3521,7 @@ function onOffLayers(layer) {
                                                   ]["Total_Investasi"]
                                               )}`
                                     }</li>
-                                </ol>
+                                </ul>
                             </li>
                         `;
                     }
