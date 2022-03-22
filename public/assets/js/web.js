@@ -1080,7 +1080,12 @@ map.on("mouseenter", "investasi_fill", (e) => {
           dt["Nama"]
       }</span>
       <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
-          dt["Luas_Lahan"] == "" ? "" : `${dt["Luas_Lahan"]} m<sup>2</sup>`
+          dt["Luas_Lahan"] == ""
+              ? ""
+              : `${separatorNum(dt["Luas_Lahan"])} m<sup>2</sup>`
+      }</span>
+      <span class="d-block" style="width: 300px"><b>Jenis Sertifikat :</b> ${
+          dt["Jenis_Sertifikat"]
       }</span>
       <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${
           dt["Total_Investasi"] == ""
@@ -1117,7 +1122,12 @@ map.on("mouseenter", "investasi_line", (e) => {
         dt["Nama"]
     }</span>
     <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
-        dt["Luas_Lahan"] == "" ? "" : `${dt["Luas_Lahan"]} m<sup>2</sup>`
+        dt["Luas_Lahan"] == ""
+            ? ""
+            : `${separatorNum(dt["Luas_Lahan"])} m<sup>2</sup>`
+    }</span>
+    <span class="d-block" style="width: 300px"><b>Jenis Sertifikat :</b> ${
+        dt["Jenis_Sertifikat"]
     }</span>
     <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${
         dt["Total_Investasi"] == ""
@@ -1152,7 +1162,12 @@ map.on("mouseenter", "investasi_dot", (e) => {
         dt["Nama"]
     }</span>
     <span class="d-block" style="width: 300px"><b>Luas Lahan :</b> ${
-        dt["Luas_Lahan"] == "" ? "" : `${dt["Luas_Lahan"]} m<sup>2</sup>`
+        dt["Luas_Lahan"] == ""
+            ? ""
+            : `${separatorNum(dt["Luas_Lahan"])} m<sup>2</sup>`
+    }</span>
+    <span class="d-block" style="width: 300px"><b>Jenis Sertifikat :</b> ${
+        dt["Jenis_Sertifikat"]
     }</span>
     <span class="d-block" style="width: 300px"><b>Total Investasi :</b> ${
         dt["Total_Investasi"] == ""
@@ -3494,7 +3509,7 @@ function onOffLayers(layer) {
                     ) {
                         content += `
                             <li class="item mb-3" style="margin-left:-20px">
-                                <span style="font-size: 11pt; cursor:pointer" onclick="geocoder.query('${
+                                <span class="text-primary" style="font-size: 11pt; cursor:pointer" onclick="geocoder.query('${
                                     infoProyek[index]["geometry"][
                                         "coordinates"
                                     ][1]
@@ -3518,7 +3533,18 @@ function onOffLayers(layer) {
                                             "Luas_Lahan"
                                         ] == ""
                                             ? ""
-                                            : `${infoProyek[index]["properties"]["Luas_Lahan"]} m<sup>2</sup>`
+                                            : `${separatorNum(
+                                                  infoProyek[index][
+                                                      "properties"
+                                                  ]["Luas_Lahan"]
+                                              )} m<sup>2</sup>`
+                                    }</li>
+                                    <li style="font-size:13px;margin-left:-2.4rem"><b>Jenis Sertifikat</b> : ${
+                                        infoProyek[index]["properties"][
+                                            "Jenis_Sertifikat"
+                                        ] == ""
+                                            ? ""
+                                            : `${infoProyek[index]["properties"]["Jenis_Sertifikat"]}`
                                     }</li>
                                     <li style="font-size:13px;margin-left:-2.4rem"><b>Total Investasi</b> : ${
                                         infoProyek[index]["properties"][
@@ -3667,11 +3693,14 @@ function saveKelurahan(kel) {
 // onOffLayers();
 
 function separatorNum(val) {
-    if (typeof val === "undefined" || val === null || val === "null") {
-        return null;
-    }
-    val = parseFloat(val);
-    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    var parts = val.toString().split(",");
+    const numberPart = parts[0];
+    const decimalPart = parts[1];
+    const thousands = /\B(?=(\d{3})+(?!\d))/g;
+    return (
+        numberPart.replace(thousands, ",") +
+        (decimalPart ? "." + decimalPart : "")
+    );
 }
 
 function getDataSewa(kel) {
