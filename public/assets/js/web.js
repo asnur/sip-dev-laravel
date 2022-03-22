@@ -653,7 +653,7 @@ const exportSHP = () => {
     $("#downloadSHP").modal("hide");
 };
 
-map.loadImage(`/assets/gambar/project-management.png`, function (error, image) {
+map.loadImage(`/assets/gambar/crane.png`, function (error, image) {
     if (error) throw error;
     map.addImage("point", image);
 });
@@ -3504,7 +3504,7 @@ function onOffLayers(layer) {
                             infoProyek[index]["properties"]["Rencana_Proyek"]
                         }</span>
                                 <ul style="list-style:none">
-                                    <li style="font-size:13px;margin-left:-2.4rem"><b>Pemilik Proyek</b> : ${
+                                    <li style="font-size:13px;margin-left:-2.4rem">${
                                         infoProyek[index]["properties"][
                                             "Nama"
                                         ] == ""
