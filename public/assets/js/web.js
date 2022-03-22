@@ -3509,7 +3509,7 @@ function onOffLayers(layer) {
                     ) {
                         content += `
                             <li class="item mb-3" style="margin-left:-20px">
-                                <span class="text-primary" style="font-size: 11pt; cursor:pointer" onclick="geocoder.query('${
+                                <a href="#" style="font-size: 11pt; cursor:pointer" onclick="geocoder.query('${
                                     infoProyek[index]["geometry"][
                                         "coordinates"
                                     ][1]
@@ -3517,7 +3517,7 @@ function onOffLayers(layer) {
                             infoProyek[index]["geometry"]["coordinates"][0]
                         }')" class="font-weight-bold">${
                             infoProyek[index]["properties"]["Rencana_Proyek"]
-                        }</span>
+                        }</a>
                                 <ul style="list-style:none">
                                     <li style="font-size:13px;margin-left:-2.4rem">${
                                         infoProyek[index]["properties"][
