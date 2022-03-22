@@ -501,6 +501,9 @@ const getDigitasi = (coor) => {
     $.ajax({
         url: `${url}/digitasi`,
         method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         data: {
             kordinat: coor,
         },
@@ -532,6 +535,9 @@ const getDigitasi = (coor) => {
     $.ajax({
         url: `${url}/digitasi-bpn`,
         method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         data: {
             kordinat: coor,
         },
@@ -3488,11 +3494,15 @@ function onOffLayers(layer) {
                     ) {
                         content += `
                             <li class="item mb-3" style="margin-left:-20px">
-                                <span style="font-size: 11pt" class="font-weight-bold">${
-                                    infoProyek[index]["properties"][
-                                        "Rencana_Proyek"
-                                    ]
-                                }</span>
+                                <span style="font-size: 11pt; cursor:pointer" onclick="geocoder.query('${
+                                    infoProyek[index]["geometry"][
+                                        "coordinates"
+                                    ][1]
+                                },${
+                            infoProyek[index]["geometry"]["coordinates"][0]
+                        }')" class="font-weight-bold">${
+                            infoProyek[index]["properties"]["Rencana_Proyek"]
+                        }</span>
                                 <ul style="list-style:none">
                                     <li style="font-size:13px;margin-left:-2.4rem"><b>Pemilik Proyek</b> : ${
                                         infoProyek[index]["properties"][
