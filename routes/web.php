@@ -129,16 +129,22 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/addUser', [AdminController::class, 'add_user'])->name('add-user');
     Route::post('/editUser', [AdminController::class, 'update_user'])->name('update-user');
     Route::delete('/deleteUser', [AdminController::class, 'delete_user'])->name('delete-user');
+
     Route::get('/pegawaiAjib', [AdminController::class, 'pegawai_ajib'])->name('pegawai');
     Route::post('/pegawaiAjib', [AdminController::class, 'add_pegawai_ajib'])->name('add-pegawai');
+    Route::get('/ShowPegawaiAjib/{id}', [AdminController::class, 'show_pegawai_ajib'])->name('show-pegawai');
     Route::put('/pegawaiAjib', [AdminController::class, 'update_pegawai_ajib'])->name('update-pegawai');
     Route::delete('/pegawaiAjib', [AdminController::class, 'delete_pegawai_ajib'])->name('delete-pegawai');
+
     Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
+    Route::get('/kinerjaData', [AdminController::class, 'kinerja_data'])->name('kinerja-data');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
     Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
 
     Route::get('/fetch-surveyer', [AdminController::class, 'fetchSurveyer'])->name('fetch-surveyer');
     Route::get('/data-terbaru/{id_data_terbaru}', [AdminController::class, 'dataTerbaru'])->name('data-terbaru');
+
+    Route::get('/pegawaiDataAjib/{pegawai_id}', [AdminController::class, 'data_edit_pegawai'])->name('edit-data-pegawai');
 });
 
 //Analytics Page

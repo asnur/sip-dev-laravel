@@ -13,9 +13,12 @@ const addText = () => {
                     $(`.ajib-${e.id_user}`).text(`${length.toFixed(2)} KM`);
                 }
             });
+
             $(document).ready(function () {
                 $("#table-surveyer").DataTable({
+                    // retrieve: true,
                     ordering: true,
+                    order: [[0, "asc"]],
                     columnDefs: [
                         { orderSequence: ["desc", "asc"], targets: [0] },
                         { orderSequence: ["desc", "asc"], targets: [1] },
@@ -24,6 +27,31 @@ const addText = () => {
                     ],
                 });
             });
+
+            // $(document).ready(function () {
+            //     $("#table-pegawai").DataTable({
+            //         ordering: true,
+            //         order: [[0, "asc"]],
+            //         columnDefs: [
+            //             {
+            //                 orderSequence: ["asc", "desc"],
+            //                 targets: [0],
+            //             },
+            //             {
+            //                 orderSequence: ["asc", "desc"],
+            //                 targets: [1],
+            //             },
+            //             {
+            //                 orderSequence: ["asc", "desc"],
+            //                 targets: [2],
+            //             },
+            //             {
+            //                 orderSequence: ["asc", "desc"],
+            //                 targets: [3],
+            //             },
+            //         ],
+            //     });
+            // });
         },
     });
 };
