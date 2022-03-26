@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\PagePDFController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +33,11 @@ Route::get('/', function (Request $request) {
     return view('layout.main');
 })->name('home');
 
+
+//KBLI PUSDATIN
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
 Route::get('/kbli/{subzona}/{kegiatan}', [KBLIPusdatin::class, 'skala']);
 Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenangan']);
-
-//For PDF Fitur
-// Route::post('/setKelurahan/{kelurahan}', [PDFController::class, 'setKelurahan']);
-// Route::post('/savePDF', [PDFController::class, 'savePDF']);
 
 //cek Login Chat
 Route::get('/cekLoginChat', function (Request $request) {
@@ -49,6 +49,7 @@ Route::get('/cekLoginChat', function (Request $request) {
     }
 });
 
+//Login Status
 Route::get('/statusLogin', function (Request $request) {
     $status = $request->session()->get('cek-login');
 
@@ -85,6 +86,8 @@ Route::post('/saveUser', function (Request $request) {
 });
 Route::get('/getIdUser', [pinLocationController::class, 'getIdUser']);
 
+
+//Print PDF Route
 Route::get('/print', [PrintController::class, 'print'])->name('print');
 Route::post('/save_image', [PrintController::class, 'save_image'])->name('save-image');
 Route::post('/save_wilayah', [PrintController::class, 'save_wilayah'])->name('save-wilayah');
@@ -96,6 +99,9 @@ Route::post('/save_chart_pie', [PrintController::class, 'save_chart_pie'])->name
 Route::post('/save_chart_bar', [PrintController::class, 'save_chart_bar'])->name('save-chart_bar');
 Route::post('/save_sanitasi', [PrintController::class, 'save_sanitasi'])->name('save-sanitasi');
 Route::post('/save_turun', [PrintController::class, 'save_turun'])->name('save-turun');
+
+//Dokumen Dasar
+Route::get('/dokumen-dasar-dan-panduan', [PagePDFController::class, 'Dokumen']);
 
 Auth::routes();
 
@@ -123,13 +129,23 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/addUser', [AdminController::class, 'add_user'])->name('add-user');
     Route::post('/editUser', [AdminController::class, 'update_user'])->name('update-user');
     Route::delete('/deleteUser', [AdminController::class, 'delete_user'])->name('delete-user');
+
     Route::get('/pegawaiAjib', [AdminController::class, 'pegawai_ajib'])->name('pegawai');
     Route::post('/pegawaiAjib', [AdminController::class, 'add_pegawai_ajib'])->name('add-pegawai');
+    Route::get('/ShowPegawaiAjib/{id}', [AdminController::class, 'show_pegawai_ajib'])->name('show-pegawai');
     Route::put('/pegawaiAjib', [AdminController::class, 'update_pegawai_ajib'])->name('update-pegawai');
     Route::delete('/pegawaiAjib', [AdminController::class, 'delete_pegawai_ajib'])->name('delete-pegawai');
+
     Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
+    Route::get('/kinerjaData', [AdminController::class, 'kinerja_data'])->name('kinerja-data');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
     Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
+
+    Route::get('/fetch-surveyer', [AdminController::class, 'fetchSurveyer'])->name('fetch-surveyer');
+    Route::get('/data-terbaru/{id_data_terbaru}', [AdminController::class, 'dataTerbaru'])->name('data-terbaru');
+
+    Route::get('/pegawaiDataAjib/{pegawai_id}', [AdminController::class, 'data_edit_pegawai'])->name('edit-data-pegawai');
 });
 
+//Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);

@@ -1,108 +1,177 @@
 @extends('layouts.template_admin')
 @section('content')
-    @php
-    $Roles = '';
-    @endphp
-    <div class="container-fluid">
 
+@php
+$Roles = '';
+@endphp
 
-        {{-- Modal --}}
-        <form action="{{ route('update-user') }}" method="POST">
-            @csrf
-            <div class="modal fade" id="modalEditUsers" tabindex="-1" role="dialog" aria-labelledby="modalEditUserLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-white" id="modalEditUserLabel">Edit User</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="font-weight-bold">Nama</label>
-                            <input class="form-control" type="hidden" name="id" id="idUser">
-                            <input class="form-control" name="name" type="text" placeholder="Masukan Nama User"
-                                id="namaUser">
-                            <label class="font-weight-bold mt-2">E-mail</label>
-                            <input class="form-control" name="email" type="email" placeholder="Masukan Email User"
-                                id="emailUser">
-                            <label class="font-weight-bold mt-2">Role</label>
-                            <select class="form-control" name="role" id="roleUser">
-                                <option value="">Pilih..</option>
-                                @foreach ($role as $r)
-                                    <option value="{{ $r->name }}">{{ $r->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="modal-footer bg-primary">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
-                        </div>
-                    </div>
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    User
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-12 col-md-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modalAddUsers">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Tambah User
+                    </a>
+                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </a>
                 </div>
             </div>
-        </form>
-
-        <form action="{{ route('add-user') }}" method="POST">
-            @csrf
-            <div class="modal fade" id="modalAddUsers" tabindex="-1" role="dialog" aria-labelledby="modalEditAddLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-white" id="modalEditAddLabel">Tambah User</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="font-weight-bold">Nama</label>
-                            <input class="form-control" name="name" type="text" placeholder="Masukan Nama User">
-                            <label class="font-weight-bold mt-2">E-mail</label>
-                            <input class="form-control" name="email" type="email" placeholder="Masukan Email User">
-                            <label class="font-weight-bold mt-2">Password</label>
-                            <input class="form-control" name="password" type="password"
-                                placeholder="Masukan Password User">
-                            <label class="font-weight-bold mt-2">Role</label>
-                            <select class="form-control" name="role" <option value="">Pilih..</option>
-                                @foreach ($role as $r)
-                                    <option value="{{ $r->name }}">{{ $r->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="modal-footer bg-primary">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">User</h1>
-            <a href="#" data-toggle="modal" data-target="#modalAddUsers"
-                class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
-                    class="fas fa-plus fa-sm text-white-50"></i> Tambah User</a>
         </div>
+    </div>
 
-        <!-- Content Row -->
+    {{-- modal add --}}
+    <form action="{{ route('add-user') }}" method="POST">
+
+        @csrf
+        <div class="modal modal-blur fade" id="modalAddUsers" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="modalEditAddLabel">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditAddLabel">Tambah User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-xl-12">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Masukan Nama User">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Masukan Email User">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Masukan Password User">
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">Penempatan</div>
+                                    <select class="form-select" name="role" required>
+                                        <option value="">Pilih..</option>
+                                        @foreach ($role as $r)
+                                        <option value="{{ $r->name }}">{{ $r->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Kirim</button>
+                    </div>
+                </div>
 
 
-        <!-- Content Row -->
+            </div>
+        </div>
+    </form>
 
-        <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-sm-12">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+    {{-- modal update --}}
+    <form action="{{ route('update-user') }}" method="POST">
+        @csrf
+        <div class="modal modal-blur fade" id="modalEditUsers" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="modalEditUserLabel">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditUserLabel">Edit User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-xl-12">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="hidden" class="form-control" name="id" id="idUser">
+                                    <input type="text" class="form-control" name="name" id="namaUser" placeholder="Masukan Nama User">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">E-mail</label>
+                                    <input class="form-control" name="email" type="email" placeholder="Masukan Email User" id="emailUser">
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">Role</div>
+                                    <select class="form-select" name="role" id="roleUser" required>
+                                        <option value="">Pilih..</option>
+                                        @foreach ($role as $r)
+                                        <option value="{{ $r->name }}">{{ $r->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Kirim</button>
 
                     </div>
-                    <!-- Card Body -->
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </form>
+
+
+
+
+
+
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <!-- konten disini -->
+
+        <div class="row row-cards">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Data User</h3>
+                    </div>
+
                     <div class="card-body">
-                        <table class="table table-striped" id="table-surveyer">
+                        <table class="display table table-striped" id="table-surveyer">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
@@ -112,42 +181,55 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $u)
-                                    <tr>
-                                        <td>{{ $u->name }}</td>
-                                        <td>{{ $u->email }}</td>
-                                        <td>
-                                            @if (!empty($u->getRoleNames()))
-                                                @foreach ($u->getRoleNames() as $role)
-                                                    @php
-                                                        $Roles = $role;
-                                                    @endphp
-                                                    <label class="badge badge-success">{{ $role }}</label>
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <td><a class="btn btn-sm btn-primary"
-                                                onclick="editUser({{ $u->id }}, '{{ $u->name }}', '{{ $u->email }}', '{{ $Roles }}')"
-                                                data-toggle="modal" data-target="#modalEditUsers"><i class="fa fa-edit">
-                                                </i></a>
-                                            <form action="{{ route('delete-user') }}" class="d-inline"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="hidden" name="id" value="{{ $u->id }}">
-                                                <button type="submit" class="btn btn-sm btn-danger"><i
-                                                        class="fa fa-trash">
-                                            </form>
-                                            </i></a>
-                                        </td>
-                                    </tr>
+                                @foreach ($user as $x)
+                                <tr>
+                                    <td>{{ $x->name }}</td>
+                                    <td>{{ $x->email }}</td>
+                                    <td>
+                                        @if (!empty($x->getRoleNames()))
+                                        @foreach ($x->getRoleNames() as $role)
+                                        @php
+                                        $Roles = $role;
+                                        @endphp
+                                        <span class="badge bg-green-lt">{{ $role }}</span>
+                                        @endforeach
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="row row-cards">
+                                            <div class="col-md-6 col-xl-6">
+                                                <a class="btn btn-tabler w-100 btn-icon" aria-label="Google" data-bs-toggle="modal" data-bs-target="#modalEditUsers" onclick="editUser({{ $x->id }}, '{{ $x->name }}', '{{ $x->email }}', '{{ $Roles }}')">
+
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-6 col-xl-6">
+                                                <form action="{{ route('delete-user') }}" class="d-inline" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="id" value="{{ $x->id }}">
+                                                    <button type="submit" class="btn btn-google w-100 btn-icon" aria-label="Tabler">
+
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
 
+
     </div>
+</div>
+
+
 @endsection
