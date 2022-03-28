@@ -653,7 +653,7 @@ const exportSHP = () => {
     $("#downloadSHP").modal("hide");
 };
 
-map.loadImage(`/assets/gambar/crane.png`, function (error, image) {
+map.loadImage(`/assets/gambar/ICON.png`, function (error, image) {
     if (error) throw error;
     map.addImage("point", image);
 });
@@ -2936,7 +2936,7 @@ function addLayers(layer) {
             type: "symbol",
             source: "zoning",
             layout: {
-                "text-field": "{Sub Zona}",
+                "text-field": ["get", "Sub Zona"],
                 "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
                 "text-size": 12,
                 visibility: "none",
