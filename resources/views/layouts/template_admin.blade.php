@@ -28,8 +28,7 @@
     <link href="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/vendor/datatables/buttons.dataTables.min.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
-        integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
 
 
     <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
@@ -451,7 +450,10 @@
     <!-- Page level custom scripts -->
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script> --}}
     <script>
-        var APP_URL = {!! json_encode(url('/')) !!}
+        var APP_URL = {
+            !!json_encode(url('/')) !!
+        }
+
     </script>
 
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script> --}}
@@ -494,6 +496,7 @@
     <script>
         addText();
         dataTebaruRealtime();
+
     </script>
 
 
