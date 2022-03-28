@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-beta5
+* @link https://tabler.io
+* Copyright 2018-2022 The Tabler Authors
+* Copyright 2018-2022 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
 <html lang="en">
 
 <head>
@@ -18,9 +26,13 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    {{-- Datatables --}}
     <link href="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/vendor/datatables/buttons.dataTables.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
+        integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+
 
     <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
 
@@ -31,319 +43,424 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+
+    <!-- CSS files -->
+    <link href="{{ asset('assets/admin2/css/tabler.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin2/css/tabler-flags.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin2/css/tabler-payments.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin2/css/tabler-vendors.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin2/css/demo.min.css') }}" rel="stylesheet" />
+
+    <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
+
+
+
 </head>
 
-<body id="page-top">
+<body>
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home-admin') }}">
-                <div class="sidebar-brand-icon">
-                    <img src="{{ asset('assets/admin/img/logo_jakpintas.png') }}" style="width: 50px">
-                </div>
-                <div class="sidebar-brand-text mx-3">Jakpintas</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('home-admin') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Pengaturan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        {{-- <a class="collapse-item" href="{{ route('role') }}">Hak Akses User</a> --}}
-                        <a class="collapse-item" href="{{ route('user') }}">User</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('pegawai') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Pegawai Ajib</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('kinerja-pegawai') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Kinerja Ajib</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
+    <div class="wrapper">
+        <aside style="border-right: 4px solid #B0B0B0; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;"
+            class="navbar navbar-vertical navbar-expand-lg navbar-transparent">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark">
+                    <a href="#">
+                        <img style="width: 90px; height:52px;"
+                            src="{{ asset('assets/admin2/img/logo_jakpintas.png') }}" alt="Tabler"
+                            class="" />
+                    </a>
+                    {{-- <div style="margin-right: 1rem; margin-left: 1rem;" class="">JAKPINTAS</div> --}}
+                </h1>
+                {{-- <div class="navbar-nav flex-row d-lg-none">
+                    <div class="nav-item d-none d-md-flex me-3">
+                        <div class="btn-list">
+                            <a href="https://github.com/tabler/tabler" class="btn" target="_blank" rel="noreferrer">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+                                </svg>
+                                Source code
                             </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <a href="https://github.com/sponsors/codecalm" class="btn" target="_blank" rel="noreferrer">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                                </svg>
+                                Sponsor
+                            </a>
+                        </div>
+                    </div>
+                    <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                        </svg>
+                    </a>
+                    <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                        </svg>
+                    </a>
+                    <div class="nav-item dropdown d-none d-md-flex me-3">
+                        <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                                <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                            </svg>
+                            <span class="badge bg-red"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Accusamus ad amet consectetur exercitationem fugiat in ipsa
+                                    ipsum, natus odio quidem quod repudiandae sapiente. Amet
+                                    debitis et magni maxime necessitatibus ullam.
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                            <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                            <div class="d-none d-xl-block ps-2">
+                                <div>Paweł Kuna</div>
+                                <div class="mt-1 small text-muted">UI Designer</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <a href="#" class="dropdown-item">Set status</a>
+                            <a href="#" class="dropdown-item">Profile & account</a>
+                            <a href="#" class="dropdown-item">Feedback</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="navbar-nav pt-lg-1">
+                        <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('home-admin') }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title"> Dashboard </span>
+                            </a>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        {{-- <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li> --}}
+                        {{-- <div style="margin: 5px 0 5px 25px; font-weight: bold" class="page-pretitle">
+                            INTERFACE
+                        </div> --}}
 
-                        <!-- Nav Item - Messages -->
-                        {{-- <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3" />
+                                    <line x1="12" y1="12" x2="20" y2="7.5" />
+                                    <line x1="12" y1="12" x2="12" y2="21" />
+                                    <line x1="12" y1="12" x2="4" y2="7.5" />
+                                    <line x1="16" y1="5.25" x2="8" y2="9.75" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title"> Pengaturan Akses</span>
                             </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="{{ asset('assets/admin/img/undraw_profile_1.svg') }}" alt="...">
-                        <div class="status-indicator bg-success"></div>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('user') }}">
+                        User
+                        </a>
+                </div>
             </div>
-            <div class="font-weight-bold">
-                <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                    problem I've been having.</div>
-                <div class="small text-gray-500">Emily Fowler · 58m</div>
-            </div>
-            </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="{{ asset('assets/admin/img/undraw_profile_2.svg') }}" alt="...">
-                    <div class="status-indicator"></div>
-                </div>
-                <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how
-                        would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                </div>
-            </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="{{ asset('assets/admin/img/undraw_profile_2.svg') }}" alt="...">
-                    <div class="status-indicator bg-warning"></div>
-                </div>
-                <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy
-                        with
-                        the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                </div>
-            </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                    <div class="status-indicator bg-success"></div>
-                </div>
-                <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because
-                        someone
-                        told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                </div>
-            </a>
-            <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                Messages</a>
-        </div>
-        </li>
+    </div>
+    </li> --}}
 
-        <div class="topbar-divider d-none d-sm-block"></div> --}}
+                        {{-- <li class="nav-item {{ (request()->is('admin/user')) ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('user') }}">
+        <span class="nav-link-icon d-md-none d-lg-inline-block">
+            <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('assets/admin/img/undraw_profile.svg') }}">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <polyline points="9 11 12 14 20 6" />
+            <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+            </svg>
+        </span>
+        <span class="nav-link-title">Pengaturan Akses</span>
+    </a>
+    </li> --}}
+
+                        <li class="nav-item {{ request()->is('admin/pegawaiAjib') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('pegawai') }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+                                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                                    </svg>
+
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="9 11 12 14 20 6" />
+                                    <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title"> Pegawai AJIB </span>
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" onclick="logout()">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                        </li>
+
+                        <li class="nav-item {{ request()->is('admin/kinerja') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('kinerja-pegawai') }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-chart-area-line" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <polyline points="4 19 8 13 12 15 16 10 20 14 20 19 4 19"></polyline>
+                                        <polyline points="4 12 7 8 11 10 16 4 20 8"></polyline>
+                                    </svg>
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="9 11 12 14 20 6" />
+                                    <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title"> Rekap Input </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
+            <div class="container-xl">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-nav flex-row order-md-last">
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
+                            aria-label="Open user menu">
+
+                            <span class="avatar avatar-sm avatar-rounded"
+                                style="background-image: url({{ asset('assets/admin/img/undraw_profile.svg') }})"></span>
+
+                            <div class="d-none d-xl-block ps-2">
+                                <div>Admin</div>
+                                <div class="mt-1 small text-muted">Jakpintas</div>
                             </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <a href="#" class="dropdown-item" onclick="logout()">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/logout -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24"
+                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2">
+                                    </path>
+                                    <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                                </svg>
+                                Logout
+                            </a>
+
                             <form method="POST" action="{{ route('logout') }}" id="form-logout">
                                 @csrf</form>
-                        </li>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
 
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                @yield('content')
-                <!-- /.container-fluid -->
-
+                </div>
             </div>
-            <!-- End of Main Content -->
+        </header>
 
-            <!-- Footer -->
-            {{-- <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
-            </div>
+        <div class="page-wrapper">
+
+
+            @yield('content')
+
+
+            {{-- <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-lg-auto ms-lg-auto"></div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Copyright &copy; 2022
+                                    <a href="." class="link-secondary">Tabler</a>. All rights
+                                    reserved.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer> --}}
         </div>
-    </footer> --}}
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                    <h5 class="modal-title">New report</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="example-text-input"
+                            placeholder="Your report name" />
+                    </div>
+                    <label class="form-label">Report type</label>
+                    <div class="form-selectgroup-boxes row mb-3">
+                        <div class="col-lg-6">
+                            <label class="form-selectgroup-item">
+                                <input type="radio" name="report-type" value="1" class="form-selectgroup-input"
+                                    checked />
+                                <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                    <span class="me-3">
+                                        <span class="form-selectgroup-check"></span>
+                                    </span>
+                                    <span class="form-selectgroup-label-content">
+                                        <span class="form-selectgroup-title strong mb-1">Simple</span>
+                                        <span class="d-block text-muted">Provide only basic data needed for the
+                                            report</span>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-selectgroup-item">
+                                <input type="radio" name="report-type" value="1" class="form-selectgroup-input" />
+                                <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                    <span class="me-3">
+                                        <span class="form-selectgroup-check"></span>
+                                    </span>
+                                    <span class="form-selectgroup-label-content">
+                                        <span class="form-selectgroup-title strong mb-1">Advanced</span>
+                                        <span class="d-block text-muted">Insert charts and additional advanced analyses
+                                            to be
+                                            inserted in the report</span>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="mb-3">
+                                <label class="form-label">Report url</label>
+                                <div class="input-group input-group-flat">
+                                    <span class="input-group-text">
+                                        https://tabler.io/reports/
+                                    </span>
+                                    <input type="text" class="form-control ps-0" value="report-01" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label class="form-label">Visibility</label>
+                                <select class="form-select">
+                                    <option value="1" selected>Private</option>
+                                    <option value="2">Public</option>
+                                    <option value="3">Hidden</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Client name</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Reporting period</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div>
+                                <label class="form-label">Additional information</label>
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </a>
+                    <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Create new report
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
+    {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
+
+    <!-- Libs JS -->
+    <script src="{{ asset('assets/admin2/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+
+    <!-- Tabler Core -->
+    <script src="{{ asset('assets/admin2/js/tabler.min.js') }}"></script>
+    <script src="{{ asset('assets/admin2/js/demo.min.js') }}"></script>
+
+    {{-- Add new --}}
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -352,7 +469,7 @@
     <script src="{{ asset('assets/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('assets/admin/js/sb-admin-2.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/js/sb-admin-2.min.js') }}"></script> --}}
 
     <!-- Page level plugins -->
     <script src="{{ asset('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
@@ -364,8 +481,33 @@
     </script>
 
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script> --}}
+
+
     <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('assets/admin/vendor/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/jszip.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/admin/vendor/datatables/pdfmake.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/vendor/datatables/vfs_fonts.js') }}"></script> --}}
+
+
+    {{-- Datatables --}}
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js   "></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+
+
+
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
@@ -379,6 +521,8 @@
         addText();
         dataTebaruRealtime();
     </script>
+
+
 
 </body>
 
