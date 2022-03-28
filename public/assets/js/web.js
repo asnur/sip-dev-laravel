@@ -347,8 +347,8 @@ map.on("mouseenter", "investasi_fill", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
-        
-        
+
+
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -374,7 +374,7 @@ map.on("mouseenter", "investasi_line", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -400,7 +400,7 @@ map.on("mouseenter", "investasi_dot", (e) => {
     <div class="card-body p-2">
       <h6 class="mt-0 mb-2 card-title border-bottom">${dt["Nama"]}</h6>
       <div style="line-height: 1.2;">
-      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>      
+      <span class="d-block" style="width: 300px"><b>Deskripsi :</b> ${dt["Deskripsi"]}</span>
     </div>`;
 
     // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
@@ -779,7 +779,7 @@ function getRadius(e) {
                 for (var az in dt) {
                     const dta = dt[az];
                     htmlContent += `
-                    <li style="list-style:none" class="listgroup-cust align-items-center text_all"> 
+                    <li style="list-style:none" class="listgroup-cust align-items-center text_all">
                         <div class="row">
                             <div class="col-md-8 text_all">
                             ${dta.fasilitas}

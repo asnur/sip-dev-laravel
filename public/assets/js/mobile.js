@@ -1415,7 +1415,7 @@ function separatorNum(val) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${APP_URL}/kbli/${subzona}`,
+        url: `${url}/kblia2/${subzona}`,
         method: "get",
         dataType: "json",
         success: function (e) {
@@ -1440,7 +1440,7 @@ function DropdownSkala(zonasi, sel) {
     var resHTML = "";
     $("#kegiatanKewenangan").html("");
     $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}`,
+        url: `${APP_URL}/kblib2/${zonasi}/${sel}`,
         method: "get",
         dataType: "json",
         success: function (res) {
@@ -1516,7 +1516,7 @@ function DropdownSkala(zonasi, sel) {
 
 function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     $.ajax({
-        url: `${APP_URL}/kbli/${zonasi}/${sel}/${skala}`,
+        url: `${APP_URL}/kblic2/${zonasi}/${sel}/${skala}`,
         method: "get",
         dataType: "json",
         success: function (res) {
