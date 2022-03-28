@@ -9,12 +9,12 @@
 } */
 
 .text_data_terbaru {
-    margin-left: -16%;
+    margin-left: -3.5%;
 }
 
 .jarak_text_data_terbaru {
     /* height: 10%; */
-    margin-top: -2%;
+    margin-top: -2.5%;
 }
 
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
@@ -25,12 +25,108 @@
     width: 100px;
 }
 
-.carousel-inner {
-    /* width:100%; */
-    /* max-height: 300px !important; */
+/* .carousel-inner {
+    width:100%; */
+/* max-height: 300px !important;
+} */
+
+.img_parents {
+    width: 29.3rem;
+    /* height: 320px; */
+    height: 19rem;
 }
 
-.img_data_terbaru {
-    width: 100%;
-    height: 350px;
+.uk_chart_skeleton {
+    width: 59.5rem;
+    /* height: 320px; */
+    height: 15rem;
+}
+
+.img_child {
+    /* width: 150px;
+    height: 100px; */
+    width: 11rem;
+    height: 7rem;
+    padding: 7% 11% 0 0;
+    cursor: pointer;
+}
+
+/* make button larger and change their positions */
+.slick-prev,
+.slick-next {
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 5px;
+}
+
+.slick-next {
+    right: 5px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 40px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* General slick slider styling */
+.slick-slide:focus,
+.slick-slide:focus {
+    outline: none;
+    /* remove default outline when on :focus */
+}
+
+/* hide dots and arrow buttons when slider is not hovered */
+.slick-slider:not(:hover) .slick-arrow,
+.slick-slider:not(:hover) .slick-dots {
+    opacity: 0;
+}
+
+/* transition effects for opacity */
+.slick-arrow {
+    transition: opacity 0.5s ease-out;
+}
+
+.loader_lazy_load {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    /* margin-left: 10px; */
+    margin-top: 80px;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.dt-buttons {
+    position: absolute !important;
+    margin-top: -1.8rem;
+    margin-left: 11rem;
+}
+
+.dataTables_filter {
+    margin-top: -1rem;
 }
