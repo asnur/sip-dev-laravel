@@ -30,6 +30,40 @@ var dataTableInit = function () {
 
 var dtSearchInit = function () {
     $("#selectOption").change(function () {
+        var kel = $("#selectOption").val();
+
+        // console.log(kel);
+
+        localStorage.setItem("options", kel);
+
+        var lempar_kel = localStorage.getItem("options");
+
+        $("#PrintKinerja").attr("href", `/admin/Export-Kinerja/${kel}`);
+
+        // console.log(lempar_kel);
+
+        // $.ajax({
+        //     url: `/admin/Kelurahan/${lempar_kel}`,
+        //     method: "GET",
+        //     dataType: "json",
+
+        //     success: function (e) {
+        //         for (let index = 0; index < e.length; index++) {
+        //             // console.log(e.get_kelurahan);
+        //             // html += `
+        //             //     <tr>
+        //             //         <td>${e[index].judul}</td>
+        //             //         <td>${data.kelurahan}</td>
+        //             //     </tr>
+        //             // `;
+        //             // $(".tampildata_kelurahan").html(html);
+        //             // console.log(get_kelurahan)
+        //             // let str = JSON.stringify(get_kelurahan);
+        //             // var cek = window.sessionStorage.setItem("get_kelurahan", str);
+        //         }
+        //     },
+        // });
+
         dtSearchAction($(this), 1);
     });
 };
@@ -408,7 +442,9 @@ if (arrURL[4] == undefined) {
 
     setInterval(() => {
         filterAnalytics(localStorage.getItem("interval"));
-    }, 10000);
+        // 10 * 60 * 1000;
+        // mnt * detik * ms
+    }, 600000);
 }
 
 function dataTebaruRealtime() {
@@ -417,6 +453,25 @@ function dataTebaruRealtime() {
         method: "GET",
         dataType: "json",
 
+        beforeSend: function () {
+            $("#name").html('<div class="skeleton-heading"></div>');
+            $("#judul").html('<div class="skeleton-heading"></div>');
+            $("#kategori").html('<div class="skeleton-heading"></div>');
+            $("#deskripsi").html('<div class="skeleton-heading"></div>');
+            $("#permasalahan").html('<div class="skeleton-heading"></div>');
+            $("#solusi").html('<div class="skeleton-heading"></div>');
+
+            $("#gambar_utama").html(
+                ' <div class="img_parents skeleton-image"></div>'
+            );
+            $("#photo_ajib").html(
+                '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
+            );
+            $("#kelurahan_ajib").html(
+                '<div style="margin-top:-0.7rem;" class="skeleton-heading"></div>'
+            );
+        },
+
         success: function (e) {
             // console.log(e.surveyer);
             $.each(e.surveyer, function (key, data) {
@@ -424,12 +479,36 @@ function dataTebaruRealtime() {
                 $("#name").html(data.name);
                 $("#judul").html(data.judul);
                 $("#kategori").html(data.kategori);
-                $("#deskripsi").html(
-                    data.catatan.charAt(0).toUpperCase() +
-                        data.catatan.slice(1).toLowerCase()
-                );
-                $("#permasalahan").html(data.permasalahan);
+
+                if (data.kelurahan != null) {
+                    $("#kelurahan_ajib").html(
+                        data.kelurahan.charAt(0).toUpperCase() +
+                            data.kelurahan.slice(1).toLowerCase()
+                    );
+                } else {
+                    $("#kelurahan_ajib").html(data.kelurahan);
+                }
+
+                if (data.catatan != null) {
+                    $("#deskripsi").html(
+                        data.catatan.charAt(0).toUpperCase() +
+                            data.catatan.slice(1).toLowerCase()
+                    );
+                } else {
+                    $("#deskripsi").html(data.catatan);
+                }
+
+                if (data.permasalahan != null) {
+                    $("#permasalahan").html(
+                        data.permasalahan.charAt(0).toUpperCase() +
+                            data.permasalahan.slice(1).toLowerCase()
+                    );
+                } else {
+                    $("#permasalahan").html(data.permasalahan);
+                }
+
                 $("#solusi").html(data.solusi);
+
                 $("#gambar_utama").html(
                     '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/mobile/img/' +
                         data.foto +
@@ -449,10 +528,8 @@ function dataTebaruRealtime() {
                 //         '.jpg") }}" alt="Petugas Ajib" /></span>'
                 // );
 
-                const koor_kelurahan = data.kordinat;
-
-                // console.log(koor_kelurahan);
-                getAjibKelurahan(koor_kelurahan);
+                // const koor_kelurahan = data.kordinat;
+                // getAjibKelurahan(koor_kelurahan);
             });
         },
     });
@@ -496,14 +573,36 @@ $(document).ready(function () {
                     $("#name").html(data.name);
                     $("#judul").html(data.judul);
                     $("#kategori").html(data.kategori);
-                    $("#deskripsi").html(
-                        data.catatan.charAt(0).toUpperCase() +
-                            data.catatan.slice(1).toLowerCase()
-                    );
-                    $("#permasalahan").html(
-                        data.permasalahan.charAt(0).toUpperCase() +
-                            data.permasalahan.slice(1).toLowerCase()
-                    );
+
+                    if (data.kelurahan != null) {
+                        $("#kelurahan_ajib").html(
+                            data.kelurahan.charAt(0).toUpperCase() +
+                                data.kelurahan.slice(1).toLowerCase()
+                        );
+                    } else {
+                        $("#kelurahan_ajib").html(
+                            "<span class='badge bg-danger'>Koordinat tidak tepat</span>"
+                        );
+                    }
+
+                    if (data.catatan != null) {
+                        $("#deskripsi").html(
+                            data.catatan.charAt(0).toUpperCase() +
+                                data.catatan.slice(1).toLowerCase()
+                        );
+                    } else {
+                        $("#deskripsi").html(data.catatan);
+                    }
+
+                    if (data.permasalahan != null) {
+                        $("#permasalahan").html(
+                            data.permasalahan.charAt(0).toUpperCase() +
+                                data.permasalahan.slice(1).toLowerCase()
+                        );
+                    } else {
+                        $("#permasalahan").html(data.permasalahan);
+                    }
+
                     $("#solusi").html(data.solusi);
 
                     $("#gambar_utama2").html(
@@ -523,10 +622,8 @@ $(document).ready(function () {
                             data.name +
                             '.jpg") }}" alt="Petugas Ajib" /></span>'
                     );
-                    const koor_kelurahan = data.kordinat;
-
-                    // console.log(koor_kelurahan);
-                    getAjibKelurahan(koor_kelurahan);
+                    // const koor_kelurahan = data.kordinat;
+                    // getAjibKelurahan(koor_kelurahan);
                 });
             },
         });
@@ -545,21 +642,51 @@ function getAjibKelurahan(koor_kelurahan) {
         //     console.log(dt);
         // },
         beforeSend: function () {
-            $("#kelurahan_ajib").html('<div class="skeleton-heading"></div>');
+            $("#kelurahan_ajib").html(
+                '<div style="margin-top: 0.4rem;" class="skeleton-heading"></div>'
+            );
         },
         success: function (dt) {
             const dtResp = JSON.parse(dt);
+
             const prop = dtResp.features[0].properties;
 
             if (dtResp.features != null) {
                 // $("#kelurahan_ajib").html(`${prop.Kelurahan}`);
                 $("#kelurahan_ajib").html(
-                    "AJIB " +
+                    "<div style='margin-top: 0.4rem;'>AJIB " +
                         prop.Kelurahan.charAt(0).toUpperCase() +
                         prop.Kelurahan.slice(1).toLowerCase() +
-                        ""
+                        "</div>"
                 );
             }
         },
     });
 }
+
+// $(document).ready(function () {
+//     $("#selectOption").change(function () {
+//         var kel = $("#selectOption").val();
+
+//         console.log(kel);
+
+//         $.ajax({
+//             url: `/admin/Kelurahan/${kel}`,
+//             method: "GET",
+//             dataType: "json",
+
+//             success: function (e) {
+//                 $.each(e.get_kelurahan, function (key, data) {
+//                     console.log(e.get_kelurahan);
+
+//                     $("#judul_ekspor").html(data.judul);
+
+//                     // console.log(get_kelurahan)
+
+//                     // let str = JSON.stringify(get_kelurahan);
+//                     // var cek = window.sessionStorage.setItem("get_kelurahan", str);
+//                 });
+//             },
+//         });
+//     });
+// });

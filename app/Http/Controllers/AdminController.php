@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use DataTables;
 use Illuminate\Support\Facades\Http;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -396,5 +397,48 @@ class AdminController extends Controller
                 ->rawColumns(['foto'])
                 ->make(true);
         }
+    }
+
+
+    public function pdf_kinerja($kelurahan = null)
+    {
+        if ($kelurahan !== null) {
+            $data = Survey::select(['judul', 'foto', 'kategori', 'kelurahan'])
+                ->where('kelurahan', $kelurahan)
+                ->get();
+        } else {
+            $data = Survey::select(['judul', 'foto', 'kategori', 'kelurahan'])->get();
+        }
+
+        // if ($kelurahan == "Semua") {
+        //     $data = Survey::select(['judul', 'foto', 'kategori', 'kelurahan'])->get();
+        // }
+
+
+
+        $opciones_ssl = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                'allow_self_signed' => TRUE,
+            ),
+        );
+
+        return PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.Kinerja-AJIB', compact('data'))->stream();
+    }
+
+
+    public function Kelurahan($lempar_kel)
+    {
+        $data = Survey::select(['judul', 'foto', 'kategori', 'kelurahan'])
+            ->where('kelurahan', $lempar_kel)
+            ->get();
+
+        // $data = Survey::select('kelurahan')->groupBy('kelurahan')->get();
+
+        // return response()->json([
+        //     'get_kelurahan' => $data,
+        // ]);
+        return view('admin.Kinerja-AJIB', compact(['data']));
     }
 }

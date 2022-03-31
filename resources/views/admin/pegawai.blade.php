@@ -181,7 +181,7 @@ $Roles = '';
 
 
                     <div class="card-body">
-                        <table class="table table-hover data-pegawai">
+                        <table class="table table-hover data-pegawai" style="margin-top: 1rem !important;">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
@@ -192,23 +192,28 @@ $Roles = '';
                                 </tr>
                             </thead>
                             <tfoot>
-                                <tr class="hide_lazyload_kinerja">
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                </tr>
+
+                                @php
+                                for ($x = 0; $x <= 9; $x++) { echo"<tr class='hide_lazyload_kinerja'>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    </tr>";
+                                    }
+                                    @endphp
+
                             </tfoot>
                         </table>
                     </div>

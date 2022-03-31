@@ -145,6 +145,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/data-terbaru/{id_data_terbaru}', [AdminController::class, 'dataTerbaru'])->name('data-terbaru');
 
     Route::get('/pegawaiDataAjib/{pegawai_id}', [AdminController::class, 'data_edit_pegawai'])->name('edit-data-pegawai');
+    Route::get('Export-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('export-kinerja');
+    // Route::get('/Kelurahan/{lempar_kel}', [AdminController::class, 'Kelurahan'])->name('data-kelurahan');
 });
 
 //Analytics Page
