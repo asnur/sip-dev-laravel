@@ -437,6 +437,7 @@ class AdminController extends Controller
 
         $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
         $pdf->setPaper('portrait');
+        $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
         $pdf->loadView('admin.pdf_kinerja_ajib', compact('data'));
 
         return $pdf->stream();
