@@ -12,7 +12,7 @@ var select2Init = function () {
     $("#selectOption").select2({
         dropdownAutoWidth: true,
         allowClear: true,
-        placeholder: "Pilih Kecamatan",
+        placeholder: "Pilih Kelurahan",
     });
 };
 
@@ -38,7 +38,7 @@ var dtSearchInit = function () {
 
         var lempar_kel = localStorage.getItem("options");
 
-        $("#PrintKinerja").attr("href", `/admin/Export-Kinerja/${kel}`);
+        $("#PrintKinerja").attr("href", `/admin/Ekspor-Kinerja/${kel}`);
 
         // console.log(lempar_kel);
 
@@ -467,7 +467,7 @@ function dataTebaruRealtime() {
             $("#photo_ajib").html(
                 '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
             );
-            $("#kelurahan_ajib").html(
+            $("#penempatan").html(
                 '<div style="margin-top:-0.7rem;" class="skeleton-heading"></div>'
             );
         },
@@ -480,14 +480,20 @@ function dataTebaruRealtime() {
                 $("#judul").html(data.judul);
                 $("#kategori").html(data.kategori);
 
-                if (data.kelurahan != null) {
-                    $("#kelurahan_ajib").html(
-                        data.kelurahan.charAt(0).toUpperCase() +
-                            data.kelurahan.slice(1).toLowerCase()
-                    );
-                } else {
-                    $("#kelurahan_ajib").html(data.kelurahan);
-                }
+                $("#penempatan").html(
+                    "<div style='margin-top: 0.4rem;'>AJIB " +
+                        data.penempatan.substr(19) +
+                        "</div>"
+                );
+
+                // if (data.kelurahan != null) {
+                //     $("#kelurahan_ajib").html(
+                //         data.kelurahan.charAt(0).toUpperCase() +
+                //             data.kelurahan.slice(1).toLowerCase()
+                //     );
+                // } else {
+                //     $("#kelurahan_ajib").html(data.kelurahan);
+                // }
 
                 if (data.catatan != null) {
                     $("#deskripsi").html(
@@ -562,7 +568,7 @@ $(document).ready(function () {
                 $("#photo_ajib2").html(
                     '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
                 );
-                $("#kelurahan_ajib").html(
+                $("#penempatan").html(
                     '<div style="margin-top:-0.7rem;" class="skeleton-heading"></div>'
                 );
             },
@@ -574,16 +580,22 @@ $(document).ready(function () {
                     $("#judul").html(data.judul);
                     $("#kategori").html(data.kategori);
 
-                    if (data.kelurahan != null) {
-                        $("#kelurahan_ajib").html(
-                            data.kelurahan.charAt(0).toUpperCase() +
-                                data.kelurahan.slice(1).toLowerCase()
-                        );
-                    } else {
-                        $("#kelurahan_ajib").html(
-                            "<span class='badge bg-danger'>Koordinat tidak tepat</span>"
-                        );
-                    }
+                    $("#penempatan").html(
+                        "<div style='margin-top: 0.4rem;'>AJIB " +
+                            data.penempatan.substr(19) +
+                            "</div>"
+                    );
+
+                    // if (data.kelurahan != null) {
+                    //     $("#kelurahan_ajib").html(
+                    //         data.kelurahan.charAt(0).toUpperCase() +
+                    //             data.kelurahan.slice(1).toLowerCase()
+                    //     );
+                    // } else {
+                    //     $("#kelurahan_ajib").html(
+                    //         "<span class='badge bg-danger'>Koordinat tidak tepat</span>"
+                    //     );
+                    // }
 
                     if (data.catatan != null) {
                         $("#deskripsi").html(

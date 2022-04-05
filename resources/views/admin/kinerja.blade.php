@@ -45,7 +45,7 @@ $Roles = '';
                         <h3 class="card-title">Rekap Input AJIB</h3>
 
 
-                        <a style="margin-left: 52%;" href="/admin/Export-Kinerja" target="_blank" id="PrintKinerja" class="btn w-5">
+                        <a style="margin-left: 52%;" href="/admin/Ekspor-Kinerja" target="_blank" id="PrintKinerja" class="btn w-5">
 
                             <!-- Download SVG icon from http://tabler-icons.io/i/rss -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-printer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -99,10 +99,14 @@ $Roles = '';
                         <table class="table table-hover data-kinerja" style="margin-top: 1rem !important;">
                             <thead>
                                 <tr>
-                                    <th>Nama Tempat</th>
-                                    <th>Kelurahan</th>
-                                    <th>Foto</th>
-                                    <th>Kategori</th>
+                                    <th width="8%">Lokasi</th>
+                                    <th width="5%">Kelurahan</th>
+                                    <th width="5%">Kategori</th>
+                                    <th width="13%">Deskripsi</th>
+                                    <th width="13%">Permasalahan</th>
+                                    <th width="10%">Solusi</th>
+                                    <th width="10%">Foto</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
@@ -115,11 +119,21 @@ $Roles = '';
                                         <div class='skeleton-line'></div>
                                     </td>
                                     <td>
-                                        <div class='skeleton-image'></div>
+                                        <div class='skeleton-line'></div>
                                     </td>
                                     <td>
                                         <div class='skeleton-line'></div>
                                     </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-image'></div>
+                                    </td>
+
                                     </tr>";
                                     }
                                     @endphp
@@ -226,13 +240,49 @@ $Roles = '';
 
 
             // cetak table
-            columns: [{
+            columns: [
+                // {
+                //     data: 'judul'
+                //     , name: 'judul'
+                // }
+                // ,
+                // {
+                //     data: 'kelurahan'
+                //     , name: 'kelurahan'
+                // }
+                // ,
+
+
+
+                {
                     data: 'judul'
                     , name: 'judul'
-                }
-                , {
+                },
+
+                {
                     data: 'kelurahan'
                     , name: 'kelurahan'
+                },
+
+
+                {
+                    data: 'kategori'
+                    , name: 'kategori'
+                },
+
+                {
+                    data: 'catatan'
+                    , name: 'catatan'
+                },
+
+                {
+                    data: 'permasalahan'
+                    , name: 'permasalahan'
+                },
+
+                {
+                    data: 'solusi'
+                    , name: 'solusi'
                 }
 
                 , {
@@ -240,11 +290,6 @@ $Roles = '';
                     , name: 'foto'
                     , sortable: false
                     , searchable: false
-                },
-
-                {
-                    data: 'kategori'
-                    , name: 'kategori'
                 }
             , ],
 
@@ -252,6 +297,7 @@ $Roles = '';
             columnDefs: [{
                     orderSequence: ["asc", "desc"]
                     , targets: [0]
+                        // , "visible": false
                 , }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -259,9 +305,22 @@ $Roles = '';
                 , }
                 , {
                     orderSequence: ["desc", "asc"]
-                    , targets: [2]
+                    , targets: [3]
                 , }
-            , ],
+                , {
+                    orderSequence: ["desc", "asc"]
+                    , targets: [4]
+                , }
+                , {
+                    orderSequence: ["desc", "asc"]
+                    , targets: [5]
+                , }
+                , {
+                    orderSequence: ["desc", "asc"]
+                    , targets: [6]
+                , },
+
+            ],
 
 
         });

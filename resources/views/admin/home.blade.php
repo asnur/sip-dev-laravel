@@ -251,7 +251,7 @@
                                             </span>
                                         </div>
                                         <div class="mt-1">
-                                            <span id="kelurahan_ajib">
+                                            <span id="penempatan">
                                                 {{-- <div style="margin-top:-0.7rem;" class="skeleton-heading"></div> --}}
                                             </span>
                                         </div>

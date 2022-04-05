@@ -76,10 +76,9 @@ $Roles = '';
 
                                     <div class="mb-3">
                                         <div class="form-label">Penempatan</div>
-                                        <select class="form-select" name="penempatan" id="penempatan" required>
+                                        <select class="form-select" name="penempatan" required>
 
-                                            <option value="">Pilih Kecamatan...</option>
-
+                                            <option value="" disabled="">Pilih Kecamatan...</option>
                                             @foreach ($kecamatan as $kec)
                                             <option value="{{ $kec }}">{{ $kec }}</option>
                                             @endforeach
@@ -135,7 +134,6 @@ $Roles = '';
                                 <div class="mb-3">
                                     <div class="form-label">Penempatan</div>
                                     <select class="form-select" name="penempatan" required>
-
 
                                         <option id="penempatanUser"></option>
 

@@ -136,7 +136,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/pegawaiAjib', [AdminController::class, 'update_pegawai_ajib'])->name('update-pegawai');
     Route::delete('/pegawaiAjib', [AdminController::class, 'delete_pegawai_ajib'])->name('delete-pegawai');
 
-    Route::get('/kinerja', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
+    Route::get('/RekapInput', [AdminController::class, 'kinerja_pegawai_ajib'])->name('kinerja-pegawai');
     Route::get('/kinerjaData', [AdminController::class, 'kinerja_data'])->name('kinerja-data');
     Route::post('/kinerja', [AdminController::class, 'kinerja'])->name('kinerja-surveyer');
     Route::get('/titik', [SurveyerController::class, 'index'])->name('titik');
@@ -145,8 +145,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/data-terbaru/{id_data_terbaru}', [AdminController::class, 'dataTerbaru'])->name('data-terbaru');
 
     Route::get('/pegawaiDataAjib/{pegawai_id}', [AdminController::class, 'data_edit_pegawai'])->name('edit-data-pegawai');
-    Route::get('Export-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('export-kinerja');
-    // Route::get('/Kelurahan/{lempar_kel}', [AdminController::class, 'Kelurahan'])->name('data-kelurahan');
+    Route::get('Ekspor-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('ekspor-kinerja');
 });
 
 //Analytics Page
