@@ -76,10 +76,9 @@ $Roles = '';
 
                                     <div class="mb-3">
                                         <div class="form-label">Penempatan</div>
-                                        <select class="form-select" name="penempatan" id="penempatan" required>
+                                        <select class="form-select" name="penempatan" required>
 
-                                            <option value="">Pilih Kecamatan...</option>
-
+                                            <option value="" disabled="">Pilih Kecamatan...</option>
                                             @foreach ($kecamatan as $kec)
                                             <option value="{{ $kec }}">{{ $kec }}</option>
                                             @endforeach
@@ -136,7 +135,6 @@ $Roles = '';
                                     <div class="form-label">Penempatan</div>
                                     <select class="form-select" name="penempatan" required>
 
-
                                         <option id="penempatanUser"></option>
 
                                         @foreach ($kecamatan as $kec)
@@ -181,7 +179,7 @@ $Roles = '';
 
 
                     <div class="card-body">
-                        <table class="table table-hover data-pegawai">
+                        <table class="table table-hover data-pegawai" style="margin-top: 1rem !important;">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
@@ -192,23 +190,28 @@ $Roles = '';
                                 </tr>
                             </thead>
                             <tfoot>
-                                <tr class="hide_lazyload_kinerja">
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                    <th>
-                                        <div class="skeleton-line"></div>
-                                    </th>
-                                </tr>
+
+                                @php
+                                for ($x = 0; $x <= 9; $x++) { echo"<tr class='hide_lazyload_kinerja'>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    </tr>";
+                                    }
+                                    @endphp
+
                             </tfoot>
                         </table>
                     </div>

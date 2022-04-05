@@ -18,12 +18,12 @@ const addText = () => {
                 $("#table-surveyer").DataTable({
                     // retrieve: true,
                     ordering: true,
-                    order: [[0, "asc"]],
+                    order: [[2, "desc"]],
                     columnDefs: [
-                        { orderSequence: ["desc", "asc"], targets: [0] },
-                        { orderSequence: ["desc", "asc"], targets: [1] },
-                        { orderSequence: ["desc", "asc"], targets: [2] },
-                        { orderSequence: ["desc", "asc"], targets: [3] },
+                        { orderSequence: ["asc", "desc"], targets: [0] },
+                        { orderSequence: ["asc", "desc"], targets: [1] },
+                        { orderSequence: ["asc", "desc"], targets: [2] },
+                        { orderSequence: ["asc", "desc"], targets: [3] },
                     ],
                 });
             });

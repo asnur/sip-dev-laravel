@@ -217,7 +217,7 @@
                                 {{-- <div class="img_parents skeleton-image"></div> --}}
                             </span>
                             <span id="gambar_utama2">
-                                <div class="img_parents skeleton-image"></div>
+                                {{-- <div class="img_parents skeleton-image"></div> --}}
                             </span>
                         </div>
 
@@ -235,8 +235,8 @@
 
                                         <div id="photo_ajib">
                                             <div class="ratio ratio-1x1 card-img-left">
-                                                <div style="width: 3rem; height:3.5rem;" class="skeleton-image">
-                                                </div>
+                                                {{-- <div style="width: 3rem; height:3.5rem;" class="skeleton-image">
+                                                </div> --}}
                                             </div>
                                         </div>
 
@@ -247,12 +247,12 @@
                                     <div style="margin-left:-1.3rem;" class="col-md-10 mt-1">
                                         <div class="text-truncate">
                                             <span class="h4" id="name">
-                                                <div class="skeleton-heading"></div>
+                                                {{-- <div class="skeleton-heading"></div> --}}
                                             </span>
                                         </div>
                                         <div class="mt-1">
-                                            <span id="kelurahan_ajib">
-                                                <div style="margin-top:-0.7rem;" class="skeleton-heading"></div>
+                                            <span id="penempatan">
+                                                {{-- <div style="margin-top:-0.7rem;" class="skeleton-heading"></div> --}}
                                             </span>
                                         </div>
                                     </div>
@@ -280,13 +280,16 @@
 
                         <div class="row" style="margin-top:-1.4rem;">
                             <div class="col-md-3">
-                                <label class="form-label">Judul <span style="margin-left: 3.7rem;">:</span></label>
+                                <label class="form-label">Judul <span style="margin-left: 3.7rem;"> </span></label>
                             </div>
                             <div class="col-md-9">
                                 <div class="col text_data_terbaru">
                                     <span id="judul">
-                                        <div class="skeleton-heading"></div>
+                                        {{-- <div class="skeleton-heading"></div> --}}
                                     </span>
+                                    {{-- <span id="judul"> --}}
+                                    {{-- <div class="skeleton-heading"></div> --}}
+                                    {{-- </span> --}}
                                 </div>
                             </div>
                         </div>
@@ -306,12 +309,12 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="form-label">Kategori <span style="margin-left: 2.5rem;">:</span></label>
+                                <label class="form-label">Kategori <span style="margin-left: 2.5rem;"> </span></label>
                             </div>
                             <div class="col-md-9">
                                 <div class="col text_data_terbaru">
                                     <span id="kategori">
-                                        <div class="skeleton-heading"></div>
+                                        {{-- <div class="skeleton-heading"></div> --}}
                                     </span>
                                 </div>
                             </div>
@@ -319,12 +322,12 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="form-label">Deskripsi <span style="margin-left: 2.2rem;">:</span></label>
+                                <label class="form-label">Deskripsi <span style="margin-left: 2.2rem;"> </span></label>
                             </div>
                             <div class="col-md-9">
                                 <div class="col text_data_terbaru">
                                     <span id="deskripsi">
-                                        <div class="skeleton-heading"></div>
+                                        {{-- <div class="skeleton-heading"></div> --}}
                                     </span>
                                 </div>
                             </div>
@@ -332,12 +335,15 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="form-label">Permasalahan <span style="margin-left: 0.3rem;">:</span> </label>
+                                <label class="form-label">Permasalahan <span style="margin-left: 0.3rem;"> </span> </label>
                             </div>
                             <div class="col-md-9">
                                 <div class="col text_data_terbaru">
                                     <span id="permasalahan">
-                                        <div class="skeleton-heading"></div>
+                                        {{-- <div class="skeleton-heading"></div> --}}
+                                    </span>
+                                    <span id="kepok">
+                                        {{-- <div class="skeleton-heading"></div> --}}
                                     </span>
                                 </div>
                             </div>
@@ -345,12 +351,12 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="form-label">Solusi <span style="margin-left: 3.5rem;">:</span></label>
+                                <label class="form-label">Solusi <span style="margin-left: 3.5rem;"> </span></label>
                             </div>
                             <div class="col-md-9">
                                 <div class="col text_data_terbaru">
                                     <span id="solusi">
-                                        <div class="skeleton-heading"></div>
+                                        {{-- <div class="skeleton-heading"></div> --}}
                                     </span>
                                 </div>
                             </div>
@@ -399,7 +405,7 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter :</a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" onclick="filterAnalytics(1)">1 Hari</a>
+                                {{-- <a class="dropdown-item" onclick="filterAnalytics(1)">1 Hari</a> --}}
                                 <a class="dropdown-item" onclick="filterAnalytics(7)">7 Hari</a>
                                 <a class="dropdown-item" onclick="filterAnalytics(30)">30 Hari</a>
                                 <a class="dropdown-item" onclick="filterAnalytics(90)">90 Hari</a>

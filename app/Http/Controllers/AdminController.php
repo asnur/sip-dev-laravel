@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use DataTables;
 use Illuminate\Support\Facades\Http;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -388,13 +389,56 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Survey::select(['judul', 'foto', 'kategori', 'kelurahan']);
+            $data = Survey::select(['judul', 'foto', 'kategori', 'catatan', 'permasalahan', 'solusi', 'kelurahan']);
             return Datatables::of($data)
                 ->editColumn('foto', function ($data) {
-                    return '<img src="https://jakpintas.dpmptsp-dki.com/mobile/img/' . $data->foto . '" width="100px" height="100px" />';
+                    return '<img src="https://jakpintas.dpmptsp-dki.com/mobile/img/' . $data->foto . '" width="100%" height="110px" />';
                 })
                 ->rawColumns(['foto'])
                 ->make(true);
         }
+    }
+
+
+    public function pdf_kinerja($kelurahan = null)
+    {
+        if ($kelurahan !== null) {
+            $data = Survey::select(['judul', 'foto', 'kategori', 'catatan', 'permasalahan', 'solusi', 'kelurahan'])
+                ->where('kelurahan', $kelurahan)
+                ->get();
+
+            // $get_kel = Survey::select(['kelurahan'])
+            //     ->where('kelurahan', $kelurahan)
+            //     ->get();
+
+            // $upper_kel =  count($get_kel) >= 1 ?  $get_kel[0]->kelurahan : '';
+
+            // $kell = Str::ucfirst($upper_kel);
+
+
+        } else {
+            $data = Survey::select(['judul', 'foto', 'kategori', 'catatan', 'permasalahan', 'solusi', 'kelurahan'])->get();
+        }
+
+        // if ($kelurahan == "Semua") {
+        //     $data = Survey::select(['judul', 'foto', 'kategori', 'kelurahan'])->get();
+        // }
+
+
+
+        $opciones_ssl = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                'allow_self_signed' => TRUE,
+            ),
+        );
+
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->setPaper('portrait');
+        $pdf->loadView('admin.pdf_kinerja_ajib', compact('data'));
+
+        return $pdf->stream();
     }
 }

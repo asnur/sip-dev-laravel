@@ -244,7 +244,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ request()->is('admin/kinerja') ? 'active' : '' }}">
+                        <li class="nav-item {{ request()->is('admin/RekapInput') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('kinerja-pegawai') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
@@ -490,7 +490,10 @@
     <script src="{{ asset('assets/admin/vendor/datatables/buttons.flash.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/jszip.min.js') }}"></script> --}}
-    <script src="{{ asset('assets/admin/vendor/datatables/pdfmake.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('assets/admin/vendor/datatables/pdfmake.min.js') }}"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.4/pdfmake.min.js" integrity="sha512-vCaf5rysVLu1/zVMefJew+IjqlQibggltPWqeo96XsdyJ4ihR3eEDV1oU60afiRXTGf8DqKUjLs2Q99HCbnjAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     {{-- <script src="{{ asset('assets/admin/vendor/datatables/vfs_fonts.js') }}"></script> --}}
 
 
