@@ -1543,7 +1543,7 @@ function dropDownKegiatanKewenangan(zonasi, sel, skala) {
             var resHTML = "";
             if (res != null) {
                 const prop = res.features[0].properties;
-                data_kbli = res;
+                data_kbli = prop;
                 resHTML += "<option>Pilih....</option>";
                 for (var i in prop) {
                     resHTML += `<option value="${i}" data-index="${i}">${prop[i]["Kegiatan"]}-${prop[i]["Kewenangan"]}</option>`;
