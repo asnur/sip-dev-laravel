@@ -1431,7 +1431,7 @@ function dropDownKegiatan(subzona) {
             var htmlContent = "";
             $("#btn-print").hide();
             htmlContent += `<option>Pilih...</option>`;
-            var data = e;
+            var data = e.features[0].properties;
             for (i in data) {
                 // console.log(data[i]["Kegiatan Ruang"]);
                 htmlContent += `<option class="text_all" value="${data[i]["Kegiatan Ruang"]}">${data[i]["Kegiatan Ruang"]}</option>`;
@@ -1458,7 +1458,7 @@ function DropdownSkala(zonasi, sel) {
         success: function (res) {
             $("#btn-print").hide();
             if (res != null) {
-                const prop = res;
+                const prop = res.features[0].properties;
                 var jmlh = [];
                 resHTML += "<option>Pilih....</option>";
                 resHTML += "<optgroup label='Modal'>";
@@ -1542,7 +1542,7 @@ function dropDownKegiatanKewenangan(zonasi, sel, skala) {
         success: function (res) {
             var resHTML = "";
             if (res != null) {
-                const prop = res;
+                const prop = res.features[0].properties;
                 data_kbli = res;
                 resHTML += "<option>Pilih....</option>";
                 for (var i in prop) {
