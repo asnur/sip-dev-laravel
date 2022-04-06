@@ -98,8 +98,15 @@ function locateUser(e) {
     let lng = e.coords.longitude.toString();
     $("#preview-cord").text(`${lat.slice(0, 9)}, ${lng.slice(0, 9)}`);
     $.ajax({
-        url: `${url}/zonasi/${e.coords.longitude}/${e.coords.latitude}`,
-        method: "GET",
+        url: `${url}/zoning`,
+        method: "PUT",
+        data: {
+            lat: e.coords.longitude,
+            lng: e.coords.latitude,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: (e) => {
             let dt = e.features[0].properties;
@@ -123,8 +130,15 @@ function locateUser(e) {
     });
 
     $.ajax({
-        url: `${url}/wilayah/${e.coords.longitude}/${e.coords.latitude}`,
-        method: "GET",
+        url: `${url}/wilayah`,
+        method: "PUT",
+        data: {
+            lat: e.coords.latitude,
+            lng: e.coords.longitude,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: (e) => {
             let kelurahan = e.features[0].properties.Kelurahan;

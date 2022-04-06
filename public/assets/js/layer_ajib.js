@@ -12,8 +12,15 @@ $("#deleteForm").hide();
 
 const findKelurahan = (lng, lat) => {
     $.ajax({
-        url: `${url}/wilayah/${lng}/${lat}`,
-        method: "GET",
+        url: `${url}/wilayah`,
+        method: "PUT",
+        data: {
+            lng: lng,
+            lat: lat,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: (e) => {
             let kelurahan = e.features[0].properties.Kelurahan;
@@ -27,8 +34,15 @@ const findKelurahan = (lng, lat) => {
         },
     });
     $.ajax({
-        url: `${url}/zonasi/${lng}/${lat}`,
-        method: "GET",
+        url: `${url}/zoning`,
+        method: "PUT",
+        data: {
+            lng: lng,
+            lat: lat,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: (e) => {
             let dt = e.features[0].properties;
