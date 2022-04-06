@@ -1,5 +1,5 @@
 // var url = `${APP_URL}:3000`;
-var url = `https://jakpintas.dpmptsp-dki.com:3000`;
+var url = `https://jakpintas.dpmptsp-dki.com:3443`;
 
 var kilometer = $("#ControlRange").val() / 1000;
 var tahun = $("#ControlTahunBanjir").val();
@@ -31,6 +31,7 @@ var budaya;
 var name_file = Math.floor(Math.random() * 9999);
 var status;
 var count = 0;
+var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
 var clickEvent =
     "ontouchstart" in document.documentElement ? "touchstart" : "click";
 $("#OutputControlRange").html(kilometer + " Km");
@@ -1170,126 +1171,110 @@ function addSourceLayer(item) {
             $("#radiusSlide").hide();
         }
 
-        map.addSource(dt, {
-            type: "geojson",
-            data: url + "/" + dt + "/" + item,
-        });
-    }
-
-    if (map.getLayer("banjir_fill")) {
-        map.removeLayer("banjir_fill");
-    }
-
-    if (map.getSource("banjir")) {
-        map.removeSource("banjir");
-    }
-
-    map.addSource("banjir", {
-        type: "geojson",
-        data: `${url}/banjir/${item}/${tahun}`,
-    });
-
-    $("#ControlTahunBanjir").change(function () {
-        var layer = map.getLayer("banjir_fill");
-        var condition = layer.visibility == "visible" ? "visible" : "none";
-        map.removeLayer("banjir_fill");
-        map.removeSource("banjir");
-        map.addSource("banjir", {
-            type: "geojson",
-            data: `${url}/banjir/${item}/${tahun}`,
-        });
-
-        map.addLayer({
-            id: "banjir_fill",
-            type: "fill",
-            source: "banjir",
-            paint: {
-                "fill-color": "#2980b9",
-                "fill-opacity": 0.9,
+        // map.addSource(dt, {
+        //     type: "geojson",
+        //     data: url + "/" + dt + "/" + item,
+        // });
+        $.ajax({
+            url: `${url}/${dt}`,
+            type: "POST",
+            dataType: "json",
+            data: {
+                kelurahan: item,
             },
-            layout: {
-                visibility: condition,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            success: (data) => {
+                map.addSource(dt, {
+                    type: "geojson",
+                    data: data,
+                });
+                addLayers(dt);
+                onOffLayers();
             },
         });
-    });
+    }
 
-    addLayers();
+    // addLayers();
 
     $(".lblLayer").show();
     $(".closeCollapse").show();
     // $('#kbliTwo').show()
     // $('').show()
-    onOffLayers();
+    // onOffLayers();
 }
 
 //add layer
-function addLayers() {
-    map.addLayer({
-        id: "wilayah_fill",
-        type: "fill",
-        source: "wilayah",
-        paint: {
-            "fill-color": "#00FFFF",
-            "fill-opacity": 0.1,
-            "fill-outline-color": "red",
-        },
-        layout: {
-            visibility: "visible",
-        },
-    });
+function addLayers(layer) {
+    if (layer == "wilayah") {
+        map.addLayer({
+            id: "wilayah_fill",
+            type: "fill",
+            source: "wilayah",
+            paint: {
+                "fill-color": "#00FFFF",
+                "fill-opacity": 0.1,
+                "fill-outline-color": "red",
+            },
+            layout: {
+                visibility: "visible",
+            },
+        });
+    } else if (layer == "zoning") {
+        map.addLayer({
+            id: "zoning_fill",
+            type: "fill",
+            source: "zoning",
+            paint: {
+                "fill-color": ["get", "fill"],
+                "fill-opacity": 1,
+            },
+            layout: {
+                visibility: "visible",
+            },
+        });
 
-    map.addLayer({
-        id: "zoning_fill",
-        type: "fill",
-        source: "zoning",
-        paint: {
-            "fill-color": ["get", "fill"],
-            "fill-opacity": 1,
-        },
-        layout: {
-            visibility: "visible",
-        },
-    });
+        map.addLayer({
+            id: "zoning_label",
+            type: "symbol",
+            source: "zoning",
+            layout: {
+                "text-field": "{Sub Zona}",
+                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                "text-size": 12,
+            },
+        });
+    } else if (layer == "iumk") {
+        map.addLayer({
+            id: "iumk_fill",
+            type: "circle",
+            source: "iumk",
+            paint: {
+                "circle-color": "#4264fb",
+                "circle-stroke-color": "#ffff00",
+                "circle-stroke-width": 1,
+                "circle-radius": 4,
+                "circle-opacity": 0.8,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    }
 
-    map.addLayer({
-        id: "zoning_label",
-        type: "symbol",
-        source: "zoning",
-        layout: {
-            "text-field": "{Sub Zona}",
-            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-            "text-size": 12,
-        },
-    });
-
-    map.addLayer({
-        id: "iumk_fill",
-        type: "circle",
-        source: "iumk",
-        paint: {
-            "circle-color": "#4264fb",
-            "circle-stroke-color": "#ffff00",
-            "circle-stroke-width": 1,
-            "circle-radius": 4,
-            "circle-opacity": 0.8,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
-
-    map.addLayer({
-        id: "banjir_fill",
-        type: "fill",
-        source: "banjir",
-        paint: {
-            "fill-color": "#2980b9",
-            "fill-opacity": 0.9,
-        },
-        layout: {
-            visibility: "none",
-        },
-    });
+    // map.addLayer({
+    //     id: "banjir_fill",
+    //     type: "fill",
+    //     source: "banjir",
+    //     paint: {
+    //         "fill-color": "#2980b9",
+    //         "fill-opacity": 0.9,
+    //     },
+    //     layout: {
+    //         visibility: "none",
+    //     },
+    // });
 
     // map.addLayer({
     //     id: "pipa_multilinestring",
@@ -1371,11 +1356,11 @@ function onOffLayers() {
     //     }
     // });
 
-    if ($("#banjir_fill").prop("checked") == true) {
-        showLayer("banjir_fill");
-    } else {
-        hideLayer("banjir_fill");
-    }
+    // if ($("#banjir_fill").prop("checked") == true) {
+    //     showLayer("banjir_fill");
+    // } else {
+    //     hideLayer("banjir_fill");
+    // }
 
     $("#banjir_fill").change(function () {
         if ($(this).prop("checked") == true) {
@@ -1415,8 +1400,14 @@ function separatorNum(val) {
 
 function dropDownKegiatan(subzona) {
     $.ajax({
-        url: `${url}/kblia2/${subzona}`,
-        method: "get",
+        url: `${url}/kbli1`,
+        method: "POST",
+        data: {
+            subzona: subzona,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: function (e) {
             $("#kegiatanRuang").html("");
@@ -1440,8 +1431,15 @@ function DropdownSkala(zonasi, sel) {
     var resHTML = "";
     $("#kegiatanKewenangan").html("");
     $.ajax({
-        url: `${APP_URL}/kblib2/${zonasi}/${sel}`,
-        method: "get",
+        url: `${url}/kbli2`,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            subzona: zonasi,
+            kegiatan: sel,
+        },
         dataType: "json",
         success: function (res) {
             $("#btn-print").hide();
@@ -1516,8 +1514,16 @@ function DropdownSkala(zonasi, sel) {
 
 function dropDownKegiatanKewenangan(zonasi, sel, skala) {
     $.ajax({
-        url: `${APP_URL}/kblic2/${zonasi}/${sel}/${skala}`,
-        method: "get",
+        url: `${url}/kbli3`,
+        method: "post",
+        data: {
+            subzona: zonasi,
+            kegiatan: sel,
+            skala: skala,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         dataType: "json",
         success: function (res) {
             var resHTML = "";
