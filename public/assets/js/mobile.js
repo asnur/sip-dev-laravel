@@ -146,9 +146,9 @@ function locateUser(e) {
                 addSourceLayer(kelurahan);
                 localStorage.setItem("kelurahan", kelurahan);
             }
-            if (map.getLayer("survey_ajib") !== undefined) {
-                map.moveLayer("zoning_fill", "survey_ajib");
-            }
+            // if (map.getLayer("survey_ajib") !== undefined) {
+            //     map.moveLayer("zoning_fill", "survey_ajib");
+            // }
         },
     });
 
@@ -1278,6 +1278,9 @@ function addLayers(layer) {
                 "text-size": 12,
             },
         });
+        if (map.getLayer("survey_ajib") !== undefined) {
+            map.moveLayer("zoning_fill", "survey_ajib");
+        }
     } else if (layer == "iumk") {
         map.addLayer({
             id: "iumk_fill",
@@ -1418,9 +1421,9 @@ $(document).on("click", ".wilayah-select", function () {
     geocoder.query(coor);
     addSourceLayer(kel);
     localStorage.setItem("kelurahan", kel);
-    if (map.getLayer("survey_ajib") !== undefined) {
-        map.moveLayer("zoning_fill", "survey_ajib");
-    }
+    // if (map.getLayer("survey_ajib") !== undefined) {
+    //     map.moveLayer("zoning_fill", "survey_ajib");
+    // }
 });
 
 function separatorNum(val) {
