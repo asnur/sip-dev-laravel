@@ -1057,8 +1057,14 @@ $("#cari_wilayah_mobile").bindWithDelay(
                             const dt = res.features;
                             for (var i in dt) {
                                 var prop = dt[i].properties;
+                                var name = "";
+                                if (prop["Name"] == undefined) {
+                                    name = prop["Nama"];
+                                } else if (prop["Nama"] == undefined) {
+                                    name = prop["Name"];
+                                }
                                 var koor = dt[i].geometry.coordinates;
-                                resHTML += `<li class="wm-li-result text_all wilayah-select" data-kordinat="${koor[1]},${koor[0]}" data-wilayah="${prop["Kelurahan"]}"><i class="fa fa-map-marker" style="font-size: 15px;"></i> ${prop["Nama Jalan"]}, ${prop["Kelurahan"]}, ${prop["Kecamatan"]}, ${prop["Wilayah"]}</li>`;
+                                resHTML += `<li class="wm-li-result text_all wilayah-select" data-kordinat="${koor[1]},${koor[0]}" data-wilayah="${prop["Kelurahan"]}"><i class="fa fa-map-marker" style="font-size: 15px;"></i> ${name}, ${prop["Kelurahan"]}, ${prop["Kecamatan"]}, ${prop["Kota"]}</li>`;
                             }
 
                             $(".wm-search__dropdown").fadeIn();
