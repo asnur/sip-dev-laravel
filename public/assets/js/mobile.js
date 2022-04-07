@@ -1002,7 +1002,14 @@ $("#cari_wilayah_mobile").bindWithDelay(
                 const koor = query.split(",");
                 $.ajax({
                     url: `${url}/wilayah/${koor[1]}/${koor[0]}`,
-                    method: "get",
+                    method: "PUT",
+                    data: {
+                        lat: koor[0],
+                        lng: koor[1],
+                    },
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                     dataType: "json",
                     beforeSend: function () {
                         // ('.map-loading').show()
@@ -1033,8 +1040,14 @@ $("#cari_wilayah_mobile").bindWithDelay(
                 });
             } else {
                 $.ajax({
-                    url: `${url}/jalan/${query}`,
-                    method: "get",
+                    url: `${url}/search`,
+                    method: "PUT",
+                    data: {
+                        keyword: query,
+                    },
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                     dataType: "json",
                     beforeSend: function () {
                         // $('.map-loading').show()
