@@ -71,6 +71,9 @@ const dragMaps = (condition) => {
     if (condition == 1) {
         markerAjib.setLngLat(map.getCenter()).addTo(map);
         map.on("drag", () => {
+            if ($(".mapboxgl-ctrl-geolocate-active").length == 1) {
+                $(".mapboxgl-ctrl-geolocate").click();
+            }
             $("#form_ajib").hide();
             markerAjib.setLngLat(map.getCenter());
         });
