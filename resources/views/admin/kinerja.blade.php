@@ -18,7 +18,7 @@ $Roles = '';
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Rekap
+                    Rekap Input
                 </h2>
             </div>
             <!-- Page title actions -->
@@ -45,7 +45,7 @@ $Roles = '';
                         <h3 class="card-title">Rekap Input AJIB</h3>
 
 
-                        <a style="margin-left: 52%;" href="/admin/Ekspor-Kinerja" target="_blank" id="PrintKinerja" class="btn w-5">
+                        <a style="position:absolute; margin-left:51.8rem;" href="/admin/Ekspor-Kinerja" target="_blank" id="PrintKinerja" class="btn w-10">
 
                             <!-- Download SVG icon from http://tabler-icons.io/i/rss -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-printer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -54,20 +54,22 @@ $Roles = '';
                                 <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
                                 <rect x="7" y="13" width="10" height="8" rx="2"></rect>
                             </svg>
-                            PDF
+                            Cetak PDF
                         </a>
 
 
 
-                        <div class="card-actions w-25">
+                        <div style="position: relative; left:-9rem;" class="card-actions w-25">
 
                             <select class="form-select" id="selectOption" disabled>
+
 
                                 {{-- <option value="Semua">Semua</option> --}}
 
                                 @foreach($kelurahan as $kel)
-                                <option value="{{ $kel->kelurahan }}">{{ $kel->kelurahan }}</option>
+                                <option selected value="{{ $kel[0]->kelurahan }}">{{ $kel[0]->kelurahan }}</option>
                                 @endforeach
+
 
                             </select>
 

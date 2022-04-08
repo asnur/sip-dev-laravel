@@ -41,7 +41,6 @@
 
                             <div class="col-md-9">
                                 <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem;" class="card-title text-break text-primary">Pengunjung 7 Hari Terakhir</h3>
-
                             </div>
 
                             <div class="col-md-3">
@@ -65,7 +64,10 @@
                     <div class="card-body">
                         {{-- <div class="h5 mb-0 font-weight-bold inf-pengunjung" onload="visitorToday()">0
                         </div> --}}
-                        <div style="font-size:40px;" class="h2 m-0 inf-pengunjung" onload="visitorToday()">0</div>
+                        <div style="font-size:40px;" class="h2 m-0 inf-pengunjung" onload="visitorToday()">
+                            <div style="width: 17.7rem; height:3.5rem;" class="skeleton-image">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -112,7 +114,8 @@
 
                     <div class="card-body">
                         {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($survey) }}</div> --}}
-                    <div style="font-size:40px;" class="h2 m-0">{{ count($survey) }}</div>
+                    <div style="font-size:40px;" class="h2 m-0">{{ count($survey) }}
+                    </div>
 
 
                 </div>

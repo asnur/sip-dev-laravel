@@ -11,7 +11,7 @@ $Roles = '';
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Pegawai
+                    Pegawai AJIB
                 </h2>
             </div>
             <!-- Page title actions -->
@@ -174,7 +174,7 @@ $Roles = '';
             <div class="col-md-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Pegawai</h3>
+                        <h3 class="card-title">Daftar Pegawai AJIB</h3>
                     </div>
 
 
