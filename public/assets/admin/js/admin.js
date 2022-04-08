@@ -9,11 +9,22 @@ const logout = () => {
 var dataTable;
 
 var select2Init = function () {
-    $("#selectOption").select2({
-        dropdownAutoWidth: true,
-        allowClear: true,
-        placeholder: "Pilih Kelurahan",
-    });
+    // $("#selectOption").select2({
+    //     dropdownAutoWidth: true,
+    //     allowClear: true,
+    //     placeholder: "Pilih Kelurahan",
+    // });
+    $("#selectOption").select2();
+
+    selectOption = document.getElementById("selectOption").value;
+
+    localStorage.setItem("getKelurahan", selectOption);
+
+    var kel = localStorage.getItem("getKelurahan");
+
+    $("#PrintKinerja").attr("href", `/admin/Ekspor-Kinerja/${kel}`);
+
+    // console.log(kel);
 };
 
 var dataTableInit = function () {
@@ -33,10 +44,6 @@ var dtSearchInit = function () {
         var kel = $("#selectOption").val();
 
         // console.log(kel);
-
-        localStorage.setItem("options", kel);
-
-        var lempar_kel = localStorage.getItem("options");
 
         $("#PrintKinerja").attr("href", `/admin/Ekspor-Kinerja/${kel}`);
 

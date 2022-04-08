@@ -341,7 +341,9 @@ class AdminController extends Controller
 
     public function kinerja_pegawai_ajib()
     {
-        $kelurahan = Survey::select('kelurahan')->groupBy('kelurahan')->get();
+        // $kelurahan = Survey::select('kelurahan')->groupBy('kelurahan')->get();
+        $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
+
 
         // dd($kelurahan);
 
