@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Survey extends Model
+class JawabanUser extends Model
 {
     use HasFactory;
 
-    protected $table = "survey";
+    protected $connection = 'pgsql';
 
-    protected $guarded = ["id"];
-
-    public $timestamps = false;
+    protected $table = "tbl_jawaban_user";
 
     public function user()
     {

@@ -9,6 +9,10 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\LoginController;
+use App\Models\JawabanUser;
+use App\Models\KategoriPertanyaan;
+use App\Models\Pertanyaan;
+use App\Models\Survey;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +50,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', function (Request $request) {
-    return view('layout.main');
+    // $data = JawabanUser::get();
+    // $data = Pertanyaan::with(['jawaban', 'jenis'])->get();
+    // $data = Survey::with('user')->limit(3)->get();
+    $data = KategoriPertanyaan::with('jenis')->get();
+    dd($data);
+    // return view('layout.main');
 });
 
 // Route::get('/migrasi', function () {
