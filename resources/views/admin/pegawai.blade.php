@@ -5,27 +5,55 @@
 $Roles = '';
 @endphp
 
+<style>
+    .dataTables_length {
+        display: none;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+</style>
+
 <div class="container-xl">
     <!-- Page title -->
     <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Pegawai AJIB
+
+                    <div style="display: none;" class="lazy_name_kinerja">
+                        Pegawai AJIB
+                    </div>
+
+                    <div class="hide_lazyload_kinerja">
+                        <div style="width: 11.1rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                    </div>
+
+
                 </h2>
             </div>
             <!-- Page title actions -->
             <div class="col-12 col-md-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <button class="btn btn-primary d-none d-sm-inline-block" onclick="create()">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                        Tambah Pegawai
-                    </button>
+
+                    <div style="display: none;" class="lazy_name_kinerja">
+                        <button class="btn btn-primary d-none d-sm-inline-block" onclick="create()">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Tambah Pegawai
+                        </button>
+                    </div>
+
+                    <div class="hide_lazyload_kinerja">
+                        <div style="width: 11.1rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                    </div>
+
                     {{-- <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -174,19 +202,89 @@ $Roles = '';
             <div class="col-md-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Daftar Pegawai AJIB</h3>
+                        <h3 class="card-title">
+                            <div style="display: none;" class="lazy_name_kinerja">
+                                Daftar Pegawai AJIB
+                            </div>
+                            <div class="hide_lazyload_kinerja">
+                                <div style="width: 10rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                            </div>
+                        </h3>
                     </div>
 
 
                     <div class="card-body">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div class="col-md-6">
+                                <div class="hide_lazyload_kinerja">
+                                    <div style="width: 10rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <div class="hide_lazyload_kinerja">
+                                    <div style="width: 12.7rem; height:1.8rem; position: relative; left:17rem;" class="skeleton-image"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <table class="table table-hover data-pegawai" style="margin-top: 1rem !important;">
                             <thead>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>E-mail</th>
-                                    <th>Role</th>
-                                    <th>Penempatan</th>
-                                    <th>Aksi</th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Nama
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            E-mail
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Role
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Penempatan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Aksi
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
                                 </tr>
                             </thead>
                             <tfoot>
@@ -268,18 +366,20 @@ $Roles = '';
         //     }
         // });
 
-
         var table = $('.data-pegawai').DataTable({
 
             "drawCallback": function(settings) {
                 $(".hide_lazyload_kinerja").hide();
+                $(".lazy_name_kinerja").show();
+                $(".dataTables_length").show();
+                $(".dataTables_filter").show();
             },
 
             ordering: true
             , order: [
                 [0, "asc"]
             ]
-            , processing: true
+            , processing: false
             , serverSide: true
             , "deferRender": true
                 // , "language": {

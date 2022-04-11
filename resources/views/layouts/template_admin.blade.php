@@ -18,7 +18,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>Admin Jakpintas</title>
+    <title>Admin JakPintas</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -68,8 +68,8 @@
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
                     <a href="#">
-                        <img style="width: 90px; height:52px;"
-                            src="{{ asset('assets/admin2/img/logo_jakpintas.png') }}" alt="Tabler"
+                        <img width="70px"
+                            src="{{ asset('assets/admin2/img/logo_jakpintas.png') }}" alt="Logo Jakpintas"
                             class="" />
                     </a>
                     {{-- <div style="margin-right: 1rem; margin-left: 1rem;" class="">JAKPINTAS</div> --}}
@@ -284,7 +284,7 @@
 
                             <div class="d-none d-xl-block ps-2">
                                 <div>Admin</div>
-                                <div class="mt-1 small text-muted">Jakpintas</div>
+                                <div class="mt-1 small text-muted">JakPintas</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

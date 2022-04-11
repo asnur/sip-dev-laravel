@@ -23,7 +23,6 @@
     <div class="container-xl">
         <!-- konten disini -->
 
-        {{-- TUTUP DIVNYA ANEH --}}
         <div class="row row-cards">
 
             <div class="col-md-6 col-xl-4">
