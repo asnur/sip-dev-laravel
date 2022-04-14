@@ -114,7 +114,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     class="bg-danger text-white p-1 rounded ml-2">BETA</sup> --}}
             </span>
             <div class="list-item mt-5">
-                <div class="alert alert-warning alert-dismissible fade show mt-2 mb-2" role="alert">
+                <div class="alert alert-warning alert-dismissible fade show mt-2 mb-2" role="alert" style="font-size: 14px;">
                     <strong>Perhatian!</strong> Proses query akan memakan waktu lama, harap menunggu.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

@@ -508,11 +508,11 @@ const getDigitasi = (coor) => {
             kordinat: coor,
         },
         beforeSend: () => {
-            $("#loadDigitasi").show();
+            // $("#loadDigitasi").show();
             $("#dataDigitasi").hide();
         },
         success: (data) => {
-            $("#loadDigitasi").hide();
+            // $("#loadDigitasi").hide();
             $("#dataDigitasi").show();
             let data_layer = JSON.parse(data);
             if (map.getLayer("digitasi") !== undefined) {
@@ -538,10 +538,14 @@ const getDigitasi = (coor) => {
         headers: {
             Authorization: `Bearer ${token}`,
         },
+        beforeSend: () => {
+            $("#loadDigitasi").show();
+        },
         data: {
             kordinat: coor,
         },
         success: (data) => {
+            $("#loadDigitasi").hide();
             let bpn = JSON.parse(data);
             let data_bpn = bpn.features;
             let html = ``;
