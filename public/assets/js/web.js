@@ -551,10 +551,22 @@ const getDigitasi = (coor) => {
                 <div class="row w-100 mb-2 p-3 border shadow rounded">
                 <div class="col-md-10">
                         <span>Tipe Hak : ${e.properties.Tipe}</span><br>
-                        <span>Luas : ${e.properties.Luas} m<sup>2</sup></span>
-                    </div>
+                        <span>Luas : ${
+                            e.properties.Luas
+                        } m<sup>2</sup></span><br>
+                        <span>NJOP : Rp.${separatorNum(
+                            e.properties.NJOP.Min
+                        )}-Rp.${separatorNum(
+                    e.properties.NJOP.Max
+                )} m<sup>2</sup></span><br>
+                        <span>Sub Zona : ${e.properties["Sub Zona"]}</span>
+                        </div>
                     <div class="col-md-2">
-                        <span style="cursor: pointer" onclick="geocoder.query('${e.geometry.coordinates[1]},${e.geometry.coordinates[0]}')" class="text-danger h1"><i class="fa fa-map-marker"></i></span>
+                        <span style="cursor: pointer" onclick="geocoder.query('${
+                            e.geometry.coordinates[1]
+                        },${
+                    e.geometry.coordinates[0]
+                }')" class="text-danger h1"><i class="fa fa-map-marker"></i></span>
                         </div>
                         </div>
                         `;
