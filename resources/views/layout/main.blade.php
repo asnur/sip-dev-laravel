@@ -125,7 +125,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>
-                <div class="w-100" id="dataDigitasi">
+                <div class="w-100" id="dataDigitasi" style="font-size:14px;">
 
                 </div>
             </div>
