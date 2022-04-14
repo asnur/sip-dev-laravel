@@ -624,11 +624,11 @@ map.on("draw.update", (e) => {
         // alert("layer Draw");
         $("#downloadSHP").modal("show");
     } else {
-        if (fixArea <= 30) {
+        if (fixArea <= 5) {
             getDigitasi(coor);
             $(".info-layer-digitasi").show();
         } else {
-            alert("Batas Luas Area Digitasi Maksimal 30 Ha");
+            alert("Batas Luas Area Digitasi Maksimal 5 Ha");
         }
     }
     // console.log(fix_coordinate.substring(0, fix_coordinate.length - 1));
