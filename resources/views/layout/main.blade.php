@@ -109,8 +109,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <button type="button" class="close" id="closeDigitasi" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi<sup
-                    class="bg-danger text-white p-1 rounded ml-2">BETA</sup></span>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi
+                {{-- <sup
+                    class="bg-danger text-white p-1 rounded ml-2">BETA</sup> --}}
+            </span>
             <div class="list-item mt-5">
                 <div class="w-100 text-center" id="loadDigitasi">
                     <div class="spinner-border text-dark" role="status">
@@ -488,9 +490,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     </button>
                                     <button class="btn tombol_search border-left-0 border" type="button"
                                         id="polygonDraw">
-                                        <i class="ri-shape-line"></i><span class="bg-danger p-1 rounded text-white"
+                                        <i class="ri-shape-line"></i>
+                                        {{-- <span class="bg-danger p-1 rounded text-white"
                                             style="font-size: 8px;margin-top: -1rem;
-                                            position: absolute;">BETA</span>
+                                            position: absolute;">BETA</span> --}}
                                     </button>
                                 </span>
                             </div>
@@ -718,8 +721,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
                                     data-toggle="pill" href="#" role="tab" aria-controls="pills-cetak"
-                                    aria-selected="false"><i class="ri-shape-line"></i><span
-                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
+                                    aria-selected="false"><i class="ri-shape-line"></i>
+                                    {{-- <span
+                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span> --}}
+                                </a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">File SHP</label>
                             </li>
