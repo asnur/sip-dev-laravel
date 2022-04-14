@@ -552,7 +552,7 @@ const getDigitasi = (coor) => {
             $("#dataDigitasi").html("");
             data_bpn.forEach((e) => {
                 html += `
-                <div class="row w-100 mb-2 p-3 border shadow rounded">
+                <div class="d-flex align-items-center w-100 mb-2 p-2 border shadow rounded">
                 <div class="col-md-10">
                         <span>Tipe Hak : ${e.properties.Tipe}</span><br>
                         <span>Luas : ${
