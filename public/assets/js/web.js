@@ -612,8 +612,9 @@ map.on("draw.create", (e) => {
         $("#downloadSHP").modal("show");
     } else {
         if (fixArea <= 5) {
-            getDigitasi(coor);
-            $(".info-layer-digitasi").show();
+            // getDigitasi(coor);
+            $("#coorddigitasi").val(coor);
+            // $(".info-layer-digitasi").show();
         } else {
             alert("Batas Luas Area Digitasi Maksimal 5 Ha");
         }

@@ -114,7 +114,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     class="bg-danger text-white p-1 rounded ml-2">BETA</sup> --}}
             </span>
             <div class="list-item mt-5">
-                <div class="alert alert-warning alert-dismissible fade show mt-2 mb-2" role="alert" style="font-size: 14px;">
+                <div class="alert alert-warning alert-dismissible fade show mt-2 mb-2" role="alert"
+                    style="font-size: 14px;">
                     <strong>Perhatian!</strong> Proses query akan memakan waktu lama, harap menunggu.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -494,13 +495,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <button class="btn btn-secondary tombol_search border-left-0 border" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                                    <button class="btn tombol_search border-left-0 border" type="button"
+                                    {{-- <button class="btn tombol_search border-left-0 border" type="button"
                                         id="polygonDraw">
                                         <i class="ri-shape-line"></i>
-                                        {{-- <span class="bg-danger p-1 rounded text-white"
+                                        <span class="bg-danger p-1 rounded text-white"
                                             style="font-size: 8px;margin-top: -1rem;
-                                            position: absolute;">BETA</span> --}}
-                                    </button>
+                                            position: absolute;">BETA</span>
+                                    </button> --}}
                                 </span>
                             </div>
                             <!-- End Search Web -->
@@ -727,12 +728,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
                                     data-toggle="pill" href="#" role="tab" aria-controls="pills-cetak"
-                                    aria-selected="false"><i class="ri-shape-line"></i>
+                                    aria-selected="false"><i class="ri-file-code-line"></i>
                                     {{-- <span
                                         class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span> --}}
                                 </a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">File SHP</label>
+                                <label class="size_menu size_menu_mobile">SHP</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
@@ -741,6 +742,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlalin</label>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    data-toggle="pill" href="#pills-digitasi" role="tab" id="polygonDraw"
+                                    aria-selected="false"><i class="ri-shape-line"></i></a>
+
+                                <br>
+                                <label class="size_menu size_menu_mobile">Digitasi</label>
                             </li>
                             <!-- Pending menu pin-->
 
@@ -4859,6 +4868,41 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane " id="pills-digitasi" role="tabpanel">
+                        <div class="container">
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Opsi Digitasi</p>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <form class="w-100" action="{{ route('digitasi') }}" method="POST"
+                                    target="_blank">
+                                    @csrf
+                                    <div class="ml-3">
+                                        <div class="form-check text_all">
+                                            <input type="hidden" name="coordinates" id="coorddigitasi">
+                                            <input class="form-check-input position-static" type="radio"
+                                                name="opsidigitasi" required value="njop&persil" aria-label="..."> NJOP
+                                            & Persil
+                                        </div>
+                                        <div class="form-check text_all">
+                                            <input class="form-check-input position-static" type="radio"
+                                                name="opsidigitasi" required value="akses" aria-label="..."> Akses
+                                        </div>
+                                        <div class="form-check text_all">
+                                            <input class="form-check-input position-static" type="radio"
+                                                name="opsidigitasi" required value="subzona" aria-label="..."> Sub Zona
+                                        </div>
+                                        <center>
+                                            <button type="submit" class="btn btn-sm text_all mt-3 btn-primary"
+                                                style="margin-right: 2.5rem;">Cetak</button>
+                                        </center>
+                                        <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
+                                    </div>
+                                </form>
                             </div>
                         </div>
 

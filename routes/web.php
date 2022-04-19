@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\DigitasiController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
@@ -158,3 +159,5 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
+
+Route::post('/digitasi', [DigitasiController::class, 'index'])->name('digitasi');
