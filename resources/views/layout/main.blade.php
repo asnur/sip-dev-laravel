@@ -4884,17 +4884,19 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <div class="ml-3">
                                         <div class="form-check text_all">
                                             <input type="hidden" name="coordinates" id="coorddigitasi">
+                                            <input type="hidden" name="luas" id="luasdigitasi">
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="njop&persil" aria-label="..."> NJOP
+                                                name="opsidigitasi" required value="Persil & NJOP" aria-label="...">
+                                            NJOP
                                             & Persil
                                         </div>
                                         <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="akses" aria-label="..."> Akses
+                                                name="opsidigitasi" required value="Akses" aria-label="..."> Akses
                                         </div>
                                         <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="subzona" aria-label="..."> Sub Zona
+                                                name="opsidigitasi" required value="Sub Zona" aria-label="..."> Sub Zona
                                         </div>
                                         <center>
                                             <button type="submit" class="btn btn-sm text_all mt-3 btn-primary"

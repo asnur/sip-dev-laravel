@@ -532,54 +532,54 @@ const getDigitasi = (coor) => {
         },
     });
 
-    $.ajax({
-        url: `${url}/digitasi-bpn`,
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        beforeSend: () => {
-            $("#loadDigitasi").show();
-        },
-        data: {
-            kordinat: coor,
-        },
-        success: (data) => {
-            $("#loadDigitasi").hide();
-            let bpn = JSON.parse(data);
-            let data_bpn = bpn.features;
-            let html = ``;
-            $("#dataDigitasi").html("");
-            data_bpn.forEach((e) => {
-                html += `
-                <div class="d-flex align-items-center w-100 mb-2 p-2 border shadow rounded">
-                <div class="col-md-10">
-                        <span>Tipe Hak : ${e.properties.Tipe}</span><br>
-                        <span>Luas : ${
-                            e.properties.Luas
-                        } m<sup>2</sup></span><br>
-                        <span>NJOP : Rp.${separatorNum(
-                            e.properties.NJOP.Min
-                        )}-Rp.${separatorNum(
-                    e.properties.NJOP.Max
-                )} m<sup>2</sup></span><br>
-                        <span>Sub Zona : ${e.properties["Sub Zona"]}</span>
-                        </div>
-                    <div class="col-md-2">
-                        <span style="cursor: pointer" onclick="geocoder.query('${
-                            e.geometry.coordinates[1]
-                        },${
-                    e.geometry.coordinates[0]
-                }')" class="text-danger h1"><i class="fa fa-map-marker"></i></span>
-                        </div>
-                        </div>
-                        `;
-                // console.log(e);
-            });
-            $("#dataDigitasi").html(html);
-            // console.log(data_bpn);
-        },
-    });
+    // $.ajax({
+    //     url: `${url}/digitasi-bpn`,
+    //     method: "POST",
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    //     beforeSend: () => {
+    //         $("#loadDigitasi").show();
+    //     },
+    //     data: {
+    //         kordinat: coor,
+    //     },
+    //     success: (data) => {
+    //         $("#loadDigitasi").hide();
+    //         let bpn = JSON.parse(data);
+    //         let data_bpn = bpn.features;
+    //         let html = ``;
+    //         $("#dataDigitasi").html("");
+    //         data_bpn.forEach((e) => {
+    //             html += `
+    //             <div class="d-flex align-items-center w-100 mb-2 p-2 border shadow rounded">
+    //             <div class="col-md-10">
+    //                     <span>Tipe Hak : ${e.properties.Tipe}</span><br>
+    //                     <span>Luas : ${
+    //                         e.properties.Luas
+    //                     } m<sup>2</sup></span><br>
+    //                     <span>NJOP : Rp.${separatorNum(
+    //                         e.properties.NJOP.Min
+    //                     )}-Rp.${separatorNum(
+    //                 e.properties.NJOP.Max
+    //             )} m<sup>2</sup></span><br>
+    //                     <span>Sub Zona : ${e.properties["Sub Zona"]}</span>
+    //                     </div>
+    //                 <div class="col-md-2">
+    //                     <span style="cursor: pointer" onclick="geocoder.query('${
+    //                         e.geometry.coordinates[1]
+    //                     },${
+    //                 e.geometry.coordinates[0]
+    //             }')" class="text-danger h1"><i class="fa fa-map-marker"></i></span>
+    //                     </div>
+    //                     </div>
+    //                     `;
+    //             // console.log(e);
+    //         });
+    //         $("#dataDigitasi").html(html);
+    //         // console.log(data_bpn);
+    //     },
+    // });
 };
 
 $("body").on("keydown", function (event) {
@@ -612,8 +612,9 @@ map.on("draw.create", (e) => {
         $("#downloadSHP").modal("show");
     } else {
         if (fixArea <= 5) {
-            // getDigitasi(coor);
+            getDigitasi(coor);
             $("#coorddigitasi").val(coor);
+            $("#luasdigitasi").val(rounded_area);
             // $(".info-layer-digitasi").show();
         } else {
             alert("Batas Luas Area Digitasi Maksimal 5 Ha");
@@ -643,7 +644,9 @@ map.on("draw.update", (e) => {
     } else {
         if (fixArea <= 5) {
             getDigitasi(coor);
-            $(".info-layer-digitasi").show();
+            $("#coorddigitasi").val(coor);
+            $("#luasdigitasi").val(rounded_area);
+            // $(".info-layer-digitasi").show();
         } else {
             alert("Batas Luas Area Digitasi Maksimal 5 Ha");
         }
