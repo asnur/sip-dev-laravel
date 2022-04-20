@@ -117,7 +117,36 @@
         </center>
         <p class="font-weight-bold">Peta Lokasi</p>
         <img src="{{ session('img') }}" id="map" style="width: 100%;">
-
+        <div class="p-1">
+            <div class="row-content mt-5">
+                <div class="w-100 text-center" style="vertical-align: middle">
+                    <span class="font-weight-bold" style="vertical-align: middle">Informasi {{ $kategori }}</span>
+                </div>
+                <div class="column mt-3">
+                    @if ($kategori == 'Persil & NJOP')
+                        @if ($data['features'] != null)
+                            <ol>
+                                @foreach ($data['features'] as $dt)
+                                    <li class="mb-2">
+                                        <ul>
+                                            <li>Tipe : {{ $dt['properties']['Tipe'] }}</li>
+                                            <li>Luas : {{ number_format($dt['properties']['Luas']) }} m<sup>2</sup>
+                                            </li>
+                                            <li>NJOP :
+                                                Rp.{{ number_format($dt['properties']['NJOP']['Min']) }}-Rp.{{ number_format($dt['properties']['NJOP']['Max']) }}
+                                                per m<sup>2</sup>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        @else
+                            <p>Tidak ada data</p>
+                        @endif
+                    @endif
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Optional JavaScript -->
