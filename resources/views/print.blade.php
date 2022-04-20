@@ -10123,7 +10123,7 @@ $itbx = session('itbx');
 
 <body>
     <header>
-        <img src="/assets/gambar/logo_jakpintas.png"><br>
+        <img src="https://jakpintas.dpmptsp-dki.com/assets/gambar/logo_jakpintas.png"><br>
         <span class="text-header">Peta Perizinan dan Investasi</span>
     </header>
 
