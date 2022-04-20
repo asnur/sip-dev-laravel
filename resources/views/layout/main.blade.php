@@ -4894,10 +4894,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             NJOP
                                             & Persil
                                         </div>
-                                        {{-- <div class="form-check text_all">
+                                        <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
                                                 name="opsidigitasi" required value="Akses" aria-label="..."> Akses
-                                        </div> --}}
+                                        </div>
                                         <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
                                                 name="opsidigitasi" required value="Zonasi" aria-label="..."> Zonasi

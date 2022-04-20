@@ -165,6 +165,17 @@
                                     </li>
                                 @endforeach
                             </ol>
+                        @elseif ($kategori == 'Akses')
+                            <ol>
+                                @foreach ($data['features'] as $dt)
+                                    <li class="mb-2">
+                                        <ul>
+                                            <li>Nama : {{ $dt['properties']['Nama'] }}</li>
+                                            <li>Kategori : {{ $dt['properties']['Kategori'] }}</li>
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ol>
                         @endif
                     @else
                         <p>Tidak ada data</p>
