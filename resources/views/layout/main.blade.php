@@ -4879,12 +4879,16 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Opsi Digitasi</p>
                             <div class="d-flex space_judul row_mid_judul">
                                 <form class="w-100" action="{{ route('digitasi') }}" method="POST"
-                                    target="_blank">
+                                    target="_blank" id="formDigitasi">
                                     @csrf
                                     <div class="ml-3">
+                                        <div class="alert alert-danger alert-dismissible fade show"
+                                            id="pesanGagalPrintDigitasi" style="font-size: 10pt" role="alert">
+                                            <strong>Gagal!</strong> Polygon Digitasi Belum ada.
+                                        </div>
                                         <div class="form-check text_all">
-                                            <input type="hidden" name="coordinates" id="coorddigitasi">
-                                            <input type="hidden" name="luas" id="luasdigitasi">
+                                            <input type="hidden" name="coordinates" id="coorddigitasi" required>
+                                            <input type="hidden" name="luas" id="luasdigitasi" required>
                                             <input class="form-check-input position-static" type="radio"
                                                 name="opsidigitasi" required value="Persil & NJOP" aria-label="...">
                                             NJOP

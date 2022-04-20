@@ -177,7 +177,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption"
 ).hide();
 
 $.ajax({
@@ -4984,4 +4984,14 @@ $("#selectSimulasi").on("change", () => {
     let value = $("#selectSimulasi").select2("val");
     localStorage.setItem("simulasi", value);
     getSimulasi(value);
+});
+
+$("#formDigitasi").on("submit", (e) => {
+    if ($("#coorddigitasi").val() == "") {
+        e.preventDefault();
+        $("#pesanGagalPrintDigitasi").show();
+        setTimeout(() => {
+            $("#pesanGagalPrintDigitasi").hide();
+        }, 3000);
+    }
 });
