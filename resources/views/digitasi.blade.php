@@ -113,7 +113,8 @@
     </footer>
     <main>
         <center>
-            <span style="font-size:25px" class="text-center font-weight-bold mb-1">Informasi Digitasi</span>
+            <span style="font-size:25px" class="text-center font-weight-bold mb-1">Informasi Digitasi Luas
+                {{ number_format($luas) }} m<sup>2</sup></span>
         </center>
         <p class="font-weight-bold">Peta Lokasi</p>
         <img src="{{ session('img') }}" id="map" style="width: 100%;">
