@@ -4900,7 +4900,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         </div>
                                         <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="Sub Zona" aria-label="..."> Sub Zona
+                                                name="opsidigitasi" required value="Zonasi" aria-label="..."> Zonasi
                                         </div>
                                         <center>
                                             <button type="submit" class="btn btn-sm text_all mt-3 btn-primary"
