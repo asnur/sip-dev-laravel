@@ -26,7 +26,7 @@ class DigitasiController extends Controller
         $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
         $pdf->loadView('digitasi', compact('data'));
 
-        dd($data['properties']);
+        dd($data);
         return $pdf->stream();
     }
 }
