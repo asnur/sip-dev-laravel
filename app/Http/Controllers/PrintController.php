@@ -11,7 +11,17 @@ class PrintController extends Controller
     {
         // dd(session('ketentuan_tpz'));
         // return view('print');
-        $pdf = PDF::loadView('print');
+        $opciones_ssl = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                'allow_self_signed' => TRUE,
+            ),
+        );
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->setPaper('portrait');
+        $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
+        $pdf->loadView('print');
         return $pdf->stream();
     }
 

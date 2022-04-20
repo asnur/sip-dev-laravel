@@ -1,0 +1,444 @@
+@extends('layouts.template_admin') @section('content') @php $Roles = ''; @endphp
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">Pegawai</h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-12 col-md-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <a
+                        href="javascript:void(0)"
+                        class="btn btn-primary d-none d-sm-inline-block"
+                        id="createNewPegawai"
+                    >
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                            ></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Tambah Pegawai
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-primary d-sm-none btn-icon"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-report"
+                        aria-label="Create new report"
+                    >
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                            ></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- modal add --}}
+    <form id="PegawaiForm" name="PegawaiForm">
+        <div
+            class="modal modal-blur fade"
+            id="addEditPegawai"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
+            <div
+                class="modal-dialog modal-lg modal-dialog-centered"
+                role="document"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modelHeading"></h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="Pegawai_id" />
+                        <div class="row">
+                            <div class="col-md-12 col-xl-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="namaPegawai"
+                                        name="name"
+                                        placeholder="Masukan Nama User"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">E-mail</label>
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        id="emailPegawai"
+                                        name="email"
+                                        placeholder="Masukan Email User"
+                                    />
+                                </div>
+
+                                <div class="mb-3 hide_password">
+                                    <label class="form-label">Password</label>
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        name="password"
+                                        placeholder="Masukan Password User"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">Penempatan</div>
+                                    <select
+                                        class="form-select"
+                                        name="penempatan"
+                                        id="penempatanPegawai"
+                                        required
+                                    >
+                                        <option value="">
+                                            Pilih Kecamatan...
+                                        </option>
+
+                                        @foreach ($kecamatan as $kec)
+                                        <option value="{{ $kec }}">
+                                            {{ $kec }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            type="submit"
+                            class="btn me-auto btn-primary"
+                            data-bs-dismiss="modal"
+                            id="saveBtn"
+                        >
+                            Simpan
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            data-bs-dismiss="modal"
+                        >
+                            Batal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {{-- modal update --}} {{--
+    <form action="{{ route('update-pegawai') }}" method="POST">
+        @csrf @method('PUT')
+        <div
+            class="modal modal-blur fade"
+            id="modalEditUsers"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+            aria-labelledby="modalEditUserLabel"
+        >
+            <div
+                class="modal-dialog modal-lg modal-dialog-centered"
+                role="document"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditUserLabel">
+                            Edit Pegawai
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-xl-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input
+                                        type="hidden"
+                                        class="form-control"
+                                        name="id"
+                                        id="idUser"
+                                    />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="name"
+                                        id="namaUser"
+                                        placeholder="Masukan Nama User"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">E-mail</label>
+                                    <input
+                                        class="form-control"
+                                        name="email"
+                                        type="email"
+                                        placeholder="Masukan Email User"
+                                        id="emailUser"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">Penempatan</div>
+                                    <select
+                                        class="form-select"
+                                        name="penempatan"
+                                        id=""
+                                        required
+                                    >
+                                        <option id="penempatanUser"></option>
+
+                                        @foreach ($kecamatan as $kec)
+                                        <option value="{{ $kec }}">
+                                            {{ $kec }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            type="submit"
+                            class="btn me-auto btn-primary"
+                            data-bs-dismiss="modal"
+                        >
+                            Simpan
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            data-bs-dismiss="modal"
+                        >
+                            Batal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    --}}
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <!-- konten disini -->
+
+        <div class="row row-cards">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Data Pegawai</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table table-hover data-pegawai">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>E-mail</th>
+                                    {{--
+                                    <th>Role</th>
+                                    --}}
+                                    <th>Penempatan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    {{-- {{ $pegawai_ajib->onEachSide(1)->links() }} --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // $(function() {
+
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+
+        var table = $(".data-pegawai").DataTable({
+            ordering: true,
+            order: [[0, "asc"]],
+            processing: true,
+            serverSide: true,
+            language: {
+                processing: '<div class="loader_lazy_load"></div',
+            },
+            ajax: "{{ url('/admin/pegawaiAjib') }}",
+            columns: [
+                {
+                    data: "name",
+                    name: "name",
+                },
+                {
+                    data: "email",
+                    name: "email",
+                },
+
+                {
+                    data: "penempatan",
+                    name: "penempatan",
+                },
+
+                {
+                    data: "aksi",
+                    name: "aksi",
+                },
+            ],
+            columnDefs: [
+                {
+                    orderSequence: ["asc", "desc"],
+                    targets: [0],
+                },
+                {
+                    orderSequence: ["asc", "desc"],
+                    targets: [1],
+                },
+                {
+                    orderSequence: ["desc", "asc"],
+                    targets: [2],
+                },
+            ],
+        });
+
+        $("#createNewPegawai").click(function () {
+            $("#saveBtn").val("Simpan");
+            $("#Pegawai_id").val("");
+            $("#PegawaiForm").trigger("reset");
+            $("#modelHeading").html("Tambah Pegawai");
+            $("#addEditPegawai").modal("show");
+        });
+
+        $("#saveBtn").click(function (e) {
+            e.preventDefault();
+            $(this).html("Simpan");
+            console.log(e);
+            $.ajax({
+                data: $("#PegawaiForm").serialize(),
+                url: `${APP_URL}/admin/pegawaiAjib`,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    $("#PegawaiForm").trigger("reset");
+                    table.draw();
+                },
+                error: function (data) {
+                    console.log("Error:", data);
+                    $("#saveBtn").html("Simpan");
+                },
+            });
+        });
+
+        $(document).on("click", ".editPegawai", function () {
+            var pegawai_id = $(this).data("id");
+
+            $.get(
+                "{{ url('/admin/pegawaiDataAjib/') }}" + "/" + pegawai_id,
+                function (data) {
+                    console.log(data);
+
+                    $("#saveBtn").val("Simpan");
+                    $("#Pegawai_id").val("");
+                    $("#PegawaiForm").trigger("reset");
+                    $("#modelHeading").html("Edit Pegawai");
+                    $("#addEditPegawai").modal("show");
+                    $(".hide_password").hide();
+
+                    $("#Pegawai_id").val(data.id);
+                    $("#namaPegawai").val(data.name);
+                    $("#emailPegawai").val(data.email);
+                    $("#penempatanPegawai").val(data.penempatan);
+                }
+            );
+        });
+
+        $("#saveBtn").click(function (e) {
+            e.preventDefault();
+            $(this).html("Kirim");
+
+            $.ajax({
+                data: $("#PegawaiForm").serialize(),
+                url: `${APP_URL}/admin/pegawaiAjib`,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    $("#PegawaiForm").trigger("reset");
+                    $("#addEditPegawai").modal("hide");
+
+                    table.draw();
+                },
+                error: function (data) {
+                    console.log("Error:", data);
+                    $("#saveBtn").html("Simpan");
+                },
+            });
+        });
+    });
+</script>
+
+@endsection ADD PEGAWAI

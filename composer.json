@@ -23,7 +23,8 @@
         "munafio/chatify": "1.2",
         "spatie/laravel-analytics": "^4.0",
         "spatie/laravel-permission": "^5.4",
-        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3"
+        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
+        "yajra/laravel-datatables-oracle": "^9.19"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

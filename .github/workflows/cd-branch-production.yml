@@ -21,7 +21,7 @@ jobs:
           host: ${{ secrets.SSH_HOST_PROD }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}
-          port: 22
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd /var/www/html/
             git clone https://github.com/asnur/sip-dev-laravel -b production

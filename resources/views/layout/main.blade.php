@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/remix-icon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pitchtoggle.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+    {{-- <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" /> --}}
 
 
 
@@ -109,15 +109,24 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <button type="button" class="close" id="closeDigitasi" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi<sup
-                    class="bg-danger text-white p-1 rounded ml-2">BETA</sup></span>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Data Digitasi
+                {{-- <sup
+                    class="bg-danger text-white p-1 rounded ml-2">BETA</sup> --}}
+            </span>
             <div class="list-item mt-5">
+                <div class="alert alert-warning alert-dismissible fade show mt-2 mb-2" role="alert"
+                    style="font-size: 14px;">
+                    <strong>Perhatian!</strong> Proses query akan memakan waktu lama, harap menunggu.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <div class="w-100 text-center" id="loadDigitasi">
                     <div class="spinner-border text-dark" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>
-                <div class="w-100" id="dataDigitasi">
+                <div class="w-100" id="dataDigitasi" style="font-size:14px;">
 
                 </div>
             </div>
@@ -213,8 +222,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="row mt-3" id="previewFoto">
                     </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
-                    <textarea class="form-control" name="catatan" id="catatanPin" style="font-size: 8pt"
-                        placeholder="Masukan Catatan" rows="5"></textarea>
+                    <textarea class="form-control" name="catatan" id="catatanPin" style="font-size: 8pt" placeholder="Masukan Catatan"
+                        rows="5"></textarea>
                     <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
                         Simpan</button>
@@ -246,8 +255,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="row mt-3" id="previewFotoEdit">
                     </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
-                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt"
-                        placeholder="Masukan Catatan" rows="5"></textarea>
+                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt" placeholder="Masukan Catatan"
+                        rows="5"></textarea>
                     <button type="submit" id="pinndedLocation" class="btn btn-primary mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-edit"></i>
                         Ubah</button>
@@ -486,12 +495,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <button class="btn btn-secondary tombol_search border-left-0 border" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                                    <button class="btn tombol_search border-left-0 border" type="button"
+                                    {{-- <button class="btn tombol_search border-left-0 border" type="button"
                                         id="polygonDraw">
-                                        <i class="ri-shape-line"></i><span class="bg-danger p-1 rounded text-white"
+                                        <i class="ri-shape-line"></i>
+                                        <span class="bg-danger p-1 rounded text-white"
                                             style="font-size: 8px;margin-top: -1rem;
                                             position: absolute;">BETA</span>
-                                    </button>
+                                    </button> --}}
                                 </span>
                             </div>
                             <!-- End Search Web -->
@@ -718,10 +728,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
                                     data-toggle="pill" href="#" role="tab" aria-controls="pills-cetak"
-                                    aria-selected="false"><i class="ri-shape-line"></i><span
-                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span></a>
+                                    aria-selected="false"><i class="ri-file-code-line"></i>
+                                    {{-- <span
+                                        class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span> --}}
+                                </a>
                                 <br>
-                                <label class="size_menu size_menu_mobile">File SHP</label>
+                                <label class="size_menu size_menu_mobile">SHP</label>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
@@ -730,6 +742,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlalin</label>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    data-toggle="pill" href="#pills-digitasi" role="tab" id="polygonDraw"
+                                    aria-selected="false"><i class="ri-shape-line"></i></a>
+
+                                <br>
+                                <label class="size_menu size_menu_mobile">Digitasi</label>
                             </li>
                             <!-- Pending menu pin-->
 
@@ -826,6 +846,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     </div>
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
                                         <p class="inf-kordinat">-</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex space_text row_mid_text">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                        <label class="text_all_mobile">Rt/Rw</label>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                        <p class="inf-rtrw">-</p>
                                     </div>
                                 </div>
 
@@ -4839,6 +4868,47 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane " id="pills-digitasi" role="tabpanel">
+                        <div class="container">
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama">Opsi Digitasi</p>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <form class="w-100" action="{{ route('digitasi') }}" method="POST"
+                                    target="_blank" id="formDigitasi">
+                                    @csrf
+                                    <div class="ml-3">
+                                        <div class="alert alert-danger alert-dismissible fade show"
+                                            id="pesanGagalPrintDigitasi" style="font-size: 10pt" role="alert">
+                                            <strong>Gagal!</strong> Polygon Digitasi Belum ada.
+                                        </div>
+                                        <div class="form-check text_all">
+                                            <input type="hidden" name="coordinates" id="coorddigitasi" required>
+                                            <input type="hidden" name="luas" id="luasdigitasi" required>
+                                            <input class="form-check-input position-static" type="radio"
+                                                name="opsidigitasi" required value="Persil & NJOP" aria-label="...">
+                                            NJOP
+                                            & Persil
+                                        </div>
+                                        <div class="form-check text_all">
+                                            <input class="form-check-input position-static" type="radio"
+                                                name="opsidigitasi" required value="Akses" aria-label="..."> Akses
+                                        </div>
+                                        <div class="form-check text_all">
+                                            <input class="form-check-input position-static" type="radio"
+                                                name="opsidigitasi" required value="Zonasi" aria-label="..."> Zonasi
+                                        </div>
+                                        <center>
+                                            <button type="submit" class="btn btn-sm text_all mt-3 btn-primary"
+                                                style="margin-right: 2.5rem;">Cetak</button>
+                                        </center>
+                                        <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
