@@ -606,6 +606,15 @@ map.on("draw.create", (e) => {
         fix_coordinate += el[0] + " " + el[1] + ",";
         // console.log(el);
     });
+    var img = map.getCanvas().toDataURL("image/png");
+    $.ajax({
+        type: "POST",
+        url: `${APP_URL}/save_image`,
+        data: {
+            img: img,
+        },
+        success: () => {},
+    });
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
     if (drawOptions !== "Digitasi") {
         // alert("layer Draw");
@@ -636,6 +645,15 @@ map.on("draw.update", (e) => {
     coordinate.forEach((el) => {
         fix_coordinate += el[0] + " " + el[1] + ",";
         // console.log(el);
+    });
+    var img = map.getCanvas().toDataURL("image/png");
+    $.ajax({
+        type: "POST",
+        url: `${APP_URL}/save_image`,
+        data: {
+            img: img,
+        },
+        success: () => {},
     });
     let coor = fix_coordinate.substring(0, fix_coordinate.length - 1);
     if (drawOptions !== "Digitasi") {
