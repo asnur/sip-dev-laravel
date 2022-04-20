@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -12,6 +13,18 @@ class DigitasiController extends Controller
         $luas = $request->luas;
         $kategori = $request->opsidigitasi;
         $response = Http::asForm()->withToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U')->post('https://jakpintas.dpmptsp-dki.com:3443/digitasi-data', ['kordinat' => $request->coordinates, 'opsi' => $kategori]);
+        $opciones_ssl = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                'allow_self_signed' => TRUE,
+            ),
+        );
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->setPaper('portrait');
+        $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
+        // $pdf->loadView('admin.pdf_kinerja_ajib', compact('data'));
+
         dd($response->json());
         return view('digitasi');
     }
