@@ -20,12 +20,13 @@ class DigitasiController extends Controller
                 'allow_self_signed' => TRUE,
             ),
         );
+        $data = $response->json();
         $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
         $pdf->setPaper('portrait');
         $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
-        // $pdf->loadView('admin.pdf_kinerja_ajib', compact('data'));
+        $pdf->loadView('digitasi', compact('data'));
 
-        dd($response->json());
-        return view('digitasi');
+        dd($data['properties']);
+        return $pdf->stream();
     }
 }
