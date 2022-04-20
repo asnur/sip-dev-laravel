@@ -123,8 +123,8 @@
                     <span class="font-weight-bold" style="vertical-align: middle">Informasi {{ $kategori }}</span>
                 </div>
                 <div class="column mt-3">
-                    @if ($kategori == 'Persil & NJOP')
-                        @if ($data['features'] != null)
+                    @if ($data['features'] != null)
+                        @if ($kategori == 'Persil & NJOP')
                             <ol>
                                 @foreach ($data['features'] as $dt)
                                     <li class="mb-2">
@@ -140,9 +140,33 @@
                                     </li>
                                 @endforeach
                             </ol>
-                        @else
-                            <p>Tidak ada data</p>
+                        @elseif ($kategori == 'Zonasi')
+                            <ol>
+                                @foreach ($data['features'] as $dt)
+                                    <li class="mb-2">
+                                        <ul>
+                                            <li>Kelurahan : {{ $dt['properties']['Kelurahan'] }}</li>
+                                            <li>Kode Blok : {{ $dt['properties']['Kode Blok'] }}</li>
+                                            <li>Sub Blok : {{ $dt['properties']['Sub Blok'] }}</li>
+                                            <li>ID Sub Blok : {{ $dt['properties']['ID Sub Blok'] }}</li>
+                                            <li>Zona : {{ $dt['properties']['Zona'] }}</li>
+                                            <li>Sub Zona : {{ $dt['properties']['Sub Zona'] }}</li>
+                                            <li>TPZ : {{ $dt['properties']['TPZ'] }}</li>
+                                            <li>CD TPZ : {{ $dt['properties']['CD TPZ'] }}</li>
+                                            <li>Tipe : {{ $dt['properties']['Tipe'] }}</li>
+                                            <li>KDB : {{ $dt['properties']['KDB'] }}</li>
+                                            <li>KLB : {{ $dt['properties']['KLB'] }}</li>
+                                            <li>KDH : {{ $dt['properties']['KDH'] }}</li>
+                                            <li>KTB : {{ $dt['properties']['KTB'] }}</li>
+                                            <li>KB : {{ $dt['properties']['KB'] }}</li>
+                                            <li>PSL : {{ $dt['properties']['PSL'] }}</li>
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ol>
                         @endif
+                    @else
+                        <p>Tidak ada data</p>
                     @endif
                 </div>
             </div>
