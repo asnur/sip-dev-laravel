@@ -222,7 +222,7 @@ $itbx = session('itbx');
                         <span>Tipe Hak</span>
                     </div>
                     <div class="column right">
-                        <span>{{ $bpn[0] }}</span>
+                        <span>{{ $bpn !== null ? $bpn[0] : '-' }}</span>
                     </div>
                 </div>
                 <div class="row-content">
@@ -230,7 +230,7 @@ $itbx = session('itbx');
                         <span>Luas</span>
                     </div>
                     <div class="column right">
-                        <span>{{ number_format($bpn[1]) }} m²</span>
+                        <span>{{ $bpn !== null ? number_format($bpn[1]) . ' m²' : '-' }}</span>
                     </div>
                 </div>
             </div>
