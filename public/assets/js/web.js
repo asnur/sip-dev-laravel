@@ -435,6 +435,26 @@ const estimation_direction = (time, way) => {
 };
 
 map.addControl(draw);
+
+let fillLayerDraw = [
+    "gl-draw-polygon-fill-active.cold",
+    "gl-draw-polygon-fill-active.hot",
+];
+let circleLayerDraw = [
+    "gl-draw-polygon-midpoint.cold",
+    "gl-draw-polygon-and-line-vertex-inactive.cold",
+    "gl-draw-point-active.cold",
+    "gl-draw-polygon-midpoint.hot",
+    "gl-draw-polygon-and-line-vertex-inactive.hot",
+    "gl-draw-point-active.hot",
+];
+let lineLayerDraw = [
+    "gl-draw-polygon-stroke-active.cold",
+    "gl-draw-line-active.cold",
+    "gl-draw-polygon-stroke-active.hot",
+    "gl-draw-line-active.hot",
+];
+
 // $(".mapboxgl-ctrl-group:eq(2)").append(
 //     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
 // );
@@ -479,12 +499,26 @@ $("#circleDraw").on("click", () => {
 $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").hide();
 
 $("#polygonDraw").on("click", () => {
+    fillLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "fill-color", "#fff");
+        map.setPaintProperty(e, "fill-opacity", 1);
+    });
+    lineLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "line-color", "#fff");
+    });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
     localStorage.setItem("polygonOptions", "Digitasi");
 });
 
 $("#btnSHP").on("click", () => {
+    fillLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "fill-color", "#fff");
+        map.setPaintProperty(e, "fill-opacity", 1);
+    });
+    lineLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "line-color", "#fff");
+    });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
     localStorage.setItem("polygonOptions", "SHP");
