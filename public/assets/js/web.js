@@ -1353,6 +1353,10 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     var chart_bar_kbli = $("#bar-chart-grouped-kbli").get(0).getContext("2d");
     var chart_pie_info = $("#pie-chart-info").get(0).getContext("2d");
     var chart_bar_info = $("#bar-chart-grouped-info").get(0).getContext("2d");
+    if (pie !== undefined) {
+        pie.destroy();
+    }
+
     pie = new Chart(chart_pie, {
         type: "pie",
         data: {
@@ -1379,6 +1383,10 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             },
         },
     });
+
+    if (bar !== undefined) {
+        bar.destroy();
+    }
 
     bar = new Chart(chart_bar, {
         type: "bar",
