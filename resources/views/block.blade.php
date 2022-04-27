@@ -17,7 +17,7 @@
     <div class="d-flex align-items-center text-center" style="height: 100vh;">
         <div class="container">
             <img src="/assets/gambar/block.png" class="w-75">
-            <h4>Silakan buka JakPintas di perangkat dengan layar lebih lebar !!</h4>
+            <h4>Silakan buka JakPintas di perangkat dengan layar lebih lebar</h4>
         </div>
     </div>
 
