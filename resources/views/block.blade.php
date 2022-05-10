@@ -10,7 +10,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Block</title>
+    <title>Peta Perizinan dan Investasi DKI Jakarta</title>
+    <meta name="title" content="Peta Perizinan dan Investasi DKI Jakarta">
+    <meta name="description"
+        content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
+    <meta name="og:title" content="Peta Perizinan dan Investasi DKI Jakarta">
+    <meta name="og:description"
+        content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
+    <meta name="twitter:title" content="Peta Perizinan dan Investasi DKI Jakarta">
+    <meta name="twitter:description"
+        content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
 </head>
 
 <body>
