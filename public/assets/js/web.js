@@ -3527,7 +3527,7 @@ function onOffLayers(layer) {
                         <div class="row">
                             <div class="col-4">
                                 <img width="100px" height="90px" style="object-fit: cover; border-radius:15px"
-                                    src="http://jakpintas.dpmptsp-dki.com/rent/${
+                                    src="https://jakpintas.dpmptsp-dki.com/rent/${
                                         infoHarga[index]["properties"]["Foto"]
                                     }">
                             </div>
