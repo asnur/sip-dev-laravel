@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
+use Jenssegers\Agent\Agent;
 
 
 /*
@@ -30,7 +31,15 @@ use App\Http\Controllers\PagePDFController;
 |
 */
 
+
+// Route::get('/', function () {
+// });
+
 Route::get('/', function (Request $request) {
+    $agent = new Agent();
+    if ($agent->isMobile() || $agent->isTablet()) {
+        return view('block');
+    }
     return view('layout.main');
 })->name('home');
 

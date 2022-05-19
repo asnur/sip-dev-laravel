@@ -214,6 +214,36 @@ $(window).on("load", function () {
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 25000000000,
+        values: [1000000000, 3000000000],
+        step: 10000000,
+        slide: function (event, ui) {
+            $("#amount").text(
+                "Rp. " +
+                    separatorNum(ui.values[0]) +
+                    " - Rp. " +
+                    separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1]);
+        },
+    });
+    $("#amount").text(
+        "Rp. " +
+            separatorNum($("#slider-range").slider("values", 0)) +
+            " - Rp. " +
+            separatorNum($("#slider-range").slider("values", 1))
+    );
+    choro(
+        $("#slider-range").slider("values", 0),
+        $("#slider-range").slider("values", 1)
+    );
 });
 
 $.ajax({
@@ -289,7 +319,7 @@ $(".container_menu.for_web").hide();
 $(".tab-content.for_web").hide();
 $("hr.for_web").hide();
 $(".btn_hide_side_bar.for_web").hide();
-$(".detail_omzet").hide();
+// $(".detail_omzet").hide();
 $(".detail_jumlah").hide();
 
 var selector = ".menu_active .tombol_menu";
@@ -435,6 +465,26 @@ const estimation_direction = (time, way) => {
 };
 
 map.addControl(draw);
+
+let fillLayerDraw = [
+    "gl-draw-polygon-fill-active.cold",
+    "gl-draw-polygon-fill-active.hot",
+];
+let circleLayerDraw = [
+    "gl-draw-polygon-midpoint.cold",
+    "gl-draw-polygon-and-line-vertex-inactive.cold",
+    "gl-draw-point-active.cold",
+    "gl-draw-polygon-midpoint.hot",
+    "gl-draw-polygon-and-line-vertex-inactive.hot",
+    "gl-draw-point-active.hot",
+];
+let lineLayerDraw = [
+    "gl-draw-polygon-stroke-active.cold",
+    "gl-draw-line-active.cold",
+    "gl-draw-polygon-stroke-active.hot",
+    "gl-draw-line-active.hot",
+];
+
 // $(".mapboxgl-ctrl-group:eq(2)").append(
 //     `<button class="mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_circle" id="circleDraw" title="Radius"></button>`
 // );
@@ -479,12 +529,26 @@ $("#circleDraw").on("click", () => {
 $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").hide();
 
 $("#polygonDraw").on("click", () => {
+    fillLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "fill-color", "#fff");
+        map.setPaintProperty(e, "fill-opacity", 1);
+    });
+    lineLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "line-color", "#fff");
+    });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
     localStorage.setItem("polygonOptions", "Digitasi");
 });
 
 $("#btnSHP").on("click", () => {
+    fillLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "fill-color", "#fff");
+        map.setPaintProperty(e, "fill-opacity", 1);
+    });
+    lineLayerDraw.forEach((e) => {
+        map.setPaintProperty(e, "line-color", "#fff");
+    });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
     localStorage.setItem("polygonOptions", "SHP");
@@ -887,80 +951,80 @@ map.on("load", function () {
         "#caa502",
     ];
 
-    $.ajax({
-        url: `${url}/choro`,
-        method: "GET",
-        dataType: "json",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        success: (e) => {
-            map.addSource("wilayahindex", {
-                type: "geojson",
-                data: e,
-            });
+    // $.ajax({
+    //     url: `${url}/choro`,
+    //     method: "GET",
+    //     dataType: "json",
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    //     success: (e) => {
+    //         map.addSource("wilayahindex", {
+    //             type: "geojson",
+    //             data: e,
+    //         });
 
-            map.addLayer({
-                id: "wilayahindex_fill",
-                type: "fill",
-                source: "wilayahindex",
-                paint: {
-                    "fill-color": [
-                        "interpolate",
-                        ["linear"],
-                        ["get", "Total omzet"],
-                        0,
-                        "#ffeda0",
-                        5000000000,
-                        "#ffe675",
-                        9000000000,
-                        "#ffdf52",
-                        13000000000,
-                        "#ffd61f",
-                        17000000000,
-                        "#e0b700",
-                        20396854609,
-                        "#caa502",
-                    ],
-                    "fill-opacity": 0.7,
-                    "fill-outline-color": "red",
-                },
-                layout: {
-                    visibility: "none",
-                },
-            });
-            onOffLayers("wilayahindex");
-            map.on("mousemove", ({ point }) => {
-                const states = map.queryRenderedFeatures(point, {
-                    layers: ["wilayahindex_fill"],
-                });
-                document.getElementById("pd").innerHTML = states.length
-                    ? `<div>Kelurahan : ${
-                          states[0].properties.Kelurahan
-                      }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
-                          states[0].properties["Total omzet"]
-                      )}</strong></em></p>`
-                    : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
-            });
-        },
-    });
+    //         map.addLayer({
+    //             id: "wilayahindex_fill",
+    //             type: "fill",
+    //             source: "wilayahindex",
+    //             paint: {
+    //                 "fill-color": [
+    //                     "interpolate",
+    //                     ["linear"],
+    //                     ["get", "Total omzet"],
+    //                     0,
+    //                     "#ffeda0",
+    //                     5000000000,
+    //                     "#ffe675",
+    //                     9000000000,
+    //                     "#ffdf52",
+    //                     13000000000,
+    //                     "#ffd61f",
+    //                     17000000000,
+    //                     "#e0b700",
+    //                     20396854609,
+    //                     "#caa502",
+    //                 ],
+    //                 "fill-opacity": 0.7,
+    //                 "fill-outline-color": "red",
+    //             },
+    //             layout: {
+    //                 visibility: "none",
+    //             },
+    //         });
+    //         onOffLayers("wilayahindex");
+    //         map.on("mousemove", ({ point }) => {
+    //             const states = map.queryRenderedFeatures(point, {
+    //                 layers: ["wilayahindex_fill"],
+    //             });
+    //             document.getElementById("pd").innerHTML = states.length
+    //                 ? `<div>Kelurahan : ${
+    //                       states[0].properties.Kelurahan
+    //                   }</div><p class="mb-0"><strong><em>Rp ${separatorNum(
+    //                       states[0].properties["Total omzet"]
+    //                   )}</strong></em></p>`
+    //                 : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+    //         });
+    //     },
+    // });
 
     // create legend
-    const legend = document.getElementById("legends");
+    // const legend = document.getElementById("legends");
 
-    layers.forEach((layer, i) => {
-        const color = colors[i];
-        const item = document.createElement("div");
-        const key = document.createElement("span");
-        key.className = "legend-key";
-        key.style.backgroundColor = color;
+    // layers.forEach((layer, i) => {
+    //     const color = colors[i];
+    //     const item = document.createElement("div");
+    //     const key = document.createElement("span");
+    //     key.className = "legend-key";
+    //     key.style.backgroundColor = color;
 
-        const value = document.createElement("span");
-        value.innerHTML = `${layer}`;
-        item.appendChild(key);
-        item.appendChild(value);
-        legend.appendChild(item);
-    });
+    //     const value = document.createElement("span");
+    //     value.innerHTML = `${layer}`;
+    //     item.appendChild(key);
+    //     item.appendChild(value);
+    //     legend.appendChild(item);
+    // });
 
     map.on("dblclick", (e) => {
         const states = map.queryRenderedFeatures(e.point, {
@@ -1353,6 +1417,10 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     var chart_bar_kbli = $("#bar-chart-grouped-kbli").get(0).getContext("2d");
     var chart_pie_info = $("#pie-chart-info").get(0).getContext("2d");
     var chart_bar_info = $("#bar-chart-grouped-info").get(0).getContext("2d");
+    if (pie !== undefined) {
+        pie.destroy();
+    }
+
     pie = new Chart(chart_pie, {
         type: "pie",
         data: {
@@ -1379,6 +1447,10 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             },
         },
     });
+
+    if (bar !== undefined) {
+        bar.destroy();
+    }
 
     bar = new Chart(chart_bar, {
         type: "bar",
@@ -2792,6 +2864,107 @@ const banjir = (kelurahan, tahun) => {
     });
 };
 
+const choro = (min, max) => {
+    $.ajax({
+        url: `${url}/choro`,
+        method: "POST",
+        dataType: "json",
+        data: {
+            min: min,
+            max: max,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        success: (e) => {
+            if (map.getSource("wilayahindex")) {
+                map.removeLayer("wilayahindex_fill");
+                map.removeSource("wilayahindex");
+            }
+            map.addSource("wilayahindex", {
+                type: "geojson",
+                data: e,
+            });
+
+            map.addLayer({
+                id: "wilayahindex_fill",
+                type: "fill",
+                source: "wilayahindex",
+                paint: {
+                    "fill-color": [
+                        "interpolate",
+                        ["linear"],
+                        ["get", "Total omzet"],
+                        0,
+                        "#ffeda0",
+                        5000000000,
+                        "#ffe675",
+                        9000000000,
+                        "#ffdf52",
+                        13000000000,
+                        "#ffd61f",
+                        17000000000,
+                        "#e0b700",
+                        20396854609,
+                        "#caa502",
+                    ],
+                    "fill-opacity": 0.7,
+                    "fill-outline-color": "red",
+                },
+                layout: {
+                    visibility: "visible",
+                },
+            });
+            onOffLayers("wilayahindex");
+            map.on("mousemove", ({ point }) => {
+                const states = map.queryRenderedFeatures(point, {
+                    layers: ["wilayahindex_fill"],
+                });
+                document.getElementById("pd").innerHTML = states.length
+                    ? `<div>${titleCase(
+                          states[0].properties.Kelurahan
+                      )}</div><p class="mb-0"><strong>Rp ${separatorNum(
+                          states[0].properties["Total omzet"]
+                      )}</strong></p>`
+                    : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+            });
+            const layers = [
+                "0-4M",
+                "5M-8M",
+                "9M-12M",
+                "13M-16M",
+                "17M-20M",
+                "> 20M",
+            ];
+            const colors = [
+                "#ffeda0",
+                "#ffe675",
+                "#ffdf52",
+                "#ffd61f",
+                "#e0b700",
+                "#caa502",
+            ];
+            // create legend
+            const legend = document.getElementById("legends");
+            legend.innerHTML = "";
+
+            layers.forEach((layer, i) => {
+                const color = colors[i];
+                const item = document.createElement("div");
+                const key = document.createElement("span");
+                key.className = "legend-key";
+                key.style.backgroundColor = color;
+
+                const value = document.createElement("span");
+                value.innerHTML = `${layer}`;
+                item.appendChild(key);
+                item.appendChild(value);
+                legend.appendChild(item);
+            });
+        },
+    });
+};
+
 //add source layer
 function addSourceLayer(item) {
     var api = [
@@ -3228,11 +3401,11 @@ function onOffLayers(layer) {
     if (layer == "wilayahindex") {
         if ($("#wilayahindex_fill").prop("checked") == true) {
             showLayer("wilayahindex_fill");
-            $(".detail_omzet").show();
+            // $(".detail_omzet").show();
             $(".detail_jumlah").show();
         } else {
             hideLayer("wilayahindex_fill");
-            $(".detail_omzet").hide();
+            // $(".detail_omzet").hide();
             $(".detail_jumlah").hide();
         }
         $("#wilayahindex_fill").change(function () {
@@ -3485,7 +3658,7 @@ function onOffLayers(layer) {
                         <div class="row">
                             <div class="col-4">
                                 <img width="100px" height="90px" style="object-fit: cover; border-radius:15px"
-                                    src="http://jakpintas.dpmptsp-dki.com/rent/${
+                                    src="https://jakpintas.dpmptsp-dki.com/rent/${
                                         infoHarga[index]["properties"]["Foto"]
                                     }">
                             </div>
@@ -5011,5 +5184,13 @@ $("#formDigitasi").on("submit", (e) => {
         setTimeout(() => {
             $("#pesanGagalPrintDigitasi").hide();
         }, 3000);
+    }
+});
+
+$("#optionFilterChoro").change(() => {
+    if ($("#optionFilterChoro").val() == "Total Omzet UMKM") {
+        $("#filterChoro").show();
+    } else {
+        $("#filterChoro").hide();
     }
 });
