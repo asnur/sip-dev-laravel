@@ -5195,33 +5195,37 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Detail Jumlah -->
     <div class="detail_jumlah">
         <div class="container">
-            <span class="text_all font-weight-bold">Filter Data   <sup class="text-danger">BETA</sup></span>
+            <span class="text_all font-weight-bold">Filter Data <sup class="text-danger">BETA</sup></span>
 
             <div class="text_all">
                 <div class="row">
                     <div class="col-md-12">
-                        <select class="w-100">
+                        <select class="w-100" id="optionFilterChoro">
                             <option value="Total Omzet UMKM">Total Omzet UMKM</option>
                             <option value="Pekerjaan">Pekerjaan</option>
                             <option value="Pendidikan">Pendidikan</option>
                         </select>
                     </div>
-                    <div class="col-md-12 mt-2 mb-2">
-                        <span for="amount" class="text_all font-weight-bold">Total Omzet:</span>
-                        <span id="amount" class="w-75"
-                            style="border:0; color:#f6931f; font-weight:bold;"></span>
-                        <div id="slider-range"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
-                        <div class="text_all" id="legends">
+                    <div class="col-md-12" id="filterChoro">
+                        <div class="row">
+                            <div class="col-md-12 mt-2 mb-2">
+                                {{-- <span for="amount" class="text_all font-weight-bold">Total Omzet:</span> --}}
+                                <span id="amount" class="w-100"
+                                    style="border:0; color:#f6931f; font-weight:bold;"></span>
+                                <div id="slider-range"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
+                                <div class="text_all" id="legends">
 
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
-                        <div id="pd">
-                            <p></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+                                <div id="pd">
+                                    <p></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

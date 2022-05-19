@@ -5186,3 +5186,11 @@ $("#formDigitasi").on("submit", (e) => {
         }, 3000);
     }
 });
+
+$("#optionFilterChoro").change(() => {
+    if ($("#optionFilterChoro").val() == "Total Omzet UMKM") {
+        $("#filterChoro").show();
+    } else {
+        $("#filterChoro").hide();
+    }
+});
