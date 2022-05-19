@@ -40,6 +40,7 @@
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
         type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
 
     <!-- custom -->
@@ -5182,21 +5183,48 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- End Peta -->
 
     <!-- Detail Omzet -->
-    <div class="detail_omzet">
+    {{-- <div class="detail_omzet">
         <div class="container">
             <div class="text_all" id="legends">
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End Detail Omzet -->
 
     <!-- Detail Jumlah -->
     <div class="detail_jumlah">
         <div class="container">
-            <span class="text_all font-weight-bold">Detail Omzet</span>
+            <span class="text_all font-weight-bold">Filter Data   <sup class="text-danger">BETA</sup></span>
 
-            <div class="text_all" id="pd">
+            <div class="text_all">
+                <div class="row">
+                    <div class="col-md-12">
+                        <select class="w-100">
+                            <option value="Total Omzet UMKM">Total Omzet UMKM</option>
+                            <option value="Pekerjaan">Pekerjaan</option>
+                            <option value="Pendidikan">Pendidikan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mt-2 mb-2">
+                        <span for="amount" class="text_all font-weight-bold">Total Omzet:</span>
+                        <span id="amount" class="w-75"
+                            style="border:0; color:#f6931f; font-weight:bold;"></span>
+                        <div id="slider-range"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
+                        <div class="text_all" id="legends">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+                        <div id="pd">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -5210,6 +5238,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
     <!-- <script src="assets/js/popper.min.js" rel="preload"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

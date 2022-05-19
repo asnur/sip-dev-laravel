@@ -7,6 +7,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+.ui-slider-range.ui-corner-all.ui-widget-header {
+    background-color: #0956c6;
+}
+
 .swal2-popup {
     font-size: 2rem;
 }
@@ -431,10 +435,9 @@ textarea {
     padding-bottom: 5px;
     bottom: 1.5rem;
     position: absolute;
-    right: 150px;
+    right: 1rem;
     z-index: 999;
-    width: 60px;
-    width: 160px;
+    width: 360px;
     background-color: #fdfffc;
 }
 
