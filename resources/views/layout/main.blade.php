@@ -558,8 +558,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                     <div class="form-check wilayahindex_fill mt-1">
                         <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
-                        <label class="form-check-label  text_all" for="wilayahindex_fill">Total Omzet Usaha Mikro
-                            Kecil</label>
+                        <label class="form-check-label  text_all" for="wilayahindex_fill">Filter Data
+                            Interaktif <sup class="text-danger">BETA</sup></label>
                     </div>
 
 
@@ -5195,7 +5195,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Detail Jumlah -->
     <div class="detail_jumlah">
         <div class="container">
-            <span class="text_all font-weight-bold">Filter Data <sup class="text-danger">BETA</sup></span>
+            <span class="text_all font-weight-bold">Filter Data Interaktif <sup
+                    class="text-danger">BETA</sup></span>
 
             <div class="text_all">
                 <div class="row">
