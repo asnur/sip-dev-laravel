@@ -3413,10 +3413,12 @@ function onOffLayers(layer) {
                 showLayer("wilayahindex_fill");
                 $(".detail_omzet").show();
                 $(".detail_jumlah").show();
+                $("#btnInteractive").addClass("text-primary");
             } else {
                 hideLayer("wilayahindex_fill");
                 $(".detail_omzet").hide();
                 $(".detail_jumlah").hide();
+                $("#btnInteractive").removeClass("text-primary");
             }
         });
     }
@@ -5193,4 +5195,8 @@ $("#optionFilterChoro").change(() => {
     } else {
         $("#filterChoro").hide();
     }
+});
+
+$("#btnInteractive").on("click", () => {
+    $("#wilayahindex_fill").trigger("click");
 });

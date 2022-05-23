@@ -556,7 +556,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             Zonasi</label>
                     </div>
 
-                    <div class="form-check wilayahindex_fill mt-1">
+                    <div class="form-check wilayahindex_fill mt-1 d-none">
                         <input type="checkbox" class="form-check-input" id="wilayahindex_fill">
                         <label class="form-check-label  text_all" for="wilayahindex_fill">Filter Data
                             Interaktif <sup class="text-danger">BETA</sup></label>
@@ -5089,26 +5089,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     </div>
                 </div>
             </button>
-            <div id="legend btn btn-sm" style="float: right;margin-right:0.77rem;">
+            <div id="legend" class="bg-white"
+                style="float: right;margin-right:1.3rem;width:32px;margin-top:2rem; border-radius:8px">
                 <div class="dropdown">
-                    {{-- <button type="button" class="btn btn-sm" id="dropdownLayer" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"
-                        style="border-radius: 50%; border:none; background:white">
-                        <div class="container">
-                            <div class="row">
-                                <i class="las la-layer-group bg-white p-1 text-secondary"
-                                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                            </div>
-                        </div>
-                    </button> --}}
-                    <button class="btn btn-sm mt-3" id="dropdownLayer" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="container">
-                            <div class="row">
-                                <i class="ri-stack-line bg-white p-1 text-secondary"
-                                    style="border-radius: 50%; width:30px; height:30px; font-size:15px"></i>
-                            </div>
-                        </div>
+                    <button id="dropdownLayer" data-toggle="dropdown" class="ri-stack-line p-1" aria-haspopup="true"
+                        aria-expanded="false"
+                        style="border:none;background:none;width:32px; height:30px; outline:none; font-size:14px">
+
                     </button>
                     <ul class="dropdown-menu keep-open p-2" id="menu" aria-labelledby="dropdownLayer"
                         style="position: relative;font-size: 12px;margin-top: 5px;border: none;">
@@ -5137,21 +5124,25 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </li>
                     </ul>
                 </div>
-                <div class="dropleft text-center {{ Auth::check() ? 'mt-2' : 'mt-2' }}">
-                    {{-- @if (Auth::check()) --}}
-                    <button onclick="cekLoginChat()" type="button" id="btnChat"
-                        class="ri-phone-line bg-white p-1 text-secondary" data-toggle="dropdown"
-                        style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
+                <div class="dropleft text-center border-bottom border-top">
+                    <button onclick="cekLoginChat()" type="button" id="btnChat" class="ri-phone-line p-1"
+                        data-toggle="dropdown"
+                        style=" width:32px; height:30px; outline:none; font-size:14px; border:none;background: none;">
                     </button>
                     <div class="dropdown-menu" id="frameChat"
                         style="background: none; width:300px; border:none; margin-top:-10px">
                     </div>
                 </div>
-                <div class="dropleft text-center mt-3">
+                <div class="dropleft text-center">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" onclick="pinLocation()" id="btnPin"
-                        class="ri-pushpin-line bg-white p-1 text-secondary"
-                        style="border-radius: 50%; width:30px; height:30px; font-size:15px; border:none">
+                    <button type="button" onclick="pinLocation()" id="btnPin" class="ri-pushpin-line p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" id="btnInteractive" class="ri-line-chart-fill p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
                 {{-- <button class="btn btn-sm mt-1 ">
