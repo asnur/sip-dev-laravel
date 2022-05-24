@@ -2879,7 +2879,7 @@ const banjir = (kelurahan, tahun) => {
     });
 };
 
-const choro = (min = 0, max = 25000000000, catrgory = "omzet") => {
+const choro = (min = 0, max = 25000000000, category = "omzet") => {
     $.ajax({
         url: `${url}/choro`,
         method: "POST",
@@ -2887,7 +2887,7 @@ const choro = (min = 0, max = 25000000000, catrgory = "omzet") => {
         data: {
             min: min,
             max: max,
-            catrgory: catrgory,
+            category: category,
         },
         headers: {
             Authorization: `Bearer ${token}`,
