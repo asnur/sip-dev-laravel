@@ -41,6 +41,7 @@
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
         type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
 
     <!-- custom -->
@@ -4940,50 +4941,58 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
         <div class="container p-2" id="btn-titik" style="position:absolute; right:0; z-index:999; width:67%">
-            <button class="btn btn-sm"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            apartment
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+            <div>
+                <button class="btn btn-sm"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                apartment
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            storefront
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                storefront
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            home_repair_service
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                home_repair_service
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            location_city
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                        </div>
                     </div>
-                </div>
-            </button>
+                </button>
+            </div>
         </div>
         <div class="container p-2 dropdown" id="more-apps"
             style="position:absolute; right:-15px; z-index:999; width:8rem">
@@ -5285,6 +5294,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <script src="{{ asset('assets/js/jquery.masknumber.js') }}"></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

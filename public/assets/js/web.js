@@ -214,6 +214,15 @@ $(window).on("load", function () {
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
+    sliderRange();
+    choro(
+        $("#slider-range").slider("values", 0),
+        $("#slider-range").slider("values", 1),
+        "omzet"
+    );
+});
+
+const sliderRange = () => {
     $("#slider-range").slider({
         range: true,
         min: 0,
@@ -231,7 +240,7 @@ $(window).on("load", function () {
         },
         stop: function (event, ui) {
             console.log(ui.values[0], ui.values[1]);
-            choro(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], omzet);
         },
     });
     $("#amount").text(
@@ -240,11 +249,7 @@ $(window).on("load", function () {
             " - Rp. " +
             separatorNum($("#slider-range").slider("values", 1))
     );
-    choro(
-        $("#slider-range").slider("values", 0),
-        $("#slider-range").slider("values", 1)
-    );
-});
+};
 
 $.ajax({
     url: `${url}/text`,
@@ -884,6 +889,16 @@ map.on("style.load", function () {
                 var kelurahanStorage = localStorage.getItem("kelurahan");
                 if (kelurahanStorage !== kelurahan) {
                     $("#btn-titik").show();
+                    if (localStorage.getItem("kelurahan") !== null) {
+                        $("#btn-titik").slick("unslick");
+                    }
+                    $("#btn-titik").slick({
+                        infinite: true,
+                        slidesToShow: 4,
+                        variableWidth: true,
+                        prevArrow: null,
+                        nextArrow: null,
+                    });
 
                     popUpHarga = [];
                     popUpHarga = getDataSewa(kelurahan);
@@ -2864,7 +2879,7 @@ const banjir = (kelurahan, tahun) => {
     });
 };
 
-const choro = (min, max) => {
+const choro = (min = 0, max = 25000000000, catrgory = "omzet") => {
     $.ajax({
         url: `${url}/choro`,
         method: "POST",
@@ -2872,6 +2887,7 @@ const choro = (min, max) => {
         data: {
             min: min,
             max: max,
+            catrgory: catrgory,
         },
         headers: {
             Authorization: `Bearer ${token}`,
@@ -3843,6 +3859,16 @@ function onOffLayers(layer) {
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
     $("#btn-titik").show();
+    if (localStorage.getItem("kelurahan") !== null) {
+        $("#btn-titik").slick("unslick");
+    }
+    $("#btn-titik").slick({
+        infinite: true,
+        slidesToShow: 4,
+        variableWidth: true,
+        prevArrow: null,
+        nextArrow: null,
+    });
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");
     const text = $(this).text();
@@ -5191,9 +5217,66 @@ $("#formDigitasi").on("submit", (e) => {
 
 $("#optionFilterChoro").change(() => {
     if ($("#optionFilterChoro").val() == "Total Omzet UMKM") {
-        $("#filterChoro").show();
-    } else {
-        $("#filterChoro").hide();
+        choro();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="amount" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-range"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRange();
+    } else if ($("#optionFilterChoro").val() == "Pekerjaan") {
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Jumlah Pekerjaan:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+    } else if ($("#optionFilterChoro").val() == "Pendidikan") {
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Jumlah Pendidikan:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
     }
 });
 
