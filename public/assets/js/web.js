@@ -240,7 +240,7 @@ const sliderRange = () => {
         },
         stop: function (event, ui) {
             console.log(ui.values[0], ui.values[1]);
-            choro(ui.values[0], ui.values[1], omzet);
+            choro(ui.values[0], ui.values[1], "omzet");
         },
     });
     $("#amount").text(
