@@ -4940,8 +4940,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
-        <div class="container p-2" id="btn-titik" style="position:absolute; right:0; z-index:999; width:67%">
-            <div>
+        <div class="container p-2" id="btn-titik" style="position:absolute; left:30rem; z-index:999; width:60%">
+            {{-- <div>
                 <button class="btn btn-sm"
                     style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
                     <div class="container">
@@ -4992,7 +4992,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </div>
                     </div>
                 </button>
-            </div>
+            </div> --}}
         </div>
         <div class="container p-2 dropdown" id="more-apps"
             style="position:absolute; right:-15px; z-index:999; width:8rem">

@@ -203,13 +203,15 @@ for (var i = 0; i < inputs.length; i++) {
 }
 
 $(window).on("load", function () {
-    localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
     localStorage.setItem("simulasi", "");
     localStorage.setItem("direction", 1);
     localStorage.setItem("circleDraw", 0);
     localStorage.setItem("polygonDraw", 0);
+    localStorage.setItem("filterChoro", 1);
+    localStorage.setItem("kelurahan", "");
+    localStorage.setItem("filterCategoryChoro", "omzet");
     $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
@@ -888,17 +890,82 @@ map.on("style.load", function () {
                 // console.log(kelurahan);
                 var kelurahanStorage = localStorage.getItem("kelurahan");
                 if (kelurahanStorage !== kelurahan) {
-                    $("#btn-titik").show();
+                    // if (
+                    //     localStorage.getItem("filterChoro") == 1 ||
+                    //     localStorage.getItem("filterChoro") == null
+                    // ) {
                     if (localStorage.getItem("kelurahan") !== null) {
                         $("#btn-titik").slick("unslick");
                     }
+                    // if (localStorage.getItem("filterChoro") !== 0) {
+                    //     $("#btn-titik").slick("unslick");
+                    // }
+                    $("#btn-titik").html("");
+                    $("#btn-titik").html(`
+                        <div>
+                <button class="btn btn-sm"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                apartment
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                storefront
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                home_repair_service
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+                        `);
+                    filterLayer();
+                    // }
                     $("#btn-titik").slick({
                         infinite: true,
                         slidesToShow: 4,
+                        slidesToScroll: 4,
                         variableWidth: true,
                         prevArrow: null,
                         nextArrow: null,
                     });
+                    $("#btn-titik").show();
 
                     popUpHarga = [];
                     popUpHarga = getDataSewa(kelurahan);
@@ -2901,29 +2968,50 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                 type: "geojson",
                 data: e,
             });
-
+            let paint;
+            if (category == "omzet") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Total omzet"],
+                    0,
+                    "#ffeda0",
+                    5000000000,
+                    "#ffe675",
+                    9000000000,
+                    "#ffdf52",
+                    13000000000,
+                    "#ffd61f",
+                    17000000000,
+                    "#e0b700",
+                    20396854609,
+                    "#caa502",
+                ];
+            } else {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    600,
+                    "#ffe675",
+                    1100,
+                    "#ffdf52",
+                    2100,
+                    "#ffd61f",
+                    3100,
+                    "#e0b700",
+                    5000,
+                    "#caa502",
+                ];
+            }
             map.addLayer({
                 id: "wilayahindex_fill",
                 type: "fill",
                 source: "wilayahindex",
                 paint: {
-                    "fill-color": [
-                        "interpolate",
-                        ["linear"],
-                        ["get", "Total omzet"],
-                        0,
-                        "#ffeda0",
-                        5000000000,
-                        "#ffe675",
-                        9000000000,
-                        "#ffdf52",
-                        13000000000,
-                        "#ffd61f",
-                        17000000000,
-                        "#e0b700",
-                        20396854609,
-                        "#caa502",
-                    ],
+                    "fill-color": paint,
                     "fill-opacity": 0.7,
                     "fill-outline-color": "red",
                 },
@@ -2936,22 +3024,41 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                 const states = map.queryRenderedFeatures(point, {
                     layers: ["wilayahindex_fill"],
                 });
+
                 document.getElementById("pd").innerHTML = states.length
                     ? `<div>${titleCase(
                           states[0].properties.Kelurahan
-                      )}</div><p class="mb-0"><strong>Rp ${separatorNum(
-                          states[0].properties["Total omzet"]
-                      )}</strong></p>`
+                      )}</div><p class="mb-0"><strong>${
+                          localStorage.getItem("filterCategoryChoro") == "omzet"
+                              ? `Rp. ${separatorNum(
+                                    states[0].properties["Total omzet"]
+                                )}`
+                              : `${separatorNum(
+                                    states[0].properties["Jumlah"]
+                                )} Jiwa`
+                      }</strong></p>`
                     : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
             });
-            const layers = [
-                "0-4M",
-                "5M-8M",
-                "9M-12M",
-                "13M-16M",
-                "17M-20M",
-                "> 20M",
-            ];
+            let layers;
+            if (category == "omzet") {
+                layers = [
+                    "0-4M",
+                    "5M-8M",
+                    "9M-12M",
+                    "13M-16M",
+                    "17M-20M",
+                    "> 20M",
+                ];
+            } else {
+                layers = [
+                    "0-500",
+                    "600-1000",
+                    "1100-2000",
+                    "2100-3000",
+                    "3100-5000",
+                    "> 5000",
+                ];
+            }
             const colors = [
                 "#ffeda0",
                 "#ffe675",
@@ -3416,6 +3523,7 @@ function onOffLayers(layer) {
     //Wilayah
     if (layer == "wilayahindex") {
         if ($("#wilayahindex_fill").prop("checked") == true) {
+            // localStorage.setItem("filterCategoryChoro", "omzet");
             showLayer("wilayahindex_fill");
             // $(".detail_omzet").show();
             $(".detail_jumlah").show();
@@ -3435,6 +3543,7 @@ function onOffLayers(layer) {
                 $(".detail_omzet").hide();
                 $(".detail_jumlah").hide();
                 $("#btnInteractive").removeClass("text-primary");
+                localStorage.setItem("filterChoro", 0);
             }
         });
     }
@@ -3862,9 +3971,16 @@ $(document).on("click", ".wilayah-select", function () {
     if (localStorage.getItem("kelurahan") !== null) {
         $("#btn-titik").slick("unslick");
     }
+    if (
+        localStorage.getItem("filterChoro") !== 0 &&
+        localStorage.getItem("filterChoro") !== null
+    ) {
+        $("#btn-titik").slick("unslick");
+    }
     $("#btn-titik").slick({
         infinite: true,
         slidesToShow: 4,
+        slidesToScroll: 4,
         variableWidth: true,
         prevArrow: null,
         nextArrow: null,
@@ -4617,92 +4733,96 @@ $(document).on("change", "#selectTPZ", function () {
     $(".inf-k-tpz").html(value_tpz);
 });
 
-$("#sewa_kantor").click(function () {
-    $(this).css("background", "orange");
-    $("#iumk").css("background", "white");
-    $("#proyek").css("background", "white");
-    $("#cagar").css("background", "white");
-    $("#sewa_fill").trigger("click");
-    $(".info-layer-usaha").hide();
-    $(".info-layer-investasi").hide();
-    $(".info-layer-budaya").hide();
-});
+const filterLayer = () => {
+    $("#sewa_kantor").click(function () {
+        $(this).css("background", "orange");
+        $("#iumk").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#sewa_fill").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer-investasi").hide();
+        $(".info-layer-budaya").hide();
+    });
 
-$("#iumk").click(function () {
-    $(this).css("background", "orange");
-    $("#sewa_kantor").css("background", "white");
-    $("#proyek").css("background", "white");
-    $("#cagar").css("background", "white");
-    $("#iumk_fill").trigger("click");
-    $(".info-layer").hide();
-    $(".info-layer-investasi").hide();
-    $(".info-layer-budaya").hide();
-});
+    $("#iumk").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#iumk_fill").trigger("click");
+        $(".info-layer").hide();
+        $(".info-layer-investasi").hide();
+        $(".info-layer-budaya").hide();
+    });
 
-$("#proyek").click(function () {
-    $(this).css("background", "orange");
-    $("#sewa_kantor").css("background", "white");
-    $("#iumk").css("background", "white");
-    $("#cagar").css("background", "white");
-    $("#investasi_fill").trigger("click");
-    $(".info-layer-usaha").hide();
-    $(".info-layer").hide();
-    $(".info-layer-budaya").hide();
-});
+    $("#proyek").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#iumk").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#investasi_fill").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer").hide();
+        $(".info-layer-budaya").hide();
+    });
 
-$("#cagar").click(function () {
-    $(this).css("background", "orange");
-    $("#sewa_kantor").css("background", "white");
-    $("#iumk").css("background", "white");
-    $("#proyek").css("background", "white");
-    $("#budaya_dot").trigger("click");
-    $(".info-layer-usaha").hide();
-    $(".info-layer").hide();
-    $(".info-layer-investasi").hide();
-});
+    $("#cagar").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#iumk").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#budaya_dot").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer").hide();
+        $(".info-layer-investasi").hide();
+    });
 
-$("#closeSewa").on("click", function () {
-    $(".info-layer").hide();
-    $("#show_side_bar").hide();
-    $("#sewa_kantor").css("background", "white");
-    hideLayer("sewa_fill");
-    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-    $("#sewa_fill").prop("checked", false);
-    // $("#closeUsaha").trigger("click");
-    if ($("#sidebar").hide() == true) {
-        $("#hide_side_bar").hide();
-    } else {
-        // $("#hide_side_bar").show();
-        $("#sidebar").show();
-    }
-});
+    $("#closeSewa").on("click", function () {
+        $(".info-layer").hide();
+        $("#show_side_bar").hide();
+        $("#sewa_kantor").css("background", "white");
+        hideLayer("sewa_fill");
+        $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        $("#sewa_fill").prop("checked", false);
+        // $("#closeUsaha").trigger("click");
+        if ($("#sidebar").hide() == true) {
+            $("#hide_side_bar").hide();
+        } else {
+            // $("#hide_side_bar").show();
+            $("#sidebar").show();
+        }
+    });
 
-$("#closeUsaha").on("click", function (e) {
-    $(".info-layer-usaha").hide();
-    $("#show_side_bar").hide();
-    $("#iumk").css("background", "white");
-    hideLayer("iumk_fill");
-    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-    window.stop();
-    $("#iumk_fill").prop("checked", false);
-    // $("#closeSewa").trigger("click");
-    if ($("#sidebar").hide() == true) {
-        $("#hide_side_bar").hide();
-    } else {
-        // $("#hide_side_bar").show();
-        $("#sidebar").show();
-    }
-});
+    $("#closeUsaha").on("click", function (e) {
+        $(".info-layer-usaha").hide();
+        $("#show_side_bar").hide();
+        $("#iumk").css("background", "white");
+        hideLayer("iumk_fill");
+        $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        window.stop();
+        $("#iumk_fill").prop("checked", false);
+        // $("#closeSewa").trigger("click");
+        if ($("#sidebar").hide() == true) {
+            $("#hide_side_bar").hide();
+        } else {
+            // $("#hide_side_bar").show();
+            $("#sidebar").show();
+        }
+    });
 
-$("#closeDigitasi").on("click", () => {
-    $(".info-layer-digitasi").hide();
-    if (localStorage.getItem("polygonDraw") == 1) {
-        draw.deleteAll();
-        localStorage.setItem("circleDraw", 0);
-        localStorage.setItem("polygonDraw", 0);
-        removeCircle();
-    }
-});
+    $("#closeDigitasi").on("click", () => {
+        $(".info-layer-digitasi").hide();
+        if (localStorage.getItem("polygonDraw") == 1) {
+            draw.deleteAll();
+            localStorage.setItem("circleDraw", 0);
+            localStorage.setItem("polygonDraw", 0);
+            removeCircle();
+        }
+    });
+};
+
+filterLayer();
 
 function preview_image() {
     var gambarLokasi = $("#gambarLokasi").get(0).files.length;
@@ -5217,7 +5337,65 @@ $("#formDigitasi").on("submit", (e) => {
 
 $("#optionFilterChoro").change(() => {
     if ($("#optionFilterChoro").val() == "Total Omzet UMKM") {
+        localStorage.setItem("filterCategoryChoro", "omzet");
         choro();
+        $("#btn-titik").hide();
+        $("#btn-titik").html(``);
+        $("#btn-titik").html(`
+        <div>
+        <button class="btn btn-sm"
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                        apartment
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                </div>
+            </div>
+        </button>
+    </div>
+    <div>
+        <button class="btn btn-sm ml-2"
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                        storefront
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                </div>
+            </div>
+        </button>
+    </div>
+    <div>
+        <button class="btn btn-sm ml-2"
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                        home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                </div>
+            </div>
+        </button>
+    </div>
+    <div>
+        <button class="btn btn-sm ml-2"
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                        location_city
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                </div>
+            </div>
+        </button>
+    </div>
+        `);
+
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
@@ -5242,6 +5420,125 @@ $("#optionFilterChoro").change(() => {
         `);
         sliderRange();
     } else if ($("#optionFilterChoro").val() == "Pekerjaan") {
+        localStorage.setItem("filterChoro", 1);
+        if (localStorage.getItem("filterCategoryChoro") !== "pekerjaan") {
+            $("#btn-titik").slick("unslick");
+            console.log("unslick");
+        }
+        localStorage.setItem("filterCategoryChoro", "pekerjaan");
+        $("#btn-titik").hide();
+        $("#btn-titik").html(``);
+        let pekerjaan = [
+            "belum_tidak_bekerja",
+            "aparatur_pemerintah",
+            "pertanian",
+            "nelayan",
+            "tenaga_kesehatan",
+            "pegawai",
+            "tentara",
+            "kepolisian",
+            "petani",
+            "peternak",
+            "industri",
+            "konstruksi",
+            "transportasi",
+            "pembantu",
+            "mekanik",
+            "seniman",
+            "tabib",
+            "paraji",
+            "perancang",
+            "penterjemah",
+            "imam_masjid",
+            "pendeta",
+            "pastor",
+            "wartawan",
+            "ustadz",
+            "juru_masak",
+            "promotor",
+            "dosen",
+            "guru",
+            "pilot",
+            "pengacara",
+            "notaris",
+            "arsitek",
+            "akuntan",
+            "konsultan",
+            "dokter",
+            "bidan",
+            "perawat",
+            "apoteker",
+            "psikiater",
+            "pelaut",
+            "peneliti",
+            "sopir",
+            "pialang",
+            "paranormal",
+            "pedagang",
+            "biarawati",
+            "karyawan",
+            "buruh",
+            "tukang",
+            "penyiar",
+            "wiraswasta",
+            "pensiunan",
+            "lainnya",
+        ];
+        let html = "";
+        pekerjaan.forEach((item) => {
+            if (item == "belum_tidak_bekerja") {
+                choro(0, 0, "belum_tidak_bekerja");
+            }
+            html += `
+            <div>
+            <button class="btn btn-sm mr-2 ${
+                item == "belum_tidak_bekerja" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'${item}')">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                        home_repair_service
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+        });
+        $("#btn-titik").html(html);
+        var header = document.getElementById("btn-titik");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-chip");
+                console.log(current);
+                current[0].className = current[0].className.replace(
+                    "active-chip",
+                    ""
+                );
+                this.className += " active-chip";
+            });
+        }
+        // if (
+        //     localStorage.getItem("filterChoro") !== 0 &&
+        //     localStorage.getItem("filterChoro") !== null
+        // ) {
+        //     $("#btn-titik").slick("unslick");
+        // }
+        $("#btn-titik").slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            variableWidth: true,
+            prevArrow: null,
+            nextArrow: null,
+        });
+        $("#btn-titik").show();
+
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
@@ -5260,6 +5557,180 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
     } else if ($("#optionFilterChoro").val() == "Pendidikan") {
+        // tamat_sd;
+        // sltp;
+        // slta;
+        // diploma_i;
+        // diploma_ii;
+        // diploma_iv;
+        // strata_ii;
+        // strata_iii;
+
+        if (localStorage.getItem("filterCategoryChoro") !== "pendidikan") {
+            $("#btn-titik").slick("unslick");
+            console.log("unslick");
+        }
+        localStorage.setItem("filterCategoryChoro", "pendidikan");
+        $("#btn-titik").html(``);
+        choro(0, 0, "tamat_sd");
+        let html = "";
+        html += `
+        <div>
+        <button class="btn btn-sm mr-2 active-chip"
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'tamat_sd')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Tamat SD</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'sltp')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">SLTP</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'slta')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">SLTA</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'diploma_i')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Dimploma I</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'diploma_ii')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Dimploma II</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'diploma_iii')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Dimploma III</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'strata_i')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Strata I</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'strata_ii')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Strata II</span>
+                </div>
+            </div>
+        </button>
+        </div>
+
+        <div>
+        <button class="btn btn-sm mr-2 "
+            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'strata_iii')">
+            <div class="container">
+                <div class="row">
+                    <span class="material-icons text-primary mr-1">
+                    home_repair_service
+                    </span>
+                    <span class="font-weight-bold" style="margin-top: 2px">Strata III</span>
+                </div>
+            </div>
+        </button>
+        </div>
+        `;
+
+        $("#btn-titik").html(html);
+        var header = document.getElementById("btn-titik");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-chip");
+                console.log(current);
+                current[0].className = current[0].className.replace(
+                    "active-chip",
+                    ""
+                );
+                this.className += " active-chip";
+            });
+        }
+        // if (
+        //     localStorage.getItem("filterChoro") !== 0 &&
+        //     localStorage.getItem("filterChoro") !== null
+        // ) {
+        // }
+        $("#btn-titik").slick({
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            variableWidth: true,
+            prevArrow: null,
+            nextArrow: null,
+        });
+        $("#btn-titik").show();
+
+        localStorage.setItem("filterChoro", 1);
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
@@ -5281,5 +5752,17 @@ $("#optionFilterChoro").change(() => {
 });
 
 $("#btnInteractive").on("click", () => {
+    if (map.getLayer("wilayahindex_fill")) {
+        $("#optionFilterChoro").val("Total Omzet UMKM").trigger("change");
+    }
     $("#wilayahindex_fill").trigger("click");
+});
+
+$("#btn-titik").slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    variableWidth: true,
+    prevArrow: null,
+    nextArrow: null,
 });
