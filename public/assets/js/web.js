@@ -858,10 +858,27 @@ map.on("style.load", function () {
         const coornya = e.lngLat;
         var lats = coornya.lat.toString();
         var lngs = coornya.lng.toString();
-        lats = lats.slice(0, -7);
-        lngs = lngs.slice(0, -8);
-        lat = lats;
-        long = lngs;
+        // lats = lats.slice(0, -7);
+        // lngs = lngs.slice(0, -8);
+        // lat = lats;
+        // long = lngs;
+        let data;
+        if (localStorage.getItem("loaded") == 1) {
+            data = {
+                lat: coornya.lat,
+                long: coornya.lng,
+            };
+            lats = coornya.lat;
+            lngs = coornya.lng;
+            localStorage.setItem("loaded", 0);
+        } else {
+            data = {
+                lat: lats,
+                long: lngs,
+            };
+            lats = lats.slice(0, -7);
+            lngs = lngs.slice(0, -8);
+        }
 
         if (localStorage.getItem("circleDraw") == 1) {
             addCircle(coornya.lat, coornya.lng, 1);
@@ -878,10 +895,7 @@ map.on("style.load", function () {
         $.ajax({
             url: `${url}/wilayah`,
             method: "PUT",
-            data: {
-                lat: lats,
-                lng: lngs,
-            },
+            data: data,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -891,81 +905,6 @@ map.on("style.load", function () {
                 // console.log(kelurahan);
                 var kelurahanStorage = localStorage.getItem("kelurahan");
                 if (kelurahanStorage !== kelurahan) {
-                    // if (
-                    //     localStorage.getItem("filterChoro") == 1 ||
-                    //     localStorage.getItem("filterChoro") == null
-                    // ) {
-                    // if (localStorage.getItem("kelurahan") !== null) {
-                    //     $("#btn-titik").slick("unslick");
-                    // }
-                    // if (localStorage.getItem("filterChoro") !== 0) {
-                    //     $("#btn-titik").slick("unslick");
-                    // }
-                    //         $("#btn-titik").html("");
-                    //         $("#btn-titik").html(`
-                    //             <div>
-                    //     <button class="btn btn-sm"
-                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                    //         <div class="container">
-                    //             <div class="row">
-                    //                 <span class="material-icons text-primary mr-1">
-                    //                     apartment
-                    //                 </span>
-                    //                 <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
-                    //             </div>
-                    //         </div>
-                    //     </button>
-                    // </div>
-                    // <div>
-                    //     <button class="btn btn-sm ml-2"
-                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-                    //         <div class="container">
-                    //             <div class="row">
-                    //                 <span class="material-icons text-primary mr-1">
-                    //                     storefront
-                    //                 </span>
-                    //                 <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
-                    //             </div>
-                    //         </div>
-                    //     </button>
-                    // </div>
-                    // <div>
-                    //     <button class="btn btn-sm ml-2"
-                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-                    //         <div class="container">
-                    //             <div class="row">
-                    //                 <span class="material-icons text-primary mr-1">
-                    //                     home_repair_service
-                    //                 </span>
-                    //                 <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
-                    //             </div>
-                    //         </div>
-                    //     </button>
-                    // </div>
-                    // <div>
-                    //     <button class="btn btn-sm ml-2"
-                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-                    //         <div class="container">
-                    //             <div class="row">
-                    //                 <span class="material-icons text-primary mr-1">
-                    //                     location_city
-                    //                 </span>
-                    //                 <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-                    //             </div>
-                    //         </div>
-                    //     </button>
-                    // </div>
-                    //             `);
-                    // filterLayer();
-                    // }
-                    // $("#btn-titik").slick({
-                    //     infinite: true,
-                    //     slidesToShow: 4,
-                    //     slidesToScroll: 4,
-                    //     variableWidth: true,
-                    //     prevArrow: null,
-                    //     nextArrow: null,
-                    // });
                     $("#btn-titik").show();
 
                     popUpHarga = [];
@@ -3179,6 +3118,7 @@ function addSourceLayer(item) {
                     // map.on("sourcedata", (e) => {
                     console.log(lat, lng);
                     setTimeout(() => {
+                        localStorage.setItem("loaded", 1);
                         map.fire("click", {
                             lngLat: {
                                 lng: lng,
@@ -3186,18 +3126,6 @@ function addSourceLayer(item) {
                             },
                         });
                     }, 3000);
-                    // });
-                    // if (
-                    //     map.getSource("zoning") &&
-                    //     map.isSourceLoaded("zoning")
-                    // ) {
-                    //     map.fire("click", {
-                    //         lngLat: {
-                    //             lng: lng,
-                    //             lat: lat,
-                    //         },
-                    //     });
-                    // }
                 }
                 localStorage.setItem("searching", 0);
             },
