@@ -203,17 +203,29 @@ for (var i = 0; i < inputs.length; i++) {
 }
 
 $(window).on("load", function () {
-    localStorage.removeItem("kelurahan");
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
     localStorage.setItem("simulasi", "");
     localStorage.setItem("direction", 1);
     localStorage.setItem("circleDraw", 0);
     localStorage.setItem("polygonDraw", 0);
+    localStorage.setItem("filterChoro", 1);
+    localStorage.setItem("kelurahan", "");
+    localStorage.setItem("searching", 0);
+    localStorage.setItem("filterCategoryChoro", "omzet");
     $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "ketentuan", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "kbli-data", status: 0 });
+    sliderRange();
+    choro(
+        $("#slider-range").slider("values", 0),
+        $("#slider-range").slider("values", 1),
+        "omzet"
+    );
+});
+
+const sliderRange = () => {
     $("#slider-range").slider({
         range: true,
         min: 0,
@@ -231,7 +243,7 @@ $(window).on("load", function () {
         },
         stop: function (event, ui) {
             console.log(ui.values[0], ui.values[1]);
-            choro(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "omzet");
         },
     });
     $("#amount").text(
@@ -240,11 +252,7 @@ $(window).on("load", function () {
             " - Rp. " +
             separatorNum($("#slider-range").slider("values", 1))
     );
-    choro(
-        $("#slider-range").slider("values", 0),
-        $("#slider-range").slider("values", 1)
-    );
-});
+};
 
 $.ajax({
     url: `${url}/text`,
@@ -850,10 +858,27 @@ map.on("style.load", function () {
         const coornya = e.lngLat;
         var lats = coornya.lat.toString();
         var lngs = coornya.lng.toString();
-        lats = lats.slice(0, -7);
-        lngs = lngs.slice(0, -8);
-        lat = lats;
-        long = lngs;
+        // lats = lats.slice(0, -7);
+        // lngs = lngs.slice(0, -8);
+        // lat = lats;
+        // long = lngs;
+        let data;
+        if (localStorage.getItem("loaded") == 1) {
+            data = {
+                lat: coornya.lat,
+                long: coornya.lng,
+            };
+            lats = coornya.lat;
+            lngs = coornya.lng;
+            localStorage.setItem("loaded", 0);
+        } else {
+            data = {
+                lat: lats,
+                long: lngs,
+            };
+            lats = lats.slice(0, -7);
+            lngs = lngs.slice(0, -8);
+        }
 
         if (localStorage.getItem("circleDraw") == 1) {
             addCircle(coornya.lat, coornya.lng, 1);
@@ -870,10 +895,7 @@ map.on("style.load", function () {
         $.ajax({
             url: `${url}/wilayah`,
             method: "PUT",
-            data: {
-                lat: lats,
-                lng: lngs,
-            },
+            data: data,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -1373,7 +1395,7 @@ map.on("mouseleave", "sungai_multilinestring", () => {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
-    // console.log(dt);
+    console.log(e);
     // localStorage.setItem("wilayah", JSON.stringify(dt));
 
     $.ajax({
@@ -2864,7 +2886,7 @@ const banjir = (kelurahan, tahun) => {
     });
 };
 
-const choro = (min, max) => {
+const choro = (min = 0, max = 25000000000, category = "omzet") => {
     $.ajax({
         url: `${url}/choro`,
         method: "POST",
@@ -2872,6 +2894,7 @@ const choro = (min, max) => {
         data: {
             min: min,
             max: max,
+            category: category,
         },
         headers: {
             Authorization: `Bearer ${token}`,
@@ -2885,29 +2908,50 @@ const choro = (min, max) => {
                 type: "geojson",
                 data: e,
             });
-
+            let paint;
+            if (category == "omzet") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Total omzet"],
+                    0,
+                    "#ffeda0",
+                    5000000000,
+                    "#ffe675",
+                    9000000000,
+                    "#ffdf52",
+                    13000000000,
+                    "#ffd61f",
+                    17000000000,
+                    "#e0b700",
+                    20396854609,
+                    "#caa502",
+                ];
+            } else {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    600,
+                    "#ffe675",
+                    1100,
+                    "#ffdf52",
+                    2100,
+                    "#ffd61f",
+                    3100,
+                    "#e0b700",
+                    5000,
+                    "#caa502",
+                ];
+            }
             map.addLayer({
                 id: "wilayahindex_fill",
                 type: "fill",
                 source: "wilayahindex",
                 paint: {
-                    "fill-color": [
-                        "interpolate",
-                        ["linear"],
-                        ["get", "Total omzet"],
-                        0,
-                        "#ffeda0",
-                        5000000000,
-                        "#ffe675",
-                        9000000000,
-                        "#ffdf52",
-                        13000000000,
-                        "#ffd61f",
-                        17000000000,
-                        "#e0b700",
-                        20396854609,
-                        "#caa502",
-                    ],
+                    "fill-color": paint,
                     "fill-opacity": 0.7,
                     "fill-outline-color": "red",
                 },
@@ -2920,22 +2964,41 @@ const choro = (min, max) => {
                 const states = map.queryRenderedFeatures(point, {
                     layers: ["wilayahindex_fill"],
                 });
+
                 document.getElementById("pd").innerHTML = states.length
                     ? `<div>${titleCase(
                           states[0].properties.Kelurahan
-                      )}</div><p class="mb-0"><strong>Rp ${separatorNum(
-                          states[0].properties["Total omzet"]
-                      )}</strong></p>`
+                      )}</div><p class="mb-0"><strong>${
+                          localStorage.getItem("filterCategoryChoro") == "omzet"
+                              ? `Rp. ${separatorNum(
+                                    states[0].properties["Total omzet"]
+                                )}`
+                              : `${separatorNum(
+                                    states[0].properties["Jumlah"]
+                                )} Jiwa`
+                      }</strong></p>`
                     : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
             });
-            const layers = [
-                "0-4M",
-                "5M-8M",
-                "9M-12M",
-                "13M-16M",
-                "17M-20M",
-                "> 20M",
-            ];
+            let layers;
+            if (category == "omzet") {
+                layers = [
+                    "0-4M",
+                    "5M-8M",
+                    "9M-12M",
+                    "13M-16M",
+                    "17M-20M",
+                    "> 20M",
+                ];
+            } else {
+                layers = [
+                    "0-500",
+                    "600-1000",
+                    "1100-2000",
+                    "2100-3000",
+                    "3100-5000",
+                    "> 5000",
+                ];
+            }
             const colors = [
                 "#ffeda0",
                 "#ffe675",
@@ -3044,6 +3107,27 @@ function addSourceLayer(item) {
                 });
                 addLayers(dt);
                 onOffLayers(dt);
+                if (localStorage.getItem("searching") == 1) {
+                    let coordCliked = localStorage
+                        .getItem("kordinat")
+                        .toString()
+                        .split(",");
+                    console.log(coordCliked);
+                    let lat = coordCliked[0];
+                    let lng = coordCliked[1];
+                    // map.on("sourcedata", (e) => {
+                    console.log(lat, lng);
+                    setTimeout(() => {
+                        localStorage.setItem("loaded", 1);
+                        map.fire("click", {
+                            lngLat: {
+                                lng: lng,
+                                lat: lat,
+                            },
+                        });
+                    }, 3000);
+                }
+                localStorage.setItem("searching", 0);
             },
         });
     }
@@ -3400,6 +3484,7 @@ function onOffLayers(layer) {
     //Wilayah
     if (layer == "wilayahindex") {
         if ($("#wilayahindex_fill").prop("checked") == true) {
+            // localStorage.setItem("filterCategoryChoro", "omzet");
             showLayer("wilayahindex_fill");
             // $(".detail_omzet").show();
             $(".detail_jumlah").show();
@@ -3413,10 +3498,13 @@ function onOffLayers(layer) {
                 showLayer("wilayahindex_fill");
                 $(".detail_omzet").show();
                 $(".detail_jumlah").show();
+                $("#btnInteractive").addClass("text-primary");
             } else {
                 hideLayer("wilayahindex_fill");
                 $(".detail_omzet").hide();
                 $(".detail_jumlah").hide();
+                $("#btnInteractive").removeClass("text-primary");
+                localStorage.setItem("filterChoro", 0);
             }
         });
     }
@@ -3841,10 +3929,29 @@ function onOffLayers(layer) {
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
     $("#btn-titik").show();
+    // if (localStorage.getItem("kelurahan") !== null) {
+    //     $("#btn-titik").slick("unslick");
+    // }
+    // if (
+    //     localStorage.getItem("filterChoro") !== 0 &&
+    //     localStorage.getItem("filterChoro") !== null
+    // ) {
+    //     $("#btn-titik").slick("unslick");
+    // }
+    // $("#btn-titik").slick({
+    //     infinite: true,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 4,
+    //     variableWidth: true,
+    //     prevArrow: null,
+    //     nextArrow: null,
+    // });
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");
     const text = $(this).text();
     $("#cari_wilayah").val(text);
+    localStorage.setItem("searching", 1);
+    localStorage.setItem("kordinat", coor);
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);
@@ -3855,7 +3962,7 @@ $(document).on("click", ".wilayah-select", function () {
     budaya = [];
     budaya = getDataBudaya(kel);
     // console.log(coor.split(","));
-    console.log(coor);
+    console.log(typeof coor);
     saveKelurahan(kel);
     // setKelurahanSession(kel);
     geocoder.query(coor);
@@ -4589,92 +4696,96 @@ $(document).on("change", "#selectTPZ", function () {
     $(".inf-k-tpz").html(value_tpz);
 });
 
-$("#sewa_kantor").click(function () {
-    $(this).css("background", "orange");
-    $("#iumk").css("background", "white");
-    $("#proyek").css("background", "white");
-    $("#cagar").css("background", "white");
-    $("#sewa_fill").trigger("click");
-    $(".info-layer-usaha").hide();
-    $(".info-layer-investasi").hide();
-    $(".info-layer-budaya").hide();
-});
+const filterLayer = () => {
+    $("#sewa_kantor").click(function () {
+        $(this).css("background", "orange");
+        $("#iumk").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#sewa_fill").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer-investasi").hide();
+        $(".info-layer-budaya").hide();
+    });
 
-$("#iumk").click(function () {
-    $(this).css("background", "orange");
-    $("#sewa_kantor").css("background", "white");
-    $("#proyek").css("background", "white");
-    $("#cagar").css("background", "white");
-    $("#iumk_fill").trigger("click");
-    $(".info-layer").hide();
-    $(".info-layer-investasi").hide();
-    $(".info-layer-budaya").hide();
-});
+    $("#iumk").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#iumk_fill").trigger("click");
+        $(".info-layer").hide();
+        $(".info-layer-investasi").hide();
+        $(".info-layer-budaya").hide();
+    });
 
-$("#proyek").click(function () {
-    $(this).css("background", "orange");
-    $("#sewa_kantor").css("background", "white");
-    $("#iumk").css("background", "white");
-    $("#cagar").css("background", "white");
-    $("#investasi_fill").trigger("click");
-    $(".info-layer-usaha").hide();
-    $(".info-layer").hide();
-    $(".info-layer-budaya").hide();
-});
+    $("#proyek").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#iumk").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#investasi_fill").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer").hide();
+        $(".info-layer-budaya").hide();
+    });
 
-$("#cagar").click(function () {
-    $(this).css("background", "orange");
-    $("#sewa_kantor").css("background", "white");
-    $("#iumk").css("background", "white");
-    $("#proyek").css("background", "white");
-    $("#budaya_dot").trigger("click");
-    $(".info-layer-usaha").hide();
-    $(".info-layer").hide();
-    $(".info-layer-investasi").hide();
-});
+    $("#cagar").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#iumk").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#budaya_dot").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer").hide();
+        $(".info-layer-investasi").hide();
+    });
 
-$("#closeSewa").on("click", function () {
-    $(".info-layer").hide();
-    $("#show_side_bar").hide();
-    $("#sewa_kantor").css("background", "white");
-    hideLayer("sewa_fill");
-    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-    $("#sewa_fill").prop("checked", false);
-    // $("#closeUsaha").trigger("click");
-    if ($("#sidebar").hide() == true) {
-        $("#hide_side_bar").hide();
-    } else {
-        // $("#hide_side_bar").show();
-        $("#sidebar").show();
-    }
-});
+    $("#closeSewa").on("click", function () {
+        $(".info-layer").hide();
+        $("#show_side_bar").hide();
+        $("#sewa_kantor").css("background", "white");
+        hideLayer("sewa_fill");
+        $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        $("#sewa_fill").prop("checked", false);
+        // $("#closeUsaha").trigger("click");
+        if ($("#sidebar").hide() == true) {
+            $("#hide_side_bar").hide();
+        } else {
+            // $("#hide_side_bar").show();
+            $("#sidebar").show();
+        }
+    });
 
-$("#closeUsaha").on("click", function (e) {
-    $(".info-layer-usaha").hide();
-    $("#show_side_bar").hide();
-    $("#iumk").css("background", "white");
-    hideLayer("iumk_fill");
-    $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
-    window.stop();
-    $("#iumk_fill").prop("checked", false);
-    // $("#closeSewa").trigger("click");
-    if ($("#sidebar").hide() == true) {
-        $("#hide_side_bar").hide();
-    } else {
-        // $("#hide_side_bar").show();
-        $("#sidebar").show();
-    }
-});
+    $("#closeUsaha").on("click", function (e) {
+        $(".info-layer-usaha").hide();
+        $("#show_side_bar").hide();
+        $("#iumk").css("background", "white");
+        hideLayer("iumk_fill");
+        $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        window.stop();
+        $("#iumk_fill").prop("checked", false);
+        // $("#closeSewa").trigger("click");
+        if ($("#sidebar").hide() == true) {
+            $("#hide_side_bar").hide();
+        } else {
+            // $("#hide_side_bar").show();
+            $("#sidebar").show();
+        }
+    });
 
-$("#closeDigitasi").on("click", () => {
-    $(".info-layer-digitasi").hide();
-    if (localStorage.getItem("polygonDraw") == 1) {
-        draw.deleteAll();
-        localStorage.setItem("circleDraw", 0);
-        localStorage.setItem("polygonDraw", 0);
-        removeCircle();
-    }
-});
+    $("#closeDigitasi").on("click", () => {
+        $(".info-layer-digitasi").hide();
+        if (localStorage.getItem("polygonDraw") == 1) {
+            draw.deleteAll();
+            localStorage.setItem("circleDraw", 0);
+            localStorage.setItem("polygonDraw", 0);
+            removeCircle();
+        }
+    });
+};
+
+filterLayer();
 
 function preview_image() {
     var gambarLokasi = $("#gambarLokasi").get(0).files.length;
@@ -5189,8 +5300,286 @@ $("#formDigitasi").on("submit", (e) => {
 
 $("#optionFilterChoro").change(() => {
     if ($("#optionFilterChoro").val() == "Total Omzet UMKM") {
-        $("#filterChoro").show();
-    } else {
-        $("#filterChoro").hide();
+        localStorage.setItem("filterCategoryChoro", "omzet");
+        choro();
+        $("#btn-titik").hide();
+        //     $("#btn-titik").html(``);
+        //     $("#btn-titik").html(`
+        //     <div>
+        //     <button class="btn btn-sm"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     apartment
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        // <div>
+        //     <button class="btn btn-sm ml-2"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     storefront
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        // <div>
+        //     <button class="btn btn-sm ml-2"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     home_repair_service
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        // <div>
+        //     <button class="btn btn-sm ml-2"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     location_city
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        //     `);
+
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="amount" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-range"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRange();
+    } else if ($("#optionFilterChoro").val() == "Pekerjaan") {
+        localStorage.setItem("filterChoro", 1);
+        // if (localStorage.getItem("filterCategoryChoro") !== "pekerjaan") {
+        //     $("#btn-titik").slick("unslick");
+        //     console.log("unslick");
+        // }
+        localStorage.setItem("filterCategoryChoro", "pekerjaan");
+        $("#btn-titik").hide();
+        $("#btn-titik").html(``);
+        let pekerjaan = [
+            "belum_tidak_bekerja",
+            "aparatur_pemerintah",
+            "pertanian",
+            "nelayan",
+            "tenaga_kesehatan",
+            "pegawai",
+            "tentara",
+            "kepolisian",
+            "petani",
+            "peternak",
+            "industri",
+            "konstruksi",
+            "transportasi",
+            "pembantu",
+            "mekanik",
+            "seniman",
+            "tabib",
+            "paraji",
+            "perancang",
+            "penterjemah",
+            "imam_masjid",
+            "pendeta",
+            "pastor",
+            "wartawan",
+            "ustadz",
+            "juru_masak",
+            "promotor",
+            "dosen",
+            "guru",
+            "pilot",
+            "pengacara",
+            "notaris",
+            "arsitek",
+            "akuntan",
+            "konsultan",
+            "dokter",
+            "bidan",
+            "perawat",
+            "apoteker",
+            "psikiater",
+            "pelaut",
+            "peneliti",
+            "sopir",
+            "pialang",
+            "paranormal",
+            "pedagang",
+            "biarawati",
+            "karyawan",
+            "buruh",
+            "tukang",
+            "penyiar",
+            "wiraswasta",
+            "pensiunan",
+            "lainnya",
+        ];
+        let html = "";
+        pekerjaan.forEach((item) => {
+            if (item == "belum_tidak_bekerja") {
+                choro(0, 0, "belum_tidak_bekerja");
+            }
+            html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "belum_tidak_bekerja" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+        });
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="pekerjaan">${html}</div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Jumlah Pekerjaan:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        chipOption("pekerjaan");
+        var header = document.getElementById("pekerjaan");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-chip");
+                console.log(current);
+                current[0].className = current[0].className.replace(
+                    "active-chip",
+                    ""
+                );
+                this.className += " active-chip";
+            });
+        }
+    } else if ($("#optionFilterChoro").val() == "Pendidikan") {
+        let pendidikan = [
+            "tamat_sd",
+            "sltp",
+            "slta",
+            "diploma_i",
+            "diploma_ii",
+            "diploma_iv",
+            "strata_ii",
+            "strata_iii",
+        ];
+
+        localStorage.setItem("filterCategoryChoro", "pendidikan");
+        $("#btn-titik").html(``);
+        choro(0, 0, "tamat_sd");
+        let html = "";
+        pendidikan.forEach((item) => {
+            if (item == "tamat_sd") {
+                choro(0, 0, "tamat_sd");
+            }
+            html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "tamat_sd" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+        });
+
+        localStorage.setItem("filterChoro", 1);
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="pendidikan">${html}</div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Jumlah Pendidikan:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        chipOption("pendidikan");
     }
 });
+
+$("#btnInteractive").on("click", () => {
+    if (map.getLayer("wilayahindex_fill")) {
+        $("#optionFilterChoro").val("Total Omzet UMKM").trigger("change");
+    }
+    $("#wilayahindex_fill").trigger("click");
+});
+
+const chipOption = (name) => {
+    $(`#${name}`).slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        variableWidth: true,
+        prevArrow: null,
+        nextArrow: null,
+    });
+};
