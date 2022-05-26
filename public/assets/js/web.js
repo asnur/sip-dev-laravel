@@ -211,6 +211,7 @@ $(window).on("load", function () {
     localStorage.setItem("polygonDraw", 0);
     localStorage.setItem("filterChoro", 1);
     localStorage.setItem("kelurahan", "");
+    localStorage.setItem("searching", 0);
     localStorage.setItem("filterCategoryChoro", "omzet");
     $.post(`${APP_URL}/check_print`, { kategeori: "profil", status: 0 });
     $.post(`${APP_URL}/check_print`, { kategeori: "akses", status: 0 });
@@ -894,77 +895,77 @@ map.on("style.load", function () {
                     //     localStorage.getItem("filterChoro") == 1 ||
                     //     localStorage.getItem("filterChoro") == null
                     // ) {
-                    if (localStorage.getItem("kelurahan") !== null) {
-                        $("#btn-titik").slick("unslick");
-                    }
+                    // if (localStorage.getItem("kelurahan") !== null) {
+                    //     $("#btn-titik").slick("unslick");
+                    // }
                     // if (localStorage.getItem("filterChoro") !== 0) {
                     //     $("#btn-titik").slick("unslick");
                     // }
-                    $("#btn-titik").html("");
-                    $("#btn-titik").html(`
-                        <div>
-                <button class="btn btn-sm"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                apartment
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div>
-                <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                storefront
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div>
-                <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                home_repair_service
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div>
-                <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-                        </div>
-                    </div>
-                </button>
-            </div>
-                        `);
-                    filterLayer();
+                    //         $("#btn-titik").html("");
+                    //         $("#btn-titik").html(`
+                    //             <div>
+                    //     <button class="btn btn-sm"
+                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                    //         <div class="container">
+                    //             <div class="row">
+                    //                 <span class="material-icons text-primary mr-1">
+                    //                     apartment
+                    //                 </span>
+                    //                 <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                    //             </div>
+                    //         </div>
+                    //     </button>
+                    // </div>
+                    // <div>
+                    //     <button class="btn btn-sm ml-2"
+                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                    //         <div class="container">
+                    //             <div class="row">
+                    //                 <span class="material-icons text-primary mr-1">
+                    //                     storefront
+                    //                 </span>
+                    //                 <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                    //             </div>
+                    //         </div>
+                    //     </button>
+                    // </div>
+                    // <div>
+                    //     <button class="btn btn-sm ml-2"
+                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    //         <div class="container">
+                    //             <div class="row">
+                    //                 <span class="material-icons text-primary mr-1">
+                    //                     home_repair_service
+                    //                 </span>
+                    //                 <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                    //             </div>
+                    //         </div>
+                    //     </button>
+                    // </div>
+                    // <div>
+                    //     <button class="btn btn-sm ml-2"
+                    //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    //         <div class="container">
+                    //             <div class="row">
+                    //                 <span class="material-icons text-primary mr-1">
+                    //                     location_city
+                    //                 </span>
+                    //                 <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                    //             </div>
+                    //         </div>
+                    //     </button>
+                    // </div>
+                    //             `);
+                    // filterLayer();
                     // }
-                    $("#btn-titik").slick({
-                        infinite: true,
-                        slidesToShow: 4,
-                        slidesToScroll: 4,
-                        variableWidth: true,
-                        prevArrow: null,
-                        nextArrow: null,
-                    });
+                    // $("#btn-titik").slick({
+                    //     infinite: true,
+                    //     slidesToShow: 4,
+                    //     slidesToScroll: 4,
+                    //     variableWidth: true,
+                    //     prevArrow: null,
+                    //     nextArrow: null,
+                    // });
                     $("#btn-titik").show();
 
                     popUpHarga = [];
@@ -1455,7 +1456,7 @@ map.on("mouseleave", "sungai_multilinestring", () => {
 
 map.on(clickEvent, "wilayah_fill", function (e) {
     var dt = e.features[0].properties;
-    // console.log(dt);
+    console.log(e);
     // localStorage.setItem("wilayah", JSON.stringify(dt));
 
     $.ajax({
@@ -3167,6 +3168,38 @@ function addSourceLayer(item) {
                 });
                 addLayers(dt);
                 onOffLayers(dt);
+                if (localStorage.getItem("searching") == 1) {
+                    let coordCliked = localStorage
+                        .getItem("kordinat")
+                        .toString()
+                        .split(",");
+                    console.log(coordCliked);
+                    let lat = coordCliked[0];
+                    let lng = coordCliked[1];
+                    // map.on("sourcedata", (e) => {
+                    console.log(lat, lng);
+                    setTimeout(() => {
+                        map.fire("click", {
+                            lngLat: {
+                                lng: lng,
+                                lat: lat,
+                            },
+                        });
+                    }, 3000);
+                    // });
+                    // if (
+                    //     map.getSource("zoning") &&
+                    //     map.isSourceLoaded("zoning")
+                    // ) {
+                    //     map.fire("click", {
+                    //         lngLat: {
+                    //             lng: lng,
+                    //             lat: lat,
+                    //         },
+                    //     });
+                    // }
+                }
+                localStorage.setItem("searching", 0);
             },
         });
     }
@@ -3968,27 +4001,29 @@ function onOffLayers(layer) {
 $(document).on("click", ".wilayah-select", function () {
     $(".wm-search__dropdown").fadeOut();
     $("#btn-titik").show();
-    if (localStorage.getItem("kelurahan") !== null) {
-        $("#btn-titik").slick("unslick");
-    }
-    if (
-        localStorage.getItem("filterChoro") !== 0 &&
-        localStorage.getItem("filterChoro") !== null
-    ) {
-        $("#btn-titik").slick("unslick");
-    }
-    $("#btn-titik").slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        variableWidth: true,
-        prevArrow: null,
-        nextArrow: null,
-    });
+    // if (localStorage.getItem("kelurahan") !== null) {
+    //     $("#btn-titik").slick("unslick");
+    // }
+    // if (
+    //     localStorage.getItem("filterChoro") !== 0 &&
+    //     localStorage.getItem("filterChoro") !== null
+    // ) {
+    //     $("#btn-titik").slick("unslick");
+    // }
+    // $("#btn-titik").slick({
+    //     infinite: true,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 4,
+    //     variableWidth: true,
+    //     prevArrow: null,
+    //     nextArrow: null,
+    // });
     const coor = $(this).data("kordinat");
     const kel = $(this).data("wilayah");
     const text = $(this).text();
     $("#cari_wilayah").val(text);
+    localStorage.setItem("searching", 1);
+    localStorage.setItem("kordinat", coor);
 
     popUpHarga = [];
     popUpHarga = getDataSewa(kel);
@@ -3999,7 +4034,7 @@ $(document).on("click", ".wilayah-select", function () {
     budaya = [];
     budaya = getDataBudaya(kel);
     // console.log(coor.split(","));
-    console.log(coor);
+    console.log(typeof coor);
     saveKelurahan(kel);
     // setKelurahanSession(kel);
     geocoder.query(coor);
@@ -5340,61 +5375,61 @@ $("#optionFilterChoro").change(() => {
         localStorage.setItem("filterCategoryChoro", "omzet");
         choro();
         $("#btn-titik").hide();
-        $("#btn-titik").html(``);
-        $("#btn-titik").html(`
-        <div>
-        <button class="btn btn-sm"
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                        apartment
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
-                </div>
-            </div>
-        </button>
-    </div>
-    <div>
-        <button class="btn btn-sm ml-2"
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                        storefront
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
-                </div>
-            </div>
-        </button>
-    </div>
-    <div>
-        <button class="btn btn-sm ml-2"
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                        home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
-                </div>
-            </div>
-        </button>
-    </div>
-    <div>
-        <button class="btn btn-sm ml-2"
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                        location_city
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-                </div>
-            </div>
-        </button>
-    </div>
-        `);
+        //     $("#btn-titik").html(``);
+        //     $("#btn-titik").html(`
+        //     <div>
+        //     <button class="btn btn-sm"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     apartment
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        // <div>
+        //     <button class="btn btn-sm ml-2"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     storefront
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        // <div>
+        //     <button class="btn btn-sm ml-2"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     home_repair_service
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        // <div>
+        //     <button class="btn btn-sm ml-2"
+        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+        //         <div class="container">
+        //             <div class="row">
+        //                 <span class="material-icons text-primary mr-1">
+        //                     location_city
+        //                 </span>
+        //                 <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+        //             </div>
+        //         </div>
+        //     </button>
+        // </div>
+        //     `);
 
         $("#filterChoro").html("");
         $("#filterChoro").html(`
@@ -5421,10 +5456,10 @@ $("#optionFilterChoro").change(() => {
         sliderRange();
     } else if ($("#optionFilterChoro").val() == "Pekerjaan") {
         localStorage.setItem("filterChoro", 1);
-        if (localStorage.getItem("filterCategoryChoro") !== "pekerjaan") {
-            $("#btn-titik").slick("unslick");
-            console.log("unslick");
-        }
+        // if (localStorage.getItem("filterCategoryChoro") !== "pekerjaan") {
+        //     $("#btn-titik").slick("unslick");
+        //     console.log("unslick");
+        // }
         localStorage.setItem("filterCategoryChoro", "pekerjaan");
         $("#btn-titik").hide();
         $("#btn-titik").html(``);
@@ -5490,17 +5525,14 @@ $("#optionFilterChoro").change(() => {
                 choro(0, 0, "belum_tidak_bekerja");
             }
             html += `
-            <div>
-            <button class="btn btn-sm mr-2 ${
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
                 item == "belum_tidak_bekerja" ? "active-chip" : ""
             }"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'${item}')">
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
                 <div class="container">
                     <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                        home_repair_service
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">${titleCase(
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
                             item.replaceAll("_", " ")
                         )}</span>
                     </div>
@@ -5509,39 +5541,12 @@ $("#optionFilterChoro").change(() => {
             </div>
             `;
         });
-        $("#btn-titik").html(html);
-        var header = document.getElementById("btn-titik");
-        var btns = header.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active-chip");
-                console.log(current);
-                current[0].className = current[0].className.replace(
-                    "active-chip",
-                    ""
-                );
-                this.className += " active-chip";
-            });
-        }
-        // if (
-        //     localStorage.getItem("filterChoro") !== 0 &&
-        //     localStorage.getItem("filterChoro") !== null
-        // ) {
-        //     $("#btn-titik").slick("unslick");
-        // }
-        $("#btn-titik").slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            variableWidth: true,
-            prevArrow: null,
-            nextArrow: null,
-        });
-        $("#btn-titik").show();
-
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="pekerjaan">${html}</div>
+        </div>
         <div class="col-md-6">
             <span for="amount" class="text_all font-weight-bold">Jumlah Pekerjaan:</span>
             <div class="text_all" id="legends">
@@ -5556,154 +5561,8 @@ $("#optionFilterChoro").change(() => {
         </div>
     </div>
         `);
-    } else if ($("#optionFilterChoro").val() == "Pendidikan") {
-        // tamat_sd;
-        // sltp;
-        // slta;
-        // diploma_i;
-        // diploma_ii;
-        // diploma_iv;
-        // strata_ii;
-        // strata_iii;
-
-        if (localStorage.getItem("filterCategoryChoro") !== "pendidikan") {
-            $("#btn-titik").slick("unslick");
-            console.log("unslick");
-        }
-        localStorage.setItem("filterCategoryChoro", "pendidikan");
-        $("#btn-titik").html(``);
-        choro(0, 0, "tamat_sd");
-        let html = "";
-        html += `
-        <div>
-        <button class="btn btn-sm mr-2 active-chip"
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'tamat_sd')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Tamat SD</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'sltp')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">SLTP</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'slta')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">SLTA</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'diploma_i')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Dimploma I</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'diploma_ii')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Dimploma II</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'diploma_iii')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Dimploma III</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'strata_i')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Strata I</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'strata_ii')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Strata II</span>
-                </div>
-            </div>
-        </button>
-        </div>
-
-        <div>
-        <button class="btn btn-sm mr-2 "
-            style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" onclick="choro(0,0,'strata_iii')">
-            <div class="container">
-                <div class="row">
-                    <span class="material-icons text-primary mr-1">
-                    home_repair_service
-                    </span>
-                    <span class="font-weight-bold" style="margin-top: 2px">Strata III</span>
-                </div>
-            </div>
-        </button>
-        </div>
-        `;
-
-        $("#btn-titik").html(html);
-        var header = document.getElementById("btn-titik");
+        chipOption("pekerjaan");
+        var header = document.getElementById("pekerjaan");
         var btns = header.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function () {
@@ -5716,24 +5575,51 @@ $("#optionFilterChoro").change(() => {
                 this.className += " active-chip";
             });
         }
-        // if (
-        //     localStorage.getItem("filterChoro") !== 0 &&
-        //     localStorage.getItem("filterChoro") !== null
-        // ) {
-        // }
-        $("#btn-titik").slick({
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            variableWidth: true,
-            prevArrow: null,
-            nextArrow: null,
+    } else if ($("#optionFilterChoro").val() == "Pendidikan") {
+        let pendidikan = [
+            "tamat_sd",
+            "sltp",
+            "slta",
+            "diploma_i",
+            "diploma_ii",
+            "diploma_iv",
+            "strata_ii",
+            "strata_iii",
+        ];
+
+        localStorage.setItem("filterCategoryChoro", "pendidikan");
+        $("#btn-titik").html(``);
+        choro(0, 0, "tamat_sd");
+        let html = "";
+        pendidikan.forEach((item) => {
+            if (item == "tamat_sd") {
+                choro(0, 0, "tamat_sd");
+            }
+            html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "tamat_sd" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
         });
-        $("#btn-titik").show();
 
         localStorage.setItem("filterChoro", 1);
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="pendidikan">${html}</div>
+        </div>
         <div class="col-md-6">
             <span for="amount" class="text_all font-weight-bold">Jumlah Pendidikan:</span>
             <div class="text_all" id="legends">
@@ -5748,6 +5634,7 @@ $("#optionFilterChoro").change(() => {
         </div>
     </div>
         `);
+        chipOption("pendidikan");
     }
 });
 
@@ -5758,11 +5645,13 @@ $("#btnInteractive").on("click", () => {
     $("#wilayahindex_fill").trigger("click");
 });
 
-$("#btn-titik").slick({
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    variableWidth: true,
-    prevArrow: null,
-    nextArrow: null,
-});
+const chipOption = (name) => {
+    $(`#${name}`).slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        variableWidth: true,
+        prevArrow: null,
+        nextArrow: null,
+    });
+};

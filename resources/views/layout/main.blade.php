@@ -4941,58 +4941,58 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
         <div class="container p-2" id="btn-titik" style="position:absolute; left:30rem; z-index:999; width:60%">
-            {{-- <div>
-                <button class="btn btn-sm"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                apartment
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
-                        </div>
+            {{-- <div> --}}
+            <button class="btn btn-sm"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            apartment
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
                     </div>
-                </button>
-            </div>
-            <div>
-                <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                storefront
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
-                        </div>
+                </div>
+            </button>
+            {{-- </div> --}}
+            {{-- <div> --}}
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            storefront
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
                     </div>
-                </button>
-            </div>
-            <div>
-                <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                home_repair_service
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
-                        </div>
+                </div>
+            </button>
+            {{-- </div> --}}
+            {{-- <div> --}}
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            home_repair_service
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
                     </div>
-                </button>
-            </div>
-            <div>
-                <button class="btn btn-sm ml-2"
-                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-                    <div class="container">
-                        <div class="row">
-                            <span class="material-icons text-primary mr-1">
-                                location_city
-                            </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-                        </div>
+                </div>
+            </button>
+            {{-- </div> --}}
+            {{-- <div> --}}
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            location_city
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
                     </div>
-                </button>
-            </div> --}}
+                </div>
+            </button>
+            {{-- </div> --}}
         </div>
         <div class="container p-2 dropdown" id="more-apps"
             style="position:absolute; right:-15px; z-index:999; width:8rem">
