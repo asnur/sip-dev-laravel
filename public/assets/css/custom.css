@@ -442,6 +442,7 @@ textarea {
     right: 1rem;
     z-index: 999;
     width: 360px;
+    height: 260px;
     background-color: #fdfffc;
 }
 
