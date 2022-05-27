@@ -2927,6 +2927,24 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     20396854609,
                     "#caa502",
                 ];
+            } else if (category == "belum_tidak_bekerja") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    1001,
+                    "#ffe675",
+                    2001,
+                    "#ffdf52",
+                    3001,
+                    "#ffd61f",
+                    4001,
+                    "#e0b700",
+                    5001,
+                    "#caa502",
+                ];
             } else {
                 paint = [
                     "interpolate",
@@ -2934,15 +2952,15 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     ["get", "Jumlah"],
                     0,
                     "#ffeda0",
-                    600,
+                    51,
                     "#ffe675",
-                    1100,
+                    101,
                     "#ffdf52",
-                    2100,
+                    151,
                     "#ffd61f",
-                    3100,
+                    200,
                     "#e0b700",
-                    5000,
+                    251,
                     "#caa502",
                 ];
             }
@@ -2989,14 +3007,23 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     "17M-20M",
                     "> 20M",
                 ];
+            } else if (category == "belum_tidak_bekerja") {
+                layers = [
+                    "0-1000",
+                    "1001-2000",
+                    "2001-3000",
+                    "3001-4000",
+                    "4001-5000",
+                    "> 5001",
+                ];
             } else {
                 layers = [
-                    "0-500",
-                    "600-1000",
-                    "1100-2000",
-                    "2100-3000",
-                    "3100-5000",
-                    "> 5000",
+                    "0-50",
+                    "51-100",
+                    "101-150",
+                    "151-200",
+                    "201-250",
+                    "> 251",
                 ];
             }
             const colors = [
