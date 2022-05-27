@@ -5602,7 +5602,7 @@ $("#btnInteractive").on("click", () => {
 
 const chipOption = (name) => {
     $(`#${name}`).slick({
-        infinite: true,
+        infinite: false,
         slidesToShow: 4,
         slidesToScroll: 4,
         variableWidth: true,
