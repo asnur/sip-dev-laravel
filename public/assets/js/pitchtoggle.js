@@ -26,10 +26,16 @@ class PitchToggle {
                 ) {
                     options.zoom = _this._minpitchzoom;
                 }
+                map.setStyle(
+                    "mapbox://styles/menthoelsr/ckp4wrapq11m117pf2lr49l5t"
+                );
                 map.easeTo(options);
                 _this._btn.className =
                     "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-2d";
             } else {
+                map.setStyle(
+                    "mapbox://styles/menthoelsr/ckp6i54ay22u818lrq15ffcnr"
+                );
                 map.easeTo({ pitch: 0, bearing: 0 });
                 _this._btn.className =
                     "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
