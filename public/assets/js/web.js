@@ -2993,7 +2993,7 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                                 )}`
                               : `${separatorNum(
                                     states[0].properties["Jumlah"]
-                                )} Jiwa`
+                                )} Orang`
                       }</strong></p>`
                     : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
             });
