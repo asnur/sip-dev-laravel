@@ -866,7 +866,7 @@ map.on("style.load", function () {
         if (localStorage.getItem("loaded") == 1) {
             data = {
                 lat: coornya.lat,
-                long: coornya.lng,
+                lng: coornya.lng,
             };
             lats = coornya.lat;
             lngs = coornya.lng;
@@ -874,7 +874,7 @@ map.on("style.load", function () {
         } else {
             data = {
                 lat: lats,
-                long: lngs,
+                lng: lngs,
             };
             lats = lats.slice(0, -7);
             lngs = lngs.slice(0, -8);
