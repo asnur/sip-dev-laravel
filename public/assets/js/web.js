@@ -5457,7 +5457,7 @@ $("#optionFilterChoro").change(() => {
             <button class="btn btn-xs mr-2 ${
                 item == "belum_tidak_bekerja" ? "active-chip" : ""
             }"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
                 <div class="container">
                     <div class="row">
                         <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
@@ -5528,7 +5528,7 @@ $("#optionFilterChoro").change(() => {
             <button class="btn btn-xs mr-2 ${
                 item == "tamat_sd" ? "active-chip" : ""
             }"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
                 <div class="container">
                     <div class="row">
                         <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
