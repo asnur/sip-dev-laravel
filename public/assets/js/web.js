@@ -5590,6 +5590,19 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         chipOption("pendidikan");
+        var header = document.getElementById("pendidikan");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active-chip");
+                console.log(current);
+                current[0].className = current[0].className.replace(
+                    "active-chip",
+                    ""
+                );
+                this.className += " active-chip";
+            });
+        }
     }
 });
 
