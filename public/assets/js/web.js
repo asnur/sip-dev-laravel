@@ -2927,6 +2927,82 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     20396854609,
                     "#caa502",
                 ];
+            } else if (category == "islam") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    10001,
+                    "#ffe675",
+                    20001,
+                    "#ffdf52",
+                    30001,
+                    "#ffd61f",
+                    40001,
+                    "#e0b700",
+                    50001,
+                    "#caa502",
+                ];
+            } else if (
+                category == "kristen" ||
+                category == "katolik" ||
+                category == "budha"
+            ) {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    1001,
+                    "#ffe675",
+                    2001,
+                    "#ffdf52",
+                    3001,
+                    "#ffd61f",
+                    4001,
+                    "#e0b700",
+                    5001,
+                    "#caa502",
+                ];
+            } else if (category == "hindu") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    51,
+                    "#ffe675",
+                    101,
+                    "#ffdf52",
+                    151,
+                    "#ffd61f",
+                    201,
+                    "#e0b700",
+                    251,
+                    "#caa502",
+                ];
+            } else if (category == "konghucu" || category == "kepercayaan") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    0,
+                    "#ffeda0",
+                    6,
+                    "#ffe675",
+                    11,
+                    "#ffdf52",
+                    16,
+                    "#ffd61f",
+                    21,
+                    "#e0b700",
+                    26,
+                    "#caa502",
+                ];
             } else if (category == "belum_tidak_bekerja") {
                 paint = [
                     "interpolate",
@@ -3007,6 +3083,39 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     "17M-20M",
                     "> 20M",
                 ];
+            } else if (category == "islam") {
+                layers = [
+                    "0-10000",
+                    "10001-20000",
+                    "20001-30000",
+                    "30001-40000",
+                    "40001-50000",
+                    "> 50001",
+                ];
+            } else if (
+                category == "kristen" ||
+                category == "katolik" ||
+                category == "budha"
+            ) {
+                layers = [
+                    "0-1000",
+                    "1001-2000",
+                    "2001-3000",
+                    "3001-4000",
+                    "4001-5000",
+                    "> 5001",
+                ];
+            } else if (category == "hindu") {
+                layers = [
+                    "0-50",
+                    "51-100",
+                    "101-150",
+                    "151-200",
+                    "201-250",
+                    "> 250",
+                ];
+            } else if (category == "konghucu" || category == "kepercayaan") {
+                layers = ["0-5", "6-10", "11-15", "16-20", "21-25", "> 26"];
             } else if (category == "belum_tidak_bekerja") {
                 layers = [
                     "0-1000",
@@ -5517,19 +5626,7 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         chipOption("pekerjaan");
-        var header = document.getElementById("pekerjaan");
-        var btns = header.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active-chip");
-                console.log(current);
-                current[0].className = current[0].className.replace(
-                    "active-chip",
-                    ""
-                );
-                this.className += " active-chip";
-            });
-        }
+        activeButton("pekerjaan");
     } else if ($("#optionFilterChoro").val() == "Pendidikan") {
         let pendidikan = [
             "tamat_sd",
@@ -5590,19 +5687,67 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         chipOption("pendidikan");
-        var header = document.getElementById("pendidikan");
-        var btns = header.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active-chip");
-                console.log(current);
-                current[0].className = current[0].className.replace(
-                    "active-chip",
-                    ""
-                );
-                this.className += " active-chip";
-            });
-        }
+        activeButton("pendidikan");
+    } else if ($("#optionFilterChoro").val() == "Agama") {
+        let pendidikan = [
+            "islam",
+            "kristen",
+            "katolik",
+            "hindu",
+            "budha",
+            "konghucu",
+            "kepercayaan",
+        ];
+
+        localStorage.setItem("filterCategoryChoro", "agama");
+        $("#btn-titik").html(``);
+        choro(0, 0, "islam");
+        let html = "";
+        pendidikan.forEach((item) => {
+            if (item == "islam") {
+                choro(0, 0, "islam");
+            }
+            html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "islam" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+        });
+
+        localStorage.setItem("filterChoro", 1);
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="agama">${html}</div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Jumlah Orang:</span>
+            <div class="text_all" id="legends">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        chipOption("agama");
+        activeButton("agama");
     }
 });
 
@@ -5622,4 +5767,20 @@ const chipOption = (name) => {
         prevArrow: null,
         nextArrow: null,
     });
+};
+
+const activeButton = (name) => {
+    var header = document.getElementById(name);
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active-chip");
+            console.log(current);
+            current[0].className = current[0].className.replace(
+                "active-chip",
+                ""
+            );
+            this.className += " active-chip";
+        });
+    }
 };
