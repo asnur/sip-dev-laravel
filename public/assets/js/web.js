@@ -253,6 +253,55 @@ const sliderRange = () => {
             separatorNum($("#slider-range").slider("values", 1))
     );
 };
+const sliderRangeKepadatan = () => {
+    $("#slider-kepadatan").slider({
+        range: true,
+        min: 0,
+        max: 100000,
+        values: [0, 100000],
+        step: 50,
+        slide: function (event, ui) {
+            $("#kepadatan").text(
+                separatorNum(ui.values[0]) + " - " + separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "kepadatan");
+        },
+    });
+    $("#kepadatan").text(
+        separatorNum($("#slider-kepadatan").slider("values", 0)) +
+            " - " +
+            separatorNum($("#slider-kepadatan").slider("values", 1))
+    );
+};
+
+const sliderRangeJumlahPenduduk = () => {
+    $("#slider-jumlah-penduduk").slider({
+        range: true,
+        min: 0,
+        max: 200000,
+        values: [0, 200000],
+        step: 50,
+        slide: function (event, ui) {
+            $("#jumlah-penduduk").text(
+                separatorNum(ui.values[0]) + " - " + separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "jumlah_penduduk");
+        },
+    });
+    $("#jumlah-penduduk").text(
+        separatorNum($("#slider-jumlah-penduduk").slider("values", 0)) +
+            " - " +
+            separatorNum($("#slider-jumlah-penduduk").slider("values", 1))
+    );
+};
 
 $.ajax({
     url: `${url}/text`,
@@ -2983,6 +3032,7 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     "#caa502",
                 ];
             }
+            console.log(paint);
             map.addLayer({
                 id: "wilayahindex_fill",
                 type: "fill",
@@ -3096,58 +3146,6 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     `> ${min + average * 5 + 2}`,
                 ];
             }
-            // else if (category == "islam") {
-            //     layers = [
-            //         "0-10000",
-            //         "10001-20000",
-            //         "20001-30000",
-            //         "30001-40000",
-            //         "40001-50000",
-            //         "> 50001",
-            //     ];
-            // } else if (
-            //     category == "kristen" ||
-            //     category == "katolik" ||
-            //     category == "budha"
-            // ) {
-            //     layers = [
-            //         "0-1000",
-            //         "1001-2000",
-            //         "2001-3000",
-            //         "3001-4000",
-            //         "4001-5000",
-            //         "> 5001",
-            //     ];
-            // } else if (category == "hindu") {
-            //     layers = [
-            //         "0-50",
-            //         "51-100",
-            //         "101-150",
-            //         "151-200",
-            //         "201-250",
-            //         "> 250",
-            //     ];
-            // } else if (category == "konghucu" || category == "kepercayaan") {
-            //     layers = ["0-5", "6-10", "11-15", "16-20", "21-25", "> 26"];
-            // } else if (category == "belum_tidak_bekerja") {
-            //     layers = [
-            //         "0-1000",
-            //         "1001-2000",
-            //         "2001-3000",
-            //         "3001-4000",
-            //         "4001-5000",
-            //         "> 5001",
-            //     ];
-            // } else {
-            //     layers = [
-            //         "0-50",
-            //         "51-100",
-            //         "101-150",
-            //         "151-200",
-            //         "201-250",
-            //         "> 251",
-            //     ];
-            // }
             const colors = [
                 "#ffeda0",
                 "#ffe675",
@@ -5452,78 +5450,22 @@ $("#optionFilterChoro").change(() => {
         localStorage.setItem("filterCategoryChoro", "omzet");
         choro();
         $("#btn-titik").hide();
-        //     $("#btn-titik").html(``);
-        //     $("#btn-titik").html(`
-        //     <div>
-        //     <button class="btn btn-sm"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     apartment
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        // <div>
-        //     <button class="btn btn-sm ml-2"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     storefront
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        // <div>
-        //     <button class="btn btn-sm ml-2"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     home_repair_service
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        // <div>
-        //     <button class="btn btn-sm ml-2"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     location_city
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        //     `);
-
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
         <div class="col-md-12 mt-2 mb-2">
             <span id="amount" class="w-100"
                 style="border:0; color:#f6931f; font-weight:bold;"></span>
-            <div id="slider-range"></div>
+            <div id="slider-range" class="my-2"></div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Interval (milyar)</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (Rp milyar)</span>
             <div class="text_all" id="legends">
 
             </div>
             </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan</span>
             <div id="pd">
                 <p></p>
             </div>
@@ -5539,9 +5481,8 @@ $("#optionFilterChoro").change(() => {
         // }
         localStorage.setItem("filterCategoryChoro", "pekerjaan");
         $("#btn-titik").hide();
-        $("#btn-titik").html(``);
+        // $("#btn-titik").html(``);
         let pekerjaan = [
-            "belum_tidak_bekerja",
             "aparatur_pemerintah",
             "pertanian",
             "nelayan",
@@ -5595,16 +5536,17 @@ $("#optionFilterChoro").change(() => {
             "wiraswasta",
             "pensiunan",
             "lainnya",
+            "belum_tidak_bekerja",
         ];
         let html = "";
         pekerjaan.forEach((item) => {
-            if (item == "belum_tidak_bekerja") {
-                choro(0, 0, "belum_tidak_bekerja");
+            if (item == "aparatur_pemerintah") {
+                choro(0, 0, "aparatur_pemerintah");
             }
             html += `
             <div class="mb-1">
             <button class="btn btn-xs mr-2 ${
-                item == "belum_tidak_bekerja" ? "active-chip" : ""
+                item == "aparatur_pemerintah" ? "active-chip" : ""
             }"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
                 <div class="container">
@@ -5631,7 +5573,7 @@ $("#optionFilterChoro").change(() => {
             </div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan</span>
             <div id="pd">
                 <p></p>
             </div>
@@ -5653,7 +5595,7 @@ $("#optionFilterChoro").change(() => {
         ];
 
         localStorage.setItem("filterCategoryChoro", "pendidikan");
-        $("#btn-titik").html(``);
+        // $("#btn-titik").html(``);
         choro(0, 0, "tamat_sd");
         let html = "";
         pendidikan.forEach((item) => {
@@ -5713,7 +5655,7 @@ $("#optionFilterChoro").change(() => {
         ];
 
         localStorage.setItem("filterCategoryChoro", "agama");
-        $("#btn-titik").html(``);
+        // $("#btn-titik").html(``);
         choro(0, 0, "islam");
         let html = "";
         pendidikan.forEach((item) => {
@@ -5746,13 +5688,13 @@ $("#optionFilterChoro").change(() => {
             <div id="agama">${html}</div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Jumlah Orang:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval Orang</span>
             <div class="text_all" id="legends">
 
             </div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan</span>
             <div id="pd">
                 <p></p>
             </div>
@@ -5761,6 +5703,60 @@ $("#optionFilterChoro").change(() => {
         `);
         chipOption("agama");
         activeButton("agama");
+    } else if ($("#optionFilterChoro").val() == "Kepadatan") {
+        localStorage.setItem("filterCategoryChoro", "kepadatan");
+        choro(0, 100000, "kepadatan");
+        $("#btn-titik").hide();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="kepadatan" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-kepadatan" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="kepadatan" class="text_all font-weight-bold">Interval (Orang)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="kepadatan" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRangeKepadatan();
+    } else if ($("#optionFilterChoro").val() == "Jumlah Penduduk") {
+        localStorage.setItem("filterCategoryChoro", "jumlah_penduduk");
+        choro(0, 200000, "jumlah_penduduk");
+        $("#btn-titik").hide();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="jumlah-penduduk" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-jumlah-penduduk" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="jumlah-penduduk" class="text_all font-weight-bold">Interval (Orang)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="jumlah-penduduk" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRangeJumlahPenduduk();
     }
 });
 
