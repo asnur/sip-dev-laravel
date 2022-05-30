@@ -911,6 +911,8 @@ map.on("style.load", function () {
         // lngs = lngs.slice(0, -8);
         // lat = lats;
         // long = lngs;
+        let fixCord = lats + "," + lngs;
+        localStorage.setItem("kordinat", fixCord);
         let data;
         if (localStorage.getItem("loaded") == 1) {
             data = {
@@ -3052,19 +3054,32 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     layers: ["wilayahindex_fill"],
                 });
 
+                let el = "";
+                if (localStorage.getItem("filterCategoryChoro") == "omzet") {
+                    el = `<strong class="d-block">Omzet (Rp milyar)</strong>`;
+                } else if (
+                    localStorage.getItem("filterCategoryChoro") == "kepadatan"
+                ) {
+                    el = `<strong class="d-block">Jumlah (Orang km<sup>3</sup>)</strong>`;
+                } else {
+                    el = `<strong class="d-block">Jumlah (Orang)</strong>`;
+                }
+
                 document.getElementById("pd").innerHTML = states.length
                     ? `<div>${titleCase(
                           states[0].properties.Kelurahan
-                      )}</div><p class="mb-0"><strong>${
+                      )}</div><p class="mb-0 my-2">
+                      ${el}<span style="font-size:15px;">
+                      ${
                           localStorage.getItem("filterCategoryChoro") == "omzet"
                               ? `Rp. ${separatorNum(
                                     states[0].properties["Total omzet"]
                                 )}`
                               : `${separatorNum(
                                     states[0].properties["Jumlah"]
-                                )} Orang`
-                      }</strong></p>`
-                    : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+                                )}`
+                      }</span></p>`
+                    : `<p class="mb-0">Arahkan kursor</p>`;
             });
             let layers;
             if (category == "omzet") {
@@ -3254,30 +3269,28 @@ function addSourceLayer(item) {
                 });
                 addLayers(dt);
                 onOffLayers(dt);
-                if (localStorage.getItem("searching") == 1) {
-                    let coordCliked = localStorage
-                        .getItem("kordinat")
-                        .toString()
-                        .split(",");
-                    console.log(coordCliked);
-                    let lat = coordCliked[0];
-                    let lng = coordCliked[1];
-                    // map.on("sourcedata", (e) => {
-                    console.log(lat, lng);
-                    setTimeout(() => {
-                        localStorage.setItem("loaded", 1);
-                        map.fire("click", {
-                            lngLat: {
-                                lng: lng,
-                                lat: lat,
-                            },
-                        });
-                    }, 3000);
-                }
-                localStorage.setItem("searching", 0);
+                // if (localStorage.getItem("searching") == 1) {
             },
         });
     }
+
+    let coordCliked = localStorage.getItem("kordinat").toString().split(",");
+    console.log(coordCliked);
+    let lat = coordCliked[0];
+    let lng = coordCliked[1];
+    // map.on("sourcedata", (e) => {
+    console.log(lat, lng);
+    setTimeout(() => {
+        localStorage.setItem("loaded", 1);
+        map.fire("click", {
+            lngLat: {
+                lng: lng,
+                lat: lat,
+            },
+        });
+    }, 3000);
+    // }
+    localStorage.setItem("searching", 0);
 
     if (map.getLayer("banjir_fill")) {
         map.removeLayer("banjir_fill");
@@ -3646,6 +3659,15 @@ function onOffLayers(layer) {
                 $(".detail_omzet").show();
                 $(".detail_jumlah").show();
                 $("#btnInteractive").addClass("text-primary");
+                // map.setCenter([106.6894316, -6.229728]);
+                // map.setZoom(11);
+                map.easeTo({
+                    zoom: 11,
+                    center: {
+                        lng: 106.80331075792759,
+                        lat: -6.231019525132169,
+                    },
+                });
             } else {
                 hideLayer("wilayahindex_fill");
                 $(".detail_omzet").hide();
