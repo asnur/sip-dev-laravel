@@ -5205,6 +5205,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <option value="Total Omzet UMKM">Total Omzet UMKM</option>
                             <option value="Pekerjaan">Pekerjaan</option>
                             <option value="Pendidikan">Pendidikan</option>
+                            <option value="Agama">Agama</option>
+                            <option value="Kepadatan">Kepadatan</option>
+                            <option value="Jumlah Penduduk">Jumlah Penduduk</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">

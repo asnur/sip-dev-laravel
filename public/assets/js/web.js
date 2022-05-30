@@ -253,6 +253,55 @@ const sliderRange = () => {
             separatorNum($("#slider-range").slider("values", 1))
     );
 };
+const sliderRangeKepadatan = () => {
+    $("#slider-kepadatan").slider({
+        range: true,
+        min: 0,
+        max: 100000,
+        values: [0, 100000],
+        step: 50,
+        slide: function (event, ui) {
+            $("#kepadatan").text(
+                separatorNum(ui.values[0]) + " - " + separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "kepadatan");
+        },
+    });
+    $("#kepadatan").text(
+        separatorNum($("#slider-kepadatan").slider("values", 0)) +
+            " - " +
+            separatorNum($("#slider-kepadatan").slider("values", 1))
+    );
+};
+
+const sliderRangeJumlahPenduduk = () => {
+    $("#slider-jumlah-penduduk").slider({
+        range: true,
+        min: 0,
+        max: 200000,
+        values: [0, 200000],
+        step: 50,
+        slide: function (event, ui) {
+            $("#jumlah-penduduk").text(
+                separatorNum(ui.values[0]) + " - " + separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "jumlah_penduduk");
+        },
+    });
+    $("#jumlah-penduduk").text(
+        separatorNum($("#slider-jumlah-penduduk").slider("values", 0)) +
+            " - " +
+            separatorNum($("#slider-jumlah-penduduk").slider("values", 1))
+    );
+};
 
 $.ajax({
     url: `${url}/text`,
@@ -862,11 +911,13 @@ map.on("style.load", function () {
         // lngs = lngs.slice(0, -8);
         // lat = lats;
         // long = lngs;
+        let fixCord = lats + "," + lngs;
+        localStorage.setItem("kordinat", fixCord);
         let data;
         if (localStorage.getItem("loaded") == 1) {
             data = {
                 lat: coornya.lat,
-                long: coornya.lng,
+                lng: coornya.lng,
             };
             lats = coornya.lat;
             lngs = coornya.lng;
@@ -874,7 +925,7 @@ map.on("style.load", function () {
         } else {
             data = {
                 lat: lats,
-                long: lngs,
+                lng: lngs,
             };
             lats = lats.slice(0, -7);
             lngs = lngs.slice(0, -8);
@@ -2908,23 +2959,60 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                 type: "geojson",
                 data: e,
             });
+            let min, max, average;
             let paint;
+            let data = e.features;
+
+            if (category == "omzet") {
+                min = data
+                    .map(function (el) {
+                        return el.properties["Total omzet"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.min(prevEl, el);
+                    });
+                max = data
+                    .map(function (el) {
+                        return el.properties["Total omzet"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.max(prevEl, el);
+                    });
+                average = Math.ceil((max - min) / 6);
+            } else {
+                min = data
+                    .map(function (el) {
+                        return el.properties["Jumlah"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.min(prevEl, el);
+                    });
+                max = data
+                    .map(function (el) {
+                        return el.properties["Jumlah"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.max(prevEl, el);
+                    });
+                average = Math.ceil((max - min) / 6);
+            }
+            console.log(min, max, average);
             if (category == "omzet") {
                 paint = [
                     "interpolate",
                     ["linear"],
                     ["get", "Total omzet"],
-                    0,
+                    min + average * 1 + 1,
                     "#ffeda0",
-                    5000000000,
+                    min + average * 2 + 1,
                     "#ffe675",
-                    9000000000,
+                    min + average * 3 + 1,
                     "#ffdf52",
-                    13000000000,
+                    min + average * 4 + 1,
                     "#ffd61f",
-                    17000000000,
+                    min + average * 5 + 1,
                     "#e0b700",
-                    20396854609,
+                    min + average * 6 + 1,
                     "#caa502",
                 ];
             } else {
@@ -2932,20 +3020,21 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     "interpolate",
                     ["linear"],
                     ["get", "Jumlah"],
-                    0,
+                    min + average * 1 + 1,
                     "#ffeda0",
-                    600,
+                    min + average * 2 + 1,
                     "#ffe675",
-                    1100,
+                    min + average * 3 + 1,
                     "#ffdf52",
-                    2100,
+                    min + average * 4 + 1,
                     "#ffd61f",
-                    3100,
+                    min + average * 5 + 1,
                     "#e0b700",
-                    5000,
+                    min + average * 6 + 1,
                     "#caa502",
                 ];
             }
+            console.log(paint);
             map.addLayer({
                 id: "wilayahindex_fill",
                 type: "fill",
@@ -2965,38 +3054,111 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     layers: ["wilayahindex_fill"],
                 });
 
+                let el = "";
+                if (localStorage.getItem("filterCategoryChoro") == "omzet") {
+                    el = `<strong class="d-block">Omzet (Rp milyar)</strong>`;
+                } else if (
+                    localStorage.getItem("filterCategoryChoro") == "kepadatan"
+                ) {
+                    el = `<strong class="d-block">Jumlah (Orang km<sup>3</sup>)</strong>`;
+                } else {
+                    el = `<strong class="d-block">Jumlah (Orang)</strong>`;
+                }
+
                 document.getElementById("pd").innerHTML = states.length
                     ? `<div>${titleCase(
                           states[0].properties.Kelurahan
-                      )}</div><p class="mb-0"><strong>${
+                      )}</div><p class="mb-0 my-2">
+                      ${el}<span style="font-size:15px;">
+                      ${
                           localStorage.getItem("filterCategoryChoro") == "omzet"
                               ? `Rp. ${separatorNum(
                                     states[0].properties["Total omzet"]
                                 )}`
                               : `${separatorNum(
                                     states[0].properties["Jumlah"]
-                                )} Jiwa`
-                      }</strong></p>`
-                    : `<p class="mb-0">Arahkan kursor untuk melihat data</p>`;
+                                )}`
+                      }</span></p>`
+                    : `<p class="mb-0">Arahkan kursor</p>`;
             });
             let layers;
             if (category == "omzet") {
                 layers = [
-                    "0-4M",
-                    "5M-8M",
-                    "9M-12M",
-                    "13M-16M",
-                    "17M-20M",
-                    "> 20M",
+                    `${min / 1000000000} - ${
+                        Math.round(
+                            ((min + average * 1 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 1 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 2 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 2 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 3 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 3 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 4 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 4 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 5 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `> ${
+                        Math.round(
+                            ((min + average * 5 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
                 ];
             } else {
                 layers = [
-                    "0-500",
-                    "600-1000",
-                    "1100-2000",
-                    "2100-3000",
-                    "3100-5000",
-                    "> 5000",
+                    `${min} - ${min + average * 1 + 1}`,
+                    `${min + average * 1 + 2} - ${min + average * 2 + 1}`,
+                    `${min + average * 2 + 2} - ${min + average * 3 + 1}`,
+                    `${min + average * 3 + 2} - ${min + average * 4 + 1}`,
+                    `${min + average * 4 + 2} - ${min + average * 5 + 1}`,
+                    `> ${min + average * 5 + 2}`,
                 ];
             }
             const colors = [
@@ -3107,30 +3269,28 @@ function addSourceLayer(item) {
                 });
                 addLayers(dt);
                 onOffLayers(dt);
-                if (localStorage.getItem("searching") == 1) {
-                    let coordCliked = localStorage
-                        .getItem("kordinat")
-                        .toString()
-                        .split(",");
-                    console.log(coordCliked);
-                    let lat = coordCliked[0];
-                    let lng = coordCliked[1];
-                    // map.on("sourcedata", (e) => {
-                    console.log(lat, lng);
-                    setTimeout(() => {
-                        localStorage.setItem("loaded", 1);
-                        map.fire("click", {
-                            lngLat: {
-                                lng: lng,
-                                lat: lat,
-                            },
-                        });
-                    }, 3000);
-                }
-                localStorage.setItem("searching", 0);
+                // if (localStorage.getItem("searching") == 1) {
             },
         });
     }
+
+    let coordCliked = localStorage.getItem("kordinat").toString().split(",");
+    console.log(coordCliked);
+    let lat = coordCliked[0];
+    let lng = coordCliked[1];
+    // map.on("sourcedata", (e) => {
+    console.log(lat, lng);
+    setTimeout(() => {
+        localStorage.setItem("loaded", 1);
+        map.fire("click", {
+            lngLat: {
+                lng: lng,
+                lat: lat,
+            },
+        });
+    }, 3000);
+    // }
+    localStorage.setItem("searching", 0);
 
     if (map.getLayer("banjir_fill")) {
         map.removeLayer("banjir_fill");
@@ -3499,6 +3659,15 @@ function onOffLayers(layer) {
                 $(".detail_omzet").show();
                 $(".detail_jumlah").show();
                 $("#btnInteractive").addClass("text-primary");
+                // map.setCenter([106.6894316, -6.229728]);
+                // map.setZoom(11);
+                map.easeTo({
+                    zoom: 11,
+                    center: {
+                        lng: 106.80331075792759,
+                        lat: -6.231019525132169,
+                    },
+                });
             } else {
                 hideLayer("wilayahindex_fill");
                 $(".detail_omzet").hide();
@@ -5303,78 +5472,22 @@ $("#optionFilterChoro").change(() => {
         localStorage.setItem("filterCategoryChoro", "omzet");
         choro();
         $("#btn-titik").hide();
-        //     $("#btn-titik").html(``);
-        //     $("#btn-titik").html(`
-        //     <div>
-        //     <button class="btn btn-sm"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     apartment
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        // <div>
-        //     <button class="btn btn-sm ml-2"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     storefront
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        // <div>
-        //     <button class="btn btn-sm ml-2"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     home_repair_service
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        // <div>
-        //     <button class="btn btn-sm ml-2"
-        //         style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-        //         <div class="container">
-        //             <div class="row">
-        //                 <span class="material-icons text-primary mr-1">
-        //                     location_city
-        //                 </span>
-        //                 <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
-        //             </div>
-        //         </div>
-        //     </button>
-        // </div>
-        //     `);
-
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
         <div class="col-md-12 mt-2 mb-2">
             <span id="amount" class="w-100"
                 style="border:0; color:#f6931f; font-weight:bold;"></span>
-            <div id="slider-range"></div>
+            <div id="slider-range" class="my-2"></div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (Rp milyar)</span>
             <div class="text_all" id="legends">
 
             </div>
             </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan</span>
             <div id="pd">
                 <p></p>
             </div>
@@ -5390,9 +5503,8 @@ $("#optionFilterChoro").change(() => {
         // }
         localStorage.setItem("filterCategoryChoro", "pekerjaan");
         $("#btn-titik").hide();
-        $("#btn-titik").html(``);
+        // $("#btn-titik").html(``);
         let pekerjaan = [
-            "belum_tidak_bekerja",
             "aparatur_pemerintah",
             "pertanian",
             "nelayan",
@@ -5446,18 +5558,19 @@ $("#optionFilterChoro").change(() => {
             "wiraswasta",
             "pensiunan",
             "lainnya",
+            "belum_tidak_bekerja",
         ];
         let html = "";
         pekerjaan.forEach((item) => {
-            if (item == "belum_tidak_bekerja") {
-                choro(0, 0, "belum_tidak_bekerja");
+            if (item == "aparatur_pemerintah") {
+                choro(0, 0, "aparatur_pemerintah");
             }
             html += `
             <div class="mb-1">
             <button class="btn btn-xs mr-2 ${
-                item == "belum_tidak_bekerja" ? "active-chip" : ""
+                item == "aparatur_pemerintah" ? "active-chip" : ""
             }"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
                 <div class="container">
                     <div class="row">
                         <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
@@ -5476,13 +5589,13 @@ $("#optionFilterChoro").change(() => {
             <div id="pekerjaan">${html}</div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Jumlah Pekerjaan:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (orang)</span>
             <div class="text_all" id="legends">
 
             </div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan:</span>
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan</span>
             <div id="pd">
                 <p></p>
             </div>
@@ -5490,19 +5603,7 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         chipOption("pekerjaan");
-        var header = document.getElementById("pekerjaan");
-        var btns = header.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active-chip");
-                console.log(current);
-                current[0].className = current[0].className.replace(
-                    "active-chip",
-                    ""
-                );
-                this.className += " active-chip";
-            });
-        }
+        activeButton("pekerjaan");
     } else if ($("#optionFilterChoro").val() == "Pendidikan") {
         let pendidikan = [
             "tamat_sd",
@@ -5516,7 +5617,7 @@ $("#optionFilterChoro").change(() => {
         ];
 
         localStorage.setItem("filterCategoryChoro", "pendidikan");
-        $("#btn-titik").html(``);
+        // $("#btn-titik").html(``);
         choro(0, 0, "tamat_sd");
         let html = "";
         pendidikan.forEach((item) => {
@@ -5528,7 +5629,7 @@ $("#optionFilterChoro").change(() => {
             <button class="btn btn-xs mr-2 ${
                 item == "tamat_sd" ? "active-chip" : ""
             }"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000; padding:5px;" onclick="choro(0,0,'${item}')">
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
                 <div class="container">
                     <div class="row">
                         <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
@@ -5549,7 +5650,7 @@ $("#optionFilterChoro").change(() => {
             <div id="pendidikan">${html}</div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Jumlah Pendidikan:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (orang)</span>
             <div class="text_all" id="legends">
 
             </div>
@@ -5563,6 +5664,121 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         chipOption("pendidikan");
+        activeButton("pendidikan");
+    } else if ($("#optionFilterChoro").val() == "Agama") {
+        let pendidikan = [
+            "islam",
+            "kristen",
+            "katolik",
+            "hindu",
+            "budha",
+            "konghucu",
+            "kepercayaan",
+        ];
+
+        localStorage.setItem("filterCategoryChoro", "agama");
+        // $("#btn-titik").html(``);
+        choro(0, 0, "islam");
+        let html = "";
+        pendidikan.forEach((item) => {
+            if (item == "islam") {
+                choro(0, 0, "islam");
+            }
+            html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "islam" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;" onclick="choro(0,0,'${item}')">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+        });
+
+        localStorage.setItem("filterChoro", 1);
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="agama">${html}</div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Interval Orang</span>
+            <div class="text_all" id="legends">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span for="amount" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        chipOption("agama");
+        activeButton("agama");
+    } else if ($("#optionFilterChoro").val() == "Kepadatan") {
+        localStorage.setItem("filterCategoryChoro", "kepadatan");
+        choro(0, 100000, "kepadatan");
+        $("#btn-titik").hide();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="kepadatan" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-kepadatan" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="kepadatan" class="text_all font-weight-bold">Interval (Orang)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="kepadatan" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRangeKepadatan();
+    } else if ($("#optionFilterChoro").val() == "Jumlah Penduduk") {
+        localStorage.setItem("filterCategoryChoro", "jumlah_penduduk");
+        choro(0, 200000, "jumlah_penduduk");
+        $("#btn-titik").hide();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="jumlah-penduduk" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-jumlah-penduduk" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="jumlah-penduduk" class="text_all font-weight-bold">Interval (Orang)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="jumlah-penduduk" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRangeJumlahPenduduk();
     }
 });
 
@@ -5575,11 +5791,27 @@ $("#btnInteractive").on("click", () => {
 
 const chipOption = (name) => {
     $(`#${name}`).slick({
-        infinite: true,
+        infinite: false,
         slidesToShow: 4,
         slidesToScroll: 4,
         variableWidth: true,
         prevArrow: null,
         nextArrow: null,
     });
+};
+
+const activeButton = (name) => {
+    var header = document.getElementById(name);
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active-chip");
+            console.log(current);
+            current[0].className = current[0].className.replace(
+                "active-chip",
+                ""
+            );
+            this.className += " active-chip";
+        });
+    }
 };
