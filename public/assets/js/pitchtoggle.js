@@ -37,6 +37,7 @@ class PitchToggle {
                     "mapbox://styles/menthoelsr/ckp6i54ay22u818lrq15ffcnr"
                 );
                 map.easeTo({ pitch: 0, bearing: 0 });
+                addSourceLayer(localStorage.getItem("kelurahan"));
                 _this._btn.className =
                     "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
             }

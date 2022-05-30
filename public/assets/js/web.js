@@ -2908,117 +2908,60 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                 type: "geojson",
                 data: e,
             });
+            let min, max, average;
             let paint;
+            let data = e.features;
+
+            if (category == "omzet") {
+                min = data
+                    .map(function (el) {
+                        return el.properties["Total omzet"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.min(prevEl, el);
+                    });
+                max = data
+                    .map(function (el) {
+                        return el.properties["Total omzet"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.max(prevEl, el);
+                    });
+                average = Math.ceil((max - min) / 6);
+            } else {
+                min = data
+                    .map(function (el) {
+                        return el.properties["Jumlah"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.min(prevEl, el);
+                    });
+                max = data
+                    .map(function (el) {
+                        return el.properties["Jumlah"];
+                    })
+                    .reduce(function (prevEl, el) {
+                        return Math.max(prevEl, el);
+                    });
+                average = Math.ceil((max - min) / 6);
+            }
+            console.log(min, max, average);
             if (category == "omzet") {
                 paint = [
                     "interpolate",
                     ["linear"],
                     ["get", "Total omzet"],
-                    0,
+                    min + average * 1 + 1,
                     "#ffeda0",
-                    5000000000,
+                    min + average * 2 + 1,
                     "#ffe675",
-                    9000000000,
+                    min + average * 3 + 1,
                     "#ffdf52",
-                    13000000000,
+                    min + average * 4 + 1,
                     "#ffd61f",
-                    17000000000,
+                    min + average * 5 + 1,
                     "#e0b700",
-                    20396854609,
-                    "#caa502",
-                ];
-            } else if (category == "islam") {
-                paint = [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "Jumlah"],
-                    0,
-                    "#ffeda0",
-                    10001,
-                    "#ffe675",
-                    20001,
-                    "#ffdf52",
-                    30001,
-                    "#ffd61f",
-                    40001,
-                    "#e0b700",
-                    50001,
-                    "#caa502",
-                ];
-            } else if (
-                category == "kristen" ||
-                category == "katolik" ||
-                category == "budha"
-            ) {
-                paint = [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "Jumlah"],
-                    0,
-                    "#ffeda0",
-                    1001,
-                    "#ffe675",
-                    2001,
-                    "#ffdf52",
-                    3001,
-                    "#ffd61f",
-                    4001,
-                    "#e0b700",
-                    5001,
-                    "#caa502",
-                ];
-            } else if (category == "hindu") {
-                paint = [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "Jumlah"],
-                    0,
-                    "#ffeda0",
-                    51,
-                    "#ffe675",
-                    101,
-                    "#ffdf52",
-                    151,
-                    "#ffd61f",
-                    201,
-                    "#e0b700",
-                    251,
-                    "#caa502",
-                ];
-            } else if (category == "konghucu" || category == "kepercayaan") {
-                paint = [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "Jumlah"],
-                    0,
-                    "#ffeda0",
-                    6,
-                    "#ffe675",
-                    11,
-                    "#ffdf52",
-                    16,
-                    "#ffd61f",
-                    21,
-                    "#e0b700",
-                    26,
-                    "#caa502",
-                ];
-            } else if (category == "belum_tidak_bekerja") {
-                paint = [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "Jumlah"],
-                    0,
-                    "#ffeda0",
-                    1001,
-                    "#ffe675",
-                    2001,
-                    "#ffdf52",
-                    3001,
-                    "#ffd61f",
-                    4001,
-                    "#e0b700",
-                    5001,
+                    min + average * 6 + 1,
                     "#caa502",
                 ];
             } else {
@@ -3026,17 +2969,17 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     "interpolate",
                     ["linear"],
                     ["get", "Jumlah"],
-                    0,
+                    min + average * 1 + 1,
                     "#ffeda0",
-                    51,
+                    min + average * 2 + 1,
                     "#ffe675",
-                    101,
+                    min + average * 3 + 1,
                     "#ffdf52",
-                    151,
+                    min + average * 4 + 1,
                     "#ffd61f",
-                    200,
+                    min + average * 5 + 1,
                     "#e0b700",
-                    251,
+                    min + average * 6 + 1,
                     "#caa502",
                 ];
             }
@@ -3076,65 +3019,135 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
             let layers;
             if (category == "omzet") {
                 layers = [
-                    "0-4M",
-                    "5M-8M",
-                    "9M-12M",
-                    "13M-16M",
-                    "17M-20M",
-                    "> 20M",
-                ];
-            } else if (category == "islam") {
-                layers = [
-                    "0-10000",
-                    "10001-20000",
-                    "20001-30000",
-                    "30001-40000",
-                    "40001-50000",
-                    "> 50001",
-                ];
-            } else if (
-                category == "kristen" ||
-                category == "katolik" ||
-                category == "budha"
-            ) {
-                layers = [
-                    "0-1000",
-                    "1001-2000",
-                    "2001-3000",
-                    "3001-4000",
-                    "4001-5000",
-                    "> 5001",
-                ];
-            } else if (category == "hindu") {
-                layers = [
-                    "0-50",
-                    "51-100",
-                    "101-150",
-                    "151-200",
-                    "201-250",
-                    "> 250",
-                ];
-            } else if (category == "konghucu" || category == "kepercayaan") {
-                layers = ["0-5", "6-10", "11-15", "16-20", "21-25", "> 26"];
-            } else if (category == "belum_tidak_bekerja") {
-                layers = [
-                    "0-1000",
-                    "1001-2000",
-                    "2001-3000",
-                    "3001-4000",
-                    "4001-5000",
-                    "> 5001",
+                    `${min / 1000000000} - ${
+                        Math.round(
+                            ((min + average * 1 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 1 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 2 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 2 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 3 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 3 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 4 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `${
+                        Math.round(
+                            ((min + average * 4 + 2) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    } - ${
+                        Math.round(
+                            ((min + average * 5 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
+                    `> ${
+                        Math.round(
+                            ((min + average * 5 + 1) / 1000000000 +
+                                Number.EPSILON) *
+                                100
+                        ) / 100
+                    }`,
                 ];
             } else {
                 layers = [
-                    "0-50",
-                    "51-100",
-                    "101-150",
-                    "151-200",
-                    "201-250",
-                    "> 251",
+                    `${min} - ${min + average * 1 + 1}`,
+                    `${min + average * 1 + 2} - ${min + average * 2 + 1}`,
+                    `${min + average * 2 + 2} - ${min + average * 3 + 1}`,
+                    `${min + average * 3 + 2} - ${min + average * 4 + 1}`,
+                    `${min + average * 4 + 2} - ${min + average * 5 + 1}`,
+                    `> ${min + average * 5 + 2}`,
                 ];
             }
+            // else if (category == "islam") {
+            //     layers = [
+            //         "0-10000",
+            //         "10001-20000",
+            //         "20001-30000",
+            //         "30001-40000",
+            //         "40001-50000",
+            //         "> 50001",
+            //     ];
+            // } else if (
+            //     category == "kristen" ||
+            //     category == "katolik" ||
+            //     category == "budha"
+            // ) {
+            //     layers = [
+            //         "0-1000",
+            //         "1001-2000",
+            //         "2001-3000",
+            //         "3001-4000",
+            //         "4001-5000",
+            //         "> 5001",
+            //     ];
+            // } else if (category == "hindu") {
+            //     layers = [
+            //         "0-50",
+            //         "51-100",
+            //         "101-150",
+            //         "151-200",
+            //         "201-250",
+            //         "> 250",
+            //     ];
+            // } else if (category == "konghucu" || category == "kepercayaan") {
+            //     layers = ["0-5", "6-10", "11-15", "16-20", "21-25", "> 26"];
+            // } else if (category == "belum_tidak_bekerja") {
+            //     layers = [
+            //         "0-1000",
+            //         "1001-2000",
+            //         "2001-3000",
+            //         "3001-4000",
+            //         "4001-5000",
+            //         "> 5001",
+            //     ];
+            // } else {
+            //     layers = [
+            //         "0-50",
+            //         "51-100",
+            //         "101-150",
+            //         "151-200",
+            //         "201-250",
+            //         "> 251",
+            //     ];
+            // }
             const colors = [
                 "#ffeda0",
                 "#ffe675",
@@ -5504,7 +5517,7 @@ $("#optionFilterChoro").change(() => {
             <div id="slider-range"></div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Range Omzet:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (milyar)</span>
             <div class="text_all" id="legends">
 
             </div>
@@ -5612,7 +5625,7 @@ $("#optionFilterChoro").change(() => {
             <div id="pekerjaan">${html}</div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Jumlah Pekerjaan:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (orang)</span>
             <div class="text_all" id="legends">
 
             </div>
@@ -5673,7 +5686,7 @@ $("#optionFilterChoro").change(() => {
             <div id="pendidikan">${html}</div>
         </div>
         <div class="col-md-6">
-            <span for="amount" class="text_all font-weight-bold">Jumlah Pendidikan:</span>
+            <span for="amount" class="text_all font-weight-bold">Interval (orang)</span>
             <div class="text_all" id="legends">
 
             </div>
