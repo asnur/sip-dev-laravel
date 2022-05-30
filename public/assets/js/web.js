@@ -3082,9 +3082,15 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     : `<p class="mb-0">Arahkan kursor</p>`;
             });
             let layers;
+            let minFix =
+                min / 1000000000 < 1
+                    ? Math.round((min / 1000000000 + Number.EPSILON) * 1000) /
+                      1000
+                    : Math.round((min / 1000000000 + Number.EPSILON) * 100) /
+                      100;
             if (category == "omzet") {
                 layers = [
-                    `${min / 1000000000} - ${
+                    `${minFix} - ${
                         Math.round(
                             ((min + average * 1 + 1) / 1000000000 +
                                 Number.EPSILON) *
