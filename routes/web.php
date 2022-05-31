@@ -146,6 +146,12 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/pegawaiDataAjib/{pegawai_id}', [AdminController::class, 'data_edit_pegawai'])->name('edit-data-pegawai');
     Route::get('Ekspor-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('ekspor-kinerja');
+
+    // Route::get('/Kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
+    Route::get('/tambahKuesioner', [AdminController::class, 'tambah_kuesioner'])->name('tambah_kuesioner');
+    Route::get('/kosongKuesioner', [AdminController::class, 'kosong_kuesioner'])->name('kosong_kuesioner');
+    Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
+    Route::get('/IsiKuesioner', [AdminController::class, 'isi_kuesioner'])->name('isi_kuesioner');
 });
 
 //Analytics Page

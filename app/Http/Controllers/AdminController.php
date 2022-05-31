@@ -444,4 +444,30 @@ class AdminController extends Controller
 
         return $pdf->stream();
     }
+
+
+    // public function kuesioner()
+    // {
+    //     return view('admin.kuesioner');
+    // }
+
+    public function tambah_kuesioner()
+    {
+        return view('admin.tambah_kuesioner');
+    }
+
+    public function kosong_kuesioner()
+    {
+        return view('admin.kosong_kuesioner');
+    }
+
+    public function list_kuesioner()
+    {
+        return view('admin.list_kuesioner');
+    }
+
+    public function isi_kuesioner()
+    {
+        return view('admin.isi_kuesioner');
+    }
 }
