@@ -187,3 +187,9 @@ Route::post('/saveDataSurvey', [SurveyPerkembanganController::class, 'saveDataSu
 Route::post('/saveEditDataSurvey', [SurveyPerkembanganController::class, 'saveEditDataSurvey'])->name('save-survey-perkembangan');
 Route::post('/editDataSurvey', [SurveyPerkembanganController::class, 'editDataSurvey'])->name('edit-survey-perkembangan');
 Route::post('/deleteDataSurvey', [SurveyPerkembanganController::class, 'deleteDataSurvey'])->name('delete-survey-perkembangan');
+
+
+//PHP INFO
+Route::get('/phpinfo', function () {
+    return phpinfo();
+});
