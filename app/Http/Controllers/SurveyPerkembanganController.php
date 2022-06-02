@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
 use App\Models\User;
+use Image;
 use Illuminate\Http\Request;
 
 class SurveyPerkembanganController extends Controller
@@ -27,6 +28,7 @@ class SurveyPerkembanganController extends Controller
             'neighborhood' => $request->input('neighborhood'),
             'deskripsi_neighborhood' => $request->input('deskripsi_neighborhood'),
             'transect_zone' => $request->input('transect_zone'),
+            'deskripsi_transect_zone' => $request->input('deskripsi_transect_zone'),
             'id_user' => $request->input('id_user')
         ]);
 
@@ -35,7 +37,12 @@ class SurveyPerkembanganController extends Controller
         if ($request->hasfile('foto_survey')) {
             foreach ($request->file('foto_survey') as $key => $file) {
                 $name = strtotime(date('Y-m-d H:i:s')) . ".jpg";
-                $file->move(public_path() . '/survey/', $name);
+                $img = Image::make($file->getRealPath());
+                $path = 'survey/';
+                $img->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($path . '/' . $name);
+                // $file->move(public_path() . '/survey/', $name);
 
                 SurveyPerkembanganImage::create([
                     'name' => $name,

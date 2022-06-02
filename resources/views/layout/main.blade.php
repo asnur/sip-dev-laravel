@@ -294,7 +294,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <span aria-hidden="true">&times;</span>
             </button>
             <span style="font-size: 13pt" class="title-info font-weight-bold">Survey Perkembangan Wilayah</span>
-            <div class="form mt-4">
+            <button class="btn btn-success text-white d-block mt-2" onclick="resetSurvey()"
+                style="font-size: 8pt; cursor: pointer;"><i class="fa fa-plus"></i>
+                Lokasi Baru</button>
+            <div class="form mt-2">
                 <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalSurvey"
                     style="font-size: 10pt" role="alert">
                     <strong>Gagal!</strong> Anda Harus Mengisi Semua Form.
@@ -317,6 +320,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <form id="formSurveyLocation" enctype="multipart/form-data">
                     <label style="font-size: 10pt">Koordinat</label>
+                    <input type="hidden" name="id" class="form-control" id="idSurvey" style="font-size: 8pt"
+                        placeholder="Pilih Titik Lokasi" readonly>
                     <input type="text" name="kordinat" class="form-control" id="kordinatSurvey"
                         style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
                     <label class="mt-2" style="font-size: 10pt">ID Sub Blok</label>
@@ -359,6 +364,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <option value="T6">T6</option>
                         <option value="Special District">Special District</option>
                     </select>
+                    <label class="mt-2" style="font-size: 10pt">Deskripsi</label>
+                    <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
+                        placeholder="Masukan Catatan Transect Zone" rows="5"></textarea>
                     <label class="mt-2" style="font-size: 10pt">Foto</label>
                     <div class="custom-file" style="font-size: 8pt">
                         <input type="file" name="foto_survey[]" onchange="preview_foto_survey()" accept="image/*"
@@ -367,11 +375,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     </div>
                     <div class="mt-3" id="previewFotoSurvey">
                     </div>
-                    <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
+                    <button type="submit" id="submitSurveyLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
                         Simpan</button>
                 </form>
-                <form id="formSurveyLocationEdit" enctype="multipart/form-data">
+                {{-- <form id="formSurveyLocationEdit" enctype="multipart/form-data">
                     <label style="font-size: 10pt">Koordinat</label>
                     <input type="hidden" name="id" class="form-control" id="idSurveyEdit" style="font-size: 8pt"
                         placeholder="Pilih Titik Lokasi" readonly>
@@ -429,14 +437,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     </div>
                     <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
-                        Edit</button>
-                </form>
+                        Simpan</button>
+                </form> --}}
 
             </div>
 
             <div class="mt-5">
-                <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
-                <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Lokasi Yang di Simpan</p>
+                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi</span>
+                <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
                 <div class="list-item-info-location-survey mt-2">
 
                 </div>

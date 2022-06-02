@@ -4736,6 +4736,7 @@ function pinLocation() {
 }
 
 function surveyLocation() {
+    resetSurvey();
     $.ajax({
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
@@ -4757,6 +4758,29 @@ function surveyLocation() {
     });
 }
 
+const resetSurvey = () => {
+    localStorage.setItem("url_survey", `${APP_URL}/saveDataSurvey`);
+    $("#idSurvey").val("");
+    $("#kordinatSurvey").val("");
+    $("#idSubblokSurvey").val("");
+    $("#kecamatanSurvey").val("");
+    $("#kecamatanSurvey").val("");
+    $("#regionalSurvey").val("");
+    $("#deskripsiRegionalSurvey").val("");
+    $("#neighborhoodSurvey").val("");
+    $("#deskripsiNeighborhoodSurvey").val("");
+    $("#transectZoneSurvey").val("");
+    $("#deskripsiTransectZoneSurvey").val("");
+    $("#gambarLokasiSurvey").val("");
+    if (
+        $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
+            .length !== 0
+    ) {
+        $("#previewFotoSurvey").slick("unslick");
+        $("#previewFotoSurvey").html("");
+    }
+};
+
 function getDataSurvey(id_user) {
     $.ajax({
         url: `${APP_URL}/getDataSurvey/${id_user}`,
@@ -4773,17 +4797,19 @@ function getDataSurvey(id_user) {
                                 e[index].image[0] == undefined
                                     ? "not_image.png"
                                     : e[index].image[0].name
-                            }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="detailDataSurvey(${
-                        e[index].id
-                    })">
+                            }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="geocoder.query('${
+                        e[index].kordinat
+                    }');addSourceLayer('${e[index].kelurahan}');">
                         </div>
                         <div class="col-sm-6">
-                            <a style="font-weight: bold;word-break: break-all;
-                            white-space: normal; cursor: pointer;" onclick="geocoder.query('${
+                            <a onclick="geocoder.query('${
                                 e[index].kordinat
-                            }');addSourceLayer('${e[index].kelurahan}');">${
+                            }');addSourceLayer('${
                         e[index].kelurahan
-                    } (${e[index].id_sub_blok})</a><br>
+                    }');" style="font-weight: bold;word-break: break-all;
+                            white-space: normal; cursor: pointer;">${
+                                e[index].kelurahan
+                            } (${e[index].id_sub_blok})</a><br>
                             <span>Regional : ${e[index].regional}</span><br>
                             <span>Neighborhood : ${
                                 e[index].neighborhood
@@ -4921,18 +4947,19 @@ function editDataSurvey(id, id_user) {
             //     </div>
             //     `);
             // }
-            $("#formSurveyLocation").hide();
-            $("#formSurveyLocationEdit").show();
-            $("#idSurveyEdit").val(e.id);
-            $("#kordinatSurveyEdit").val(e.kordinat);
-            $("#idSubblokSurveyEdit").val(e.id_sub_blok);
-            $("#kelurahanSurveyEdit").val(e.kelurahan);
-            $("#kecamatanSurveyEdit").val(e.kecamatan);
-            $("#regionalSurveyEdit").val(e.regional);
-            $("#deskripsiRegionalSurveyEdit").val(e.deskripsi_regional);
-            $("#neighborhoodSurveyEdit").val(e.neighborhood);
-            $("#deskripsiNeighborhoodSurveyEdit").val(e.deskripsi_neighborhood);
-            $("#transectZoneSurveyEdit").val(e.transect_zone);
+            localStorage.setItem("url_survey", `${APP_URL}/saveEditDataSurvey`);
+            // $("#formSurveyLocationEdit").show();
+            $("#idSurvey").val(e.id);
+            $("#kordinatSurvey").val(e.kordinat);
+            $("#idSubblokSurvey").val(e.id_sub_blok);
+            $("#kelurahanSurvey").val(e.kelurahan);
+            $("#kecamatanSurvey").val(e.kecamatan);
+            $("#regionalSurvey").val(e.regional);
+            $("#deskripsiRegionalSurvey").val(e.deskripsi_regional);
+            $("#neighborhoodSurvey").val(e.neighborhood);
+            $("#deskripsiNeighborhoodSurvey").val(e.deskripsi_neighborhood);
+            $("#transectZoneSurvey").val(e.transect_zone);
+            $("#deskripsiTransectZoneSurvey").val(e.deskripsi_transect_zone);
             console.log(e);
         },
     });
@@ -5334,6 +5361,7 @@ $("#formSurveyLocation").on("submit", function (e) {
     var neighborhood = $("#neighborhoodSurvey").val();
     var deskripsi_neighborhood = $("#deskripsiNeighborhoodSurvey").val();
     var transect_zone = $("#transectZoneSurvey").val();
+    var deskripsi_transect_zone = $("#deskripsiTransectZoneSurvey").val();
     var gambarLokasi = $("#gambarLokasiSurvey").get(0).files;
     var formData = new FormData(this);
 
@@ -5346,7 +5374,8 @@ $("#formSurveyLocation").on("submit", function (e) {
         deskripsi_regional !== "" &&
         neighborhood !== "" &&
         deskripsi_neighborhood !== "" &&
-        transect_zone !== ""
+        transect_zone !== "" &&
+        deskripsi_transect_zone !== ""
     ) {
         $.ajax({
             url: `${APP_URL}/getIdUser`,
@@ -5354,25 +5383,22 @@ $("#formSurveyLocation").on("submit", function (e) {
             success: function (e) {
                 var id_user = e;
                 formData.append("id_user", id_user);
-                formData.append("kelurahan", localStorage.getItem("kelurahan"));
+                // formData.append("kelurahan", localStorage.getItem("kelurahan"));
                 // console.log(formData.get("foto"));
                 $.ajax({
-                    url: `${APP_URL}/saveDataSurvey`,
+                    url: localStorage.getItem("url_survey"),
                     method: "POST",
                     contentType: false,
                     processData: false,
                     data: formData,
                     success: function (e) {
                         console.log(e);
-                        $("#kordinatSurvey").val("");
-                        $("#idSubblokSurvey").val("");
-                        $("#kecamatanSurvey").val("");
-                        $("#kecamatanSurvey").val("");
-                        $("#regionalSurvey").val("");
-                        $("#deskripsiRegionalSurvey").val("");
-                        $("#neighborhoodSurvey").val("");
-                        $("#deskripsiNeighborhoodSurvey").val("");
-                        $("#transectZoneSurvey").val("");
+                        if (
+                            localStorage.getItem("url_survey") ==
+                            `${APP_URL}/saveDataSurvey`
+                        ) {
+                            resetSurvey();
+                        }
                         $("#pesanBerhasilSurvey").show();
                         getDataSurvey(id_user);
                         setTimeout(function () {
@@ -5486,8 +5512,8 @@ $("#formSurveyLocationEdit").on("submit", function (e) {
                         $("#deskripsiNeighborhoodSurveyEdit").val("");
                         $("#transectZoneSurveyEdit").val("");
                         $("#pesanBerhasilEditSurveyEdit").show();
-                        $("#formSurveyLocationEdit").hide();
-                        $("#formSurveyLocation").show();
+                        // $("#formSurveyLocationEdit").hide();
+                        // $("#formSurveyLocation").show();
                         getDataSurvey(id_user);
                         setTimeout(function () {
                             $("#pesanBerhasilEditSurveyEdit").hide();
