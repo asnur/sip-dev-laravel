@@ -38,5 +38,10 @@ class VerifyCsrfToken extends Middleware
         '/save_kbli',
         '/check_print',
         '/save_itbx',
+        '/saveDataSurvey',
+        '/editDataSurvey',
+        '/saveEditDataSurvey',
+        '/deleteDataSurvey',
+        '/detailDataSurvey'
     ];
 }

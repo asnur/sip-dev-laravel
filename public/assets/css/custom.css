@@ -152,6 +152,16 @@
     overflow-x: hidden;
 }
 
+.info-survey-detail {
+    position: absolute;
+    z-index: 9999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
 .info-layer {
     position: absolute;
     z-index: 999;
@@ -203,6 +213,16 @@
 }
 
 .info-pin-location {
+    position: absolute;
+    z-index: 999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
+.info-survey-location {
     position: absolute;
     z-index: 999;
     background: #fdfffc;
@@ -463,7 +483,7 @@ input[type="range"]::-moz-range-progress {
 /* Finish Range */
 
 .mapboxgl-ctrl-top-right {
-    top: 20% !important;
+    top: 22% !important;
     right: 0 !important;
 }
 

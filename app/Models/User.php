@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Survey::class, 'id_user', 'id');
     }
+
+    public function perkembangan()
+    {
+        return $this->hasMany(SurveyPerkembangan::class, 'id_user', 'id');
+    }
 }
