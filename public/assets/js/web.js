@@ -4763,7 +4763,7 @@ const resetSurvey = () => {
     $("#idSurvey").val("");
     $("#kordinatSurvey").val("");
     $("#idSubblokSurvey").val("");
-    $("#kecamatanSurvey").val("");
+    $("#kelurahanSurvey").val("");
     $("#kecamatanSurvey").val("");
     $("#regionalSurvey").val("");
     $("#deskripsiRegionalSurvey").val("");
