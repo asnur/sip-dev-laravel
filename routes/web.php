@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
+use App\Http\Controllers\SurveyPerkembanganController;
 use Jenssegers\Agent\Agent;
 
 
@@ -170,3 +171,13 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
 
 Route::post('/digitasi', [DigitasiController::class, 'index'])->name('digitasi');
+
+
+//Survey Perkembangan
+Route::get('/getDataSurvey/{id_survey}', [SurveyPerkembanganController::class, 'getDataSurvey'])->name('survey-perkembangan');
+Route::get('/getAllDataSurvey', [SurveyPerkembanganController::class, 'getAllDataSurvey'])->name('survey-perkembangan');
+Route::post('/detailDataSurvey', [SurveyPerkembanganController::class, 'detailDataSurvey'])->name('save-survey-perkembangan');
+Route::post('/saveDataSurvey', [SurveyPerkembanganController::class, 'saveDataSurvey'])->name('save-survey-perkembangan');
+Route::post('/saveEditDataSurvey', [SurveyPerkembanganController::class, 'saveEditDataSurvey'])->name('save-survey-perkembangan');
+Route::post('/editDataSurvey', [SurveyPerkembanganController::class, 'editDataSurvey'])->name('edit-survey-perkembangan');
+Route::post('/deleteDataSurvey', [SurveyPerkembanganController::class, 'deleteDataSurvey'])->name('delete-survey-perkembangan');
