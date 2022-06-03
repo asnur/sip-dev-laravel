@@ -3300,8 +3300,10 @@ function addSourceLayer(item) {
     let lng = coordCliked[1];
     // map.on("sourcedata", (e) => {
     console.log(lat, lng);
+    $("body").css("pointer-events", "none");
     setTimeout(() => {
         localStorage.setItem("loaded", 1);
+        $("body").css("pointer-events", "all");
         map.fire("click", {
             lngLat: {
                 lng: lng,
