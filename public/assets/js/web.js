@@ -32,6 +32,8 @@ var saveTPZ;
 var count = 0;
 var countOpen = 0;
 var arrPrint = [];
+var files = [];
+var Newfiles = [];
 var luasSimulasi;
 var KDH, KLB, NJOP;
 var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
@@ -936,6 +938,10 @@ map.on("style.load", function () {
         }
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $("#kordinatSurvey").val(`${coornya.lat},${coornya.lng}`);
+        $("#refrensiGoogleMaps").attr(
+            "href",
+            `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
+        );
         $.ajax({
             url: `${APP_URL}/save_kordinat`,
             method: "POST",
@@ -4759,8 +4765,10 @@ function surveyLocation() {
 }
 
 const resetSurvey = () => {
+    files = [];
     localStorage.setItem("url_survey", `${APP_URL}/saveDataSurvey`);
     $("#idSurvey").val("");
+    $("#nameSurvey").val();
     $("#kordinatSurvey").val("");
     $("#idSubblokSurvey").val("");
     $("#kelurahanSurvey").val("");
@@ -4808,8 +4816,8 @@ function getDataSurvey(id_user) {
                         e[index].kelurahan
                     }');" style="font-weight: bold;word-break: break-all;
                             white-space: normal; cursor: pointer;">${
-                                e[index].kelurahan
-                            } (${e[index].id_sub_blok})</a><br>
+                                e[index].name
+                            }</a><br>
                             <span>Regional : ${e[index].regional}</span><br>
                             <span>Neighborhood : ${
                                 e[index].neighborhood
@@ -4947,6 +4955,34 @@ function editDataSurvey(id, id_user) {
             //     </div>
             //     `);
             // }
+            let html = "";
+            $("#previewFotoSurvey").html("");
+            for (var i = 0; i < e.image.length; i++) {
+                html += `
+            <div class="mr-1 slide">
+                <button type="button" class="close btn-remove-item" onclick="removeImageSurvey(${e.image[i].id})" style="position: relative;
+                color: red;margin-bottom:-1rem;">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+                <img src="/survey/${e.image[i].name}" class="w-100" style="object-fit:cover">
+            </div>
+            `;
+            }
+            if (
+                $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
+                    .length == 0
+            ) {
+                $("#previewFotoSurvey").html("");
+                $("#previewFotoSurvey").html(html);
+                sliderOption("previewFotoSurvey");
+                removeItem();
+            } else {
+                $("#previewFotoSurvey").slick("unslick");
+                $("#previewFotoSurvey").html("");
+                $("#previewFotoSurvey").html(html);
+                sliderOption("previewFotoSurvey");
+                removeItem();
+            }
             localStorage.setItem("url_survey", `${APP_URL}/saveEditDataSurvey`);
             // $("#formSurveyLocationEdit").show();
             $("#idSurvey").val(e.id);
@@ -4964,6 +5000,34 @@ function editDataSurvey(id, id_user) {
         },
     });
 }
+
+const removeImageSurvey = (id) => {
+    $.ajax({
+        url: `${APP_URL}/deleteImageSurvey`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: (e) => {
+            console.log(e);
+            // $("#previewFotoSurvey").slick("unslick");
+            // $("#previewFotoSurvey").html("");
+            // for (var i = 0; i < e.image.length; i++) {
+            //     $("#previewFotoSurvey").append(`
+            // <div class="mr-1 slide">
+            //     <button type="button" class="close btn-remove-item" onclick="removeImageSurvey(${e.image[i].id})" style="position: relative;
+            //     color: red;margin-bottom:-1rem;">
+            //             <span aria-hidden="true">&times;</span>
+            //     </button>
+            //     <img src="/survey/${e.image[i].name}" class="w-100" style="height:80px; object-fit:cover">
+            // </div>
+            // `);
+            // }
+            // sliderOption("previewFotoSurvey");
+            // removeItem();
+        },
+    });
+};
 
 function deleteDataSurvey(id_data, id_user) {
     $.ajax({
@@ -5242,32 +5306,100 @@ function preview_image() {
     }
 }
 
+const removeItem = (event) => {
+    $(".btn-remove-item").on("click", function (e) {
+        let index = $(this).data("index");
+        // console.log("clicked");
+        if (index !== undefined) {
+            files.splice(files.indexOf(Newfiles[index]), 1);
+            console.log(index);
+        }
+        $("#previewFotoSurvey").slick(
+            "slickRemove",
+            $(".btn-remove-item").index(this)
+        );
+    });
+};
+
+const removeFileArray = (event) => {
+    console.log(event);
+};
+
 function preview_foto_survey() {
     var gambarLokasi = $("#gambarLokasiSurvey").get(0).files.length;
     let html = "";
-    $("#previewFotoSurvey").html("");
-    for (var i = 0; i < gambarLokasi; i++) {
-        html += `
-            <div class="mr-1">
-                <img src="${URL.createObjectURL(
-                    event.target.files[i]
-                )}" class="w-100">
-            </div>
-            `;
-    }
+    let countArray = Newfiles.length;
     if (
         $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider").length ==
         0
     ) {
-        $("#previewFotoSurvey").html("");
-        $("#previewFotoSurvey").html(html);
-        sliderOption("previewFotoSurvey");
-    } else {
-        $("#previewFotoSurvey").slick("unslick");
-        $("#previewFotoSurvey").html("");
-        $("#previewFotoSurvey").html(html);
         sliderOption("previewFotoSurvey");
     }
+    if (localStorage.getItem("url_survey") == `${APP_URL}/saveEditDataSurvey`) {
+        $("#previewFotoSurvey").slick(
+            "slickSetOption",
+            "slidesToShow",
+            1,
+            true
+        );
+    } else {
+        $("#previewFotoSurvey").slick(
+            "slickSetOption",
+            "slidesToShow",
+            3,
+            true
+        );
+    }
+    for (var i = 0; i < gambarLokasi; i++) {
+        let file = $("#gambarLokasiSurvey").get(0).files[i];
+        let element = $(`
+            <div class="slide mr-1">
+                <button type="button" class="close btn-remove-item" data-index="${countArray++}" style="position: relative;
+                color: red;margin-bottom:-1rem;">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+                <img src="${URL.createObjectURL(
+                    event.target.files[i]
+                )}" class="w-100">
+            </div>
+            `);
+        if ($(".slide").length == 0) {
+            $("#previewFotoSurvey").slick("slickAdd", element);
+        } else {
+            $("#previewFotoSurvey").slick("slickAdd", element, 0, true);
+        }
+        files.push(file);
+        Newfiles.push(file);
+    }
+    $("#gambarLokasiSurvey").val("");
+    removeItem();
+
+    // files.forEach((file) => {});
+    // } else {
+    //     $("#previewFotoSurvey").html("");
+    //     for (var i = 0; i < gambarLokasi; i++) {
+    //         html += `
+    //         <div class="slide mr-1">
+    //             <img src="${URL.createObjectURL(
+    //                 event.target.files[i]
+    //             )}" class="w-100">
+    //         </div>
+    //         `;
+    //     }
+    //     if (
+    //         $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
+    //             .length == 0
+    //     ) {
+    //         $("#previewFotoSurvey").html("");
+    //         $("#previewFotoSurvey").html(html);
+    //         sliderOption("previewFotoSurvey");
+    //     } else {
+    //         $("#previewFotoSurvey").slick("unslick");
+    //         $("#previewFotoSurvey").html("");
+    //         $("#previewFotoSurvey").html(html);
+    //         sliderOption("previewFotoSurvey");
+    //     }
+    // }
 }
 
 function preview_image_edit() {
@@ -5352,6 +5484,7 @@ $("#formPinLocation").on("submit", function (e) {
 
 $("#formSurveyLocation").on("submit", function (e) {
     e.preventDefault();
+    var name = $("#nameSurvey").val();
     var coor = $("#kordinatSurvey").val();
     var id_subblok = $("#idSubblokSurvey").val();
     var kelurahan = $("#kelurahanSurvey").val();
@@ -5366,6 +5499,7 @@ $("#formSurveyLocation").on("submit", function (e) {
     var formData = new FormData(this);
 
     if (
+        name !== "" &&
         coor !== "" &&
         id_subblok !== "" &&
         kelurahan !== "" &&
@@ -5383,6 +5517,10 @@ $("#formSurveyLocation").on("submit", function (e) {
             success: function (e) {
                 var id_user = e;
                 formData.append("id_user", id_user);
+
+                files.forEach((file) => {
+                    formData.append("foto_survey[]", file);
+                });
                 // formData.append("kelurahan", localStorage.getItem("kelurahan"));
                 // console.log(formData.get("foto"));
                 $.ajax({
@@ -6233,7 +6371,7 @@ const chipOption = (name) => {
 const sliderOption = (name) => {
     $(`#${name}`).slick({
         infinite: false,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         prevArrow: null,
         nextArrow: null,
@@ -6255,3 +6393,4 @@ const activeButton = (name) => {
         });
     }
 };
+[];

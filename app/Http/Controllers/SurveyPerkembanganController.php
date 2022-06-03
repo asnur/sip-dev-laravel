@@ -20,6 +20,7 @@ class SurveyPerkembanganController extends Controller
     {
         SurveyPerkembangan::create([
             'id_sub_blok' => $request->input('id_sublok'),
+            'name' => $request->input('name'),
             'kordinat' => $request->input('kordinat'),
             'kelurahan' => $request->input('kelurahan'),
             'kecamatan' => $request->input('kecamatan'),
@@ -36,7 +37,7 @@ class SurveyPerkembanganController extends Controller
 
         if ($request->hasfile('foto_survey')) {
             foreach ($request->file('foto_survey') as $key => $file) {
-                $name = strtotime(date('Y-m-d H:i:s')) . ".jpg";
+                $name = rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
                 $img = Image::make($file->getRealPath());
                 $path = 'survey/';
                 $img->resize(400, 400, function ($constraint) {
@@ -53,8 +54,10 @@ class SurveyPerkembanganController extends Controller
     }
     public function saveEditDataSurvey(Request $request)
     {
+        // dd($request->all());
         $data = SurveyPerkembangan::find($request->input('id'));
         $data->id_sub_blok = $request->input('id_sublok');
+        $data->name = $request->input('name');
         $data->kordinat = $request->input('kordinat');
         $data->kelurahan = $request->input('kelurahan');
         $data->kecamatan = $request->input('kecamatan');
@@ -69,7 +72,7 @@ class SurveyPerkembanganController extends Controller
 
         if ($request->hasfile('foto_survey')) {
             foreach ($request->file('foto_survey') as $key => $file) {
-                $name = strtotime(date('Y-m-d H:i:s')) . ".jpg";
+                $name = rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
                 $file->move(public_path() . '/survey/', $name);
 
                 SurveyPerkembanganImage::create([
@@ -111,5 +114,14 @@ class SurveyPerkembanganController extends Controller
     {
         $data = SurveyPerkembangan::with('image')->find($request->input('id'));
         return $data;
+    }
+
+    public function deleteImageSurvey(Request $request)
+    {
+        $data = SurveyPerkembanganImage::find($request->input('id'));
+        unlink(public_path() . '/survey/' . $data->name);
+        $data->delete();
+
+        return response()->json(['success' => 'Berhasil menghapus foto']);
     }
 }

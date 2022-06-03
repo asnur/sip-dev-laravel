@@ -672,3 +672,11 @@ input[type="range"]::-moz-range-progress {
 .mapboxgl-ctrl-group:nth-child(3) {
     bottom: -15.5rem;
 }
+
+.slick-track {
+    display: flex !important;
+}
+
+.slick-slide {
+    height: inherit !important;
+}
