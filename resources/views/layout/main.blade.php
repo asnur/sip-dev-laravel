@@ -301,14 +301,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <form id="formSurveyLocation" enctype="multipart/form-data">
                     <label class="mt-2" style="font-size: 10pt">Nama Lokasi</label>
                     <input type="text" name="name" class="form-control" id="nameSurvey"
-                        placeholder="Masukan Nama Tempat" style="font-size: 8pt" placeholder="Kode ID Sub Blok"
-                        readonly>
+                        placeholder="Masukan Nama Tempat" style="font-size: 8pt">
                     <label style="font-size: 10pt">Koordinat</label>
                     <input type="hidden" name="id" class="form-control" id="idSurvey" style="font-size: 8pt"
                         placeholder="Pilih Titik Lokasi" readonly>
                     <input type="text" name="kordinat" class="form-control" id="kordinatSurvey"
                         style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
-                    <span><a href="" id="refrensiGoogleMaps" style="font-size: 8pt"> Refrensi Google Maps</a></span><br>
+                    <span><a href="" id="refrensiGoogleMaps" style="font-size: 8pt"> Referensi Google
+                            Maps</a></span><br>
                     <label class="mt-2" style="font-size: 10pt">ID Sub Blok</label>
                     <input type="text" name="id_sublok" class="form-control" id="idSubblokSurvey"
                         style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
