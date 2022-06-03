@@ -680,3 +680,16 @@ input[type="range"]::-moz-range-progress {
 .slick-slide {
     height: inherit !important;
 }
+
+.slick-prev::before,
+.slick-next::before {
+    color: gray;
+}
+
+.slick-prev::before {
+    margin-left: 0.3rem;
+}
+
+.slick-next::before {
+    margin-left: -1rem;
+}

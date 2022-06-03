@@ -5318,6 +5318,7 @@ const removeItem = (event) => {
             "slickRemove",
             $(".btn-remove-item").index(this)
         );
+        console.log($(".btn-remove-item").index(this));
     });
 };
 
@@ -6373,8 +6374,7 @@ const sliderOption = (name) => {
         infinite: false,
         slidesToShow: 1,
         slidesToScroll: 1,
-        prevArrow: null,
-        nextArrow: null,
+        arrows: true,
     });
 };
 
