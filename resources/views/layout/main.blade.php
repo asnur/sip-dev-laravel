@@ -308,7 +308,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         placeholder="Pilih Titik Lokasi" readonly>
                     <input type="text" name="kordinat" class="form-control" id="kordinatSurvey"
                         style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
-                    <span><a href="" id="refrensiGoogleMaps"> Refrensi Google Maps</a></span>
+                    <span><a href="" id="refrensiGoogleMaps" style="font-size: 8pt"> Refrensi Google Maps</a></span><br>
                     <label class="mt-2" style="font-size: 10pt">ID Sub Blok</label>
                     <input type="text" name="id_sublok" class="form-control" id="idSubblokSurvey"
                         style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
