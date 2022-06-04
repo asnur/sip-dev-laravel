@@ -4807,16 +4807,24 @@ function getDataSurvey(id_user) {
                                 e[index].image[0] == undefined
                                     ? "not_image.png"
                                     : e[index].image[0].name
-                            }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="geocoder.query('${
+                            }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="localStorage.setItem('kordinat','${
                         e[index].kordinat
-                    }');addSourceLayer('${e[index].kelurahan}');">
+                    }');geocoder.query('${
+                        e[index].kordinat
+                    }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
+                        ${e[index].id},
+                        ${id_user}
+                    )">
                         </div>
-                        <div class="col-sm-6">
-                            <a onclick="geocoder.query('${
+                        <div class="col-sm-7">
+                            <a onclick="localStorage.setItem('kordinat','${
                                 e[index].kordinat
-                            }');addSourceLayer('${
-                        e[index].kelurahan
-                    }');" style="font-weight: bold;word-break: break-all;
+                            }');geocoder.query('${
+                        e[index].kordinat
+                    }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
+                        ${e[index].id},
+                        ${id_user}
+                    )" style="font-weight: bold;word-break: break-all;
                             white-space: normal; cursor: pointer;">${
                                 e[index].name
                             }</a><br>
@@ -4828,19 +4836,13 @@ function getDataSurvey(id_user) {
                                 e[index].transect_zone
                             }</span>
                         </div>
-                        <div class="col-sm-3 d-flex align-items-center">
+                        <div class="col-sm-2 d-flex align-items-center pl-5">
                         <div class="row">
-                            <div class="col-6 p-1">
+                            <div class="col-12 p-1">
                                 <a onclick="deleteDataSurvey(
                                     ${e[index].id},
                                     ${id_user}
                                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
-                            </div>
-                            <div class="col-6 p-1">
-                                <a class="mt-1" onclick="editDataSurvey(
-                                    ${e[index].id},
-                                    ${id_user}
-                                )" style="cursor:pointer;color:blue;font-size: 18px;"><i style="margin-top:6px" class="fa fa-edit"></i></a>
                             </div>
                         </div>
                         </div>
@@ -4988,6 +4990,7 @@ function editDataSurvey(id, id_user) {
             localStorage.setItem("url_survey", `${APP_URL}/saveEditDataSurvey`);
             // $("#formSurveyLocationEdit").show();
             $("#idSurvey").val(e.id);
+            $("#nameSurvey").val(e.name);
             $("#kordinatSurvey").val(e.kordinat);
             $("#idSubblokSurvey").val(e.id_sub_blok);
             $("#kelurahanSurvey").val(e.kelurahan);
