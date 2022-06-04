@@ -4770,7 +4770,7 @@ const resetSurvey = () => {
     files = [];
     localStorage.setItem("url_survey", `${APP_URL}/saveDataSurvey`);
     $("#idSurvey").val("");
-    $("#nameSurvey").val();
+    $("#nameSurvey").val("");
     $("#kordinatSurvey").val("");
     $("#idSubblokSurvey").val("");
     $("#kelurahanSurvey").val("");
