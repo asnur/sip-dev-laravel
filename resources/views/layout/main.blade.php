@@ -296,6 +296,36 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <span aria-hidden="true">&times;</span>
             </button>
             <span style="font-size: 13pt" class="title-info font-weight-bold">Survey Perkembangan Wilayah</span>
+            <div class="for_web input-group input-group-md my-3">
+                <input type="search" id="cari_wilayah" class="form-control tombol_search py-2 border-right-0 border"
+                    placeholder="Cari nama jalan ..." autocomplete="off" style="font-size: 8pt">
+
+
+                <!-- Ori -->
+                <div class="wm-search__dropdown">
+                    <ul class="wm-search__dropdown" role="listbox"></ul>
+                </div>
+
+                <!-- Dummy -->
+                <ul class="wm-search__dropdown" role="listbox">
+
+                </ul>
+
+
+                <span class="input-group-append" style="font-size: 8pt">
+                    <button class="btn btn-secondary tombol_search border-left-0 border" style="font-size: 8pt"
+                        type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    {{-- <button class="btn tombol_search border-left-0 border" type="button"
+                            id="polygonDraw">
+                            <i class="ri-shape-line"></i>
+                            <span class="bg-danger p-1 rounded text-white"
+                                style="font-size: 8px;margin-top: -1rem;
+                                position: absolute;">BETA</span>
+                        </button> --}}
+                </span>
+            </div>
             <button class="btn btn-success text-white d-block mt-2" onclick="resetSurvey()"
                 style="font-size: 8pt; cursor: pointer;"><i class="fa fa-plus"></i>
                 Lokasi Baru</button>
