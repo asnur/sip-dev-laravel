@@ -56,6 +56,10 @@
     <link href="{{ asset('assets/admin2/css/kuesioner.css') }}" rel="stylesheet" />
     @endif
 
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+
 
 </head>
 
@@ -252,7 +256,25 @@
                 <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
                 </svg>
             </span>
-            <span class="nav-link-title"> Rekap Input </span>
+            <span class="nav-link-title"> Rekap Input Ajib</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin/PerkembanganSurvey') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('perkembangan-survey') }}">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-analytics" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <desc>Download more icon variants from https://tabler-icons.io/i/report-analytics</desc>
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+            <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+            <path d="M9 17v-5"></path>
+            <path d="M12 17v-1"></path>
+            <path d="M15 17v-3"></path>
+            </svg>
+            </span>
+            <span class="nav-link-title">Rekap Survey </span>
         </a>
     </li>
 
@@ -545,9 +567,60 @@
     <script src="{{ asset('assets/admin/js/monitoringMap.js') }}"></script>
     @endif
 
+    @if (Request::is('admin/PerkembanganSurvey'))
+    <script src="{{ asset('assets/admin/js/rekapSurveyMap.js') }}"></script>
+    @endif
+
     @if (Request::is('admin/tambahKuesioner'))
     <script src="{{ asset('assets/admin2/js/kuesioner.js') }}"></script>
     @endif
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+<script>
+    $(".slick_filter_menu").slick({
+        dots: false
+        , arrows: false
+        , variableWidth: true
+        , infinite: false
+        , swipeToSlide: true,
+        // , centerMode: true
+        slidesToShow: 6
+        , slidesToScroll: 1
+    });
+
+
+
+    // $('.gambar_utama_slider_input').slick({
+
+    //     slidesToShow: 1
+    //     , slidesToScroll: 1
+    //     , dots: false
+    //     , focusOnSelect: true
+    //     , variableWidth: true
+    //     , infinite: false
+    //     , arrows: false,
+
+    //     // , asNavFor: '.image_slider_input'
+    // });
+
+    $('.image_slider_input').slick({
+        slidesToShow: 5
+        , slidesToScroll: 1
+        , asNavFor: '.gambar_utama_slider_input'
+        , dots: false
+        , focusOnSelect: true
+        , variableWidth: true
+        , infinite: true
+        , arrows: true
+
+    });
+
+</script>
+
+
+
 
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
     <script src="{{ asset('assets/admin/js/countTracking.js') }}"></script>
@@ -555,6 +628,7 @@
     <script>
         addText();
         dataTebaruRealtime();
+        dataTebaruPerkembangan();
     </script>
 
 

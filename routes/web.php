@@ -10,6 +10,7 @@ use App\Http\Controllers\PrintController;
 use App\Http\Controllers\RequireDataChatController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyerController;
+use App\Http\Controllers\RekapSurveyController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -170,6 +171,13 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/kosongKuesioner', [AdminController::class, 'kosong_kuesioner'])->name('kosong_kuesioner');
     Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
     Route::get('/IsiKuesioner', [AdminController::class, 'isi_kuesioner'])->name('isi_kuesioner');
+    Route::get('/PerkembanganSurvey', [AdminController::class, 'perkembangan_survey'])->name('perkembangan-survey');
+
+    Route::get('/fetch-perkembangan', [AdminController::class, 'fetchPerkembangan'])->name('fetch-perkembangan');
+
+    Route::get('/perkembangan-terbaru/{id_data_terbaru}', [AdminController::class, 'fetchPerkembanganTerbaru'])->name('perkembangan-terbaru');
+
+    Route::get('/titik-rekap-survey', [RekapSurveyController::class, 'index'])->name('titik-rekap-survey');
 });
 
 //Analytics Page
