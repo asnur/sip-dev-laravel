@@ -333,18 +333,19 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <div class="form mt-2">
                 <form id="formSurveyLocation" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-5"><label class="mt-2" style="font-size: 13px">Nama Lokasi
+                        <div class="col-md-5"><label class="mt-2"
+                                style="font-size: 13px;line-height:0px;">Nama Lokasi
                                 <sup class="text-danger font-weight-bold">*</sup></label></div>
                         <div class="col-md-7">
                             <input type="text" name="name" class="form-control" id="nameSurvey"
                                 placeholder="Masukan Nama Tempat" style="font-size: 8pt">
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px">Koordinat <sup
+                            <label style="font-size: 13px;line-height:0px;">Koordinat <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <span><a href="#" id="refrensiGoogleMaps" style="font-size: 13px"
+                            <span><a href="#" id="refrensiGoogleMaps" style="font-size: 13px;line-height:0px;"
                                     target="_blank">-</a></span><br>
                             <input type="hidden" name="id" class="form-control" id="idSurvey" style="font-size: 8pt"
                                 placeholder="Pilih Titik Lokasi" readonly>
@@ -352,37 +353,37 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px">ID Sub Blok <sup
+                            <label style="font-size: 13px;line-height:0px;">ID Sub Blok <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <span><label id="textidSubblokSurvey" style="font-size: 13px"
+                            <span><label id="textidSubblokSurvey" style="font-size: 13px;line-height:0px;"
                                     target="_blank">-</label></span><br>
                             <input type="hidden" name="id_sublok" class="form-control" id="idSubblokSurvey"
                                 style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px">Kelurahan <sup
+                            <label style="font-size: 13px;line-height:0px;">Kelurahan <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <span><label id="textkelurahanSurvey" style="font-size: 13px"
+                            <span><label id="textkelurahanSurvey" style="font-size: 13px;line-height:0px;"
                                     target="_blank">-</label></span><br>
                             <input type="hidden" name="kelurahan" class="form-control" id="kelurahanSurvey"
                                 style="font-size: 8pt" placeholder="Nama Kelurahan" readonly>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px">Kecamatan <sup
+                            <label style="font-size: 13px;line-height:0px;">Kecamatan <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <span><label id="textkecamatanSurvey" style="font-size: 13px"
+                            <span><label id="textkecamatanSurvey" style="font-size: 13px;line-height:0px;"
                                     target="_blank">-</label></span><br>
                             <input type="hidden" name="kecamatan" class="form-control" id="kecamatanSurvey"
                                 style="font-size: 8pt" placeholder="Nama Kecamatan" readonly>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px">Perkembangan regional <sup
+                            <label style="font-size: 13px;line-height:0px;">Perkembangan regional <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -395,13 +396,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </select>
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label style="font-size: 13px">Deskripsi <sup
+                            <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 8pt"
-                                placeholder="Masukan Catatan perkembangan regional" rows="5"></textarea>
+                                placeholder="Catatan perkembangan regional" rows="5"></textarea>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px;width: 110%;">Perkembangan Lingkungan<sup
+                            <label style="font-size: 13px;line-height:0px;;width: 110%;">Perkembangan Lingkungan<sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -416,13 +417,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </select>
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label class="mt-2" style="font-size: 13px">Deskripsi <sup
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 8pt"
-                                placeholder="Masukan Catatan perkembangan neighborhood" rows="5"></textarea>
+                                placeholder="Catatan perkembangan lingkungan" rows="5"></textarea>
                         </div>
                         <div class="col-md-5">
-                            <label class="mt-2" style="font-size: 13px">Perkembangan Ruang
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Perkembangan Ruang
                                 <sup class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -442,13 +443,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <label style="font-size: 13px">Deskripsi <sup
+                            <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
-                                placeholder="Masukan Catatan Transect Zone" rows="5"></textarea>
+                                placeholder="Catatan Perkembangan Ruang" rows="5"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <label class="mt-2" style="font-size: 13px">Foto</label>
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Foto</label>
                             <div class="custom-file" style="font-size: 8pt">
                                 <input type="file" onchange="preview_foto_survey()" accept="image/*" multiple="multiple"
                                     class="custom-file-input" id="gambarLokasiSurvey">

@@ -693,3 +693,8 @@ input[type="range"]::-moz-range-progress {
 .slick-next::before {
     margin-left: -1rem;
 }
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}

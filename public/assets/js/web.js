@@ -942,7 +942,11 @@ map.on("style.load", function () {
             "href",
             `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
         );
-        $("#refrensiGoogleMaps").text(`${coornya.lat},${coornya.lng}`);
+        $("#refrensiGoogleMaps").text(
+            `${coornya.lat.toString().slice(0, -2)},${coornya.lng
+                .toString()
+                .slice(0, -2)}`
+        );
         $.ajax({
             url: `${APP_URL}/save_kordinat`,
             method: "POST",
