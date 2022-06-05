@@ -956,17 +956,11 @@ $(document).ready(function () {
                 //         '.jpg") }}" alt="Petugas Ajib" /></span>'
                 // );
 
-                if (data.user.name == 0) {
-                    $("#photo_ajib_perkembangan").html(
-                        '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
-                            data.user.name +
-                            '.jpg") }}" alt="Petugas Ajib" /></span>'
-                    );
-                } else {
-                    $("#photo_ajib_perkembangan").html(
-                        '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png") }}" alt="Petugas Ajib" /></span>'
-                    );
-                }
+                $("#photo_ajib_perkembangan").html(
+                    '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
+                        data.user.avatar +
+                        '") }}" alt="Petugas Ajib" /></span>'
+                );
             },
         });
     });
