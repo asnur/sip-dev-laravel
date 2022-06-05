@@ -28,6 +28,36 @@ const addText = () => {
                 });
             });
 
+            $(document).ready(function () {
+                $("#table-surveyer2").DataTable({
+                    // retrieve: true,
+                    ordering: true,
+                    order: [[2, "desc"]],
+                    columnDefs: [
+                        { orderSequence: ["asc", "desc"], targets: [0] },
+                        { orderSequence: ["asc", "desc"], targets: [1] },
+                        { orderSequence: ["asc", "desc"], targets: [2] },
+                    ],
+                });
+            });
+
+            $(document).ready(function () {
+                $("#table-surveyer3").DataTable({
+                    // retrieve: true,
+                    ordering: true,
+                    order: [[0, "asc"]],
+                    columnDefs: [
+                        { orderSequence: ["asc", "desc"], targets: [0] },
+                        { orderSequence: ["asc", "desc"], targets: [1] },
+                        { orderSequence: ["asc", "desc"], targets: [2] },
+                        { orderSequence: ["asc", "desc"], targets: [3] },
+                        { orderSequence: ["asc", "desc"], targets: [4] },
+                        { orderSequence: ["asc", "desc"], targets: [5] },
+                        { orderSequence: ["asc", "desc"], targets: [6] },
+                    ],
+                });
+            });
+
             // $(document).ready(function () {
             //     $("#table-pegawai").DataTable({
             //         ordering: true,
