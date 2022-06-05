@@ -942,6 +942,7 @@ map.on("style.load", function () {
             "href",
             `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
         );
+        $("#refrensiGoogleMaps").text(`${coornya.lat},${coornya.lng}`);
         $.ajax({
             url: `${APP_URL}/save_kordinat`,
             method: "POST",
@@ -1734,6 +1735,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
     $("#kelurahanSurvey").val(dt.Kelurahan);
     $("#kecamatanSurvey").val(dt.Kecamatan);
+    $("#textkelurahanSurvey").text(dt.Kelurahan);
+    $("#textkecamatanSurvey").text(dt.Kecamatan);
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
@@ -1917,6 +1920,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $(".inf-id-sub-blok").html(dt["ID Sub Blok"]);
 
     $("#idSubblokSurvey").val(
+        dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
+    );
+    $("#textidSubblokSurvey").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
 
@@ -2762,7 +2768,7 @@ function getRadius(e) {
 
 //Cari Wilayah
 
-$("#cari_wilayah").bindWithDelay(
+$("#cari_wilayah, #cari_wilayah_survey").bindWithDelay(
     "keyup",
     function () {
         var query = $(this).val();
@@ -4766,6 +4772,10 @@ function surveyLocation() {
     });
 }
 
+const focusSurey = () => {
+    location.href = "#formSurveyLocation";
+};
+
 const resetSurvey = () => {
     files = [];
     localStorage.setItem("url_survey", `${APP_URL}/saveDataSurvey`);
@@ -4782,6 +4792,11 @@ const resetSurvey = () => {
     $("#transectZoneSurvey").val("");
     $("#deskripsiTransectZoneSurvey").val("");
     $("#gambarLokasiSurvey").val("");
+    $("#refrensiGoogleMaps").text("-");
+    $("#refrensiGoogleMaps").attr("href", "#");
+    $("#textidSubblokSurvey").text("-");
+    $("#textkelurahanSurvey").text("-");
+    $("#textkecamatanSurvey").text("-");
     if (
         $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
             .length !== 0
@@ -4807,7 +4822,7 @@ function getDataSurvey(id_user) {
                                 e[index].image[0] == undefined
                                     ? "not_image.png"
                                     : e[index].image[0].name
-                            }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="localStorage.setItem('kordinat','${
+                            }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="focusSurey();localStorage.setItem('kordinat','${
                         e[index].kordinat
                     }');geocoder.query('${
                         e[index].kordinat
@@ -4817,7 +4832,7 @@ function getDataSurvey(id_user) {
                     )">
                         </div>
                         <div class="col-sm-7">
-                            <a onclick="localStorage.setItem('kordinat','${
+                            <a onclick="focusSurey();localStorage.setItem('kordinat','${
                                 e[index].kordinat
                             }');geocoder.query('${
                         e[index].kordinat
