@@ -343,8 +343,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </div>
                         <div class="col-md-12">
                             <label class="mt-2" for="gambarLokasiSurvey"
-                                style="font-size: 13px;line-height:0px;"><i class="ri-upload-cloud-line"></i> Unggah
-                                Foto</label>
+                                style="font-size: 13px;line-height:0px;"><i class="ri-upload-cloud-line"
+                                    style="font-size: 17px !important;position:relative;top:3px;"></i> <span>Unggah
+                                    Foto</span> </label>
                             <div class="custom-file d-none" style="font-size: 8pt">
                                 <input type="file" onchange="preview_foto_survey()" accept="image/*" multiple="multiple"
                                     class="custom-file-input" id="gambarLokasiSurvey">
@@ -466,6 +467,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <button type="submit" id="submitSurveyLocation" class="btn btn-success mt-2 mb-1 text-white"
                             style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
                             Simpan</button>
+                        <div class="spinner-border" role="status" id="prosesSurvey">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </center>
                     <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalSurvey"
                         style="font-size: 10pt" role="alert">

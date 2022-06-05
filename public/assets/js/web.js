@@ -179,7 +179,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey"
 ).hide();
 
 $.ajax({
@@ -5551,11 +5551,17 @@ $("#formSurveyLocation").on("submit", function (e) {
                 $.ajax({
                     url: localStorage.getItem("url_survey"),
                     method: "POST",
+                    beforeSend: () => {
+                        $("#prosesSurvey").show();
+                        $("#submitSurveyLocation").hide();
+                    },
                     contentType: false,
                     processData: false,
                     data: formData,
                     success: function (e) {
-                        console.log(e);
+                        // console.log(e);
+                        $("#prosesSurvey").hide();
+                        $("#submitSurveyLocation").show();
                         if (
                             localStorage.getItem("url_survey") ==
                             `${APP_URL}/saveDataSurvey`
