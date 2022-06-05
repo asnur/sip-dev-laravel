@@ -1739,8 +1739,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
     $("#kelurahanSurvey").val(dt.Kelurahan);
     $("#kecamatanSurvey").val(dt.Kecamatan);
-    $("#textkelurahanSurvey").text(dt.Kelurahan);
-    $("#textkecamatanSurvey").text(dt.Kecamatan);
+    $("#textkelurahanSurvey").text(titleCase(dt.Kelurahan));
+    $("#textkecamatanSurvey").text(titleCase(dt.Kecamatan));
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
@@ -4802,7 +4802,7 @@ const resetSurvey = () => {
     $("#textkelurahanSurvey").text("-");
     $("#textkecamatanSurvey").text("-");
     if (
-        $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
+        $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider")
             .length !== 0
     ) {
         $("#previewFotoSurvey").slick("unslick");
@@ -4835,15 +4835,15 @@ function getDataSurvey(id_user) {
                         ${id_user}
                     )">
                         </div>
-                        <div class="col-sm-7">
-                            <a onclick="focusSurey();localStorage.setItem('kordinat','${
-                                e[index].kordinat
-                            }');geocoder.query('${
+                        <div class="col-sm-7" onclick="focusSurey();localStorage.setItem('kordinat','${
+                            e[index].kordinat
+                        }');geocoder.query('${
                         e[index].kordinat
                     }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
-                        ${e[index].id},
-                        ${id_user}
-                    )" style="font-weight: bold;word-break: break-all;
+                    ${e[index].id},
+                    ${id_user}
+                )" style="cursor: pointer;">
+                            <a style="font-weight: bold;word-break: break-all;
                             white-space: normal; cursor: pointer;">${
                                 e[index].name
                             }</a><br>
@@ -4992,7 +4992,7 @@ function editDataSurvey(id, id_user) {
             `;
             }
             if (
-                $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
+                $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider")
                     .length == 0
             ) {
                 $("#previewFotoSurvey").html("");
@@ -5355,7 +5355,7 @@ function preview_foto_survey() {
     let html = "";
     let countArray = Newfiles.length;
     if (
-        $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider").length ==
+        $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider").length ==
         0
     ) {
         sliderOption("previewFotoSurvey");
@@ -5412,7 +5412,7 @@ function preview_foto_survey() {
     //         `;
     //     }
     //     if (
-    //         $("div#previewFotoSurvey.mt-3.slick-initialized.slick-slider")
+    //         $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider")
     //             .length == 0
     //     ) {
     //         $("#previewFotoSurvey").html("");
