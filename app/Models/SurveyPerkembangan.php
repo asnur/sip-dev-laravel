@@ -19,4 +19,9 @@ class SurveyPerkembangan extends Model
     {
         return $this->hasMany(SurveyPerkembanganImage::class, 'id_survey', 'id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id_user');
+    }
 }
