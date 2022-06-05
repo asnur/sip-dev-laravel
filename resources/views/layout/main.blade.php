@@ -401,7 +401,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 placeholder="Masukan Catatan perkembangan regional" rows="5"></textarea>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px;width: 110%;">Perkembangan Lingkungan <sup
+                            <label style="font-size: 13px;width: 110%;">Perkembangan Lingkungan<sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
