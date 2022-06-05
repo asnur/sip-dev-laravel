@@ -4777,7 +4777,7 @@ function surveyLocation() {
 }
 
 const focusSurey = () => {
-    location.href = "#formSurveyLocation";
+    location.href = "#infoSurveyLocation";
 };
 
 const resetSurvey = () => {

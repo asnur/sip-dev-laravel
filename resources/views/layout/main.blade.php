@@ -295,7 +295,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <button type="button" class="close" id="closeSurvey" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <span style="font-size: 13pt" class="title-info font-weight-bold">Survey Perkembangan Wilayah</span>
+            <span style="font-size: 13pt" class="title-info font-weight-bold" id="infoSurveyLocation">Survey
+                Perkembangan Wilayah</span>
             <div class="for_web input-group input-group-md my-3">
                 <input type="search" id="cari_wilayah_survey"
                     class="form-control tombol_search py-2 border-right-0 border" placeholder="Cari nama jalan ..."
