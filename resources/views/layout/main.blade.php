@@ -41,10 +41,12 @@
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
         type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    {{-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" /> --}}
 
 
     <!-- custom -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://kenwheeler.github.io/slick/slick/slick-theme.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="datetime" content="{{ date('Y-m-d') }}" />
@@ -100,6 +102,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     </button>
 
     <div class="info-lokasi-detail">
+
+    </div>
+
+    <div class="info-survey-detail">
 
     </div>
 
@@ -278,6 +284,289 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
                 <p align="center" id="messageNoData" class="mt-5">Tidak Ada Lokasi Yang di Simpan</p>
                 <div class="list-item-info-location mt-2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-survey-location">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeSurvey" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold" id="infoSurveyLocation">Survey
+                Perkembangan Wilayah</span>
+            <div class="for_web input-group input-group-md my-3">
+                <input type="search" id="cari_wilayah_survey"
+                    class="form-control tombol_search py-2 border-right-0 border" placeholder="Cari nama jalan ..."
+                    autocomplete="off" style="font-size: 8pt">
+
+
+                <!-- Ori -->
+                <div class="wm-search__dropdown">
+                    <ul class="wm-search__dropdown" role="listbox"></ul>
+                </div>
+
+                <!-- Dummy -->
+                <ul class="wm-search__dropdown" role="listbox">
+
+                </ul>
+
+
+                <span class="input-group-append" style="font-size: 8pt">
+                    <button class="btn btn-secondary tombol_search border-left-0 border" style="font-size: 8pt"
+                        type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    {{-- <button class="btn tombol_search border-left-0 border" type="button"
+                            id="polygonDraw">
+                            <i class="ri-shape-line"></i>
+                            <span class="bg-danger p-1 rounded text-white"
+                                style="font-size: 8px;margin-top: -1rem;
+                                position: absolute;">BETA</span>
+                        </button> --}}
+                </span>
+            </div>
+            <button class="btn btn-success text-white d-block mt-2" onclick="resetSurvey()"
+                style="font-size: 8pt; cursor: pointer;"><i class="fa fa-plus"></i>
+                Lokasi Baru</button>
+            <div class="form mt-2">
+                <form id="formSurveyLocation" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-5"><label class="mt-2"
+                                style="font-size: 13px;line-height:0px;">Nama Lokasi
+                                <sup class="text-danger font-weight-bold">*</sup></label></div>
+                        <div class="col-md-7">
+                            <input type="text" name="name" class="form-control" id="nameSurvey"
+                                placeholder="Masukan Nama Tempat" style="font-size: 8pt">
+                        </div>
+                        <div class="col-md-12">
+                            <div id="previewFotoSurvey">
+                            </div>
+                            <label class="mt-2 text-primary" for="gambarLokasiSurvey"
+                                style="font-size: 13px;line-height:0px;cursor:pointer;"><i class="ri-upload-cloud-line"
+                                    style="font-size: 20px !important;position:relative;top:3px;"></i> <span>Unggah
+                                    Foto</span> </label>
+                            <div class="custom-file d-none" style="font-size: 8pt">
+                                <input type="file" onchange="preview_foto_survey()" accept="image/*" multiple="multiple"
+                                    class="custom-file-input" id="gambarLokasiSurvey">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px;line-height:0px;">Koordinat <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <span><a href="#" id="refrensiGoogleMaps" style="font-size: 13px;line-height:0px;"
+                                    target="_blank">-</a></span><br>
+                            <input type="hidden" name="id" class="form-control" id="idSurvey" style="font-size: 8pt"
+                                placeholder="Pilih Titik Lokasi" readonly>
+                            <input type="hidden" name="kordinat" class="form-control" id="kordinatSurvey"
+                                style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px;line-height:0px;">ID Sub Blok <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <span><label id="textidSubblokSurvey" style="font-size: 13px;line-height:0px;"
+                                    target="_blank">-</label></span><br>
+                            <input type="hidden" name="id_sublok" class="form-control" id="idSubblokSurvey"
+                                style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px;line-height:0px;">Kelurahan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <span><label id="textkelurahanSurvey" style="font-size: 13px;line-height:0px;"
+                                    target="_blank">-</label></span><br>
+                            <input type="hidden" name="kelurahan" class="form-control" id="kelurahanSurvey"
+                                style="font-size: 8pt" placeholder="Nama Kelurahan" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px;line-height:0px;">Kecamatan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <span><label id="textkecamatanSurvey" style="font-size: 13px;line-height:0px;"
+                                    target="_blank">-</label></span><br>
+                            <input type="hidden" name="kecamatan" class="form-control" id="kecamatanSurvey"
+                                style="font-size: 8pt" placeholder="Nama Kecamatan" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px;line-height:0px;">Pola Regional <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="regional" id="regionalSurvey" style="font-size: 8pt;width:55px;">
+                                <option value="PL">PL</option>
+                                <option value="PB-1">PB-1</option>
+                                <option value="PB-2">PB-2</option>
+                                <option value="PB-3">PB-3</option>
+                                <option value="PB-4">PB-4</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                            <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 8pt"
+                                placeholder="Catatan perkembangan regional" rows="3"></textarea>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px;line-height:0px;">Pola Lingkungan<sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="neighborhood" id="neighborhoodSurvey" style="font-size: 8pt;width:55px;">
+                                <option value="LP-C">LP-C</option>
+                                <option value="LP-M">LP-M</option>
+                                <option value="LP-K">LP-K</option>
+                                <option value="LP-CR">LP-CR</option>
+                                <option value="LP-MR">LP-MR</option>
+                                <option value="LK">LK</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Deskripsi <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                            <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 8pt"
+                                placeholder="Catatan perkembangan lingkungan" rows="3"></textarea>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Pola
+                                Ruang
+                                <sup class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="transect_zone" id="transectZoneSurvey" style="font-size: 8pt;width:55px;">
+                                <option value="TP-1">TP-1</option>
+                                <option value="TP-2">TP-2</option>
+                                <option value="TP-2.1">TP-2.1</option>
+                                <option value="TP-2.2">TP-2.2</option>
+                                <option value="TP-3">TP-3</option>
+                                <option value="TP-4">TP-4</option>
+                                <option value="TP-5">TP-5</option>
+                                <option value="TP-6">TP-6</option>
+                                <option value="KK">KK</option>
+                                <option value="BP">BP</option>
+                                <option value="RP">RP</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                            <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
+                                placeholder="Catatan perkembangan ruang" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <p style="font-size:13px;" class="w-100 mt-2"><sup
+                            class="text-danger font-weight-bold">*</sup> Wajib di Isi</p>
+                    <center>
+                        <button type="submit" id="submitSurveyLocation" class="btn btn-success mt-2 mb-1 text-white"
+                            style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                            Simpan</button>
+                        <div class="spinner-border" role="status" id="prosesSurvey">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </center>
+                    <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalSurvey"
+                        style="font-size: 10pt" role="alert">
+                        <strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.
+                    </div>
+                    {{-- <div class="alert alert-danger alert-dismissible fade show" id="pesanFoto" style="font-size: 10pt"
+                    role="alert">
+                    <strong>Gagal!</strong> Maksimal 3 Foto.
+                </div> --}}
+                    <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilSurvey"
+                        style="font-size: 10pt" role="alert">
+                        <strong>Berhasil!</strong> Data Berhasil di Simpan.
+                    </div>
+                    <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilEditSurvey"
+                        style="font-size: 10pt" role="alert">
+                        <strong>Berhasil!</strong> Data Berhasil di Ubah.
+                    </div>
+                    <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilHapusSurvey"
+                        style="font-size: 10pt" role="alert">
+                        <strong>Berhasil!</strong> Data Berhasil di Hapus.
+                    </div>
+                </form>
+                {{-- <form id="formSurveyLocationEdit" enctype="multipart/form-data">
+                    <label style="font-size: 10pt">Koordinat</label>
+                    <input type="hidden" name="id" class="form-control" id="idSurveyEdit" style="font-size: 8pt"
+                        placeholder="Pilih Titik Lokasi" readonly>
+                    <input type="text" name="kordinat" class="form-control" id="kordinatSurveyEdit"
+                        style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
+                    <label class="mt-2" style="font-size: 10pt">ID Sub Blok</label>
+                    <input type="text" name="id_sublok" class="form-control" id="idSubblokSurveyEdit"
+                        style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
+                    <label class="mt-2" style="font-size: 10pt">Kelurahan</label>
+                    <input type="text" name="kelurahan" class="form-control" id="kelurahanSurveyEdit"
+                        style="font-size: 8pt" placeholder="Nama Kelurahan" readonly>
+                    <label class="mt-2" style="font-size: 10pt">Kecamatan</label>
+                    <input type="text" name="kecamatan" class="form-control" id="kecamatanSurveyEdit"
+                        style="font-size: 8pt" placeholder="Nama Kelurahan" readonly>
+                    <label class="mt-2" style="font-size: 10pt">Arah perkembangan regional</label>
+                    <select name="regional" class="form-control" id="regionalSurveyEdit" style="font-size: 8pt">
+                        <option value="O1">O1</option>
+                        <option value="O2">O2</option>
+                        <option value="G1">G1</option>
+                        <option value="G2">G2</option>
+                        <option value="G3">G3</option>
+                        <option value="G4">G4</option>
+                    </select>
+                    <label class="mt-2" style="font-size: 10pt">Deskripsi</label>
+                    <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurveyEdit" style="font-size: 8pt"
+                        placeholder="Masukan Catatan perkembangan regional" rows="5"></textarea>
+                    <label class="mt-2" style="font-size: 10pt">Pola perkembangan neighborhood</label>
+                    <select name="neighborhood" class="form-control" id="neighborhoodSurvey" style="font-size: 8pt">
+                        <option value="CLD">CLD</option>
+                        <option value="TND">TND</option>
+                        <option value="RCD">RCD</option>
+                    </select>
+                    <label class="mt-2" style="font-size: 10pt">Deskripsi</label>
+                    <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurveyEdit"
+                        style="font-size: 8pt" placeholder="Masukan Catatan perkembangan neighborhood"
+                        rows="5"></textarea>
+                    <label class="mt-2" style="font-size: 10pt">Transect zone</label>
+                    <select name="transect_zone" class="form-control" id="transectZoneSurveyEdit"
+                        style="font-size: 8pt">
+                        <option value="T1">T1</option>
+                        <option value="T2">T2</option>
+                        <option value="T3">T3</option>
+                        <option value="T4">T4</option>
+                        <option value="T5">T5</option>
+                        <option value="T6">T6</option>
+                        <option value="Special District">Special District</option>
+                    </select>
+                    <label class="mt-2" style="font-size: 10pt">Foto</label>
+                    <div class="custom-file" style="font-size: 8pt">
+                        <input type="file" name="foto_survey[]" accept="image/*" multiple="multiple"
+                            class="custom-file-input" id="gambarLokasiSurveyEdit">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <div class="row mt-3" id="previewFotoSurvey">
+                    </div>
+                    <button type="submit" id="pinndedLocation" class="btn btn-success mt-3 text-white"
+                        style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                        Simpan</button>
+                </form> --}}
+
+            </div>
+
+            <div>
+                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi <a href="/printSurvey"
+                        class="ri-download-cloud-line text-primary" style="
+                        position: relative;
+                        top: 2px;
+                        font-size: 20px;
+                        cursor:pointer;
+                        text-decoration: none;
+                    "></a></span>
+                <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
+                <div class="list-item-info-location-survey mt-2">
 
                 </div>
             </div>
@@ -5145,6 +5434,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <div class="dropleft text-center">
                     {{-- @if (Auth::check()) --}}
                     <button type="button" onclick="pinLocation()" id="btnPin" class="ri-pushpin-line p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" class="ri-bookmark-line p-1" onclick="surveyLocation()"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>

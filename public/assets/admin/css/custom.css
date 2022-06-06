@@ -36,6 +36,11 @@
     height: 19rem;
 }
 
+.img_parents_utama {
+    width: 0 !important;
+    height: 19rem;
+}
+
 .uk_chart_skeleton {
     width: 59.5rem;
     /* height: 320px; */

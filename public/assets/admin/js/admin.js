@@ -1,3 +1,5 @@
+// const { remove } = require("lodash");
+
 const sum = (accumulator, a) => {
     return accumulator + a;
 };
@@ -522,7 +524,7 @@ function dataTebaruRealtime() {
 
                 $("#solusi").html(data.solusi);
 
-                $("#gambar_utama").html(
+                $(".gambar_utama_slider_input2").html(
                     '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/mobile/img/' +
                         data.foto +
                         '" /> '
@@ -533,6 +535,7 @@ function dataTebaruRealtime() {
                         data.name +
                         '.jpg") }}" alt="Petugas Ajib" /></span>'
                 );
+                selectOption(".gambar_utama_slider_input2");
 
                 // new
                 // $("#photo_ajib").html(
@@ -624,7 +627,7 @@ $(document).ready(function () {
 
                     $("#solusi").html(data.solusi);
 
-                    $("#gambar_utama2").html(
+                    $(".gambar_utama_slider_input2").html(
                         '<img class="img_parents" style="border-radius:5px" src="https://jakpintas.dpmptsp-dki.com/mobile/img/' +
                             data.foto +
                             '" />'
@@ -641,9 +644,407 @@ $(document).ready(function () {
                             data.name +
                             '.jpg") }}" alt="Petugas Ajib" /></span>'
                     );
+                    selectOption(".gambar_utama_slider_input2");
+
                     // const koor_kelurahan = data.kordinat;
                     // getAjibKelurahan(koor_kelurahan);
                 });
+            },
+        });
+    });
+});
+
+const selectOption = (name) => {
+    $(name).slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: true,
+    });
+};
+
+function dataTebaruPerkembangan() {
+    $.ajax({
+        url: `/admin/fetch-perkembangan`,
+        method: "GET",
+        dataType: "json",
+
+        beforeSend: function () {
+            $("#name_perkembangan").html(
+                '<div class="skeleton-heading"></div>'
+            );
+
+            $("#penempatan_perkembangan").html(
+                '<div style="margin-top:-0.7rem;" class="skeleton-heading"></div>'
+            );
+
+            $("#kordinat").html('<div class="skeleton-heading"></div>');
+            $("#name").html('<div class="skeleton-heading"></div>');
+            $("#namesurvey").html('<div class="skeleton-heading"></div>');
+            $("#id_sub_blok").html('<div class="skeleton-heading"></div>');
+            $("#kelurahan").html('<div class="skeleton-heading"></div>');
+            $("#kecamatan").html('<div class="skeleton-heading"></div>');
+            $("#regional").html('<div class="skeleton-heading"></div>');
+            $("#deskripsi_regional").html(
+                '<div class="skeleton-heading"></div>'
+            );
+            $("#neighborhood").html('<div class="skeleton-heading"></div>');
+            $("#deskripsi_neighborhood").html(
+                '<div class="skeleton-heading"></div>'
+            );
+            $("#transect_zone").html('<div class="skeleton-heading"></div>');
+            $("#deskripsi_transect_zone").html(
+                '<div class="skeleton-heading"></div>'
+            );
+            $("#gambar_utama_perkembangan").html(
+                ' <div class="skeleton-image"></div>'
+            );
+            $("#photo_ajib_perkembangan").html(
+                '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
+            );
+        },
+
+        success: function (e) {
+            // console.log(e.perkembangan);
+
+            let data = e.perkembangan[0];
+
+            // $.each(e.perkembangan, function (key, data) {
+            // console.log(e.perkembangan[0]);
+
+            $("#name_perkembangan").html(data.user.name);
+            $("#namesurvey").html(data.name);
+
+            let text3 = String(data.kecamatan);
+            let result3 = kapital(text3);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#penempatan_perkembangan").html(
+                "<div'>AJIB " + result3 + "</div>"
+            );
+
+            $("#kordinat").html(
+                `<a class="font-weight-bold" style="text-decoration:none;" href="https://www.google.com/maps/search/%09${data.kordinat}" target="_blank">${data.kordinat}</a>`
+            );
+
+            $("#id_sub_blok").html(data.id_sub_blok);
+
+            let text = String(data.kelurahan);
+            let result = kapital(text);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kelurahan").html(result);
+
+            let text2 = String(data.kecamatan);
+            let result2 = kapital(text2);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kecamatan").html(result2);
+
+            $("#regional").html(data.regional);
+            $("#deskripsi_regional").html(data.deskripsi_regional);
+            $("#neighborhood").html(data.neighborhood);
+            $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
+            $("#transect_zone").html(data.transect_zone);
+            $("#deskripsi_transect_zone").html(data.transect_zone);
+
+            // console.log(data.image[0].name);
+
+            $("#photo_ajib_perkembangan").html(
+                '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
+                    data.user.avatar +
+                    '") }}" alt="Petugas Ajib" /></span>'
+            );
+
+            // $(".gambar_utama_slider_input").html(
+            //     '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/' +
+            //         data.name +
+            //         '" /> '
+            // );
+            // console.log(data.image);
+
+            array = data.image;
+
+            var datagambar = "";
+            if (array.length == 0) {
+                datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+            } else {
+                array.forEach((e) => {
+                    // console.log(e);
+
+                    datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                    // console.log(datagambar);
+                });
+            }
+            // console.log(array);
+
+            $(".gambar_utama_slider_input").html(datagambar);
+            selectOption(".gambar_utama_slider_input");
+
+            // });
+        },
+    });
+}
+
+$(document).ready(function () {
+    $(".img_child_id_perkembangan").on("click", function () {
+        var id_data_terbaru = $(this).attr("data-id");
+        // console.log(id_data_terbaru);
+
+        $.ajax({
+            url: `/admin/perkembangan-terbaru/${id_data_terbaru}`,
+            type: "get",
+            dataType: "json",
+            beforeSend: function () {
+                $("#name_perkembangan").html(
+                    '<div class="skeleton-heading"></div>'
+                );
+                $("#namesurvey").html('<div class="skeleton-heading"></div>');
+
+                $("#penempatan_perkembangan").html(
+                    '<div style="margin-top:-0.7rem;" class="skeleton-heading"></div>'
+                );
+
+                $("#kordinat").html('<div class="skeleton-heading"></div>');
+                $("#id_sub_blok").html('<div class="skeleton-heading"></div>');
+                $("#kelurahan").html('<div class="skeleton-heading"></div>');
+                $("#kecamatan").html('<div class="skeleton-heading"></div>');
+                $("#regional").html('<div class="skeleton-heading"></div>');
+                $("#deskripsi_regional").html(
+                    '<div class="skeleton-heading"></div>'
+                );
+                $("#neighborhood").html('<div class="skeleton-heading"></div>');
+                $("#deskripsi_neighborhood").html(
+                    '<div class="skeleton-heading"></div>'
+                );
+                $("#transect_zone").html(
+                    '<div class="skeleton-heading"></div>'
+                );
+                $("#deskripsi_transect_zone").html(
+                    '<div class="skeleton-heading"></div>'
+                );
+
+                $("#gambar_utama_perkembangan").html(
+                    ' <div class="img_parents skeleton-image"></div>'
+                );
+
+                $("#photo_ajib_perkembangan").html(
+                    '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
+                );
+
+                // $("#gambar_utama_perkembangan2").html(
+                //     ' <div class="img_parents skeleton-image"></div>'
+                // );
+
+                // $("#photo_ajib_perkembangan2").html(
+                //     '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
+                // );
+            },
+            success: function (e) {
+                // console.log(e.perkembangan);
+                let data = e.perkembangan;
+
+                // console.log(data.image.name.length == 0);
+
+                $("#name_perkembangan").html(data.user.name);
+
+                // $("#penempatan_perkembangan").html(
+                //     "<div'>AJIB " + data.kecamatan + "</div>"
+                // );
+
+                let text3 = String(data.kecamatan);
+                let result3 = kapital(text3);
+
+                function kapital(str) {
+                    return str.replace(/\w\S*/g, function (txt) {
+                        return (
+                            txt.charAt(0).toUpperCase() +
+                            txt.substr(1).toLowerCase()
+                        );
+                    });
+                }
+
+                $("#penempatan_perkembangan").html(
+                    "<div'>AJIB " + result3 + "</div>"
+                );
+
+                $("#kordinat").html(
+                    `<a class="font-weight-bold" href="https://www.google.com/maps/search/%09${data.kordinat}" target="_blank">${data.kordinat}</a>`
+                );
+
+                $("#id_sub_blok").html(data.id_sub_blok);
+                $("#namesurvey").html(data.name);
+
+                let text = String(data.kelurahan);
+                let result = kapital(text);
+
+                function kapital(str) {
+                    return str.replace(/\w\S*/g, function (txt) {
+                        return (
+                            txt.charAt(0).toUpperCase() +
+                            txt.substr(1).toLowerCase()
+                        );
+                    });
+                }
+
+                $("#kelurahan").html(result);
+
+                let text2 = String(data.kecamatan);
+                let result2 = kapital(text2);
+
+                function kapital(str) {
+                    return str.replace(/\w\S*/g, function (txt) {
+                        return (
+                            txt.charAt(0).toUpperCase() +
+                            txt.substr(1).toLowerCase()
+                        );
+                    });
+                }
+
+                $("#kecamatan").html(result2);
+
+                $("#regional").html(data.regional);
+                $("#deskripsi_regional").html(data.deskripsi_regional);
+                $("#neighborhood").html(data.neighborhood);
+                $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
+                $("#transect_zone").html(data.transect_zone);
+                $("#deskripsi_transect_zone").html(data.transect_zone);
+
+                // console.log(data.image[0].name);
+                // console.log(data.image[1].name);
+                // console.log(data.image[2].name);
+
+                array = data.image;
+                // console.log(array);
+                // console.log(array.map((e) => e.name));
+                // ImgArray = array.map((e) => e.name);
+                // $(".gambar_utama_slider_input").html("");
+                var datagambar = "";
+                // console.log(ImgArray);
+                if (array.length == 0) {
+                    datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                } else {
+                    array.forEach((e) => {
+                        // console.log(e);
+
+                        datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                        // console.log(datagambar);
+                    });
+                }
+
+                // console.log(datagambar);
+
+                if (
+                    $(
+                        "div.gambar_utama_slider_input.slick-initialized.slick-slider"
+                    ).length == 0
+                ) {
+                    $(".gambar_utama_slider_input").html("");
+                    $(".gambar_utama_slider_input").html(datagambar);
+                    selectOption(".gambar_utama_slider_input");
+                } else {
+                    $(".gambar_utama_slider_input").slick("unslick");
+                    $(".gambar_utama_slider_input").html("");
+                    $(".gambar_utama_slider_input").html(datagambar);
+                    selectOption(".gambar_utama_slider_input");
+                }
+
+                // for (let x = 0; x < ImgArray.length; x++) {
+                //     let element = `<div><img class="w-100" src="https://jakpintas.dpmptsp-dki.com/survey/${ImgArray[x]}" alt="First slide"></div>`;
+                //     // $(".gambar_utama_slider_input").slick("slickAdd", element);
+                //     // document.querySelector(".images").innerHTML += element;
+                //     // console.log(element);
+
+                //     // $(
+                //     //     "div.gambar_utama_slider_input.slick-initialized.slick-slider"
+                //     // ).length;
+
+                //     if (
+                //         $(
+                //             "div.gambar_utama_slider_input.slick-initialized.slick-slider"
+                //         ).length == 0
+                //     ) {
+                //         $(".gambar_utama_slider_input").html("");
+                //         $(".gambar_utama_slider_input").html(element);
+                //         selectOption("gambar_utama_slider_input");
+                //     } else {
+                //         $(".gambar_utama_slider_input").slick("unslick");
+                //         $(".gambar_utama_slider_input").html("");
+                //         $(".gambar_utama_slider_input").html(element);
+                //         selectOption("gambar_utama_slider_input");
+                //     }
+                // }
+                // for (let x = 0; x < ImgArray.length; x++) {
+                //     let element = `<div class="carousel-item ${
+                //         x == 0 ? "active" : ""
+                //     }"><img class="d-block w-100" src="https://jakpintas.dpmptsp-dki.com/survey/${
+                //         ImgArray[x]
+                //     }" alt="First slide"></div>`;
+
+                //     document.querySelector(".images").innerHTML += element;
+                //     console.log($(this));
+                // }
+
+                // for (element of array) {
+                //     console.log(element.map((e) => e.name));
+                //     output = element.map((e) => e.name);
+                //     console.log(element);
+                //     // $("#gambar_utama_perkembangan").html(
+                //     //     '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/' +
+                //     //         output +
+                //     //         '" /> '
+                //     // );
+                // }
+
+                // if (data.image[0].name.length == 0) {
+                //     $("#gambar_utama_perkembangan2").html(
+                //         '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" /> '
+                //     );
+                // } else {
+                //     $("#gambar_utama_perkembangan2").html(
+                //         '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/' +
+                //             data.image.name +
+                //             '" /> '
+                //     );
+                // }
+
+                // console.log(data.user.name);
+
+                // $("#photo_ajib_perkembangan").html(
+                //     '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
+                //         data.user.name +
+                //         '.jpg") }}" alt="Petugas Ajib" /></span>'
+                // );
+
+                $("#photo_ajib_perkembangan").html(
+                    '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
+                        data.user.avatar +
+                        '") }}" alt="Petugas Ajib" /></span>'
+                );
             },
         });
     });

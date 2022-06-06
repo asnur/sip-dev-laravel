@@ -10,6 +10,7 @@ use App\Http\Controllers\PrintController;
 use App\Http\Controllers\RequireDataChatController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyerController;
+use App\Http\Controllers\RekapSurveyController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
+use App\Http\Controllers\SurveyPerkembanganController;
+use App\Models\Survey;
 use Jenssegers\Agent\Agent;
 
 
@@ -164,9 +167,40 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/pegawaiDataAjib/{pegawai_id}', [AdminController::class, 'data_edit_pegawai'])->name('edit-data-pegawai');
     Route::get('Ekspor-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('ekspor-kinerja');
+
+    // Route::get('/Kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
+    Route::get('/tambahKuesioner', [AdminController::class, 'tambah_kuesioner'])->name('tambah_kuesioner');
+    Route::get('/kosongKuesioner', [AdminController::class, 'kosong_kuesioner'])->name('kosong_kuesioner');
+    Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
+    Route::get('/IsiKuesioner', [AdminController::class, 'isi_kuesioner'])->name('isi_kuesioner');
+    Route::get('/PerkembanganSurvey', [AdminController::class, 'perkembangan_survey'])->name('perkembangan-survey');
+
+    Route::get('/fetch-perkembangan', [AdminController::class, 'fetchPerkembangan'])->name('fetch-perkembangan');
+
+    Route::get('/perkembangan-terbaru/{id_data_terbaru}', [AdminController::class, 'fetchPerkembanganTerbaru'])->name('perkembangan-terbaru');
+
+    Route::get('/titik-rekap-survey', [RekapSurveyController::class, 'index'])->name('titik-rekap-survey');
 });
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
 
 Route::post('/digitasi', [DigitasiController::class, 'index'])->name('digitasi');
+
+
+//Survey Perkembangan
+Route::get('/getDataSurvey/{id_survey}', [SurveyPerkembanganController::class, 'getDataSurvey'])->name('survey-perkembangan');
+Route::get('/getAllDataSurvey', [SurveyPerkembanganController::class, 'getAllDataSurvey'])->name('survey-perkembangan');
+Route::post('/detailDataSurvey', [SurveyPerkembanganController::class, 'detailDataSurvey'])->name('save-survey-perkembangan');
+Route::post('/saveDataSurvey', [SurveyPerkembanganController::class, 'saveDataSurvey'])->name('save-survey-perkembangan');
+Route::post('/saveEditDataSurvey', [SurveyPerkembanganController::class, 'saveEditDataSurvey'])->name('save-survey-perkembangan');
+Route::post('/editDataSurvey', [SurveyPerkembanganController::class, 'editDataSurvey'])->name('edit-survey-perkembangan');
+Route::post('/deleteDataSurvey', [SurveyPerkembanganController::class, 'deleteDataSurvey'])->name('delete-survey-perkembangan');
+Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteImageSurvey'])->name('delete-image-survey-perkembangan');
+Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
+
+
+//PHP INFO
+Route::get('/phpinfo', function () {
+    return phpinfo();
+});

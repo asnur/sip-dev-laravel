@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         \Chatify\ChatifyServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        NahidulHasan\Html2pdf\Html2pdfServiceProvider::class,
     ],
 
     /*
@@ -236,7 +238,8 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Html2Pdf'  => NahidulHasan\Html2pdf\Facades\Pdf::class,
 
     ],
 

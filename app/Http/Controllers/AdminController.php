@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tracking;
 use App\Models\Survey;
 use App\Models\User;
+use App\Models\SurveyPerkembangan;
+use App\Models\SurveyPerkembanganImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -76,6 +78,23 @@ class AdminController extends Controller
 
         return response()->json([
             'surveyer' => $surveyers,
+        ]);
+    }
+
+    public function fetchPerkembangan()
+    {
+
+        // $perkembangan_surver = SurveyPerkembangan::join('users', 'users.id', '=', 'survey_perkembangan_wilayah.id_user')
+        //     ->select('users.*', 'survey_perkembangan_wilayah.*')
+        //     ->orderBy('survey_perkembangan_wilayah.id_user', 'Desc')
+        //     ->get();
+
+        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id', 'DESC')->get();
+
+        // dd($perkembangan_surver);
+
+        return response()->json([
+            'perkembangan' => $perkembangan_surver,
         ]);
     }
 
@@ -443,5 +462,114 @@ class AdminController extends Controller
         $pdf->loadView('admin.pdf_kinerja_ajib', compact('data'));
 
         return $pdf->stream();
+    }
+
+
+    // public function kuesioner()
+    // {
+    //     return view('admin.kuesioner');
+    // }
+
+    public function tambah_kuesioner()
+    {
+        return view('admin.tambah_kuesioner');
+    }
+
+    public function kosong_kuesioner()
+    {
+        return view('admin.kosong_kuesioner');
+    }
+
+    public function list_kuesioner()
+    {
+        return view('admin.list_kuesioner');
+    }
+
+    public function isi_kuesioner()
+    {
+        return view('admin.isi_kuesioner');
+    }
+
+    public function perkembangan_survey()
+    {
+
+
+        $pegawai_ajib2 = User::withCount('perkembangan')->get();
+
+
+        $datas = SurveyPerkembangan::with('image')->get();
+
+        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->get();
+        // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
+
+
+        // dd(count($datas[0]->image) == 0);
+        // dd($datas[2]->image);
+
+
+        $get_id = Survey::join('users', 'users.id', '=', 'survey.id_user')
+            ->select('users.*', 'survey.*')
+            ->orderBy('survey.id', 'Desc')
+            // ->take(20)
+            ->get();
+
+        // $datas2 = DB::table('survey_perkembangan_wilayah')
+        // ->join(
+        //     'image_survey_perkembangan',
+        //     'image_survey_perkembangan.id',
+        //     '=',
+        //     'survey_perkembangan_wilayah.id'
+        // )
+        // ->join(
+        //     'users',
+        //     'users.id',
+        //     '=',
+        //     'survey_perkembangan_wilayah.id_user'
+        // )
+        // ->select('survey_perkembangan_wilayah.*', 'survey_perkembangan_wilayah.name as namesurvey', 'image_survey_perkembangan.*', 'image_survey_perkembangan.name as nameimage', 'users.*', 'users.name as nameuser')
+        // ->get();
+
+        // dd($datas2);
+
+        //Detail Survey
+        $data_detail = SurveyPerkembangan::with(['user'])->get();
+
+
+        // $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
+        //     'roles',
+        //     function ($q) {
+        //         $q->where('name', 'surveyer');
+        //     }
+        // )->get();
+
+
+        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail']));
+    }
+
+
+    public function fetchPerkembanganTerbaru($id_data_terbaru)
+    {
+
+        // $get_id = Survey::join('users', 'users.id', '=', 'survey.id_user')
+        //     ->select('users.*', 'survey.*')
+        //     ->orderBy('survey.id', 'Desc')
+        //     ->get();
+
+        // $get_perkembangan = SurveyPerkembangan::join('survey', 'survey.id_user', '=', 'survey_perkembangan_wilayah.id_user')
+        //     ->select('survey_perkembangan_wilayah.*', 'survey.*')
+        //     ->orderBy('survey.id_user', 'Desc')
+        //     ->get();
+
+        $tes = SurveyPerkembangan::with('user', 'image')->where('id', $id_data_terbaru)->first();
+
+
+        // $get_perkembangan =  SurveyPerkembangan::orderBy('id_user', 'Desc')
+        //     ->where('survey.id', $id_perkembangan_terbaru)
+        //     ->take(1)
+        //     ->get();
+
+        return response()->json([
+            'perkembangan' => $tes,
+        ]);
     }
 }

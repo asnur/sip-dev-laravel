@@ -213,14 +213,8 @@
                         {{-- <div id="gambar_utama"></div>
                                 <div id="gambar_utama2"></div> --}}
 
-                        <div class="gambar_utama_slider_input">
-                            {{-- <div class="img_parents skeleton-image"></div> --}}
-                            <span id="gambar_utama">
-                                {{-- <div class="img_parents skeleton-image"></div> --}}
-                            </span>
-                            <span id="gambar_utama2">
-                                {{-- <div class="img_parents skeleton-image"></div> --}}
-                            </span>
+                        <div class="gambar_utama_slider_input2">
+
                         </div>
 
 
@@ -747,6 +741,7 @@
         </div>
     </div>
 </div>
+
 </div>
 </div>
 
@@ -769,18 +764,18 @@
 
 
 
-    $('.gambar_utama_slider_input').slick({
+    // $('.gambar_utama_slider_input').slick({
 
-        slidesToShow: 1
-        , slidesToScroll: 1
-        , dots: false
-        , focusOnSelect: true
-        , variableWidth: true
-        , infinite: false
-        , arrows: false,
+    //     slidesToShow: 1
+    //     , slidesToScroll: 1
+    //     , dots: false
+    //     , focusOnSelect: true
+    //     , variableWidth: true
+    //     , infinite: false
+    //     , arrows: false,
 
-        // , asNavFor: '.image_slider_input'
-    });
+    //     // , asNavFor: '.image_slider_input'
+    // });
 
     $('.image_slider_input').slick({
         slidesToShow: 5
