@@ -790,13 +790,17 @@ function dataTebaruPerkembangan() {
             array = data.image;
 
             var datagambar = "";
-            // console.log(array);
-            array.forEach((e) => {
-                // console.log(e);
+            if (array.length == 0) {
+                datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+            } else {
+                array.forEach((e) => {
+                    // console.log(e);
 
-                datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
-                // console.log(datagambar);
-            });
+                    datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                    // console.log(datagambar);
+                });
+            }
+            // console.log(array);
 
             $(".gambar_utama_slider_input").html(datagambar);
             selectOption(".gambar_utama_slider_input");
@@ -941,12 +945,16 @@ $(document).ready(function () {
                 // $(".gambar_utama_slider_input").html("");
                 var datagambar = "";
                 // console.log(ImgArray);
-                array.forEach((e) => {
-                    // console.log(e);
+                if (array.length == 0) {
+                    datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                } else {
+                    array.forEach((e) => {
+                        // console.log(e);
 
-                    datagambar += `<div><img class="w-100" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
-                    // console.log(element);
-                });
+                        datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                        // console.log(datagambar);
+                    });
+                }
 
                 // console.log(datagambar);
 
