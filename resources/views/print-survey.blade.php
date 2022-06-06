@@ -11,14 +11,21 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>Print PDF</title>
+    <style>
+        table {
+            page-break-inside: avoid !important;
+        }
+
+    </style>
 </head>
 
 <body>
     @php
         $no = 1;
+        $item = 0;
     @endphp
     <center>
-        <h3>Arsip Data Survey</h3>
+        <p class="font-weight-bold" style="font-size:28px;">Arsip Data Survey</p>
     </center>
     <table class="table table-bordered">
         <tbody>
@@ -26,15 +33,26 @@
                 <tr>
                     <th rowspan="6" style="vertical-align: middle">{{ $no++ }}</th>
                     <th colspan="6">
-                        <div class="row w-100">
-                            @foreach ($d->image as $ds)
-                                {{-- <p style="float: left">Test</p> --}}
-                                <div class="col-md-3 mb-1">
-                                    <img src="https://jakpintas.dpmptsp-dki.com/survey/{{ $ds->name }}"
-                                        style="width: 100%; height:200px; object-fit:cover;">
+
+                        @foreach ($d->image as $ds)
+                            @if ($item % 4 == 0)
+                                <div class="flex-container w-100" style="display:table;
+                            ">
+                            @endif
+                            @php
+                                $item++;
+                            @endphp
+                            {{-- <p style="float: left">Test</p> --}}
+                            <div class="flex-item w-25" style="display: table-cell;padding:5px;">
+
+                                <img src="https://jakpintas.dpmptsp-dki.com/survey/{{ $ds->name }}"
+                                    style="width: 100%; height:140px; object-fit:cover;object-position:center;">
+                            </div>
+                            @if ($item % 4 == 0)
                                 </div>
-                            @endforeach
-                        </div>
+                            @endif
+                        @endforeach
+
                     </th>
                 </tr>
                 <tr>
@@ -55,20 +73,21 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <p class="font-weight-bold">Pola Regional : {{ $d->regional }}</p>
-                        <p>{{ $d->deskripsi_regional }}</p>
+                        <p style="line-height:5px" class="font-weight-bold">Pola Regional : {{ $d->regional }}</p>
+                        <p style="line-height:5px">{{ $d->deskripsi_regional }}</p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <p class="font-weight-bold">Pola Lingkungan : {{ $d->neighborhood }}</p>
-                        <p>{{ $d->deskripsi_neighborhood }}</p>
+                        <p style="line-height:5px" class="font-weight-bold">Pola Lingkungan : {{ $d->neighborhood }}
+                        </p>
+                        <p style="line-height:5px">{{ $d->deskripsi_neighborhood }}</p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <p class="font-weight-bold">Pola Ruangan : {{ $d->transect_zone }}</p>
-                        <p>{{ $d->deskripsi_transect_zone }}</p>
+                        <p style="line-height:5px" class="font-weight-bold">Pola Ruangan : {{ $d->transect_zone }}</p>
+                        <p style="line-height:5px">{{ $d->deskripsi_transect_zone }}</p>
                     </td>
                 </tr>
             @endforeach
