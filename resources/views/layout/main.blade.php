@@ -416,7 +416,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 placeholder="Catatan perkembangan regional" rows="3"></textarea>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px;line-height:0px;">Pola Lingk.<sup
+                            <label style="font-size: 13px;line-height:0px;">Pola Lingkungan<sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -436,7 +436,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 placeholder="Catatan perkembangan lingkungan" rows="3"></textarea>
                         </div>
                         <div class="col-md-5">
-                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Perkembangan
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Pola
                                 Ruang
                                 <sup class="text-danger font-weight-bold">*</sup></label>
                         </div>
@@ -557,7 +557,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
 
             <div>
-                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi</span>
+                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi <i
+                        class="ri-download-cloud-line"></i></span>
                 <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
                 <div class="list-item-info-location-survey mt-2">
 
