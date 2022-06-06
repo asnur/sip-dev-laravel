@@ -132,6 +132,7 @@ class SurveyPerkembanganController extends Controller
     {
         $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
         $html = view('print-survey', compact('data'))->render();
+        $path = public_path() . '/print/';
         $pdf = Browsershot::html('<h1>Test</h1>');
         // dd(view('print-survey', compact('data'))->render());
         // $opciones_ssl = array(
@@ -146,6 +147,6 @@ class SurveyPerkembanganController extends Controller
         // $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
         // $pdf->loadView('print-survey', compact('data'));
         // return $pdf->stream();
-        $pdf->save('test.pdf');
+        $pdf->setNodeBinary('PATH %~dp0;%PATH%;')->save('/home/test.pdf');
     }
 }
