@@ -70,30 +70,92 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
     // });
     // $(".view_image").html(datagambar);
 
+    let kel = String(data.kelurahan);
+    let hasil_kel = kapital(kel);
+
+    function kapital(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
+    let kec = String(data.kecamatan);
+    let hasil_kec = kapital(kec);
+
+    function kapital(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
     const content = `
-    <div class="p-0">
-        <div class="imgcard-container">
+
+            <div class="imgcard-container">
             <img src="https://jakpintas.dpmptsp-dki.com/survey/${data["nameimage"]}" class="card-img-top" style="width: 100%;height: 100px;object-fit: cover;">
-        </div>
+            </div>
+    <div class="p-0">
         <div class="card-body p-2">
-            <h6 class="mt-0 mb-2 card-title border-bottom">${data["name"]}</h6>
-            <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["id_sub_blok"]}</span>
+            <h6 style="font-size:14px;" class="mt-0 mb-1 card-title">${data["name"]}</h6>
+            <div class="border-bottom"></div>
+            <div style="line-height: 1.2; margin-top:12px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>ID Sub Blok</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="d-block"> ${data["id_sub_blok"]}</span>
+                    </div>
+                </div>
             </div>
             <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["kelurahan"]}</span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Kelurahan</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="d-block"> ${hasil_kel}</span>
+                    </div>
+                </div>
             </div>
             <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["kecamatan"]}</span>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <span>Kecamatan</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="d-block"> ${hasil_kec}</span>
+                    </div>
+                </div>
             </div>
             <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["regional"]}</span>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <span>Pola Regional</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="d-block"> ${data["regional"]}</span>
+                    </div>
+                </div>
             </div>
             <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["perkembangan_ling"]}</span>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <span>Pola Lingkungan</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="d-block"> ${data["perkembangan_ling"]}</span>
+                    </div>
+                </div>
             </div>
             <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["perkembangan_ruang"]}</span>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <span>Pola Ruang</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="d-block"> ${data["perkembangan_ruang"]}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>`;
@@ -104,7 +166,7 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
     popup.setLngLat(coordinates).setHTML(content).addTo(map);
 });
 
-map.on("mouseleave", "titik-survey-rekap", () => {
-    map.getCanvas().style.cursor = "";
-    popup.remove();
-});
+// map.on("mouseleave", "titik-survey-rekap", () => {
+//     map.getCanvas().style.cursor = "";
+//     popup.remove();
+// });
