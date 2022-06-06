@@ -32,7 +32,13 @@ const addText = () => {
                 $("#table-surveyer2").DataTable({
                     // retrieve: true,
                     ordering: true,
-                    order: [[2, "desc"]],
+                    language: {
+                        search: "Cari Petugas Survey:",
+                    },
+                    order: [
+                        [2, "desc"],
+                        [1, "desc"],
+                    ],
                     columnDefs: [
                         { orderSequence: ["asc", "desc"], targets: [0] },
                         { orderSequence: ["asc", "desc"], targets: [1] },
@@ -44,8 +50,11 @@ const addText = () => {
             $(document).ready(function () {
                 $("#table-surveyer3").DataTable({
                     // retrieve: true,
-                    ordering: true,
-                    order: [[0, "asc"]],
+                    ordering: false,
+                    sScrollX: "100%",
+                    sScrollXInner: "120%",
+                    responsive: false,
+                    order: [[0, "desc"]],
                     columnDefs: [
                         { orderSequence: ["asc", "desc"], targets: [0] },
                         { orderSequence: ["asc", "desc"], targets: [1] },
