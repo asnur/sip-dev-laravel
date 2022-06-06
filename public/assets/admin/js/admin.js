@@ -715,8 +715,20 @@ function dataTebaruPerkembangan() {
             $("#name_perkembangan").html(data.user.name);
             $("#namesurvey").html(data.name);
 
+            let text3 = String(data.kecamatan);
+            let result3 = kapital(text3);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
             $("#penempatan_perkembangan").html(
-                "<div'>AJIB " + data.kecamatan + "</div>"
+                "<div'>AJIB " + result3 + "</div>"
             );
 
             $("#kordinat").html(
@@ -724,14 +736,35 @@ function dataTebaruPerkembangan() {
             );
 
             $("#id_sub_blok").html(data.id_sub_blok);
-            // $("#kelurahan").html(data.kelurahan);
 
-            $("#kelurahan").html(
-                data.kelurahan.charAt(0).toUpperCase() +
-                    data.kelurahan.slice(1).toLowerCase()
-            );
+            let text = String(data.kelurahan);
+            let result = kapital(text);
 
-            $("#kecamatan").html(data.kecamatan);
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kelurahan").html(result);
+
+            let text2 = String(data.kecamatan);
+            let result2 = kapital(text2);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kecamatan").html(result2);
+
             $("#regional").html(data.regional);
             $("#deskripsi_regional").html(data.deskripsi_regional);
             $("#neighborhood").html(data.neighborhood);
@@ -835,8 +868,24 @@ $(document).ready(function () {
 
                 $("#name_perkembangan").html(data.user.name);
 
+                // $("#penempatan_perkembangan").html(
+                //     "<div'>AJIB " + data.kecamatan + "</div>"
+                // );
+
+                let text3 = String(data.kecamatan);
+                let result3 = kapital(text3);
+
+                function kapital(str) {
+                    return str.replace(/\w\S*/g, function (txt) {
+                        return (
+                            txt.charAt(0).toUpperCase() +
+                            txt.substr(1).toLowerCase()
+                        );
+                    });
+                }
+
                 $("#penempatan_perkembangan").html(
-                    "<div'>AJIB " + data.kecamatan + "</div>"
+                    "<div'>AJIB " + result3 + "</div>"
                 );
 
                 $("#kordinat").html(
@@ -844,9 +893,36 @@ $(document).ready(function () {
                 );
 
                 $("#id_sub_blok").html(data.id_sub_blok);
-                $("#kelurahan").html(data.kelurahan);
                 $("#namesurvey").html(data.name);
-                $("#kecamatan").html(data.kecamatan);
+
+                let text = String(data.kelurahan);
+                let result = kapital(text);
+
+                function kapital(str) {
+                    return str.replace(/\w\S*/g, function (txt) {
+                        return (
+                            txt.charAt(0).toUpperCase() +
+                            txt.substr(1).toLowerCase()
+                        );
+                    });
+                }
+
+                $("#kelurahan").html(result);
+
+                let text2 = String(data.kecamatan);
+                let result2 = kapital(text2);
+
+                function kapital(str) {
+                    return str.replace(/\w\S*/g, function (txt) {
+                        return (
+                            txt.charAt(0).toUpperCase() +
+                            txt.substr(1).toLowerCase()
+                        );
+                    });
+                }
+
+                $("#kecamatan").html(result2);
+
                 $("#regional").html(data.regional);
                 $("#deskripsi_regional").html(data.deskripsi_regional);
                 $("#neighborhood").html(data.neighborhood);
