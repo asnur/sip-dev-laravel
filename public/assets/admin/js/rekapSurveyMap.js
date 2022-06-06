@@ -76,7 +76,7 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
             <img src="https://jakpintas.dpmptsp-dki.com/survey/${data["nameimage"]}" class="card-img-top" style="width: 100%;height: 100px;object-fit: cover;">
         </div>
         <div class="card-body p-2">
-            <h6 class="mt-0 mb-2 card-title border-bottom">${data["namesurvey"]}</h6>
+            <h6 class="mt-0 mb-2 card-title border-bottom">${data["name"]}</h6>
             <div style="line-height: 1.2;">
                 <span class="d-block"> ${data["id_sub_blok"]}</span>
             </div>
@@ -85,9 +85,6 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
             </div>
             <div style="line-height: 1.2;">
                 <span class="d-block"> ${data["kecamatan"]}</span>
-            </div>
-            <div style="line-height: 1.2;">
-                <span class="d-block"> ${data["namesurvey"]}</span>
             </div>
             <div style="line-height: 1.2;">
                 <span class="d-block"> ${data["regional"]}</span>
