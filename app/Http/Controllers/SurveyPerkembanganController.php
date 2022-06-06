@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Image;
+use Spatie\Browsershot\Browsershot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyPerkembanganController extends Controller
 {
@@ -123,5 +126,26 @@ class SurveyPerkembanganController extends Controller
         $data->delete();
 
         return response()->json(['success' => 'Berhasil menghapus foto']);
+    }
+
+    public function printSurvey(Request $request)
+    {
+        $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
+        $html = view('print-survey', compact('data'))->render();
+        $pdf = Browsershot::html('<h1>Test</h1>');
+        // dd(view('print-survey', compact('data'))->render());
+        // $opciones_ssl = array(
+        //     "ssl" => array(
+        //         "verify_peer" => false,
+        //         "verify_peer_name" => false,
+        //         'allow_self_signed' => TRUE,
+        //     ),
+        // );
+        // $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        // $pdf->setPaper('a4', 'landscape');
+        // $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
+        // $pdf->loadView('print-survey', compact('data'));
+        // return $pdf->stream();
+        $pdf->save('test.pdf');
     }
 }

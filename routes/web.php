@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
 use App\Http\Controllers\SurveyPerkembanganController;
+use App\Models\Survey;
 use Jenssegers\Agent\Agent;
 
 
@@ -196,6 +197,7 @@ Route::post('/saveEditDataSurvey', [SurveyPerkembanganController::class, 'saveEd
 Route::post('/editDataSurvey', [SurveyPerkembanganController::class, 'editDataSurvey'])->name('edit-survey-perkembangan');
 Route::post('/deleteDataSurvey', [SurveyPerkembanganController::class, 'deleteDataSurvey'])->name('delete-survey-perkembangan');
 Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteImageSurvey'])->name('delete-image-survey-perkembangan');
+Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
 
 
 //PHP INFO
