@@ -131,11 +131,6 @@ class SurveyPerkembanganController extends Controller
     public function printSurvey(Request $request)
     {
         $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
-        // $html = view('print-survey', compact('data'))->render();
-        // $path = public_path() . '/print/';
-        // $pdf = Browsershot::html('<h1>Test</h1>');
-        // dd($pdf);
-        // dd(view('print-survey', compact('data'))->render());
         $opciones_ssl = array(
             "ssl" => array(
                 "verify_peer" => false,
@@ -147,8 +142,7 @@ class SurveyPerkembanganController extends Controller
         $pdf->setPaper('legal', 'landscape');
         $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
         $pdf->loadView('print-survey', compact('data'));
-        return $pdf->stream();
-        // $pdf->save('/home/test.pdf');
-        // return view('print-survey', compact('data'));
+        // return $pdf->stream();
+        return $pdf->download('Arsip Survey ' . Auth::user()->name . '.pdf');
     }
 }

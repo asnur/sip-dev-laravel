@@ -12,8 +12,18 @@
 
     <title>Print PDF</title>
     <style>
-        table {
+        /* table {
             page-break-inside: avoid !important;
+        } */
+
+        @page {
+            margin-bottom: 0px;
+            margin-top: 10px;
+        }
+
+        body {
+            margin-bottom: 0px;
+            margin-top: 10px;
         }
 
     </style>
@@ -27,9 +37,15 @@
     <center>
         <p class="font-weight-bold" style="font-size:28px;">Arsip Data Survey</p>
     </center>
+    <p align="right" style="line-height:5px">{{ Auth::user()->name }}</p>
+    <p align="right" style="line-height:5px">
+        {{ Auth::user()->penempatan == null ? 'Jakarta' : Auth::user()->penempatan }}</p>
     <table class="table table-bordered">
         <tbody>
             @foreach ($data as $d)
+                @php
+                    $arr_coor = explode(',', $d->kordinat);
+                @endphp
                 <tr>
                     <th rowspan="6" style="vertical-align: middle">{{ $no++ }}</th>
                     <th colspan="6">
@@ -46,7 +62,7 @@
                             <div class="flex-item w-25" style="display: table-cell;padding:5px;">
 
                                 <img src="https://jakpintas.dpmptsp-dki.com/survey/{{ $ds->name }}"
-                                    style="width: 100%; height:140px; object-fit:cover;object-position:center;">
+                                    style="width: 100%; height:150px; object-fit:cover;object-position:center;">
                             </div>
                             @if ($item % 4 == 0)
                                 </div>
@@ -65,7 +81,9 @@
                 </tr>
                 <tr>
                     <td>{{ $d->name }}</td>
-                    <td>{{ $d->kordinat }}</td>
+                    <td><a href="https://www.google.com/maps/search/%09${{ $d->kordinat }}"
+                            target="_blank">{{ number_format((float) $arr_coor[0], 5, '.', '') }},{{ number_format((float) $arr_coor[1], 5, '.', '') }}
+                    </td></a>
                     <td>{{ $d->id_sub_blok }}</td>
                     <td>{{ $d->kelurahan }}</td>
                     <td>{{ $d->kecamatan }}</td>

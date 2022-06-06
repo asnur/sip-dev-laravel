@@ -557,8 +557,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
 
             <div>
-                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi <i
-                        class="ri-download-cloud-line"></i></span>
+                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi <a href="/printSurvey"
+                        class="ri-download-cloud-line text-primary" style="
+                        position: relative;
+                        top: 2px;
+                        font-size: 20px;
+                        cursor:pointer;
+                        text-decoration: none;
+                    "></a></span>
                 <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
                 <div class="list-item-info-location-survey mt-2">
 

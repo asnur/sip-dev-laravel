@@ -6404,6 +6404,12 @@ const sliderOption = (name) => {
     });
 };
 
+// const downloadRekap = () => {
+//     $.ajax({
+//         url: `${APP_URL}/printSurvey`,
+//     });
+// };
+
 const activeButton = (name) => {
     var header = document.getElementById(name);
     var btns = header.getElementsByClassName("btn");
