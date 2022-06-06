@@ -773,7 +773,7 @@ function dataTebaruPerkembangan() {
             $("#neighborhood").html(data.neighborhood);
             $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
             $("#transect_zone").html(data.transect_zone);
-            $("#deskripsi_transect_zone").html(data.transect_zone);
+            $("#deskripsi_transect_zone").html(data.deskripsi_transect_zone);
 
             // console.log(data.image[0].name);
 
