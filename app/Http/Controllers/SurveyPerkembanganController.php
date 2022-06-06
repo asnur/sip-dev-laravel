@@ -147,6 +147,6 @@ class SurveyPerkembanganController extends Controller
         // $pdf->getDomPDF()->setHttpContext(stream_context_create($opciones_ssl));
         // $pdf->loadView('print-survey', compact('data'));
         // return $pdf->stream();
-        $pdf->setNodeBinary('PATH %~dp0;%PATH%;')->save('/home/test.pdf');
+        $pdf->save('/home/test.pdf');
     }
 }
