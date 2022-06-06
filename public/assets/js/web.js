@@ -4847,13 +4847,13 @@ function getDataSurvey(id_user) {
                             white-space: normal; cursor: pointer;">${
                                 e[index].name
                             }</a><br>
-                            <span>Regional : ${e[index].regional}</span><br>
-                            <span>Neighborhood : ${
+                            <span>Pola Regional : ${
+                                e[index].regional
+                            }</span><br>
+                            <span>Pola Lingk. : ${
                                 e[index].neighborhood
                             }</span><br>
-                            <span>Transect Zone : ${
-                                e[index].transect_zone
-                            }</span>
+                            <span>Pola Ruang: ${e[index].transect_zone}</span>
                         </div>
                         <div class="col-sm-2 d-flex align-items-center pl-5">
                         <div class="row">
