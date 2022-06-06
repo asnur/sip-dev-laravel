@@ -342,16 +342,16 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 placeholder="Masukan Nama Tempat" style="font-size: 8pt">
                         </div>
                         <div class="col-md-12">
-                            <label class="mt-2" for="gambarLokasiSurvey"
+                            <div id="previewFotoSurvey">
+                            </div>
+                            <label class="mt-2 text-primary" for="gambarLokasiSurvey"
                                 style="font-size: 13px;line-height:0px;cursor:pointer;"><i class="ri-upload-cloud-line"
-                                    style="font-size: 17px !important;position:relative;top:3px;"></i> <span>Unggah
+                                    style="font-size: 20px !important;position:relative;top:3px;"></i> <span>Unggah
                                     Foto</span> </label>
                             <div class="custom-file d-none" style="font-size: 8pt">
                                 <input type="file" onchange="preview_foto_survey()" accept="image/*" multiple="multiple"
                                     class="custom-file-input" id="gambarLokasiSurvey">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
-                            <div class="mt-2" id="previewFotoSurvey">
                             </div>
                         </div>
                         <div class="col-md-5">

@@ -4802,8 +4802,7 @@ const resetSurvey = () => {
     $("#textkelurahanSurvey").text("-");
     $("#textkecamatanSurvey").text("-");
     if (
-        $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider")
-            .length !== 0
+        $("div#previewFotoSurvey.slick-initialized.slick-slider").length !== 0
     ) {
         $("#previewFotoSurvey").slick("unslick");
         $("#previewFotoSurvey").html("");
@@ -4992,7 +4991,7 @@ function editDataSurvey(id, id_user) {
             `;
             }
             if (
-                $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider")
+                $("div#previewFotoSurvey.slick-initialized.slick-slider")
                     .length == 0
             ) {
                 $("#previewFotoSurvey").html("");
@@ -5354,10 +5353,7 @@ function preview_foto_survey() {
     var gambarLokasi = $("#gambarLokasiSurvey").get(0).files.length;
     let html = "";
     let countArray = Newfiles.length;
-    if (
-        $("div#previewFotoSurvey.mt-2.slick-initialized.slick-slider").length ==
-        0
-    ) {
+    if ($("div#previewFotoSurvey.slick-initialized.slick-slider").length == 0) {
         sliderOption("previewFotoSurvey");
     }
     if (localStorage.getItem("url_survey") == `${APP_URL}/saveEditDataSurvey`) {
