@@ -513,23 +513,26 @@ class AdminController extends Controller
             // ->take(20)
             ->get();
 
-        $datas2 = DB::table('survey_perkembangan_wilayah')
-            ->join(
-                'image_survey_perkembangan',
-                'image_survey_perkembangan.id',
-                '=',
-                'survey_perkembangan_wilayah.id'
-            )
-            ->join(
-                'users',
-                'users.id',
-                '=',
-                'survey_perkembangan_wilayah.id_user'
-            )
-            ->select('survey_perkembangan_wilayah.*', 'survey_perkembangan_wilayah.name as namesurvey', 'image_survey_perkembangan.*', 'image_survey_perkembangan.name as nameimage', 'users.*', 'users.name as nameuser')
-            ->get();
+        // $datas2 = DB::table('survey_perkembangan_wilayah')
+        // ->join(
+        //     'image_survey_perkembangan',
+        //     'image_survey_perkembangan.id',
+        //     '=',
+        //     'survey_perkembangan_wilayah.id'
+        // )
+        // ->join(
+        //     'users',
+        //     'users.id',
+        //     '=',
+        //     'survey_perkembangan_wilayah.id_user'
+        // )
+        // ->select('survey_perkembangan_wilayah.*', 'survey_perkembangan_wilayah.name as namesurvey', 'image_survey_perkembangan.*', 'image_survey_perkembangan.name as nameimage', 'users.*', 'users.name as nameuser')
+        // ->get();
 
         // dd($datas2);
+
+        //Detail Survey
+        $data_detail = SurveyPerkembangan::with(['user'])->get();
 
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
@@ -540,7 +543,7 @@ class AdminController extends Controller
         // )->get();
 
 
-        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'datas2']));
+        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail']));
     }
 
 
