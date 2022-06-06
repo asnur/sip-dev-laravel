@@ -235,10 +235,8 @@ $Roles = '';
                                         </div>
                                         <div class="col-md-7">
                                             <div class="col text_data_terbaru">
-                                                {{-- <span id="deskripsi_neighborhood">
-                                            </span> --}}
-
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae cumque dolorum ipsam velit incidunt recusandae autem et quaerat eaque, facilis ullam consequuntur, provident quas quis praesentium veniam animi, quia sunt!
+                                                <span id="deskripsi_neighborhood">
+                                            </span>
                                             </div>
                                         </div>
                                     </div>
@@ -261,9 +259,8 @@ $Roles = '';
                                         </div>
                                         <div class="col-md-7">
                                             <div class="col text_data_terbaru">
-                                                {{-- <span id="deskripsi_transect_zone">
-                                            </span> --}}
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ducimus maxime, dicta repellendus hic voluptas, sunt ipsam tenetur soluta cupiditate similique, amet fugiat eius quam magnam libero est error qui.
+                                                <span id="deskripsi_transect_zone">
+                                            </span>
                                             </div>
                                         </div>
                                     </div>
