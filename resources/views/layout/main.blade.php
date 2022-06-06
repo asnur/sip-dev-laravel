@@ -343,7 +343,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </div>
                         <div class="col-md-12">
                             <label class="mt-2" for="gambarLokasiSurvey"
-                                style="font-size: 13px;line-height:0px;"><i class="ri-upload-cloud-line"
+                                style="font-size: 13px;line-height:0px;cutsor:pointer;"><i class="ri-upload-cloud-line"
                                     style="font-size: 17px !important;position:relative;top:3px;"></i> <span>Unggah
                                     Foto</span> </label>
                             <div class="custom-file d-none" style="font-size: 8pt">
