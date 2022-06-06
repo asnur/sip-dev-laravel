@@ -58,7 +58,7 @@ class RekapSurveyController extends Controller
                     'id_sub_blok' => $d->id_sub_blok,
                     'kelurahan' => $d->kelurahan,
                     'kecamatan' => $d->kecamatan,
-                    'nameimage' => $d->image[0]->name,
+                    'nameimage' => count($d->image) == 0 ? 'not_image.png' : $d->image[0]->name,
                     'regional' => $d->regional,
                     'deskripsi_regional' => $d->deskripsi_regional,
                     'perkembangan_ling' => $d->neighborhood,
