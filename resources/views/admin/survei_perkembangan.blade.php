@@ -230,7 +230,8 @@ $Roles = '';
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row mb-2">
+
                                         <div class="col-md-5">
                                             <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
                                                 </span></label>
@@ -255,7 +256,8 @@ $Roles = '';
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row mb-2">
+
                                         <div class="col-md-5">
                                             <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
                                                 </span></label>
