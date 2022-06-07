@@ -382,7 +382,7 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row mb-2">
+                                <div class="row">
 
                                     <div class="col-md-5">
                                         <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
@@ -408,7 +408,7 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row mb-2">
+                                <div class="row">
 
                                     <div class="col-md-5">
                                         <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
@@ -529,7 +529,10 @@ $Roles = '';
                         <thead>
                             <tr class="text-center size_detil" valign="middle">
                                 <th>Petugas AJIB</th>
+                                <th>ID Sub Blok</th>
                                 <th>Nama Lokasi</th>
+                                <th>Kelurahan</th>
+                                <th>Kecamatan</th>
                                 <th>Pola Regional</th>
                                 <th>Deskripsi</th>
                                 <th>Pola Lingkungan</th>
@@ -542,21 +545,24 @@ $Roles = '';
                             @foreach ($data_detail as $pa)
                             <tr>
                                 <td>{{ $pa->user->name }}</td>
+                                <td>{{ $pa->id_sub_blok }}</td>
                                 <td>{{ $pa->name }}</td>
+                                <td>{{ $pa->kelurahan }}</td>
+                                <td>{{ $pa->kecamatan }}</td>
                                 <td>{{ $pa->regional }}</td>
-                                <td>
-                                    @if(strlen($pa->deskripsi_regional) > 45)
+                                <td>{{ $pa->deskripsi_regional }}
+                                    {{-- @if(strlen($pa->deskripsi_regional) > 45)
                                     {{substr($pa->deskripsi_regional,0,45)}}
                                     <span class="read-more-show hide_content"><i class="fa fa-angle-down arrow_updown"></i></span>
                                     <span class="read-more-content"> {{substr($pa->deskripsi_regional,45,strlen($pa->deskripsi_regional))}}
                                         <span class="read-more-hide hide_content"><i class="fa fa-angle-up arrow_updown"></i></span> </span>
                                     @else
                                     {{$pa->deskripsi_regional}}
-                                    @endif
+                                    @endif --}}
                                 </td>
                                 <td>{{ $pa->neighborhood }}</td>
-                                <td>
-                                    @if(strlen($pa->deskripsi_neighborhood ) > 45)
+                                <td>{{ $pa->deskripsi_neighborhood }}
+                                    {{-- @if(strlen($pa->deskripsi_neighborhood ) > 45)
                                     {{substr($pa->deskripsi_neighborhood ,0,45)}}
                                     <span class="read-more-show hide_content"><i class="fa fa-angle-down arrow_updown"></i></span>
                                     <span class="read-more-content"> {{substr($pa->deskripsi_neighborhood ,45,strlen($pa->deskripsi_neighborhood ))}}
@@ -564,18 +570,19 @@ $Roles = '';
 
                                     @else
                                     {{$pa->deskripsi_neighborhood }}
-                                    @endif
+                                    @endif --}}
                                 </td>
                                 <td>{{ $pa->transect_zone }}</td>
                                 <td>
-                                    @if(strlen($pa->deskripsi_transect_zone ) > 45)
+                                    {{ $pa->deskripsi_transect_zone }}
+                                    {{-- @if(strlen($pa->deskripsi_transect_zone ) > 45)
                                     {{substr($pa->deskripsi_transect_zone ,0,45)}}
                                     <span class="read-more-show hide_content"><i class="fa fa-angle-down arrow_updown"></i></span>
                                     <span class="read-more-content"> {{substr($pa->deskripsi_transect_zone ,45,strlen($pa->deskripsi_transect_zone ))}}
                                         <span class="read-more-hide hide_content"><i class="fa fa-angle-up arrow_updown"></i></span> </span>
                                     @else
                                     {{$pa->deskripsi_transect_zone }}
-                                    @endif
+                                    @endif --}}
                                 </td>
                             </tr>
                             @endforeach

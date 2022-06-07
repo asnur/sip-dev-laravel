@@ -89,7 +89,6 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
     }
 
     const content = `
-
             <div class="imgcard-container">
             <img src="https://jakpintas.dpmptsp-dki.com/survey/${data["nameimage"]}" class="card-img-top" style="width: 100%;height: 100px;object-fit: cover;">
             </div>
@@ -154,6 +153,8 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
                     </div>
                     <div class="col-md-6">
                         <span class="d-block"> ${data["perkembangan_ruang"]}</span>
+
+
                     </div>
                 </div>
             </div>

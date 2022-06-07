@@ -626,7 +626,7 @@
         , dots: false
         , focusOnSelect: true
         , variableWidth: true
-        , infinite: true
+        , infinite: false
         , arrows: true
 
     });
