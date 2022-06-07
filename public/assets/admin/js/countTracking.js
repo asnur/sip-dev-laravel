@@ -51,8 +51,8 @@ const addText = () => {
                 $("#table-surveyer3").DataTable({
                     // retrieve: true,
                     ordering: false,
-                    sScrollX: "100%",
-                    sScrollXInner: "120%",
+                    sScrollX: "200%",
+                    sScrollXInner: "200%",
                     responsive: false,
                     order: [[0, "desc"]],
                     columnDefs: [
@@ -63,6 +63,9 @@ const addText = () => {
                         { orderSequence: ["asc", "desc"], targets: [4] },
                         { orderSequence: ["asc", "desc"], targets: [5] },
                         { orderSequence: ["asc", "desc"], targets: [6] },
+                        { orderSequence: ["asc", "desc"], targets: [7] },
+                        { orderSequence: ["asc", "desc"], targets: [8] },
+                        { orderSequence: ["asc", "desc"], targets: [9] },
                     ],
                 });
             });

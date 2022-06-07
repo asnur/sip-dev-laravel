@@ -662,7 +662,7 @@ const selectOption = (name) => {
         slidesToShow: 1,
         slidesToScroll: 1,
         infinite: false,
-        // arrows: true,
+        arrows: true,
         // prevArrow:
         //     '<button style="position:relative; top:10rem; left: -1rem;" class="slide-arrow prev-arrow">Kembali</button>',
         // nextArrow:
