@@ -3412,6 +3412,7 @@ function addLayers(layer) {
             paint: {
                 "fill-color": ["get", "fill"],
                 "fill-opacity": 1,
+                "fill-outline-color": "white",
             },
             layout: {
                 visibility: "none",
