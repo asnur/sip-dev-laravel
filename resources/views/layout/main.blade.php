@@ -328,9 +328,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </button> --}}
                 </span>
             </div>
-            <button class="btn btn-success text-white d-block mt-2" onclick="resetSurvey()"
-                style="font-size: 8pt; cursor: pointer;"><i class="fa fa-plus"></i>
-                Lokasi Baru</button>
+            <div class="w-100 mt-2" onclick="resetSurvey()"
+                style="font-size: 12pt; cursor: pointer; text-align:right;" id="resetSurey"><i
+                    class="ri-arrow-left-line"></i></div>
             <div class="form mt-2">
                 <form id="formSurveyLocation" enctype="multipart/form-data">
                     <div class="row">
@@ -345,8 +345,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div id="previewFotoSurvey">
                             </div>
                             <label class="mt-2 text-primary" for="gambarLokasiSurvey"
-                                style="font-size: 13px;line-height:0px;cursor:pointer;"><i class="ri-upload-cloud-line"
-                                    style="font-size: 20px !important;position:relative;top:3px;"></i> <span>Unggah
+                                style="font-size: 13px;line-height:0px;cursor:pointer;"><i
+                                    class="ri-upload-cloud-line font-weight-bold"
+                                    style="font-size: 20px !important;position:relative;top:4px;"></i> <span>Unggah
                                     Foto</span> </label>
                             <div class="custom-file d-none" style="font-size: 8pt">
                                 <input type="file" onchange="preview_foto_survey()" accept="image/*" multiple="multiple"
@@ -414,6 +415,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 8pt"
                                 placeholder="Catatan perkembangan regional" rows="3" maxlength="255"></textarea>
+                            <span style="font-size:8pt"><span id="countTextRegional">0</span>/255</span>
                         </div>
                         <div class="col-md-5">
                             <label style="font-size: 13px;line-height:0px;">Pola Lingkungan<sup
@@ -434,6 +436,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 8pt"
                                 placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
+                            <span style="font-size:8pt"><span id="countTextLingkungan">0</span>/255</span>
                         </div>
                         <div class="col-md-5">
                             <label class="mt-2" style="font-size: 13px;line-height:0px;">Pola
@@ -460,6 +463,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
                                 placeholder="Catatan perkembangan ruang" rows="3" maxlength="255"></textarea>
+                            <span style="font-size:8pt"><span id="countTextRuang">0</span>/255</span>
                         </div>
                     </div>
                     <p style="font-size:13px;" class="w-100 mt-2"><sup
@@ -557,14 +561,21 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
 
             <div>
-                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi <a href="/printSurvey"
-                        class="ri-download-cloud-line text-primary" style="
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi </span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="/printSurvey" class="text-primary" style="
                         position: relative;
                         top: 2px;
-                        font-size: 20px;
+                        font-size: 12pt;
                         cursor:pointer;
                         text-decoration: none;
-                    "></a></span>
+                    "><i class="ri-download-cloud-line font-weight-bold"
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
+                    </div>
+                </div>
                 <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
                 <div class="list-item-info-location-survey mt-2">
 

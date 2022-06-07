@@ -179,7 +179,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey"
 ).hide();
 
 $.ajax({
@@ -4808,6 +4808,7 @@ const resetSurvey = () => {
         $("#previewFotoSurvey").slick("unslick");
         $("#previewFotoSurvey").html("");
     }
+    $("#resetSurey").hide();
 };
 
 function getDataSurvey(id_user) {
@@ -4978,6 +4979,7 @@ function editDataSurvey(id, id_user) {
             //     </div>
             //     `);
             // }
+            $("#resetSurey").show();
             let html = "";
             $("#previewFotoSurvey").html("");
             for (var i = 0; i < e.image.length; i++) {
@@ -6427,3 +6429,21 @@ const activeButton = (name) => {
     }
 };
 [];
+
+$("#deskripsiRegionalSurvey").on("keyup", () => {
+    // console.log($(this))
+    let length = $("#deskripsiRegionalSurvey").val().length;
+    $("#countTextRegional").text(length);
+});
+
+$("#deskripsiNeighborhoodSurvey").on("keyup", () => {
+    // console.log($(this))
+    let length = $("#deskripsiNeighborhoodSurvey").val().length;
+    $("#countTextLingkungan").text(length);
+});
+
+$("#deskripsiTransectZoneSurvey").on("keyup", () => {
+    // console.log($(this))
+    let length = $("#deskripsiTransectZoneSurvey").val().length;
+    $("#countTextRuang").text(length);
+});
