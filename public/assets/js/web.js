@@ -191,6 +191,7 @@ $.ajax({
             $("#btnLogout").attr("src", img);
             $("#profile").show();
             $("#btnLogin").hide();
+            // getLayerSurveyPerkembangan();
         }
     },
 });
@@ -349,6 +350,10 @@ $.ajax({
 
 const popup = new mapboxgl.Popup({
     closeButton: false,
+    closeOnClick: false,
+});
+const popupSurvey = new mapboxgl.Popup({
+    closeButton: true,
     closeOnClick: false,
 });
 var $window = $(window);
@@ -821,6 +826,7 @@ map.loadImage(`/assets/gambar/ICON.png`, function (error, image) {
 
 map.on("style.load", function () {
     // onOffLayers();
+    // getLayerSurveyPerkembangan();
     const layers = map.getStyle().layers;
     const labelLayerId = layers.find(
         (layer) => layer.type === "symbol" && layer.layout["text-field"]
@@ -5122,6 +5128,7 @@ function onSignIn(googleUser) {
                         $(".info-survey-location-survey").show();
                         getDataSurvey(e);
                     }
+                    // getLayerSurveyPerkembangan();
                 },
             });
         },
@@ -6447,3 +6454,34 @@ $("#deskripsiTransectZoneSurvey").on("keyup", () => {
     let length = $("#deskripsiTransectZoneSurvey").val().length;
     $("#countTextRuang").text(length);
 });
+
+const getLayerSurveyPerkembangan = () => {
+    if (map.getLayer("survey_perkembangan")) {
+        console.log("loaded layer");
+        map.removeLayer("survey_perkembangan");
+        map.removeSource("survey_perkembangan_wilayah");
+    }
+    $.ajax({
+        url: `${APP_URL}/layerSurveyPerkembangan`,
+        method: "GET",
+        dataType: "json",
+        success: (res) => {
+            let data = res;
+            console.log(data);
+            map.addSource("survey_perkembangan_wilayah", data);
+
+            map.addLayer({
+                id: "survey_perkembangan",
+                type: "circle",
+                source: "survey_perkembangan_wilayah",
+                paint: {
+                    "circle-color": "#4264fb",
+                    "circle-stroke-color": "#ffff00",
+                    "circle-stroke-width": 1,
+                    "circle-radius": 4,
+                    "circle-opacity": 0.8,
+                },
+            });
+        },
+    });
+};
