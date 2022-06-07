@@ -413,7 +413,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan regional" rows="3"></textarea>
+                                placeholder="Catatan perkembangan regional" rows="3" maxlength="255"></textarea>
                         </div>
                         <div class="col-md-5">
                             <label style="font-size: 13px;line-height:0px;">Pola Lingkungan<sup
@@ -433,7 +433,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <label class="mt-2" style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan lingkungan" rows="3"></textarea>
+                                placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
                         </div>
                         <div class="col-md-5">
                             <label class="mt-2" style="font-size: 13px;line-height:0px;">Pola
@@ -459,7 +459,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan ruang" rows="3"></textarea>
+                                placeholder="Catatan perkembangan ruang" rows="3" maxlength="255"></textarea>
                         </div>
                     </div>
                     <p style="font-size:13px;" class="w-100 mt-2"><sup
