@@ -41,6 +41,10 @@
     height: 19rem;
 }
 
+/* .slick-list draggable {
+    width: 490px !important;
+} */
+
 .uk_chart_skeleton {
     width: 59.5rem;
     /* height: 320px; */

@@ -173,7 +173,6 @@
         </div>
 
     </div>
-
 </div>
 
 <div style="margin-top: 1rem" class="row row-cards">

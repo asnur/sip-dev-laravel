@@ -63,7 +63,9 @@
                 padding: 0;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 max-height: 15rem;
-                overflow: auto;
+                overflow: hidden;
+                width: 14rem;
+                height: 15rem;
             }
         </style>
     @endif
