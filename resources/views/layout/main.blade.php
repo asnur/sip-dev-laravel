@@ -338,8 +338,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 13px;line-height:0px;">Nama Lokasi
                                 <sup class="text-danger font-weight-bold">*</sup></label></div>
                         <div class="col-md-7">
-                            <input type="text" name="name" class="form-control" id="nameSurvey"
-                                placeholder="Masukan Nama Tempat" style="font-size: 8pt">
+                            <input type="text" name="name" id="nameSurvey" placeholder="Masukan Nama Tempat"
+                                style="font-size: 13px;border: #ccc 1px solid;">
                         </div>
                         <div class="col-md-12">
                             <div id="previewFotoSurvey">
@@ -413,7 +413,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-12 mb-2">
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 8pt"
+                            <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 13px"
                                 placeholder="Catatan perkembangan regional" rows="3" maxlength="255"></textarea>
                             <span style="font-size:8pt"><span id="countTextRegional">0</span>/255</span>
                         </div>
@@ -426,6 +426,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <option value="LP-C">LP-C</option>
                                 <option value="LP-M">LP-M</option>
                                 <option value="LP-K">LP-K</option>
+                                <option value="LP-KR">LP-KR</option>
                                 <option value="LP-CR">LP-CR</option>
                                 <option value="LP-MR">LP-MR</option>
                                 <option value="LK">LK</option>
@@ -434,7 +435,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-12 mb-2">
                             <label class="mt-2" style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 8pt"
+                            <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 13px"
                                 placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
                             <span style="font-size:8pt"><span id="countTextLingkungan">0</span>/255</span>
                         </div>
@@ -461,8 +462,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-12">
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan ruang" rows="3" maxlength="255"></textarea>
+                            <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey"
+                                style="font-size: 13px" placeholder="Catatan perkembangan ruang" rows="3"
+                                maxlength="255"></textarea>
                             <span style="font-size:8pt"><span id="countTextRuang">0</span>/255</span>
                         </div>
                     </div>
@@ -563,13 +565,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <div>
                 <div class="row">
                     <div class="col-md-6">
-                        <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi </span>
+                        <span class="font-weight-bold" style="font-size: 13px">Arsip Lokasi </span>
                     </div>
                     <div class="col-md-6 text-right">
                         <a href="/printSurvey" class="text-primary" style="
                         position: relative;
-                        top: 2px;
-                        font-size: 12pt;
+                        font-size: 13px;
                         cursor:pointer;
                         text-decoration: none;
                     "><i class="ri-download-cloud-line font-weight-bold"
