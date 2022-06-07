@@ -66,6 +66,12 @@ const addText = () => {
                         { orderSequence: ["asc", "desc"], targets: [7] },
                         { orderSequence: ["asc", "desc"], targets: [8] },
                         { orderSequence: ["asc", "desc"], targets: [9] },
+                        { width: "5%", targets: 0 },
+                        { width: "5%", targets: 1 },
+                        { width: "6%", targets: 2 },
+                        { width: "7%", targets: 3 },
+                        { width: "5%", targets: 4 },
+                        { width: "8%", targets: 5 },
                     ],
                 });
             });

@@ -545,10 +545,10 @@ $Roles = '';
                             @foreach ($data_detail as $pa)
                             <tr>
                                 <td>{{ $pa->user->name }}</td>
-                                <td>{{ $pa->id_sub_blok }}</td>
+                                <td valign="top">{{ $pa->id_sub_blok }}</td>
                                 <td>{{ $pa->name }}</td>
-                                <td>{{ $pa->kelurahan }}</td>
-                                <td>{{ $pa->kecamatan }}</td>
+                                <td>{{ ucwords(strtolower($pa->kelurahan)) }}</td>
+                                <td>{{ ucwords(strtolower($pa->kecamatan)) }}</td>
                                 <td>{{ $pa->regional }}</td>
                                 <td>{{ $pa->deskripsi_regional }}
                                     {{-- @if(strlen($pa->deskripsi_regional) > 45)
