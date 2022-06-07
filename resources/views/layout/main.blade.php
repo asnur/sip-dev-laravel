@@ -338,8 +338,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 13px;line-height:0px;">Nama Lokasi
                                 <sup class="text-danger font-weight-bold">*</sup></label></div>
                         <div class="col-md-7">
-                            <input type="text" name="name" id="nameSurvey" placeholder="Masukan Nama Tempat"
-                                style="font-size: 13px;border: #ccc 1px solid;">
+                            <input type="text" class="w-100" name="name" id="nameSurvey"
+                                placeholder="Masukan Nama Tempat" style="font-size: 13px;border: #ccc 1px solid;">
                         </div>
                         <div class="col-md-12">
                             <div id="previewFotoSurvey">

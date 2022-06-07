@@ -174,7 +174,7 @@ class SurveyPerkembanganController extends Controller
                 ],
                 'geometry' => [
                     'type' => 'Point',
-                    'coordinates' => [$coor[1], $coor[0]]
+                    'coordinates' => [(float)$coor[1], (float)$coor[0]]
                 ]
             ];
 
