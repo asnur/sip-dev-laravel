@@ -661,8 +661,13 @@ const selectOption = (name) => {
     $(name).slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        infinite: true,
-        arrows: true,
+        infinite: false,
+        // arrows: true,
+        // prevArrow:
+        //     '<button style="position:relative; top:10rem; left: -1rem;" class="slide-arrow prev-arrow">Kembali</button>',
+        // nextArrow:
+        //     '<button style="position:relative; top:-10rem; left:29.5rem;" class="slide-arrow next-arrow">Selanjutnya</button>',
+        // variableWidth: true,
     });
 };
 
@@ -794,12 +799,12 @@ function dataTebaruPerkembangan() {
 
             var datagambar = "";
             if (array.length == 0) {
-                datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                datagambar += `<div><img class="img_parents" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
             } else {
                 array.forEach((e) => {
                     // console.log(e);
 
-                    datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                    datagambar += `<div><img class="img_parents" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                     // console.log(datagambar);
                 });
             }
@@ -935,26 +940,24 @@ $(document).ready(function () {
                 $("#neighborhood").html(data.neighborhood);
                 $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
                 $("#transect_zone").html(data.transect_zone);
-                $("#deskripsi_transect_zone").html(data.transect_zone);
+                $("#deskripsi_transect_zone").html(
+                    data.deskripsi_transect_zone
+                );
 
                 // console.log(data.image[0].name);
                 // console.log(data.image[1].name);
                 // console.log(data.image[2].name);
 
                 array = data.image;
-                // console.log(array);
-                // console.log(array.map((e) => e.name));
-                // ImgArray = array.map((e) => e.name);
-                // $(".gambar_utama_slider_input").html("");
+
                 var datagambar = "";
-                // console.log(ImgArray);
                 if (array.length == 0) {
-                    datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                    datagambar += `<div><img class="img_parents" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
                 } else {
                     array.forEach((e) => {
                         // console.log(e);
 
-                        datagambar += `<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                        datagambar += `<div><img class="img_parents" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                         // console.log(datagambar);
                     });
                 }

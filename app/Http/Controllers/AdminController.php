@@ -493,6 +493,9 @@ class AdminController extends Controller
     public function perkembangan_survey()
     {
 
+        $hasil_jumlah_titik = SurveyPerkembangan::all();
+
+
 
         $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
@@ -534,6 +537,8 @@ class AdminController extends Controller
         //Detail Survey
         $data_detail = SurveyPerkembangan::with(['user'])->get();
 
+        // dd($data_detail);
+
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
         //     'roles',
@@ -543,7 +548,7 @@ class AdminController extends Controller
         // )->get();
 
 
-        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail']));
+        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail', 'hasil_jumlah_titik']));
     }
 
 
