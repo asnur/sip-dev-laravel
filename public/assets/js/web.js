@@ -6468,7 +6468,10 @@ const getLayerSurveyPerkembangan = () => {
         success: (res) => {
             let data = res;
             console.log(data);
-            map.addSource("survey_perkembangan_wilayah", data);
+            map.addSource("survey_perkembangan_wilayah", {
+                type: "geojson",
+                data: data,
+            });
 
             map.addLayer({
                 id: "survey_perkembangan",
