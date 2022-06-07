@@ -22,6 +22,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     {{-- Datatables --}}
@@ -54,6 +55,17 @@
 
     @if (Request::is('admin/tambahKuesioner'))
     <link href="{{ asset('assets/admin2/css/kuesioner.css') }}" rel="stylesheet" />
+    @endif
+
+    @if (Request::is('admin/PerkembanganSurvey'))
+        <style>
+            .mapboxgl-popup-content{
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                max-height: 15rem;
+                overflow: auto;
+            }
+        </style>
     @endif
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -256,7 +268,7 @@
                 <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
                 </svg>
             </span>
-            <span class="nav-link-title"> Rekap Input Ajib</span>
+            <span class="nav-link-title"> Rekap Input AJIB</span>
         </a>
     </li>
 

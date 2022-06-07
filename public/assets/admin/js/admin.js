@@ -23,6 +23,7 @@ var select2Init = function () {
     localStorage.setItem("getKelurahan", selectOption);
 
     var kel = localStorage.getItem("getKelurahan");
+    console.log(kel);
 
     $("#PrintKinerja").attr("href", `/admin/Ekspor-Kinerja/${kel}`);
 
@@ -177,6 +178,8 @@ $.ajax({
 
 let url = document.URL;
 let arrURL = url.split("/");
+
+// console.log(arrURL);
 
 if (arrURL[4] == "kinerja") {
     $("#selectSurveyer").val(0).trigger("change");
@@ -770,7 +773,7 @@ function dataTebaruPerkembangan() {
             $("#neighborhood").html(data.neighborhood);
             $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
             $("#transect_zone").html(data.transect_zone);
-            $("#deskripsi_transect_zone").html(data.transect_zone);
+            $("#deskripsi_transect_zone").html(data.deskripsi_transect_zone);
 
             // console.log(data.image[0].name);
 
@@ -973,73 +976,6 @@ $(document).ready(function () {
                     selectOption(".gambar_utama_slider_input");
                 }
 
-                // for (let x = 0; x < ImgArray.length; x++) {
-                //     let element = `<div><img class="w-100" src="https://jakpintas.dpmptsp-dki.com/survey/${ImgArray[x]}" alt="First slide"></div>`;
-                //     // $(".gambar_utama_slider_input").slick("slickAdd", element);
-                //     // document.querySelector(".images").innerHTML += element;
-                //     // console.log(element);
-
-                //     // $(
-                //     //     "div.gambar_utama_slider_input.slick-initialized.slick-slider"
-                //     // ).length;
-
-                //     if (
-                //         $(
-                //             "div.gambar_utama_slider_input.slick-initialized.slick-slider"
-                //         ).length == 0
-                //     ) {
-                //         $(".gambar_utama_slider_input").html("");
-                //         $(".gambar_utama_slider_input").html(element);
-                //         selectOption("gambar_utama_slider_input");
-                //     } else {
-                //         $(".gambar_utama_slider_input").slick("unslick");
-                //         $(".gambar_utama_slider_input").html("");
-                //         $(".gambar_utama_slider_input").html(element);
-                //         selectOption("gambar_utama_slider_input");
-                //     }
-                // }
-                // for (let x = 0; x < ImgArray.length; x++) {
-                //     let element = `<div class="carousel-item ${
-                //         x == 0 ? "active" : ""
-                //     }"><img class="d-block w-100" src="https://jakpintas.dpmptsp-dki.com/survey/${
-                //         ImgArray[x]
-                //     }" alt="First slide"></div>`;
-
-                //     document.querySelector(".images").innerHTML += element;
-                //     console.log($(this));
-                // }
-
-                // for (element of array) {
-                //     console.log(element.map((e) => e.name));
-                //     output = element.map((e) => e.name);
-                //     console.log(element);
-                //     // $("#gambar_utama_perkembangan").html(
-                //     //     '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/' +
-                //     //         output +
-                //     //         '" /> '
-                //     // );
-                // }
-
-                // if (data.image[0].name.length == 0) {
-                //     $("#gambar_utama_perkembangan2").html(
-                //         '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" /> '
-                //     );
-                // } else {
-                //     $("#gambar_utama_perkembangan2").html(
-                //         '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/survey/' +
-                //             data.image.name +
-                //             '" /> '
-                //     );
-                // }
-
-                // console.log(data.user.name);
-
-                // $("#photo_ajib_perkembangan").html(
-                //     '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
-                //         data.user.name +
-                //         '.jpg") }}" alt="Petugas Ajib" /></span>'
-                // );
-
                 $("#photo_ajib_perkembangan").html(
                     '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
                         data.user.avatar +
@@ -1084,29 +1020,20 @@ function getAjibKelurahan(koor_kelurahan) {
     });
 }
 
-// $(document).ready(function () {
-//     $("#selectOption").change(function () {
-//         var kel = $("#selectOption").val();
+$.ajax({
+    url: `/chart-survey/6`,
+    method: "GET",
+    success: (e) => {
+        // console.log(e);
+    },
+});
 
-//         console.log(kel);
-
-//         $.ajax({
-//             url: `/admin/Kelurahan/${kel}`,
-//             method: "GET",
-//             dataType: "json",
-
-//             success: function (e) {
-//                 $.each(e.get_kelurahan, function (key, data) {
-//                     console.log(e.get_kelurahan);
-
-//                     $("#judul_ekspor").html(data.judul);
-
-//                     // console.log(get_kelurahan)
-
-//                     // let str = JSON.stringify(get_kelurahan);
-//                     // var cek = window.sessionStorage.setItem("get_kelurahan", str);
-//                 });
-//             },
-//         });
-//     });
-// });
+const FilterChartSurvey = (periode) => {
+    $.ajax({
+        url: `/chart-survey/${periode - 1}`,
+        method: "GET",
+        success: (e) => {
+            // console.log(e);
+        },
+    });
+};

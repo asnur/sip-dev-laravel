@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\GrafikChartController;
 use App\Http\Controllers\DigitasiController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
@@ -184,6 +185,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
+// Grafik Chart Rekap Survey
+Route::get('/chart-survey/{periode}', [GrafikChartController::class, 'index']);
 
 Route::post('/digitasi', [DigitasiController::class, 'index'])->name('digitasi');
 
