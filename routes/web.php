@@ -21,6 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
 use App\Http\Controllers\SurveyPerkembanganController;
 use App\Models\Survey;
+use App\Models\SurveyPerkembangan;
 use Jenssegers\Agent\Agent;
 
 
@@ -203,6 +204,26 @@ Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteI
 Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
 Route::get('/layerSurveyPerkembangan', [SurveyPerkembanganController::class, 'layerSurveyPerkembangan'])->name('layer-survey-perkembangan');
 
+
+//Export Data
+Route::get('/data-jumlah-titik', function () {
+    $data = User::withCount('perkembangan')->orderBy('perkembangan_count', 'DESC')->whereHas(
+        'roles',
+        function ($q) {
+            $q->whereIn('name', ['CPNS', 'ajib-kecamatan']);
+        }
+    )->get();
+
+    return view('survey-titik-excel', compact('data'));
+})->name('export-data-titik');
+
+Route::get('/detail-data-titik', function () {
+    $data = SurveyPerkembangan::with('user')->get()->sortBy(function ($query) {
+        return $query->user->name;
+    })->all();
+
+    return view('detail-data-titik', compact('data'));
+})->name('export-data-detail');
 
 //PHP INFO
 // Route::get('/createUserPNS', function () {
