@@ -698,3 +698,11 @@ input[type="range"]::-moz-range-progress {
     padding: 0 !important;
     margin: 0 !important;
 }
+
+.mapboxgl-popup-close-button {
+    z-index: 99999;
+    font-size: 25px;
+    color: red;
+    font-weight: bold;
+    outline: none;
+}

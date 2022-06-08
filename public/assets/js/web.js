@@ -5070,6 +5070,7 @@ function deleteDataSurvey(id_data, id_user) {
         },
         success: (e) => {
             getDataSurvey(id_user);
+            getLayerSurveyPerkembangan();
             $("#pesanBerhasilHapusSurvey").show();
             setTimeout(function () {
                 $("#pesanBerhasilHapusSurvey").hide();
@@ -5542,6 +5543,8 @@ $("#formSurveyLocation").on("submit", function (e) {
         transect_zone !== "" &&
         deskripsi_transect_zone !== ""
     ) {
+        $("#prosesSurvey").show();
+        $("#submitSurveyLocation").hide();
         $.ajax({
             url: `${APP_URL}/getIdUser`,
             method: "GET",
@@ -5557,10 +5560,9 @@ $("#formSurveyLocation").on("submit", function (e) {
                 $.ajax({
                     url: localStorage.getItem("url_survey"),
                     method: "POST",
-                    beforeSend: () => {
-                        $("#prosesSurvey").show();
-                        $("#submitSurveyLocation").hide();
-                    },
+                    // beforeSend: () => {
+
+                    // },
                     contentType: false,
                     processData: false,
                     data: formData,
@@ -6485,6 +6487,103 @@ const getLayerSurveyPerkembangan = () => {
                     "circle-radius": 4,
                     "circle-opacity": 0.8,
                 },
+            });
+
+            map.on("mouseenter", "survey_perkembangan", (e) => {
+                map.getCanvas().style.cursor = "pointer";
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const dt = e.features[0].properties;
+                console.log(dt);
+                let imageCarousel = ``;
+                let image = JSON.parse(dt.image);
+                if (image.length == 0) {
+                    imageCarousel += `
+                    <div class="carousel-item active">
+                        <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
+                    </div>
+                    `;
+                } else {
+                    image.forEach((item, index) => {
+                        imageCarousel += `
+                        <div class="carousel-item ${
+                            index == 0 ? "active" : ""
+                        }">
+                            <img src="${APP_URL}/survey/${
+                            item.name
+                        }" class="card-img-top" style="height: 160px;object-fit: cover;">
+                        </div>
+                        `;
+                    });
+                }
+                const content = `<div style="width:300px;">
+                <div class="imgcard-container">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                ${imageCarousel}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
+                  
+                </div>
+                <div class="card-body p-2">
+                  <h6 class="mt-0 mb-1 card-title border-bottom font-weight-bold" style="font-size:14px;">${dt.name}</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            ID Sub Blok
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.id_sub_blok}
+                        </div>
+                        <div class="col-sm-6">
+                            Kelurahan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.kelurahan}
+                        </div>
+                        <div class="col-sm-6">
+                            Kecamatan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.kecamatan}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Regional
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.regional}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Lingkungan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.neighborhood}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Ruang
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.transect_zone}
+                        </div>
+                    </div>
+                </div>`;
+
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] +=
+                        e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+                popupSurvey.setLngLat(coordinates).setHTML(content).addTo(map);
+            });
+
+            map.on("mouseleave", "survey_perkembangan", () => {
+                map.getCanvas().style.cursor = "";
+                // popup.remove();
             });
         },
     });
