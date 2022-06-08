@@ -32,7 +32,13 @@ const addText = () => {
                 $("#table-surveyer2").DataTable({
                     // retrieve: true,
                     ordering: true,
-                    order: [[2, "desc"]],
+                    language: {
+                        search: "Cari Petugas Survey:",
+                    },
+                    order: [
+                        [2, "desc"],
+                        [1, "desc"],
+                    ],
                     columnDefs: [
                         { orderSequence: ["asc", "desc"], targets: [0] },
                         { orderSequence: ["asc", "desc"], targets: [1] },
@@ -44,8 +50,11 @@ const addText = () => {
             $(document).ready(function () {
                 $("#table-surveyer3").DataTable({
                     // retrieve: true,
-                    ordering: true,
-                    order: [[0, "asc"]],
+                    ordering: false,
+                    sScrollX: "200%",
+                    sScrollXInner: "200%",
+                    responsive: false,
+                    order: [[0, "desc"]],
                     columnDefs: [
                         { orderSequence: ["asc", "desc"], targets: [0] },
                         { orderSequence: ["asc", "desc"], targets: [1] },
@@ -54,6 +63,15 @@ const addText = () => {
                         { orderSequence: ["asc", "desc"], targets: [4] },
                         { orderSequence: ["asc", "desc"], targets: [5] },
                         { orderSequence: ["asc", "desc"], targets: [6] },
+                        { orderSequence: ["asc", "desc"], targets: [7] },
+                        { orderSequence: ["asc", "desc"], targets: [8] },
+                        { orderSequence: ["asc", "desc"], targets: [9] },
+                        { width: "5%", targets: 0 },
+                        { width: "5%", targets: 1 },
+                        { width: "6%", targets: 2 },
+                        { width: "7%", targets: 3 },
+                        { width: "5%", targets: 4 },
+                        { width: "8%", targets: 5 },
                     ],
                 });
             });

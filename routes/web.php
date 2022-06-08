@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\GrafikChartController;
 use App\Http\Controllers\DigitasiController;
 use App\Http\Controllers\KBLIPusdatin;
 use App\Http\Controllers\PDFController;
@@ -80,7 +81,7 @@ Route::get('/cekSession', function () {
 //Save Data Kelurahan
 Route::get('/saveKelurahan/{kelurahan}', [RequireDataChatController::class, 'save']);
 Route::post('/saveUser', function (Request $request) {
-    $authUser = User::where('provider_id', $request->input('provider_id'))->first();
+    $authUser = User::where('email', $request->input('email'))->first();
     if ($authUser) {
         $dataUser = $authUser;
         // return $dataUser;
@@ -184,6 +185,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
+// Grafik Chart Rekap Survey
+Route::get('/chart-survey/{periode}', [GrafikChartController::class, 'index']);
 
 Route::post('/digitasi', [DigitasiController::class, 'index'])->name('digitasi');
 
@@ -198,9 +201,64 @@ Route::post('/editDataSurvey', [SurveyPerkembanganController::class, 'editDataSu
 Route::post('/deleteDataSurvey', [SurveyPerkembanganController::class, 'deleteDataSurvey'])->name('delete-survey-perkembangan');
 Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteImageSurvey'])->name('delete-image-survey-perkembangan');
 Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
+Route::get('/layerSurveyPerkembangan', [SurveyPerkembanganController::class, 'layerSurveyPerkembangan'])->name('layer-survey-perkembangan');
 
 
 //PHP INFO
-Route::get('/phpinfo', function () {
-    return phpinfo();
-});
+// Route::get('/createUserPNS', function () {
+//     $data = array(
+//         array("val0" => "Andini", "val1" => "andinindy29@gmail.com"),
+//         array("val0" => "Iksandi Nugraha", "val1" => "iksandinugraha1994@gmail.com"),
+//         array("val0" => "Wildan", "val1" => "wildanhidayatwildan@gmail.com"),
+//         array("val0" => "Dea Zulfia", "val1" => "deazulfia66@gmail.com"),
+//         array("val0" => "Winda", "val1" => "windasiadarii@gmail.com"),
+//         array("val0" => "Muhammad Sutan Syauqi Ferbian G", "val1" => " sutan.girsang@gmail.com"),
+//         array("val0" => "Nadya Rahmi Maghfira", "val1" => "nad.rahmi22@gmail.com"),
+//         array("val0" => "Abraham Yudha K.S", "val1" => "abrahamyksilaban@gmail.com"),
+//         array("val0" => "Andina Oktavia Sulistya Putri", "val1" => "andinaoktavias@gmail.com"),
+//         array("val0" => "Mery Anggrina", "val1" => "anggrinamery@gmail.com"),
+//         array("val0" => "Eka Triakuntini", "val1" => "ekatriakuntini@gmail.com"),
+//         array("val0" => "Siti Nurvira Zanirah", "val1" => "virazanirah@gmail.com"),
+//         array("val0" => "Quina Virmaya", "val1" => "quinavirmy@gmail.com"),
+//         array("val0" => "Fadhila I S", "val1" => "fad_is@yahoo.com"),
+//         array("val0" => "Maretta Arninda Dianty", "val1" => "marettadianty@gmail.com"),
+//         array("val0" => "Ansellia Septarini", "val1" => "anselliaseptarini@gmail.com"),
+//         array("val0" => "M irfan aprianda", "val1" => "irfanaprianda@gmail.com"),
+//         array("val0" => "Khasri Thamrin P", "val1" => "khasrixap@gmail.com"),
+//         array("val0" => "Faiz Abdurrahman", "val1" => "faiz.abdurrahman92@gmail.com"),
+//         array("val0" => "Abiel Timothy", "val1" => "abieltimothy@gmail.com"),
+//         array("val0" => "Teguh Budianto", "val1" => "tbteguhbudianto@gmail.com"),
+//         array("val0" => "Icha Apriliyeni", "val1" => "ichaapriliy@gmail.com"),
+//         array("val0" => "Maryam Muthiah", "val1" => "maryammuthiah91@gmail.com"),
+//         array("val0" => "Faqih Shokhib Anugerah", "val1" => "faqihsokhib@gmail.com"),
+//         array("val0" => "Ikhsan Anwar F", "val1" => "fuadinwr@gmail.com"),
+//         array("val0" => "Indra Maulana", "val1" => "pancaindra5th@gmail.com"),
+//         array("val0" => "Yoanda Dimastria", "val1" => "yoandadimastria29@gmail.com"),
+//         array("val0" => "Sayoga Pradana", "val1" => "sayogapra@gmail.com"),
+//         array("val0" => "Ratih Gita Astari", "val1" => "astari.rg@gmail.com"),
+//         array("val0" => "Sentanu Aji ", "val1" => "sentanuaji03@gmail.com"),
+//         array("val0" => "Sekar", "val1" => "sekaramadyani@gmail.com"),
+//         array("val0" => "Mus", "val1" => "mus.mukandar39@gmail.com"),
+//         array("val0" => "Ferdinand", "val1" => "ferdinandmsimatupang@gmail.com"),
+//         array("val0" => "Masfu Maarif", "val1" => "masfu.account@gmail.com"),
+//         array("val0" => "Nauval Ghifari", "val1" => "nauval.ghifari@gmail.com"),
+//         array("val0" => "Windy Lestari", "val1" => "Lwindy1996@gmail.com"),
+//         array("val0" => "Khairina HP", "val1" => "khairinaheldiputri@gmail.com"),
+//         array("val0" => "Iqbal P. Putra", "val1" => "iqbal.permana.putra@gmail.com"),
+//         array("val0" => "Paras Ayu Cinta", "val1" => "parasajoe@gmail.com"),
+//         array("val0" => "Diah Ismi Anggraini Putri", "val1" => "Diahismiap01@gmail.com"),
+//         array("val0" => "Sherin Ajeng Norliani", "val1" => "sherinajeng13@gmail.com"),
+//         array("val0" => "Muh. Aqsyah", "val1" => "Aqsyah.gd@gmail.com"),
+//     );
+
+//     // dd($data);
+//     foreach ($data as $d) {
+//         // echo $d['val0'] . '-' . $d['val1'] . '<br>';
+//         $data = User::create([
+//             'name' => $d['val0'],
+//             'email' => $d['val1'],
+//             'provider' => 'google',
+//         ]);
+//         $data->assignRole('user');
+//     }
+// });

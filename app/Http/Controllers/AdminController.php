@@ -493,11 +493,22 @@ class AdminController extends Controller
     public function perkembangan_survey()
     {
 
+        $hasil_jumlah_titik = SurveyPerkembangan::all();
 
-        $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
 
-        $datas = SurveyPerkembangan::with('image')->get();
+        // $pegawai_ajib2 = User::withCount('perkembangan')->get();
+
+
+        $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
+            'roles',
+            function ($q) {
+                $q->whereNotIn('name', ['admin']);
+            }
+        )->get();
+
+
+        // $datas = SurveyPerkembangan::with('image')->get();
 
         $datas = SurveyPerkembangan::orderBy('id', 'DESC')->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
@@ -532,7 +543,13 @@ class AdminController extends Controller
         // dd($datas2);
 
         //Detail Survey
-        $data_detail = SurveyPerkembangan::with(['user'])->get();
+        // $data_detail = SurveyPerkembangan::with(['user'])->orderBy('users.name', 'asc')->get();
+        $data_detail = SurveyPerkembangan::get()->sortBy(function ($query) {
+            return $query->user->name;
+        })
+            ->all();
+
+        // dd($data_detail);
 
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
@@ -543,7 +560,7 @@ class AdminController extends Controller
         // )->get();
 
 
-        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail']));
+        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail', 'hasil_jumlah_titik']));
     }
 
 
