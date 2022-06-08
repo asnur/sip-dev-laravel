@@ -5583,6 +5583,17 @@ $("#formSurveyLocation").on("submit", function (e) {
                         }, 3000);
                         getLayerSurveyPerkembangan();
                     },
+                    error: function (e) {
+                        $("#prosesSurvey").hide();
+                        $("#submitSurveyLocation").show();
+                        getLayerSurveyPerkembangan();
+                        if (
+                            localStorage.getItem("url_survey") ==
+                            `${APP_URL}/saveDataSurvey`
+                        ) {
+                            resetSurvey();
+                        }
+                    },
                 });
             },
         });

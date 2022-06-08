@@ -21,7 +21,8 @@ class SurveyPerkembanganController extends Controller
 
     public function saveDataSurvey(Request $request)
     {
-        SurveyPerkembangan::create([
+        $uid = base64_encode($request->input('id_sublok') . $request->input('name') . $request->input('kelurahan') . $request->input('kecamatan') . $request->input('regional') . $request->input('neighborhood') . $request->input('transect_zone') . $request->input('id_user'));
+        $saved = SurveyPerkembangan::create([
             'id_sub_blok' => $request->input('id_sublok'),
             'name' => $request->input('name'),
             'kordinat' => $request->input('kordinat'),
@@ -33,25 +34,28 @@ class SurveyPerkembanganController extends Controller
             'deskripsi_neighborhood' => $request->input('deskripsi_neighborhood'),
             'transect_zone' => $request->input('transect_zone'),
             'deskripsi_transect_zone' => $request->input('deskripsi_transect_zone'),
-            'id_user' => $request->input('id_user')
+            'id_user' => $request->input('id_user'),
+            'uid' => $uid,
         ]);
 
-        $lastId = SurveyPerkembangan::orderBy('id', 'DESC')->first();
+        if ($saved) {
+            $lastId = SurveyPerkembangan::orderBy('id', 'DESC')->first();
 
-        if ($request->hasfile('foto_survey')) {
-            foreach ($request->file('foto_survey') as $key => $file) {
-                $name = rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
-                $img = Image::make($file->getRealPath());
-                $path = 'survey/';
-                $img->resize(400, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($path . '/' . $name);
-                // $file->move(public_path() . '/survey/', $name);
+            if ($request->hasfile('foto_survey')) {
+                foreach ($request->file('foto_survey') as $key => $file) {
+                    $name = rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
+                    $img = Image::make($file->getRealPath());
+                    $path = 'survey/';
+                    $img->resize(400, 400, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($path . '/' . $name);
+                    // $file->move(public_path() . '/survey/', $name);
 
-                SurveyPerkembanganImage::create([
-                    'name' => $name,
-                    'id_survey' => $lastId->id
-                ]);
+                    SurveyPerkembanganImage::create([
+                        'name' => $name,
+                        'id_survey' => $lastId->id
+                    ]);
+                }
             }
         }
     }
