@@ -826,7 +826,7 @@ map.loadImage(`/assets/gambar/ICON.png`, function (error, image) {
 
 map.on("style.load", function () {
     // onOffLayers();
-    // getLayerSurveyPerkembangan();
+    getLayerSurveyPerkembangan();
     const layers = map.getStyle().layers;
     const labelLayerId = layers.find(
         (layer) => layer.type === "symbol" && layer.layout["text-field"]
@@ -5579,6 +5579,7 @@ $("#formSurveyLocation").on("submit", function (e) {
                         setTimeout(function () {
                             $("#pesanBerhasilSurvey").hide();
                         }, 3000);
+                        getLayerSurveyPerkembangan();
                     },
                 });
             },
