@@ -423,6 +423,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </div>
                         <div class="col-md-7">
                             <select name="neighborhood" id="neighborhoodSurvey" style="font-size: 8pt;width:55px;">
+                                <option value="-">-</option>
                                 <option value="LP-C">LP-C</option>
                                 <option value="LP-M">LP-M</option>
                                 <option value="LP-K">LP-K</option>
