@@ -11,7 +11,7 @@
 <body>
     @php
         header('Content-type: application/vnd-ms-excel');
-        header('Content-Disposition: attachment; filename=Data Titik Pegawai.xls');
+        header('Content-Disposition: attachment; filename=Data Detil.xls');
     @endphp
     <table border="1">
         <tr>
