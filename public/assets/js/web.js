@@ -5503,8 +5503,16 @@ function preview_foto_survey() {
         } else {
             $("#previewFotoSurvey").slick("slickAdd", element, 0, true);
         }
-        files.push(file);
-        Newfiles.push(file);
+        new Compressor(file, {
+            quality: 0.01,
+            success(result) {
+                files.push(result);
+                Newfiles.push(result);
+            },
+            error(err) {
+                console.log(err.message);
+            },
+        });
     }
     $("#gambarLokasiSurvey").val("");
     removeItem();

@@ -46,10 +46,10 @@ class SurveyPerkembanganController extends Controller
                     $name = rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
                     $img = Image::make($file->getRealPath());
                     $path = 'survey/';
-                    $img->resize(400, 400, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($path . '/' . $name);
-                    // $file->move(public_path() . '/survey/', $name);
+                    // $img->resize(400, 400, function ($constraint) {
+                    //     $constraint->aspectRatio();
+                    // })->save($path . '/' . $name);
+                    $file->move(public_path() . '/survey/', $name);
 
                     SurveyPerkembanganImage::create([
                         'name' => $name,
