@@ -59,6 +59,54 @@
         flex: 1 1 auto;
     }
 
+
+    /* jgn pindah */
+
+    .slick-next slick-arrow {
+        position: relative;
+        left: 29.1rem;
+        top: -8rem;
+    }
+
+    .data_image_space .slick-list {
+        width: 28.8rem !important;
+    }
+
+    .data_image_space .slick-prev {
+        margin-left: 0.2rem;
+        top: 10rem;
+        position: relative;
+    }
+
+    .data_image_space .slick-next {
+        position: relative;
+        left: 29.1rem;
+        top: -10rem;
+    }
+
+    .data_image_space .slick-prev:before {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .data_image_space .slick-next:before {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* .slick-prev:before,
+    .slick-next:before {
+        font-size: 40px;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    } */
+
+</style>
+
+<style>
+    .dt-buttons {
+        position: relative;
+        top: -1.9rem;
+        right: 3rem;
+    }
+
 </style>
 
 
@@ -178,7 +226,8 @@ $Roles = '';
 
                     <div class="card-body">
                         {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($hasil_jumlah_titik) }}</div> --}}
-                    <div style="font-size:40px;" class="h2 m-0">{{ count($hasil_jumlah_titik) }}</div>
+                    <div style="font-size:40px;" class="h2 m-0">{{ count($hasil_jumlah_titik) }}
+                    </div>
 
                     {{-- <div style="font-size:40px;" class="h2 m-0">{{ count($hasil_jumlah_titik) }} --}}
                 </div>
@@ -258,20 +307,19 @@ $Roles = '';
 
                 <div class="card-body">
 
-                    <div class="row">
+                    <div style="max-height: 38em !important;height: 33em !important;" class="row">
 
                         <div class="col-md-6 mt-2">
 
-                            <div style="position:relative;  width:30.5rem;" class="gambar_utama_slider_input">
+                            <div class="gambar_utama_slider_input atur_margin_gambar_utama data_image_space">
                                 <span id="gambar_utama_perkembangan">
                                 </span>
-
                             </div>
 
 
                         </div>
 
-                        <div class="col-md-6 mt-2">
+                        <div sty class="col-md-6 mt-2">
 
                             <div class="row">
                                 <div style="width: 40rem; height:2.5rem;" class="col-md-12">
@@ -284,18 +332,15 @@ $Roles = '';
 
                                             </div>
 
-                                            {{-- <div id="photo_ajib_perkembangan"></div> --}}
                                         </div>
 
                                         <div style="margin-left:-1.3rem;" class="col-md-10 mt-1">
                                             <div class="text-truncate">
                                                 <span class="h4" id="name_perkembangan">
-                                                    {{-- <div class="skeleton-heading"></div> --}}
                                                 </span>
                                             </div>
                                             <div class="mt-1">
                                                 <span id="penempatan_perkembangan">
-                                                    {{-- <div style="margin-top:-0.7rem;" class="skeleton-heading"></div> --}}
                                                 </span>
                                             </div>
                                         </div>
@@ -465,7 +510,7 @@ $Roles = '';
 
                                 @foreach ($datas as $gi)
                                 <div>
-                                    <img class="img_child img_child_id_perkembangan" data-id="{{ $gi->id }}" src="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                    <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id }}" src="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
                                 </div>
                                 @endforeach
                             </div>
@@ -485,24 +530,27 @@ $Roles = '';
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
                     <h3 class="card-title">Tabel Kinerja Petugas Survey</h3>
-                    <div id="id_sub_blok"></div>
-
                 </div>
                 <div class="card-body">
                     <table style="margin-bottom: 10rem;" class="display table table-striped" id="table-surveyer2">
+
                         <thead>
-                            <tr class="text-center size_detil" valign="middle">
-                                <th style="width: 20%">Nama Petugas Ajib</th>
-                                <th style="width: 30%">Penempatan</th>
-                                <th style="width: 35%">Jumlah Titik</th>
+                            <tr class="size_detil" valign="middle">
+                                <th>Nama Petugas Ajib</th>
+                                <th>Penempatan</th>
+                                <th>Role</th>
+                                <th>Jumlah Titik</th>
                             </tr>
                         </thead>
                         <tbody>
+
+
                             @foreach ($pegawai_ajib2 as $pa)
                             <tr>
-                                <td style="width: 20%">{{ $pa->name }}</td>
-                                <td style="width: 30%">{{ $pa->penempatan }}</td>
-                                <td class="text-center">{{ $pa->perkembangan_count }}</td>
+                                <td>{{ $pa->name }}</td>
+                                <td>{{ $pa->penempatan }}</td>
+                                <td>{{ $pa->roles[0]->name }}</td>
+                                <td>{{ $pa->perkembangan_count }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -551,38 +599,13 @@ $Roles = '';
                                 <td>{{ ucwords(strtolower($pa->kecamatan)) }}</td>
                                 <td>{{ $pa->regional }}</td>
                                 <td>{{ $pa->deskripsi_regional }}
-                                    {{-- @if(strlen($pa->deskripsi_regional) > 45)
-                                    {{substr($pa->deskripsi_regional,0,45)}}
-                                    <span class="read-more-show hide_content"><i class="fa fa-angle-down arrow_updown"></i></span>
-                                    <span class="read-more-content"> {{substr($pa->deskripsi_regional,45,strlen($pa->deskripsi_regional))}}
-                                        <span class="read-more-hide hide_content"><i class="fa fa-angle-up arrow_updown"></i></span> </span>
-                                    @else
-                                    {{$pa->deskripsi_regional}}
-                                    @endif --}}
                                 </td>
                                 <td>{{ $pa->neighborhood }}</td>
                                 <td>{{ $pa->deskripsi_neighborhood }}
-                                    {{-- @if(strlen($pa->deskripsi_neighborhood ) > 45)
-                                    {{substr($pa->deskripsi_neighborhood ,0,45)}}
-                                    <span class="read-more-show hide_content"><i class="fa fa-angle-down arrow_updown"></i></span>
-                                    <span class="read-more-content"> {{substr($pa->deskripsi_neighborhood ,45,strlen($pa->deskripsi_neighborhood ))}}
-                                        <span class="read-more-hide hide_content"><i class="fa fa-angle-up arrow_updown"></i></span> </span>
-
-                                    @else
-                                    {{$pa->deskripsi_neighborhood }}
-                                    @endif --}}
                                 </td>
                                 <td>{{ $pa->transect_zone }}</td>
                                 <td>
                                     {{ $pa->deskripsi_transect_zone }}
-                                    {{-- @if(strlen($pa->deskripsi_transect_zone ) > 45)
-                                    {{substr($pa->deskripsi_transect_zone ,0,45)}}
-                                    <span class="read-more-show hide_content"><i class="fa fa-angle-down arrow_updown"></i></span>
-                                    <span class="read-more-content"> {{substr($pa->deskripsi_transect_zone ,45,strlen($pa->deskripsi_transect_zone ))}}
-                                        <span class="read-more-hide hide_content"><i class="fa fa-angle-up arrow_updown"></i></span> </span>
-                                    @else
-                                    {{$pa->deskripsi_transect_zone }}
-                                    @endif --}}
                                 </td>
                             </tr>
                             @endforeach
@@ -615,26 +638,5 @@ $Roles = '';
 </div>
 
 
-<script type="text/javascript">
-    // Hide the extra content initially, using JS so that if JS is disabled, no problemo:
-    $('.read-more-content').addClass('hide_content')
-    $('.read-more-show, .read-more-hide').removeClass('hide_content')
-
-    // Set up the toggle effect:
-    $('.read-more-show').on('click', function(e) {
-        $(this).next('.read-more-content').removeClass('hide_content');
-        $(this).addClass('hide_content');
-        e.preventDefault();
-    });
-
-    // Changes contributed by @diego-rzg
-    $('.read-more-hide').on('click', function(e) {
-        var p = $(this).parent('.read-more-content');
-        p.addClass('hide_content');
-        p.prev('.read-more-show').removeClass('hide_content'); // Hide only the preceding "Read More"
-        e.preventDefault();
-    });
-
-</script>
 
 @endsection

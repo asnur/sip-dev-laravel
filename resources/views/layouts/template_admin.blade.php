@@ -62,10 +62,30 @@
             .mapboxgl-popup-content{
                 padding: 0;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                max-height: 15rem;
+                /* max-height: 15rem; */
                 overflow: hidden;
                 width: 14rem;
-                height: 15rem;
+                /* height: 15rem; */
+            }
+
+            .atur_margin_gambar_utama{
+                position:relative;
+                left:-2rem; width:30.5rem;
+                top:-1.6rem
+            }
+
+            .atur_margin_gambar_utama2{
+                margin-top: -1.5rem !important;
+                margin-left: -1rem !important;
+            }
+
+            .mapboxgl-popup-close-button{
+                background-color: #fff !important;
+            }
+
+            .mapboxgl-popup-close-button:focus-visible{
+                /* background-color: #fff !important; */
+                outline: none;
             }
         </style>
     @endif
@@ -547,6 +567,7 @@
 
 
     <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     {{-- <script src="{{ asset('assets/admin/vendor/datatables/dataTables.buttons.min.js') }}"></script>
