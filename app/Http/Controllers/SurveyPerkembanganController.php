@@ -187,4 +187,42 @@ class SurveyPerkembanganController extends Controller
 
         return response()->json($geojson_format);
     }
+
+    public function surveyKelurahan(Request $request)
+    {
+        $geojson_format = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+
+        $data = SurveyPerkembangan::with('image')->where('kelurahan', $request->kelurahan)->get();
+
+        foreach ($data as $d) {
+            $coor = explode(",", $d->kordinat);
+            $value_data = [
+                'type' => "Feature",
+                'properties' => [
+                    'name' => $d->name,
+                    'id_sub_blok' => $d->id_sub_blok,
+                    'image' => $d->image,
+                    'kelurahan' => $d->kelurahan,
+                    'kecamatan' => $d->kecamatan,
+                    'regional' => $d->regional,
+                    'deskripsi_regional' => $d->deskripsi_regional,
+                    'neighborhood' => $d->neighborhood,
+                    'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
+                    'transect_zone' => $d->transect_zone,
+                    'deskripsi_transect_zone' => $d->deskripsi_transect_zone,
+                ],
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [(float)$coor[1], (float)$coor[0]]
+                ]
+            ];
+
+            array_push($geojson_format['features'], $value_data);
+        }
+
+        return response()->json($geojson_format);
+    }
 }

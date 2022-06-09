@@ -932,6 +932,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </li>
                         </ul>
                     </div>
+                    <div class="form-check survey_dot d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="radio" name="layer" class="form-check-input" id="survey_dot">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="survey_dot">Survey Perkembangan</label>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="form-check investasi_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
@@ -5290,6 +5299,19 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             location_city
                         </span>
                         <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                    </div>
+                </div>
+            </button>
+            {{-- </div> --}}
+            {{-- <div> --}}
+            <button class="btn btn-sm ml-2"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="survey">
+                <div class="container">
+                    <div class="row">
+                        <span class="material-icons text-primary mr-1">
+                            query_stats
+                        </span>
+                        <span class="font-weight-bold" style="margin-top: 2px">Survey Perkembangan</span>
                     </div>
                 </div>
             </button>
