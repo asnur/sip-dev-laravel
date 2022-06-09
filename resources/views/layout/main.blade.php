@@ -464,8 +464,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey"
-                                style="font-size: 13px" placeholder="Catatan perkembangan ruang" rows="3"
-                                maxlength="255"></textarea>
+                                style="font-size: 13px" placeholder="Catatan perkembangan ruang" rows="3" maxlength="255"></textarea>
                             <span style="font-size:8pt"><span id="countTextRuang">0</span>/255</span>
                         </div>
                     </div>
@@ -5514,8 +5513,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <option value="Pekerjaan">Pekerjaan</option>
                             <option value="Pendidikan">Pendidikan</option>
                             <option value="Agama">Agama</option>
-                            <option value="Kepadatan">Kepadatan</option>
                             <option value="Jumlah Penduduk">Jumlah Penduduk</option>
+                            <option value="Kepadatan Penduduk">Kepadatan Penduduk</option>
+                            <option value="Kepadatan Bangunan">Kepadatan Bangunan</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">

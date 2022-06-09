@@ -306,6 +306,31 @@ const sliderRangeJumlahPenduduk = () => {
     );
 };
 
+const sliderRangeKepadatanBangunan = () => {
+    $("#slider-kepadatan-bangunan").slider({
+        range: true,
+        min: 0,
+        max: 25000,
+        values: [0, 25000],
+        step: 50,
+        slide: function (event, ui) {
+            $("#kepadatan-bangunan").text(
+                separatorNum(ui.values[0]) + " - " + separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "count_polygons");
+        },
+    });
+    $("#kepadatan-bangunan").text(
+        separatorNum($("#slider-kepadatan-bangunan").slider("values", 0)) +
+            " - " +
+            separatorNum($("#slider-kepadatan-bangunan").slider("values", 1))
+    );
+};
+
 $.ajax({
     url: `${url}/text`,
     method: "GET",
@@ -3091,6 +3116,11 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     localStorage.getItem("filterCategoryChoro") == "kepadatan"
                 ) {
                     el = `<strong class="d-block">Jumlah (Orang km<sup>3</sup>)</strong>`;
+                } else if (
+                    localStorage.getItem("filterCategoryChoro") ==
+                    "count_polygons"
+                ) {
+                    el = `<strong class="d-block">Jumlah (Bangunan)</strong>`;
                 } else {
                     el = `<strong class="d-block">Jumlah (Orang)</strong>`;
                 }
@@ -6344,7 +6374,7 @@ $("#optionFilterChoro").change(() => {
         `);
         chipOption("agama");
         activeButton("agama");
-    } else if ($("#optionFilterChoro").val() == "Kepadatan") {
+    } else if ($("#optionFilterChoro").val() == "Kepadatan Penduduk") {
         localStorage.setItem("filterCategoryChoro", "kepadatan");
         choro(0, 100000, "kepadatan");
         $("#btn-titik").hide();
@@ -6398,6 +6428,33 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         sliderRangeJumlahPenduduk();
+    } else if ($("#optionFilterChoro").val() == "Kepadatan Bangunan") {
+        localStorage.setItem("filterCategoryChoro", "count_polygons");
+        choro(0, 25000, "count_polygons");
+        $("#btn-titik").hide();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="kepadatan-bangunan" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-kepadatan-bangunan" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Interval (Bangunan)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRangeKepadatanBangunan();
     }
 });
 
