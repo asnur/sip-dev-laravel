@@ -499,21 +499,13 @@ class AdminController extends Controller
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
-        // $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
-        //     'roles',
-        //     function ($q) {
-        //         $q->whereNotIn('name', ['admin']);
-        //     }
-        // )->get();
 
         $pegawai_ajib2 = User::withCount('perkembangan')->with('roles')->whereHas(
             'roles',
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
-                // $q->whereNotIn('name', ['admin'])->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
         )->get();
-        // dd($pegawai_ajib2);
 
 
         // $datas = SurveyPerkembangan::with('image')->get();
