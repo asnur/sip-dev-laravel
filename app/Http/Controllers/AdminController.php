@@ -503,7 +503,7 @@ class AdminController extends Controller
         $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
             'roles',
             function ($q) {
-                $q->whereIn('name', ['CPNS', 'ajib-kecamatan']);
+                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
         )->get();
 
