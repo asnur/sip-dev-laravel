@@ -3615,8 +3615,8 @@ function addLayers(layer) {
             type: "circle",
             source: "survey",
             paint: {
-                "circle-color": "#f1c40f",
-                "circle-stroke-color": "#3498db",
+                "circle-color": "#4264fb",
+                "circle-stroke-color": "#ffff00",
                 "circle-stroke-width": 1,
                 "circle-radius": 4,
                 "circle-opacity": 0.8,
@@ -5373,6 +5373,7 @@ const filterLayer = () => {
         $(".info-layer-usaha").hide();
         $(".info-layer-investasi").hide();
         $(".info-layer-budaya").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#iumk").click(function () {
@@ -5385,6 +5386,7 @@ const filterLayer = () => {
         $(".info-layer").hide();
         $(".info-layer-investasi").hide();
         $(".info-layer-budaya").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#proyek").click(function () {
@@ -5397,6 +5399,7 @@ const filterLayer = () => {
         $(".info-layer-usaha").hide();
         $(".info-layer").hide();
         $(".info-layer-budaya").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#cagar").click(function () {
@@ -5409,6 +5412,7 @@ const filterLayer = () => {
         $(".info-layer-usaha").hide();
         $(".info-layer").hide();
         $(".info-layer-investasi").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#survey").click(function () {
