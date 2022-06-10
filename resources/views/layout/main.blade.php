@@ -583,7 +583,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <span class="font-weight-bold" style="font-size: 13px">Arsip Lokasi </span>
                     </div>
                     <div class="col-md-6 text-right">
-                        <span class="w-100 d-block" style="font-size: 13px;">Jumlah Titik : <span
+                        <span class="w-100 d-block font-weight-bold" style="font-size: 25px;"><span
                                 id="JumlahTitikSurvey">0</span></span>
                         <a href="/printSurvey" class="text-primary" style="
                         position: relative;
