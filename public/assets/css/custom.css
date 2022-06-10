@@ -162,6 +162,16 @@
     overflow-x: hidden;
 }
 
+.info-layer-survey-perkembangan {
+    position: absolute;
+    z-index: 9999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
 .info-layer {
     position: absolute;
     z-index: 999;

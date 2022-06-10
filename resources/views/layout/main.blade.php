@@ -186,6 +186,21 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
         </div>
     </div>
 
+    <div class="info-layer-survey-perkembangan">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeSurveyPerekmbangan" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Survey Perkembangan</span>
+            {{-- <ol class="list-item-survey-perkembangan mt-5">
+
+            </ol> --}}
+            <div class="list-item-survey-perkembangan mt-5">
+
+            </div>
+        </div>
+    </div>
+
     <div class="info-pin-location">
         <div class="container p-4">
             <button type="button" class="close" id="closePin" aria-label="Close">
@@ -568,6 +583,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <span class="font-weight-bold" style="font-size: 13px">Arsip Lokasi </span>
                     </div>
                     <div class="col-md-6 text-right">
+                        <span class="w-100 d-block" style="font-size: 13px;">Jumlah Titik : <span
+                                id="JumlahTitikSurvey">0</span></span>
                         <a href="/printSurvey" class="text-primary" style="
                         position: relative;
                         font-size: 13px;
@@ -5250,72 +5267,72 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
-        <div class="container p-2" id="btn-titik" style="position:absolute; left:30rem; z-index:999; width:60%">
-            {{-- <div> --}}
-            <button class="btn btn-sm"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            apartment
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+        <div class="container p-2" id="btn-titik" style="position:absolute; left:30rem; z-index:999; width:55%">
+            <div>
+                <button class="btn btn-sm"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                apartment
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            storefront
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                storefront
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            home_repair_service
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                home_repair_service
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            location_city
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="survey">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            query_stats
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Survey Perkembangan</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="survey">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                query_stats
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Survey Perkembangan</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
+                </button>
+            </div>
         </div>
         <div class="container p-2 dropdown" id="more-apps"
             style="position:absolute; right:-15px; z-index:999; width:8rem">

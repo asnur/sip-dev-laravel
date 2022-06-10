@@ -3337,6 +3337,7 @@ function addSourceLayer(item) {
                     });
                     addLayers(dt);
                     onOffLayers(dt);
+
                     // if (localStorage.getItem("searching") == 1) {
                 },
             });
@@ -3352,6 +3353,52 @@ function addSourceLayer(item) {
                     });
                     addLayers(dt);
                     onOffLayers(dt);
+                    let data_layer = data.features;
+                    let content = "";
+                    console.log(data_layer);
+                    $(".list-item-survey-perkembangan").html("");
+                    if (data_layer.length == 0) {
+                        content += `
+                            <div class="item mb-3">
+                                <p>Tidak Ada Lokasi yang di Simpan</p>
+                            </div>
+                        `;
+                    } else {
+                        data_layer.forEach(function (item) {
+                            let thumbnail = item.properties.image;
+                            content += `
+                            <div class="item mb-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="${APP_URL}/survey/${
+                                thumbnail.length == 0
+                                    ? "not_image.png"
+                                    : thumbnail[0].name
+                            }">
+                                </div>
+                                <div class="col-8">
+                                    <span style="font-size: 11pt" class="font-weight-bold">${
+                                        item.properties.name
+                                    }</span>
+                                    <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pola Regional :
+                                        <span>${
+                                            item.properties.regional
+                                        }</span></label>
+                                    <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pola Lingkungan :
+                                        <span>${
+                                            item.properties.neighborhood
+                                        }</span></label>
+                                    <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pola Ruang : <span>${
+                                        item.properties.transect_zone
+                                    }</span></label>
+                                </div>
+                            </div>
+                        </div>
+                            `;
+                        });
+                    }
+
+                    $(".list-item-survey-perkembangan").html(content);
                     // if (localStorage.getItem("searching") == 1) {
                 },
             });
@@ -3919,6 +3966,7 @@ function onOffLayers(layer) {
     if (layer == "survey") {
         $("#survey_dot").change(function () {
             if ($(this).prop("checked") == true) {
+                $(".info-layer-survey-perkembangan").show();
                 showLayer("survey_dot");
                 hideLayer("sewa_fill");
                 hideLayer("iumk_fill");
@@ -4960,9 +5008,11 @@ function getDataSurvey(id_user) {
                     </div>
                 </div>`;
                 }
+                $("#JumlahTitikSurvey").text(e.length);
                 $(".list-item-info-location-survey").html("");
                 $(".list-item-info-location-survey").html(html);
             } else {
+                $("#JumlahTitikSurvey").text(e.length);
                 $(".list-item-info-location-survey").html("");
                 $("#messageNoDataSurvey").show();
             }
@@ -5408,6 +5458,23 @@ const filterLayer = () => {
         }
     });
 
+    $("#closeSurveyPerekmbangan").on("click", function (e) {
+        $(".info-layer-survey-perkembangan").hide();
+        $("#show_side_bar").hide();
+        $("#survey").css("background", "white");
+        hideLayer("survey_dot");
+        $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        window.stop();
+        $("#survey_dot").prop("checked", false);
+        // $("#closeSewa").trigger("click");
+        if ($("#sidebar").hide() == true) {
+            $("#hide_side_bar").hide();
+        } else {
+            // $("#hide_side_bar").show();
+            $("#sidebar").show();
+        }
+    });
+
     $("#closeDigitasi").on("click", () => {
         $(".info-layer-digitasi").hide();
         if (localStorage.getItem("polygonDraw") == 1) {
@@ -5505,6 +5572,7 @@ function preview_foto_survey() {
         }
         new Compressor(file, {
             quality: 0.3,
+            convertSize: 1000000,
             success(result) {
                 files.push(result);
                 Newfiles.push(result);
@@ -6551,11 +6619,11 @@ $("#btnInteractive").on("click", () => {
     $("#wilayahindex_fill").trigger("click");
 });
 
-const chipOption = (name) => {
+const chipOption = (name, slide = 4) => {
     $(`#${name}`).slick({
         infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: slide,
+        slidesToScroll: slide,
         variableWidth: true,
         prevArrow: null,
         nextArrow: null,
@@ -6570,6 +6638,8 @@ const sliderOption = (name) => {
         arrows: true,
     });
 };
+
+chipOption("btn-titik", 1);
 
 // const downloadRekap = () => {
 //     $.ajax({
@@ -6649,25 +6719,39 @@ const getLayerSurveyPerkembangan = () => {
                 const dt = e.features[0].properties;
                 console.log(dt);
                 let imageCarousel = ``;
+                let carouselControl = ``;
                 let image = JSON.parse(dt.image);
                 if (image.length == 0) {
-                    imageCarousel += `
+                    imageCarousel = `
                     <div class="carousel-item active">
                         <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
                     </div>
                     `;
+                    carouselControl = ``;
                 } else {
                     image.forEach((item, index) => {
                         imageCarousel += `
                         <div class="carousel-item ${
                             index == 0 ? "active" : ""
                         }">
-                            <img src="${APP_URL}/survey/${
+                        <img src="${APP_URL}/survey/${
                             item.name
                         }" class="card-img-top" style="height: 160px;object-fit: cover;">
                         </div>
                         `;
                     });
+                    if (image.length >= 2) {
+                        console.log("carousel enabled");
+                        carouselControl = `
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>`;
+                    }
                 }
                 const content = `<div style="width:300px;">
                 <div class="imgcard-container">
@@ -6675,14 +6759,7 @@ const getLayerSurveyPerkembangan = () => {
                 <div class="carousel-inner">
                 ${imageCarousel}
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
+               ${carouselControl}
             </div>
                   
                 </div>
@@ -6749,6 +6826,7 @@ map.on("mouseenter", "survey_dot", (e) => {
     const dt = e.features[0].properties;
     console.log(dt);
     let imageCarousel = ``;
+    let carouselControl = ``;
     let image = JSON.parse(dt.image);
     if (image.length == 0) {
         imageCarousel += `
@@ -6756,6 +6834,7 @@ map.on("mouseenter", "survey_dot", (e) => {
             <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
         </div>
         `;
+        carouselControl = ``;
     } else {
         image.forEach((item, index) => {
             imageCarousel += `
@@ -6766,6 +6845,19 @@ map.on("mouseenter", "survey_dot", (e) => {
             </div>
             `;
         });
+
+        if (image.length >= 2) {
+            carouselControl = `
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>`;
+            console.log("carousel enabled");
+        }
     }
     const content = `<div style="width:300px;">
     <div class="imgcard-container">
@@ -6773,14 +6865,7 @@ map.on("mouseenter", "survey_dot", (e) => {
     <div class="carousel-inner">
     ${imageCarousel}
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    ${carouselControl}
 </div>
       
     </div>
