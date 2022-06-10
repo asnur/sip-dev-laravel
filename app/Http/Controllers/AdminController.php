@@ -89,7 +89,7 @@ class AdminController extends Controller
         //     ->orderBy('survey_perkembangan_wilayah.id_user', 'Desc')
         //     ->get();
 
-        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id', 'DESC')->get();
+        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id', 'DESC')->take(5)->get();
 
         // dd($perkembangan_surver);
 
@@ -492,7 +492,7 @@ class AdminController extends Controller
 
     public function perkembangan_survey()
     {
-
+        // kepake
         $hasil_jumlah_titik = SurveyPerkembangan::all();
 
 
@@ -500,7 +500,7 @@ class AdminController extends Controller
         // $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
 
-        $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
+        $pegawai_ajib2 = User::withCount('perkembangan')->with('roles')->whereHas(
             'roles',
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
@@ -510,7 +510,7 @@ class AdminController extends Controller
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->get();
+        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->take(100)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -546,8 +546,7 @@ class AdminController extends Controller
         // $data_detail = SurveyPerkembangan::with(['user'])->orderBy('users.name', 'asc')->get();
         $data_detail = SurveyPerkembangan::get()->sortBy(function ($query) {
             return $query->user->name;
-        })
-            ->all();
+        })->all();
 
         // dd($data_detail);
 
@@ -560,7 +559,7 @@ class AdminController extends Controller
         // )->get();
 
 
-        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail', 'hasil_jumlah_titik']));
+        return view('admin.survei_perkembangan', compact(['hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas', 'data_detail']));
     }
 
 

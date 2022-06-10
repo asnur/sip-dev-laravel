@@ -186,8 +186,6 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
-// Grafik Chart Rekap Survey
-Route::get('/chart-survey/{periode}', [GrafikChartController::class, 'index']);
 
 Route::post('/digitasi', [DigitasiController::class, 'index'])->name('digitasi');
 

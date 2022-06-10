@@ -15,8 +15,8 @@ map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
 
 const popup = new mapboxgl.Popup({
-    closeButton: false,
-    closeOnClick: false,
+    closeButton: true,
+    closeOnClick: true,
 });
 
 map.on("style.load", () => {
@@ -94,9 +94,9 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
             </div>
     <div class="p-0">
         <div class="card-body p-2">
-            <h6 style="font-size:14px;" class="mt-0 mb-1 card-title">${data["name"]}</h6>
+            <h6 style="font-size:14px; line-height:17px; margin-bottom:7px" class="mt-0 card-title">${data["name"]}</h6>
             <div class="border-bottom"></div>
-            <div style="line-height: 1.2; margin-top:12px;">
+            <div style="line-height: 1.2; margin-top:7px;">
                 <div class="row">
                     <div class="col-md-6">
                         <span>ID Sub Blok</span>

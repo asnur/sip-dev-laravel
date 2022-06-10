@@ -23,30 +23,6 @@ class RekapSurveyController extends Controller
 
         $data = SurveyPerkembangan::with('image')->get();
 
-        // if (Auth::user()->hasRole('admin')) {
-
-        //     // $data = SurveyPerkembangan::with(['image'])->get();
-
-
-        //     // $data = SurveyPerkembangan::join('image_survey_perkembangan', 'image_survey_perkembangan.id', '=', 'survey_perkembangan_wilayah.id')
-        //     //     ->select('survey_perkembangan_wilayah.*', 'survey.*')
-        //     //     ->get();
-
-        //     $data = DB::table('survey_perkembangan_wilayah')
-        //         ->join(
-        //             'image_survey_perkembangan',
-        //             'image_survey_perkembangan.id',
-        //             '=',
-        //             'survey_perkembangan_wilayah.id'
-        //         )
-        //         ->select('survey_perkembangan_wilayah.*', 'survey_perkembangan_wilayah.name as namesurvey', 'image_survey_perkembangan.*', 'image_survey_perkembangan.name as nameimage')
-        //         ->get();
-
-        //     // dd($data);
-        // } else {
-        //     $data = Survey::where('id_user', Auth::user()->id)->get();
-        // }
-
         foreach ($data as $d) {
             $coor = explode(",", $d->kordinat);
             $value_data = [
