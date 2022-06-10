@@ -5504,7 +5504,7 @@ function preview_foto_survey() {
             $("#previewFotoSurvey").slick("slickAdd", element, 0, true);
         }
         new Compressor(file, {
-            quality: 0.01,
+            quality: 0.3,
             success(result) {
                 files.push(result);
                 Newfiles.push(result);
@@ -5695,6 +5695,7 @@ $("#formSurveyLocation").on("submit", function (e) {
                         getLayerSurveyPerkembangan();
                     },
                     error: function (e) {
+                        console.log(e);
                         $("#prosesSurvey").hide();
                         $("#submitSurveyLocation").show();
                         getLayerSurveyPerkembangan();
@@ -5704,6 +5705,10 @@ $("#formSurveyLocation").on("submit", function (e) {
                         ) {
                             resetSurvey();
                         }
+                        $("#pesanGagalSurvey").show();
+                        setTimeout(function () {
+                            $("#pesanGagalSurvey").hide();
+                        }, 3000);
                     },
                 });
             },
