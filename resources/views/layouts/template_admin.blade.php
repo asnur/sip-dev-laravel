@@ -59,6 +59,7 @@
 
     @if (Request::is('admin/PerkembanganSurvey'))
         <style>
+
             .mapboxgl-popup-content{
                 padding: 0;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -75,9 +76,15 @@
             }
 
             .atur_margin_gambar_utama2{
-                margin-top: -1.5rem !important;
+                margin-top: -2.7rem !important;
                 margin-left: -1rem !important;
             }
+
+            /* .slick-list{
+                position: relative;
+                top: -2.7rem;
+                left: -2rem;
+            } */
 
             .mapboxgl-popup-close-button{
                 background-color: #fff !important;
@@ -604,6 +611,7 @@
 
     @if (Request::is('admin/PerkembanganSurvey'))
     <script src="{{ asset('assets/admin/js/rekapSurveyMap.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/js/RekapSurvey.js') }}"></script> --}}
     @endif
 
     @if (Request::is('admin/tambahKuesioner'))
@@ -664,6 +672,7 @@
         addText();
         dataTebaruRealtime();
         dataTebaruPerkembangan();
+        // slideFoto();
     </script>
 
 

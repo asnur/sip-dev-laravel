@@ -182,6 +182,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/perkembangan-terbaru/{id_data_terbaru}', [AdminController::class, 'fetchPerkembanganTerbaru'])->name('perkembangan-terbaru');
 
     Route::get('/titik-rekap-survey', [RekapSurveyController::class, 'index'])->name('titik-rekap-survey');
+
+    Route::get('/slide-foto', [AdminController::class, 'slideFoto'])->name('slide-foto');
 });
 
 //Analytics Page

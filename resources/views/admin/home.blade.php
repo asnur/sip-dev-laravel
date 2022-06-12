@@ -414,7 +414,7 @@
                 <div style=" position: relative; height: 15rem; width: 100%;">
                     {{-- <div class="skeleton_chart"></div> --}}
                     <div class="uk_chart_skeleton skeleton-image"></div>
-                    <canvas id="chart-pengunjung">
+                    <canvas class="chart-pengunjung">
                     </canvas>
                 </div>
             </div>

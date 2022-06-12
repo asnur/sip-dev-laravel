@@ -142,22 +142,22 @@ $Roles = '';
 
         <div class="row">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card responsive_jarak">
 
                     {{-- <div class="ribbon ribbon-top bg-primary">
                         <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div> --}}
                     <div class="card-status-top bg-primary"></div>
 
-                    <div class="card-header">
+                    <div class="card-header responsive_card">
 
-                        <div class="row">
+                        <div class="row responsive_row">
 
                             <div class="col-md-9">
                                 <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem;" class="card-title text-break text-primary">Pengunjung 7 Hari Terakhir</h3>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 responsive_icon">
 
                                 <span class="bg-blue text-white avatar">
                                     {{-- <i class="fas fa-user fa-2x text-white"></i> --}}
@@ -175,11 +175,11 @@ $Roles = '';
                     </div>
 
 
-                    <div class="card-body">
+                    <div class="card-body responsive_delete_card">
                         {{-- <div class="h5 mb-0 font-weight-bold inf-pengunjung" onload="visitorToday()">0
                         </div> --}}
-                        <div style="font-size:40px;" class="h2 m-0 inf-pengunjung" onload="visitorToday()">
-                            <div style="width: 17.7rem; height:3.5rem;" class="skeleton-image">
+                        <div style="font-size:40px;" class="h2 m-0 inf-pengunjung angka_responsive" onload="visitorToday()">
+                            <div class="skeleton-image custom_harian">
                             </div>
                         </div>
                     </div>
@@ -187,24 +187,24 @@ $Roles = '';
 
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card responsive_jarak">
                     {{--
                     <div class="ribbon ribbon-top bg-success">
                         <i class="fas fa-map-marked fa-2x text-gray-300"></i>
                     </div> --}}
                     <div class="card-status-top bg-success"></div>
 
-                    <div class="card-header">
+                    <div class="card-header responsive_card">
 
 
-                        <div class="row">
+                        <div class="row responsive_row">
                             <div class="col-md-9">
                                 <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem" class="card-title text-break text-success">
                                     Titik Tercatat
                                 </h3>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-3 responsive_icon responsive_icon">
                                 <span class="bg-success text-white avatar">
 
                                     {{-- <i class="fas fa-user fa-2x text-white"></i> --}}
@@ -224,9 +224,9 @@ $Roles = '';
 
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body responsive_delete_card">
                         {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($hasil_jumlah_titik) }}</div> --}}
-                    <div style="font-size:40px;" class="h2 m-0">{{ count($hasil_jumlah_titik) }}
+                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ count($hasil_jumlah_titik) }}
                     </div>
 
                     {{-- <div style="font-size:40px;" class="h2 m-0">{{ count($hasil_jumlah_titik) }} --}}
@@ -237,25 +237,25 @@ $Roles = '';
 
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card responsive_jarak">
 
                 {{-- <div class="ribbon ribbon-top bg-yellow">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div> --}}
                 <div class="card-status-top bg-orange"></div>
 
-                <div class="card-header">
+                <div class="card-header responsive_card">
 
 
 
-                    <div class="row">
+                    <div class="row responsive_row">
                         <div class="col-md-9">
                             <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem" class="card-title text-break text-orange">
                                 Pegawai Terdaftar
                             </h3>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 responsive_icon">
                             <span class="bg-orange text-white avatar">
                                 {{-- <i class="fas fa-user fa-2x text-white"></i> --}}
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -274,8 +274,8 @@ $Roles = '';
                 </div>
 
 
-                <div class="card-body">
-                    <div style="font-size:40px;" class="h2 m-0">{{ count($pegawai_ajib2) }}</div>
+                <div class="card-body responsive_delete_card">
+                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ count($pegawai_ajib2) }}</div>
 
                     {{-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ count($pegawai_ajib) }}
                 </div> --}}
@@ -311,7 +311,7 @@ $Roles = '';
 
                         <div class="col-md-6 mt-2">
 
-                            <div class="gambar_utama_slider_input atur_margin_gambar_utama data_image_space">
+                            <div class="gambar_utama_slider_input gambar_utama_slider_input_scale atur_margin_gambar_utama data_image_space">
                                 <span id="gambar_utama_perkembangan">
                                 </span>
                             </div>
@@ -353,11 +353,11 @@ $Roles = '';
                             <hr>
 
                             <div class="teks_height">
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Nama Lokasi <span style="margin-left: 3.7rem;"> </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="namesurvey">
                                             </span>
@@ -365,12 +365,12 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Koordinat <span style="margin-left: 2.5rem;">
                                             </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="kordinat">
                                             </span>
@@ -378,11 +378,11 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">ID Sub Blok <span style="margin-left: 2.5rem;"> </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="id_sub_blok">
                                             </span>
@@ -390,12 +390,12 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Kelurahan <span style="margin-left: 2.2rem;">
                                             </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="kelurahan">
                                             </span>
@@ -403,23 +403,23 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Kecamatan<span style="margin-left: 3.5rem;">
                                             </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="kecamatan">
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Pola Regional <span style="margin-left: 3.5rem;"> </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="regional">
                                             </span>
@@ -427,13 +427,13 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
 
                                     <div class="col-md-5">
                                         <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
                                             </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="deskripsi_regional">
                                             </span>
@@ -441,11 +441,11 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Pola Lingkungan<span style="margin-left: 3.5rem;"> </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="neighborhood">
                                             </span>
@@ -453,13 +453,13 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
 
                                     <div class="col-md-5">
                                         <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
                                             </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="deskripsi_neighborhood">
                                             </span>
@@ -467,11 +467,11 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Pola Ruang <span style="margin-left: 3.5rem;"> </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="transect_zone">
                                             </span>
@@ -479,12 +479,12 @@ $Roles = '';
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row jarak_judul">
                                     <div class="col-md-5">
                                         <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
                                             </span></label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 jarak_text">
                                         <div class="col text_data_terbaru">
                                             <span id="deskripsi_transect_zone">
                                             </span>
@@ -499,11 +499,16 @@ $Roles = '';
 
                     </div>
 
-                    <div class="row">
+                    <div class="row jarak_inmobile">
                         <div class="col-md-12 mt-2">
 
 
-                            <div class="image_slider_input">
+                            <div style="max-height:8rem;" class="image_slider_input">
+
+                                {{-- <div class="slide_foto"></div> --}}
+
+                                {{-- <div class="gambar_utama_slider_input3">
+                                </div> --}}
                                 @php
                                 $no = 1;
                                 @endphp
@@ -513,6 +518,7 @@ $Roles = '';
                                     <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id }}" src="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
                                 </div>
                                 @endforeach
+
                             </div>
 
                         </div>
@@ -532,7 +538,8 @@ $Roles = '';
                     <h3 class="card-title">Tabel Kinerja Petugas Survey</h3>
                 </div>
                 <div class="card-body">
-                    <table style="margin-bottom: 10rem;" class="display table table-striped" id="table-surveyer2">
+                    <div class="table-responsive">
+                    <table style="margin-bottom: 10rem;" class="display table table-striped" id="table-surveyer2" style="width: 100%">
 
                         <thead>
                             <tr class="size_detil" valign="middle">
@@ -556,6 +563,7 @@ $Roles = '';
                         </tbody>
                     </table>
                 </div>
+                </div>
 
 
 
@@ -569,8 +577,6 @@ $Roles = '';
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
                     <h3 class="card-title">Tabel Detil</h3>
-                    <div id="id_sub_blok"></div>
-
                 </div>
                 <div class="card-body">
                     <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
@@ -594,16 +600,16 @@ $Roles = '';
                             <tr>
                                 <td>{{ $pa->user->name }}</td>
                                 <td valign="top">{{ $pa->id_sub_blok }}</td>
-                                <td>{{ $pa->name }}</td>
-                                <td>{{ ucwords(strtolower($pa->kelurahan)) }}</td>
-                                <td>{{ ucwords(strtolower($pa->kecamatan)) }}</td>
-                                <td>{{ $pa->regional }}</td>
+                                <td class="text-center">{{ $pa->name }}</td>
+                                <td class="text-center">{{ ucwords(strtolower($pa->kelurahan)) }}</td>
+                                <td  class="text-center">{{ ucwords(strtolower($pa->kecamatan)) }}</td>
+                                <td  class="text-center">{{ $pa->regional }}</td>
                                 <td>{{ $pa->deskripsi_regional }}
                                 </td>
-                                <td>{{ $pa->neighborhood }}</td>
+                                <td  class="text-center">{{ $pa->neighborhood }}</td>
                                 <td>{{ $pa->deskripsi_neighborhood }}
                                 </td>
-                                <td>{{ $pa->transect_zone }}</td>
+                                <td  class="text-center">{{ $pa->transect_zone }}</td>
                                 <td>
                                     {{ $pa->deskripsi_transect_zone }}
                                 </td>
@@ -615,6 +621,37 @@ $Roles = '';
 
 
 
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 1rem" class="row row-cards">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-status-top bg-primary"></div>
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="card-title">Traffic Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
+                        <div class="ms-auto">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter :</a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" onclick="filterAnalytics(7)">7 Hari</a>
+                                    <a class="dropdown-item" onclick="filterAnalytics(30)">30 Hari</a>
+                                    <a class="dropdown-item" onclick="filterAnalytics(90)">90 Hari</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div style=" position: relative; height: 15rem; width: 100%;">
+                        <div style="width: 58.5rem; height:15rem;" class="skeleton-image"></div>
+                        <canvas class="chart-pengunjung">
+                        </canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
