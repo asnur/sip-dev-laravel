@@ -139,3 +139,189 @@
 /* .dataTables_filter {
     margin-top: -1rem;
 } */
+
+/* @media (min-width: 863px) and (max-width: 1536px) {
+    .responsive_icon {
+        position: relative;
+        right: -3rem;
+    }
+
+    .custom_harian {
+        width: 23rem !important;
+        height: 3.5rem;
+    }
+
+    .gambar_utama_slider_input {
+        width: 42em !important;
+    }
+
+    .img_parents {
+        width: 45em !important;
+    }
+
+    .data_image_space .slick-list {
+        width: 42em !important;
+    }
+} */
+
+/* Layar Mobile*/
+@media (min-width: 280px) and (max-width: 766.98px) {
+    /* START FOR MOBILE */
+
+    /* Responsive */
+    @media (min-width: 239px) and (max-width: 360px) {
+        .slick-slide {
+            width: 320px;
+            margin-left: 12px;
+        }
+
+        .slick_left {
+            margin-left: 156.5px;
+        }
+    }
+
+    /* Iphone SE */
+    @media (min-width: 361px) and (max-width: 389px) {
+        .img_parents {
+            width: 310px;
+            margin: 15px;
+            object-fit: cover;
+        }
+
+        #photo_ajib_perkembangan {
+            margin-top: -1rem;
+        }
+
+        .text-truncate {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        #penempatan_perkembangan {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        .responsive_delete_card {
+            padding: 0 0 0 8px !important;
+        }
+
+        .angka_responsive {
+            padding: 0 0 0 10px;
+        }
+
+        .responsive_icon {
+            position: relative;
+            left: 17rem;
+            top: -2rem;
+        }
+
+        .responsive_card {
+            height: 60px !important;
+        }
+
+        .responsive_row {
+            position: relative;
+            top: 1rem;
+        }
+
+        .responsive_jarak {
+            margin-bottom: 15px;
+        }
+
+        .skeleton-image {
+            width: 19rem !important;
+            height: 1.5rem !important;
+            margin-left: 0px !important;
+            margin-top: 11px !important;
+            margin-bottom: 11px !important;
+        }
+
+        .responsive_text_data {
+            margin-top: 22rem;
+        }
+
+        .text_data_terbaru {
+            margin: 0 0 0 0;
+        }
+
+        .jarak_inmobile {
+            margin-top: 21.3rem !important;
+        }
+
+        .jarak_text {
+            margin-top: -0.4rem !important;
+        }
+
+        .jarak_judul {
+            margin-bottom: 0.2rem;
+        }
+
+        .dataTables_filter {
+            position: relative;
+            top: 0.2em;
+            left: -3em;
+            margin-bottom: 0.6em;
+        }
+
+        #table-surveyer2_length {
+            position: relative;
+            left: -6em;
+        }
+        #table-surveyer3_length {
+            position: relative;
+            left: -6.5em;
+        }
+    }
+
+    /* Iphone 12 */
+    @media (min-width: 390px) and (max-width: 392px) {
+        .slick-slide {
+            width: 350px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 172px;
+        }
+    }
+
+    /* Pixel */
+    @media (min-width: 393px) and (max-width: 411px) {
+        .slick-slide {
+            width: 361px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 172px;
+        }
+    }
+
+    /* Samsung S20 */
+    @media (min-width: 412px) and (max-width: 413px) {
+        .slick-slide {
+            width: 380px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 165px;
+        }
+    }
+
+    /* Iphone XR */
+    @media (min-width: 414px) and (max-width: 420px) {
+        .slick-slide {
+            width: 372px;
+            margin-left: 12px;
+        }
+        .slick_left {
+            margin-left: 183px;
+        }
+    }
+}
+
+.custom_harian {
+    width: 17.7rem;
+    height: 3.5rem;
+}

@@ -215,250 +215,6 @@ const number_format = (number, decimals, dec_point, thousands_sep) => {
     return s.join(dec);
 };
 
-// Area Chart Example
-
-const filterAnalytics = (periode) => {
-    $.ajax({
-        url: `/analytics/${periode - 1}`,
-        method: "GET",
-        // beforeSend: function () {
-        //     $(".skeleton_chart").html(
-        //         '<div class="uk_chart_skeleton skeleton-image"></div>'
-        //     );
-        // },
-        success: (e) => {
-            let jumlah_hari = periode - 1;
-            $(".jumlah_hari").text(periode);
-            localStorage.setItem("interval", periode);
-            // console.log(jumlah_hari);
-
-            $(".skeleton-image").hide();
-
-            var ctx = document.getElementById("chart-pengunjung");
-            var myLineChart = new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: e[0],
-                    datasets: [
-                        {
-                            label: "Jumlah",
-                            lineTension: 0.3,
-                            backgroundColor: "rgba(78, 115, 223, 0.05)",
-                            borderColor: "rgba(78, 115, 223, 1)",
-                            pointRadius: 3,
-                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                            pointBorderColor: "rgba(78, 115, 223, 1)",
-                            pointHoverRadius: 3,
-                            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                            pointHitRadius: 10,
-                            pointBorderWidth: 2,
-                            data: e[1],
-                        },
-                    ],
-                },
-                options: {
-                    tooltips: {
-                        backgroundColor: "#FAFAFA",
-                        borderColor: "#206bc4",
-                        borderWidth: 1,
-                        titleFontColor: "black",
-                        titleFontStyle: "normal",
-                        displayColors: false,
-                        bodyFontColor: "black",
-                    },
-
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
-                            bottom: 0,
-                        },
-                    },
-                    scales: {
-                        xAxes: [
-                            {
-                                time: {
-                                    unit: "date",
-                                },
-                                gridLines: {
-                                    display: false,
-                                    drawBorder: false,
-                                },
-                                ticks: {
-                                    // maxTicksLimit: 7,
-                                    display: false,
-                                },
-                            },
-                        ],
-                        yAxes: [
-                            {
-                                ticks: {
-                                    maxTicksLimit: 5,
-                                    padding: 10,
-                                    // Include a dollar sign in the ticks
-                                    callback: function (value, index, values) {
-                                        return number_format(value);
-                                    },
-                                },
-                                gridLines: {
-                                    color: "rgb(234, 236, 244)",
-                                    zeroLineColor: "rgb(234, 236, 244)",
-                                    drawBorder: false,
-                                    borderDash: [2],
-                                    zeroLineBorderDash: [2],
-                                },
-                            },
-                        ],
-                    },
-                    legend: {
-                        display: false,
-                    },
-                },
-            });
-
-            // var options = {
-            //     series: [
-            //         {
-            //             label: "Jumlah",
-            //             data: e[1],
-            //         },
-            //     ],
-            //     chart: {
-            //         id: "realtime",
-            //         height: 350,
-            //         type: "line",
-            //         animations: {
-            //             enabled: true,
-            //             easing: "linear",
-            //             dynamicAnimation: {
-            //                 speed: 1000,
-            //             },
-            //         },
-            //         toolbar: {
-            //             show: false,
-            //         },
-            //         zoom: {
-            //             enabled: false,
-            //         },
-            //     },
-            //     dataLabels: {
-            //         enabled: false,
-            //     },
-            //     stroke: {
-            //         curve: "smooth",
-            //     },
-
-            //     markers: {
-            //         size: 0,
-            //     },
-            //     xaxis: {
-            //         categories: e[0],
-            //     },
-            //     yaxis: {
-            //         max: 100,
-            //     },
-            //     legend: {
-            //         show: false,
-            //     },
-            // };
-
-            // var chart = new ApexCharts(
-            //     document.querySelector("#chart-pengunjung"),
-            //     options
-            // );
-            // chart.render();
-
-            // window.setInterval(function () {
-            //     getNewSeries(lastDate, {
-            //         min: 10,
-            //         max: 90,
-            //     });
-
-            //     chart.updateSeries([
-            //         {
-            //             data: e[1],
-            //         },
-            //     ]);
-            // }, 1000);
-
-            // new ApexCharts(document.getElementById("chart-pengunjung"), {
-            //     chart: {
-            //         type: "area",
-            //         fontFamily: "inherit",
-            //         height: 192,
-            //         sparkline: {
-            //             enabled: true,
-            //         },
-            //         animations: {
-            //             enabled: false,
-            //         },
-            //     },
-            //     dataLabels: {
-            //         enabled: false,
-            //     },
-            //     fill: {
-            //         opacity: 0.16,
-            //         type: "solid",
-            //     },
-            //     stroke: {
-            //         width: 2,
-            //         lineCap: "round",
-            //         curve: "smooth",
-            //     },
-            //     series: [
-            //         {
-            //             name: "Jumlah",
-            //             data: e[1],
-            //         },
-            //     ],
-            //     grid: {
-            //         strokeDashArray: 4,
-            //     },
-            //     xaxis: {
-            //         labels: {
-            //             padding: 0,
-            //         },
-            //         tooltip: {
-            //             enabled: false,
-            //         },
-            //         axisBorder: {
-            //             show: false,
-            //         },
-            //         type: "datetime",
-            //     },
-            //     yaxis: {
-            //         labels: {
-            //             padding: 4,
-            //         },
-            //     },
-            //     labels: e[0],
-            //     colors: ["#206bc4"],
-            //     legend: {
-            //         show: false,
-            //     },
-            //     point: {
-            //         show: false,
-            //     },
-            // }).render();
-        },
-    });
-};
-
-if (arrURL[4] == undefined) {
-    $(window).on("load", () => {
-        filterAnalytics(7);
-    });
-
-    setInterval(() => {
-        filterAnalytics(localStorage.getItem("interval"));
-        // 10 * 60 * 1000;
-        // mnt * detik * ms
-    }, 600000);
-}
-
 function dataTebaruRealtime() {
     $.ajax({
         url: `/admin/fetch-surveyer`,
@@ -707,7 +463,7 @@ function dataTebaruPerkembangan() {
                 '<div class="skeleton-heading"></div>'
             );
             $("#gambar_utama_perkembangan").html(
-                ' <div style="width: 28.8rem !important;height: 300px; object-fit: cover;" class="skeleton-image"></div>'
+                ' <div style="width: 28.8rem;height: 300px; object-fit: cover;" class="skeleton-image"></div>'
             );
             $("#photo_ajib_perkembangan").html(
                 '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
@@ -821,30 +577,6 @@ $(document).ready(function () {
     $(".img_child_id_perkembangan").on("click", function () {
         var id_data_terbaru = $(this).attr("data-id");
 
-        get = $(this)
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .find(".gambar_utama_slider_input ")
-            .removeClass("atur_margin_gambar_utama");
-
-        get = $(this)
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .parent()
-            .find(".gambar_utama_slider_input ")
-            .addClass("atur_margin_gambar_utama2");
-
         $.ajax({
             url: `/admin/perkembangan-terbaru/${id_data_terbaru}`,
             type: "get",
@@ -879,7 +611,7 @@ $(document).ready(function () {
                 );
 
                 $("#gambar_utama_perkembangan").html(
-                    ' <div style="width: 28.8rem !important;height: 300px; object-fit: cover;" class="skeleton-image"></div>'
+                    ' <div style="width: 28.8rem ;height: 300px; object-fit: cover;" class="skeleton-image"></div>'
                 );
                 $("#photo_ajib_perkembangan").html(
                     '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
@@ -973,11 +705,34 @@ $(document).ready(function () {
 
                 var datagambar = "";
                 if (array.length == 0) {
-                    datagambar += `<div><img class="img_parents" style="width:490px !important;height: 300px; object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                    datagambar += `<div><img class="img_parents" object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
                 } else {
                     array.forEach((e) => {
-                        datagambar += `<div><img class="img_parents" style="width:490px !important;height: 300px; object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                        datagambar += `<div><img class="img_parents" object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                     });
+                }
+
+                console.log(array.length);
+                if (array.length > 1) {
+                    $(".gambar_utama_slider_input ").removeClass(
+                        "atur_margin_gambar_utama"
+                    );
+                    $(".gambar_utama_slider_input ").removeClass(
+                        "atur_margin_gambar_utama2"
+                    );
+                    $(".gambar_utama_slider_input ").addClass(
+                        "atur_margin_gambar_utama2"
+                    );
+                } else {
+                    $(".gambar_utama_slider_input ").removeClass(
+                        "atur_margin_gambar_utama"
+                    );
+                    $(".gambar_utama_slider_input ").removeClass(
+                        "atur_margin_gambar_utama2"
+                    );
+                    $(".gambar_utama_slider_input ").addClass(
+                        "atur_margin_gambar_utama"
+                    );
                 }
 
                 // console.log(datagambar);
@@ -1006,6 +761,53 @@ $(document).ready(function () {
         });
     });
 });
+
+// const selectSlideFoto = (name2) => {
+//     $(name2).slick({
+//         slidesToShow: 5,
+//         slidesToScroll: 1,
+//         // asNavFor: ".gambar_utama_slider_input",
+//         infinite: false,
+//         arrows: true,
+//     });
+// };
+
+// function slideFoto() {
+//     $.ajax({
+//         url: `/admin/slide-foto`,
+//         type: "get",
+//         dataType: "json",
+//         beforeSend: function () {},
+//         success: function (e) {
+//             var datagambar = "";
+//             $.each(e.slide_foto, function (key, data) {
+//                 array = data.name;
+
+//                 if (array.length == 0) {
+//                     datagambar += `<div><img class="img_parents" style="width:490px !important;height: 300px; object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+//                 } else {
+//                     datagambar += `<div><img class="img_parents" style="width:490px !important;height: 300px; object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/${data.name}" alt="First slide"></div>`;
+//                 }
+//             });
+
+//             console.log(datagambar);
+
+//             if (
+//                 $("div.image_slider_input.slick-initialized.slick-slider")
+//                     .length == 0
+//             ) {
+//                 $(".image_slider_input").html("");
+//                 $(".image_slider_input").html(datagambar);
+//                 selectSlideFoto(".image_slider_input");
+//             } else {
+//                 $(".image_slider_input").slick("unslick");
+//                 $(".image_slider_input").html("");
+//                 $(".image_slider_input").html(datagambar);
+//                 selectSlideFoto(".image_slider_input");
+//             }
+//         },
+//     });
+// }
 
 function getAjibKelurahan(koor_kelurahan) {
     var coord = koor_kelurahan.split(",");
@@ -1041,20 +843,133 @@ function getAjibKelurahan(koor_kelurahan) {
     });
 }
 
-$.ajax({
-    url: `/chart-survey/6`,
-    method: "GET",
-    success: (e) => {
-        // console.log(e);
-    },
-});
+// Area Chart Example
 
-const FilterChartSurvey = (periode) => {
+const filterAnalytics = (periode) => {
     $.ajax({
-        url: `/chart-survey/${periode - 1}`,
+        url: `/analytics/${periode - 1}`,
         method: "GET",
+        // beforeSend: function () {
+        //     $(".skeleton_chart").html(
+        //         '<div class="uk_chart_skeleton skeleton-image"></div>'
+        //     );
+        // },
         success: (e) => {
-            // console.log(e);
+            let jumlah_hari = periode - 1;
+            $(".jumlah_hari").text(periode);
+            localStorage.setItem("interval", periode);
+            // console.log(jumlah_hari);
+
+            $(".skeleton-image").hide();
+
+            var ctx = document.getElementsByClassName("chart-pengunjung");
+            var myLineChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: e[0],
+                    datasets: [
+                        {
+                            label: "Jumlah",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(78, 115, 223, 0.05)",
+                            borderColor: "rgba(78, 115, 223, 1)",
+                            pointRadius: 3,
+                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHoverRadius: 3,
+                            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHitRadius: 10,
+                            pointBorderWidth: 2,
+                            data: e[1],
+                        },
+                    ],
+                },
+                options: {
+                    tooltips: {
+                        backgroundColor: "#FAFAFA",
+                        borderColor: "#206bc4",
+                        borderWidth: 1,
+                        titleFontColor: "black",
+                        titleFontStyle: "normal",
+                        displayColors: false,
+                        bodyFontColor: "black",
+                    },
+
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0,
+                        },
+                    },
+                    scales: {
+                        xAxes: [
+                            {
+                                time: {
+                                    unit: "date",
+                                },
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false,
+                                },
+                                ticks: {
+                                    // maxTicksLimit: 7,
+                                    display: false,
+                                },
+                            },
+                        ],
+                        yAxes: [
+                            {
+                                ticks: {
+                                    maxTicksLimit: 5,
+                                    padding: 10,
+                                    // Include a dollar sign in the ticks
+                                    callback: function (value, index, values) {
+                                        return number_format(value);
+                                    },
+                                },
+                                gridLines: {
+                                    color: "rgb(234, 236, 244)",
+                                    zeroLineColor: "rgb(234, 236, 244)",
+                                    drawBorder: false,
+                                    borderDash: [2],
+                                    zeroLineBorderDash: [2],
+                                },
+                            },
+                        ],
+                    },
+                    legend: {
+                        display: false,
+                    },
+                },
+            });
         },
     });
 };
+
+if (arrURL[4] == undefined) {
+    $(window).on("load", () => {
+        filterAnalytics(7);
+    });
+
+    setInterval(() => {
+        filterAnalytics(localStorage.getItem("interval"));
+        // 10 * 60 * 1000;
+        // mnt * detik * ms
+    }, 600000);
+}
+
+if (arrURL[5] == undefined) {
+    $(window).on("load", () => {
+        filterAnalytics(7);
+    });
+
+    setInterval(() => {
+        filterAnalytics(localStorage.getItem("interval"));
+        // 10 * 60 * 1000;
+        // mnt * detik * ms
+    }, 600000);
+}

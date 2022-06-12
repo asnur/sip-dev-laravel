@@ -62,10 +62,10 @@ const addText = () => {
                             targets: [3],
                             className: "text-center",
                         },
-                        { width: "24%", targets: 0 },
-                        { width: "30%", targets: 1 },
-                        { width: "20%", targets: 2 },
-                        { width: "20%", targets: 3 },
+                        { width: "25%", targets: 0 },
+                        { width: "25%", targets: 1 },
+                        { width: "25%", targets: 2 },
+                        { width: "25%", targets: 3 },
                     ],
                 });
             });
@@ -73,6 +73,9 @@ const addText = () => {
             $(document).ready(function () {
                 $("#table-surveyer3").DataTable({
                     // retrieve: true,
+                    language: {
+                        search: "Pencarian:",
+                    },
                     ordering: false,
                     sScrollX: "200%",
                     sScrollXInner: "200%",
@@ -80,7 +83,11 @@ const addText = () => {
                     order: [[0, "desc"]],
                     columnDefs: [
                         { orderSequence: ["asc", "desc"], targets: [0] },
-                        { orderSequence: ["asc", "desc"], targets: [1] },
+                        {
+                            orderSequence: ["asc", "desc"],
+                            targets: [1],
+                            className: "text-center",
+                        },
                         { orderSequence: ["asc", "desc"], targets: [2] },
                         {
                             orderSequence: ["asc", "desc"],
@@ -92,7 +99,11 @@ const addText = () => {
                             targets: [4],
                             className: "text-center",
                         },
-                        { orderSequence: ["asc", "desc"], targets: [5] },
+                        {
+                            orderSequence: ["asc", "desc"],
+                            targets: [5],
+                            className: "text-center",
+                        },
                         { orderSequence: ["asc", "desc"], targets: [6] },
                         {
                             orderSequence: ["asc", "desc"],
@@ -107,7 +118,7 @@ const addText = () => {
                         },
                         { width: "5%", targets: 0 },
                         { width: "5%", targets: 1 },
-                        { width: "8%", targets: 2 },
+                        { width: "7%", targets: 2 },
                         { width: "7%", targets: 3 },
                         { width: "5%", targets: 4 },
                         { width: "6%", targets: 5 },

@@ -510,7 +510,7 @@ class AdminController extends Controller
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->take(100)->get();
+        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->take(80)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -586,6 +586,16 @@ class AdminController extends Controller
 
         return response()->json([
             'perkembangan' => $tes,
+        ]);
+    }
+
+    public function slideFoto()
+    {
+
+        $slide_foto = SurveyPerkembanganImage::orderBy('id', 'DESC')->take(10)->get();
+
+        return response()->json([
+            'slide_foto' => $slide_foto,
         ]);
     }
 }
