@@ -98,9 +98,10 @@
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     } */
 
-</style>
+    .chart-pengunjung {
+        width: 68.5em !important;
+    }
 
-<style>
     .dt-buttons {
         position: relative;
         top: -1.9rem;
@@ -108,6 +109,7 @@
     }
 
 </style>
+
 
 
 @php
@@ -539,30 +541,30 @@ $Roles = '';
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                    <table style="margin-bottom: 10rem;" class="display table table-striped" id="table-surveyer2" style="width: 100%">
+                        <table style="margin-bottom: 10rem;" class="display table table-striped" id="table-surveyer2" style="width: 100%">
 
-                        <thead>
-                            <tr class="size_detil" valign="middle">
-                                <th>Nama Petugas Ajib</th>
-                                <th>Penempatan</th>
-                                <th>Role</th>
-                                <th>Jumlah Titik</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                            <thead>
+                                <tr class="size_detil" valign="middle">
+                                    <th>Nama Petugas Ajib</th>
+                                    <th>Penempatan</th>
+                                    <th>Role</th>
+                                    <th>Jumlah Titik</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
 
-                            @foreach ($pegawai_ajib2 as $pa)
-                            <tr>
-                                <td>{{ $pa->name }}</td>
-                                <td>{{ $pa->penempatan }}</td>
-                                <td>{{ $pa->roles[0]->name }}</td>
-                                <td>{{ $pa->perkembangan_count }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                @foreach ($pegawai_ajib2 as $pa)
+                                <tr>
+                                    <td>{{ $pa->name }}</td>
+                                    <td>{{ $pa->penempatan }}</td>
+                                    <td>{{ $pa->roles[0]->name }}</td>
+                                    <td>{{ $pa->perkembangan_count }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
 
@@ -602,14 +604,14 @@ $Roles = '';
                                 <td valign="top">{{ $pa->id_sub_blok }}</td>
                                 <td class="text-center">{{ $pa->name }}</td>
                                 <td class="text-center">{{ ucwords(strtolower($pa->kelurahan)) }}</td>
-                                <td  class="text-center">{{ ucwords(strtolower($pa->kecamatan)) }}</td>
-                                <td  class="text-center">{{ $pa->regional }}</td>
+                                <td class="text-center">{{ ucwords(strtolower($pa->kecamatan)) }}</td>
+                                <td class="text-center">{{ $pa->regional }}</td>
                                 <td>{{ $pa->deskripsi_regional }}
                                 </td>
-                                <td  class="text-center">{{ $pa->neighborhood }}</td>
+                                <td class="text-center">{{ $pa->neighborhood }}</td>
                                 <td>{{ $pa->deskripsi_neighborhood }}
                                 </td>
-                                <td  class="text-center">{{ $pa->transect_zone }}</td>
+                                <td class="text-center">{{ $pa->transect_zone }}</td>
                                 <td>
                                     {{ $pa->deskripsi_transect_zone }}
                                 </td>

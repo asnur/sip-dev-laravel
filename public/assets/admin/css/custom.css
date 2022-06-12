@@ -168,20 +168,12 @@
 @media (min-width: 280px) and (max-width: 766.98px) {
     /* START FOR MOBILE */
 
-    /* Responsive */
-    @media (min-width: 239px) and (max-width: 360px) {
-        .slick-slide {
-            width: 320px;
-            margin-left: 12px;
-        }
-
-        .slick_left {
-            margin-left: 156.5px;
-        }
-    }
-
     /* Iphone SE */
     @media (min-width: 361px) and (max-width: 389px) {
+        .chart-pengunjung {
+            width: 335px !important;
+        }
+
         .img_parents {
             width: 310px;
             margin: 15px;
@@ -262,61 +254,417 @@
         .dataTables_filter {
             position: relative;
             top: 0.2em;
-            left: -3em;
+            left: -3.2em;
             margin-bottom: 0.6em;
         }
 
         #table-surveyer2_length {
             position: relative;
-            left: -6em;
+            left: -6.3em;
         }
         #table-surveyer3_length {
             position: relative;
-            left: -6.5em;
+            left: -6.7em;
         }
     }
 
     /* Iphone 12 */
     @media (min-width: 390px) and (max-width: 392px) {
-        .slick-slide {
-            width: 350px;
-            margin-left: 12px;
+        .chart-pengunjung {
+            width: 350px !important;
         }
-        .slick_left {
-            margin-left: 172px;
+
+        .img_parents {
+            width: 323px;
+            margin: 15px;
+            object-fit: cover;
+        }
+
+        #photo_ajib_perkembangan {
+            margin-top: -1rem;
+        }
+
+        .text-truncate {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        #penempatan_perkembangan {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        .responsive_delete_card {
+            padding: 0 0 0 8px !important;
+        }
+
+        .angka_responsive {
+            padding: 0 0 0 10px;
+        }
+
+        .responsive_icon {
+            position: relative;
+            left: 18rem;
+            top: -2rem;
+        }
+
+        .responsive_card {
+            height: 60px !important;
+        }
+
+        .responsive_row {
+            position: relative;
+            top: 1rem;
+        }
+
+        .responsive_jarak {
+            margin-bottom: 15px;
+        }
+
+        .skeleton-image {
+            width: 20rem !important;
+            height: 1.5rem !important;
+            margin-left: 0px !important;
+            margin-top: 11px !important;
+            margin-bottom: 11px !important;
+        }
+
+        .responsive_text_data {
+            margin-top: 22rem;
+        }
+
+        .text_data_terbaru {
+            margin: 0 0 0 0;
+        }
+
+        .jarak_inmobile {
+            margin-top: 21.3rem !important;
+        }
+
+        .jarak_text {
+            margin-top: -0.4rem !important;
+        }
+
+        .jarak_judul {
+            margin-bottom: 0.2rem;
+        }
+
+        .dataTables_filter {
+            position: relative;
+            top: 0.2em;
+            left: -3.6em;
+            margin-bottom: 0.6em;
+        }
+
+        #table-surveyer2_length {
+            position: relative;
+            left: -6.9em;
+        }
+        #table-surveyer3_length {
+            position: relative;
+            left: -7.1em;
         }
     }
 
     /* Pixel */
     @media (min-width: 393px) and (max-width: 411px) {
-        .slick-slide {
-            width: 361px;
-            margin-left: 12px;
+        .chart-pengunjung {
+            width: 352px !important;
         }
-        .slick_left {
-            margin-left: 172px;
+
+        .img_parents {
+            width: 329px;
+            margin: 15px;
+            object-fit: cover;
+        }
+
+        #photo_ajib_perkembangan {
+            margin-top: -1rem;
+        }
+
+        .text-truncate {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        #penempatan_perkembangan {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        .responsive_delete_card {
+            padding: 0 0 0 8px !important;
+        }
+
+        .angka_responsive {
+            padding: 0 0 0 10px;
+        }
+
+        .responsive_icon {
+            position: relative;
+            left: 18rem;
+            top: -2rem;
+        }
+
+        .responsive_card {
+            height: 60px !important;
+        }
+
+        .responsive_row {
+            position: relative;
+            top: 1rem;
+        }
+
+        .responsive_jarak {
+            margin-bottom: 15px;
+        }
+
+        .skeleton-image {
+            width: 20rem !important;
+            height: 1.5rem !important;
+            margin-left: 0px !important;
+            margin-top: 11px !important;
+            margin-bottom: 11px !important;
+        }
+
+        .responsive_text_data {
+            margin-top: 22rem;
+        }
+
+        .text_data_terbaru {
+            margin: 0 0 0 0;
+        }
+
+        .jarak_inmobile {
+            margin-top: 21.3rem !important;
+        }
+
+        .jarak_text {
+            margin-top: -0.4rem !important;
+        }
+
+        .jarak_judul {
+            margin-bottom: 0.2rem;
+        }
+
+        .dataTables_filter {
+            position: relative;
+            top: 0.2em;
+            left: -3.9em;
+            margin-bottom: 0.6em;
+        }
+
+        #table-surveyer2_length {
+            position: relative;
+            left: -7em;
+        }
+        #table-surveyer3_length {
+            position: relative;
+            left: -7.4em;
         }
     }
 
     /* Samsung S20 */
     @media (min-width: 412px) and (max-width: 413px) {
-        .slick-slide {
-            width: 380px;
-            margin-left: 12px;
+        .chart-pengunjung {
+            width: 352px !important;
         }
-        .slick_left {
-            margin-left: 165px;
+
+        .img_parents {
+            width: 345px;
+            margin: 15px;
+            object-fit: cover;
+        }
+
+        #photo_ajib_perkembangan {
+            margin-top: -1rem;
+        }
+
+        .text-truncate {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        #penempatan_perkembangan {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        .responsive_delete_card {
+            padding: 0 0 0 8px !important;
+        }
+
+        .angka_responsive {
+            padding: 0 0 0 10px;
+        }
+
+        .responsive_icon {
+            position: relative;
+            left: 19rem;
+            top: -2rem;
+        }
+
+        .responsive_card {
+            height: 60px !important;
+        }
+
+        .responsive_row {
+            position: relative;
+            top: 1rem;
+        }
+
+        .responsive_jarak {
+            margin-bottom: 15px;
+        }
+
+        .skeleton-image {
+            width: 20rem !important;
+            height: 1.5rem !important;
+            margin-left: 0px !important;
+            margin-top: 11px !important;
+            margin-bottom: 11px !important;
+        }
+
+        .responsive_text_data {
+            margin-top: 22rem;
+        }
+
+        .text_data_terbaru {
+            margin: 0 0 0 0;
+        }
+
+        .jarak_inmobile {
+            margin-top: 21.3rem !important;
+        }
+
+        .jarak_text {
+            margin-top: -0.4rem !important;
+        }
+
+        .jarak_judul {
+            margin-bottom: 0.2rem;
+        }
+
+        .dataTables_filter {
+            position: relative;
+            top: 0.2em;
+            left: -4.5em;
+            margin-bottom: 0.6em;
+        }
+
+        #table-surveyer2_length {
+            position: relative;
+            left: -7.5em;
+        }
+        #table-surveyer3_length {
+            position: relative;
+            left: -8em;
         }
     }
 
     /* Iphone XR */
     @media (min-width: 414px) and (max-width: 420px) {
-        .slick-slide {
-            width: 372px;
-            margin-left: 12px;
+        .chart-pengunjung {
+            width: 370px !important;
         }
-        .slick_left {
-            margin-left: 183px;
+
+        .img_parents {
+            width: 348px;
+            margin: 15px;
+            object-fit: cover;
+        }
+
+        #photo_ajib_perkembangan {
+            margin-top: -1rem;
+        }
+
+        .text-truncate {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        #penempatan_perkembangan {
+            position: relative;
+            top: -3.5rem;
+            left: 5rem;
+        }
+
+        .responsive_delete_card {
+            padding: 0 0 0 8px !important;
+        }
+
+        .angka_responsive {
+            padding: 0 0 0 10px;
+        }
+
+        .responsive_icon {
+            position: relative;
+            left: 19rem;
+            top: -2rem;
+        }
+
+        .responsive_card {
+            height: 60px !important;
+        }
+
+        .responsive_row {
+            position: relative;
+            top: 1rem;
+        }
+
+        .responsive_jarak {
+            margin-bottom: 15px;
+        }
+
+        .skeleton-image {
+            width: 20rem !important;
+            height: 1.5rem !important;
+            margin-left: 0px !important;
+            margin-top: 11px !important;
+            margin-bottom: 11px !important;
+        }
+
+        .responsive_text_data {
+            margin-top: 22rem;
+        }
+
+        .text_data_terbaru {
+            margin: 0 0 0 0;
+        }
+
+        .jarak_inmobile {
+            margin-top: 21.3rem !important;
+        }
+
+        .jarak_text {
+            margin-top: -0.4rem !important;
+        }
+
+        .jarak_judul {
+            margin-bottom: 0.2rem;
+        }
+
+        .dataTables_filter {
+            position: relative;
+            top: 0.2em;
+            left: -4.7em;
+            margin-bottom: 0.6em;
+        }
+
+        #table-surveyer2_length {
+            position: relative;
+            left: -7.7em;
+        }
+        #table-surveyer3_length {
+            position: relative;
+            left: -8.3em;
         }
     }
 }
