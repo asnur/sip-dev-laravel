@@ -687,6 +687,7 @@
 
         $('.image_slider_input').slick({
             slidesToShow: 7,
+            lazyLoad: 'ondemand',
             slidesToScroll: 1,
             asNavFor: '.gambar_utama_slider_input',
             dots: false,
