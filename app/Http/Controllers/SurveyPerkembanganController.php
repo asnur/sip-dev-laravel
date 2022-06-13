@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SurveyImport;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Image;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SurveyPerkembanganController extends Controller
 {
@@ -224,5 +226,15 @@ class SurveyPerkembanganController extends Controller
         }
 
         return response()->json($geojson_format);
+    }
+
+    public function importExcelSurvey(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new SurveyImport, $request->file('excel'));
+        foreach ($file as $f) {
+            var_dump($f->getClientOriginalName());
+        }
     }
 }

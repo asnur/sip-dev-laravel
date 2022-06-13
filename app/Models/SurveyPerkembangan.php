@@ -11,7 +11,9 @@ class SurveyPerkembangan extends Model
 
     protected $table = 'survey_perkembangan_wilayah';
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
+
+    // protected $fillable = array('*');
 
     public $timestamps = false;
 
