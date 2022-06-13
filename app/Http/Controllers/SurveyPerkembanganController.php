@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MainImport;
 use App\Imports\SurveyImport;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
@@ -231,10 +232,12 @@ class SurveyPerkembanganController extends Controller
     public function importExcelSurvey(Request $request)
     {
         $file = $request->file('file');
+        $excel = new MainImport();
 
-        Excel::import(new SurveyImport, $request->file('excel'));
+        Excel::import($excel, $request->file('excel'));
         foreach ($file as $f) {
-            var_dump($f->getClientOriginalName());
+            $name = $f->getClientOriginalName();
+            $f->move(public_path() . '/survey', $name);
         }
     }
 }

@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\SurveyPerkembangan;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
-class SurveyImport implements ToModel
+class SurveyImport implements ToModel, WithCalculatedFormulas
 {
     /**
      * @param array $row
@@ -27,7 +28,7 @@ class SurveyImport implements ToModel
             'deskripsi_neighborhood' => $row[9],
             'transect_zone' => $row[10],
             'deskripsi_transect_zone' => $row[11],
-            'uid' => base64_encode($row[1] . $row[3] . $row[4] . $row[5] . $row[6] . $row[8] . $row[10]),
+            'uid' => base64_encode($row[1] . $row[3] . $row[4] . $row[5] . $row[6] . $row[8] . $row[10])
         ]);
     }
 }
