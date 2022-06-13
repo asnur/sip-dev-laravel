@@ -186,6 +186,21 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
         </div>
     </div>
 
+    <div class="info-layer-survey-perkembangan">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeSurveyPerekmbangan" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Survey Perkembangan</span>
+            {{-- <ol class="list-item-survey-perkembangan mt-5">
+
+            </ol> --}}
+            <div class="list-item-survey-perkembangan mt-5">
+
+            </div>
+        </div>
+    </div>
+
     <div class="info-pin-location">
         <div class="container p-4">
             <button type="button" class="close" id="closePin" aria-label="Close">
@@ -328,9 +343,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </button> --}}
                 </span>
             </div>
-            <button class="btn btn-success text-white d-block mt-2" onclick="resetSurvey()"
-                style="font-size: 8pt; cursor: pointer;"><i class="fa fa-plus"></i>
-                Lokasi Baru</button>
+            <div class="w-100 mt-2" onclick="resetSurvey()"
+                style="font-size: 12pt; cursor: pointer; text-align:right;" id="resetSurey"><i
+                    class="ri-arrow-left-line"></i></div>
             <div class="form mt-2">
                 <form id="formSurveyLocation" enctype="multipart/form-data">
                     <div class="row">
@@ -338,20 +353,21 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 13px;line-height:0px;">Nama Lokasi
                                 <sup class="text-danger font-weight-bold">*</sup></label></div>
                         <div class="col-md-7">
-                            <input type="text" name="name" class="form-control" id="nameSurvey"
-                                placeholder="Masukan Nama Tempat" style="font-size: 8pt">
+                            <input type="text" class="w-100" name="name" id="nameSurvey"
+                                placeholder="Masukan Nama Tempat" style="font-size: 13px;border: #ccc 1px solid;">
                         </div>
                         <div class="col-md-12">
-                            <label class="mt-2" for="gambarLokasiSurvey"
-                                style="font-size: 13px;line-height:0px;cursor:pointer;"><i class="ri-upload-cloud-line"
-                                    style="font-size: 17px !important;position:relative;top:3px;"></i> <span>Unggah
+                            <div id="previewFotoSurvey">
+                            </div>
+                            <label class="mt-2 text-primary" for="gambarLokasiSurvey"
+                                style="font-size: 13px;line-height:0px;cursor:pointer;"><i
+                                    class="ri-upload-cloud-line font-weight-bold"
+                                    style="font-size: 20px !important;position:relative;top:4px;"></i> <span>Unggah
                                     Foto</span> </label>
                             <div class="custom-file d-none" style="font-size: 8pt">
                                 <input type="file" onchange="preview_foto_survey()" accept="image/*" multiple="multiple"
                                     class="custom-file-input" id="gambarLokasiSurvey">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
-                            <div class="mt-2" id="previewFotoSurvey">
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -397,7 +413,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 8pt" placeholder="Nama Kecamatan" readonly>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px;line-height:0px;">Perkembangan Regional <sup
+                            <label style="font-size: 13px;line-height:0px;">Pola Regional <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -412,18 +428,21 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-12 mb-2">
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan regional" rows="3"></textarea>
+                            <textarea class="form-control" name="deskripsi_regional" id="deskripsiRegionalSurvey" style="font-size: 13px"
+                                placeholder="Catatan perkembangan regional" rows="3" maxlength="255"></textarea>
+                            <span style="font-size:8pt"><span id="countTextRegional">0</span>/255</span>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px;line-height:0px;;width: 110%;">Perkembangan Lingk.<sup
+                            <label style="font-size: 13px;line-height:0px;">Pola Lingkungan<sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
                             <select name="neighborhood" id="neighborhoodSurvey" style="font-size: 8pt;width:55px;">
+                                <option value="-">-</option>
                                 <option value="LP-C">LP-C</option>
                                 <option value="LP-M">LP-M</option>
                                 <option value="LP-K">LP-K</option>
+                                <option value="LP-KR">LP-KR</option>
                                 <option value="LP-CR">LP-CR</option>
                                 <option value="LP-MR">LP-MR</option>
                                 <option value="LK">LK</option>
@@ -432,11 +451,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-12 mb-2">
                             <label class="mt-2" style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan lingkungan" rows="3"></textarea>
+                            <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 13px"
+                                placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
+                            <span style="font-size:8pt"><span id="countTextLingkungan">0</span>/255</span>
                         </div>
                         <div class="col-md-5">
-                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Perkembangan Ruang
+                            <label class="mt-2" style="font-size: 13px;line-height:0px;">Pola
+                                Ruang
                                 <sup class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -457,8 +478,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-12">
                             <label style="font-size: 13px;line-height:0px;">Deskripsi <sup
                                     class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey" style="font-size: 8pt"
-                                placeholder="Catatan perkembangan ruang" rows="3"></textarea>
+                            <textarea class="form-control" name="deskripsi_transect_zone" id="deskripsiTransectZoneSurvey"
+                                style="font-size: 13px" placeholder="Catatan perkembangan ruang" rows="3" maxlength="255"></textarea>
+                            <span style="font-size:8pt"><span id="countTextRuang">0</span>/255</span>
                         </div>
                     </div>
                     <p style="font-size:13px;" class="w-100 mt-2"><sup
@@ -556,7 +578,22 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
 
             <div>
-                <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi</span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="font-weight-bold" style="font-size: 13px">Arsip Lokasi </span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <span class="w-100 d-block font-weight-bold" style="font-size: 25px;"><span
+                                id="JumlahTitikSurvey">0</span></span>
+                        <a href="/printSurvey" class="text-primary" style="
+                        position: relative;
+                        font-size: 13px;
+                        cursor:pointer;
+                        text-decoration: none;
+                    "><i class="ri-download-cloud-line font-weight-bold"
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
+                    </div>
+                </div>
                 <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
                 <div class="list-item-info-location-survey mt-2">
 
@@ -909,6 +946,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <input type="radio" name="layer" class="form-check-input" id="budaya_dot">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="budaya_dot">Cagar Budaya</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-check survey_dot d-none">
+                        <ul class="list-group list-group-flush">
+                            <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
+                                <input type="radio" name="layer" class="form-check-input" id="survey_dot">
+                                <label class="form-check-label checkbox_left text_checkbox text_all"
+                                    for="survey_dot">Survey Perkembangan</label>
                             </li>
                         </ul>
                     </div>
@@ -5221,59 +5267,72 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
-        <div class="container p-2" id="btn-titik" style="position:absolute; left:30rem; z-index:999; width:60%">
-            {{-- <div> --}}
-            <button class="btn btn-sm"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            apartment
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+        <div class="container p-2" id="btn-titik" style="position:absolute; left:30rem; z-index:999; width:55%">
+            <div>
+                <button class="btn btn-sm"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                apartment
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            storefront
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="iumk">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                storefront
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            home_repair_service
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="proyek">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                home_repair_service
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
-            {{-- <div> --}}
-            <button class="btn btn-sm ml-2"
-                style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
-                <div class="container">
-                    <div class="row">
-                        <span class="material-icons text-primary mr-1">
-                            location_city
-                        </span>
-                        <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="cagar">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                location_city
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                        </div>
                     </div>
-                </div>
-            </button>
-            {{-- </div> --}}
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-sm ml-2"
+                    style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="survey">
+                    <div class="container">
+                        <div class="row">
+                            <span class="material-icons text-primary mr-1">
+                                query_stats
+                            </span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Survey Perkembangan</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
         </div>
         <div class="container p-2 dropdown" id="more-apps"
             style="position:absolute; right:-15px; z-index:999; width:8rem">
@@ -5493,8 +5552,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <option value="Pekerjaan">Pekerjaan</option>
                             <option value="Pendidikan">Pendidikan</option>
                             <option value="Agama">Agama</option>
-                            <option value="Kepadatan">Kepadatan</option>
                             <option value="Jumlah Penduduk">Jumlah Penduduk</option>
+                            <option value="Kepadatan Penduduk">Kepadatan Penduduk</option>
+                            <option value="Kepadatan Bangunan">Kepadatan Bangunan</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">
@@ -5585,6 +5645,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"
+        integrity="sha512-VaRptAfSxXFAv+vx33XixtIVT9A/9unb1Q8fp63y1ljF+Sbka+eMJWoDAArdm7jOYuLQHVx5v60TQ+t3EA8weA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>
