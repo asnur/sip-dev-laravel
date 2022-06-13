@@ -182,6 +182,11 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/titik-rekap-survey', [RekapSurveyController::class, 'index'])->name('titik-rekap-survey');
 
     Route::get('/slide-foto', [AdminController::class, 'slideFoto'])->name('slide-foto');
+
+
+    Route::get('/get-view-survey', [AdminController::class, 'viewSurvey'])->name('get-view-survey');
+
+    Route::get('/get-kinerja-petugas', [AdminController::class, 'KinerjaPetugas'])->name('get-kinerja-petugas');
 });
 
 //Analytics Page

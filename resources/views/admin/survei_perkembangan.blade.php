@@ -296,7 +296,7 @@ $Roles = '';
                 <div class="card-status-top bg-danger"></div>
 
                 <div class="card-header card-header-light">
-                    <h3 class="card-title">Input Data Terbaru</h3>
+                    <h3 class="card-title">100 Data Input Terbaru</h3>
 
                     <div class="card-actions">
                         <div class="row align-items-center">
@@ -541,27 +541,69 @@ $Roles = '';
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table style="margin-bottom: 10rem;" class="display table table-striped" id="table-surveyer2" style="width: 100%">
+                        <table style="overflow-x: hidden;" class="display table table-striped" id="table-surveyer2" style="width: 100%">
 
                             <thead>
                                 <tr class="size_detil" valign="middle">
-                                    <th>Nama Petugas Ajib</th>
-                                    <th>Penempatan</th>
-                                    <th>Role</th>
-                                    <th>Jumlah Titik</th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Nama Petugas Ajib
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Penempatan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Role
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Jumlah Titik
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
 
-
-                                @foreach ($pegawai_ajib2 as $pa)
-                                <tr>
-                                    <td>{{ $pa->name }}</td>
-                                    <td>{{ $pa->penempatan }}</td>
-                                    <td>{{ $pa->roles[0]->name }}</td>
-                                    <td>{{ $pa->perkembangan_count }}</td>
-                                </tr>
-                                @endforeach
+                                @php
+                                for ($x = 0; $x <= 9; $x++) { echo"<tr class='hide_lazyload_kinerja'>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    </tr>";
+                                    }
+                                    @endphp
                             </tbody>
                         </table>
                     </div>
@@ -582,41 +624,153 @@ $Roles = '';
                 </div>
                 <div class="card-body">
                     <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
+
                         <thead>
                             <tr class="text-center size_detil" valign="middle">
-                                <th>Petugas AJIB</th>
-                                <th>ID Sub Blok</th>
-                                <th>Nama Lokasi</th>
-                                <th>Kelurahan</th>
-                                <th>Kecamatan</th>
-                                <th>Pola Regional</th>
-                                <th>Deskripsi</th>
-                                <th>Pola Lingkungan</th>
-                                <th>Deskripsi</th>
-                                <th>Pola Ruang</th>
-                                <th>Deskripsi</th>
+
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Petugas AJIB
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        ID Sub Blok
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Nama Lokasi
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Kelurahan
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Kecamatan
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Pola Regional
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Deskripsi
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Pola Lingkungan
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Deskripsi
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Pola Ruang
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
+                                        Deskripsi
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data_detail as $pa)
-                            <tr>
-                                <td>{{ $pa->nameuser }}</td>
-                                <td valign="top">{{ $pa->id_sub_blok }}</td>
-                                <td class="text-center">{{ $pa->name }}</td>
-                                <td class="text-center">{{ ucwords(strtolower($pa->kelurahan)) }}</td>
-                                <td class="text-center">{{ ucwords(strtolower($pa->kecamatan)) }}</td>
-                                <td class="text-center">{{ $pa->regional }}</td>
-                                <td>{{ $pa->deskripsi_regional }}
-                                </td>
-                                <td class="text-center">{{ $pa->neighborhood }}</td>
-                                <td>{{ $pa->deskripsi_neighborhood }}
-                                </td>
-                                <td class="text-center">{{ $pa->transect_zone }}</td>
+
+                            @php
+                            for ($x = 0; $x <= 9; $x++) { echo"<tr class='hide_lazyload_kinerja'>
                                 <td>
-                                    {{ $pa->deskripsi_transect_zone }}
+                                    <div class='skeleton-line'></div>
                                 </td>
-                            </tr>
-                            @endforeach
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                <td>
+                                    <div class='skeleton-line'></div>
+                                </td>
+                                </tr>";
+                                }
+                                @endphp
+
+
                         </tbody>
                     </table>
                 </div>
@@ -675,6 +829,244 @@ $Roles = '';
 
 </div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#table-surveyer2').DataTable({
+
+            "drawCallback": function(settings) {
+                $(".hide_lazyload_kinerja").hide();
+                $(".lazy_name_kinerja").show();
+            },
+
+            processing: false
+            , serverSide: true
+            , ajax: "{{ url('/admin/get-kinerja-petugas') }}"
+
+            , ordering: true
+            , language: {
+                search: "Pencarian:"
+            , }
+            , order: [
+                [0, "asc"]
+                , [1, "desc"]
+            , ],
+
+            columns: [{
+                    data: 'name'
+                    , name: 'name'
+                }
+                , {
+                    data: 'penempatan'
+                    , name: 'penempatan'
+                }
+                , {
+                    data: 'roles.0.name'
+                    , name: 'roles.0.name'
+                }
+                , {
+                    data: 'perkembangan_count'
+                    , name: 'perkembangan_count'
+                }
+            , ],
+
+            columnDefs: [{
+                    orderSequence: ["asc", "desc"]
+                    , targets: [0]
+                    , className: "text-left"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [1]
+                }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [2]
+                    , className: "text-center"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [3]
+                    , className: "text-center"
+                , }
+                , {
+                    width: "25%"
+                    , targets: 0
+                }
+                , {
+                    width: "25%"
+                    , targets: 1
+                }
+                , {
+                    width: "25%"
+                    , targets: 2
+                }
+                , {
+                    width: "25%"
+                    , targets: 3
+                }
+            , ],
+
+        });
+
+
+        $('#table-surveyer3').DataTable({
+
+            "drawCallback": function(settings) {
+                $(".hide_lazyload_kinerja").hide();
+                $(".lazy_name_kinerja").show();
+            },
+
+            processing: false
+            , serverSide: true
+            , ajax: "{{ url('/admin/get-view-survey') }}"
+            , language: {
+                search: "Pencarian:"
+            , }
+            , ordering: false
+            , sScrollX: "200%"
+            , sScrollXInner: "200%"
+            , responsive: false
+            , order: [
+                [0, "desc"]
+            ],
+
+
+            columns: [{
+                    data: 'petugas'
+                    , name: 'petugas'
+                }
+                , {
+                    data: 'id_sub_blok'
+                    , name: 'id_sub_blok'
+                }
+                , {
+                    data: 'name_tempat'
+                    , name: 'name_tempat'
+                }
+                , {
+                    data: 'kelurahan'
+                    , name: 'kelurahan'
+                }
+                , {
+                    data: 'kecamatan'
+                    , name: 'kecamatan'
+                }
+                , {
+                    data: 'regional'
+                    , name: 'regional'
+                }
+                , {
+                    data: 'deskripsi_regional'
+                    , name: 'deskripsi_regional'
+                }
+                , {
+                    data: 'neighborhood'
+                    , name: 'neighborhood'
+                }
+                , {
+                    data: 'deskripsi_neighborhood'
+                    , name: 'deskripsi_neighborhood'
+                }
+                , {
+                    data: 'transect_zone'
+                    , name: 'transect_zone'
+                }
+                , {
+                    data: 'deskripsi_transect_zone'
+                    , name: 'deskripsi_transect_zone'
+                }
+
+            , ],
+
+            columnDefs: [{
+                    orderSequence: ["asc", "desc"]
+                    , targets: [0]
+                }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [1]
+                    , className: "text-center"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [2]
+                    , className: "text-left"
+                }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [3]
+                    , className: "text-left"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [4]
+                    , className: "text-left"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [5]
+                    , className: "text-center"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [6]
+                }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [7]
+                    , className: "text-center"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [8]
+                }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [9]
+                    , className: "text-center"
+                , }
+                , {
+                    width: "5%"
+                    , targets: 0
+                }
+                , {
+                    width: "5%"
+                    , targets: 1
+                }
+                , {
+                    width: "7%"
+                    , targets: 2
+                }
+                , {
+                    width: "7%"
+                    , targets: 3
+                }
+                , {
+                    width: "5%"
+                    , targets: 4
+                }
+                , {
+                    width: "6%"
+                    , targets: 5
+                }
+                , {
+                    width: "5%"
+                    , targets: 7
+                }
+                , {
+                    width: "5%"
+                    , targets: 9
+                }
+            , ],
+
+        });
+    })
+
+</script>
+
 
 
 
