@@ -600,7 +600,7 @@ $Roles = '';
                         <tbody>
                             @foreach ($data_detail as $pa)
                             <tr>
-                                <td>{{ $pa->user->name }}</td>
+                                <td>{{ $pa->nameuser }}</td>
                                 <td valign="top">{{ $pa->id_sub_blok }}</td>
                                 <td class="text-center">{{ $pa->name }}</td>
                                 <td class="text-center">{{ ucwords(strtolower($pa->kelurahan)) }}</td>
