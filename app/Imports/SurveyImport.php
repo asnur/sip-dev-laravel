@@ -5,9 +5,17 @@ namespace App\Imports;
 use App\Models\SurveyPerkembangan;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class SurveyImport implements ToModel, WithCalculatedFormulas
+class SurveyImport implements ToModel, WithCalculatedFormulas, WithStartRow
 {
+    /**
+     * @return int
+     */
+    public function startRow(): int
+    {
+        return 2;
+    }
     /**
      * @param array $row
      *
