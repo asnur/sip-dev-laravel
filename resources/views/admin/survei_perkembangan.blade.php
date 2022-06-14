@@ -804,7 +804,7 @@ $Roles = '';
                         <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
                         <div class="ms-auto">
                             <div class="dropdown">
-                                <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter : <span class="jumlah_hari"></span> hari</a>
+                                <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter: <span class="jumlah_hari"></span> hari</a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a class="dropdown-item tujuh_hari" onclick="filterAnalytics(7)">7 hari</a>
                                     <a class="dropdown-item tigapuluh_hari" onclick="filterAnalytics(30)">30 hari</a>
@@ -864,8 +864,7 @@ $Roles = '';
                 search: "Pencarian:"
             , }
             , order: [
-                [0, "asc"]
-                , [1, "desc"]
+                [3, "desc"]
             , ],
 
             columns: [{
