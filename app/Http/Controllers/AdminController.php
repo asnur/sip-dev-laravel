@@ -16,6 +16,7 @@ use Spatie\Permission\Models\Role;
 use DataTables;
 use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -496,6 +497,12 @@ class AdminController extends Controller
         // kepake
         $hasil_jumlah_titik = SurveyPerkembangan::all();
 
+        $get_today = date('Y-m-d');
+
+        $get_perkembangan_day = DB::table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+
+        // dd($get_perkembangan_day->count());
+
 
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->get();
@@ -582,12 +589,13 @@ class AdminController extends Controller
         // )->get();
 
 
-        return view('admin.survei_perkembangan', compact(['hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
+        return view('admin.survei_perkembangan', compact(['get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }
 
     public  function viewSurvey()
     {
         $data_survey = ViewDetil::select("*")
+            ->take(50)
             ->get();
         return Datatables::of($data_survey)->make(true);
 
@@ -601,7 +609,7 @@ class AdminController extends Controller
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
-        )->get();
+        )->take(50)->get();
 
         return Datatables::of($data_kinerja)->make(true);
 

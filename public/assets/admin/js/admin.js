@@ -167,15 +167,6 @@ const editPegawai = (id, name, email, penempatan) => {
     );
 };
 
-$.ajax({
-    url: `/analytics/6`,
-    method: "GET",
-    success: (e) => {
-        $(".inf-pengunjung").text(0);
-        $(".inf-pengunjung").text(e[1].reduce(sum, 0));
-    },
-});
-
 let url = document.URL;
 let arrURL = url.split("/");
 
@@ -856,6 +847,21 @@ const filterAnalytics = (periode) => {
         // },
         success: (e) => {
             let jumlah_hari = periode - 1;
+
+            if (jumlah_hari == 6) {
+                $(".tujuh_hari").hide();
+                $(".tigapuluh_hari").show();
+                $(".sembilanpuluh_hari").show();
+            } else if (jumlah_hari == 29) {
+                $(".tujuh_hari").show();
+                $(".tigapuluh_hari").hide();
+                $(".sembilanpuluh_hari").show();
+            } else if (jumlah_hari == 89) {
+                $(".tujuh_hari").show();
+                $(".tigapuluh_hari").show();
+                $(".sembilanpuluh_hari").hide();
+            }
+
             $(".jumlah_hari").text(periode);
             localStorage.setItem("interval", periode);
             // console.log(jumlah_hari);
@@ -949,6 +955,15 @@ const filterAnalytics = (periode) => {
         },
     });
 };
+
+$.ajax({
+    url: `/analytics/0`,
+    method: "GET",
+    success: (e) => {
+        $(".inf-pengunjung-harian").text(0);
+        $(".inf-pengunjung-harian").text(e[1].reduce(sum, 0));
+    },
+});
 
 if (arrURL[4] == undefined) {
     $(window).on("load", () => {

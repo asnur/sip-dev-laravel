@@ -98,9 +98,9 @@
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     } */
 
-    .chart-pengunjung {
+    /* .chart-pengunjung {
         width: 68.5em !important;
-    }
+    } */
 
     .dt-buttons {
         position: relative;
@@ -115,6 +115,8 @@
 @php
 $Roles = '';
 @endphp
+
+
 
 
 
@@ -141,125 +143,29 @@ $Roles = '';
     <div class="container-xl">
         <!-- konten disini -->
 
+        {{-- @foreach($get_perkembangan_day as $x)
+        <p>{{ $x->date }}</p>
+        @endforeach --}}
+
+        {{-- <span>
+            <p>{{ $get_perkembangan_day->count()}}</p>
+        </span> --}}
+
 
         <div class="row">
-            <div class="col-md-4">
+
+            <div class="col-md-3">
                 <div class="card responsive_jarak">
 
-                    {{-- <div class="ribbon ribbon-top bg-primary">
-                        <i class="fas fa-user fa-2x text-gray-300"></i>
-                    </div> --}}
-                    <div class="card-status-top bg-primary"></div>
+                    <div class="card-status-top bg-orange"></div>
 
-                    <div class="card-header responsive_card">
-
-                        <div class="row responsive_row">
-
-                            <div class="col-md-9">
-                                <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem;" class="card-title text-break text-primary">Pengunjung 7 Hari Terakhir</h3>
-                            </div>
-
-                            <div class="col-md-3 responsive_icon">
-
-                                <span class="bg-blue text-white avatar">
-                                    {{-- <i class="fas fa-user fa-2x text-white"></i> --}}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                    </svg>
-                                </span>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="card-body responsive_delete_card">
-                        {{-- <div class="h5 mb-0 font-weight-bold inf-pengunjung" onload="visitorToday()">0
-                        </div> --}}
-                        <div style="font-size:40px;" class="h2 m-0 inf-pengunjung angka_responsive" onload="visitorToday()">
-                            <div class="skeleton-image custom_harian">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-4">
-                <div class="card responsive_jarak">
-                    {{--
-                    <div class="ribbon ribbon-top bg-success">
-                        <i class="fas fa-map-marked fa-2x text-gray-300"></i>
-                    </div> --}}
-                    <div class="card-status-top bg-success"></div>
-
-                    <div class="card-header responsive_card">
-
-
-                        <div class="row responsive_row">
-                            <div class="col-md-9">
-                                <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem" class="card-title text-break text-success">
-                                    Titik Tercatat
-                                </h3>
-                            </div>
-
-                            <div class="col-md-3 responsive_icon responsive_icon">
-                                <span class="bg-success text-white avatar">
-
-                                    {{-- <i class="fas fa-user fa-2x text-white"></i> --}}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <line x1="18" y1="6" x2="18" y2="6.01"></line>
-                                        <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5"></path>
-                                        <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15"></polyline>
-                                        <line x1="9" y1="4" x2="9" y2="17"></line>
-                                        <line x1="15" y1="15" x2="15" y2="20"></line>
-                                    </svg>
-
-                                </span>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="card-body responsive_delete_card">
-                        {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($hasil_jumlah_titik) }}</div> --}}
-                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ count($hasil_jumlah_titik) }}
-                    </div>
-
-                    {{-- <div style="font-size:40px;" class="h2 m-0">{{ count($hasil_jumlah_titik) }} --}}
-                </div>
-
-
-            </div>
-
-        </div>
-        <div class="col-md-4">
-            <div class="card responsive_jarak">
-
-                {{-- <div class="ribbon ribbon-top bg-yellow">
-                        <i class="fas fa-users fa-2x text-gray-300"></i>
-                    </div> --}}
-                <div class="card-status-top bg-orange"></div>
-
-                <div class="card-header responsive_card">
+                    <div class="card-header">
+                        <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem; color:#f76707" class="card-title">Akses Terdaftar</h3>
 
 
 
-                    <div class="row responsive_row">
-                        <div class="col-md-9">
-                            <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem" class="card-title text-break text-orange">
-                                Pegawai Terdaftar
-                            </h3>
-                        </div>
-
-                        <div class="col-md-3 responsive_icon">
+                        <div class="card-actions">
                             <span class="bg-orange text-white avatar">
-                                {{-- <i class="fas fa-user fa-2x text-white"></i> --}}
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
@@ -267,32 +173,140 @@ $Roles = '';
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                     <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
                                 </svg>
+
                             </span>
+
                         </div>
                     </div>
 
 
 
+                    <div class="card-body responsive_delete_card">
+                        <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ count($pegawai_ajib2) }}</div>
+
+                        {{-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ count($pegawai_ajib) }}
+                    </div> --}}
                 </div>
-
-
-                <div class="card-body responsive_delete_card">
-                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ count($pegawai_ajib2) }}</div>
-
-                    {{-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ count($pegawai_ajib) }}
-                </div> --}}
 
             </div>
 
         </div>
+
+        <div class="col-md-3">
+            <div class="card responsive_jarak">
+
+                <div class="card-status-top bg-primary"></div>
+
+                <div class="card-header">
+                    <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem; color:#206bc4" class="card-title">Pengunjung Hari Ini</h3>
+
+                    <div class="card-actions">
+                        <span class="bg-blue text-white avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                            </svg>
+                        </span>
+
+                    </div>
+                </div>
+
+
+
+                <div class="card-body responsive_delete_card">
+                    <div style="font-size:40px;" class="h2 m-0 inf-pengunjung-harian angka_responsive">
+                        <div style="width:12.5rem;" class="skeleton-image custom_harian">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="card responsive_jarak">
+
+                <div class="card-status-top bg-danger"></div>
+
+                <div class="card-header">
+                    <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem; color:#d63939" class="card-title">
+                        Titik Tercatat Hari Ini</h3>
+
+
+                    <div class="card-actions">
+                        <span class="bg-red text-white avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                            </svg>
+                        </span>
+
+                    </div>
+                </div>
+
+
+
+                <div class="card-body responsive_delete_card">
+                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ $get_perkembangan_day->count() }}</div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="card responsive_jarak">
+
+                <div class="card-status-top bg-success"></div>
+
+                <div class="card-header">
+                    <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem; color:#2FB344" class="card-title">Total Titik Tercatat</h3>
+
+
+                    <div class="card-actions">
+                        <span class="bg-green text-white avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="18" y1="6" x2="18" y2="6.01"></line>
+                                <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5"></path>
+                                <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15"></polyline>
+                                <line x1="9" y1="4" x2="9" y2="17"></line>
+                                <line x1="15" y1="15" x2="15" y2="20"></line>
+                            </svg>
+
+                        </span>
+
+                    </div>
+                </div>
+
+
+
+                <div class="card-body responsive_delete_card">
+                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ count($hasil_jumlah_titik) }}</div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
     </div>
 
 
 
-    <div class="row row-cards">
+    <div class="row-cards">
         <div class="col-md-12 col-xl-12">
 
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-status-top bg-danger"></div>
 
                 <div class="card-header card-header-light">
@@ -532,7 +546,7 @@ $Roles = '';
         </div>
     </div>
 
-    <div style="margin-top: 1rem" class="row row-cards">
+    <div style="margin-top: 1rem" class="row-cards">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-status-top bg-success"></div>
@@ -615,7 +629,7 @@ $Roles = '';
         </div>
     </div>
 
-    <div style="margin-top: 1rem" class="row row-cards">
+    <div style="margin-top: 1rem" class="row-cards">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-status-top bg-success"></div>
@@ -626,7 +640,7 @@ $Roles = '';
                     <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
 
                         <thead>
-                            <tr class="text-center size_detil" valign="middle">
+                            <tr class="size_detil" valign="middle">
 
                                 <th>
                                     <div style="display: none;" class="lazy_name_kinerja">
@@ -781,20 +795,20 @@ $Roles = '';
         </div>
     </div>
 
-    <div style="margin-top: 1rem" class="row row-cards">
+    <div style="margin-top: 1rem" class="row-cards">
         <div class="col-12">
             <div class="card">
                 <div class="card-status-top bg-primary"></div>
                 <div class="card-body">
                     <div class="d-flex">
-                        <h3 class="card-title">Traffic Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
+                        <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
                         <div class="ms-auto">
                             <div class="dropdown">
-                                <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter :</a>
+                                <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter : <span class="jumlah_hari"></span> hari</a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" onclick="filterAnalytics(7)">7 Hari</a>
-                                    <a class="dropdown-item" onclick="filterAnalytics(30)">30 Hari</a>
-                                    <a class="dropdown-item" onclick="filterAnalytics(90)">90 Hari</a>
+                                    <a class="dropdown-item tujuh_hari" onclick="filterAnalytics(7)">7 hari</a>
+                                    <a class="dropdown-item tigapuluh_hari" onclick="filterAnalytics(30)">30 hari</a>
+                                    <a class="dropdown-item sembilanpuluh_hari" onclick="filterAnalytics(90)">90 hari</a>
                                 </div>
                             </div>
                         </div>
@@ -803,7 +817,7 @@ $Roles = '';
 
 
                     <div style=" position: relative; height: 15rem; width: 100%;">
-                        <div style="width: 58.5rem; height:15rem;" class="skeleton-image"></div>
+                        <div class="skeleton-image"></div>
                         <canvas class="chart-pengunjung">
                         </canvas>
                     </div>
@@ -812,7 +826,7 @@ $Roles = '';
         </div>
     </div>
 
-    <div style="margin-top: 1rem" class="row row-cards">
+    <div style="margin-top: 1rem" class="row-cards">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-header">
@@ -880,6 +894,7 @@ $Roles = '';
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [1]
+                    , className: "text-left"
                 }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -984,6 +999,8 @@ $Roles = '';
             columnDefs: [{
                     orderSequence: ["asc", "desc"]
                     , targets: [0]
+                    , className: "text-left"
+
                 }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -1013,6 +1030,7 @@ $Roles = '';
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [6]
+                    , className: "text-center"
                 }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -1022,6 +1040,7 @@ $Roles = '';
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [8]
+                    , className: "text-center"
                 }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -1029,7 +1048,13 @@ $Roles = '';
                     , className: "text-center"
                 , }
                 , {
-                    width: "5%"
+                    orderSequence: ["asc", "desc"]
+                    , targets: [10]
+                    , className: "text-center"
+                , }
+
+                , {
+                    width: "7%"
                     , targets: 0
                 }
                 , {
@@ -1053,7 +1078,7 @@ $Roles = '';
                     , targets: 5
                 }
                 , {
-                    width: "5%"
+                    width: "7%"
                     , targets: 7
                 }
                 , {
