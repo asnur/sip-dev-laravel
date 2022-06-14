@@ -5416,13 +5416,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     class="text-dark font-weight-bold"><img style="width: 65%"
                                         src="{{ asset('assets/gambar/prapermohonan.png') }}">PraPermohonan</a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
+                            <div class="col-sm-4 mt-3 text-center d-flex align-items-center">
                                 <a href="https://oss.go.id" target="_blank"
                                     style="font-size: 12px; text-decoration:none"
                                     class="text-dark font-weight-bold"><img
                                         src="{{ asset('assets/gambar/OSS.png') }}" class="w-75">OSS</a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
+                            <div class="col-sm-4 mt-3 text-center d-flex align-items-center">
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
@@ -5430,36 +5430,50 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         class="w-75">Pesan
                                     Ajib</a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center d-flex align-items-center">
+                            <div class="col-sm-4 mt-3 text-center d-flex align-items-center">
                                 <a href="https://simbg.pu.go.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/simbg.png') }}"><span>SIMBG</span></a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center">
+                            <div class="col-sm-4 mt-3 text-center">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img class="w-75"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}"><span>JakartaSatu</span></a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center">
+                            <div class="col-sm-4 mt-3 text-center">
                                 <a href="https://isi.or.id/" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
                                         src="{{ asset('assets/gambar/ISI.png') }}"><span>ISI Survei</span></a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center">
+                            <div class="col-sm-4 mt-3 text-center">
                                 <a href="https://bankdki.co.id/en/product-services/micro-sme/2016-11-24-20-19-48/kredit-umkm"
                                     target="_blank" style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img style="width: 85%; margin-top:-6px"
                                         src="{{ asset('assets/gambar/dki.png') }}"><span>Bank DKI</span></a>
                             </div>
-                            <div class="col-sm-4 mt-2 text-center">
+                            <div class="col-sm-4 mt-3 text-center">
                                 <a href="/dokumen-dasar-dan-panduan" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img style="margin-top:-6px"
                                         src="{{ asset('assets/gambar/referensi.png') }}"
                                         class="w-75"><span>Referensi</span></a>
+                            </div>
+                            <div class="col-sm-4 mt-3 text-center">
+                                <a href="https://sppirt.pom.go.id/" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img style="margin-top:-6px"
+                                        src="{{ asset('assets/gambar/BPOM.png') }}"
+                                        class="w-75"><span>BPOM</span></a>
+                            </div>
+                            <div class="col-sm-4 mt-3 text-center">
+                                <a href="https://ptsp.halal.go.id/" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img style="margin-top:-6px"
+                                        src="{{ asset('assets/gambar/halal.png') }}"
+                                        class="w-75"><span>SIHALAL</span></a>
                             </div>
                         </div>
                     </div>
