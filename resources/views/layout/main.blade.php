@@ -5318,7 +5318,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Peta -->
     <div id='map' style='width: 100%; height: 100%; position: fixed;'>
         <div class="container p-2" id="btn-titik"
-            style="position:absolute; left:30rem; z-index:999; width:55%; display:none;">
+            style="position:absolute; left:32%; z-index:999; width:60%; display:none;">
             <div>
                 <button class="btn btn-sm"
                     style="background: #fdfffc; border-radius: 30px; box-shadow: 1px 1px 1px #000" id="sewa_kantor">
@@ -5327,7 +5327,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 apartment
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Harga Sewa Kantor</span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sewa Kantor</span>
                         </div>
                     </div>
                 </button>
@@ -5340,7 +5340,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 storefront
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran UMKM</span>
                         </div>
                     </div>
                 </button>
@@ -5353,7 +5353,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 home_repair_service
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Proyek Potensial</span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Proyek</span>
                         </div>
                     </div>
                 </button>
@@ -5379,7 +5379,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 query_stats
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Survey Perkembangan</span>
+                            <span class="font-weight-bold" style="margin-top: 2px">Perkembangan Wilayah</span>
                         </div>
                     </div>
                 </button>
@@ -5504,7 +5504,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
             </button>
             <div id="legend" class="bg-white"
-                style="float: right;margin-right:1.3rem;width:32px;margin-top:2rem; border-radius:8px">
+                style="float: right;margin-right:1.3rem;width:32px;margin-top:2rem; border-radius:5px">
                 <div class="dropdown">
                     <button id="dropdownLayer" data-toggle="dropdown" class="ri-stack-line p-1" aria-haspopup="true"
                         aria-expanded="false"
