@@ -180,6 +180,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         NahidulHasan\Html2pdf\Html2pdfServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -240,6 +241,7 @@ return [
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Html2Pdf'  => NahidulHasan\Html2pdf\Facades\Pdf::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
