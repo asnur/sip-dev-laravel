@@ -34,6 +34,7 @@ var countOpen = 0;
 var arrPrint = [];
 var files = [];
 var Newfiles = [];
+var filesBulk = [];
 var luasSimulasi;
 var KDH, KLB, NJOP;
 var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
@@ -5615,6 +5616,10 @@ function preview_foto_survey() {
     //         sliderOption("previewFotoSurvey");
     //     }
     // }
+}
+
+function compresImageBulk(){
+    
 }
 
 function preview_image_edit() {
