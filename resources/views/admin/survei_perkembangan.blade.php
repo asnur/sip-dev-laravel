@@ -1029,7 +1029,7 @@ $Roles = '';
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [6]
-                    , className: "text-center"
+                    , className: "text-left"
                 }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -1039,7 +1039,7 @@ $Roles = '';
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [8]
-                    , className: "text-center"
+                    , className: "text-left"
                 }
                 , {
                     orderSequence: ["asc", "desc"]
@@ -1049,7 +1049,7 @@ $Roles = '';
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [10]
-                    , className: "text-center"
+                    , className: "text-left"
                 , }
 
                 , {
