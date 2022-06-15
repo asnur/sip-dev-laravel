@@ -5618,9 +5618,7 @@ function preview_foto_survey() {
     // }
 }
 
-function compresImageBulk(){
-    
-}
+function compresImageBulk() {}
 
 function preview_image_edit() {
     var gambarLokasi = $("#gambarLokasiEdit").get(0).files.length;
@@ -6724,6 +6722,9 @@ const getLayerSurveyPerkembangan = () => {
 
             map.on("mouseenter", "survey_perkembangan", (e) => {
                 map.getCanvas().style.cursor = "pointer";
+            });
+
+            map.on("click", "survey_perkembangan", (e) => {
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
