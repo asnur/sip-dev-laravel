@@ -595,7 +595,6 @@ class AdminController extends Controller
     public  function viewSurvey()
     {
         $data_survey = ViewDetil::select("*")
-            ->take(50)
             ->get();
         return Datatables::of($data_survey)->make(true);
 
@@ -609,7 +608,7 @@ class AdminController extends Controller
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
-        )->take(50)->get();
+        )->get();
 
         return Datatables::of($data_kinerja)->make(true);
 
