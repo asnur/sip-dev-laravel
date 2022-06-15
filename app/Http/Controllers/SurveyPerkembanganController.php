@@ -7,6 +7,7 @@ use App\Imports\SurveyImport;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
+use App\Models\TestSurveyPerkembanganImage;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Image;
@@ -17,6 +18,18 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class SurveyPerkembanganController extends Controller
 {
+
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function getDataSurvey($id_user, Request $request)
     {
         $data = SurveyPerkembangan::with('image')->where('id_user', $id_user)->orderBy('id', 'DESC')->get();
@@ -232,17 +245,18 @@ class SurveyPerkembanganController extends Controller
 
     public function importExcelSurvey(Request $request)
     {
-        $file = $request->file('file');
-
         Excel::import(new SurveyImport, $request->file('excel'));
-        foreach ($file as $f) {
-            $name = $f->getClientOriginalName();
-            $f->move(public_path() . '/survey', $name);
-            $id_survey = explode('-', $name)[0];
-            SurveyPerkembanganImage::create([
-                'id_survey' => $id_survey,
-                'name' => $name
-            ]);
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $key => $f) {
+                $id_survey = $f->getClientOriginalName();
+                $name = $this->generateRandomString() . rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
+                $f->move(public_path() . '/survey', $name);
+                $id_survey_fix = explode('-', $id_survey)[0];
+                TestSurveyPerkembanganImage::create([
+                    'id_survey' => $id_survey_fix,
+                    'name' => $name
+                ]);
+            }
         }
     }
 }

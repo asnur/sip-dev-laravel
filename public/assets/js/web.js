@@ -180,7 +180,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk"
 ).hide();
 
 $.ajax({
@@ -5618,8 +5618,22 @@ function preview_foto_survey() {
     // }
 }
 
-function compresImageBulk(){
-    
+function compresImageBulk() {
+    filesBulk = [];
+    let fileFoto = $("#fileFoto").get(0).files.length;
+    for (let i = 0; i < fileFoto; i++) {
+        let file = $("#fileFoto").get(0).files[i];
+        new Compressor(file, {
+            quality: 0.3,
+            convertSize: 1000000,
+            success(result) {
+                filesBulk.push(result);
+            },
+            error(err) {
+                console.log(err.message);
+            },
+        });
+    }
 }
 
 function preview_image_edit() {
@@ -5700,6 +5714,29 @@ $("#formPinLocation").on("submit", function (e) {
             $("#pesanGagal").hide();
         }, 3000);
     }
+});
+
+$("#formSurveyBulkLocation").on("submit", function (e) {
+    e.preventDefault();
+    var form_data = new FormData(this);
+    filesBulk.forEach((file) => {
+        form_data.append("foto[]", file, file.name);
+    });
+    $("#btnSubmitBulk").hide();
+    $("#prosesSurveyBulk").show();
+
+    $.ajax({
+        url: `${APP_URL}/importSurvey`,
+        method: "POST",
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: (e) => {
+            filesBulk = [];
+            $("#btnSubmitBulk").show();
+            $("#prosesSurveyBulk").hide();
+        },
+    });
 });
 
 $("#formSurveyLocation").on("submit", function (e) {

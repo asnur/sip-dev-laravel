@@ -312,17 +312,18 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </button>
             <span style="font-size: 13pt" class="title-info font-weight-bold" id="infoSurveyLocation">Survey
                 Perkembangan Wilayah</span>
-            {{-- <ul class="nav nav-pills mb-3 mt-3 d-flex justify-content-between" style="font-size:10pt" id="pills-tab"
+            <ul class="nav nav-pills mb-3 mt-3 d-flex justify-content-start" style="font-size:10pt" id="pills-tab"
                 role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link border active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
                         role="tab" aria-controls="pills-home" aria-selected="true">Single Insert</a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item ml-2" role="presentation">
                     <a class="nav-link border" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert</a>
+                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert <sup
+                            class="text-danger">BETA</sup></a>
                 </li>
-            </ul> --}}
+            </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                     aria-labelledby="pills-home-tab">
@@ -598,7 +599,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="form mt-2">
-                        <form action="" method="POST" style="font-size: 13px">
+                        <form style="font-size: 13px" id="formSurveyBulkLocation" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="fileExcel" class="text-primary" style="cursor:pointer;"><i
@@ -613,13 +614,17 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             class="ri-image-line"
                                             style="font-size: 20px !important;position:relative;top:4px;"></i> File
                                         Foto</label>
-                                    <input type="file" class="d-none" id="fileFoto" multiple accept="image/*"
-                                        onchange="compresImageBulk()">
+                                    <input type="file" class="d-none" id="fileFoto" accept="image/*"
+                                        multiple="multiple" onchange="compresImageBulk()">
                                 </div>
                                 <div class="col-md-6 text-center">
                                     <button type="submit" class="btn btn-success mt-2 mb-1 text-white"
-                                        style="font-size: 8pt; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                                        style="font-size: 8pt; cursor: pointer;" id="btnSubmitBulk"><i
+                                            class="fa fa-paper-plane"></i>
                                         Simpan</button>
+                                    <div class="spinner-border" role="status" id="prosesSurveyBulk">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </div>
                             </div>
                         </form>
