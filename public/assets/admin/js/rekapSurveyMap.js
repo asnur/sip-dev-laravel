@@ -1,3 +1,13 @@
+const gambarPeta = (name) => {
+    $(name).slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        arrows: true,
+        dots: true,
+    });
+};
+
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVudGhvZWxzciIsImEiOiJja3M0MDZiMHMwZW83MnVwaDZ6Z2NhY2JxIn0.vQFxEZsM7Vvr-PX3FMOGiQ";
 const map = new mapboxgl.Map({
@@ -15,8 +25,8 @@ map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
 
 const popup = new mapboxgl.Popup({
-    closeButton: false,
-    closeOnClick: false,
+    closeButton: true,
+    closeOnClick: true,
 });
 
 map.on("style.load", () => {
@@ -59,7 +69,7 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
     map.getCanvas().style.cursor = "pointer";
     const coordinates = e.features[0].geometry.coordinates.slice();
     const data = e.features[0].properties;
-    // console;
+    // console.log(data.nameimage);
 
     // array = data.nameimage;
     // var datagambar = "";
@@ -88,15 +98,29 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
         });
     }
 
+    array = JSON.parse(data.nameimage);
+    // console.log(JSON.parse(array));
+
+    var datagambar = "";
+    if (array.length == 0) {
+        datagambar += `<img class="img_parents" style="width:490px !important;height: 300px; object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide">`;
+    } else {
+        array.forEach((dataimage) => {
+            datagambar += `<img src="https://jakpintas.dpmptsp-dki.com/survey/${dataimage.name}" class="card-img-top" style="width: 100%;height: 100px;object-fit: cover;">`;
+        });
+    }
+
     const content = `
             <div class="imgcard-container">
-            <img src="https://jakpintas.dpmptsp-dki.com/survey/${data["nameimage"]}" class="card-img-top" style="width: 100%;height: 100px;object-fit: cover;">
+            <div class="gambar_peta">
+            ${datagambar}
+            </div>
             </div>
     <div class="p-0">
         <div class="card-body p-2">
-            <h6 style="font-size:14px;" class="mt-0 mb-1 card-title">${data["name"]}</h6>
+            <h6 style="font-size:14px; line-height:17px; margin-bottom:7px" class="mt-0 card-title">${data["name"]}</h6>
             <div class="border-bottom"></div>
-            <div style="line-height: 1.2; margin-top:12px;">
+            <div style="line-height: 1.2; margin-top:7px;">
                 <div class="row">
                     <div class="col-md-6">
                         <span>ID Sub Blok</span>
@@ -165,6 +189,8 @@ map.on("mouseenter", "titik-survey-rekap", (e) => {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
     popup.setLngLat(coordinates).setHTML(content).addTo(map);
+
+    gambarPeta(".gambar_peta");
 });
 
 // map.on("mouseleave", "titik-survey-rekap", () => {

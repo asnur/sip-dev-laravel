@@ -7,6 +7,7 @@ use App\Models\Survey;
 use App\Models\User;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
+use App\Models\ViewDetil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ use Spatie\Permission\Models\Role;
 use DataTables;
 use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -89,7 +91,7 @@ class AdminController extends Controller
         //     ->orderBy('survey_perkembangan_wilayah.id_user', 'Desc')
         //     ->get();
 
-        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id', 'DESC')->get();
+        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id', 'DESC')->take(5)->get();
 
         // dd($perkembangan_surver);
 
@@ -492,25 +494,31 @@ class AdminController extends Controller
 
     public function perkembangan_survey()
     {
-
+        // kepake
         $hasil_jumlah_titik = SurveyPerkembangan::all();
+
+        $get_today = date('Y-m-d');
+
+        $get_perkembangan_day = DB::table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+
+        // dd($get_perkembangan_day->count());
 
 
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
 
-        $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
+        $pegawai_ajib2 = User::withCount('perkembangan')->with('roles')->whereHas(
             'roles',
             function ($q) {
-                $q->whereNotIn('name', ['admin']);
+                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
         )->get();
 
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->get();
+        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->take(100)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -544,12 +552,33 @@ class AdminController extends Controller
 
         //Detail Survey
         // $data_detail = SurveyPerkembangan::with(['user'])->orderBy('users.name', 'asc')->get();
-        $data_detail = SurveyPerkembangan::get()->sortBy(function ($query) {
-            return $query->user->name;
-        })
-            ->all();
+        // $data_detail = SurveyPerkembangan::get()->sortBy(function ($query) {
+        //     return $query->user->name;
+        // })->all();
 
         // dd($data_detail);
+
+
+        // $data_detail = DB::table('survey_perkembangan_wilayah')
+        //     ->join(
+        //         'image_survey_perkembangan',
+        //         'image_survey_perkembangan.id',
+        //         '=',
+        //         'survey_perkembangan_wilayah.id'
+        //     )
+        //     ->join(
+        //         'users',
+        //         'users.id',
+        //         '=',
+        //         'survey_perkembangan_wilayah.id_user'
+        //     )
+        //     ->select('survey_perkembangan_wilayah.*', 'survey_perkembangan_wilayah.name as namesurvey', 'image_survey_perkembangan.*', 'image_survey_perkembangan.name as nameimage', 'users.*', 'users.name as nameuser')
+        //     ->orderBy('users.name', 'asc')
+        //     ->get();
+
+        // dd($data_detail);
+
+
 
 
         // $pegawai_ajib2 = User::withCount('perkembangan')->whereHas(
@@ -560,8 +589,32 @@ class AdminController extends Controller
         // )->get();
 
 
-        return view('admin.survei_perkembangan', compact(['pegawai_ajib2', 'get_id', 'datas', 'data_detail', 'hasil_jumlah_titik']));
+        return view('admin.survei_perkembangan', compact(['get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }
+
+    public  function viewSurvey()
+    {
+        $data_survey = ViewDetil::select("*")
+            ->get();
+        return Datatables::of($data_survey)->make(true);
+
+        // dd($data);
+    }
+
+    public  function KinerjaPetugas()
+    {
+        $data_kinerja = User::withCount('perkembangan')->with('roles')->whereHas(
+            'roles',
+            function ($q) {
+                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
+            }
+        )->get();
+
+        return Datatables::of($data_kinerja)->make(true);
+
+        // dd($data);
+    }
+
 
 
     public function fetchPerkembanganTerbaru($id_data_terbaru)
@@ -587,6 +640,16 @@ class AdminController extends Controller
 
         return response()->json([
             'perkembangan' => $tes,
+        ]);
+    }
+
+    public function slideFoto()
+    {
+
+        $slide_foto = SurveyPerkembanganImage::orderBy('id', 'DESC')->take(10)->get();
+
+        return response()->json([
+            'slide_foto' => $slide_foto,
         ]);
     }
 }

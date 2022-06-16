@@ -4,7 +4,7 @@
 
 * {
     /* font-family: 'Montserrat', sans-serif; */
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
 }
 
 .ui-slider-range.ui-corner-all.ui-widget-header {
@@ -153,6 +153,16 @@
 }
 
 .info-survey-detail {
+    position: absolute;
+    z-index: 9999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
+.info-layer-survey-perkembangan {
     position: absolute;
     z-index: 9999;
     background: #fdfffc;
@@ -483,7 +493,7 @@ input[type="range"]::-moz-range-progress {
 /* Finish Range */
 
 .mapboxgl-ctrl-top-right {
-    top: 22% !important;
+    top: 25% !important;
     right: 0 !important;
 }
 
@@ -705,4 +715,12 @@ input[type="range"]::-moz-range-progress {
     color: red;
     font-weight: bold;
     outline: none;
+}
+
+.dropzone {
+    border: 2px dashed #0087ff;
+    border-radius: 5px;
+    background: white;
+    width: 100%;
+    text-align: center;
 }

@@ -2,17 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MainImport;
+use App\Imports\SurveyImport;
+use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
+use App\Models\TestSurveyPerkembangan;
+use App\Models\TestSurveyPerkembanganImage;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Image;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SurveyPerkembanganController extends Controller
 {
+
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function getDataSurvey($id_user, Request $request)
     {
         $data = SurveyPerkembangan::with('image')->where('id_user', $id_user)->orderBy('id', 'DESC')->get();
@@ -22,7 +40,9 @@ class SurveyPerkembanganController extends Controller
     public function saveDataSurvey(Request $request)
     {
         $uid = base64_encode($request->input('id_sublok') . $request->input('name') . $request->input('kelurahan') . $request->input('kecamatan') . $request->input('regional') . $request->input('neighborhood') . $request->input('transect_zone') . $request->input('id_user'));
+        $id_fix = explode(",", $request->input('kordinat'));
         $saved = SurveyPerkembangan::create([
+            'id' => substr($id_fix[0], -4) . substr($id_fix[1], -4),
             'id_sub_blok' => $request->input('id_sublok'),
             'name' => $request->input('name'),
             'kordinat' => $request->input('kordinat'),
@@ -46,14 +66,14 @@ class SurveyPerkembanganController extends Controller
                     $name = rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
                     $img = Image::make($file->getRealPath());
                     $path = 'survey/';
-                    $img->resize(400, 400, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($path . '/' . $name);
-                    // $file->move(public_path() . '/survey/', $name);
+                    // $img->resize(400, 400, function ($constraint) {
+                    //     $constraint->aspectRatio();
+                    // })->save($path . '/' . $name);
+                    $file->move(public_path() . '/survey/', $name);
 
                     SurveyPerkembanganImage::create([
                         'name' => $name,
-                        'id_survey' => $lastId->id
+                        'id_survey' => substr($id_fix[0], -4) . substr($id_fix[1], -4)
                     ]);
                 }
             }
@@ -186,5 +206,60 @@ class SurveyPerkembanganController extends Controller
         }
 
         return response()->json($geojson_format);
+    }
+
+    public function surveyKelurahan(Request $request)
+    {
+        $geojson_format = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+
+        $data = SurveyPerkembangan::with('image')->where('kelurahan', $request->kelurahan)->get();
+
+        foreach ($data as $d) {
+            $coor = explode(",", $d->kordinat);
+            $value_data = [
+                'type' => "Feature",
+                'properties' => [
+                    'name' => $d->name,
+                    'id_sub_blok' => $d->id_sub_blok,
+                    'image' => $d->image,
+                    'kelurahan' => $d->kelurahan,
+                    'kecamatan' => $d->kecamatan,
+                    'regional' => $d->regional,
+                    'deskripsi_regional' => $d->deskripsi_regional,
+                    'neighborhood' => $d->neighborhood,
+                    'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
+                    'transect_zone' => $d->transect_zone,
+                    'deskripsi_transect_zone' => $d->deskripsi_transect_zone,
+                ],
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [(float)$coor[1], (float)$coor[0]]
+                ]
+            ];
+
+            array_push($geojson_format['features'], $value_data);
+        }
+
+        return response()->json($geojson_format);
+    }
+
+    public function importExcelSurvey(Request $request)
+    {
+        Excel::import(new SurveyImport, $request->file('excel'));
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $key => $f) {
+                $id_survey = $f->getClientOriginalName();
+                $name = $this->generateRandomString() . rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
+                $f->move(public_path() . '/survey', $name);
+                $id_survey_fix = explode('-', $id_survey)[0];
+                SurveyPerkembanganImage::create([
+                    'id_survey' => $id_survey_fix,
+                    'name' => $name
+                ]);
+            }
+        }
     }
 }

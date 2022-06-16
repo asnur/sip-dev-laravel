@@ -34,6 +34,7 @@ var countOpen = 0;
 var arrPrint = [];
 var files = [];
 var Newfiles = [];
+var filesBulk = [];
 var luasSimulasi;
 var KDH, KLB, NJOP;
 var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
@@ -179,7 +180,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk"
 ).hide();
 
 $.ajax({
@@ -303,6 +304,31 @@ const sliderRangeJumlahPenduduk = () => {
         separatorNum($("#slider-jumlah-penduduk").slider("values", 0)) +
             " - " +
             separatorNum($("#slider-jumlah-penduduk").slider("values", 1))
+    );
+};
+
+const sliderRangeKepadatanBangunan = () => {
+    $("#slider-kepadatan-bangunan").slider({
+        range: true,
+        min: 0,
+        max: 25000,
+        values: [0, 25000],
+        step: 50,
+        slide: function (event, ui) {
+            $("#kepadatan-bangunan").text(
+                separatorNum(ui.values[0]) + " - " + separatorNum(ui.values[1])
+            );
+            // console.log(ui.values[0], ui.values[1]);
+        },
+        stop: function (event, ui) {
+            console.log(ui.values[0], ui.values[1]);
+            choro(ui.values[0], ui.values[1], "count_polygons");
+        },
+    });
+    $("#kepadatan-bangunan").text(
+        separatorNum($("#slider-kepadatan-bangunan").slider("values", 0)) +
+            " - " +
+            separatorNum($("#slider-kepadatan-bangunan").slider("values", 1))
     );
 };
 
@@ -3091,6 +3117,11 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     localStorage.getItem("filterCategoryChoro") == "kepadatan"
                 ) {
                     el = `<strong class="d-block">Jumlah (Orang km<sup>3</sup>)</strong>`;
+                } else if (
+                    localStorage.getItem("filterCategoryChoro") ==
+                    "count_polygons"
+                ) {
+                    el = `<strong class="d-block">Jumlah (Bangunan)</strong>`;
                 } else {
                     el = `<strong class="d-block">Jumlah (Orang)</strong>`;
                 }
@@ -3241,6 +3272,7 @@ function addSourceLayer(item) {
         // "phb",
         "tol",
         "sungai",
+        "survey",
     ];
 
     for (var i = 0; i < api.length; i++) {
@@ -3288,26 +3320,90 @@ function addSourceLayer(item) {
             $("#radiusSlide").hide();
         }
 
-        $.ajax({
-            url: `${url}/${dt}`,
-            type: "POST",
-            dataType: "json",
-            data: {
-                kelurahan: item,
-            },
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            success: (data) => {
-                map.addSource(dt, {
-                    type: "geojson",
-                    data: data,
-                });
-                addLayers(dt);
-                onOffLayers(dt);
-                // if (localStorage.getItem("searching") == 1) {
-            },
-        });
+        if (dt !== "survey") {
+            $.ajax({
+                url: `${url}/${dt}`,
+                type: "POST",
+                dataType: "json",
+                data: {
+                    kelurahan: item,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                success: (data) => {
+                    map.addSource(dt, {
+                        type: "geojson",
+                        data: data,
+                    });
+                    addLayers(dt);
+                    onOffLayers(dt);
+
+                    // if (localStorage.getItem("searching") == 1) {
+                },
+            });
+        } else {
+            $.ajax({
+                url: `${APP_URL}/${dt}/${item}`,
+                type: "get",
+                dataType: "json",
+                success: (data) => {
+                    map.addSource(dt, {
+                        type: "geojson",
+                        data: data,
+                    });
+                    addLayers(dt);
+                    onOffLayers(dt);
+                    let data_layer = data.features;
+                    let content = "";
+                    console.log(data_layer);
+                    $(".list-item-survey-perkembangan").html("");
+                    if (data_layer.length == 0) {
+                        content += `
+                            <div class="item mb-3">
+                                <p>Tidak Ada Lokasi yang di Simpan</p>
+                            </div>
+                        `;
+                    } else {
+                        data_layer.forEach(function (item) {
+                            let thumbnail = item.properties.image;
+                            content += `
+                            <div class="item mb-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img width="100px" height="90px" style="object-fit: cover; border-radius:15px" src="${APP_URL}/survey/${
+                                thumbnail.length == 0
+                                    ? "not_image.png"
+                                    : thumbnail[0].name
+                            }">
+                                </div>
+                                <div class="col-8">
+                                    <span style="font-size: 11pt" class="font-weight-bold">${
+                                        item.properties.name
+                                    }</span>
+                                    <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pola Regional :
+                                        <span>${
+                                            item.properties.regional
+                                        }</span></label>
+                                    <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pola Lingkungan :
+                                        <span>${
+                                            item.properties.neighborhood
+                                        }</span></label>
+                                    <label class="w-100" style="font-size: 13px; margin-bottom:-5px">Pola Ruang : <span>${
+                                        item.properties.transect_zone
+                                    }</span></label>
+                                </div>
+                            </div>
+                        </div>
+                            `;
+                        });
+                    }
+
+                    $(".list-item-survey-perkembangan").html(content);
+                    // if (localStorage.getItem("searching") == 1) {
+                },
+            });
+        }
     }
 
     let coordCliked = localStorage.getItem("kordinat").toString().split(",");
@@ -3503,6 +3599,22 @@ function addLayers(layer) {
             id: "iumk_fill",
             type: "circle",
             source: "iumk",
+            paint: {
+                "circle-color": "#4264fb",
+                "circle-stroke-color": "#ffff00",
+                "circle-stroke-width": 1,
+                "circle-radius": 4,
+                "circle-opacity": 0.8,
+            },
+            layout: {
+                visibility: "none",
+            },
+        });
+    } else if (layer == "survey") {
+        map.addLayer({
+            id: "survey_dot",
+            type: "circle",
+            source: "survey",
             paint: {
                 "circle-color": "#4264fb",
                 "circle-stroke-color": "#ffff00",
@@ -3852,6 +3964,24 @@ function onOffLayers(layer) {
         });
     }
 
+    if (layer == "survey") {
+        $("#survey_dot").change(function () {
+            if ($(this).prop("checked") == true) {
+                $(".info-layer-survey-perkembangan").show();
+                showLayer("survey_dot");
+                hideLayer("sewa_fill");
+                hideLayer("iumk_fill");
+                hideLayer("investasi_fill");
+                hideLayer("investasi_dot");
+                hideLayer("investasi_line");
+                hideLayer("budaya_dot");
+                $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+            } else {
+                hideLayer("survey_dot");
+            }
+        });
+    }
+
     if (layer == "iumk") {
         //Sebaran Usaha mikro kecil
         $("#iumk_fill").change(function () {
@@ -3863,6 +3993,7 @@ function onOffLayers(layer) {
                 hideLayer("investasi_dot");
                 hideLayer("investasi_line");
                 hideLayer("budaya_dot");
+                hideLayer("survey_dot");
                 $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
                 $(".list-item-usaha").html("");
                 $("#hide_side_bar").hide();
@@ -3914,6 +4045,7 @@ function onOffLayers(layer) {
                 hideLayer("investasi_dot");
                 hideLayer("investasi_line");
                 hideLayer("budaya_dot");
+                hideLayer("survey_dot");
                 $(".list-item").html("");
                 var infoHarga = popUpHarga[0].features;
                 $(".info-layer").show();
@@ -4002,6 +4134,7 @@ function onOffLayers(layer) {
                     hideLayer("iumk_fill");
                     hideLayer("sewa_fill");
                     hideLayer("budaya_dot");
+                    hideLayer("survey_dot");
                     $(
                         "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
                     ).remove();
@@ -4104,6 +4237,7 @@ function onOffLayers(layer) {
                     hideLayer("iumk_fill");
                     hideLayer("sewa_fill");
                     hideLayer("investasi_fill");
+                    hideLayer("survey_dot");
                     $(
                         "div.mapboxgl-popup.mapboxgl-popup-anchor-bottom"
                     ).remove();
@@ -4875,9 +5009,11 @@ function getDataSurvey(id_user) {
                     </div>
                 </div>`;
                 }
+                $("#JumlahTitikSurvey").text(e.length);
                 $(".list-item-info-location-survey").html("");
                 $(".list-item-info-location-survey").html(html);
             } else {
+                $("#JumlahTitikSurvey").text(e.length);
                 $(".list-item-info-location-survey").html("");
                 $("#messageNoDataSurvey").show();
             }
@@ -5233,10 +5369,12 @@ const filterLayer = () => {
         $("#iumk").css("background", "white");
         $("#proyek").css("background", "white");
         $("#cagar").css("background", "white");
+        $("#survey").css("background", "white");
         $("#sewa_fill").trigger("click");
         $(".info-layer-usaha").hide();
         $(".info-layer-investasi").hide();
         $(".info-layer-budaya").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#iumk").click(function () {
@@ -5244,10 +5382,12 @@ const filterLayer = () => {
         $("#sewa_kantor").css("background", "white");
         $("#proyek").css("background", "white");
         $("#cagar").css("background", "white");
+        $("#survey").css("background", "white");
         $("#iumk_fill").trigger("click");
         $(".info-layer").hide();
         $(".info-layer-investasi").hide();
         $(".info-layer-budaya").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#proyek").click(function () {
@@ -5255,10 +5395,12 @@ const filterLayer = () => {
         $("#sewa_kantor").css("background", "white");
         $("#iumk").css("background", "white");
         $("#cagar").css("background", "white");
+        $("#survey").css("background", "white");
         $("#investasi_fill").trigger("click");
         $(".info-layer-usaha").hide();
         $(".info-layer").hide();
         $(".info-layer-budaya").hide();
+        $(".info-layer-survey-perkembangan").hide();
     });
 
     $("#cagar").click(function () {
@@ -5266,10 +5408,26 @@ const filterLayer = () => {
         $("#sewa_kantor").css("background", "white");
         $("#iumk").css("background", "white");
         $("#proyek").css("background", "white");
+        $("#survey").css("background", "white");
         $("#budaya_dot").trigger("click");
         $(".info-layer-usaha").hide();
         $(".info-layer").hide();
         $(".info-layer-investasi").hide();
+        $(".info-layer-survey-perkembangan").hide();
+    });
+
+    $("#survey").click(function () {
+        $(this).css("background", "orange");
+        $("#sewa_kantor").css("background", "white");
+        $("#iumk").css("background", "white");
+        $("#proyek").css("background", "white");
+        $("#budaya").css("background", "white");
+        $("#cagar").css("background", "white");
+        $("#survey_dot").trigger("click");
+        $(".info-layer-usaha").hide();
+        $(".info-layer").hide();
+        $(".info-layer-investasi").hide();
+        $(".info-layer-budaya").hide();
     });
 
     $("#closeSewa").on("click", function () {
@@ -5296,6 +5454,23 @@ const filterLayer = () => {
         $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
         window.stop();
         $("#iumk_fill").prop("checked", false);
+        // $("#closeSewa").trigger("click");
+        if ($("#sidebar").hide() == true) {
+            $("#hide_side_bar").hide();
+        } else {
+            // $("#hide_side_bar").show();
+            $("#sidebar").show();
+        }
+    });
+
+    $("#closeSurveyPerekmbangan").on("click", function (e) {
+        $(".info-layer-survey-perkembangan").hide();
+        $("#show_side_bar").hide();
+        $("#survey").css("background", "white");
+        hideLayer("survey_dot");
+        $("div.mapboxgl-popup.mapboxgl-popup-anchor-bottom").remove();
+        window.stop();
+        $("#survey_dot").prop("checked", false);
         // $("#closeSewa").trigger("click");
         if ($("#sidebar").hide() == true) {
             $("#hide_side_bar").hide();
@@ -5400,8 +5575,17 @@ function preview_foto_survey() {
         } else {
             $("#previewFotoSurvey").slick("slickAdd", element, 0, true);
         }
-        files.push(file);
-        Newfiles.push(file);
+        new Compressor(file, {
+            quality: 0.3,
+            convertSize: 1000000,
+            success(result) {
+                files.push(result);
+                Newfiles.push(result);
+            },
+            error(err) {
+                console.log(err.message);
+            },
+        });
     }
     $("#gambarLokasiSurvey").val("");
     removeItem();
@@ -5432,6 +5616,24 @@ function preview_foto_survey() {
     //         sliderOption("previewFotoSurvey");
     //     }
     // }
+}
+
+function compresImageBulk() {
+    filesBulk = [];
+    let fileFoto = $("#fileFoto").get(0).files.length;
+    for (let i = 0; i < fileFoto; i++) {
+        let file = $("#fileFoto").get(0).files[i];
+        new Compressor(file, {
+            quality: 0.3,
+            convertSize: 1000000,
+            success(result) {
+                filesBulk.push(result);
+            },
+            error(err) {
+                console.log(err.message);
+            },
+        });
+    }
 }
 
 function preview_image_edit() {
@@ -5514,6 +5716,42 @@ $("#formPinLocation").on("submit", function (e) {
     }
 });
 
+$("#formSurveyBulkLocation").on("submit", function (e) {
+    e.preventDefault();
+    var form_data = new FormData(this);
+    filesBulk.forEach((file) => {
+        form_data.append("foto[]", file, file.name);
+    });
+    $("#btnSubmitBulk").hide();
+    $("#prosesSurveyBulk").show();
+
+    $.ajax({
+        url: `${APP_URL}/getIdUser`,
+        method: "GET",
+        success: (e) => {
+            let id_user = e;
+            $.ajax({
+                url: `${APP_URL}/importSurvey`,
+                method: "POST",
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: (e) => {
+                    filesBulk = [];
+                    $("#btnSubmitBulk").show();
+                    $("#prosesSurveyBulk").hide();
+                    $(".dz-preview").remove();
+                    $(".dz-message").show();
+                    $("#nameFileExcel").text("");
+                    $("#fileExcel").val("");
+                    getDataSurvey(id_user);
+                    getLayerSurveyPerkembangan();
+                },
+            });
+        },
+    });
+});
+
 $("#formSurveyLocation").on("submit", function (e) {
     e.preventDefault();
     var name = $("#nameSurvey").val();
@@ -5584,6 +5822,7 @@ $("#formSurveyLocation").on("submit", function (e) {
                         getLayerSurveyPerkembangan();
                     },
                     error: function (e) {
+                        console.log(e);
                         $("#prosesSurvey").hide();
                         $("#submitSurveyLocation").show();
                         getLayerSurveyPerkembangan();
@@ -5593,6 +5832,10 @@ $("#formSurveyLocation").on("submit", function (e) {
                         ) {
                             resetSurvey();
                         }
+                        $("#pesanGagalSurvey").show();
+                        setTimeout(function () {
+                            $("#pesanGagalSurvey").hide();
+                        }, 3000);
                     },
                 });
             },
@@ -6344,7 +6587,7 @@ $("#optionFilterChoro").change(() => {
         `);
         chipOption("agama");
         activeButton("agama");
-    } else if ($("#optionFilterChoro").val() == "Kepadatan") {
+    } else if ($("#optionFilterChoro").val() == "Kepadatan Penduduk") {
         localStorage.setItem("filterCategoryChoro", "kepadatan");
         choro(0, 100000, "kepadatan");
         $("#btn-titik").hide();
@@ -6398,6 +6641,33 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         sliderRangeJumlahPenduduk();
+    } else if ($("#optionFilterChoro").val() == "Kepadatan Bangunan") {
+        localStorage.setItem("filterCategoryChoro", "count_polygons");
+        choro(0, 25000, "count_polygons");
+        $("#btn-titik").hide();
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="kepadatan-bangunan" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-kepadatan-bangunan" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Interval (Bangunan)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        sliderRangeKepadatanBangunan();
     }
 });
 
@@ -6408,11 +6678,11 @@ $("#btnInteractive").on("click", () => {
     $("#wilayahindex_fill").trigger("click");
 });
 
-const chipOption = (name) => {
+const chipOption = (name, slide = 4) => {
     $(`#${name}`).slick({
         infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: slide,
+        slidesToScroll: slide,
         variableWidth: true,
         prevArrow: null,
         nextArrow: null,
@@ -6427,6 +6697,8 @@ const sliderOption = (name) => {
         arrows: true,
     });
 };
+
+chipOption("btn-titik", 1);
 
 // const downloadRekap = () => {
 //     $.ajax({
@@ -6506,25 +6778,39 @@ const getLayerSurveyPerkembangan = () => {
                 const dt = e.features[0].properties;
                 console.log(dt);
                 let imageCarousel = ``;
+                let carouselControl = ``;
                 let image = JSON.parse(dt.image);
                 if (image.length == 0) {
-                    imageCarousel += `
+                    imageCarousel = `
                     <div class="carousel-item active">
                         <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
                     </div>
                     `;
+                    carouselControl = ``;
                 } else {
                     image.forEach((item, index) => {
                         imageCarousel += `
                         <div class="carousel-item ${
                             index == 0 ? "active" : ""
                         }">
-                            <img src="${APP_URL}/survey/${
+                        <img src="${APP_URL}/survey/${
                             item.name
                         }" class="card-img-top" style="height: 160px;object-fit: cover;">
                         </div>
                         `;
                     });
+                    if (image.length >= 2) {
+                        console.log("carousel enabled");
+                        carouselControl = `
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>`;
+                    }
                 }
                 const content = `<div style="width:300px;">
                 <div class="imgcard-container">
@@ -6532,14 +6818,7 @@ const getLayerSurveyPerkembangan = () => {
                 <div class="carousel-inner">
                 ${imageCarousel}
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
+               ${carouselControl}
             </div>
                   
                 </div>
@@ -6599,3 +6878,183 @@ const getLayerSurveyPerkembangan = () => {
         },
     });
 };
+
+map.on("mouseenter", "survey_dot", (e) => {
+    map.getCanvas().style.cursor = "pointer";
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const dt = e.features[0].properties;
+    console.log(dt);
+    let imageCarousel = ``;
+    let carouselControl = ``;
+    let image = JSON.parse(dt.image);
+    if (image.length == 0) {
+        imageCarousel += `
+        <div class="carousel-item active">
+            <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
+        </div>
+        `;
+        carouselControl = ``;
+    } else {
+        image.forEach((item, index) => {
+            imageCarousel += `
+            <div class="carousel-item ${index == 0 ? "active" : ""}">
+                <img src="${APP_URL}/survey/${
+                item.name
+            }" class="card-img-top" style="height: 160px;object-fit: cover;">
+            </div>
+            `;
+        });
+
+        if (image.length >= 2) {
+            carouselControl = `
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>`;
+            console.log("carousel enabled");
+        }
+    }
+    const content = `<div style="width:300px;">
+    <div class="imgcard-container">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+    ${imageCarousel}
+    </div>
+    ${carouselControl}
+</div>
+      
+    </div>
+    <div class="card-body p-2">
+      <h6 class="mt-0 mb-1 card-title border-bottom font-weight-bold" style="font-size:14px;">${dt.name}</h6>
+        <div class="row">
+            <div class="col-sm-6">
+                ID Sub Blok
+            </div>
+            <div class="col-sm-6">
+                ${dt.id_sub_blok}
+            </div>
+            <div class="col-sm-6">
+                Kelurahan
+            </div>
+            <div class="col-sm-6">
+                ${dt.kelurahan}
+            </div>
+            <div class="col-sm-6">
+                Kecamatan
+            </div>
+            <div class="col-sm-6">
+                ${dt.kecamatan}
+            </div>
+            <div class="col-sm-6">
+                Pola Regional
+            </div>
+            <div class="col-sm-6">
+                ${dt.regional}
+            </div>
+            <div class="col-sm-6">
+                Pola Lingkungan
+            </div>
+            <div class="col-sm-6">
+                ${dt.neighborhood}
+            </div>
+            <div class="col-sm-6">
+                Pola Ruang
+            </div>
+            <div class="col-sm-6">
+                ${dt.transect_zone}
+            </div>
+        </div>
+    </div>`;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    popupSurvey.setLngLat(coordinates).setHTML(content).addTo(map);
+});
+
+map.on("mouseleave", "survey_dot", () => {
+    map.getCanvas().style.cursor = "";
+    // popup.remove();
+});
+
+Dropzone.autoDiscover = false;
+
+function setup(id) {
+    let options = {
+        init: function () {
+            var self = this;
+            //New file added
+            self.on("addedfile", function (file) {
+                // filesBulk.push(file);
+                console.log(file);
+                new Compressor(file, {
+                    quality: 0.3,
+                    convertSize: 1000000,
+                    success(result) {
+                        filesBulk.push(result);
+                    },
+                    error(err) {
+                        console.log(err.message);
+                    },
+                });
+                console.log(file.name);
+            });
+            //Remove File Added
+            self.on("removedfile", function (file) {
+                console.log(file.name);
+                filesBulk.splice(file, 1);
+            });
+
+            // self.on("maxfilesreached", function (file, response) {
+            //     //alert("too big");
+            // });
+
+            // self.on("maxfilesexceeded", function (file, response) {
+            //     this.removeFile(file);
+            // });
+
+            // self.on("addedfile", function (file) {
+            //     const pattern = /\d{6}(\.)(jpg|jpeg|png)/;
+
+            //     if (!pattern.test(file.name)) {
+            //         //   this.removeFile(file);
+            //     }
+            // });
+        },
+
+        previewTemplate: `
+        <div class="dz-preview dz-processing dz-image-preview dz-error dz-complete m-0 mt-1" style="margin-right:17px !important;"> 
+        <div class="dz-image border" style="width:80px;height:80px;border-radius:10px;">
+            <img data-dz-thumbnail="" alt="">
+        </div> 
+        <div class="dz-details" style="font-size:6pt"> 
+            <div class="dz-size" style="font-size:5pt">
+                <span data-dz-size=""></span>
+            </div> 
+            <div class="dz-filename"><span data-dz-name=""></span>
+            </div> 
+        </div> 
+        <div class="dz-progress"> 
+            <span class="dz-upload" data-dz-uploadprogress=""></span> 
+        </div>  
+        <div class="dz-success-mark"> 
+    
+        </div>
+        <div class="dz-remove" style="z-index: 99999;position: absolute;top: 0px;right: 5px;">
+        <a href="javascript:undefined;" data-dz-remove="" class="text-danger font-weight-bold"><i class="fa fa-close"></i></div>  
+    </div>
+        `,
+    };
+
+    var myDropzone = new Dropzone(`#${id}`, options);
+}
+setup("fotoSurvey");
+
+$("#fileExcel").on("change", function (e) {
+    var file = e.target.files[0];
+    $("#nameFileExcel").text(file.name);
+});
