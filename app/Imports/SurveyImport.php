@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\SurveyPerkembangan;
 use App\Models\TestSurveyPerkembangan;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -24,7 +25,7 @@ class SurveyImport implements ToModel, WithCalculatedFormulas, WithStartRow
      */
     public function model(array $row)
     {
-        return new TestSurveyPerkembangan([
+        return new SurveyPerkembangan([
             'id' => $row[0],
             'name' => $row[1],
             'kordinat' => $row[2],

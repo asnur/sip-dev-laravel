@@ -47,6 +47,7 @@
     <!-- custom -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="https://kenwheeler.github.io/slick/slick/slick-theme.css" />
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="datetime" content="{{ date('Y-m-d') }}" />
@@ -599,25 +600,28 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="form mt-2">
+
                         <form style="font-size: 13px" id="formSurveyBulkLocation" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-12">
                                     <label for="fileExcel" class="text-primary" style="cursor:pointer;"><i
                                             class="ri-file-excel-line"
                                             style="font-size: 20px !important;position:relative;top:4px;"></i> File
-                                        Excel</label>
+                                        Excel <span id="nameFileExcel"
+                                            class="text-dark font-weight-bold ml-3"></span></label>
                                     <input class="d-none" type="file" name="excel" id="fileExcel"
                                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="fileFoto" class="text-primary" style="cursor:pointer;"><i
-                                            class="ri-image-line"
-                                            style="font-size: 20px !important;position:relative;top:4px;"></i> File
-                                        Foto</label>
-                                    <input type="file" class="d-none" id="fileFoto" accept="image/*"
-                                        multiple="multiple" onchange="compresImageBulk()">
+
+                                <div class="col-md-12 my-3">
+                                    <div action="/upload" class="dropzone needsclick" id="fotoSurvey">
+                                        <div class="dz-message needsclick">
+                                            Drop Gambar Survey di Sini
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 text-center">
+
+                                <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-success mt-2 mb-1 text-white"
                                         style="font-size: 8pt; cursor: pointer;" id="btnSubmitBulk"><i
                                             class="fa fa-paper-plane"></i>
@@ -5718,6 +5722,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"
         integrity="sha512-VaRptAfSxXFAv+vx33XixtIVT9A/9unb1Q8fp63y1ljF+Sbka+eMJWoDAArdm7jOYuLQHVx5v60TQ+t3EA8weA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script src="{{ asset('assets/js/web.js') }}"></script>
     {{-- @endif --}}
 </body>

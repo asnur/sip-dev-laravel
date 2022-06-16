@@ -7,6 +7,7 @@ use App\Imports\SurveyImport;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
+use App\Models\TestSurveyPerkembangan;
 use App\Models\TestSurveyPerkembanganImage;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -39,7 +40,9 @@ class SurveyPerkembanganController extends Controller
     public function saveDataSurvey(Request $request)
     {
         $uid = base64_encode($request->input('id_sublok') . $request->input('name') . $request->input('kelurahan') . $request->input('kecamatan') . $request->input('regional') . $request->input('neighborhood') . $request->input('transect_zone') . $request->input('id_user'));
+        $id_fix = explode(",", $request->input('kordinat'));
         $saved = SurveyPerkembangan::create([
+            'id' => substr($id_fix[0], -4) . substr($id_fix[1], -4),
             'id_sub_blok' => $request->input('id_sublok'),
             'name' => $request->input('name'),
             'kordinat' => $request->input('kordinat'),
@@ -252,7 +255,7 @@ class SurveyPerkembanganController extends Controller
                 $name = $this->generateRandomString() . rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
                 $f->move(public_path() . '/survey', $name);
                 $id_survey_fix = explode('-', $id_survey)[0];
-                TestSurveyPerkembanganImage::create([
+                SurveyPerkembanganImage::create([
                     'id_survey' => $id_survey_fix,
                     'name' => $name
                 ]);

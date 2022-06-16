@@ -5726,15 +5726,27 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
     $("#prosesSurveyBulk").show();
 
     $.ajax({
-        url: `${APP_URL}/importSurvey`,
-        method: "POST",
-        contentType: false,
-        processData: false,
-        data: form_data,
+        url: `${APP_URL}/getIdUser`,
+        method: "GET",
         success: (e) => {
-            filesBulk = [];
-            $("#btnSubmitBulk").show();
-            $("#prosesSurveyBulk").hide();
+            let id_user = e;
+            $.ajax({
+                url: `${APP_URL}/importSurvey`,
+                method: "POST",
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: (e) => {
+                    filesBulk = [];
+                    $("#btnSubmitBulk").show();
+                    $("#prosesSurveyBulk").hide();
+                    $(".dz-preview").remove();
+                    $(".dz-message").show();
+                    $("#nameFileExcel").text("");
+                    getDataSurvey(id_user);
+                    getLayerSurveyPerkembangan();
+                },
+            });
         },
     });
 });
@@ -6966,4 +6978,82 @@ map.on("mouseenter", "survey_dot", (e) => {
 map.on("mouseleave", "survey_dot", () => {
     map.getCanvas().style.cursor = "";
     // popup.remove();
+});
+
+Dropzone.autoDiscover = false;
+
+function setup(id) {
+    let options = {
+        init: function () {
+            var self = this;
+            //New file added
+            self.on("addedfile", function (file) {
+                // filesBulk.push(file);
+                console.log(file);
+                new Compressor(file, {
+                    quality: 0.3,
+                    convertSize: 1000000,
+                    success(result) {
+                        filesBulk.push(result);
+                    },
+                    error(err) {
+                        console.log(err.message);
+                    },
+                });
+                console.log(file.name);
+            });
+            //Remove File Added
+            self.on("removedfile", function (file) {
+                console.log(file.name);
+                filesBulk.splice(file, 1);
+            });
+
+            // self.on("maxfilesreached", function (file, response) {
+            //     //alert("too big");
+            // });
+
+            // self.on("maxfilesexceeded", function (file, response) {
+            //     this.removeFile(file);
+            // });
+
+            // self.on("addedfile", function (file) {
+            //     const pattern = /\d{6}(\.)(jpg|jpeg|png)/;
+
+            //     if (!pattern.test(file.name)) {
+            //         //   this.removeFile(file);
+            //     }
+            // });
+        },
+
+        previewTemplate: `
+        <div class="dz-preview dz-processing dz-image-preview dz-error dz-complete m-0 mt-1" style="margin-right:17px !important;"> 
+        <div class="dz-image border" style="width:80px;height:80px;border-radius:10px;">
+            <img data-dz-thumbnail="" alt="">
+        </div> 
+        <div class="dz-details" style="font-size:6pt"> 
+            <div class="dz-size" style="font-size:5pt">
+                <span data-dz-size=""></span>
+            </div> 
+            <div class="dz-filename"><span data-dz-name=""></span>
+            </div> 
+        </div> 
+        <div class="dz-progress"> 
+            <span class="dz-upload" data-dz-uploadprogress=""></span> 
+        </div>  
+        <div class="dz-success-mark"> 
+    
+        </div>
+        <div class="dz-remove" style="z-index: 99999;position: absolute;top: 0px;right: 5px;">
+        <a href="javascript:undefined;" data-dz-remove="" class="text-danger font-weight-bold"><i class="fa fa-close"></i></div>  
+    </div>
+        `,
+    };
+
+    var myDropzone = new Dropzone(`#${id}`, options);
+}
+setup("fotoSurvey");
+
+$("#fileExcel").on("change", function (e) {
+    var file = e.target.files[0];
+    $("#nameFileExcel").text(file.name);
 });
