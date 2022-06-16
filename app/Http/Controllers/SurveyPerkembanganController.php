@@ -73,7 +73,7 @@ class SurveyPerkembanganController extends Controller
 
                     SurveyPerkembanganImage::create([
                         'name' => $name,
-                        'id_survey' => $lastId->id
+                        'id_survey' => substr($id_fix[0], -4) . substr($id_fix[1], -4)
                     ]);
                 }
             }
