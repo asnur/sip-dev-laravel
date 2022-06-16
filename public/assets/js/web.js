@@ -5743,6 +5743,7 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
                     $(".dz-preview").remove();
                     $(".dz-message").show();
                     $("#nameFileExcel").text("");
+                    $("#fileExcel").val("");
                     getDataSurvey(id_user);
                     getLayerSurveyPerkembangan();
                 },
