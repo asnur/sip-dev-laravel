@@ -43,6 +43,7 @@ class VerifyCsrfToken extends Middleware
         '/saveEditDataSurvey',
         '/deleteDataSurvey',
         '/detailDataSurvey',
-        '/deleteImageSurvey'
+        '/deleteImageSurvey',
+        '/importSurvey'
     ];
 }

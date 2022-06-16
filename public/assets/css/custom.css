@@ -716,3 +716,11 @@ input[type="range"]::-moz-range-progress {
     font-weight: bold;
     outline: none;
 }
+
+.dropzone {
+    border: 2px dashed #0087ff;
+    border-radius: 5px;
+    background: white;
+    width: 100%;
+    text-align: center;
+}
