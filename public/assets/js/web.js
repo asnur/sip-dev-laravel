@@ -4959,48 +4959,44 @@ function getDataSurvey(id_user) {
             var html = "";
             if (e != "") {
                 $("#messageNoDataSurvey").hide();
-                for (let index = 0; index < e.length; index++) {
+                e.forEach((e) => {
                     html += `<div class="mb-3" style="font-size:10pt;">
                     <div class="row">
                         <div class="col-sm-3 text-center">
                             <img src="/survey/${
-                                e[index].image[0] == undefined
+                                e.image[0] == undefined
                                     ? "not_image.png"
-                                    : e[index].image[0].name
+                                    : e.image[0].name
                             }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="focusSurey();localStorage.setItem('kordinat','${
-                        e[index].kordinat
-                    }');geocoder.query('${
-                        e[index].kordinat
-                    }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
-                        ${e[index].id},
+                        e.kordinat
+                    }');geocoder.query('${e.kordinat}');addSourceLayer('${
+                        e.kelurahan
+                    }');editDataSurvey(
+                        ${e.id},
                         ${id_user}
                     )">
                         </div>
                         <div class="col-sm-7" onclick="focusSurey();localStorage.setItem('kordinat','${
-                            e[index].kordinat
-                        }');geocoder.query('${
-                        e[index].kordinat
-                    }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
-                    ${e[index].id},
+                            e.kordinat
+                        }');geocoder.query('${e.kordinat}');addSourceLayer('${
+                        e.kelurahan
+                    }');editDataSurvey(
+                    ${e.id},
                     ${id_user}
                 )" style="cursor: pointer;">
                             <a style="font-weight: bold;word-break: break-all;
                             white-space: normal; cursor: pointer;">${
-                                e[index].name
+                                e.name
                             }</a><br>
-                            <span>Pola Regional : ${
-                                e[index].regional
-                            }</span><br>
-                            <span>Pola Lingk. : ${
-                                e[index].neighborhood
-                            }</span><br>
-                            <span>Pola Ruang: ${e[index].transect_zone}</span>
+                            <span>Pola Regional : ${e.regional}</span><br>
+                            <span>Pola Lingk. : ${e.neighborhood}</span><br>
+                            <span>Pola Ruang: ${e.transect_zone}</span>
                         </div>
                         <div class="col-sm-2 d-flex align-items-center pl-5">
                         <div class="row">
                             <div class="col-12 p-1">
                                 <a onclick="deleteDataSurvey(
-                                    ${e[index].id},
+                                    ${e.id},
                                     ${id_user}
                                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
@@ -5008,7 +5004,57 @@ function getDataSurvey(id_user) {
                         </div>
                     </div>
                 </div>`;
-                }
+                });
+                // for (let index = 0; index < e.length; index++) {
+                //     html += `<div class="mb-3" style="font-size:10pt;">
+                //     <div class="row">
+                //         <div class="col-sm-3 text-center">
+                //             <img src="/survey/${
+                //                 e[index].image[0] == undefined
+                //                     ? "not_image.png"
+                //                     : e[index].image[0].name
+                //             }" class="w-100" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;" onclick="focusSurey();localStorage.setItem('kordinat','${
+                //         e[index].kordinat
+                //     }');geocoder.query('${
+                //         e[index].kordinat
+                //     }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
+                //         ${e[index].id},
+                //         ${id_user}
+                //     )">
+                //         </div>
+                //         <div class="col-sm-7" onclick="focusSurey();localStorage.setItem('kordinat','${
+                //             e[index].kordinat
+                //         }');geocoder.query('${
+                //         e[index].kordinat
+                //     }');addSourceLayer('${e[index].kelurahan}');editDataSurvey(
+                //     ${e[index].id},
+                //     ${id_user}
+                // )" style="cursor: pointer;">
+                //             <a style="font-weight: bold;word-break: break-all;
+                //             white-space: normal; cursor: pointer;">${
+                //                 e[index].name
+                //             }</a><br>
+                //             <span>Pola Regional : ${
+                //                 e[index].regional
+                //             }</span><br>
+                //             <span>Pola Lingk. : ${
+                //                 e[index].neighborhood
+                //             }</span><br>
+                //             <span>Pola Ruang: ${e[index].transect_zone}</span>
+                //         </div>
+                //         <div class="col-sm-2 d-flex align-items-center pl-5">
+                //         <div class="row">
+                //             <div class="col-12 p-1">
+                //                 <a onclick="deleteDataSurvey(
+                //                     ${e[index].id},
+                //                     ${id_user}
+                //                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
+                //             </div>
+                //         </div>
+                //         </div>
+                //     </div>
+                // </div>`;
+                // }
                 $("#JumlahTitikSurvey").text(e.length);
                 $(".list-item-info-location-survey").html("");
                 $(".list-item-info-location-survey").html(html);
@@ -6774,6 +6820,14 @@ const getLayerSurveyPerkembangan = () => {
 
             map.on("mouseenter", "survey_perkembangan", (e) => {
                 map.getCanvas().style.cursor = "pointer";
+            });
+
+            map.on("mouseleave", "survey_perkembangan", () => {
+                map.getCanvas().style.cursor = "";
+                // popup.remove();
+            });
+
+            map.on("click", "survey_perkembangan", (e) => {
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
@@ -6869,11 +6923,6 @@ const getLayerSurveyPerkembangan = () => {
                         e.lngLat.lng > coordinates[0] ? 360 : -360;
                 }
                 popupSurvey.setLngLat(coordinates).setHTML(content).addTo(map);
-            });
-
-            map.on("mouseleave", "survey_perkembangan", () => {
-                map.getCanvas().style.cursor = "";
-                // popup.remove();
             });
         },
     });

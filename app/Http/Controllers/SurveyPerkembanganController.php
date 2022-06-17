@@ -33,7 +33,7 @@ class SurveyPerkembanganController extends Controller
 
     public function getDataSurvey($id_user, Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->where('id_user', $id_user)->orderBy('id', 'DESC')->get();
+        $data = SurveyPerkembangan::with('image')->where('id_user', $id_user)->orderBy('id_baru', 'DESC')->get();
         return $data;
     }
 
