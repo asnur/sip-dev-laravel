@@ -185,10 +185,11 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/slide-foto', [AdminController::class, 'slideFoto'])->name('slide-foto');
 
-
     Route::get('/get-view-survey', [AdminController::class, 'viewSurvey'])->name('get-view-survey');
 
     Route::get('/get-kinerja-petugas', [AdminController::class, 'KinerjaPetugas'])->name('get-kinerja-petugas');
+
+    Route::get('/get-progres-survey', [AdminController::class, 'ProgresSurvey'])->name('get-progres-survey');
 });
 
 //Analytics Page

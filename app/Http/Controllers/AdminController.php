@@ -7,6 +7,7 @@ use App\Models\Survey;
 use App\Models\User;
 use App\Models\SurveyPerkembangan;
 use App\Models\SurveyPerkembanganImage;
+use App\Models\ProgresSurvey;
 use App\Models\ViewDetil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -594,8 +595,7 @@ class AdminController extends Controller
 
     public  function viewSurvey()
     {
-        $data_survey = ViewDetil::select("*")
-            ->get();
+        $data_survey = ViewDetil::select("*")->get();
         return Datatables::of($data_survey)->make(true);
 
         // dd($data);
@@ -603,16 +603,37 @@ class AdminController extends Controller
 
     public  function KinerjaPetugas()
     {
-        $data_kinerja = User::withCount('perkembangan')->with('roles')->whereHas(
+        $data_kinerja = User::withCount('perkembangan')->with(['roles', 'perkembangan'])->whereHas(
             'roles',
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
-        )->get();
+        )->orWhereHas('perkembangan', function () {
+
+            $input_harian = SurveyPerkembangan::whereDate('date', Carbon::today())->get()->count();
+        })->get();
+
+        // dd($data_kinerja);
 
         return Datatables::of($data_kinerja)->make(true);
 
         // dd($data);
+    }
+
+    public  function ProgresSurvey()
+    {
+
+        $survey = ProgresSurvey::all();
+
+        // dd($survey);
+
+        return Datatables::of($survey)
+            ->editColumn('progres', function ($data) {
+                return '<div class="progress progress-xs"><div class="progress-bar bg-primary" style="width: 35.96%"></div></div>';
+            })
+            ->rawColumns(['progres'])->make(true);
+
+        // dd($survey);
     }
 
 

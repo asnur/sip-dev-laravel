@@ -108,6 +108,11 @@
         right: 3rem;
     }
 
+    .progress.progress-xs {
+        position: relative;
+        top: 0.4rem;
+    }
+
 </style>
 
 
@@ -551,11 +556,12 @@ $Roles = '';
             <div class="card">
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
-                    <h3 class="card-title">Tabel Kinerja Petugas Survey</h3>
+                    <h3 class="card-title">Kinerja Petugas Survey</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table style="overflow-x: hidden;" class="display table table-striped" id="table-surveyer2" style="width: 100%">
+                    <div style="overflow-x: hidden !important;" class="table-responsive">
+                        <table class="display table table-striped" id="table-surveyer2" style="width: 100%">
+
 
                             <thead>
                                 <tr class="size_detil" valign="middle">
@@ -588,8 +594,16 @@ $Roles = '';
                                         </div>
                                     </th>
                                     <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">&nbsp;&nbsp;&nbsp;&nbsp;Input Total
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
                                         <div style="display: none;" class="lazy_name_kinerja">
-                                            Jumlah Titik
+                                            Input Hari Ini
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -603,6 +617,9 @@ $Roles = '';
 
                                 @php
                                 for ($x = 0; $x <= 9; $x++) { echo"<tr class='hide_lazyload_kinerja'>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
                                     <td>
                                         <div class='skeleton-line'></div>
                                     </td>
@@ -634,7 +651,7 @@ $Roles = '';
             <div class="card">
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
-                    <h3 class="card-title">Tabel Detil</h3>
+                    <h3 class="card-title">Detil Input Petugas Survey</h3>
                 </div>
                 <div class="card-body">
                     <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
@@ -796,35 +813,88 @@ $Roles = '';
     </div>
 
     <div style="margin-top: 1rem" class="row-cards">
-        <div class="col-12">
+        <div class="col-md-12 col-xl-12">
             <div class="card">
-                <div class="card-status-top bg-primary"></div>
+                <div class="card-status-top bg-success"></div>
+                <div class="card-header">
+                    <h3 class="card-title">Progres Survey Per Kelurahan</h3>
+
+                </div>
                 <div class="card-body">
-                    <div class="d-flex">
-                        <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
-                        <div class="ms-auto">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter: <span class="jumlah_hari"></span> hari</a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item tujuh_hari" onclick="filterAnalytics(7)">7 hari</a>
-                                    <a class="dropdown-item tigapuluh_hari" onclick="filterAnalytics(30)">30 hari</a>
-                                    <a class="dropdown-item sembilanpuluh_hari" onclick="filterAnalytics(90)">90 hari</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div style="overflow-x: hidden !important;" class="table-responsive">
+                        <table class="display table table-striped" id="table-surveyer4" style="width: 100%">
 
 
+                            <thead>
+                                <tr class="size_detil" valign="middle">
 
-                    <div style=" position: relative; height: 15rem; width: 100%;">
-                        <div class="skeleton-image"></div>
-                        <canvas class="chart-pengunjung">
-                        </canvas>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Nama Kelurahan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Jumlah Sub Block
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Jumlah Sub Blok Tersurvey
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">&nbsp;&nbsp;&nbsp;&nbsp;Progress
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @php
+                                for ($x = 0; $x <= 9; $x++) { echo"<tr class='hide_lazyload_kinerja'>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    <td>
+                                        <div class='skeleton-line'></div>
+                                    </td>
+                                    </tr>";
+                                    }
+                                    @endphp
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>
+
 
     <div style="margin-top: 1rem" class="row-cards">
         <div class="col-md-12 col-xl-12">
@@ -864,7 +934,7 @@ $Roles = '';
                 search: "Pencarian:"
             , }
             , order: [
-                [3, "desc"]
+                [4, "desc"]
             , ],
 
             columns: [{
@@ -882,6 +952,9 @@ $Roles = '';
                 , {
                     data: 'perkembangan_count'
                     , name: 'perkembangan_count'
+                }, {
+                    data: 'perkembangan.1.date'
+                    , name: 'perkembangan.1.date'
                 }
             , ],
 
@@ -894,7 +967,7 @@ $Roles = '';
                     orderSequence: ["asc", "desc"]
                     , targets: [1]
                     , className: "text-left"
-                }
+                , }
                 , {
                     orderSequence: ["asc", "desc"]
                     , targets: [2]
@@ -906,25 +979,14 @@ $Roles = '';
                     , className: "text-center"
                 , }
                 , {
-                    width: "25%"
-                    , targets: 0
-                }
-                , {
-                    width: "25%"
-                    , targets: 1
-                }
-                , {
-                    width: "25%"
-                    , targets: 2
-                }
-                , {
-                    width: "25%"
-                    , targets: 3
-                }
+                    orderSequence: ["asc", "desc"]
+                    , targets: [4]
+                    , className: "text-center"
+                , }
+
             , ],
 
         });
-
 
         $('#table-surveyer3').DataTable({
 
@@ -1087,6 +1149,74 @@ $Roles = '';
             , ],
 
         });
+
+        $('#table-surveyer4').DataTable({
+
+            "drawCallback": function(settings) {
+                $(".hide_lazyload_kinerja").hide();
+                $(".lazy_name_kinerja").show();
+            },
+
+            processing: false
+            , serverSide: true
+            , ajax: "{{ url('/admin/get-progres-survey') }}"
+
+            , ordering: true
+            , language: {
+                search: "Pencarian:"
+            , }
+            , order: [
+                [1, "desc"]
+            , ],
+
+            columns: [{
+                    data: 'kelurahan'
+                    , name: 'kelurahan'
+
+                }
+                , {
+                    data: 'jumlah'
+                    , name: 'jumlah'
+
+                }
+                , {
+                    data: 'kelurahan'
+                    , name: 'kelurahan'
+
+                }
+                , {
+                    data: 'progres'
+                    , name: 'progres'
+
+
+                }
+            , ],
+
+            columnDefs: [{
+                    orderSequence: ["asc", "desc"]
+                    , targets: [0]
+                    , className: "text-left"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [1]
+                    , className: "text-center"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [2]
+                    , className: "text-center"
+                , }
+                , {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [3]
+                    , className: "text-center"
+                , }
+            , ],
+
+        });
+
+
     })
 
 </script>
