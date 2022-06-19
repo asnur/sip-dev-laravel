@@ -5428,9 +5428,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/pesanajib.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Pesan
-                                    Ajib</span></a>
+                                <a href="https://dpmptsp-jkt.com" target="_blank"
+                                    style="font-size: 12px;text-decoration:none"
+                                    class="text-dark font-weight-bold"><img
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-75">Pesan
+                                    Ajib</a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
