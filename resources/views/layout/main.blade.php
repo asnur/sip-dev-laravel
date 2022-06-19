@@ -217,8 +217,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     role="alert">
                     <strong>Gagal!</strong> Maksimal 3 Foto.
                 </div>
-                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasil" style="font-size: 10pt"
-                    role="alert">
+                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasil"
+                    style="font-size: 10pt" role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Simpan.
                 </div>
                 <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilEdit"
@@ -231,8 +231,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <form id="formPinLocation" enctype="multipart/form-data">
                     <label style="font-size: 10pt">Koordinat</label>
-                    <input type="text" name="kordinat" class="form-control" id="kordinatPin" style="font-size: 8pt"
-                        placeholder="Pilih Titik Lokasi" readonly>
+                    <input type="text" name="kordinat" class="form-control" id="kordinatPin"
+                        style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
                     <label class="mt-2" style="font-size: 10pt">Judul</label>
                     <input type="text" name="judul" class="form-control" id="judulPin" style="font-size: 8pt"
                         placeholder="Masukan Judul Tempat">
@@ -267,8 +267,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
                     <input type="text" class="d-none" name="id" class="form-control" id="idPinEdit">
                     <label class="mt-2" style="font-size: 10pt">Judul</label>
-                    <input type="text" name="judul" class="form-control" id="judulPinEdit" style="font-size: 8pt"
-                        placeholder="Masukan Judul Tempat">
+                    <input type="text" name="judul" class="form-control" id="judulPinEdit"
+                        style="font-size: 8pt" placeholder="Masukan Judul Tempat">
                     <label class="mt-2" style="font-size: 10pt">Tipe</label>
                     <select name="tipe" class="form-control" id="tipePinEdit" style="font-size: 8pt">
                         <option value="UMK">UMK</option>
@@ -288,8 +288,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="row mt-3" id="previewFotoEdit">
                     </div>
                     <label class="mt-2" style="font-size: 10pt">Catatan</label>
-                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt" placeholder="Masukan Catatan"
-                        rows="5"></textarea>
+                    <textarea class="form-control" name="catatan" id="catatanPinEdit" style="font-size: 8pt"
+                        placeholder="Masukan Catatan" rows="5"></textarea>
                     <button type="submit" id="pinndedLocation" class="btn btn-primary mt-3 text-white"
                         style="font-size: 8pt; cursor: pointer;"><i class="fa fa-edit"></i>
                         Ubah</button>
@@ -346,8 +346,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
 
                         <span class="input-group-append" style="font-size: 8pt">
-                            <button class="btn btn-secondary tombol_search border-left-0 border" style="font-size: 8pt"
-                                type="button">
+                            <button class="btn btn-secondary tombol_search border-left-0 border"
+                                style="font-size: 8pt" type="button">
                                 <i class="fa fa-search"></i>
                             </button>
                             {{-- <button class="btn tombol_search border-left-0 border" type="button"
@@ -393,8 +393,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             class="text-danger font-weight-bold">*</sup></label>
                                 </div>
                                 <div class="col-md-7">
-                                    <span><a href="#" id="refrensiGoogleMaps" style="font-size: 13px;line-height:0px;"
-                                            target="_blank">-</a></span><br>
+                                    <span><a href="#" id="refrensiGoogleMaps"
+                                            style="font-size: 13px;line-height:0px;" target="_blank">-</a></span><br>
                                     <input type="hidden" name="id" class="form-control" id="idSurvey"
                                         style="font-size: 8pt" placeholder="Pilih Titik Lokasi" readonly>
                                     <input type="hidden" name="kordinat" class="form-control" id="kordinatSurvey"
@@ -470,8 +470,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <div class="col-md-12 mb-2">
                                     <label class="mt-2" style="font-size: 13px;line-height:0px;">Deskripsi
                                         <sup class="text-danger font-weight-bold">*</sup></label>
-                                    <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey" style="font-size: 13px"
-                                        placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
+                                    <textarea class="form-control" name="deskripsi_neighborhood" id="deskripsiNeighborhoodSurvey"
+                                        style="font-size: 13px" placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
                                     <span style="font-size:8pt"><span id="countTextLingkungan">0</span>/255</span>
                                 </div>
                                 <div class="col-md-5">
@@ -644,12 +644,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="col-md-6 text-right">
                         <span class="w-100 d-block font-weight-bold" style="font-size: 25px;"><span
                                 id="JumlahTitikSurvey">0</span></span>
-                        <a href="/printSurvey" class="text-primary" style="
+                        <a href="/printSurvey" class="text-primary"
+                            style="
                         position: relative;
                         font-size: 13px;
                         cursor:pointer;
                         text-decoration: none;
-                    "><i class="ri-download-cloud-line font-weight-bold"
+                    "><i
+                                class="ri-download-cloud-line font-weight-bold"
                                 style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
                     </div>
                 </div>
@@ -880,7 +882,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
 
                                 <span class="input-group-append">
-                                    <button class="btn btn-secondary tombol_search border-left-0 border" type="button">
+                                    <button class="btn btn-secondary tombol_search border-left-0 border"
+                                        type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
                                     {{-- <button class="btn tombol_search border-left-0 border" type="button"
@@ -943,7 +946,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                     <div class="form-check pipa_multilinestring mt-1">
                         <input type="checkbox" class="form-check-input" id="pipa_multilinestring">
-                        <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa PDAM</label>
+                        <label class="form-check-label  text_all" for="pipa_multilinestring">Jaringan Pipa
+                            PDAM</label>
                     </div>
 
                     <div class="form-check tol_multilinestring mt-1">
@@ -1091,17 +1095,18 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </li>
 
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="poi-tab"
-                                    data-toggle="pill" href="#pills-poi" role="tab" aria-controls="pills-poi"
-                                    aria-selected="false"><i class="fa fa-crosshairs"></i></a>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="poi-tab" data-toggle="pill" href="#pills-poi" role="tab"
+                                    aria-controls="pills-poi" aria-selected="false"><i
+                                        class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Akses</label>
                             </li>
 
                             <li class="nav-item">
                                 <a class=" btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    id="kblikeg-tab" data-toggle="pill" id="kbli-tab" href="#pills-kblikeg" role="tab"
-                                    aria-controls="pills-kblikeg" aria-selected="false"><i
+                                    id="kblikeg-tab" data-toggle="pill" id="kbli-tab" href="#pills-kblikeg"
+                                    role="tab" aria-controls="pills-kblikeg" aria-selected="false"><i
                                         class="ri-user-search-fill"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile menu_kbli_top">KBLI</label>
@@ -1117,15 +1122,17 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    data-toggle="pill" href="#pills-simulasi" role="tab" aria-controls="pills-poi"
-                                    id="simulasi-tab" aria-selected="false"><i class="ri-calculator-line"></i></a>
+                                    data-toggle="pill" href="#pills-simulasi" role="tab"
+                                    aria-controls="pills-poi" id="simulasi-tab" aria-selected="false"><i
+                                        class="ri-calculator-line"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill" id="btnSHP"
-                                    data-toggle="pill" href="#" role="tab" aria-controls="pills-cetak"
-                                    aria-selected="false"><i class="ri-file-code-line"></i>
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    id="btnSHP" data-toggle="pill" href="#" role="tab"
+                                    aria-controls="pills-cetak" aria-selected="false"><i
+                                        class="ri-file-code-line"></i>
                                     {{-- <span
                                         class="badge badge-danger" style="top: -2.6rem;left: 1rem">Beta</span> --}}
                                 </a>
@@ -1205,8 +1212,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                             <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3 p-2 nav-item">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
-                                    href="menu/poi.html" role="tab" aria-controls="pills-poi" aria-selected="false"><i
-                                        class="fa fa-crosshairs"></i></a>
+                                    href="menu/poi.html" role="tab" aria-controls="pills-poi"
+                                    aria-selected="false"><i class="fa fa-crosshairs"></i></a>
                                 <br>
                                 <label class="size_menu size_menu_mobile">POI</label>
                             </li>
@@ -1941,8 +1948,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     </div>
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#gsb"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#gsb" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Garis Sempadan Bangunan (GSB)
@@ -2165,8 +2172,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#jbb"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#jbb" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Jarak bebas bangunan
@@ -2186,7 +2193,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                                 <div>
                                                     <div class="p-0">
                                                         <a class="text-dark font-weight-bold" data-toggle="collapse"
-                                                            href="#jb-bt" aria-expanded="false" aria-controls="lahan_b">
+                                                            href="#jb-bt" aria-expanded="false"
+                                                            aria-controls="lahan_b">
                                                             <span class="collapsed"><i
                                                                     class="fa fa-plus"></i></span>
                                                             <span class="expanded"><i
@@ -2218,7 +2226,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                                 <div>
                                                     <div class="p-0">
                                                         <a class="text-dark font-weight-bold" data-toggle="collapse"
-                                                            href="#jb-zh" aria-expanded="false" aria-controls="lahan_b">
+                                                            href="#jb-zh" aria-expanded="false"
+                                                            aria-controls="lahan_b">
                                                             <span class="collapsed"><i
                                                                     class="fa fa-plus"></i></span>
                                                             <span class="expanded"><i
@@ -2248,7 +2257,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                                 <div>
                                                     <div class="p-0">
                                                         <a class="text-dark font-weight-bold" data-toggle="collapse"
-                                                            href="#jb-zi" aria-expanded="false" aria-controls="lahan_b">
+                                                            href="#jb-zi" aria-expanded="false"
+                                                            aria-controls="lahan_b">
                                                             <span class="collapsed"><i
                                                                     class="fa fa-plus"></i></span>
                                                             <span class="expanded"><i
@@ -2567,8 +2577,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#jbs"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#jbs" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Jarak Bebas Basemen
@@ -2600,8 +2610,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#pagar"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#pagar" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Pagar
@@ -2656,8 +2666,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#arkade"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#arkade" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Arkade
@@ -2693,8 +2703,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#ramp"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#ramp" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 lerengan (ramp) kendaraan
@@ -2818,8 +2828,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#parkir"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#parkir" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Parkir
@@ -3044,8 +3054,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#bdbpt"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#bdbpt" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Bangunan di bawah Permukaan Tanah
@@ -3147,7 +3157,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <div>
                                         <div class="p-0">
                                             <a class="text-dark font-weight-bold" data-toggle="collapse"
-                                                href="#bangun-layang" aria-expanded="false" aria-controls="lahan_b">
+                                                href="#bangun-layang" aria-expanded="false"
+                                                aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Bangunan Layang
@@ -3306,7 +3317,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <div>
                                         <div class="p-0">
                                             <a class="text-dark font-weight-bold" data-toggle="collapse"
-                                                href="#bangun-tinggi" aria-expanded="false" aria-controls="lahan_b">
+                                                href="#bangun-tinggi" aria-expanded="false"
+                                                aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Bangunan Tinggi
@@ -3443,7 +3455,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                                 <div>
                                                     <div class="p-0">
                                                         <a class="text-dark font-weight-bold" data-toggle="collapse"
-                                                            href="#kkop" aria-expanded="false" aria-controls="lahan_b">
+                                                            href="#kkop" aria-expanded="false"
+                                                            aria-controls="lahan_b">
                                                             <span class="collapsed"><i
                                                                     class="fa fa-plus"></i></span>
                                                             <span class="expanded"><i
@@ -3572,8 +3585,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#kdb"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#kdb" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Koefisien Dasar Bangunan (KDB)
@@ -3745,8 +3758,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#klb"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#klb" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Koefisien Lantai Bangunan (KLB)
@@ -4045,8 +4058,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#ktb"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#ktb" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Koefisien Tapak Basemen (KTB)
@@ -4208,8 +4221,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#kdh"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#kdh" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Koefisien Dasar Hijau (KDH)
@@ -4396,8 +4409,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                                     <div>
                                         <div class="p-0">
-                                            <a class="text-dark font-weight-bold" data-toggle="collapse" href="#kb"
-                                                aria-expanded="false" aria-controls="lahan_b">
+                                            <a class="text-dark font-weight-bold" data-toggle="collapse"
+                                                href="#kb" aria-expanded="false" aria-controls="lahan_b">
                                                 <span class="collapsed"><i class="fa fa-plus"></i></span>
                                                 <span class="expanded"><i class="fa fa-minus"></i></span>
                                                 Ketinggian Bangunan
@@ -4774,11 +4787,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="container" id="poi-print">
                             <p class="card-title mt-2 text-center font-weight-bold judul_utama">Akses</p>
                             <div class="form-group for_web w-100 mt-3 mb-0 ml-2" id="radiusSlide">
-                                <label class="font-weight-bold font_range_input" for="formControlRange">Radius</label>
-                                <label class="font-weight-bold font_range_input" id="OutputControlRange">0 Km</label>
+                                <label class="font-weight-bold font_range_input"
+                                    for="formControlRange">Radius</label>
+                                <label class="font-weight-bold font_range_input" id="OutputControlRange">0
+                                    Km</label>
 
-                                <input type="range" style="height: 6px;" class="form-control-range" id="ControlRange"
-                                    min="500" max="3000" step="500" value="1000">
+                                <input type="range" style="height: 6px;" class="form-control-range"
+                                    id="ControlRange" min="500" max="3000" step="500"
+                                    value="1000">
                             </div>
                             <br>
                             <div class="accordion tabListFasilitas" id="PoiCollabse">
@@ -5074,8 +5090,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <label class="text_all_mobile">Biaya Bangunan /m<sup>2</sup></label>
                                 </div>
                                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
-                                    <p><input class="text-right number-separator" value="3.000.000" id="biayaBangunan"
-                                            style="font-size: 11px">
+                                    <p><input class="text-right number-separator" value="3.000.000"
+                                            id="biayaBangunan" style="font-size: 11px">
                                     </p>
                                 </div>
                             </div>
@@ -5123,12 +5139,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         id="checkboxKetentuan" value="ketentuan" aria-label="..."> Ketentuan
                                 </div>
                                 <div class="form-check text_all">
-                                    <input class="form-check-input position-static" type="checkbox" id="checkboxAkses"
-                                        value="akses" aria-label="..."> Akses
+                                    <input class="form-check-input position-static" type="checkbox"
+                                        id="checkboxAkses" value="akses" aria-label="..."> Akses
                                 </div>
                                 <div class="form-check text_all">
-                                    <input class="form-check-input position-static" type="checkbox" id="checkboxKBLI"
-                                        value="kbli" aria-label="..."> KBLI
+                                    <input class="form-check-input position-static" type="checkbox"
+                                        id="checkboxKBLI" value="kbli" aria-label="..."> KBLI
                                 </div>
                                 <center>
                                     <button class="btn btn-sm text_all mt-3 btn-primary" id="printAll"
@@ -5155,8 +5171,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="d-flex space_judul row_mid_judul">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text_all">
                                     <div class="form-check d-none">
-                                        <input class="form-check-input" id="enable-direction" type="checkbox" value=""
-                                            id="defaultCheck1">
+                                        <input class="form-check-input" id="enable-direction" type="checkbox"
+                                            value="" id="defaultCheck1">
                                         <label class="form-check-label font-weight-bold" for="defaultCheck1"
                                             style="margin-top:2px">
                                             Cek Lalu Lintas
@@ -5287,17 +5303,20 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             <input type="hidden" name="coordinates" id="coorddigitasi" required>
                                             <input type="hidden" name="luas" id="luasdigitasi" required>
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="Persil & NJOP" aria-label="...">
+                                                name="opsidigitasi" required value="Persil & NJOP"
+                                                aria-label="...">
                                             NJOP
                                             & Persil
                                         </div>
                                         <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="Akses" aria-label="..."> Akses
+                                                name="opsidigitasi" required value="Akses" aria-label="...">
+                                            Akses
                                         </div>
                                         <div class="form-check text_all">
                                             <input class="form-check-input position-static" type="radio"
-                                                name="opsidigitasi" required value="Zonasi" aria-label="..."> Zonasi
+                                                name="opsidigitasi" required value="Zonasi" aria-label="...">
+                                            Zonasi
                                         </div>
                                         <center>
                                             <button type="submit" class="btn btn-sm text_all mt-3 btn-primary"
@@ -5336,7 +5355,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 apartment
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Sewa Kantor</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Sewa Kantor</span>
                         </div>
                     </div>
                 </button>
@@ -5349,7 +5368,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 storefront
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Sebaran UMKM</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Sebaran UMKM</span>
                         </div>
                     </div>
                 </button>
@@ -5362,7 +5381,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 home_repair_service
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Proyek</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Proyek</span>
                         </div>
                     </div>
                 </button>
@@ -5375,7 +5394,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 location_city
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Cagar Budaya</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Cagar Budaya</span>
                         </div>
                     </div>
                 </button>
@@ -5435,8 +5454,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <a href="https://dpmptsp-jkt.com" target="_blank"
                                     style="font-size: 12px;text-decoration:none"
                                     class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/pesanajib.png') }}"
-                                        class="w-75">Pesan
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-75">Pesan
                                     Ajib</a>
                             </div>
                             <div class="col-sm-4 mt-3 text-center d-flex align-items-center">
@@ -5515,8 +5533,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <div id="legend" class="bg-white"
                 style="float: right;margin-right:1.3rem;width:32px;margin-top:2rem; border-radius:5px">
                 <div class="dropdown">
-                    <button id="dropdownLayer" data-toggle="dropdown" class="ri-stack-line p-1" aria-haspopup="true"
-                        aria-expanded="false"
+                    <button id="dropdownLayer" data-toggle="dropdown" class="ri-stack-line p-1"
+                        aria-haspopup="true" aria-expanded="false"
                         style="border:none;background:none;width:32px; height:30px; outline:none; font-size:14px">
 
                     </button>
@@ -5525,23 +5543,26 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <li style="margin-bottom:10px; "><b>Base Map</b></li>
                         <li>
                             <div class="form-check form-check-inline mr-5">
-                                <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
-                                    id="ckp4wrapq11m117pf2lr49l5t" value="ckp4wrapq11m117pf2lr49l5t" />
+                                <input style="height:20px;" class="form-check-input" type="radio"
+                                    name="rtoggle" id="ckp4wrapq11m117pf2lr49l5t"
+                                    value="ckp4wrapq11m117pf2lr49l5t" />
                                 <label class="form-check-label pl-1" for="ckp4wrapq11m117pf2lr49l5t">Default</label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check form-check-inline mr-5">
-                                <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
-                                    id="ckp6i54ay22u818lrq15ffcnr" value="ckp6i54ay22u818lrq15ffcnr"
-                                    checked="checked" />
-                                <label class="form-check-label pl-1" for="ckp6i54ay22u818lrq15ffcnr">Satellite</label>
+                                <input style="height:20px;" class="form-check-input" type="radio"
+                                    name="rtoggle" id="ckp6i54ay22u818lrq15ffcnr"
+                                    value="ckp6i54ay22u818lrq15ffcnr" checked="checked" />
+                                <label class="form-check-label pl-1"
+                                    for="ckp6i54ay22u818lrq15ffcnr">Satellite</label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check form-check-inline mr-5">
-                                <input style="height:20px;" class="form-check-input" type="radio" name="rtoggle"
-                                    id="ckp6i6bgp2jn217pfp6wm5syk" value="ckp6i6bgp2jn217pfp6wm5syk" />
+                                <input style="height:20px;" class="form-check-input" type="radio"
+                                    name="rtoggle" id="ckp6i6bgp2jn217pfp6wm5syk"
+                                    value="ckp6i6bgp2jn217pfp6wm5syk" />
                                 <label class="form-check-label pl-1" for="ckp6i6bgp2jn217pfp6wm5syk">Streets</label>
                             </div>
                         </li>
