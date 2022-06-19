@@ -5618,7 +5618,23 @@ function preview_foto_survey() {
     // }
 }
 
-function compresImageBulk() {}
+function compresImageBulk() {
+    filesBulk = [];
+    let fileFoto = $("#fileFoto").get(0).files.length;
+    for (let i = 0; i < fileFoto; i++) {
+        let file = $("#fileFoto").get(0).files[i];
+        new Compressor(file, {
+            quality: 0.3,
+            convertSize: 1000000,
+            success(result) {
+                filesBulk.push(result);
+            },
+            error(err) {
+                console.log(err.message);
+            },
+        });
+    }
+}
 
 function preview_image_edit() {
     var gambarLokasi = $("#gambarLokasiEdit").get(0).files.length;
