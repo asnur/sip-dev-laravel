@@ -5407,7 +5407,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 query_stats
                             </span>
-                            <span class="font-weight-bold" style="margin-top: 2px">Perkembangan Wilayah</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Perkembangan Wilayah</span>
                         </div>
                     </div>
                 </button>
