@@ -14,4 +14,9 @@ class ProgresSurvey extends Model
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    public function survey()
+    {
+        return $this->hasMany(SurveyPerkembangan::class, 'kelurahan', 'kelurahan');
+    }
 }
