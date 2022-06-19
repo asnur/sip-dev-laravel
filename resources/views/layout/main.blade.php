@@ -5336,7 +5336,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 apartment
                             </span>
-                            <span class="font-weight-custom" style="margin-top: 2px">Harga Sewa Kantor</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Sewa Kantor</span>
                         </div>
                     </div>
                 </button>
@@ -5349,7 +5349,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 storefront
                             </span>
-                            <span class="font-weight-custom" style="margin-top: 2px">Sebaran Usaha Mikro Kecil</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Sebaran UMKM</span>
                         </div>
                     </div>
                 </button>
@@ -5362,7 +5362,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 home_repair_service
                             </span>
-                            <span class="font-weight-custom" style="margin-top: 2px">Proyek Potensial</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Proyek</span>
                         </div>
                     </div>
                 </button>
@@ -5388,7 +5388,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <span class="material-icons text-primary mr-1">
                                 query_stats
                             </span>
-                            <span class="font-weight-custom" style="margin-top: 2px">Survey Perkembangan</span>
+                            <span class="font-weight-custom" style="margin-top: 2px">Perkembangan Wilayah</span>
                         </div>
                     </div>
                 </button>
