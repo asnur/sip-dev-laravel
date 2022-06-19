@@ -1545,7 +1545,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             datasets: [
                 {
                     label: "Kelurahan",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                    backgroundColor: ["#d63939", "#f59f00", "#206bc4"],
                     data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
                 },
             ],
@@ -1575,7 +1575,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
             datasets: [
                 {
-                    backgroundColor: "#3e95cd",
+                    backgroundColor: "#d63939",
                     data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
                 },
             ],
@@ -6874,7 +6874,7 @@ const getLayerSurveyPerkembangan = () => {
                 </div>
                ${carouselControl}
             </div>
-                  
+
                 </div>
                 <div class="card-body p-2">
                   <h6 class="mt-0 mb-1 card-title border-bottom font-weight-bold" style="font-size:14px;">${dt.name}</h6>
@@ -6975,7 +6975,7 @@ map.on("mouseenter", "survey_dot", (e) => {
     </div>
     ${carouselControl}
 </div>
-      
+
     </div>
     <div class="card-body p-2">
       <h6 class="mt-0 mb-1 card-title border-bottom font-weight-bold" style="font-size:14px;">${dt.name}</h6>
