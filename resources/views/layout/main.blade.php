@@ -480,12 +480,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="font-size: 13px" placeholder="Catatan perkembangan lingkungan" rows="3" maxlength="255"></textarea>
                                     <span style="font-size:8pt"><span id="countTextLingkungan">0</span>/255</span>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <label class="mt-2" style="font-size: 13px;line-height:0px;">Pola
                                         Ruang
                                         <sup class="text-danger font-weight-bold">*</sup></label>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select name="transect_zone" id="transectZoneSurvey"
                                         style="font-size: 8pt;width:55px;">
                                         <option value="TP-1">TP-1</option>
@@ -673,17 +673,16 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             target="_blank">-</label></span><br>
                                 </div>
                                 <div class="col-md-12">
+                                    <a href="/template_excel.xlsx" class="text-primary"
+                                        style="cursor:pointer;text-decoration:none;" href=""><i
+                                            class="ri-file-excel-line"
+                                            style="font-size: 20px !important;position:relative;top:4px;"></i> Template
+                                        Excel </a><br>
                                     <label for="fileExcel" class="text-primary" style="cursor:pointer;"><i
                                             class="ri-file-excel-line"
                                             style="font-size: 20px !important;position:relative;top:4px;"></i> Unggah
                                         Excel<span id="nameFileExcel"
                                             class="text-dark font-weight-bold ml-3"></span></label>
-                                    <a href="/template_excel.xlsx" class="text-primary"
-                                        style="cursor:pointer;text-decoration:none;" href=""><i
-                                            class="ri-file-excel-line"
-                                            style="font-size: 20px !important;position:relative;top:4px;"></i> Template
-                                        Excel <span id="nameFileExcel"
-                                            class="text-dark font-weight-bold ml-3"></span></a>
                                     <input class="d-none" type="file" name="excel" id="fileExcel"
                                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                 </div>
@@ -703,6 +702,10 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         Simpan</button>
                                     <div class="spinner-border" role="status" id="prosesSurveyBulk">
                                         <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <div class="alert alert-danger alert-dismissible fade show"
+                                        id="pesanGagalSurveyBulk" style="font-size: 10pt" role="alert">
+                                        <strong>Gagal!</strong> <span id="messageErrorBulk"></span>.
                                     </div>
                                 </div>
                             </div>

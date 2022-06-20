@@ -180,7 +180,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk, #pesanGagalSurveyBulk"
 ).hide();
 
 $.ajax({
@@ -5812,6 +5812,25 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
                     $("#fileExcel").val("");
                     getDataSurvey(id_user);
                     getLayerSurveyPerkembangan();
+                    if (
+                        e.error != "Data Tidak Lengkap" &&
+                        e.error != "The given data was invalid."
+                    ) {
+                        let message = e.error.substring(71, 79);
+                        $("#messageErrorBulk").text(
+                            `Data duplikat dengan no ID ${message}`
+                        );
+                        $("#pesanGagalSurveyBulk").show();
+                        setTimeout(function () {
+                            $("#pesanGagalSurveyBulk").hide();
+                        }, 3000);
+                    } else {
+                        $("#messageErrorBulk").text("Data Tidak Lengkap");
+                        $("#pesanGagalSurveyBulk").show();
+                        setTimeout(function () {
+                            $("#pesanGagalSurveyBulk").hide();
+                        }, 3000);
+                    }
                 },
             });
         },
