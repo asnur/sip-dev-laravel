@@ -3033,6 +3033,86 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
             let paint;
             let data = e.features;
 
+            let pekerjaan = [
+                "aparatur_pemerintah",
+                "pertanian",
+                "nelayan",
+                "tenaga_kesehatan",
+                "pegawai",
+                "tentara",
+                "kepolisian",
+                "petani",
+                "peternak",
+                "industri",
+                "konstruksi",
+                "transportasi",
+                "pembantu",
+                "mekanik",
+                "seniman",
+                "tabib",
+                "paraji",
+                "perancang",
+                "penterjemah",
+                "imam_masjid",
+                "pendeta",
+                "pastor",
+                "wartawan",
+                "ustadz",
+                "juru_masak",
+                "promotor",
+                "dosen",
+                "guru",
+                "pilot",
+                "pengacara",
+                "notaris",
+                "arsitek",
+                "akuntan",
+                "konsultan",
+                "dokter",
+                "bidan",
+                "perawat",
+                "apoteker",
+                "psikiater",
+                "pelaut",
+                "peneliti",
+                "sopir",
+                "pialang",
+                "paranormal",
+                "pedagang",
+                "biarawati",
+                "karyawan",
+                "buruh",
+                "tukang",
+                "penyiar",
+                "wiraswasta",
+                "pensiunan",
+                "lainnya",
+                "belum_tidak_bekerja",
+            ];
+
+            let pendidikan = [
+                "tamat_sd",
+                "sltp",
+                "slta",
+                "diploma_i",
+                "diploma_ii",
+                "diploma_iv",
+                "strata_ii",
+                "strata_iii",
+            ];
+
+            let agama = [
+                "islam",
+                "kristen",
+                "katolik",
+                "hindu",
+                "budha",
+                "konghucu",
+                "kepercayaan",
+            ];
+
+            let borderLayer;
+
             if (category == "omzet") {
                 min = data
                     .map(function (el) {
@@ -3085,24 +3165,122 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     min + average * 6 + 1,
                     "#caa502",
                 ];
-            } else {
+
+                borderLayer = "red";
+            } else if (pekerjaan.includes(category)) {
                 paint = [
                     "interpolate",
                     ["linear"],
                     ["get", "Jumlah"],
                     min + average * 1 + 1,
-                    "#ffeda0",
+                    "#1cfc03",
                     min + average * 2 + 1,
-                    "#ffe675",
+                    "#22eb0c",
                     min + average * 3 + 1,
-                    "#ffdf52",
+                    "#22db0d",
                     min + average * 4 + 1,
-                    "#ffd61f",
+                    "#1dbd0b",
                     min + average * 5 + 1,
-                    "#e0b700",
+                    "#1aa60a",
                     min + average * 6 + 1,
-                    "#caa502",
+                    "#198f0b",
                 ];
+                borderLayer = "red";
+            } else if (pendidikan.includes(category)) {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#254ef5",
+                    min + average * 2 + 1,
+                    "#1e43d6",
+                    min + average * 3 + 1,
+                    "#1a3aba",
+                    min + average * 4 + 1,
+                    "#142f99",
+                    min + average * 5 + 1,
+                    "#10267d",
+                    min + average * 6 + 1,
+                    "#0b1a57",
+                ];
+                borderLayer = "red";
+            } else if (agama.includes(category)) {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#a90ffc",
+                    min + average * 2 + 1,
+                    "#980ee3",
+                    min + average * 3 + 1,
+                    "#870cc9",
+                    min + average * 4 + 1,
+                    "#740aad",
+                    min + average * 5 + 1,
+                    "#650996",
+                    min + average * 6 + 1,
+                    "#51057a",
+                ];
+                borderLayer = "red";
+            } else if (category == "kepadatan") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#f7143e",
+                    min + average * 2 + 1,
+                    "#d61135",
+                    min + average * 3 + 1,
+                    "#b50e2d",
+                    min + average * 4 + 1,
+                    "#990c26",
+                    min + average * 5 + 1,
+                    "#7d091e",
+                    min + average * 6 + 1,
+                    "#690619",
+                ];
+                borderLayer = "white";
+            } else if (category == "jumlah_penduduk") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#0ce8e4",
+                    min + average * 2 + 1,
+                    "#0ac9c6",
+                    min + average * 3 + 1,
+                    "#09adab",
+                    min + average * 4 + 1,
+                    "#068f8d",
+                    min + average * 5 + 1,
+                    "#057876",
+                    min + average * 6 + 1,
+                    "#04615f",
+                ];
+                borderLayer = "red";
+            } else if (category == "count_polygons") {
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#ff6a14",
+                    min + average * 2 + 1,
+                    "#eb6010",
+                    min + average * 3 + 1,
+                    "#d6580f",
+                    min + average * 4 + 1,
+                    "#bd4f0f",
+                    min + average * 5 + 1,
+                    "#a8460d",
+                    min + average * 6 + 1,
+                    "#963e0b",
+                ];
+                borderLayer = "red";
             }
             console.log(paint);
             map.addLayer({
@@ -3112,7 +3290,7 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                 paint: {
                     "fill-color": paint,
                     "fill-opacity": 0.7,
-                    "fill-outline-color": "red",
+                    "fill-outline-color": borderLayer,
                 },
                 layout: {
                     visibility: "visible",
@@ -3242,14 +3420,72 @@ const choro = (min = 0, max = 25000000000, category = "omzet") => {
                     `> ${min + average * 5 + 2}`,
                 ];
             }
-            const colors = [
-                "#ffeda0",
-                "#ffe675",
-                "#ffdf52",
-                "#ffd61f",
-                "#e0b700",
-                "#caa502",
-            ];
+            let colors;
+
+            if (category == "omzet") {
+                colors = [
+                    "#ffeda0",
+                    "#ffe675",
+                    "#ffdf52",
+                    "#ffd61f",
+                    "#e0b700",
+                    "#caa502",
+                ];
+            } else if (pekerjaan.includes(category)) {
+                colors = [
+                    "#1cfc03",
+                    "#22eb0c",
+                    "#22db0d",
+                    "#1dbd0b",
+                    "#1aa60a",
+                    "#198f0b",
+                ];
+            } else if (pendidikan.includes(category)) {
+                colors = [
+                    "#254ef5",
+                    "#1e43d6",
+                    "#1a3aba",
+                    "#142f99",
+                    "#10267d",
+                    "#0b1a57",
+                ];
+            } else if (agama.includes(category)) {
+                colors = [
+                    "#a90ffc",
+                    "#980ee3",
+                    "#870cc9",
+                    "#740aad",
+                    "#650996",
+                    "#51057a",
+                ];
+            } else if (category == "kepadatan") {
+                colors = [
+                    "#f7143e",
+                    "#d61135",
+                    "#b50e2d",
+                    "#990c26",
+                    "#7d091e",
+                    "#690619",
+                ];
+            } else if (category == "jumlah_penduduk") {
+                colors = [
+                    "#0ce8e4",
+                    "#0ac9c6",
+                    "#09adab",
+                    "#068f8d",
+                    "#057876",
+                    "#04615f",
+                ];
+            } else if (category == "count_polygons") {
+                colors = [
+                    "#ff6a14",
+                    "#eb6010",
+                    "#d6580f",
+                    "#bd4f0f",
+                    "#a8460d",
+                    "#963e0b",
+                ];
+            }
             // create legend
             const legend = document.getElementById("legends");
             legend.innerHTML = "";
