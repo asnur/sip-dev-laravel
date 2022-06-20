@@ -589,7 +589,15 @@ class AdminController extends Controller
         // )->get();
 
         // $checkProgress = ProgresSurvey::withCount('survey')->limit(10)->get();
-        // dd($checkProgress[0]->survey_count / $checkProgress[0]->jumlah * 100);
+        // // dd($checkProgress[0]->survey_count / $checkProgress[0]->jumlah * 100);
+        // // dd($checkProgress[0]->jumlah);
+        // dd($checkProgress[0]->survey_count);
+
+        // $cek =  ProgresSurvey::withCount(['survey' => function ($query) {
+        //     $query->select(DB::raw('count(distinct(kelurahan))'));
+        // }])->get();
+
+        // dd($cek);
 
         return view('admin.survei_perkembangan', compact(['get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }
@@ -621,15 +629,40 @@ class AdminController extends Controller
     public  function ProgresSurvey()
     {
 
-        $survey = ProgresSurvey::withCount('survey')->get();
+        // $survey = ProgresSurvey::withCount('survey')->take(10)->get();
+
+        $survey =  ProgresSurvey::withCount(['survey' => function ($query) {
+            $query->select(DB::raw('count(distinct(id_sub_blok))'));
+        }])->get();
 
 
         return Datatables::of($survey)
             ->editColumn('progres', function ($data) {
+
+                // $hitung->select(DB::raw('count(distinct(ip))'));
+
                 $progress = $data->survey_count / $data->jumlah * 100;
+
+                $convert = number_format((float)$progress, 2, '.', '');
+
                 return "<div class='progress progress-xs'><div class='progress-bar bg-primary' style='width: $progress%'></div></div>";
             })
-            ->rawColumns(['progres'])->make(true);
+            ->editColumn('persen', function ($data) {
+
+                // $hitung->select(DB::raw('count(distinct(ip))'));
+
+                $progress = $data->survey_count / $data->jumlah * 100;
+
+                $convert = number_format((float)$progress, 2, '.', '');
+
+                return "<span>$convert%</span>";
+            })
+            ->editColumn('nama_kel', function ($data) {
+                $kel = $data->kelurahan;
+                $kalimat = ucwords(strtolower($kel));
+                return "$kalimat";
+            })
+            ->rawColumns(['progres', 'nama_kel', 'persen'])->make(true);
 
         // dd($survey);
     }
