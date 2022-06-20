@@ -291,6 +291,72 @@
     background: gray;
 }
 
+.info-survey-location::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-survey-location::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+.info-layer::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-layer::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+.info-layer-usaha::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-layer-usaha::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+.info-layer-investasi::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-layer-investasi::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+.info-layer-budaya::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-layer-budaya::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+.info-layer-survey-perkembangan::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-layer-survey-perkembangan::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
 /* Hide scrollbar for IE, Edge and Firefox */
 .dalam {
     /* -ms-overflow-style: none; */
