@@ -612,7 +612,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <div class="col-md-12">
                                     <label for="fileExcel" class="text-primary" style="cursor:pointer;"><i
                                             class="ri-file-excel-line"
-                                            style="font-size: 20px !important;position:relative;top:4px;"></i> File
+                                            style="font-size: 20px !important;position:relative;top:4px;"></i> Unggah
+                                        Excel<span id="nameFileExcel"
+                                            class="text-dark font-weight-bold ml-3"></span></label>
+                                    <label class="text-primary" style="cursor:pointer;"><i class="ri-file-excel-line"
+                                            style="font-size: 20px !important;position:relative;top:4px;"></i> Template
                                         Excel <span id="nameFileExcel"
                                             class="text-dark font-weight-bold ml-3"></span></label>
                                     <input class="d-none" type="file" name="excel" id="fileExcel"
@@ -680,11 +684,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <img src="assets/gambar/logo_jakpintas.png" width="70px">
                     </div>
 
-                <div class="tes_border" style="width: 100%; margin-right: 1.2rem;">
-                    <div class="d-flex flex-column">
-                        <div class="tes_border align-self-center"><p class="TextHead">Peta Perizinan dan Investasi</p></div>
-                        <div class="align-self-center tes_border">
-                            <p class="text-white subjudul">Sistem Pelayanan Informasi</p></div>
+                    <div class="tes_border" style="width: 100%; margin-right: 1.2rem;">
+                        <div class="d-flex flex-column">
+                            <div class="tes_border align-self-center">
+                                <p class="TextHead">Peta Perizinan dan Investasi</p>
+                            </div>
+                            <div class="align-self-center tes_border">
+                                <p class="text-white subjudul">Sistem Pelayanan Informasi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1177,7 +1184,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <div class="container container_menu for_mobile">
 
                     <div style="margin-top: -6%;" class="text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48"
+                            height="48">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path d="M5 11h14v2H5z" fill="rgba(211,211,211,1)" />
                         </svg>
@@ -5435,24 +5443,41 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         aria-labelledby="dropdownMenuButton" style="width: 300px">
                         <div class="row" style="padding: 4% 5% 1% 5%;">
 
-                            <div style="position:relative; left:-7px;" class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"                  style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 55%;margin-bottom: 0.2rem" src="http://localhost/assets/gambar/prapermohonan.png">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">PraPermohonan</span></a>
+                            <div style="position:relative; left:-7px;"
+                                class="col-sm-4 text-center d-flex align-items-center mt-2">
+                                <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
+                                    style="text-decoration:none" class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 55%;margin-bottom: 0.2rem"
+                                        src="http://localhost/assets/gambar/prapermohonan.png">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">PraPermohonan</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"  src="{{ asset('assets/gambar/irk.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">&nbsp;IRK</span></a>
-                            </div>
-
-                                    <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://jakevo.jakarta.go.id/" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"   src="{{ asset('assets/gambar/jakevo.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Jakevo</span></a>
+                                <a href="https://jakartasatu.jakarta.go.id/irk/login" target="_blank"
+                                    style="text-decoration:none" class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/irk.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">&nbsp;IRK</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://oss.go.id" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/OSS.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">OSS</span></a>
+                                <a href="https://jakevo.jakarta.go.id/" target="_blank"
+                                    style="text-decoration:none" class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/jakevo.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Jakevo</span></a>
+                            </div>
+
+                            <div class="col-sm-4 text-center d-flex align-items-center mt-2">
+                                <a href="https://oss.go.id" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/OSS.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">OSS</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
@@ -5464,39 +5489,70 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://simbg.pu.go.id/" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 71%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/simbg.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">SIMBG</span></a>
+                                <a href="https://simbg.pu.go.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 71%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/simbg.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">SIMBG</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://jakartasatu.jakarta.go.id/" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/jakarta1_logo.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">JakartaSatu</span></a>
+                                <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
+                                    style="text-decoration:none" class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/jakarta1_logo.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">JakartaSatu</span></a>
                             </div>
 
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://isi.or.id/" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 71%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/ISI.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px; left:-2px;">&nbsp;&nbsp;ISI Survei</span></a>
+                                <a href="https://isi.or.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 71%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/ISI.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px; left:-2px;">&nbsp;&nbsp;ISI
+                                        Survei</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://bankdki.co.id/en/product-services/micro-sme/2016-11-24-20-19-48/kredit-umkm" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"  src="{{ asset('assets/gambar/dki.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Bank DKI</span></a>
+                                <a href="https://bankdki.co.id/en/product-services/micro-sme/2016-11-24-20-19-48/kredit-umkm"
+                                    target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/dki.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Bank
+                                        DKI</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="/dokumen-dasar-dan-panduan" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 60%;margin-bottom: 0.2rem"  src="{{ asset('assets/gambar/referensi.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Referensi</span></a>
+                                <a href="/dokumen-dasar-dan-panduan" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 60%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/referensi.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Referensi</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://sppirt.pom.go.id/" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"  src="{{ asset('assets/gambar/BPOM.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">BPOM</span></a>
+                                <a href="https://sppirt.pom.go.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/BPOM.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">BPOM</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://ptsp.halal.go.id/" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img style="width: 100%;max-width: 75%;margin-bottom: 0.2rem"  src="{{ asset('assets/gambar/halal.png') }}">
-                                        <span style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -9px;">SIHALAL</span></a>
+                                <a href="https://ptsp.halal.go.id/" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 75%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/halal.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -9px;">SIHALAL</span></a>
                             </div>
 
                         </div>
