@@ -33,7 +33,7 @@ class SurveyPerkembanganController extends Controller
 
     public function getDataSurvey($id_user, Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->where('id_user', $id_user)->orderBy('id', 'DESC')->get();
+        $data = SurveyPerkembangan::with('image')->where('id_user', $id_user)->orderBy('id_baru', 'DESC')->get();
         return $data;
     }
 
@@ -248,18 +248,26 @@ class SurveyPerkembanganController extends Controller
 
     public function importExcelSurvey(Request $request)
     {
-        Excel::import(new SurveyImport, $request->file('excel'));
-        if ($request->hasFile('foto')) {
-            foreach ($request->file('foto') as $key => $f) {
-                $id_survey = $f->getClientOriginalName();
-                $name = $this->generateRandomString() . rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
-                $f->move(public_path() . '/survey', $name);
-                $id_survey_fix = explode('-', $id_survey)[0];
-                SurveyPerkembanganImage::create([
-                    'id_survey' => $id_survey_fix,
-                    'name' => $name
-                ]);
+        $loadExcel = Excel::toArray(new SurveyImport, $request->file('excel'));
+        if ($loadExcel[0] == []) {
+            return response()->json(['error' => 'Data Tidak Lengkap']);
+        }
+        try {
+            Excel::import(new SurveyImport, $request->file('excel'));
+            if ($request->hasFile('foto')) {
+                foreach ($request->file('foto') as $key => $f) {
+                    $id_survey = $f->getClientOriginalName();
+                    $name = $this->generateRandomString() . rand(0, 9999999999) . strtotime(date('Y-m-d H:i:s')) . ".jpg";
+                    $f->move(public_path() . '/survey', $name);
+                    $id_survey_fix = explode('-', $id_survey)[0];
+                    SurveyPerkembanganImage::create([
+                        'id_survey' => $id_survey_fix,
+                        'name' => $name
+                    ]);
+                }
             }
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }
