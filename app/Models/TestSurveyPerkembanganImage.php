@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProgresSurvey extends Model
+class TestSurveyPerkembanganImage extends Model
 {
     use HasFactory;
 
-    protected $table = 'jumlah_sub_blok';
+    protected $table = 'test_image_survey_perkembangan';
 
     protected $guarded = ['id'];
 
     public $timestamps = false;
-
-    public function survey()
-    {
-        return $this->hasMany(SurveyPerkembangan::class, 'kelurahan', 'kelurahan');
-    }
 }

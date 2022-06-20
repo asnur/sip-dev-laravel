@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SurveyPerkembangan extends Model
+class TestSurveyPerkembangan extends Model
 {
     use HasFactory;
 
-    protected $table = 'survey_perkembangan_wilayah';
+    protected $table = 'test_survey_perkembangan_wilayah';
 
     protected $guarded = [];
 
@@ -19,7 +19,7 @@ class SurveyPerkembangan extends Model
 
     public function image()
     {
-        return $this->hasMany(SurveyPerkembanganImage::class, 'id_survey', 'id');
+        return $this->hasMany(TestSurveyPerkembanganImage::class, 'id_survey', 'id');
     }
 
     public function user()

@@ -41,10 +41,10 @@ use Jenssegers\Agent\Agent;
 // });
 
 Route::get('/', function (Request $request) {
-    $agent = new Agent();
-    if ($agent->isMobile() || $agent->isTablet()) {
-        return view('block');
-    }
+    // $agent = new Agent();
+    // if ($agent->isMobile() || $agent->isTablet()) {
+    //     return view('block');
+    // }
     return view('layout.main');
 })->name('home');
 
@@ -210,7 +210,10 @@ Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteI
 Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
 Route::get('/layerSurveyPerkembangan', [SurveyPerkembanganController::class, 'layerSurveyPerkembangan'])->name('layer-survey-perkembangan');
 Route::get('/survey/{kelurahan}', [SurveyPerkembanganController::class, 'surveyKelurahan'])->name('survey-perkembangan-kelurahan');
-
+Route::post('/importSurvey', [SurveyPerkembanganController::class, 'importExcelSurvey'])->name('import-survey-perkembangan');
+Route::get('/importExcelSurvey', function () {
+    return view('importExcelSurvey');
+})->name('export-survey-perkembangan');
 
 //Export Data
 Route::get('/data-jumlah-titik', function () {

@@ -92,7 +92,7 @@ class AdminController extends Controller
         //     ->orderBy('survey_perkembangan_wilayah.id_user', 'Desc')
         //     ->get();
 
-        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id', 'DESC')->take(5)->get();
+        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id_baru', 'DESC')->take(5)->get();
 
         // dd($perkembangan_surver);
 
@@ -509,17 +509,16 @@ class AdminController extends Controller
         // $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
 
-        $pegawai_ajib2 = User::withCount('perkembangan')->with('roles')->whereHas(
+        $pegawai_ajib2 = User::withCount(['perkembangan'])->with('roles')->whereHas(
             'roles',
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
         )->get();
 
-
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id', 'DESC')->take(100)->get();
+        $datas = SurveyPerkembangan::orderBy('id_baru', 'DESC')->take(100)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -589,6 +588,8 @@ class AdminController extends Controller
         //     }
         // )->get();
 
+        // $checkProgress = ProgresSurvey::withCount('survey')->limit(10)->get();
+        // dd($checkProgress[0]->survey_count / $checkProgress[0]->jumlah * 100);
 
         return view('admin.survei_perkembangan', compact(['get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }
@@ -603,15 +604,12 @@ class AdminController extends Controller
 
     public  function KinerjaPetugas()
     {
-        $data_kinerja = User::withCount('perkembangan')->with(['roles', 'perkembangan'])->whereHas(
+        $data_kinerja = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
             'roles',
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
-        )->orWhereHas('perkembangan', function () {
-
-            $input_harian = SurveyPerkembangan::whereDate('date', Carbon::today())->get()->count();
-        })->get();
+        )->get();
 
         // dd($data_kinerja);
 
@@ -623,13 +621,13 @@ class AdminController extends Controller
     public  function ProgresSurvey()
     {
 
-        $survey = ProgresSurvey::all();
+        $survey = ProgresSurvey::withCount('survey')->get();
 
-        // dd($survey);
 
         return Datatables::of($survey)
             ->editColumn('progres', function ($data) {
-                return '<div class="progress progress-xs"><div class="progress-bar bg-primary" style="width: 35.96%"></div></div>';
+                $progress = $data->survey_count / $data->jumlah * 100;
+                return "<div class='progress progress-xs'><div class='progress-bar bg-primary' style='width: $progress%'></div></div>";
             })
             ->rawColumns(['progres'])->make(true);
 
