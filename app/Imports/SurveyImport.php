@@ -16,7 +16,7 @@ class SurveyImport implements ToModel, WithCalculatedFormulas, WithStartRow
      */
     public function startRow(): int
     {
-        return 2;
+        return 7;
     }
     /**
      * @param array $row
@@ -30,8 +30,8 @@ class SurveyImport implements ToModel, WithCalculatedFormulas, WithStartRow
             'name' => $row[1],
             'kordinat' => $row[2],
             'id_sub_blok' => $row[3],
-            'kelurahan' => $row[4],
-            'kecamatan' => $row[5],
+            'kelurahan' => strtoupper($row[4]),
+            'kecamatan' => strtoupper($row[5]),
             'regional' => $row[6],
             'deskripsi_regional' => $row[7],
             'neighborhood' => $row[8],

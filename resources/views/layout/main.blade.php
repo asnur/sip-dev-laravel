@@ -615,10 +615,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             style="font-size: 20px !important;position:relative;top:4px;"></i> Unggah
                                         Excel<span id="nameFileExcel"
                                             class="text-dark font-weight-bold ml-3"></span></label>
-                                    <label class="text-primary" style="cursor:pointer;"><i class="ri-file-excel-line"
+                                    <a href="/template_excel.xlsx" class="text-primary"
+                                        style="cursor:pointer;text-decoration:none;" href=""><i
+                                            class="ri-file-excel-line"
                                             style="font-size: 20px !important;position:relative;top:4px;"></i> Template
                                         Excel <span id="nameFileExcel"
-                                            class="text-dark font-weight-bold ml-3"></span></label>
+                                            class="text-dark font-weight-bold ml-3"></span></a>
                                     <input class="d-none" type="file" name="excel" id="fileExcel"
                                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                 </div>
