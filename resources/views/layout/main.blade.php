@@ -337,7 +337,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="for_web input-group input-group-md my-3">
                         <input type="search" id="cari_wilayah_survey"
                             class="form-control tombol_search py-2 border-right-0 border"
-                            placeholder="Cari nama jalan ..." autocomplete="off" style="font-size: 8pt">
+                            placeholder="Cari nama tempat ..." autocomplete="off" style="font-size: 8pt">
 
 
                         <!-- Ori -->
@@ -609,7 +609,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="for_web input-group input-group-md my-3">
                             <input type="search" id="cari_wilayah_survey"
                                 class="form-control tombol_search py-2 border-right-0 border"
-                                placeholder="Cari nama jalan ..." autocomplete="off" style="font-size: 8pt">
+                                placeholder="Cari nama tempat ..." autocomplete="off" style="font-size: 8pt">
 
 
                             <!-- Ori -->
@@ -951,7 +951,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="for_web input-group input-group-md mb-1">
                                 <input type="search" id="cari_wilayah"
                                     class="form-control tombol_search py-2 border-right-0 border"
-                                    placeholder="Cari nama jalan ..." autocomplete="off">
+                                    placeholder="Cari nama tempat ..." autocomplete="off">
 
 
                                 <!-- Ori -->
