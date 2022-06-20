@@ -606,9 +606,72 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="form mt-2">
+                        <div class="for_web input-group input-group-md my-3">
+                            <input type="search" id="cari_wilayah_survey"
+                                class="form-control tombol_search py-2 border-right-0 border"
+                                placeholder="Cari nama jalan ..." autocomplete="off" style="font-size: 8pt">
+
+
+                            <!-- Ori -->
+                            <div class="wm-search__dropdown">
+                                <ul class="wm-search__dropdown" role="listbox"></ul>
+                            </div>
+
+                            <!-- Dummy -->
+                            <ul class="wm-search__dropdown" role="listbox">
+
+                            </ul>
+
+
+                            <span class="input-group-append" style="font-size: 8pt">
+                                <button class="btn btn-secondary tombol_search border-left-0 border"
+                                    style="font-size: 8pt" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                {{-- <button class="btn tombol_search border-left-0 border" type="button"
+                                        id="polygonDraw">
+                                        <i class="ri-shape-line"></i>
+                                        <span class="bg-danger p-1 rounded text-white"
+                                            style="font-size: 8px;margin-top: -1rem;
+                                            position: absolute;">BETA</span>
+                                    </button> --}}
+                            </span>
+                        </div>
 
                         <form style="font-size: 13px" id="formSurveyBulkLocation" enctype="multipart/form-data">
                             <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-size: 13px;line-height:0px;">Koordinat <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-7">
+                                    <span><a href="#" id="refrensiGoogleMapsBulk"
+                                            style="font-size: 13px;line-height:0px;" target="_blank">-</a></span><br>
+                                </div>
+                                <div class="col-md-5">
+                                    <label style="font-size: 13px;line-height:0px;">ID Sub Blok <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-7">
+                                    <span><label id="textidSubblokSurveyBulk" style="font-size: 13px;line-height:0px;"
+                                            target="_blank">-</label></span><br>
+                                </div>
+                                <div class="col-md-5">
+                                    <label style="font-size: 13px;line-height:0px;">Kelurahan <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-7">
+                                    <span><label id="textkelurahanSurveyBulk" style="font-size: 13px;line-height:0px;"
+                                            target="_blank">-</label></span><br>
+                                </div>
+                                <div class="col-md-5">
+                                    <label style="font-size: 13px;line-height:0px;">Kecamatan <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-7">
+                                    <span><label id="textkecamatanSurveyBulk" style="font-size: 13px;line-height:0px;"
+                                            target="_blank">-</label></span><br>
+                                </div>
                                 <div class="col-md-12">
                                     <label for="fileExcel" class="text-primary" style="cursor:pointer;"><i
                                             class="ri-file-excel-line"

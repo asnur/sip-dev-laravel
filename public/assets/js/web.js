@@ -979,6 +979,15 @@ map.on("style.load", function () {
                 .toString()
                 .slice(0, -2)}`
         );
+        $("#refrensiGoogleMapsBulk").attr(
+            "href",
+            `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
+        );
+        $("#refrensiGoogleMapsBulk").text(
+            `${coornya.lat.toString().slice(0, -2)},${coornya.lng
+                .toString()
+                .slice(0, -2)}`
+        );
         $.ajax({
             url: `${APP_URL}/save_kordinat`,
             method: "POST",
@@ -1772,7 +1781,9 @@ map.on(clickEvent, "wilayah_fill", function (e) {
     $("#kelurahanSurvey").val(dt.Kelurahan);
     $("#kecamatanSurvey").val(dt.Kecamatan);
     $("#textkelurahanSurvey").text(titleCase(dt.Kelurahan));
+    $("#textkelurahanSurveyBulk").text(titleCase(dt.Kelurahan));
     $("#textkecamatanSurvey").text(titleCase(dt.Kecamatan));
+    $("#textkecamatanSurveyBulk").text(titleCase(dt.Kecamatan));
 
     map.resize();
     var img = map.getCanvas().toDataURL("image/png");
@@ -1959,6 +1970,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
     $("#textidSubblokSurvey").text(
+        dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
+    );
+    $("#textidSubblokSurveyBulk").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
 
@@ -4938,15 +4952,21 @@ const resetSurvey = () => {
     $("#deskripsiTransectZoneSurvey").val("");
     $("#gambarLokasiSurvey").val("");
     $("#refrensiGoogleMaps").text("-");
+    $("#refrensiGoogleMapsBulk").text("-");
     $("#refrensiGoogleMaps").attr("href", "#");
+    $("#refrensiGoogleMapsBulk").attr("href", "#");
     $("#textidSubblokSurvey").text("-");
+    $("#textidSubblokSurveyBulk").text("-");
     $("#textkelurahanSurvey").text("-");
+    $("#textkelurahanSurveyBulk").text("-");
     $("#textkecamatanSurvey").text("-");
+    $("#textkecamatanSurveyBulk").text("-");
     if (
         $("div#previewFotoSurvey.slick-initialized.slick-slider").length !== 0
     ) {
         $("#previewFotoSurvey").slick("unslick");
         $("#previewFotoSurvey").html("");
+        sliderOption("previewFotoSurvey");
     }
     $("#resetSurey").hide();
 };
