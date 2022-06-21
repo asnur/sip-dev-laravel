@@ -856,6 +856,15 @@ $Roles = '';
                                             <div class='skeleton-line'></div>
                                         </div>
                                     </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Input Total
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
                                     <th colspan="1">
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             &nbsp;&nbsp;&nbsp;&nbsp;Progres
@@ -873,6 +882,9 @@ $Roles = '';
 
                                 @php
                                 for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
+                                                                    <td>
+                                                                        <div class='skeleton-line'></div>
+                                                                    </td>
                                                                     <td>
                                                                         <div class='skeleton-line'></div>
                                                                     </td>
@@ -1037,8 +1049,8 @@ $Roles = '';
                 search: "Pencarian:"
             , }
             , ordering: false
-            , sScrollX: "200%"
-            , sScrollXInner: "200%"
+            , sScrollX: "250%"
+            , sScrollXInner: "250%"
             , responsive: false
             , order: [
                 [0, "desc"]
@@ -1167,7 +1179,7 @@ $Roles = '';
                 search: "Pencarian:"
             , }
             , order: [
-                [3, "desc"]
+                [4, "desc"]
             , ],
 
             columns: [{
@@ -1181,6 +1193,11 @@ $Roles = '';
                 }, {
                     data: 'survey_count'
                     , name: 'survey_count'
+
+                },
+                {
+                    data: 'kelurahan_count'
+                    , name: 'kelurahan_count'
 
                 }, {
                     data: 'progres'

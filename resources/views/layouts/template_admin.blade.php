@@ -689,7 +689,7 @@
             slidesToShow: 7,
             lazyLoad: 'ondemand',
             slidesToScroll: 1,
-            asNavFor: '.gambar_utama_slider_input',
+            // asNavFor: '.gambar_utama_slider_input',
             dots: false,
             focusOnSelect: true,
             variableWidth: true,

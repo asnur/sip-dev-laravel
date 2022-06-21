@@ -644,7 +644,7 @@ class AdminController extends Controller
 
         $survey =  ProgresSurvey::withCount(['survey' => function ($query) {
             $query->select(DB::raw('count(distinct(id_sub_blok))'));
-        }])->get();
+        }, 'kelurahan'])->get();
 
 
         return Datatables::of($survey)
