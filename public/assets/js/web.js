@@ -6995,6 +6995,10 @@ $("#optionFilterChoro").change(() => {
         `);
         sliderRangeKepadatanBangunan();
     } else if ($("#optionFilterChoro").val() == "Data PPAP") {
+        if (map.getLayer("wilayahindex_fill")) {
+            map.removeLayer("wilayahindex_fill");
+            map.removeSource("wilayahindex");
+        }
         let point_center_kelurahan = [
             {
                 kelurahan: "BALEKAMBANG",
@@ -8041,28 +8045,207 @@ $("#optionFilterChoro").change(() => {
                 kordinat: [106.755277756504, -6.20748107487523],
             },
         ];
+
+        let list_pekerjaan = [
+            "tidak_belum_bekerja",
+            "petani",
+            "nelayan",
+            "pedagang",
+            "pejabat_negara",
+            "pns_tni_polri",
+            "pegawai_swasta",
+            "wiraswasta",
+            "pensiunan",
+            "pekerja_lepas",
+        ];
+
+        let list_pendidikan = [
+            "tidak_belum_sekolah",
+            "masih_sd",
+            "tamat_sd",
+            "tamat_sltp",
+            "tamat_slta",
+            "tamat_diploma_i_ii",
+            "tamat_diploma_iii",
+            "tamat_diploma_iv_strata_i",
+            "tamat_strata_ii",
+            "tamat_strata_iii",
+            "tidak_sekolah_lagi",
+            "masih_diploma_iii",
+            "masih_sltp",
+            "masih_diploma_iv_strata_i",
+            "masih_slta",
+            "masih_strata_ii",
+            "masih_diploma_i_ii",
+            "masih_strata_iii",
+            "tidak_tamat_sd",
+        ];
+
+        let list_resiko_bencana = [
+            "rumah_rawan_kabakaran",
+            "jumlah_rumah_pernah_banjir",
+            "jumlah_rumah_pernah_kebakaran",
+        ];
+
+        let optionKelurahan = "<option>Pilih Kelurahan...</option>";
+
+        point_center_kelurahan.forEach(function (item, index) {
+            optionKelurahan += `<option value="${item.kordinat[1]},${item.kordinat[0]}">${item.kelurahan}</option>`;
+        });
         $("#filterChoro").html("");
         $("#filterChoro").html(`
         <div class="row">
+        <div class="col-md-12 mt-1">
+            <span class="text_all font-weight-bold">Kelurahan</span>
+            <select id="selectKelurahan" class="w-100">
+                ${optionKelurahan}
+            </select>
+        </div>
+        <div class="col-md-12 mt-1">
+            <span class="text_all font-weight-bold">Kategori</span>
+            <select id="selectKategori" class="w-100">
+                <option>Pilih Kategori...</option>
+                <option value="Jumlah Penduduk">Jumlah Penduduk</option>
+                <option value="Pekerjaan">Pekerjaan</option>
+                <option value="Pendidikan">Pendidikan</option>
+                <option value="Jumlah Rumah">Jumlah Rumah</option>
+                <option value="Resiko Bencana Kebakaran">Resiko Bencana Kebakaran</option>
+            </select>
+        </div>
         <div class="col-md-12 mt-2 mb-2">
-            <span id="kepadatan-bangunan" class="w-100"
-                style="border:0; color:#f6931f; font-weight:bold;"></span>
-            <div id="slider-kepadatan-bangunan" class="my-2"></div>
+            <div id="data_ppap"></div>
         </div>
         <div class="col-md-6">
-            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Interval (Bangunan)</span>
+            <span class="text_all font-weight-bold">Interval</span>
             <div class="text_all" id="legends">
 
             </div>
             </div>
         <div class="col-md-6">
-            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <span class="text_all font-weight-bold">Nama Kelurahan</span>
             <div id="pd">
                 <p></p>
             </div>
         </div>
     </div>
         `);
+        $("#selectKelurahan").change(function () {
+            let value = $(this).val();
+            geocoder.query(value);
+        });
+
+        $("#selectKategori").change(function () {
+            let value = $(this).val();
+            if (value == "Jumlah Penduduk" || value == "Jumlah Rumah") {
+                // console.log("Disable Chip");
+                $("#data_ppap").html("");
+            } else if (value == "Pekerjaan") {
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    1
+                ) {
+                    $("#data_ppap").slick("unslick");
+                }
+                $("#data_ppap").html("");
+                let html = "";
+                list_pekerjaan.forEach(function (item, index) {
+                    html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "tidak_belum_bekerja" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+                });
+                $("#data_ppap").html(html);
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    0
+                ) {
+                    chipOption("data_ppap");
+                }
+                activeButton("data_ppap");
+            } else if (value == "Pendidikan") {
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    1
+                ) {
+                    $("#data_ppap").slick("unslick");
+                }
+                $("#data_ppap").html("");
+                let html = "";
+                list_pendidikan.forEach(function (item, index) {
+                    html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "tidak_belum_sekolah" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+                });
+                $("#data_ppap").html(html);
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    0
+                ) {
+                    chipOption("data_ppap");
+                }
+                activeButton("data_ppap");
+            } else if (value == "Resiko Bencana Kebakaran") {
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    1
+                ) {
+                    $("#data_ppap").slick("unslick");
+                }
+                $("#data_ppap").html("");
+                let html = "";
+                list_resiko_bencana.forEach(function (item, index) {
+                    html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                item == "rumah_rawan_kabakaran" ? "active-chip" : ""
+            }"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
+                            item.replaceAll("_", " ")
+                        )}</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+                });
+                $("#data_ppap").html(html);
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    0
+                ) {
+                    chipOption("data_ppap");
+                }
+                activeButton("data_ppap");
+            }
+        });
     }
 });
 
