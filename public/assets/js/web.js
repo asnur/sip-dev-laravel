@@ -6994,6 +6994,1075 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         sliderRangeKepadatanBangunan();
+    } else if ($("#optionFilterChoro").val() == "Data PPAP") {
+        let point_center_kelurahan = [
+            {
+                kelurahan: "BALEKAMBANG",
+                kordinat: [106.852770167453, -6.28159463356247],
+            },
+            {
+                kelurahan: "TENGAH",
+                kordinat: [106.866630792338, -6.28961962906629],
+            },
+            {
+                kelurahan: "PINANGRANTI",
+                kordinat: [106.88496932948, -6.29168788121552],
+            },
+            {
+                kelurahan: "KRAMATJATI",
+                kordinat: [106.870706806921, -6.2741117361314],
+            },
+            {
+                kelurahan: "HALIM PERDANA KUSUMA",
+                kordinat: [106.893247548343, -6.26590800880412],
+            },
+            {
+                kelurahan: "JATIPULO",
+                kordinat: [106.803822199297, -6.17879024677216],
+            },
+            {
+                kelurahan: "KRENDANG",
+                kordinat: [106.803983753118, -6.15021453588555],
+            },
+            {
+                kelurahan: "PALMERIAM",
+                kordinat: [106.858974192362, -6.20362318904808],
+            },
+            {
+                kelurahan: "RAWAJATI",
+                kordinat: [106.854652069397, -6.25809567543088],
+            },
+            {
+                kelurahan: "PLUIT",
+                kordinat: [106.786778860067, -6.11356825555952],
+            },
+            {
+                kelurahan: "SLIPI",
+                kordinat: [106.801376592262, -6.1939925487108],
+            },
+            {
+                kelurahan: "ANCOL",
+                kordinat: [106.833788173498, -6.12414317586525],
+            },
+            {
+                kelurahan: "KEAGUNGAN",
+                kordinat: [106.814278138902, -6.15117089568155],
+            },
+            {
+                kelurahan: "CEMPAKA PUTIH TIMUR",
+                kordinat: [106.871749153298, -6.17600021735003],
+            },
+            {
+                kelurahan: "CIBUBUR",
+                kordinat: [106.882315277541, -6.35737461973628],
+            },
+            {
+                kelurahan: "BUNGUR",
+                kordinat: [106.847971506743, -6.17157137781364],
+            },
+            {
+                kelurahan: "BENDUNGAN HILIR",
+                kordinat: [106.80904177713, -6.20863072688788],
+            },
+            {
+                kelurahan: "SERDANG",
+                kordinat: [106.861146497644, -6.15891301427754],
+            },
+            {
+                kelurahan: "KARET KUNINGAN",
+                kordinat: [106.827970245644, -6.22060362931354],
+            },
+            {
+                kelurahan: "GANDARIA SELATAN",
+                kordinat: [106.793010335675, -6.27094372372828],
+            },
+            {
+                kelurahan: "CIPINANG",
+                kordinat: [106.891260774064, -6.2075560828714],
+            },
+            {
+                kelurahan: "CIDENG",
+                kordinat: [106.808310820694, -6.1729803094658],
+            },
+            {
+                kelurahan: "JOHAR BARU",
+                kordinat: [106.857029645221, -6.18569864782619],
+            },
+            {
+                kelurahan: "KAMAL",
+                kordinat: [106.70005348037, -6.10656087716391],
+            },
+            {
+                kelurahan: "JELAMBAR BARU",
+                kordinat: [106.787226994341, -6.14909450796515],
+            },
+            {
+                kelurahan: "GUNTUR",
+                kordinat: [106.833249034146, -6.20794694901622],
+            },
+            {
+                kelurahan: "GUNUNG SAHARI SELATAN",
+                kordinat: [106.844017923919, -6.15934236207373],
+            },
+            {
+                kelurahan: "JEMBATAN BESI",
+                kordinat: [106.797751201794, -6.15186678292615],
+            },
+            {
+                kelurahan: "MANGGA BESAR",
+                kordinat: [106.818306162559, -6.14480014760434],
+            },
+            {
+                kelurahan: "JELAMBAR",
+                kordinat: [106.785762810035, -6.1593992293072],
+            },
+            {
+                kelurahan: "KARET",
+                kordinat: [106.826964737567, -6.21379969219026],
+            },
+            {
+                kelurahan: "KEBON BARU",
+                kordinat: [106.861631544954, -6.23370984627694],
+            },
+            {
+                kelurahan: "KEBON SIRIH",
+                kordinat: [106.830752573211, -6.18508688763716],
+            },
+            {
+                kelurahan: "PALMERAH",
+                kordinat: [106.789488961937, -6.20103876387042],
+            },
+            {
+                kelurahan: "PETOGOGAN",
+                kordinat: [106.811191693718, -6.24319814809799],
+            },
+            {
+                kelurahan: "WARAKAS",
+                kordinat: [106.877782261381, -6.12183006699335],
+            },
+            {
+                kelurahan: "MENTENG ATAS",
+                kordinat: [106.839537225947, -6.21816989049072],
+            },
+            {
+                kelurahan: "PEKOJAN",
+                kordinat: [106.804028794853, -6.13734495563037],
+            },
+            {
+                kelurahan: "SELONG",
+                kordinat: [106.804594510712, -6.23421581529553],
+            },
+            {
+                kelurahan: "PISANGAN TIMUR",
+                kordinat: [106.880134915709, -6.20857627951949],
+            },
+            {
+                kelurahan: "PISANGAN BARU",
+                kordinat: [106.868984142346, -6.21170402077053],
+            },
+            {
+                kelurahan: "RAWA BARAT",
+                kordinat: [106.813139014201, -6.2363621502823],
+            },
+            {
+                kelurahan: "TANAH TINGGI",
+                kordinat: [106.849248693307, -6.17922607326142],
+            },
+            {
+                kelurahan: "SUKABUMI UTARA",
+                kordinat: [106.777634785304, -6.20883629114648],
+            },
+            {
+                kelurahan: "TAMBORA",
+                kordinat: [106.808846207665, -6.14462915712309],
+            },
+            {
+                kelurahan: "SENEN",
+                kordinat: [106.839631642031, -6.17610135315747],
+            },
+            {
+                kelurahan: "CEMPAKA BARU",
+                kordinat: [106.862779174035, -6.16810842497002],
+            },
+            {
+                kelurahan: "CAWANG",
+                kordinat: [106.866895507895, -6.2508803086182],
+            },
+            {
+                kelurahan: "BALI MESTER",
+                kordinat: [106.86636534666, -6.2195453127645],
+            },
+            {
+                kelurahan: "CEGER",
+                kordinat: [106.892392768416, -6.30849411118805],
+            },
+            {
+                kelurahan: "ANGKE",
+                kordinat: [106.795794360571, -6.14552741421886],
+            },
+            {
+                kelurahan: "BUKIT DURI",
+                kordinat: [106.858147238752, -6.2213042733482],
+            },
+            {
+                kelurahan: "CILANDAK TIMUR",
+                kordinat: [106.812764394648, -6.29124715819424],
+            },
+            {
+                kelurahan: "CILANGKAP",
+                kordinat: [106.908866776889, -6.33359108245503],
+            },
+            {
+                kelurahan: "CEMPAKA PUTIH BARAT",
+                kordinat: [106.863845794914, -6.17992983112421],
+            },
+            {
+                kelurahan: "BIDARA CINA",
+                kordinat: [106.86695250674, -6.23537213639289],
+            },
+            {
+                kelurahan: "BAMBU APUS",
+                kordinat: [106.902306165264, -6.31242413412121],
+            },
+            {
+                kelurahan: "BARU",
+                kordinat: [106.847210345023, -6.32392993757224],
+            },
+            {
+                kelurahan: "PETOJO SELATAN",
+                kordinat: [106.816407973239, -6.17477076171228],
+            },
+            {
+                kelurahan: "BANGKA",
+                kordinat: [106.818322386603, -6.26321694333805],
+            },
+            {
+                kelurahan: "BATU AMPAR",
+                kordinat: [106.861052548768, -6.27910071050568],
+            },
+            {
+                kelurahan: "HARAPAN MULIA",
+                kordinat: [106.855866970375, -6.17051259201841],
+            },
+            {
+                kelurahan: "CIPINANG BESAR UTARA",
+                kordinat: [106.87958664141, -6.21863480288697],
+            },
+            {
+                kelurahan: "CENGKARENG BARAT",
+                kordinat: [106.723790997263, -6.13867707610728],
+            },
+            {
+                kelurahan: "BINTARO",
+                kordinat: [106.763618125893, -6.27037303835748],
+            },
+            {
+                kelurahan: "CAKUNG BARAT",
+                kordinat: [106.934686856088, -6.17305116144553],
+            },
+            {
+                kelurahan: "CAKUNG TIMUR",
+                kordinat: [106.955332011345, -6.17100433922291],
+            },
+            {
+                kelurahan: "CIKOKO",
+                kordinat: [106.854279825438, -6.24497535334944],
+            },
+            {
+                kelurahan: "CILANDAK BARAT",
+                kordinat: [106.797156249676, -6.29051429587967],
+            },
+            {
+                kelurahan: "CILILITAN",
+                kordinat: [106.864434633471, -6.26249132254724],
+            },
+            {
+                kelurahan: "CIPINANG CEMPEDAK",
+                kordinat: [106.873471677958, -6.236614803337],
+            },
+            {
+                kelurahan: "CILINCING",
+                kordinat: [106.944874135385, -6.11170184798334],
+            },
+            {
+                kelurahan: "CIPAYUNG",
+                kordinat: [106.893897449408, -6.32905503392006],
+            },
+            {
+                kelurahan: "KEBON MELATI",
+                kordinat: [106.815968239544, -6.1970527198445],
+            },
+            {
+                kelurahan: "CIPEDAK",
+                kordinat: [106.802083997624, -6.35369913538251],
+            },
+            {
+                kelurahan: "CIPETE SELATAN",
+                kordinat: [106.805057303387, -6.27277632781872],
+            },
+            {
+                kelurahan: "GALUR",
+                kordinat: [106.855436303918, -6.17617078785069],
+            },
+            {
+                kelurahan: "GAMBIR",
+                kordinat: [106.826707356245, -6.17638426928023],
+            },
+            {
+                kelurahan: "TOMANG",
+                kordinat: [106.796473965919, -6.17173899669378],
+            },
+            {
+                kelurahan: "GANDARIA UTARA",
+                kordinat: [106.791041341464, -6.25777973040243],
+            },
+            {
+                kelurahan: "SETIA BUDI",
+                kordinat: [106.825837937748, -6.2074199952573],
+            },
+            {
+                kelurahan: "GEDONG",
+                kordinat: [106.859966137258, -6.30147795854981],
+            },
+            {
+                kelurahan: "DURI PULO",
+                kordinat: [106.80458246441, -6.16338079999258],
+            },
+            {
+                kelurahan: "CIPETE UTARA",
+                kordinat: [106.80436442052, -6.26173014025804],
+            },
+            {
+                kelurahan: "DURI SELATAN",
+                kordinat: [106.805013188073, -6.15902781412903],
+            },
+            {
+                kelurahan: "CIPINANG BESAR SELATAN",
+                kordinat: [106.880835476944, -6.22976803272407],
+            },
+            {
+                kelurahan: "DURI UTARA",
+                kordinat: [106.804942282297, -6.15431004452012],
+            },
+            {
+                kelurahan: "CIPINANG MELAYU",
+                kordinat: [106.905831232452, -6.24955628781919],
+            },
+            {
+                kelurahan: "CIPINANG MUARA",
+                kordinat: [106.88922262661, -6.22611690718629],
+            },
+            {
+                kelurahan: "KALI ANYAR",
+                kordinat: [106.79903386743, -6.15769134700794],
+            },
+            {
+                kelurahan: "CIPULIR",
+                kordinat: [106.773155122458, -6.23793520505473],
+            },
+            {
+                kelurahan: "CIKINI",
+                kordinat: [106.839387990622, -6.19144933066517],
+            },
+            {
+                kelurahan: "CIRACAS",
+                kordinat: [106.875316693506, -6.3260630001247],
+            },
+            {
+                kelurahan: "KARANG ANYAR",
+                kordinat: [106.829135431968, -6.15397478137955],
+            },
+            {
+                kelurahan: "DUREN SAWIT",
+                kordinat: [106.915721271092, -6.23328416440598],
+            },
+            {
+                kelurahan: "KAMPUNG BALI",
+                kordinat: [106.816134579909, -6.18518775246783],
+            },
+            {
+                kelurahan: "DUREN TIGA",
+                kordinat: [106.835291283646, -6.25583615503228],
+            },
+            {
+                kelurahan: "GONDANGDIA",
+                kordinat: [106.829435891716, -6.19179611097435],
+            },
+            {
+                kelurahan: "CENGKARENG TIMUR",
+                kordinat: [106.735647170413, -6.14128196438806],
+            },
+            {
+                kelurahan: "GROGOL",
+                kordinat: [106.794325299641, -6.16184680511797],
+            },
+            {
+                kelurahan: "DUKUH",
+                kordinat: [106.877783861843, -6.29589028793787],
+            },
+            {
+                kelurahan: "CIGANJUR",
+                kordinat: [106.808670396577, -6.33635583088517],
+            },
+            {
+                kelurahan: "DURI KEPA",
+                kordinat: [106.773851647269, -6.17607223528842],
+            },
+            {
+                kelurahan: "DURI KOSAMBI",
+                kordinat: [106.719237539067, -6.17001063952574],
+            },
+            {
+                kelurahan: "KALIBARU",
+                kordinat: [106.920143984787, -6.10293345030191],
+            },
+            {
+                kelurahan: "CIJANTUNG",
+                kordinat: [106.858875780337, -6.32157098970938],
+            },
+            {
+                kelurahan: "JOGLO",
+                kordinat: [106.738901514359, -6.21913250943172],
+            },
+            {
+                kelurahan: "KARET SEMANGGI",
+                kordinat: [106.817934330794, -6.22253903163692],
+            },
+            {
+                kelurahan: "KALIBATA",
+                kordinat: [106.837658359856, -6.2633305411815],
+            },
+            {
+                kelurahan: "KALIDERES",
+                kordinat: [106.698785519767, -6.14922780474256],
+            },
+            {
+                kelurahan: "GUNUNG SAHARI UTARA",
+                kordinat: [106.838283316969, -6.14921536977911],
+            },
+            {
+                kelurahan: "KALISARI",
+                kordinat: [106.853038437807, -6.33537780768208],
+            },
+            {
+                kelurahan: "KAMAL MUARA",
+                kordinat: [106.735837814876, -6.1107651443879],
+            },
+            {
+                kelurahan: "GELORA",
+                kordinat: [106.801505339459, -6.21625888260069],
+            },
+            {
+                kelurahan: "GLODOK",
+                kordinat: [106.813214131305, -6.14497746902846],
+            },
+            {
+                kelurahan: "GROGOL SELATAN",
+                kordinat: [106.781449431273, -6.22970438540237],
+            },
+            {
+                kelurahan: "GROGOL UTARA",
+                kordinat: [106.787136887485, -6.2172202114882],
+            },
+            {
+                kelurahan: "JEMBATAN LIMA",
+                kordinat: [106.803792773857, -6.14490519052608],
+            },
+            {
+                kelurahan: "KEBON MANGGIS",
+                kordinat: [106.855346271711, -6.20727473633999],
+            },
+            {
+                kelurahan: "GUNUNG",
+                kordinat: [106.792775126678, -6.23594388650512],
+            },
+            {
+                kelurahan: "KELAPA GADING BARAT",
+                kordinat: [106.895269139883, -6.15552378967254],
+            },
+            {
+                kelurahan: "JAGAKARSA",
+                kordinat: [106.819246663845, -6.32537260793634],
+            },
+            {
+                kelurahan: "JATI PADANG",
+                kordinat: [106.831058031946, -6.28825938435036],
+            },
+            {
+                kelurahan: "KEBON BAWANG",
+                kordinat: [106.889019498519, -6.11937234424829],
+            },
+            {
+                kelurahan: "KELAPA GADING TIMUR",
+                kordinat: [106.90360715134, -6.16839916689042],
+            },
+            {
+                kelurahan: "KARTINI",
+                kordinat: [106.833118085856, -6.1532451786809],
+            },
+            {
+                kelurahan: "JATINEGARA",
+                kordinat: [106.916053416625, -6.20344802566098],
+            },
+            {
+                kelurahan: "KAYU MANIS",
+                kordinat: [106.862213831324, -6.20270408432705],
+            },
+            {
+                kelurahan: "JATI",
+                kordinat: [106.897029023734, -6.19452623737398],
+            },
+            {
+                kelurahan: "JATINEGARA KAUM",
+                kordinat: [106.901457923829, -6.20234834884718],
+            },
+            {
+                kelurahan: "KAPUK",
+                kordinat: [106.754065916163, -6.14218647017166],
+            },
+            {
+                kelurahan: "KAPUK MUARA",
+                kordinat: [106.763305628371, -6.12218961751628],
+            },
+            {
+                kelurahan: "KEDOYA UTARA",
+                kordinat: [106.760988299761, -6.16857000412445],
+            },
+            {
+                kelurahan: "KEBON KELAPA",
+                kordinat: [106.824549974903, -6.1641506144623],
+            },
+            {
+                kelurahan: "KELAPA DUA",
+                kordinat: [106.768725777381, -6.20935190181786],
+            },
+            {
+                kelurahan: "KARET TENGSIN",
+                kordinat: [106.816551514266, -6.20706662486508],
+            },
+            {
+                kelurahan: "KELAPA DUA WETAN",
+                kordinat: [106.882970880301, -6.34112582259438],
+            },
+            {
+                kelurahan: "MELAWAI",
+                kordinat: [106.802246658983, -6.2455926318479],
+            },
+            {
+                kelurahan: "KEMANGGISAN",
+                kordinat: [106.791380301514, -6.18987547785637],
+            },
+            {
+                kelurahan: "KEMAYORAN",
+                kordinat: [106.845383786804, -6.16472147763137],
+            },
+            {
+                kelurahan: "KEMBANGAN SELATAN",
+                kordinat: [106.738584691009, -6.18615808320017],
+            },
+            {
+                kelurahan: "KEMBANGAN UTARA",
+                kordinat: [106.742511600446, -6.17232398437239],
+            },
+            {
+                kelurahan: "KAYU PUTIH",
+                kordinat: [106.883693095322, -6.17940001931571],
+            },
+            {
+                kelurahan: "KEBAGUSAN",
+                kordinat: [106.830942361388, -6.30973492877673],
+            },
+            {
+                kelurahan: "KEBON JERUK",
+                kordinat: [106.772134897526, -6.19500358429678],
+            },
+            {
+                kelurahan: "KEBON KACANG",
+                kordinat: [106.817201945748, -6.19029931602392],
+            },
+            {
+                kelurahan: "KEBON KOSONG",
+                kordinat: [106.853461747615, -6.15819605535884],
+            },
+            {
+                kelurahan: "KOTA BAMBU UTARA",
+                kordinat: [106.803417613565, -6.18356522989228],
+            },
+            {
+                kelurahan: "KEBON PALA",
+                kordinat: [106.877833900441, -6.25571030595755],
+            },
+            {
+                kelurahan: "MANGGA DUA SELATAN",
+                kordinat: [106.828260256841, -6.14207490053543],
+            },
+            {
+                kelurahan: "KEBAYORAN LAMA SELATAN",
+                kordinat: [106.780148484667, -6.25456762190232],
+            },
+            {
+                kelurahan: "KEBAYORAN LAMA UTARA",
+                kordinat: [106.776848724088, -6.24614366603367],
+            },
+            {
+                kelurahan: "KAMPUNG RAWA",
+                kordinat: [106.855513229834, -6.17950356950519],
+            },
+            {
+                kelurahan: "KEDAUNG KALI ANGKE",
+                kordinat: [106.758576015288, -6.15256949605835],
+            },
+            {
+                kelurahan: "KRAMAT",
+                kordinat: [106.846320437487, -6.18348640618221],
+            },
+            {
+                kelurahan: "KEDOYA SELATAN",
+                kordinat: [106.760418286986, -6.18253392848629],
+            },
+            {
+                kelurahan: "KWITANG",
+                kordinat: [106.840193546425, -6.18318376310215],
+            },
+            {
+                kelurahan: "KAMPUNG MELAYU",
+                kordinat: [106.861277596858, -6.21738482050325],
+            },
+            {
+                kelurahan: "KENARI",
+                kordinat: [106.846683472723, -6.19356000257104],
+            },
+            {
+                kelurahan: "MAMPANG PRAPATAN",
+                kordinat: [106.828637163477, -6.24275787977454],
+            },
+            {
+                kelurahan: "MAPHAR",
+                kordinat: [106.821172338109, -6.15601257752805],
+            },
+            {
+                kelurahan: "PEJATEN TIMUR",
+                kordinat: [106.848282310615, -6.2801614064755],
+            },
+            {
+                kelurahan: "MANGGARAI",
+                kordinat: [106.851062911107, -6.2135265709077],
+            },
+            {
+                kelurahan: "MANGGARAI SELATAN",
+                kordinat: [106.848517904195, -6.21996580391261],
+            },
+            {
+                kelurahan: "MARUNDA",
+                kordinat: [106.961284401015, -6.113501852069],
+            },
+            {
+                kelurahan: "MENTENG",
+                kordinat: [106.833920591568, -6.20089669974896],
+            },
+            {
+                kelurahan: "KRUKUT",
+                kordinat: [106.814993668419, -6.15695814026878],
+            },
+            {
+                kelurahan: "KLENDER",
+                kordinat: [106.90813621644, -6.2185124197491],
+            },
+            {
+                kelurahan: "KUNINGAN BARAT",
+                kordinat: [106.822144880409, -6.23595753320787],
+            },
+            {
+                kelurahan: "KOJA",
+                kordinat: [106.899122955021, -6.10577304917311],
+            },
+            {
+                kelurahan: "KOTA BAMBU SELATAN",
+                kordinat: [106.803353901735, -6.18734974845941],
+            },
+            {
+                kelurahan: "KRAMAT PELA",
+                kordinat: [106.792442419077, -6.24472875967881],
+            },
+            {
+                kelurahan: "KUNINGAN TIMUR",
+                kordinat: [106.829512159071, -6.23158607519609],
+            },
+            {
+                kelurahan: "LAGOA",
+                kordinat: [106.910619132986, -6.11399743651156],
+            },
+            {
+                kelurahan: "PENGADEGAN",
+                kordinat: [106.855424162661, -6.24925648705767],
+            },
+            {
+                kelurahan: "LEBAK BULUS",
+                kordinat: [106.77894157624, -6.30112305479764],
+            },
+            {
+                kelurahan: "LENTENG AGUNG",
+                kordinat: [106.836903148115, -6.325664859182],
+            },
+            {
+                kelurahan: "LUBANG BUAYA",
+                kordinat: [106.903528833342, -6.29392173361504],
+            },
+            {
+                kelurahan: "SUMUR BATU",
+                kordinat: [106.871047261908, -6.16349017527244],
+            },
+            {
+                kelurahan: "MAKASAR",
+                kordinat: [106.877033587368, -6.27577224494573],
+            },
+            {
+                kelurahan: "MALAKA JAYA",
+                kordinat: [106.934862424551, -6.22336512218718],
+            },
+            {
+                kelurahan: "MALAKA SARI",
+                kordinat: [106.928425594337, -6.22384422298812],
+            },
+            {
+                kelurahan: "MERUYA UTARA",
+                kordinat: [106.738767789367, -6.1966346418424],
+            },
+            {
+                kelurahan: "UTAN KAYU UTARA",
+                kordinat: [106.868269048953, -6.19550652157989],
+            },
+            {
+                kelurahan: "MUNJUL",
+                kordinat: [106.895677726988, -6.3478093873621],
+            },
+            {
+                kelurahan: "PADEMANGAN BARAT",
+                kordinat: [106.836764588809, -6.13492677792781],
+            },
+            {
+                kelurahan: "PADEMANGAN TIMUR",
+                kordinat: [106.8478070055, -6.14232844070373],
+            },
+            {
+                kelurahan: "PASAR MANGGIS",
+                kordinat: [106.84158253741, -6.21044137484654],
+            },
+            {
+                kelurahan: "PANCORAN",
+                kordinat: [106.840707833002, -6.24744336003884],
+            },
+            {
+                kelurahan: "PASAR MINGGU",
+                kordinat: [106.839363454169, -6.28991922574007],
+            },
+            {
+                kelurahan: "PAPANGGO",
+                kordinat: [106.871108767074, -6.12900617451505],
+            },
+            {
+                kelurahan: "PASAR BARU",
+                kordinat: [106.83448401588, -6.16602947068673],
+            },
+            {
+                kelurahan: "PASEBAN",
+                kordinat: [106.852587250498, -6.19339147493744],
+            },
+            {
+                kelurahan: "PEGADUNGAN",
+                kordinat: [106.702353946773, -6.13275718918478],
+            },
+            {
+                kelurahan: "PULO GADUNG",
+                kordinat: [106.898903551917, -6.18299061865617],
+            },
+            {
+                kelurahan: "PEGANGSAAN",
+                kordinat: [106.848072167268, -6.20196460461354],
+            },
+            {
+                kelurahan: "PETAMBURAN",
+                kordinat: [106.806001685901, -6.19687566275644],
+            },
+            {
+                kelurahan: "PESANGGRAHAN",
+                kordinat: [106.758735300531, -6.25648069940373],
+            },
+            {
+                kelurahan: "PENJARINGAN",
+                kordinat: [106.800073832348, -6.12207730012579],
+            },
+            {
+                kelurahan: "PEGANGSAAN DUA",
+                kordinat: [106.914716882326, -6.16408683226957],
+            },
+            {
+                kelurahan: "PEJAGALAN",
+                kordinat: [106.784827450065, -6.13580658464833],
+            },
+            {
+                kelurahan: "UTAN PANJANG",
+                kordinat: [106.854326221795, -6.16535442511159],
+            },
+            {
+                kelurahan: "PEJATEN BARAT",
+                kordinat: [106.835282547028, -6.27299312637062],
+            },
+            {
+                kelurahan: "PEKAYON",
+                kordinat: [106.864389762062, -6.3449540953624],
+            },
+            {
+                kelurahan: "PELA MAMPANG",
+                kordinat: [106.817148578637, -6.24853909986531],
+            },
+            {
+                kelurahan: "PENGGILINGAN",
+                kordinat: [106.934844236356, -6.20484214733487],
+            },
+            {
+                kelurahan: "PONDOK KOPI",
+                kordinat: [106.942550333377, -6.22696189622745],
+            },
+            {
+                kelurahan: "MENTENG DALAM",
+                kordinat: [106.841246849809, -6.23162384487792],
+            },
+            {
+                kelurahan: "RAWA BUNGA",
+                kordinat: [106.87132709072, -6.21996193024349],
+            },
+            {
+                kelurahan: "MERUYA SELATAN",
+                kordinat: [106.733999371533, -6.20931697452601],
+            },
+            {
+                kelurahan: "ROROTAN",
+                kordinat: [106.955265105271, -6.14532208894883],
+            },
+            {
+                kelurahan: "SEMANAN",
+                kordinat: [106.702426505957, -6.16618015491114],
+            },
+            {
+                kelurahan: "SEMPER BARAT",
+                kordinat: [106.924259592784, -6.12596794345643],
+            },
+            {
+                kelurahan: "SEMPER TIMUR",
+                kordinat: [106.933252382009, -6.12061199121527],
+            },
+            {
+                kelurahan: "PETOJO UTARA",
+                kordinat: [106.815299449664, -6.16535378282879],
+            },
+            {
+                kelurahan: "PETUKANGAN SELATAN",
+                kordinat: [106.753792334275, -6.24331589603664],
+            },
+            {
+                kelurahan: "RAWA BADAK SELATAN",
+                kordinat: [106.898685331939, -6.13230665928947],
+            },
+            {
+                kelurahan: "PETUKANGAN UTARA",
+                kordinat: [106.75101122644, -6.22928815391129],
+            },
+            {
+                kelurahan: "SUKABUMI SELATAN",
+                kordinat: [106.771976700512, -6.22174513532899],
+            },
+            {
+                kelurahan: "RAWAMANGUN",
+                kordinat: [106.88244828357, -6.19590904440279],
+            },
+            {
+                kelurahan: "PINANGSIA",
+                kordinat: [106.815804282372, -6.13708249346776],
+            },
+            {
+                kelurahan: "PULO",
+                kordinat: [106.802045088624, -6.25330997702339],
+            },
+            {
+                kelurahan: "RAWASARI",
+                kordinat: [106.866046508743, -6.19044662797002],
+            },
+            {
+                kelurahan: "PONDOK BAMBU",
+                kordinat: [106.900878416204, -6.23484846645207],
+            },
+            {
+                kelurahan: "ROA MALAKA",
+                kordinat: [106.809469368255, -6.13637449343088],
+            },
+            {
+                kelurahan: "PONDOK KELAPA",
+                kordinat: [106.93188774186, -6.24342401245266],
+            },
+            {
+                kelurahan: "RAWA BUAYA",
+                kordinat: [106.736389150783, -6.16287135549716],
+            },
+            {
+                kelurahan: "PONDOK LABU",
+                kordinat: [106.797027586026, -6.30927443777828],
+            },
+            {
+                kelurahan: "SUNGAI BAMBU",
+                kordinat: [106.886224328238, -6.13074025577404],
+            },
+            {
+                kelurahan: "RAWA BADAK UTARA",
+                kordinat: [106.897893109845, -6.11961275573959],
+            },
+            {
+                kelurahan: "PONDOK PINANG",
+                kordinat: [106.778857408958, -6.27606602673475],
+            },
+            {
+                kelurahan: "PONDOK RANGGON",
+                kordinat: [106.906850499146, -6.35539148390087],
+            },
+            {
+                kelurahan: "PULO GEBANG",
+                kordinat: [106.952955214449, -6.20500706701234],
+            },
+            {
+                kelurahan: "RAGUNAN",
+                kordinat: [106.821238775704, -6.29876136130953],
+            },
+            {
+                kelurahan: "SUSUKAN",
+                kordinat: [106.86884147041, -6.31248140942556],
+            },
+            {
+                kelurahan: "TEGAL PARANG",
+                kordinat: [106.829231264862, -6.24881450103449],
+            },
+            {
+                kelurahan: "RAMBUTAN",
+                kordinat: [106.877746518795, -6.30710134491421],
+            },
+            {
+                kelurahan: "RAWA TERATE",
+                kordinat: [106.920447107467, -6.18447178921686],
+            },
+            {
+                kelurahan: "WIJAYA KUSUMA",
+                kordinat: [106.775908824205, -6.15482146991689],
+            },
+            {
+                kelurahan: "TANAH SEREAL",
+                kordinat: [106.809841852686, -6.15404585485693],
+            },
+            {
+                kelurahan: "SRENGSENG SAWAH",
+                kordinat: [106.824459905671, -6.34839794333306],
+            },
+            {
+                kelurahan: "SUKAPURA",
+                kordinat: [106.927973641205, -6.14796232979686],
+            },
+            {
+                kelurahan: "TEBET BARAT",
+                kordinat: [106.848980166044, -6.23494078590659],
+            },
+            {
+                kelurahan: "TEBET TIMUR",
+                kordinat: [106.855523101862, -6.23381945447945],
+            },
+            {
+                kelurahan: "TEGAL ALUR",
+                kordinat: [106.715919156645, -6.11649816825729],
+            },
+            {
+                kelurahan: "TUGU SELATAN",
+                kordinat: [106.910345437471, -6.13540865683343],
+            },
+            {
+                kelurahan: "TANJUNG DUREN SELATAN",
+                kordinat: [106.788595559928, -6.17935244531923],
+            },
+            {
+                kelurahan: "TUGU UTARA",
+                kordinat: [106.912344292705, -6.12427674562036],
+            },
+            {
+                kelurahan: "TANGKI",
+                kordinat: [106.823136682183, -6.14619713728914],
+            },
+            {
+                kelurahan: "UJUNG MENTENG",
+                kordinat: [106.963344812767, -6.18627604492655],
+            },
+            {
+                kelurahan: "SENAYAN",
+                kordinat: [106.810394817247, -6.22678603215109],
+            },
+            {
+                kelurahan: "ULUJAMI",
+                kordinat: [106.763183489486, -6.23628834828197],
+            },
+            {
+                kelurahan: "SUNTER AGUNG",
+                kordinat: [106.862089053746, -6.13808205169972],
+            },
+            {
+                kelurahan: "SUNTER JAYA",
+                kordinat: [106.876812601473, -6.15135381932835],
+            },
+            {
+                kelurahan: "TAMAN SARI",
+                kordinat: [106.824531240858, -6.15357668400071],
+            },
+            {
+                kelurahan: "TANJUNG BARAT",
+                kordinat: [106.847497282611, -6.30675798193156],
+            },
+            {
+                kelurahan: "TANJUNG DUREN UTARA",
+                kordinat: [106.783272459404, -6.17281865105015],
+            },
+            {
+                kelurahan: "UTAN KAYU SELATAN",
+                kordinat: [106.868934128878, -6.20349581454576],
+            },
+            {
+                kelurahan: "TANJUNG PRIOK",
+                kordinat: [106.879034604041, -6.10897877010519],
+            },
+            {
+                kelurahan: "SETU",
+                kordinat: [106.914809988355, -6.31303631772808],
+            },
+            {
+                kelurahan: "SRENGSENG",
+                kordinat: [106.755277756504, -6.20748107487523],
+            },
+        ];
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-2 mb-2">
+            <span id="kepadatan-bangunan" class="w-100"
+                style="border:0; color:#f6931f; font-weight:bold;"></span>
+            <div id="slider-kepadatan-bangunan" class="my-2"></div>
+        </div>
+        <div class="col-md-6">
+            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Interval (Bangunan)</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span for="kepadatan-bangunan" class="text_all font-weight-bold">Nama Kelurahan</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
     }
 });
 

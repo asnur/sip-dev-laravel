@@ -112,7 +112,7 @@ class SurveyPerkembanganController extends Controller
 
     public function editDataSurvey(Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->find($request->input('id'));
+        $data = SurveyPerkembangan::with('image')->find((int)$request->input('id'));
 
         return $data;
     }

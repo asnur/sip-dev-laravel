@@ -5549,9 +5549,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                    style="width: 100%;max-width: 70%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/pesanajib.png') }}">
-                                <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Pesan AJIB</span></a>
+                                <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 70%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Pesan
+                                        AJIB</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
@@ -5769,6 +5773,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <option value="Jumlah Penduduk">Jumlah Penduduk</option>
                             <option value="Kepadatan Penduduk">Kepadatan Penduduk</option>
                             <option value="Kepadatan Bangunan">Kepadatan Bangunan</option>
+                            <option value="Data PPAP">Data PPAP</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">
