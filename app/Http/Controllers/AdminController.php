@@ -604,7 +604,7 @@ class AdminController extends Controller
 
     public  function viewSurvey()
     {
-        $data_survey = ViewDetil::select("*")->limit(1)->get();
+        $data_survey = ViewDetil::select("*")->get();
         return Datatables::of($data_survey)
             ->editColumn('kelurahan', function ($data) {
                 $kel = $data->kelurahan;
@@ -628,7 +628,7 @@ class AdminController extends Controller
             function ($q) {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
-        )->limit(1)->get();
+        )->get();
 
         // dd($data_kinerja);
 
@@ -644,7 +644,7 @@ class AdminController extends Controller
 
         $survey =  ProgresSurvey::withCount(['survey' => function ($query) {
             $query->select(DB::raw('count(distinct(id_sub_blok))'));
-        }])->limit(1)->get();
+        }])->get();
 
 
         return Datatables::of($survey)
