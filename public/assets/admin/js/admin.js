@@ -957,7 +957,7 @@ const filterAnalytics = (periode) => {
 };
 
 $.ajax({
-    url: `/analytics/1`,
+    url: `/analytics/6`,
     method: "GET",
     success: (e) => {
         $(".inf-pengunjung").text(0);
