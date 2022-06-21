@@ -643,8 +643,6 @@ class AdminController extends Controller
 
                 $progress = $data->survey_count / $data->jumlah * 100;
 
-                $convert = number_format((float)$progress, 2, '.', '');
-
                 return "<div class='progress progress-xs'><div class='progress-bar bg-primary' style='width: $progress%'></div></div>";
             })
             ->editColumn('persen', function ($data) {

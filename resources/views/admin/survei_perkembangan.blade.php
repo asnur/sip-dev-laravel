@@ -813,7 +813,7 @@ $Roles = '';
         </div>
     </div>
 
-    {{-- <div style="margin-top: 1rem" class="row-cards">
+    <div style="margin-top: 1rem" class="row-cards">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-status-top bg-success"></div>
@@ -897,7 +897,7 @@ $Roles = '';
 
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
     <div style="margin-top: 0.2rem" class="row row-cards">
@@ -973,7 +973,7 @@ $Roles = '';
                 search: "Pencarian:"
             , }
             , order: [
-                [3, "desc"]
+                [4, "desc"]
             , ],
 
             columns: [{
@@ -1126,7 +1126,7 @@ $Roles = '';
                     width: "7%"
                     , targets: 0
                 }, {
-                    width: "9%"
+                    width: "20%"
                     , targets: 1
                 }, {
                     width: "5%"
@@ -1162,7 +1162,7 @@ $Roles = '';
             , serverSide: true
             , ajax: "{{ url('/admin/get-progres-survey') }}"
 
-            , ordering: false
+            , ordering: true
             , language: {
                 search: "Pencarian:"
             , }
