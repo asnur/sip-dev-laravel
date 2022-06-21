@@ -121,10 +121,12 @@ class SurveyPerkembanganController extends Controller
     {
         $data = SurveyPerkembangan::with('image')->find($request->input('id'));
 
-        foreach ($data->image as $img) {
-            unlink(public_path() . '/survey/' . $img->name);
-            $data_image = SurveyPerkembanganImage::find($img->id);
-            $data_image->delete();
+        if (count($data->image) != 0) {
+            foreach ($data->image as $img) {
+                unlink(public_path() . '/survey/' . $img->name);
+                $data_image = SurveyPerkembanganImage::find($img->id);
+                $data_image->delete();
+            }
         }
 
         $data->delete();
