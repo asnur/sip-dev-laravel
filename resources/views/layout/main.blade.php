@@ -1462,7 +1462,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
 
-                            <div class="all-chart">
+                            <div class="all-chart" style="margin-top:-6%;">
                                 <div class="d-flex margin_chart_ekonomi_mobile">
                                     <canvas id="pie-chart" width="70" height="50"></canvas>
                                 </div>
@@ -1475,7 +1475,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
 
-                            <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama">Pendapatan
+                            <p class="card-title mb-3 mt-4  text-center font-weight-bold judul_utama">Pendapatan
                                 Rata-Rata Per Bulan</p>
 
 
@@ -1544,7 +1544,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="position:absolute;z-index: -999; display:none"></canvas>
                                 </div>
 
-                                <div class="d-flex margin_chartline_ekonomi_mobile">
+                                <div class="d-flex mt-2 margin_chartline_ekonomi_mobile">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
                                         <canvas id="bar-chart-grouped-info" width="90" height="80"
                                             style="display: none;position:absolute;"></canvas>
@@ -5549,11 +5549,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://dpmptsp-jkt.com" target="_blank"
-                                    style="font-size: 12px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-75">Pesan
-                                    Ajib</a>
+                                <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img
+                                    style="width: 100%;max-width: 70%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/pesanajib.png') }}">
+                                <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Pesan AJIB</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">

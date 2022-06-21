@@ -1554,7 +1554,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             datasets: [
                 {
                     label: "Kelurahan",
-                    backgroundColor: ["#d63939", "#f59f00", "#206bc4"],
+                    backgroundColor: ["#ed403c", "#f8a51b", "#a3218e"],
                     data: [dt.Produksi, dt.Perdagangan, dt.Jasa],
                 },
             ],
@@ -1562,6 +1562,9 @@ map.on(clickEvent, "wilayah_fill", function (e) {
         options: {
             title: {
                 display: true,
+            },
+            legend: {
+                align: "start",
             },
             bezierCurve: false,
             animation: {
@@ -1584,7 +1587,7 @@ map.on(clickEvent, "wilayah_fill", function (e) {
             labels: ["20-29", "30-39", "40-49", "50-59", "60-69"],
             datasets: [
                 {
-                    backgroundColor: "#d63939",
+                    backgroundColor: "#03a45e",
                     data: [dt.U1, dt.U2, dt.U3, dt.U4, dt.U5],
                 },
             ],
@@ -1614,6 +1617,8 @@ map.on(clickEvent, "wilayah_fill", function (e) {
                             display: true,
                             labelString: "Usia",
                             padding: 20,
+                            barPercentage: 0.2,
+                            categoryPercentage: 0.2,
                         },
                     },
                 ],
@@ -7351,25 +7356,25 @@ function setup(id) {
         },
 
         previewTemplate: `
-        <div class="dz-preview dz-processing dz-image-preview dz-error dz-complete m-0 mt-1" style="margin-right:17px !important;"> 
+        <div class="dz-preview dz-processing dz-image-preview dz-error dz-complete m-0 mt-1" style="margin-right:17px !important;">
         <div class="dz-image border" style="width:80px;height:80px;border-radius:10px;">
             <img data-dz-thumbnail="" alt="">
-        </div> 
-        <div class="dz-details" style="font-size:6pt"> 
+        </div>
+        <div class="dz-details" style="font-size:6pt">
             <div class="dz-size" style="font-size:5pt">
                 <span data-dz-size=""></span>
-            </div> 
+            </div>
             <div class="dz-filename"><span data-dz-name=""></span>
-            </div> 
-        </div> 
-        <div class="dz-progress"> 
-            <span class="dz-upload" data-dz-uploadprogress=""></span> 
-        </div>  
-        <div class="dz-success-mark"> 
-    
+            </div>
+        </div>
+        <div class="dz-progress">
+            <span class="dz-upload" data-dz-uploadprogress=""></span>
+        </div>
+        <div class="dz-success-mark">
+
         </div>
         <div class="dz-remove" style="z-index: 99999;position: absolute;top: 0px;right: 5px;">
-        <a href="javascript:undefined;" data-dz-remove="" class="text-danger font-weight-bold"><i class="fa fa-close"></i></div>  
+        <a href="javascript:undefined;" data-dz-remove="" class="text-danger font-weight-bold"><i class="fa fa-close"></i></div>
     </div>
         `,
     };
