@@ -120,7 +120,7 @@ class SurveyPerkembanganController extends Controller
     public function deleteDataSurvey(Request $request)
     {
         $data = SurveyPerkembangan::with('image')->find($request->input('id'));
-        var_dump($data->image);
+        var_dump($data);
         // if (count($data->image) != 0) {
         //     foreach ($data->image as $img) {
         //         unlink(public_path() . '/survey/' . $img->name);
