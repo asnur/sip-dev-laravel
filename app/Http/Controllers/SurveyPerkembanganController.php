@@ -121,7 +121,7 @@ class SurveyPerkembanganController extends Controller
     {
         $data = SurveyPerkembangan::with('image')->find($request->input('id'));
 
-        if (count($data->image) != 0) {
+        if ($data->image != null) {
             foreach ($data->image as $img) {
                 unlink(public_path() . '/survey/' . $img->name);
                 $data_image = SurveyPerkembanganImage::find($img->id);
