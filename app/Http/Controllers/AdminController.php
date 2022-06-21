@@ -605,7 +605,18 @@ class AdminController extends Controller
     public  function viewSurvey()
     {
         $data_survey = ViewDetil::select("*")->get();
-        return Datatables::of($data_survey)->make(true);
+        return Datatables::of($data_survey)
+            ->editColumn('kelurahan', function ($data) {
+                $kel = $data->kelurahan;
+                $get_kel = ucwords(strtolower($kel));
+                return "$get_kel";
+            })
+            ->editColumn('kecamatan', function ($data) {
+                $kec = $data->kecamatan;
+                $get_kec = ucwords(strtolower($kec));
+                return "$get_kec";
+            })
+            ->rawColumns(['kelurahan', 'kecamatan'])->make(true);
 
         // dd($data);
     }
