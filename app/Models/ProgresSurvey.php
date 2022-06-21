@@ -19,4 +19,9 @@ class ProgresSurvey extends Model
     {
         return $this->hasMany(SurveyPerkembangan::class, 'kelurahan', 'kelurahan');
     }
+
+    public function kelurahan()
+    {
+        return $this->hasMany(SurveyPerkembangan::class, 'kelurahan', 'kelurahan');
+    }
 }
