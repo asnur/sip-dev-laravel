@@ -957,6 +957,15 @@ const filterAnalytics = (periode) => {
 };
 
 $.ajax({
+    url: `/analytics/1`,
+    method: "GET",
+    success: (e) => {
+        $(".inf-pengunjung").text(0);
+        $(".inf-pengunjung").text(e[1].reduce(sum, 0));
+    },
+});
+
+$.ajax({
     url: `/analytics/0`,
     method: "GET",
     success: (e) => {
