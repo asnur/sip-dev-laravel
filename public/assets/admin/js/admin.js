@@ -703,7 +703,7 @@ $(document).ready(function () {
                     });
                 }
 
-                console.log(array.length);
+                // console.log(array.length);
                 if (array.length > 1) {
                     $(".gambar_utama_slider_input ").removeClass(
                         "atur_margin_gambar_utama"

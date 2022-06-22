@@ -518,7 +518,7 @@ class AdminController extends Controller
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id_baru', 'DESC')->take(100)->get();
+        $datas = SurveyPerkembangan::orderBy('id_baru', 'DESC')->take(50)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -691,7 +691,7 @@ class AdminController extends Controller
         //     ->orderBy('survey.id_user', 'Desc')
         //     ->get();
 
-        $tes = SurveyPerkembangan::with('user', 'image')->where('id', $id_data_terbaru)->first();
+        $tes = SurveyPerkembangan::with('user', 'image')->where('id', (int)$id_data_terbaru)->first();
 
 
         // $get_perkembangan =  SurveyPerkembangan::orderBy('id_user', 'Desc')
