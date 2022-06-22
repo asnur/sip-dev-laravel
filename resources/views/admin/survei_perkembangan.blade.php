@@ -829,7 +829,7 @@ $Roles = '';
                             <thead>
                                 <tr class="size_detil" valign="middle">
 
-                                    <th>
+                                    <th class="text-center">
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             Nama Kelurahan
                                         </div>
