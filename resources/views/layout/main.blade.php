@@ -1239,6 +1239,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <br>
                                 <label class="size_menu size_menu_mobile">Digitasi</label>
                             </li>
+                            {{-- <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    data-toggle="pill" href="#pills-simio" role="tab" id="simio-tab"
+                                    aria-selected="false"><i class="ri-money-dollar-circle-line"></i></a>
+
+                                <br>
+                                <label class="size_menu size_menu_mobile">SimIO</label>
+                            </li> --}}
                             <!-- Pending menu pin-->
 
                         </ul>
@@ -5410,6 +5418,202 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         <!-- <p style="font-size: 14px;" class="card-title  text-center font-weight-bold mt-2">Keterangan</p> -->
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane " id="pills-simio" role="tabpanel">
+                        <div class="container">
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama mb-4">Simulasi IO</p>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Sektor</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <select id="sektorInput" class="w-75">
+                                        <option>Pilih Sektor...</option>
+                                        <option
+                                            value="Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib">
+                                            Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib</option>
+                                        <option value="Industri Pengolahan">Industri Pengolahan</option>
+                                        <option value="Informasi dan Komunikasi">Informasi dan Komunikasi</option>
+                                        <option value="Jasa Kesehatan dan Kegiatan Sosial">Jasa Kesehatan dan Kegiatan
+                                            Sosial</option>
+                                        <option value="Jasa Keuangan dan Asuransi">Jasa Keuangan dan Asuransi</option>
+                                        <option value="Jasa Lainnya">Jasa Lainnya</option>
+                                        <option value="Jasa Pendidikan">Jasa Pendidikan</option>
+                                        <option value="Jasa Perusahaan">Jasa Perusahaan</option>
+                                        <option value="Konstruksi">Konstruksi</option>
+                                        <option value="Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang">
+                                            Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang</option>
+                                        <option value="Pengadaan Listrik dan Gas">Pengadaan Listrik dan Gas</option>
+                                        <option value="Penyediaan Akomodasi dan Makan Minum">Penyediaan Akomodasi dan
+                                            Makan Minum</option>
+                                        <option value="Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor">
+                                            Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor</option>
+                                        <option value="Pertambangan dan Penggalian ">Pertambangan dan Penggalian
+                                        </option>
+                                        <option value="Pertanian, Kehutanan, dan Perikanan">Pertanian, Kehutanan, dan
+                                            Perikanan
+                                        </option>
+                                        <option value="Real Estate">Real Estate
+                                        </option>
+                                        <option value="Transportasi dan Pergudangan ">Transportasi dan Pergudangan
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul mb-5">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Nilai Investasi</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <input type="text" placeholder="Masukan Nilai Investasi"
+                                        class="w-75 number-separator" style="font-size: 11px"
+                                        id="sektorInvestasi">
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Administrasi Pemerintahan, Pertahanan dan Jaminan
+                                        Sosial Wajib</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-adm-ppj">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Industri Pengolahan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-ip">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Informasi dan Komunikasi</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-ik">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Kesehatan dan Kegiatan Sosial</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jkks">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Keuangan dan Asuransi</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jka">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Lainnya</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-js">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Pendidikan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jp">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Perusahaan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jpr">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Konstruksi</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jk">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur
+                                        Ulang</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pasldu">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pengadaan Listrik dan Gas</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-plg">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Penyediaan Akomodasi dan Makan Minum</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pamm">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Perdagangan Besar dan Eceran; Reparasi Mobil dan
+                                        Sepeda Motor</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pbermsm">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pertambangan dan Penggalian </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-perpen">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pertanian, Kehutanan, dan Perikanan </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pkp">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Real Estate </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-re">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Transportasi dan Pergudangan </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-tranper">-</p>
+                                </div>
                             </div>
                         </div>
 

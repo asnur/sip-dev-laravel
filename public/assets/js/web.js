@@ -450,7 +450,7 @@ map.addControl(new PitchToggle({ minpitchzoom: 15 }));
 // map.addControl(new CircleToggle({ radius: 1500 }));
 
 $(
-    "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP"
+    "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP, #simio-tab"
 ).on("click", () => {
     if ($("#enable-direction").prop("checked") == true) {
         $("#enable-direction").trigger("click");

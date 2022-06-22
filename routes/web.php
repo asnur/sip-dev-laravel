@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
+use App\Http\Controllers\SektorController;
 use App\Http\Controllers\SurveyPerkembanganController;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
@@ -234,6 +235,10 @@ Route::get('/detail-data-titik', function () {
 
     return view('detail-data-titik', compact('data'));
 })->name('export-data-detail');
+
+
+//Get Sektor
+Route::get('/sektor/{sektor}', [SektorController::class, 'getData'])->name('get-sektor');
 
 //PHP INFO
 // Route::get('/createUserPNS', function () {
