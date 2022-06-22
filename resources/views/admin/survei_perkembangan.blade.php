@@ -68,19 +68,27 @@
         top: -8rem;
     }
 
+    .data_image_space .slick-prev:before{
+        font-size: 35px !important;
+    }
+
+    .data_image_space .slick-next:before{
+        font-size: 35px !important;
+    }
+
     .data_image_space .slick-list {
         width: 28.8rem !important;
     }
 
     .data_image_space .slick-prev {
-        margin-left: 0.2rem;
+        margin-left: 2rem;
         top: 10rem;
         position: relative;
     }
 
     .data_image_space .slick-next {
         position: relative;
-        left: 29.1rem;
+        left: 26.1rem;
         top: -10rem;
     }
 
@@ -874,7 +882,9 @@ $Roles = '';
                                             <div class='skeleton-line'></div>
                                         </div>
                                     </th>
+
                                     <th>
+                                        Prosentase
                                     </th>
                                 </tr>
                             </thead>
@@ -1138,7 +1148,7 @@ $Roles = '';
                     width: "7%"
                     , targets: 0
                 }, {
-                    width: "20%"
+                    width: "11%"
                     , targets: 1
                 }, {
                     width: "5%"

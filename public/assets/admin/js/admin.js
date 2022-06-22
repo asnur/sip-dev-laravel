@@ -410,11 +410,8 @@ const selectOption = (name) => {
         slidesToScroll: 1,
         infinite: false,
         arrows: true,
-        // prevArrow:
-        //     '<button style="position:relative; top:10rem; left: -1rem;" class="slide-arrow prev-arrow">Kembali</button>',
-        // nextArrow:
-        //     '<button style="position:relative; top:-10rem; left:29.5rem;" class="slide-arrow next-arrow">Selanjutnya</button>',
-        // variableWidth: true,
+        // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+        // nextArrow: '<button class="slide-arrow next-arrow"></button>',
     });
 };
 

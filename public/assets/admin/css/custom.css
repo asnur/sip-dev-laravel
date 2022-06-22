@@ -92,13 +92,37 @@
 /* hide dots and arrow buttons when slider is not hovered */
 .slick-slider:not(:hover) .slick-arrow,
 .slick-slider:not(:hover) .slick-dots {
-    opacity: 0;
+    opacity: 1 !important;
 }
 
 /* transition effects for opacity */
 .slick-arrow {
     transition: opacity 0.5s ease-out;
 }
+
+/* .slide-arrow {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+}
+.prev-arrow {
+    left: -40px;
+    width: 0;
+    height: 0;
+    border-left: 0 solid transparent;
+    border-right: 15px solid #113463;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.next-arrow {
+    right: -40px;
+    width: 0;
+    height: 0;
+    border-right: 0 solid transparent;
+    border-left: 15px solid #113463;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+} */
 
 .loader_lazy_load {
     border: 16px solid #f3f3f3;
