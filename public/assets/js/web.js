@@ -209,6 +209,7 @@ for (var i = 0; i < inputs.length; i++) {
 $(window).on("load", function () {
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    localStorage.removeItem("jenis_data_dppapp");
     localStorage.setItem("simulasi", "");
     localStorage.setItem("direction", 1);
     localStorage.setItem("circleDraw", 0);
@@ -3012,6 +3013,378 @@ const banjir = (kelurahan, tahun) => {
     });
 };
 
+const choroDPPAPP = (category = "jlh_penduduk", kelurahan) => {
+    $.ajax({
+        url: `${url}/ppap`,
+        method: "POST",
+        dataType: "json",
+        data: {
+            jenis: category,
+            kelurahan: kelurahan,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        success: (e) => {
+            if (map.getSource("wilayahppapp")) {
+                map.removeLayer("wilayahppapp_fill");
+                map.removeSource("wilayahppapp");
+            }
+
+            map.addSource("wilayahppapp", {
+                type: "geojson",
+                data: e,
+            });
+
+            let paint;
+            let min, max, average;
+            let data = e.features;
+            let layers;
+            let colors;
+
+            let list_pekerjaan = [
+                {
+                    name: "Tidak Belum Bekerja",
+                    coloumn: "tdk_belum_bekerja",
+                },
+                {
+                    name: "Petani",
+                    coloumn: "petani",
+                },
+                {
+                    name: "Nelayan",
+                    coloumn: "nelayan",
+                },
+                {
+                    name: "Pedagang",
+                    coloumn: "pedagang",
+                },
+                {
+                    name: "Pejabat Negara",
+                    coloumn: "pejabat_negara",
+                },
+                {
+                    name: "PNS TNI Polri",
+                    coloumn: "pns_tni_polri",
+                },
+                {
+                    name: "Pegawai Swasta",
+                    coloumn: "peg_swasta",
+                },
+                {
+                    name: "Wiraswasta",
+                    coloumn: "wiraswasta",
+                },
+                {
+                    name: "Pensuinan",
+                    coloumn: "pensuinan",
+                },
+                {
+                    name: "Pekerja Lepas",
+                    coloumn: "pekerja_lepas",
+                },
+            ];
+
+            let list_pendidikan = [
+                {
+                    name: "Tidak Sekolah",
+                    coloumn: "tdk_belum_sekolah",
+                },
+                {
+                    name: "Masih SD",
+                    coloumn: "masih_sd",
+                },
+                {
+                    name: "Tamat SD",
+                    coloumn: "tamat_sd",
+                },
+                {
+                    name: "Tamat SMP",
+                    coloumn: "tamat_smp",
+                },
+                {
+                    name: "Tamat SMA",
+                    coloumn: "tamat_sma",
+                },
+                {
+                    name: "Tamat D1/D2",
+                    coloumn: "tamat_d1_d2",
+                },
+                {
+                    name: "Tamat D3",
+                    coloumn: "tamat_d3",
+                },
+                {
+                    name: "Tamat D4/Sarjana",
+                    coloumn: "tamat_d4_srjna",
+                },
+                {
+                    name: "Tamat S2",
+                    coloumn: "tamat_s2",
+                },
+                {
+                    name: "Tamat S3",
+                    coloumn: "tamat_s3",
+                },
+                {
+                    name: "Tidak Sekolah Lagi",
+                    coloumn: "tdk_sekolah_lagi",
+                },
+                {
+                    name: "Masih D3",
+                    coloumn: "masih_d3",
+                },
+                {
+                    name: "Masih SMP",
+                    coloumn: "masih_smp",
+                },
+                {
+                    name: "Masih D4/Sarjana",
+                    coloumn: "masih_d4_srjna",
+                },
+                {
+                    name: "Masih SMA",
+                    coloumn: "masih_sm",
+                },
+                {
+                    name: "Masih S2",
+                    coloumn: "masih_s2",
+                },
+                {
+                    name: "Masih D1/D2",
+                    coloumn: "masih_d1_d2",
+                },
+                {
+                    name: "Masih S3",
+                    coloumn: "masih_s3",
+                },
+                {
+                    name: "Tidak Tamat SD",
+                    coloumn: "tdk_tamat_sd",
+                },
+            ];
+
+            let list_resiko_bencana = [
+                {
+                    name: "Rawan Kebakaran",
+                    coloumn: "rmh_rawan_kebakar",
+                },
+                {
+                    name: "Pernah Banjir",
+                    coloumn: "rmh_pernah_banjir",
+                },
+                {
+                    name: "Pernah Kebakar",
+                    coloumn: "rmh_pernah_kebakar",
+                },
+            ];
+
+            min = data
+                .map(function (el) {
+                    return el.properties["Jumlah"];
+                })
+                .reduce(function (prevEl, el) {
+                    return Math.min(prevEl, el);
+                });
+            max = data
+                .map(function (el) {
+                    return el.properties["Jumlah"];
+                })
+                .reduce(function (prevEl, el) {
+                    return Math.max(prevEl, el);
+                });
+            average = Math.ceil((max - min) / 6);
+
+            layers = [
+                `${min} - ${min + average * 1 + 1}`,
+                `${min + average * 1 + 2} - ${min + average * 2 + 1}`,
+                `${min + average * 2 + 2} - ${min + average * 3 + 1}`,
+                `${min + average * 3 + 2} - ${min + average * 4 + 1}`,
+                `${min + average * 4 + 2} - ${min + average * 5 + 1}`,
+                `> ${min + average * 5 + 2}`,
+            ];
+
+            if (list_pekerjaan.some((e) => e.coloumn === category)) {
+                colors = [
+                    "#1cfc03",
+                    "#22eb0c",
+                    "#22db0d",
+                    "#1dbd0b",
+                    "#1aa60a",
+                    "#198f0b",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#1cfc03",
+                    min + average * 2 + 1,
+                    "#22eb0c",
+                    min + average * 3 + 1,
+                    "#22db0d",
+                    min + average * 4 + 1,
+                    "#1dbd0b",
+                    min + average * 5 + 1,
+                    "#1aa60a",
+                    min + average * 6 + 1,
+                    "#198f0b",
+                ];
+            } else if (list_pendidikan.some((e) => e.coloumn === category)) {
+                colors = [
+                    "#254ef5",
+                    "#1e43d6",
+                    "#1a3aba",
+                    "#142f99",
+                    "#10267d",
+                    "#0b1a57",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#254ef5",
+                    min + average * 2 + 1,
+                    "#1e43d6",
+                    min + average * 3 + 1,
+                    "#1a3aba",
+                    min + average * 4 + 1,
+                    "#142f99",
+                    min + average * 5 + 1,
+                    "#10267d",
+                    min + average * 6 + 1,
+                    "#0b1a57",
+                ];
+            } else if (
+                list_resiko_bencana.some((e) => e.coloumn === category)
+            ) {
+                colors = [
+                    "#a90ffc",
+                    "#980ee3",
+                    "#870cc9",
+                    "#740aad",
+                    "#650996",
+                    "#51057a",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#a90ffc",
+                    min + average * 2 + 1,
+                    "#980ee3",
+                    min + average * 3 + 1,
+                    "#870cc9",
+                    min + average * 4 + 1,
+                    "#740aad",
+                    min + average * 5 + 1,
+                    "#650996",
+                    min + average * 6 + 1,
+                    "#51057a",
+                ];
+            } else if (category === "jlh_penduduk") {
+                colors = [
+                    "#f7143e",
+                    "#d61135",
+                    "#b50e2d",
+                    "#990c26",
+                    "#7d091e",
+                    "#690619",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#f7143e",
+                    min + average * 2 + 1,
+                    "#d61135",
+                    min + average * 3 + 1,
+                    "#b50e2d",
+                    min + average * 4 + 1,
+                    "#990c26",
+                    min + average * 5 + 1,
+                    "#7d091e",
+                    min + average * 6 + 1,
+                    "#690619",
+                ];
+            } else if (category === "jlh_rumah") {
+                colors = [
+                    "#0ce8e4",
+                    "#0ac9c6",
+                    "#09adab",
+                    "#068f8d",
+                    "#057876",
+                    "#04615f",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#0ce8e4",
+                    min + average * 2 + 1,
+                    "#0ac9c6",
+                    min + average * 3 + 1,
+                    "#09adab",
+                    min + average * 4 + 1,
+                    "#068f8d",
+                    min + average * 5 + 1,
+                    "#057876",
+                    min + average * 6 + 1,
+                    "#04615f",
+                ];
+            }
+
+            map.addLayer({
+                id: "wilayahppapp_fill",
+                type: "fill",
+                source: "wilayahppapp",
+                paint: {
+                    "fill-color": paint,
+                    "fill-opacity": 0.7,
+                    "fill-outline-color": "white",
+                },
+                layout: {
+                    visibility: "visible",
+                },
+            });
+
+            const legend = document.getElementById("legends");
+            legend.innerHTML = "";
+
+            map.on("mousemove", ({ point }) => {
+                const states = map.queryRenderedFeatures(point, {
+                    layers: ["wilayahppapp_fill"],
+                });
+
+                document.getElementById("pd").innerHTML = states.length
+                    ? `<div>${states[0].properties.RT}/${
+                          states[0].properties.RW
+                      }</div><p class="mb-0 my-2"><strong class="d-block">Jumlah</strong><span style="font-size:15px;">
+                    ${separatorNum(states[0].properties["Jumlah"])}</span></p>`
+                    : `<p class="mb-0">Arahkan kursor</p>`;
+            });
+
+            layers.forEach((layer, i) => {
+                const color = colors[i];
+                const item = document.createElement("div");
+                const key = document.createElement("span");
+                key.className = "legend-key";
+                key.style.backgroundColor = color;
+
+                const value = document.createElement("span");
+                value.innerHTML = `${layer}`;
+                item.appendChild(key);
+                item.appendChild(value);
+                legend.appendChild(item);
+            });
+        },
+    });
+};
+
 const choro = (min = 0, max = 25000000000, category = "omzet") => {
     $.ajax({
         url: `${url}/choro`,
@@ -4076,6 +4449,10 @@ function onOffLayers(layer) {
                 });
             } else {
                 hideLayer("wilayahindex_fill");
+                if (map.getLayer("wilayahppapp_fill")) {
+                    map.removeLayer("wilayahppapp_fill");
+                    map.removeSource("wilayahppapp");
+                }
                 $(".detail_omzet").hide();
                 $(".detail_jumlah").hide();
                 $("#btnInteractive").removeClass("text-primary");
@@ -6995,6 +7372,7 @@ $("#optionFilterChoro").change(() => {
         `);
         sliderRangeKepadatanBangunan();
     } else if ($("#optionFilterChoro").val() == "Data PPAP") {
+        localStorage.removeItem("jenis_data_dppapp");
         if (map.getLayer("wilayahindex_fill")) {
             map.removeLayer("wilayahindex_fill");
             map.removeSource("wilayahindex");
@@ -7021,7 +7399,7 @@ $("#optionFilterChoro").change(() => {
                 kordinat: [106.893247548343, -6.26590800880412],
             },
             {
-                kelurahan: "JATIPULO",
+                kelurahan: "JATI PULO",
                 kordinat: [106.803822199297, -6.17879024677216],
             },
             {
@@ -8047,50 +8425,146 @@ $("#optionFilterChoro").change(() => {
         ];
 
         let list_pekerjaan = [
-            "tidak_belum_bekerja",
-            "petani",
-            "nelayan",
-            "pedagang",
-            "pejabat_negara",
-            "pns_tni_polri",
-            "pegawai_swasta",
-            "wiraswasta",
-            "pensiunan",
-            "pekerja_lepas",
+            {
+                name: "Tidak Belum Bekerja",
+                coloumn: "tdk_belum_bekerja",
+            },
+            {
+                name: "Petani",
+                coloumn: "petani",
+            },
+            {
+                name: "Nelayan",
+                coloumn: "nelayan",
+            },
+            {
+                name: "Pedagang",
+                coloumn: "pedagang",
+            },
+            {
+                name: "Pejabat Negara",
+                coloumn: "pejabat_negara",
+            },
+            {
+                name: "PNS TNI Polri",
+                coloumn: "pns_tni_polri",
+            },
+            {
+                name: "Pegawai Swasta",
+                coloumn: "peg_swasta",
+            },
+            {
+                name: "Wiraswasta",
+                coloumn: "wiraswasta",
+            },
+            {
+                name: "Pensuinan",
+                coloumn: "pensuinan",
+            },
+            {
+                name: "Pekerja Lepas",
+                coloumn: "pekerja_lepas",
+            },
         ];
 
         let list_pendidikan = [
-            "tidak_belum_sekolah",
-            "masih_sd",
-            "tamat_sd",
-            "tamat_sltp",
-            "tamat_slta",
-            "tamat_diploma_i_ii",
-            "tamat_diploma_iii",
-            "tamat_diploma_iv_strata_i",
-            "tamat_strata_ii",
-            "tamat_strata_iii",
-            "tidak_sekolah_lagi",
-            "masih_diploma_iii",
-            "masih_sltp",
-            "masih_diploma_iv_strata_i",
-            "masih_slta",
-            "masih_strata_ii",
-            "masih_diploma_i_ii",
-            "masih_strata_iii",
-            "tidak_tamat_sd",
+            {
+                name: "Tidak Sekolah",
+                coloumn: "tdk_belum_sekolah",
+            },
+            {
+                name: "Masih SD",
+                coloumn: "masih_sd",
+            },
+            {
+                name: "Tamat SD",
+                coloumn: "tamat_sd",
+            },
+            {
+                name: "Tamat SMP",
+                coloumn: "tamat_smp",
+            },
+            {
+                name: "Tamat SMA",
+                coloumn: "tamat_sma",
+            },
+            {
+                name: "Tamat D1/D2",
+                coloumn: "tamat_d1_d2",
+            },
+            {
+                name: "Tamat D3",
+                coloumn: "tamat_d3",
+            },
+            {
+                name: "Tamat D4/Sarjana",
+                coloumn: "tamat_d4_srjna",
+            },
+            {
+                name: "Tamat S2",
+                coloumn: "tamat_s2",
+            },
+            {
+                name: "Tamat S3",
+                coloumn: "tamat_s3",
+            },
+            {
+                name: "Tidak Sekolah Lagi",
+                coloumn: "tdk_sekolah_lagi",
+            },
+            {
+                name: "Masih D3",
+                coloumn: "masih_d3",
+            },
+            {
+                name: "Masih SMP",
+                coloumn: "masih_smp",
+            },
+            {
+                name: "Masih D4/Sarjana",
+                coloumn: "masih_d4_srjna",
+            },
+            {
+                name: "Masih SMA",
+                coloumn: "masih_sm",
+            },
+            {
+                name: "Masih S2",
+                coloumn: "masih_s2",
+            },
+            {
+                name: "Masih D1/D2",
+                coloumn: "masih_d1_d2",
+            },
+            {
+                name: "Masih S3",
+                coloumn: "masih_s3",
+            },
+            {
+                name: "Tidak Tamat SD",
+                coloumn: "tdk_tamat_sd",
+            },
         ];
 
         let list_resiko_bencana = [
-            "rumah_rawan_kabakaran",
-            "jumlah_rumah_pernah_banjir",
-            "jumlah_rumah_pernah_kebakaran",
+            {
+                name: "Rawan Kebakaran",
+                coloumn: "rmh_rawan_kebakar",
+            },
+            {
+                name: "Pernah Banjir",
+                coloumn: "rmh_pernah_banjir",
+            },
+            {
+                name: "Pernah Kebakar",
+                coloumn: "rmh_pernah_kebakar",
+            },
         ];
 
         let optionKelurahan = "<option>Pilih Kelurahan...</option>";
 
         point_center_kelurahan.forEach(function (item, index) {
-            optionKelurahan += `<option value="${item.kordinat[1]},${item.kordinat[0]}">${item.kelurahan}</option>`;
+            optionKelurahan += `<option value="${item.kordinat[1]},${item.kordinat[0]}/${item.kelurahan}">${item.kelurahan}</option>`;
         });
         $("#filterChoro").html("");
         $("#filterChoro").html(`
@@ -8104,7 +8578,7 @@ $("#optionFilterChoro").change(() => {
         <div class="col-md-12 mt-1">
             <span class="text_all font-weight-bold">Kategori</span>
             <select id="selectKategori" class="w-100">
-                <option>Pilih Kategori...</option>
+                <option value="">Pilih Kategori...</option>
                 <option value="Jumlah Penduduk">Jumlah Penduduk</option>
                 <option value="Pekerjaan">Pekerjaan</option>
                 <option value="Pendidikan">Pendidikan</option>
@@ -8122,7 +8596,7 @@ $("#optionFilterChoro").change(() => {
             </div>
             </div>
         <div class="col-md-6">
-            <span class="text_all font-weight-bold">Nama Kelurahan</span>
+            <span class="text_all font-weight-bold">RT/RW</span>
             <div id="pd">
                 <p></p>
             </div>
@@ -8130,14 +8604,37 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         $("#selectKelurahan").change(function () {
-            let value = $(this).val();
-            geocoder.query(value);
+            let value = $(this).val().split("/");
+            let kordinat = value[0];
+            let kelurahan = value[1];
+            let jenis = localStorage.getItem("jenis_data_dppapp");
+            localStorage.setItem("kelurahan_dppapp", kelurahan);
+            if ($("#selectKategori").val() == "") {
+                localStorage.setItem("jenis_data_dppapp", "jlh_penduduk");
+                $("#selectKategori").val("Jumlah Penduduk").trigger("change");
+            } else {
+                choroDPPAPP(jenis, kelurahan);
+            }
+            geocoder.query(kordinat);
         });
 
         $("#selectKategori").change(function () {
             let value = $(this).val();
             if (value == "Jumlah Penduduk" || value == "Jumlah Rumah") {
                 // console.log("Disable Chip");
+                if (value == "Jumlah Penduduk") {
+                    choroDPPAPP(
+                        "jlh_penduduk",
+                        localStorage.getItem("kelurahan_dppapp")
+                    );
+                    localStorage.setItem("jenis_data_dppapp", "jlh_penduduk");
+                } else {
+                    choroDPPAPP(
+                        "jlh_rumah",
+                        localStorage.getItem("kelurahan_dppapp")
+                    );
+                    localStorage.setItem("jenis_data_dppapp", "jlh_rumah");
+                }
                 $("#data_ppap").html("");
             } else if (value == "Pekerjaan") {
                 if (
@@ -8149,17 +8646,28 @@ $("#optionFilterChoro").change(() => {
                 $("#data_ppap").html("");
                 let html = "";
                 list_pekerjaan.forEach(function (item, index) {
+                    if (index == 0) {
+                        choroDPPAPP(
+                            item.coloumn,
+                            localStorage.getItem("kelurahan_dppapp")
+                        );
+                        localStorage.setItem("jenis_data_dppapp", item.coloumn);
+                    }
                     html += `
             <div class="mb-1">
             <button class="btn btn-xs mr-2 ${
-                item == "tidak_belum_bekerja" ? "active-chip" : ""
-            }"
+                index == 0 ? "active-chip" : ""
+            }" onclick="choroDPPAPP('${item.coloumn}', '${localStorage.getItem(
+                        "kelurahan_dppapp"
+                    )}');localStorage.setItem('jenis_data_dppapp', '${
+                        item.coloumn
+                    }')"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
                 <div class="container">
                     <div class="row">
-                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
-                            item.replaceAll("_", " ")
-                        )}</span>
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
                     </div>
                 </div>
             </button>
@@ -8184,17 +8692,28 @@ $("#optionFilterChoro").change(() => {
                 $("#data_ppap").html("");
                 let html = "";
                 list_pendidikan.forEach(function (item, index) {
+                    if (index == 0) {
+                        choroDPPAPP(
+                            item.coloumn,
+                            localStorage.getItem("kelurahan_dppapp")
+                        );
+                        localStorage.setItem("jenis_data_dppapp", item.coloumn);
+                    }
                     html += `
             <div class="mb-1">
             <button class="btn btn-xs mr-2 ${
-                item == "tidak_belum_sekolah" ? "active-chip" : ""
-            }"
+                index == 0 ? "active-chip" : ""
+            }" onclick="choroDPPAPP('${item.coloumn}', '${localStorage.getItem(
+                        "kelurahan_dppapp"
+                    )}');localStorage.setItem('jenis_data_dppapp', '${
+                        item.coloumn
+                    }')"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
                 <div class="container">
                     <div class="row">
-                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
-                            item.replaceAll("_", " ")
-                        )}</span>
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
                     </div>
                 </div>
             </button>
@@ -8219,17 +8738,28 @@ $("#optionFilterChoro").change(() => {
                 $("#data_ppap").html("");
                 let html = "";
                 list_resiko_bencana.forEach(function (item, index) {
+                    if (index == 0) {
+                        choroDPPAPP(
+                            item.coloumn,
+                            localStorage.getItem("kelurahan_dppapp")
+                        );
+                        localStorage.setItem("jenis_data_dppapp", item.coloumn);
+                    }
                     html += `
             <div class="mb-1">
             <button class="btn btn-xs mr-2 ${
-                item == "rumah_rawan_kabakaran" ? "active-chip" : ""
-            }"
+                index == 0 ? "active-chip" : ""
+            }" onclick="choroDPPAPP('${item.coloumn}', '${localStorage.getItem(
+                        "kelurahan_dppapp"
+                    )}');localStorage.setItem('jenis_data_dppapp', '${
+                        item.coloumn
+                    }')"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
                 <div class="container">
                     <div class="row">
-                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
-                            item.replaceAll("_", " ")
-                        )}</span>
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
                     </div>
                 </div>
             </button>
