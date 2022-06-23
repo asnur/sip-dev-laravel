@@ -722,7 +722,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="col-md-6 text-right">
                         <span class="w-100 d-block font-weight-bold" style="font-size: 25px;"><span
                                 id="JumlahTitikSurvey">0</span></span>
-                        <a href="/printSurvey" class="text-primary"
+                        {{-- <a href="/printSurvey" class="text-primary"
                             style="
                         position: relative;
                         font-size: 13px;
@@ -730,7 +730,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         text-decoration: none;
                     "><i
                                 class="ri-download-cloud-line font-weight-bold"
-                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Pdf </a>
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Pdf </a> --}}
                         <a href="/printSurveyExcel" class="text-primary"
                             style="
                         position: relative;
@@ -739,7 +739,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         text-decoration: none;
                     "><i
                                 class="ri-download-cloud-line font-weight-bold"
-                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Excel</a>
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
                     </div>
                 </div>
                 <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
