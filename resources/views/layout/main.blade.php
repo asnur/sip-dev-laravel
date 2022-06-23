@@ -5977,7 +5977,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <option value="Jumlah Penduduk">(RBI) Jumlah Penduduk</option>
                             <option value="Kepadatan Penduduk">(RBI) Kepadatan Penduduk</option>
                             <option value="Kepadatan Bangunan">(RBI) Jumlah Bangunan</option>
-                            <option value="Data PPAP">(DPPAP) Kependudukan</option>
+                            <option value="Data PPAP">(DPPAPP) Kependudukan</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">
