@@ -155,7 +155,7 @@ class SurveyPerkembanganController extends Controller
 
     public function printSurvey(Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
+        $data = SurveyPerkembangan::where('id_user', Auth::user()->id)->get();
         $opciones_ssl = array(
             "ssl" => array(
                 "verify_peer" => false,
@@ -169,6 +169,13 @@ class SurveyPerkembanganController extends Controller
         $pdf->loadView('print-survey', compact('data'));
         // return $pdf->stream();
         return $pdf->download('Arsip Survey ' . Auth::user()->name . '.pdf');
+    }
+
+    public function printSurveyExcel(Request $request)
+    {
+        $data = SurveyPerkembangan::where('id_user', Auth::user()->id)->get();
+
+        return view('print-excel', compact('data'));
     }
 
     public function layerSurveyPerkembangan()
