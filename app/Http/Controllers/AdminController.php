@@ -496,11 +496,23 @@ class AdminController extends Controller
     public function perkembangan_survey()
     {
         // kepake
-        $hasil_jumlah_titik = SurveyPerkembangan::all();
+        // $hasil_jumlah_titik = SurveyPerkembangan::all();
+        // $hasil_jumlah_titik = DB::table('survey_perkembangan_wilayah')->get();
+
+        $hasil_jumlah_titik = DB::table('survey_perkembangan_wilayah')->count();
+
+        // dd($hasil_jumlah_titik);
+
+        $progres_total = $hasil_jumlah_titik / 36117 * 100;
+
+        // dd($progres_total);
+
+        $get_progres_total = number_format((float)$progres_total, 2, '.', '');
 
         $get_today = date('Y-m-d');
 
         $get_perkembangan_day = DB::table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+
 
         // dd($get_perkembangan_day->count());
 
@@ -599,7 +611,7 @@ class AdminController extends Controller
 
         // dd($cek);
 
-        return view('admin.survei_perkembangan', compact(['get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
+        return view('admin.survei_perkembangan', compact(['get_progres_total', 'get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }
 
     public  function viewSurvey()

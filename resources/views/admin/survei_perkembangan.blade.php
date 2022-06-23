@@ -68,12 +68,20 @@
         top: -8rem;
     }
 
-    .data_image_space .slick-prev:before{
+    .data_image_space .slick-prev:before {
         font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f104";
+
     }
 
-    .data_image_space .slick-next:before{
+    .data_image_space .slick-next:before {
         font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f105";
+        margin-right: -130% !important;
     }
 
     .data_image_space .slick-list {
@@ -99,6 +107,24 @@
     .data_image_space .slick-next:before {
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
+
+
+    .data_image_space2 .slick-prev:before {
+        font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f104";
+
+    }
+
+    .data_image_space2 .slick-next:before {
+        font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f105";
+        /* margin-right: -130% !important; */
+    }
+
 
     /* .slick-prev:before,
     .slick-next:before {
@@ -302,9 +328,18 @@ $Roles = '';
 
 
 
-                <div class="card-body responsive_delete_card">
-                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">
-                        {{ count($hasil_jumlah_titik) }}</div>
+                <div style="padding-top: 3%; padding-left: 5%; padding-bottom: 5%;" class="card-body responsive_delete_card">
+
+                    <div class="d-flex flex-column">
+                        <div class="">
+                            <div style="font-size:25px;" class="h2 m-0 angka_responsive">{{ $hasil_jumlah_titik }}</div>
+                        </div>
+                        <div class="">
+                            <div style="font-size:25px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}%</div>
+
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -539,7 +574,7 @@ $Roles = '';
                         <div class="col-md-12 mt-2">
 
 
-                            <div style="max-height:8rem;" class="image_slider_input">
+                            <div style="max-height:8rem;" class="image_slider_input data_image_space2">
 
                                 {{-- <div class="slide_foto"></div> --}}
 
@@ -846,7 +881,7 @@ $Roles = '';
                                             <div class='skeleton-line'></div>
                                         </div>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             Jumlah Sub Blok
                                         </div>
@@ -864,7 +899,7 @@ $Roles = '';
                                             <div class='skeleton-line'></div>
                                         </div>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             Input Total
                                         </div>
@@ -873,7 +908,7 @@ $Roles = '';
                                             <div class='skeleton-line'></div>
                                         </div>
                                     </th>
-                                    <th colspan="1">
+                                    <th>
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             &nbsp;&nbsp;&nbsp;&nbsp;Progres
                                         </div>
@@ -883,7 +918,7 @@ $Roles = '';
                                         </div>
                                     </th>
 
-                                    <th>
+                                    <th class="text-center">
                                         Prosentase
                                     </th>
                                 </tr>
@@ -1115,6 +1150,8 @@ $Roles = '';
                 , }, {
                     orderSequence: ["asc", "desc"]
                     , targets: [2]
+                    , className: "text-center"
+
                 }, {
                     orderSequence: ["asc", "desc"]
                     , targets: [3]
@@ -1204,8 +1241,8 @@ $Roles = '';
                     data: 'survey_count'
                     , name: 'survey_count'
 
-                },
-                {
+                }
+                , {
                     data: 'kelurahan_count'
                     , name: 'kelurahan_count'
 
@@ -1220,22 +1257,33 @@ $Roles = '';
             ],
 
             columnDefs: [{
-                orderSequence: ["asc", "desc"]
-                , targets: [0]
-                , className: "text-left"
-            , }, {
-                orderSequence: ["asc", "desc"]
-                , targets: [1]
-                , className: "text-center"
-            , }, {
-                orderSequence: ["asc", "desc"]
-                , targets: [2]
-                , className: "text-center"
-            , }, {
-                orderSequence: ["asc", "desc"]
-                , targets: [3]
-                , className: "text-center"
-            , }, ],
+                    orderSequence: ["asc", "desc"]
+                    , targets: [0]
+                    , className: "text-left"
+                , }, {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [1]
+                    , className: "text-center"
+                , }, {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [2]
+                    , className: "text-center"
+                , }, {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [3]
+                    , className: "text-center"
+                , }, {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [4]
+                    , className: "text-center"
+                , }, {
+                    orderSequence: ["asc", "desc"]
+                    , targets: [5]
+                    , className: "text-center"
+                , }
+
+
+            , ],
 
             // 'rowsGroup': [0]
             // , 'createdRow': function(row, data, dataIndex) {
