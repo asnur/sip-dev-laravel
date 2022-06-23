@@ -209,6 +209,7 @@ for (var i = 0; i < inputs.length; i++) {
 $(window).on("load", function () {
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    localStorage.removeItem("jenis_data_dppapp");
     localStorage.setItem("simulasi", "");
     localStorage.setItem("direction", 1);
     localStorage.setItem("circleDraw", 0);
@@ -6995,6 +6996,7 @@ $("#optionFilterChoro").change(() => {
         `);
         sliderRangeKepadatanBangunan();
     } else if ($("#optionFilterChoro").val() == "Data PPAP") {
+        localStorage.removeItem("jenis_data_dppapp");
         if (map.getLayer("wilayahindex_fill")) {
             map.removeLayer("wilayahindex_fill");
             map.removeSource("wilayahindex");
@@ -8047,50 +8049,146 @@ $("#optionFilterChoro").change(() => {
         ];
 
         let list_pekerjaan = [
-            "tidak_belum_bekerja",
-            "petani",
-            "nelayan",
-            "pedagang",
-            "pejabat_negara",
-            "pns_tni_polri",
-            "pegawai_swasta",
-            "wiraswasta",
-            "pensiunan",
-            "pekerja_lepas",
+            {
+                name: "Tidak Belum Bekerja",
+                coloumn: "tdk_belum_bekerja",
+            },
+            {
+                name: "Petani",
+                coloumn: "petani",
+            },
+            {
+                name: "Nelayan",
+                coloumn: "nelayan",
+            },
+            {
+                name: "Pedagang",
+                coloumn: "pedagang",
+            },
+            {
+                name: "Pejabat Negara",
+                coloumn: "pejabat_negara",
+            },
+            {
+                name: "PNS TNI Polri",
+                coloumn: "pns_tni_polri",
+            },
+            {
+                name: "Pegawai Swasta",
+                coloumn: "peg_swasta",
+            },
+            {
+                name: "Wiraswasta",
+                coloumn: "wiraswasta",
+            },
+            {
+                name: "Pensuinan",
+                coloumn: "pensuinan",
+            },
+            {
+                name: "Pekerja Lepas",
+                coloumn: "pekerja_lepas",
+            },
         ];
 
         let list_pendidikan = [
-            "tidak_belum_sekolah",
-            "masih_sd",
-            "tamat_sd",
-            "tamat_sltp",
-            "tamat_slta",
-            "tamat_diploma_i_ii",
-            "tamat_diploma_iii",
-            "tamat_diploma_iv_strata_i",
-            "tamat_strata_ii",
-            "tamat_strata_iii",
-            "tidak_sekolah_lagi",
-            "masih_diploma_iii",
-            "masih_sltp",
-            "masih_diploma_iv_strata_i",
-            "masih_slta",
-            "masih_strata_ii",
-            "masih_diploma_i_ii",
-            "masih_strata_iii",
-            "tidak_tamat_sd",
+            {
+                name: "Tidak Sekolah",
+                coloumn: "tdk_belum_sekolah",
+            },
+            {
+                name: "Masih SD",
+                coloumn: "masih_sd",
+            },
+            {
+                name: "Tamat SD",
+                coloumn: "tamat_sd",
+            },
+            {
+                name: "Tamat SMP",
+                coloumn: "tamat_smp",
+            },
+            {
+                name: "Tamat SMA",
+                coloumn: "tamat_sma",
+            },
+            {
+                name: "Tamat D1/D2",
+                coloumn: "tamat_d1_d2",
+            },
+            {
+                name: "Tamat D3",
+                coloumn: "tamat_d3",
+            },
+            {
+                name: "Tamat D4/Sarjana",
+                coloumn: "tamat_d4_srjna",
+            },
+            {
+                name: "Tamat S2",
+                coloumn: "tamat_s2",
+            },
+            {
+                name: "Tamat S3",
+                coloumn: "tamat_s3",
+            },
+            {
+                name: "Tidak Sekolah Lagi",
+                coloumn: "tdk_sekolah_lagi",
+            },
+            {
+                name: "Masih D3",
+                coloumn: "masih_d3",
+            },
+            {
+                name: "Masih SMP",
+                coloumn: "masih_smp",
+            },
+            {
+                name: "Masih D4/Sarjana",
+                coloumn: "masih_d4_srjna",
+            },
+            {
+                name: "Masih SMA",
+                coloumn: "masih_sm",
+            },
+            {
+                name: "Masih S2",
+                coloumn: "masih_s2",
+            },
+            {
+                name: "Masih D1/D2",
+                coloumn: "masih_d1_d2",
+            },
+            {
+                name: "Masih S3",
+                coloumn: "masih_s3",
+            },
+            {
+                name: "Tidak Tamat SD",
+                coloumn: "tdk_tamat_sd",
+            },
         ];
 
         let list_resiko_bencana = [
-            "rumah_rawan_kabakaran",
-            "jumlah_rumah_pernah_banjir",
-            "jumlah_rumah_pernah_kebakaran",
+            {
+                name: "Rawan Kebakaran",
+                coloumn: "rmh_rawan_kebakar",
+            },
+            {
+                name: "Pernah Banjir",
+                coloumn: "rmh_pernah_banjir",
+            },
+            {
+                name: "Pernah Kebakar",
+                coloumn: "rmh_pernah_kebakar",
+            },
         ];
 
         let optionKelurahan = "<option>Pilih Kelurahan...</option>";
 
         point_center_kelurahan.forEach(function (item, index) {
-            optionKelurahan += `<option value="${item.kordinat[1]},${item.kordinat[0]}">${item.kelurahan}</option>`;
+            optionKelurahan += `<option value="${item.kordinat[1]},${item.kordinat[0]}/${item.kelurahan}">${item.kelurahan}</option>`;
         });
         $("#filterChoro").html("");
         $("#filterChoro").html(`
@@ -8130,8 +8228,15 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         $("#selectKelurahan").change(function () {
-            let value = $(this).val();
-            geocoder.query(value);
+            let value = $(this).val().split("/");
+            let kordinat = value[0];
+            let kelurahan = value[1];
+            let jenis = localStorage.getItem("jenis_data_dppapp");
+            if (jenis == null) {
+                localStorage.setItem("jenis_data_dppapp", "jlh_penduduk");
+                $("#selectKategori").val("Jumlah Penduduk").trigger("change");
+            }
+            geocoder.query(kordinat);
         });
 
         $("#selectKategori").change(function () {
@@ -8151,15 +8256,13 @@ $("#optionFilterChoro").change(() => {
                 list_pekerjaan.forEach(function (item, index) {
                     html += `
             <div class="mb-1">
-            <button class="btn btn-xs mr-2 ${
-                item == "tidak_belum_bekerja" ? "active-chip" : ""
-            }"
+            <button class="btn btn-xs mr-2 ${index == 0 ? "active-chip" : ""}"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
                 <div class="container">
                     <div class="row">
-                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
-                            item.replaceAll("_", " ")
-                        )}</span>
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
                     </div>
                 </div>
             </button>
@@ -8186,15 +8289,13 @@ $("#optionFilterChoro").change(() => {
                 list_pendidikan.forEach(function (item, index) {
                     html += `
             <div class="mb-1">
-            <button class="btn btn-xs mr-2 ${
-                item == "tidak_belum_sekolah" ? "active-chip" : ""
-            }"
+            <button class="btn btn-xs mr-2 ${index == 0 ? "active-chip" : ""}"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
                 <div class="container">
                     <div class="row">
-                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
-                            item.replaceAll("_", " ")
-                        )}</span>
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
                     </div>
                 </div>
             </button>
@@ -8221,15 +8322,13 @@ $("#optionFilterChoro").change(() => {
                 list_resiko_bencana.forEach(function (item, index) {
                     html += `
             <div class="mb-1">
-            <button class="btn btn-xs mr-2 ${
-                item == "rumah_rawan_kabakaran" ? "active-chip" : ""
-            }"
+            <button class="btn btn-xs mr-2 ${index == 0 ? "active-chip" : ""}"
                 style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
                 <div class="container">
                     <div class="row">
-                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${titleCase(
-                            item.replaceAll("_", " ")
-                        )}</span>
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
                     </div>
                 </div>
             </button>
