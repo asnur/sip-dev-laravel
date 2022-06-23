@@ -730,7 +730,16 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         text-decoration: none;
                     "><i
                                 class="ri-download-cloud-line font-weight-bold"
-                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Pdf </a>
+                        <a href="/printSurveyExcel" class="text-primary"
+                            style="
+                        position: relative;
+                        font-size: 13px;
+                        cursor:pointer;
+                        text-decoration: none;
+                    "><i
+                                class="ri-download-cloud-line font-weight-bold"
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Excel</a>
                     </div>
                 </div>
                 <p align="center" id="messageNoDataSurvey" class="mt-5">Tidak Ada Arsip Lokasi</p>
