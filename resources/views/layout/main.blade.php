@@ -5970,14 +5970,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <div class="row">
                     <div class="col-md-12">
                         <select class="w-100" id="optionFilterChoro">
-                            <option value="Total Omzet UMKM">Total Omzet UMKM</option>
-                            <option value="Pekerjaan">Pekerjaan</option>
-                            <option value="Pendidikan">Pendidikan</option>
-                            <option value="Agama">Agama</option>
-                            <option value="Jumlah Penduduk">Jumlah Penduduk</option>
-                            <option value="Kepadatan Penduduk">Kepadatan Penduduk</option>
-                            <option value="Kepadatan Bangunan">Kepadatan Bangunan</option>
-                            <option value="Data PPAP">Data PPAP</option>
+                            <option value="Total Omzet UMKM">(DPMPTSP) Total Omzet UMKM</option>
+                            <option value="Pekerjaan">(RBI) Pekerjaan</option>
+                            <option value="Pendidikan">(RBI) Pendidikan</option>
+                            <option value="Agama">(RBI) Agama</option>
+                            <option value="Jumlah Penduduk">(RBI) Jumlah Penduduk</option>
+                            <option value="Kepadatan Penduduk">(RBI) Kepadatan Penduduk</option>
+                            <option value="Kepadatan Bangunan">(RBI) Jumlah Bangunan</option>
+                            <option value="Data PPAP">(DPPAP) Kependudukan</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">
