@@ -67,21 +67,21 @@
                 <tr>
                     <td colspan="6">
                         <p style="line-height:5px" class="font-weight-bold">Pola Regional : {{ $d->regional }}</p>
-                        <p style="line-height:5px">{{ $d->deskripsi_regional }}</p>
+                        <p>{{ $d->deskripsi_regional }}</p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
                         <p style="line-height:5px" class="font-weight-bold">Pola Lingkungan : {{ $d->neighborhood }}
                         </p>
-                        <p style="line-height:5px">{{ $d->deskripsi_neighborhood }}</p>
+                        <p>{{ $d->deskripsi_neighborhood }}</p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
                         <p style="line-height:5px" class="font-weight-bold">Pola Ruangan : {{ $d->transect_zone }}
                         </p>
-                        <p style="line-height:5px">{{ $d->deskripsi_transect_zone }}</p>
+                        <p>{{ $d->deskripsi_transect_zone }}</p>
                     </td>
                 </tr>
             @endforeach
