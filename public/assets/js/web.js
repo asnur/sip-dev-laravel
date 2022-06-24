@@ -7379,7 +7379,7 @@ $("#optionFilterChoro").change(() => {
         }
         let point_center_kelurahan = [
             {
-                kelurahan: "BALEKAMBANG",
+                kelurahan: "BALE KAMBANG",
                 kordinat: [106.852770167453, -6.28159463356247],
             },
             {
