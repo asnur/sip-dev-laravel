@@ -29,19 +29,19 @@ class RekapSurveyController extends Controller
                 'type' => "Feature",
                 'properties' => [
                     'id' => $d->id,
-                    'name' => $d->name,
-                    'kordinat' => $d->kordinat,
-                    'id_sub_blok' => $d->id_sub_blok,
-                    'kelurahan' => $d->kelurahan,
-                    'kecamatan' => $d->kecamatan,
-                    'nameimage' => $d->image,
-                    // 'nameimage' => count($d->image) == 0 ? 'not_image.png' : $d->image[0]->name,
-                    'regional' => $d->regional,
-                    'deskripsi_regional' => $d->deskripsi_regional,
-                    'perkembangan_ling' => $d->neighborhood,
-                    'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
-                    'perkembangan_ruang' => $d->transect_zone,
-                    'deskripsi_transect_zone' => $d->deskripsi_transect_zone
+                    // 'name' => $d->name,
+                    // 'kordinat' => $d->kordinat,
+                    // 'id_sub_blok' => $d->id_sub_blok,
+                    // 'kelurahan' => $d->kelurahan,
+                    // 'kecamatan' => $d->kecamatan,
+                    // 'nameimage' => $d->image,
+                    // // 'nameimage' => count($d->image) == 0 ? 'not_image.png' : $d->image[0]->name,
+                    // 'regional' => $d->regional,
+                    // 'deskripsi_regional' => $d->deskripsi_regional,
+                    // 'perkembangan_ling' => $d->neighborhood,
+                    // 'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
+                    // 'perkembangan_ruang' => $d->transect_zone,
+                    // 'deskripsi_transect_zone' => $d->deskripsi_transect_zone
                 ],
                 'geometry' => [
                     'type' => 'Point',
@@ -56,47 +56,53 @@ class RekapSurveyController extends Controller
 
         return json_encode($geojson_format, true);
     }
+
+
+    function petaSurvey($id)
+    {
+        // dd($lat, $long);
+        // $data = SurveyPerkembangan::select("*")
+        //     ->where('kordinat', $long, ',', $lat)
+        //     ->get();
+
+        // dd($lat, $long);
+
+        // $lat = '106.76188064062256';
+        // $long = '-6.1536105686630265';
+
+        $data = SurveyPerkembangan::with('image')
+            // ->where('kordinat', '6.137311919718499,106.74380779266357')
+            ->where('id', $id)
+            ->get();
+
+        foreach ($data as $d) {
+            $value_data = [
+                'id' => $d->id,
+                'name' => $d->name,
+                'kordinat' => $d->kordinat,
+                'id_sub_blok' => $d->id_sub_blok,
+                'kelurahan' => $d->kelurahan,
+                'kecamatan' => $d->kecamatan,
+                'nameimage' => $d->image,
+                // 'nameimage' => count($d->image) == 0 ? 'not_image.png' : $d->image[0]->name,
+                'regional' => $d->regional,
+                'deskripsi_regional' => $d->deskripsi_regional,
+                'perkembangan_ling' => $d->neighborhood,
+                'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
+                'perkembangan_ruang' => $d->transect_zone,
+                'deskripsi_transect_zone' => $d->deskripsi_transect_zone
+            ];
+
+            return response()->json([
+                'data' => $value_data,
+            ]);
+        }
+
+        // $data = SurveyPerkembangan::where('kordinat', '-6.333565835520005,106.90783395026773')->get();
+        // $data = DB::table('survey_perkembangan_wilayah')->where('name', 'Jalan Tutul')->first();
+
+        // dd($data);
+
+
+    }
 }
-
-// class SurveyerController extends Controller
-// {
-//     public function index()
-//     {
-//         $geojson_format = [
-//             'type' => 'FeatureCollection',
-//             'features' => []
-//         ];
-
-//         if (Auth::user()->hasRole('admin')) {
-//             $data = Survey::all();
-//         } else {
-//             $data = Survey::where('id_user', Auth::user()->id)->get();
-//         }
-
-//         foreach ($data as $d) {
-//             $coor = explode(",", $d->kordinat);
-//             $value_data = [
-//                 'type' => "Feature",
-//                 'properties' => [
-//                     'id' => $d->id,
-//                     'judul' => $d->judul,
-//                     'kategori' => $d->kategori,
-//                     'foto' => $d->foto,
-//                     'catatan' => $d->catatan,
-//                     'permasalahan' => $d->permasalahan,
-//                     'solusi' => $d->solusi,
-//                     'kordinat' => $d->kordinat,
-//                     'kbli' => $d->kbli
-//                 ],
-//                 'geometry' => [
-//                     'type' => 'Point',
-//                     'coordinates' => [$coor[1], $coor[0]]
-//                 ]
-//             ];
-
-//             array_push($geojson_format['features'], $value_data);
-//         }
-
-//         return json_encode($geojson_format, true);
-//     }
-// }
