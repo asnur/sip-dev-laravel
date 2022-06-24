@@ -191,6 +191,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/get-kinerja-petugas', [AdminController::class, 'KinerjaPetugas'])->name('get-kinerja-petugas');
 
     Route::get('/get-progres-survey', [AdminController::class, 'ProgresSurvey'])->name('get-progres-survey');
+
+    Route::get('/peta-survey/{id}', [RekapSurveyController::class, 'petaSurvey'])->name('peta-survey');
 });
 
 //Analytics Page
