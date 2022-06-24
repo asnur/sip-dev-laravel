@@ -7383,19 +7383,19 @@ $("#optionFilterChoro").change(() => {
                 kordinat: [106.852770167453, -6.28159463356247],
             },
             {
-                kelurahan: "TENGAH",
+                kelurahan: "KAMPUNG TENGAH",
                 kordinat: [106.866630792338, -6.28961962906629],
             },
             {
-                kelurahan: "PINANGRANTI",
+                kelurahan: "PINANG RANTI",
                 kordinat: [106.88496932948, -6.29168788121552],
             },
             {
-                kelurahan: "KRAMATJATI",
+                kelurahan: "KRAMAT JATI",
                 kordinat: [106.870706806921, -6.2741117361314],
             },
             {
-                kelurahan: "HALIM PERDANA KUSUMA",
+                kelurahan: "HALIM PERDANA KUSUMAH",
                 kordinat: [106.893247548343, -6.26590800880412],
             },
             {
@@ -7403,15 +7403,15 @@ $("#optionFilterChoro").change(() => {
                 kordinat: [106.803822199297, -6.17879024677216],
             },
             {
-                kelurahan: "KRENDANG",
+                kelurahan: "KERENDANG",
                 kordinat: [106.803983753118, -6.15021453588555],
             },
             {
-                kelurahan: "PALMERIAM",
+                kelurahan: "PAL MERIAM",
                 kordinat: [106.858974192362, -6.20362318904808],
             },
             {
-                kelurahan: "RAWAJATI",
+                kelurahan: "RAWA JATI",
                 kordinat: [106.854652069397, -6.25809567543088],
             },
             {
