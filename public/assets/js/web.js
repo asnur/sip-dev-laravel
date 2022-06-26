@@ -2556,6 +2556,43 @@ function getNJOP(e) {
     });
 }
 
+function getNJOPSurvey(e) {
+    // $("#dtNJOPBot").html("");
+    var htmlPopupLayer = "";
+    $.ajax({
+        url: `${url}/njop`,
+        method: "POST",
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        beforeSend: function () {
+            // $('.map-loading').show()
+        },
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            const prop = dtResp.features[0].properties;
+            $("#njopSurvey").html("-");
+            if (dtResp.features != null) {
+                $("#njopSurvey").html(
+                    `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
+                        prop.Max
+                    )} per m&sup2;`
+                );
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+}
+
 function getPenuruanAirTanah(e) {
     $.ajax({
         url: `${url}/turun`,
@@ -8890,6 +8927,7 @@ const getLayerSurveyPerkembangan = () => {
             });
 
             map.on("click", "survey_perkembangan", (e) => {
+                getNJOPSurvey(e);
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
@@ -8977,6 +9015,12 @@ const getLayerSurveyPerkembangan = () => {
                         <div class="col-sm-6">
                             ${dt.transect_zone}
                         </div>
+                        <div class="col-sm-6">
+                            NJOP
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="njopSurvey"></span>
+                        </div>
                     </div>
                 </div>`;
 
@@ -8991,6 +9035,7 @@ const getLayerSurveyPerkembangan = () => {
 };
 
 map.on("mouseenter", "survey_dot", (e) => {
+    getNJOPSurvey(e);
     map.getCanvas().style.cursor = "pointer";
     const coordinates = e.features[0].geometry.coordinates.slice();
     const dt = e.features[0].properties;
@@ -9077,6 +9122,12 @@ map.on("mouseenter", "survey_dot", (e) => {
             </div>
             <div class="col-sm-6">
                 ${dt.transect_zone}
+            </div>
+            <div class="col-sm-6">
+                NJOP
+            </div>
+            <div class="col-sm-6">
+                <span id="njopSurvey"></span>
             </div>
         </div>
     </div>`;
