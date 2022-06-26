@@ -1014,6 +1014,117 @@ $Roles = '';
 <script type="text/javascript">
     $(document).ready(function() {
 
+        // Kinerja Petugas Survey
+        $.fn.dataTable.pipeline = function(opts1) {
+            // Configuration options
+            var conf = $.extend({
+                    pages: 100, // number of pages to cache
+                    url: 'get-kinerja-petugas', // script url
+                    data: null, // function or object with parameters to send to the server
+                    // matching how `ajax.data` works in DataTables
+                    method: 'GET', // Ajax HTTP method
+                }
+                , opts1
+            );
+
+            // Private variables for storing the cache
+            var cacheLower = -1;
+            var cacheUpper = null;
+            var cacheLastRequest = null;
+            var cacheLastJson = null;
+
+            return function(request, drawCallback, settings) {
+                var ajax = false;
+                var requestStart = request.start;
+                var drawStart = request.start;
+                var requestLength = request.length;
+                var requestEnd = requestStart + requestLength;
+
+                if (settings.clearCache) {
+                    // API requested that the cache be cleared
+                    ajax = true;
+                    settings.clearCache = false;
+                } else if (cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper) {
+                    // outside cached data - need to make a request
+                    ajax = true;
+                } else if (
+                    JSON.stringify(request.order) !== JSON.stringify(cacheLastRequest.order) ||
+                    JSON.stringify(request.columns) !== JSON.stringify(cacheLastRequest.columns) ||
+                    JSON.stringify(request.search) !== JSON.stringify(cacheLastRequest.search)
+                ) {
+                    // properties changed (ordering, columns, searching)
+                    ajax = true;
+                }
+
+                // Store the request for checking next time around
+                cacheLastRequest = $.extend(true, {}, request);
+
+                if (ajax) {
+                    // Need data from the server
+                    if (requestStart < cacheLower) {
+                        requestStart = requestStart - requestLength * (conf.pages - 1);
+
+                        if (requestStart < 0) {
+                            requestStart = 0;
+                        }
+                    }
+
+                    cacheLower = requestStart;
+                    cacheUpper = requestStart + requestLength * conf.pages;
+
+                    request.start = requestStart;
+                    request.length = requestLength * conf.pages;
+
+                    // Provide the same `data` options as DataTables.
+                    if (typeof conf.data === 'function') {
+                        // As a function it is executed with the data object as an arg
+                        // for manipulation. If an object is returned, it is used as the
+                        // data object to submit
+                        var d = conf.data(request);
+                        if (d) {
+                            $.extend(request, d);
+                        }
+                    } else if ($.isPlainObject(conf.data)) {
+                        // As an object, the data given extends the default
+                        $.extend(request, conf.data);
+                    }
+
+                    return $.ajax({
+                        type: conf.method
+                        , url: conf.url
+                        , data: request
+                        , dataType: 'json'
+                        , cache: false
+                        , success: function(json) {
+                            cacheLastJson = $.extend(true, {}, json);
+
+                            if (cacheLower != drawStart) {
+                                json.data.splice(0, drawStart - cacheLower);
+                            }
+                            if (requestLength >= -1) {
+                                json.data.splice(requestLength, json.data.length);
+                            }
+
+                            drawCallback(json);
+                        }
+                    , });
+                } else {
+                    json = $.extend(true, {}, cacheLastJson);
+                    json.draw = request.draw; // Update the echo for each response
+                    json.data.splice(0, requestStart - cacheLower);
+                    json.data.splice(requestLength, json.data.length);
+
+                    drawCallback(json);
+                }
+            };
+        };
+
+        $.fn.dataTable.Api.register('clearPipeline()', function() {
+            return this.iterator('table', function(settings) {
+                settings.clearCache = true;
+            });
+        });
+
         $('#table-surveyer2').DataTable({
 
             "drawCallback": function(settings) {
@@ -1023,7 +1134,13 @@ $Roles = '';
 
             processing: false
             , serverSide: true
-            , ajax: "{{ url('/admin/get-kinerja-petugas') }}"
+                // , ajax: "{{ url('/admin/get-kinerja-petugas') }}"
+
+            , ajax: $.fn.dataTable.pipeline({
+                    url: 'get-kinerja-petugas'
+                    , pages: 100, // number of pages to cache
+                })
+
 
             , ordering: true
             , language: {
@@ -1080,223 +1197,534 @@ $Roles = '';
 
         });
 
-        $('#table-surveyer3').DataTable({
+        //Detil Input Petugas Survey
 
-            "drawCallback": function(settings) {
-                $(".hide_lazyload_kinerja").hide();
-                $(".lazy_name_kinerja").show();
-            },
-
-            processing: false
-            , serverSide: true
-            , ajax: "{{ url('/admin/get-view-survey') }}"
-            , language: {
-                search: "Pencarian:"
-            , }
-            , ordering: false
-            , sScrollX: "250%"
-            , sScrollXInner: "250%"
-            , responsive: false
-            , order: [
-                [0, "desc"]
-            ],
-
-
-            columns: [{
-                    data: 'petugas'
-                    , name: 'petugas'
+        $.fn.dataTable.pipeline = function(opts2) {
+            // Configuration options
+            var conf = $.extend({
+                    pages: 100, // number of pages to cache
+                    url: 'get-view-survey', // script url
+                    data: null, // function or object with parameters to send to the server
+                    // matching how `ajax.data` works in DataTables
+                    method: 'GET', // Ajax HTTP method
                 }
-                , {
-                    data: 'name_tempat'
-                    , name: 'name_tempat'
-                }
-                , {
-                    data: 'id_sub_blok'
-                    , name: 'id_sub_blok'
-                }, {
-                    data: 'kelurahan'
-                    , name: 'kelurahan'
-                }, {
-                    data: 'kecamatan'
-                    , name: 'kecamatan'
-                }, {
-                    data: 'regional'
-                    , name: 'regional'
-                }, {
-                    data: 'deskripsi_regional'
-                    , name: 'deskripsi_regional'
-                }, {
-                    data: 'neighborhood'
-                    , name: 'neighborhood'
-                }, {
-                    data: 'deskripsi_neighborhood'
-                    , name: 'deskripsi_neighborhood'
-                }, {
-                    data: 'transect_zone'
-                    , name: 'transect_zone'
-                }, {
-                    data: 'deskripsi_transect_zone'
-                    , name: 'deskripsi_transect_zone'
+                , opts2
+            );
+
+            // Private variables for storing the cache
+            var cacheLower = -1;
+            var cacheUpper = null;
+            var cacheLastRequest = null;
+            var cacheLastJson = null;
+
+            return function(request, drawCallback, settings) {
+                var ajax = false;
+                var requestStart = request.start;
+                var drawStart = request.start;
+                var requestLength = request.length;
+                var requestEnd = requestStart + requestLength;
+
+                if (settings.clearCache) {
+                    // API requested that the cache be cleared
+                    ajax = true;
+                    settings.clearCache = false;
+                } else if (cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper) {
+                    // outside cached data - need to make a request
+                    ajax = true;
+                } else if (
+                    JSON.stringify(request.order) !== JSON.stringify(cacheLastRequest.order) ||
+                    JSON.stringify(request.columns) !== JSON.stringify(cacheLastRequest.columns) ||
+                    JSON.stringify(request.search) !== JSON.stringify(cacheLastRequest.search)
+                ) {
+                    // properties changed (ordering, columns, searching)
+                    ajax = true;
                 }
 
-            , ],
+                // Store the request for checking next time around
+                cacheLastRequest = $.extend(true, {}, request);
 
-            columnDefs: [{
-                    orderSequence: ["asc", "desc"]
-                    , targets: [0]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [1]
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [2]
-                    , className: "text-center"
+                if (ajax) {
+                    // Need data from the server
+                    if (requestStart < cacheLower) {
+                        requestStart = requestStart - requestLength * (conf.pages - 1);
 
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [3]
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [4]
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [5]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [6]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [7]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [8]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [9]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [10]
-                , }
+                        if (requestStart < 0) {
+                            requestStart = 0;
+                        }
+                    }
 
-                , {
-                    width: "7%"
-                    , targets: 0
-                }, {
-                    width: "11%"
-                    , targets: 1
-                }, {
-                    width: "5%"
-                    , targets: 2
-                }, {
-                    width: "7%"
-                    , targets: 3
-                }, {
-                    width: "5%"
-                    , targets: 4
-                }, {
-                    width: "6%"
-                    , targets: 5
-                }, {
-                    width: "7%"
-                    , targets: 7
-                }, {
-                    width: "5%"
-                    , targets: 9
+                    cacheLower = requestStart;
+                    cacheUpper = requestStart + requestLength * conf.pages;
+
+                    request.start = requestStart;
+                    request.length = requestLength * conf.pages;
+
+                    // Provide the same `data` options as DataTables.
+                    if (typeof conf.data === 'function') {
+                        // As a function it is executed with the data object as an arg
+                        // for manipulation. If an object is returned, it is used as the
+                        // data object to submit
+                        var d = conf.data(request);
+                        if (d) {
+                            $.extend(request, d);
+                        }
+                    } else if ($.isPlainObject(conf.data)) {
+                        // As an object, the data given extends the default
+                        $.extend(request, conf.data);
+                    }
+
+                    return $.ajax({
+                        type: conf.method
+                        , url: conf.url
+                        , data: request
+                        , dataType: 'json'
+                        , cache: false
+                        , success: function(json) {
+                            cacheLastJson = $.extend(true, {}, json);
+
+                            if (cacheLower != drawStart) {
+                                json.data.splice(0, drawStart - cacheLower);
+                            }
+                            if (requestLength >= -1) {
+                                json.data.splice(requestLength, json.data.length);
+                            }
+
+                            drawCallback(json);
+                        }
+                    , });
+                } else {
+                    json = $.extend(true, {}, cacheLastJson);
+                    json.draw = request.draw; // Update the echo for each response
+                    json.data.splice(0, requestStart - cacheLower);
+                    json.data.splice(requestLength, json.data.length);
+
+                    drawCallback(json);
                 }
-            , ],
+            };
+        };
 
+        $.fn.dataTable.Api.register('clearPipeline()', function() {
+            return this.iterator('table', function(settings) {
+                settings.clearCache = true;
+            });
         });
 
-        $('#table-surveyer4').DataTable({
+        $(document).ready(function() {
+            $('#table-surveyer3').DataTable({
 
-            "drawCallback": function(settings) {
-                $(".hide_lazyload_kinerja").hide();
-                $(".lazy_name_kinerja").show();
-            },
+                "drawCallback": function(settings) {
+                    $(".hide_lazyload_kinerja").hide();
+                    $(".lazy_name_kinerja").show();
+                },
 
-            processing: false
-            , serverSide: true
-            , ajax: "{{ url('/admin/get-progres-survey') }}"
+                processing: false
+                , serverSide: true
+                    // , ajax: "{{ url('/admin/get-view-survey') }}"
 
-            , ordering: true
-            , language: {
-                search: "Pencarian:"
-            , }
-            , order: [
-                [4, "desc"]
-            , ],
+                , ajax: $.fn.dataTable.pipeline({
+                        url: 'get-view-survey'
+                        , pages: 100, // number of pages to cache
+                    })
 
-            columns: [{
-                    data: 'nama_kel'
-                    , name: 'nama_kel'
-
-                }, {
-                    data: 'jumlah'
-                    , name: 'jumlah'
-
-                }, {
-                    data: 'survey_count'
-                    , name: 'survey_count'
-
-                }
-                , {
-                    data: 'kelurahan_count'
-                    , name: 'kelurahan_count'
-
-                }, {
-                    data: 'progres'
-                    , name: 'progres'
-                }
-                , {
-                    data: 'persen'
-                    , name: 'persen'
-                }
-            ],
-
-            columnDefs: [{
-                    orderSequence: ["asc", "desc"]
-                    , targets: [0]
-                    , className: "text-left"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [1]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [2]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [3]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [4]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [5]
-                    , className: "text-center"
+                , language: {
+                    search: "Pencarian:"
                 , }
+                , ordering: false
+                , sScrollX: "250%"
+                , sScrollXInner: "250%"
+                , responsive: false
+                , order: [
+                    [0, "desc"]
+                ],
 
 
-            , ],
+                columns: [{
+                        data: 'petugas'
+                        , name: 'petugas'
+                    }
+                    , {
+                        data: 'name_tempat'
+                        , name: 'name_tempat'
+                    }
+                    , {
+                        data: 'id_sub_blok'
+                        , name: 'id_sub_blok'
+                    }, {
+                        data: 'kelurahan'
+                        , name: 'kelurahan'
+                    }, {
+                        data: 'kecamatan'
+                        , name: 'kecamatan'
+                    }, {
+                        data: 'regional'
+                        , name: 'regional'
+                    }, {
+                        data: 'deskripsi_regional'
+                        , name: 'deskripsi_regional'
+                    }, {
+                        data: 'neighborhood'
+                        , name: 'neighborhood'
+                    }, {
+                        data: 'deskripsi_neighborhood'
+                        , name: 'deskripsi_neighborhood'
+                    }, {
+                        data: 'transect_zone'
+                        , name: 'transect_zone'
+                    }, {
+                        data: 'deskripsi_transect_zone'
+                        , name: 'deskripsi_transect_zone'
+                    }
 
-            // 'rowsGroup': [0]
-            // , 'createdRow': function(row, data, dataIndex) {
-            //     if (data[4] === '') {
-            //         $('th:eq(1)', row).attr('colspan', 2);
-            //         $('th:eq(2)', row).css('display', 'none');
-            //         $('th:eq(3)', row).css('display', 'none');
-            //         $('th:eq(4)', row).css('display', 'none');
-            //     }
-            // }
+                , ],
 
+                columnDefs: [{
+                        orderSequence: ["asc", "desc"]
+                        , targets: [0]
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [1]
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [2]
+                        , className: "text-center"
 
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [3]
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [4]
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [5]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [6]
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [7]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [8]
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [9]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [10]
+                    , }
+
+                    , {
+                        width: "7%"
+                        , targets: 0
+                    }, {
+                        width: "11%"
+                        , targets: 1
+                    }, {
+                        width: "5%"
+                        , targets: 2
+                    }, {
+                        width: "7%"
+                        , targets: 3
+                    }, {
+                        width: "5%"
+                        , targets: 4
+                    }, {
+                        width: "6%"
+                        , targets: 5
+                    }, {
+                        width: "7%"
+                        , targets: 7
+                    }, {
+                        width: "5%"
+                        , targets: 9
+                    }
+                , ],
+
+            });
         });
+
+
+
+        // Progres Survey Per Kelurahan
+
+        $.fn.dataTable.pipeline = function(opts3) {
+            // Configuration options
+            var conf = $.extend({
+                    pages: 100, // number of pages to cache
+                    url: 'get-progres-survey', // script url
+                    data: null, // function or object with parameters to send to the server
+                    // matching how `ajax.data` works in DataTables
+                    method: 'GET', // Ajax HTTP method
+                }
+                , opts3
+            );
+
+            // Private variables for storing the cache
+            var cacheLower = -1;
+            var cacheUpper = null;
+            var cacheLastRequest = null;
+            var cacheLastJson = null;
+
+            return function(request, drawCallback, settings) {
+                var ajax = false;
+                var requestStart = request.start;
+                var drawStart = request.start;
+                var requestLength = request.length;
+                var requestEnd = requestStart + requestLength;
+
+                if (settings.clearCache) {
+                    // API requested that the cache be cleared
+                    ajax = true;
+                    settings.clearCache = false;
+                } else if (cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper) {
+                    // outside cached data - need to make a request
+                    ajax = true;
+                } else if (
+                    JSON.stringify(request.order) !== JSON.stringify(cacheLastRequest.order) ||
+                    JSON.stringify(request.columns) !== JSON.stringify(cacheLastRequest.columns) ||
+                    JSON.stringify(request.search) !== JSON.stringify(cacheLastRequest.search)
+                ) {
+                    // properties changed (ordering, columns, searching)
+                    ajax = true;
+                }
+
+                // Store the request for checking next time around
+                cacheLastRequest = $.extend(true, {}, request);
+
+                if (ajax) {
+                    // Need data from the server
+                    if (requestStart < cacheLower) {
+                        requestStart = requestStart - requestLength * (conf.pages - 1);
+
+                        if (requestStart < 0) {
+                            requestStart = 0;
+                        }
+                    }
+
+                    cacheLower = requestStart;
+                    cacheUpper = requestStart + requestLength * conf.pages;
+
+                    request.start = requestStart;
+                    request.length = requestLength * conf.pages;
+
+                    // Provide the same `data` options as DataTables.
+                    if (typeof conf.data === 'function') {
+                        // As a function it is executed with the data object as an arg
+                        // for manipulation. If an object is returned, it is used as the
+                        // data object to submit
+                        var d = conf.data(request);
+                        if (d) {
+                            $.extend(request, d);
+                        }
+                    } else if ($.isPlainObject(conf.data)) {
+                        // As an object, the data given extends the default
+                        $.extend(request, conf.data);
+                    }
+
+                    return $.ajax({
+                        type: conf.method
+                        , url: conf.url
+                        , data: request
+                        , dataType: 'json'
+                        , cache: false
+                        , success: function(json) {
+                            cacheLastJson = $.extend(true, {}, json);
+
+                            if (cacheLower != drawStart) {
+                                json.data.splice(0, drawStart - cacheLower);
+                            }
+                            if (requestLength >= -1) {
+                                json.data.splice(requestLength, json.data.length);
+                            }
+
+                            drawCallback(json);
+                        }
+                    , });
+                } else {
+                    json = $.extend(true, {}, cacheLastJson);
+                    json.draw = request.draw; // Update the echo for each response
+                    json.data.splice(0, requestStart - cacheLower);
+                    json.data.splice(requestLength, json.data.length);
+
+                    drawCallback(json);
+                }
+            };
+        };
+
+        $.fn.dataTable.Api.register('clearPipeline()', function() {
+            return this.iterator('table', function(settings) {
+                settings.clearCache = true;
+            });
+        });
+
+        $(document).ready(function() {
+            $('#table-surveyer4').DataTable({
+                processing: false
+                , serverSide: true
+                , ajax: $.fn.dataTable.pipeline({
+                        url: 'get-progres-survey'
+                        , pages: 100, // number of pages to cache
+                    })
+
+                , ordering: true
+                , language: {
+                    search: "Pencarian:"
+                , }
+                , order: [
+                    [4, "desc"]
+                , ],
+
+                columns: [{
+                        data: 'nama_kel'
+                        , name: 'nama_kel'
+
+                    }, {
+                        data: 'jumlah'
+                        , name: 'jumlah'
+
+                    }, {
+                        data: 'survey_count'
+                        , name: 'survey_count'
+
+                    }
+                    , {
+                        data: 'kelurahan_count'
+                        , name: 'kelurahan_count'
+
+                    }, {
+                        data: 'progres'
+                        , name: 'progres'
+                    }
+                    , {
+                        data: 'persen'
+                        , name: 'persen'
+                    }
+                ],
+
+                columnDefs: [{
+                        orderSequence: ["asc", "desc"]
+                        , targets: [0]
+                        , className: "text-left"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [1]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [2]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [3]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [4]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [5]
+                        , className: "text-center"
+                    , }
+
+
+                , ],
+
+
+            });
+        });
+
+        // $('#table-surveyer45').DataTable({
+
+        //     "drawCallback": function(settings) {
+        //         $(".hide_lazyload_kinerja").hide();
+        //         $(".lazy_name_kinerja").show();
+        //     },
+
+        //     processing: false
+        //     , serverSide: true
+        //     , ajax: "{{ url('/admin/get-progres-survey') }}"
+
+        //     , ordering: true
+        //     , language: {
+        //         search: "Pencarian:"
+        //     , }
+        //     , order: [
+        //         [4, "desc"]
+        //     , ],
+
+        //     columns: [{
+        //             data: 'nama_kel'
+        //             , name: 'nama_kel'
+
+        //         }, {
+        //             data: 'jumlah'
+        //             , name: 'jumlah'
+
+        //         }, {
+        //             data: 'survey_count'
+        //             , name: 'survey_count'
+
+        //         }
+        //         , {
+        //             data: 'kelurahan_count'
+        //             , name: 'kelurahan_count'
+
+        //         }, {
+        //             data: 'progres'
+        //             , name: 'progres'
+        //         }
+        //         , {
+        //             data: 'persen'
+        //             , name: 'persen'
+        //         }
+        //     ],
+
+        //     columnDefs: [{
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [0]
+        //             , className: "text-left"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [1]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [2]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [3]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [4]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [5]
+        //             , className: "text-center"
+        //         , }
+
+
+        //     , ],
+
+        //     // 'rowsGroup': [0]
+        //     // , 'createdRow': function(row, data, dataIndex) {
+        //     //     if (data[4] === '') {
+        //     //         $('th:eq(1)', row).attr('colspan', 2);
+        //     //         $('th:eq(2)', row).css('display', 'none');
+        //     //         $('th:eq(3)', row).css('display', 'none');
+        //     //         $('th:eq(4)', row).css('display', 'none');
+        //     //     }
+        //     // }
+
+
+        // });
 
 
     })
