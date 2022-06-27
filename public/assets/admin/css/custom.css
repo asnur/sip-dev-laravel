@@ -697,3 +697,7 @@
     width: 17.7rem;
     height: 3.5rem;
 }
+
+.gambar_peta .slick-dots li {
+    margin: 0 0 0 0 !important;
+}

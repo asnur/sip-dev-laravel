@@ -856,7 +856,7 @@ $Roles = '';
         </div>
     </div>
 
-    <div style="margin-top: 1rem" class="row-cards">
+    <div style="margin-top: 1rem; display:none;" class="row-cards">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-status-top bg-success"></div>
