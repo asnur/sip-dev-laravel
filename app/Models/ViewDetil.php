@@ -9,5 +9,7 @@ class ViewDetil extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
+
     public $table = "detil_survey";
 }
