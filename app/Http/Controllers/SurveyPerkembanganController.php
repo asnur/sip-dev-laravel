@@ -93,6 +93,7 @@ class SurveyPerkembanganController extends Controller
         $data->neighborhood = $request->input('neighborhood');
         $data->deskripsi_neighborhood = $request->input('deskripsi_neighborhood');
         $data->transect_zone = $request->input('transect_zone');
+        $data->deskripsi_transect_zone = $request->input('deskripsi_transect_zone');
 
         $data->save();
 
