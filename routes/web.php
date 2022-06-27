@@ -243,6 +243,10 @@ Route::get('/detail-data-titik', function () {
 //Get Sektor
 Route::get('/sektor/{sektor}', [SektorController::class, 'getData'])->name('get-sektor');
 
+Route::get('/phpinfo', function () {
+    return phpinfo();
+})->name('phpinfo');
+
 //PHP INFO
 // Route::get('/createUserPNS', function () {
 //     $data = array(
