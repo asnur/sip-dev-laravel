@@ -503,7 +503,7 @@ class AdminController extends Controller
 
         // dd($hasil_jumlah_titik);
 
-        $progres_total = $hasil_jumlah_titik / 36117 * 100;
+        $progres_total = $hasil_jumlah_titik / 82988 * 100;
 
         // dd($progres_total);
 
