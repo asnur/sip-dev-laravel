@@ -39,6 +39,9 @@ class SurveyPerkembanganController extends Controller
 
     public function saveDataSurvey(Request $request)
     {
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
+        }
         $uid = base64_encode($request->input('id_sublok') . $request->input('name') . $request->input('kelurahan') . $request->input('kecamatan') . $request->input('regional') . $request->input('neighborhood') . $request->input('transect_zone') . $request->input('id_user'));
         $id_fix = explode(",", $request->input('kordinat'));
         $saved = SurveyPerkembangan::create([
@@ -83,6 +86,9 @@ class SurveyPerkembanganController extends Controller
     public function saveEditDataSurvey(Request $request)
     {
         // dd($request->all());
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
+        }
         $data = SurveyPerkembangan::find((int)$request->input('id'));
         $data->id_sub_blok = $request->input('id_sublok');
         $data->name = $request->input('name');
@@ -122,6 +128,9 @@ class SurveyPerkembanganController extends Controller
 
     public function deleteDataSurvey(Request $request)
     {
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
+        }
         $data = SurveyPerkembangan::with('image')->find((int)$request->input('id'));
         if (count($data->image) != 0) {
             foreach ($data->image as $img) {
@@ -297,6 +306,9 @@ class SurveyPerkembanganController extends Controller
 
     public function importExcelSurvey(Request $request)
     {
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['error' => 'Anda tidak memiliki akses']);
+        }
         $loadExcel = Excel::toArray(new SurveyImport, $request->file('excel'));
         if ($loadExcel[0] == []) {
             return response()->json(['error' => 'Data Tidak Lengkap']);

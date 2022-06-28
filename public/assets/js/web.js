@@ -5934,10 +5934,23 @@ function deleteDataSurvey(id_data, id_user) {
         success: (e) => {
             getDataSurvey(id_user);
             getLayerSurveyPerkembangan();
-            $("#pesanBerhasilHapusSurvey").show();
-            setTimeout(function () {
-                $("#pesanBerhasilHapusSurvey").hide();
-            }, 3000);
+            if (e.message == "Anda tidak memiliki akses") {
+                $("#pesanGagalSurvey").html(
+                    `<strong>Gagal!</strong> Anda tidak memiliki akses.`
+                );
+                $("#pesanGagalSurvey").show();
+                setTimeout(function () {
+                    $("#pesanGagalSurvey").hide();
+                    $("#pesanGagalSurvey").html(
+                        `<strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.`
+                    );
+                }, 3000);
+            } else {
+                $("#pesanBerhasilHapusSurvey").show();
+                setTimeout(function () {
+                    $("#pesanBerhasilHapusSurvey").hide();
+                }, 3000);
+            }
         },
     });
 }
@@ -6485,6 +6498,14 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
                         setTimeout(function () {
                             $("#pesanGagalSurveyBulk").hide();
                         }, 3000);
+                    } else if (e.error == "Anda tidak memiliki akses") {
+                        $("#messageErrorBulk").text(
+                            "Anda tidak memiliki akses"
+                        );
+                        $("#pesanGagalSurveyBulk").show();
+                        setTimeout(function () {
+                            $("#pesanGagalSurveyBulk").hide();
+                        }, 3000);
                     } else {
                         $("#messageErrorBulk").text("Data Tidak Lengkap");
                         $("#pesanGagalSurveyBulk").show();
@@ -6552,6 +6573,24 @@ $("#formSurveyLocation").on("submit", function (e) {
                     data: formData,
                     success: function (e) {
                         // console.log(e);
+                        let message = e;
+                        if (message.message == "Anda tidak memiliki akses") {
+                            $("#pesanGagalSurvey").html(
+                                `<strong>Gagal!</strong> Anda tidak memiliki akses.`
+                            );
+                            $("#pesanGagalSurvey").show();
+                            setTimeout(function () {
+                                $("#pesanGagalSurvey").hide();
+                                $("#pesanGagalSurvey").html(
+                                    `<strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.`
+                                );
+                            }, 3000);
+                        } else {
+                            $("#pesanBerhasilSurvey").show();
+                            setTimeout(function () {
+                                $("#pesanBerhasilSurvey").hide();
+                            }, 3000);
+                        }
                         $("#prosesSurvey").hide();
                         $("#submitSurveyLocation").show();
                         if (
@@ -6560,11 +6599,7 @@ $("#formSurveyLocation").on("submit", function (e) {
                         ) {
                             resetSurvey();
                         }
-                        $("#pesanBerhasilSurvey").show();
                         getDataSurvey(id_user);
-                        setTimeout(function () {
-                            $("#pesanBerhasilSurvey").hide();
-                        }, 3000);
                         getLayerSurveyPerkembangan();
                     },
                     error: function (e) {
@@ -6621,10 +6656,10 @@ $("#formPinLocationEdit").on("submit", function (e) {
                         $("#catatanPinEdit").val("");
                         $("#gambarLokasiEdit").val("");
                         $("#previewFotoEdit").html("");
-                        $("#pesanBerhasilEdit").show();
                         $("#formPinLocationEdit").hide();
                         $("#formPinLocation").show();
                         getDataPin(id_user);
+                        $("#pesanBerhasilEdit").show();
                         setTimeout(function () {
                             $("#pesanBerhasilEdit").hide();
                         }, 3000);
@@ -6680,6 +6715,24 @@ $("#formSurveyLocationEdit").on("submit", function (e) {
                     data: formData,
                     success: function (e) {
                         console.log(e);
+                        let message = e;
+                        if (message.error == "Anda tidak memiliki akses") {
+                            $("#pesanGagalSurvey").html(
+                                `<strong>Gagal!</strong> Anda tidak memiliki akses.`
+                            );
+                            $("#pesanGagalSurvey").show();
+                            setTimeout(function () {
+                                $("#pesanGagalSurvey").hide();
+                                $("#pesanGagalSurvey").html(
+                                    `<strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.`
+                                );
+                            }, 3000);
+                        } else {
+                            $("#pesanBerhasilEditSurveyEdit").show();
+                            setTimeout(function () {
+                                $("#pesanBerhasilEditSurveyEdit").hide();
+                            }, 3000);
+                        }
                         $("#kordinatSurveyEdit").val("");
                         $("#idSubblokSurveyEdit").val("");
                         $("#kecamatanSurveyEdit").val("");
@@ -6689,13 +6742,9 @@ $("#formSurveyLocationEdit").on("submit", function (e) {
                         $("#neighborhoodSurveyEdit").val("");
                         $("#deskripsiNeighborhoodSurveyEdit").val("");
                         $("#transectZoneSurveyEdit").val("");
-                        $("#pesanBerhasilEditSurveyEdit").show();
                         // $("#formSurveyLocationEdit").hide();
                         // $("#formSurveyLocation").show();
                         getDataSurvey(id_user);
-                        setTimeout(function () {
-                            $("#pesanBerhasilEditSurveyEdit").hide();
-                        }, 3000);
                     },
                 });
             },
