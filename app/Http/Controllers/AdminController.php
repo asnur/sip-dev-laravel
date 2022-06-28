@@ -499,7 +499,7 @@ class AdminController extends Controller
         // $hasil_jumlah_titik = SurveyPerkembangan::all();
         // $hasil_jumlah_titik = DB::table('survey_perkembangan_wilayah')->get();
 
-        $hasil_jumlah_titik = DB::table('survey_perkembangan_wilayah')->count();
+        $hasil_jumlah_titik = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->count();
 
         // dd($hasil_jumlah_titik);
 
@@ -511,7 +511,8 @@ class AdminController extends Controller
 
         $get_today = date('Y-m-d');
 
-        $get_perkembangan_day = DB::table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+        $get_perkembangan_day = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+
 
 
         // dd($get_perkembangan_day->count());
