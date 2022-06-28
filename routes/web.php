@@ -213,6 +213,7 @@ Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteI
 Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
 Route::get('/printSurveyExcel', [SurveyPerkembanganController::class, 'printSurveyExcel'])->name('print-survey-perkembangan');
 Route::get('/layerSurveyPerkembangan', [SurveyPerkembanganController::class, 'layerSurveyPerkembangan'])->name('layer-survey-perkembangan');
+Route::get('/layerSurveyPerkembanganPartner', [SurveyPerkembanganController::class, 'layerSurveyPerkembanganPartner'])->name('layer-survey-perkembanganPartner');
 Route::get('/survey/{kelurahan}', [SurveyPerkembanganController::class, 'surveyKelurahan'])->name('survey-perkembangan-kelurahan');
 Route::post('/importSurvey', [SurveyPerkembanganController::class, 'importExcelSurvey'])->name('import-survey-perkembangan');
 Route::get('/importExcelSurvey', function () {

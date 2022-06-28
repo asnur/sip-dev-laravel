@@ -8898,6 +8898,11 @@ const getLayerSurveyPerkembangan = () => {
         map.removeLayer("survey_perkembangan");
         map.removeSource("survey_perkembangan_wilayah");
     }
+    if (map.getLayer("survey_perkembangan_partner")) {
+        console.log("loaded layer");
+        map.removeLayer("survey_perkembangan_partner");
+        map.removeSource("survey_perkembangan_wilayah_partner");
+    }
     $.ajax({
         url: `${APP_URL}/layerSurveyPerkembangan`,
         method: "GET",
@@ -8933,6 +8938,147 @@ const getLayerSurveyPerkembangan = () => {
             });
 
             map.on("click", "survey_perkembangan", (e) => {
+                getNJOPSurvey(e);
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const dt = e.features[0].properties;
+                console.log(dt);
+                let imageCarousel = ``;
+                let carouselControl = ``;
+                let image = JSON.parse(dt.image);
+                if (image.length == 0) {
+                    imageCarousel = `
+                    <div class="carousel-item active">
+                        <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
+                    </div>
+                    `;
+                    carouselControl = ``;
+                } else {
+                    image.forEach((item, index) => {
+                        imageCarousel += `
+                        <div class="carousel-item ${
+                            index == 0 ? "active" : ""
+                        }">
+                        <img src="${APP_URL}/survey/${
+                            item.name
+                        }" class="card-img-top" style="height: 160px;object-fit: cover;">
+                        </div>
+                        `;
+                    });
+                    if (image.length >= 2) {
+                        console.log("carousel enabled");
+                        carouselControl = `
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>`;
+                    }
+                }
+                const content = `<div style="width:300px;">
+                <div class="imgcard-container">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                ${imageCarousel}
+                </div>
+               ${carouselControl}
+            </div>
+
+                </div>
+                <div class="card-body p-2">
+                  <h6 class="mt-0 mb-1 card-title border-bottom font-weight-bold" style="font-size:14px;">${dt.name}</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            ID Sub Blok
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.id_sub_blok}
+                        </div>
+                        <div class="col-sm-6">
+                            Kelurahan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.kelurahan}
+                        </div>
+                        <div class="col-sm-6">
+                            Kecamatan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.kecamatan}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Regional
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.regional}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Lingkungan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.neighborhood}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Ruang
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.transect_zone}
+                        </div>
+                        <div class="col-sm-6">
+                            NJOP
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="njopSurvey"></span>
+                        </div>
+                    </div>
+                </div>`;
+
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] +=
+                        e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+                popupSurvey.setLngLat(coordinates).setHTML(content).addTo(map);
+            });
+        },
+    });
+
+    $.ajax({
+        url: `${APP_URL}/layerSurveyPerkembanganPartner`,
+        method: "GET",
+        dataType: "json",
+        success: (res) => {
+            let data = res;
+            console.log(data);
+            map.addSource("survey_perkembangan_wilayah_partner", {
+                type: "geojson",
+                data: data,
+            });
+
+            map.addLayer({
+                id: "survey_perkembangan_partner",
+                type: "circle",
+                source: "survey_perkembangan_wilayah_partner",
+                paint: {
+                    "circle-color": "#e67e22",
+                    "circle-stroke-color": "#ffff00",
+                    "circle-stroke-width": 1,
+                    "circle-radius": 4,
+                    "circle-opacity": 0.8,
+                },
+            });
+
+            map.on("mouseenter", "survey_perkembangan_partner", (e) => {
+                map.getCanvas().style.cursor = "pointer";
+            });
+
+            map.on("mouseleave", "survey_perkembangan_partner", () => {
+                map.getCanvas().style.cursor = "";
+                // popup.remove();
+            });
+
+            map.on("click", "survey_perkembangan_partner", (e) => {
                 getNJOPSurvey(e);
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
