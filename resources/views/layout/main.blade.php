@@ -417,6 +417,17 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
                                 </div>
                                 <div class="col-md-4">
+                                    <label style="font-size: 13px;line-height:0px;">Global ID <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><label id="textglobalidSurvey"
+                                            style="font-size: 12px;line-height:0px;width:110%"
+                                            target="_blank">-</label></span><br>
+                                    <input type="hidden" name="global_id" class="form-control" id="globalidSurvey"
+                                        style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
+                                </div>
+                                <div class="col-md-4">
                                     <label style="font-size: 13px;line-height:0px;">Kelurahan <sup
                                             class="text-danger font-weight-bold">*</sup></label>
                                 </div>
@@ -654,6 +665,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                                 <div class="col-md-8">
                                     <span><label id="textidSubblokSurveyBulk" style="font-size: 13px;line-height:0px;"
+                                            target="_blank">-</label></span><br>
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="font-size: 13px;line-height:0px;">Global ID <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><label id="textglobalidSurveyBulk"
+                                            style="font-size: 12px;line-height:0px;width:110%;"
                                             target="_blank">-</label></span><br>
                                 </div>
                                 <div class="col-md-4">

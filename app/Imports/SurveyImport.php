@@ -35,6 +35,7 @@ class SurveyImport implements ToModel, WithCalculatedFormulas, WithStartRow, Wit
             9 => 'required',
             10 => 'required',
             11 => 'required',
+            12 => 'required',
         ];
     }
 
@@ -58,6 +59,7 @@ class SurveyImport implements ToModel, WithCalculatedFormulas, WithStartRow, Wit
             'deskripsi_neighborhood' => $row[9],
             'transect_zone' => $row[10],
             'deskripsi_transect_zone' => $row[11],
+            'global_id' => $row[12],
             'uid' => base64_encode($row[1] . $row[3] . $row[4] . $row[5] . $row[6] . $row[8] . $row[10]),
             'id_user' => Auth::user()->id,
         ]);

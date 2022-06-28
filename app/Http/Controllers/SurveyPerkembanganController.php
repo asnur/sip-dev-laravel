@@ -55,6 +55,7 @@ class SurveyPerkembanganController extends Controller
             'transect_zone' => $request->input('transect_zone'),
             'deskripsi_transect_zone' => $request->input('deskripsi_transect_zone'),
             'id_user' => $request->input('id_user'),
+            'global_id' => $request->input('global_id'),
             'uid' => $uid,
         ]);
 
@@ -94,6 +95,7 @@ class SurveyPerkembanganController extends Controller
         $data->deskripsi_neighborhood = $request->input('deskripsi_neighborhood');
         $data->transect_zone = $request->input('transect_zone');
         $data->deskripsi_transect_zone = $request->input('deskripsi_transect_zone');
+        $data->global_id = $request->input('global_id');
 
         $data->save();
 
@@ -187,6 +189,44 @@ class SurveyPerkembanganController extends Controller
         ];
 
         $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
+
+        foreach ($data as $d) {
+            $coor = explode(",", $d->kordinat);
+            $value_data = [
+                'type' => "Feature",
+                'properties' => [
+                    'name' => $d->name,
+                    'id_sub_blok' => $d->id_sub_blok,
+                    'image' => $d->image,
+                    'kelurahan' => $d->kelurahan,
+                    'kecamatan' => $d->kecamatan,
+                    'regional' => $d->regional,
+                    'deskripsi_regional' => $d->deskripsi_regional,
+                    'neighborhood' => $d->neighborhood,
+                    'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
+                    'transect_zone' => $d->transect_zone,
+                    'deskripsi_transect_zone' => $d->deskripsi_transect_zone,
+                ],
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [(float)$coor[1], (float)$coor[0]]
+                ]
+            ];
+
+            array_push($geojson_format['features'], $value_data);
+        }
+
+        return response()->json($geojson_format);
+    }
+
+    public function layerSurveyPerkembanganPartner()
+    {
+        $geojson_format = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+
+        $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->partner_id)->get();
 
         foreach ($data as $d) {
             $coor = explode(",", $d->kordinat);

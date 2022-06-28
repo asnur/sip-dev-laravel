@@ -1978,6 +1978,9 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $("#textidSubblokSurvey").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
+    $("#textglobalidSurvey").text(dt["Global_ID"]);
+    $("#textglobalidSurveyBulk").text(dt["Global_ID"]);
+    $("#globalidSurvey").val(dt["Global_ID"]);
     $("#textidSubblokSurveyBulk").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
@@ -5597,6 +5600,7 @@ const resetSurvey = () => {
     $("#nameSurvey").val("");
     $("#kordinatSurvey").val("");
     $("#idSubblokSurvey").val("");
+    $("#globalidSurvey").val("");
     $("#kelurahanSurvey").val("");
     $("#kecamatanSurvey").val("");
     $("#regionalSurvey").val("");
@@ -5612,6 +5616,8 @@ const resetSurvey = () => {
     $("#refrensiGoogleMapsBulk").attr("href", "#");
     $("#textidSubblokSurvey").text("-");
     $("#textidSubblokSurveyBulk").text("-");
+    $("#textglobalidSurvey").text("-");
+    $("#textglobalidSurveyBulk").text("-");
     $("#textkelurahanSurvey").text("-");
     $("#textkelurahanSurveyBulk").text("-");
     $("#textkecamatanSurvey").text("-");
