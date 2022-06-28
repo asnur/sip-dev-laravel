@@ -514,7 +514,6 @@ class AdminController extends Controller
         $get_perkembangan_day = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
 
 
-
         // dd($get_perkembangan_day->count());
 
 
