@@ -196,7 +196,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/peta-survey/{id}', [RekapSurveyController::class, 'petaSurvey'])->name('peta-survey');
 
     Route::get('/detil-petugas-survey', function () {
-        $data_survey = ViewDetil::select("*")->get();
+        $data = ViewDetil::select("*")->get();
 
         return view('admin/detil-petugas-survey', compact('data'));
     })->name('detil-petugas-survey');
