@@ -10,8 +10,6 @@ class SurveyPerkembanganImage extends Model
     use HasFactory;
     protected $connection = 'pgsql';
 
-    protected $connection = 'pgsql';
-
     protected $table = 'image_survey_perkembangan';
 
     protected $guarded = ['id'];
