@@ -5749,7 +5749,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
                                         style="width: 100%;max-width: 55%;margin-bottom: 0.2rem"
-                                        src="http://localhost/assets/gambar/prapermohonan.png">
+                                        src="{{ asset('assets/gambar/prapermohonan.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">PraPermohonan</span></a>
                             </div>
