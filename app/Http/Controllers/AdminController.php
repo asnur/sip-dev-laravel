@@ -499,7 +499,8 @@ class AdminController extends Controller
         // $hasil_jumlah_titik = SurveyPerkembangan::all();
         // $hasil_jumlah_titik = DB::table('survey_perkembangan_wilayah')->get();
 
-        $hasil_jumlah_titik = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->count();
+        // $hasil_jumlah_titik = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->count();
+        $hasil_jumlah_titik = SurveyPerkembangan::all()->count();
 
         // dd($hasil_jumlah_titik);
 
@@ -511,7 +512,8 @@ class AdminController extends Controller
 
         $get_today = date('Y-m-d');
 
-        $get_perkembangan_day = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+        // $get_perkembangan_day = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+        $get_perkembangan_day = SurveyPerkembangan::Where('date', $get_today)->get();
 
 
         // dd($get_perkembangan_day->count());
@@ -530,7 +532,7 @@ class AdminController extends Controller
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id_baru', 'DESC')->take(50)->get();
+        $datas = SurveyPerkembangan::orderBy('id_baru', 'DESC')->take(100)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -655,8 +657,10 @@ class AdminController extends Controller
         // $survey = ProgresSurvey::withCount('survey')->take(10)->get();
 
         $survey =  ProgresSurvey::withCount(['survey' => function ($query) {
-            $query->select(DB::raw('count(distinct(id_sub_blok))'));
-        }, 'kelurahan'])->get();
+            $query->select(DB::connection('pgsql')->raw('count(distinct(id_sub_blok))'));
+        }, 'kelurahan', 'kecamatan'])->get();
+
+        // dd($survey);
 
 
         return Datatables::of($survey)
@@ -683,7 +687,12 @@ class AdminController extends Controller
                 $kalimat = ucwords(strtolower($kel));
                 return "$kalimat";
             })
-            ->rawColumns(['progres', 'nama_kel', 'persen'])->make(true);
+            ->editColumn('nama_kec', function ($data) {
+                $kel = $data->kecamatan;
+                $kalimat = ucwords(strtolower($kel));
+                return "$kalimat";
+            })
+            ->rawColumns(['progres', 'nama_kel', 'nama_kec', 'persen'])->make(true);
 
         // dd($survey);
     }

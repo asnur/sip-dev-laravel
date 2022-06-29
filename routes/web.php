@@ -13,6 +13,7 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyerController;
 use App\Http\Controllers\RekapSurveyController;
 use App\Models\User;
+use App\Models\ViewDetil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -24,6 +25,7 @@ use App\Http\Controllers\SurveyPerkembanganController;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
 use Jenssegers\Agent\Agent;
+
 
 
 /*
@@ -193,6 +195,25 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/get-progres-survey', [AdminController::class, 'ProgresSurvey'])->name('get-progres-survey');
 
     Route::get('/peta-survey/{id}', [RekapSurveyController::class, 'petaSurvey'])->name('peta-survey');
+
+    Route::get('/detil-petugas-survey', function () {
+        $data_survey = ViewDetil::select("*")->get();
+
+        return view('admin/detil-petugas-survey', compact('data'));
+    })->name('detil-petugas-survey');
+
+    Route::get('/kinerja-petugas-survey', function () {
+        $data = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
+            'roles',
+            function ($q) {
+                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
+            }
+        )->get();
+
+        // dd($data);
+
+        return view('admin/kinerja-petugas-survey', compact('data'));
+    })->name('kinerja-petugas-survey');
 });
 
 //Analytics Page

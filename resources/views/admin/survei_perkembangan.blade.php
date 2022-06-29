@@ -607,6 +607,13 @@ $Roles = '';
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
                     <h3 class="card-title">Kinerja Petugas Survey</h3>
+
+                    <div class="card-actions">
+                        <a style="font-weight:600; font-size:10pt" href="{{ route('kinerja-petugas-survey') }}">
+                            Unduh Excel
+                        </a>
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <div style="overflow-x: hidden !important;" class="table-responsive">
@@ -701,7 +708,15 @@ $Roles = '';
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
                     <h3 class="card-title">Detil Input Petugas Survey</h3>
+
+                    <div class="card-actions">
+                        <a style="font-weight:600; font-size:10pt" href="{{ route('detil-petugas-survey') }}">
+                            Unduh Excel
+                        </a>
+                    </div>
+
                 </div>
+
                 <div class="card-body">
                     <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
 
@@ -856,7 +871,7 @@ $Roles = '';
         </div>
     </div>
 
-    <div style="margin-top: 1rem; display:none;" class="row-cards">
+    <div style="margin-top: 1rem;" class="row-cards">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-status-top bg-success"></div>
@@ -874,7 +889,7 @@ $Roles = '';
 
                                     <th class="text-center">
                                         <div style="display: none;" class="lazy_name_kinerja">
-                                            Nama Kelurahan
+                                            Kecamatan
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -883,7 +898,16 @@ $Roles = '';
                                     </th>
                                     <th class="text-center">
                                         <div style="display: none;" class="lazy_name_kinerja">
-                                            Jumlah Sub Blok
+                                            Kelurahan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th class="text-center">
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Total Polygon
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -892,16 +916,7 @@ $Roles = '';
                                     </th>
                                     <th>
                                         <div style="display: none;" class="lazy_name_kinerja">
-                                            Jumlah Sub Blok Tersurvey
-                                        </div>
-
-                                        <div class="hide_lazyload_kinerja">
-                                            <div class='skeleton-line'></div>
-                                        </div>
-                                    </th>
-                                    <th class="text-center">
-                                        <div style="display: none;" class="lazy_name_kinerja">
-                                            Input Total
+                                            Polygon Tersurvey
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -1579,6 +1594,10 @@ $Roles = '';
                 , ],
 
                 columns: [{
+                        data: 'nama_kec'
+                        , name: 'nama_kec'
+
+                    }, {
                         data: 'nama_kel'
                         , name: 'nama_kel'
 
@@ -1589,11 +1608,6 @@ $Roles = '';
                     }, {
                         data: 'survey_count'
                         , name: 'survey_count'
-
-                    }
-                    , {
-                        data: 'kelurahan_count'
-                        , name: 'kelurahan_count'
 
                     }, {
                         data: 'progres'
@@ -1612,7 +1626,7 @@ $Roles = '';
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [1]
-                        , className: "text-center"
+                        , className: "text-left"
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [2]
