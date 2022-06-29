@@ -10,6 +10,7 @@ class Tracking extends Model
     use HasFactory;
     protected $connection = 'pgsql';
 
+    protected $connection = 'pgsql';
     protected $table = 'tracking';
     protected $guarded = ['id'];
 

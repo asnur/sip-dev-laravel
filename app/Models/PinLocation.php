@@ -13,6 +13,8 @@ class PinLocation extends Model
 
     protected $table = "pin_location";
 
+    protected $connection = 'pgsql';
+
     public $timestamps = false;
 
     protected $fillable = [
