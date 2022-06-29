@@ -608,8 +608,8 @@ $Roles = '';
                 <div class="card-header">
                     <h3 class="card-title">Kinerja Petugas Survey</h3>
 
-                    <div class="card-actions">
-                        <a style="font-weight:600; font-size:10pt" href="{{ route('kinerja-petugas-survey') }}">
+                    <div class="card-actions" style="margin-top:0.6%;">
+                        <a style="font-weight:400; font-size:12px;" href="{{ route('kinerja-petugas-survey') }}">
                             Unduh Excel
                         </a>
                     </div>
@@ -709,8 +709,8 @@ $Roles = '';
                 <div class="card-header">
                     <h3 class="card-title">Detil Input Petugas Survey</h3>
 
-                    <div class="card-actions">
-                        <a style="font-weight:600; font-size:10pt" href="{{ route('detil-petugas-survey') }}">
+                    <div class="card-actions" style="margin-top:0.6%;">
+                        <a style="font-weight:400; font-size:12px;" href="{{ route('detil-petugas-survey') }}">
                             Unduh Excel
                         </a>
                     </div>
@@ -1606,8 +1606,8 @@ $Roles = '';
                         , name: 'jumlah'
 
                     }, {
-                        data: 'survey_count'
-                        , name: 'survey_count'
+                        data: 'survey_count_null'
+                        , name: 'survey_count_null'
 
                     }, {
                         data: 'progres'

@@ -692,7 +692,12 @@ class AdminController extends Controller
                 $kalimat = ucwords(strtolower($kel));
                 return "$kalimat";
             })
-            ->rawColumns(['progres', 'nama_kel', 'nama_kec', 'persen'])->make(true);
+            ->editColumn('survey_count_null', function ($data) {
+
+                $kalimat = '';
+                return "$kalimat";
+            })
+            ->rawColumns(['survey_count_null', 'progres', 'nama_kel', 'nama_kec', 'persen'])->make(true);
 
         // dd($survey);
     }
