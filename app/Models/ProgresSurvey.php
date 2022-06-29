@@ -9,6 +9,8 @@ class ProgresSurvey extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
+
     protected $table = 'jumlah_sub_blok';
 
     protected $guarded = ['id'];

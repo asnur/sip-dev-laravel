@@ -9,6 +9,8 @@ class imageFavorite extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
+
     protected $table = "image_favorites";
 
     public $timestamps = false;

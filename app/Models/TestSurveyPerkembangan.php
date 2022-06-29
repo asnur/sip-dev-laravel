@@ -9,6 +9,8 @@ class TestSurveyPerkembangan extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
+
     protected $table = 'test_survey_perkembangan_wilayah';
 
     protected $guarded = [];
