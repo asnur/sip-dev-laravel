@@ -27,7 +27,7 @@
     position: absolute;
     border-radius: 4px;
     background: #fff;
-    bottom: -8rem;
+    bottom: -10rem;
     right: 0.3rem;
 }
 
@@ -247,6 +247,16 @@
     overflow-x: hidden;
 }
 
+.info-usaha-location {
+    position: absolute;
+    z-index: 999;
+    background: #fdfffc;
+    display: none;
+    width: 30% !important;
+    height: 100% !important;
+    overflow-x: hidden;
+}
+
 .info-survey-location {
     position: absolute;
     z-index: 999;
@@ -299,6 +309,17 @@
 }
 
 .info-survey-location::-webkit-scrollbar-thumb {
+    background: gray;
+}
+
+.info-usaha-location::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 100%;
+    /* scrollbar-width: thin; */
+}
+
+.info-usaha-location::-webkit-scrollbar-thumb {
     background: gray;
 }
 

@@ -180,7 +180,7 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk, #pesanGagalSurveyBulk"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk, #pesanGagalSurveyBulk, #pesanGagalUsaha, #pesanBerhasilUsaha, #resetUsaha"
 ).hide();
 
 $.ajax({
@@ -971,7 +971,17 @@ map.on("style.load", function () {
         }
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $("#kordinatSurvey").val(`${coornya.lat},${coornya.lng}`);
+        $("#kordinatUsaha").val(`${coornya.lat},${coornya.lng}`);
+        $("#refrensikordinatUsaha").text(
+            `${coornya.lat.toString().slice(0, -2)},${coornya.lng
+                .toString()
+                .slice(0, -3)}`
+        );
         $("#refrensiGoogleMaps").attr(
+            "href",
+            `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
+        );
+        $("#refrensikordinatUsaha").attr(
             "href",
             `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
         );
@@ -5566,6 +5576,28 @@ function pinLocation() {
     });
 }
 
+function usahaLocation() {
+    $.ajax({
+        url: `${APP_URL}/cekLoginChat`,
+        method: "GET",
+        success: function (e) {
+            if (e == 1) {
+                $.ajax({
+                    url: `${APP_URL}/getIdUser`,
+                    method: "GET",
+                    success: (e) => {
+                        $(".info-usaha-location").show();
+                        getDataUsaha(e);
+                    },
+                });
+            } else {
+                $(".abcRioButtonContentWrapper").trigger("click");
+                localStorage.setItem("opsi", "usaha");
+            }
+        },
+    });
+}
+
 function surveyLocation() {
     resetSurvey();
     $.ajax({
@@ -5746,6 +5778,116 @@ function getDataSurvey(id_user) {
             }
         },
     });
+}
+
+function getDataUsaha(id_user) {
+    $.ajax({
+        url: `${APP_URL}/getPendataanUsaha`,
+        method: "POST",
+        data: {
+            id_user: id_user,
+        },
+        dataType: "json",
+        success: function (e) {
+            if (e != "") {
+                $(".list-item-usaha-location").html("");
+                $("#messageNoDataUsaha").hide();
+                let html = "";
+                e.forEach((e) => {
+                    html += `
+                    <div class="col-sm-10"
+                    onclick="geocoder.query('${e.kordinat}');editDataUsaha(${e.id},${e.id_user})"
+                    style="cursor: pointer;">
+                    <a
+                        style="font-weight: bold;word-break: break-all;
+                    white-space: normal; cursor: pointer;">${e.nama_usaha}</a><br>
+                    <span style="font-size:12px">Pelaku : ${e.pelaku}</span><br>
+                    <span style="font-size:12px">No Perjanjian: ${e.no_perjanjian}</span>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center pl-5">
+                    <div class="row">
+                        <div class="col-12 p-1">
+                            <a onclick="deleteDataUsaha(${e.id},${e.id_user})"
+                                style="cursor:pointer;color:red;font-size: 18px;"><i
+                                    class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+                    `;
+                });
+                $(".list-item-usaha-location").html(html);
+            } else {
+                $(".list-item-usaha-location").html("");
+                $("#messageNoDataUsaha").show();
+            }
+        },
+    });
+}
+
+function editDataUsaha(id) {
+    $("#resetUsaha").show();
+    $.ajax({
+        url: `${APP_URL}/getPendataanUsaha/${id}`,
+        method: "GET",
+        dataType: "json",
+        success: function (e) {
+            $("#idUsaha").val(e.id);
+            $("#namaUsaha").val(e.nama_usaha);
+            $("#pelakuUsaha").val(e.pelaku);
+            $("#noPerjanjianUsaha").val(e.no_perjanjian);
+            $("#kordinatUsaha").val(e.kordinat);
+            $("#sektorUsaha").val(e.sektor);
+            $("#modalUsaha").val(e.modal);
+            $("#jumlahTenagaUsaha").val(e.jumlah_tenaga);
+            $("#alamatUsaha").val(e.alamat);
+            $("#refrensikordinatUsaha").text(
+                `${e.kordinat
+                    .split(",")[0]
+                    .toString()
+                    .slice(0, -2)},${e.kordinat
+                    .split(",")[1]
+                    .toString()
+                    .slice(0, -2)}`
+            );
+        },
+    });
+}
+
+function deleteDataUsaha(id, id_user) {
+    $.ajax({
+        url: `${APP_URL}/deletePendataanUsaha`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: function (e) {
+            $("#pesanBerhasilUsaha").html(
+                ` <strong>Berhasil!</strong> Data Berhasil di Hapus.`
+            );
+            $("#pesanBerhasilUsaha").show();
+            setTimeout(function () {
+                $("#pesanBerhasilUsaha").hide();
+                $("#pesanBerhasilUsaha").html(
+                    ` <strong>Berhasil!</strong> Data Berhasil di Simpan.`
+                );
+            });
+            getDataUsaha(id_user);
+        },
+    });
+}
+
+function resetUsaha() {
+    $("#idUsaha").val("");
+    $("#namaUsaha").val("");
+    $("#pelakuUsaha").val("");
+    $("#noPerjanjianUsaha").val("");
+    $("#kordinatUsaha").val("");
+    $("#sektorUsaha").val("");
+    $("#modalUsaha").val("");
+    $("#jumlahTenagaUsaha").val("");
+    $("#alamatUsaha").val("");
+    $("#refrensikordinatUsaha").text("-");
+    $("#resetUsaha").hide();
 }
 
 function detailDataSurvey(id) {
@@ -6519,6 +6661,68 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
     });
 });
 
+$("#formUsahaLocation").on("submit", function (e) {
+    e.preventDefault();
+    var form_data = new FormData(this);
+    let kordinat = $("#kordinatUsaha").val();
+    let pelaku = $("#pelakuUsaha").val();
+    let namaUsaha = $("#namaUsaha").val();
+    let alamatUsaha = $("#alamatUsaha").val();
+    let no_perjanjian = $("#noPerjanjianUsaha").val();
+    let sektor = $("#sektorUsaha").val();
+    let modal = $("#modalUsaha").val();
+    let jumlah_tenaga = $("#jumlahTenagaUsaha").val();
+
+    if (
+        kordinat !== "" &&
+        pelaku !== "" &&
+        namaUsaha !== "" &&
+        alamatUsaha !== "" &&
+        no_perjanjian !== "" &&
+        sektor !== "" &&
+        modal !== "" &&
+        jumlah_tenaga !== ""
+    ) {
+        $("#submitUsahaLocation").hide();
+        $("#prosesUsaha").show();
+        $.ajax({
+            url: `${APP_URL}/getIdUser`,
+            method: "GET",
+            success: function (e) {
+                var id_user = e;
+                form_data.append("id_user", id_user);
+                $.ajax({
+                    url: `${APP_URL}/savePendataanUsaha`,
+                    method: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    success: function (e) {
+                        $("#submitUsahaLocation").show();
+                        $("#prosesUsaha").hide();
+                        console.log(e);
+                        if ($("#idUsaha").val() == "") {
+                            resetUsaha();
+                        }
+                        getDataUsaha(id_user);
+                        $("#pesanBerhasilUsaha").show();
+                        setTimeout(function () {
+                            $("#pesanBerhasilUsaha").hide();
+                        }, 3000);
+                    },
+                });
+            },
+        });
+    } else {
+        $("#submitUsahaLocation").show();
+        $("#prosesUsaha").hide();
+        $("#pesanGagalUsaha").show();
+        setTimeout(function () {
+            $("#pesanGagalUsaha").hide();
+        }, 3000);
+    }
+});
+
 $("#formSurveyLocation").on("submit", function (e) {
     e.preventDefault();
     var name = $("#nameSurvey").val();
@@ -6795,6 +6999,10 @@ $("#closeInvestasi").on("click", function () {
 
 $("#closePin").on("click", function () {
     $(".info-pin-location").hide();
+});
+
+$("#closeUsahaLocation").on("click", function () {
+    $(".info-usaha-location").hide();
 });
 
 $("#closeSurvey").on("click", function () {
