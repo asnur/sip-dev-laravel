@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
+use App\Http\Controllers\PendataanUsahaController;
 use App\Http\Controllers\SektorController;
 use App\Http\Controllers\SurveyPerkembanganController;
 use App\Models\Survey;
@@ -240,6 +241,12 @@ Route::post('/importSurvey', [SurveyPerkembanganController::class, 'importExcelS
 Route::get('/importExcelSurvey', function () {
     return view('importExcelSurvey');
 })->name('export-survey-perkembangan');
+
+//Pendataan Usaha
+Route::post('/savePendataanUsaha', [PendataanUsahaController::class, 'savePendataanUsaha'])->name('pendataan-usaha');
+Route::post('/getPendataanUsaha', [PendataanUsahaController::class, 'getPendataanUsaha'])->name('pendataan-usaha');
+Route::get('/getPendataanUsaha/{id}', [PendataanUsahaController::class, 'getPendataanUsahaById'])->name('pendataan-usaha');
+Route::post('/deletePendataanUsaha', [PendataanUsahaController::class, 'deletePendataanUsaha'])->name('delete-pendataan-usaha');
 
 //Export Data
 Route::get('/data-jumlah-titik', function () {

@@ -312,6 +312,143 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
         </div>
     </div>
 
+    <div class="info-usaha-location">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeUsahaLocation" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Pendataan Usaha</span>
+            <div class="form mt-5">
+                <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalUsaha"
+                    style="font-size: 10pt;" role="alert">
+                    <strong>Gagal!</strong> Anda Harus Mengisi Semua Form.
+                </div>
+                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilUsaha"
+                    style="font-size: 10pt;" role="alert">
+                    <strong>Berhasil!</strong> Data Berhasil di Simpan.
+                </div>
+                <div class="w-100 mt-2" onclick="resetUsaha()" id="resetUsaha"
+                    style="font-size: 12pt; cursor: pointer; text-align:right;"><i class="ri-arrow-left-line"></i>
+                </div>
+                <form id="formUsahaLocation" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">Koordinat <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="hidden" name="kordinat" class="w-100" id="kordinatUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Pilih Titik Lokasi" readonly>
+                            <input type="hidden" name="id" class="w-100" id="idUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Pilih Titik Lokasi" readonly>
+                            <a href="#" target="_blank" id="refrensikordinatUsaha"
+                                style="font-size: 13px; line-height:0px">-</a>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">Nama Pelaku <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" name="pelaku" class="w-100" id="pelakuUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Masukan Nama Pelaku">
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">Nama Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" name="nama_usaha" class="w-100" id="namaUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Masukan Nama Usaha">
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">No Perjanjian <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" name="no_perjanjian" class="w-100" id="noPerjanjianUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Masukan Nomor Perjanjian">
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">Sektor Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="sektor" id="sektorUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;">
+                                <option value="Kelautan dan perikanan">Kelautan dan perikanan</option>
+                                <option value="Pertanian">Pertanian</option>
+                                <option value="Lingkungan hidup dan kehutanan">Lingkungan hidup dan kehutanan</option>
+                                <option value="Energi dan sumber daya mineral">Energi dan sumber daya mineral</option>
+                                <option value="Ketenaganukliran">Ketenaganukliran</option>
+                                <option value="Perindustrian">Perindustrian</option>
+                                <option value="Perdagangan">Perdagangan</option>
+                                <option value="Pekerjaan umum dan perumahan rakyat">Pekerjaan umum dan perumahan rakyat
+                                </option>
+                                <option value="Transportasi">Transportasi</option>
+                                <option value="Kesehatan, obat, dan makanan">Kesehatan, obat, dan makanan</option>
+                                <option value="Pendidikan dan kebudayaan">Pendidikan dan kebudayaan</option>
+                                <option value="Pariwisata">Pariwisata</option>
+                                <option value="Keagamaan">Keagamaan</option>
+                                <option value="Pos, telekomunikasi, penyiaran, dan sistem dan transaksi elektronik">
+                                    Pos, telekomunikasi, penyiaran, dan sistem dan transaksi elektronik</option>
+                                <option value="Pertahanan dan keamanan">Pertahanan dan keamanan</option>
+                                <option value="Ketenagakerjaan">Ketenagakerjaan</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">Modal Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="modal" id="modalUsaha" style="font-size: 13px; line-height:0px">
+                                <option value="0 s/d 1M">Mikro</option>
+                                <option value=">1M s/d <=5M">Kecil</option>
+                                <option value=">5M s/d <=10M">Menengah</option>
+                                <option value=">= 10M">Besar</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-size: 13px; line-height:0px">Jumlah Tenaga <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="number" name="jumlah_tenaga" class="w-100" id="jumlahTenagaUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Masukan Jumlah Tenaga Kerja">
+                        </div>
+                        <div class="col-12">
+                            <label style="font-size: 13px; line-height:0px">Alamat <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                            <textarea class="form-control" name="alamat" id="alamatUsaha" style="font-size: 13px;"
+                                placeholder="Masukan Alamat Usaha" rows="5"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" id="submitUsahaLocation" class="btn btn-success mt-3 text-white"
+                                style="font-size: 13px; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                                Simpan</button>
+                            <center>
+                                <div class="spinner-border mt-3" role="status" id="prosesUsaha"
+                                    style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-5">
+                <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
+                <p align="center" id="messageNoDataUsaha" style="display: none" class="mt-5">Tidak Ada Lokasi Yang
+                    di Simpan</p>
+                <div class="mt-2">
+                    <div class="row list-item-usaha-location">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="info-survey-location">
         <div class="container p-4">
             <button type="button" class="close" id="closeSurvey" aria-label="Close">
@@ -1096,7 +1233,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <label class="form-check-label text_all" for="banjir_fill">Terdampak
                             Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
                         <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
-                            id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                            id="ControlTahunBanjir" min="2015" max="2020" step="1"
+                            value="2015">
                     </div>
 
                     <div class="form-check sewa_fill d-none">
@@ -1137,7 +1275,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="form-check investasi_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="radio" name="layer" class="form-check-input" id="investasi_fill">
+                                <input type="radio" name="layer" class="form-check-input"
+                                    id="investasi_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="investasi_fill">Proyek</label>
                             </li>
@@ -5890,7 +6029,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 style="float: right;margin-right:1.3rem;width:32px;margin-top:2rem; border-radius:5px">
                 <div class="dropdown">
                     <button id="dropdownLayer" data-toggle="dropdown" class="ri-stack-line p-1"
-                        aria-haspopup="true" aria-expanded="false"
+                        aria-haspopup="true" aria-expanded="false" title="Base Map"
                         style="border:none;background:none;width:32px; height:30px; outline:none; font-size:14px">
 
                     </button>
@@ -5925,8 +6064,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     </ul>
                 </div>
                 <div class="dropleft text-center border-bottom border-top">
-                    <button onclick="cekLoginChat()" type="button" id="btnChat" class="ri-phone-line p-1"
-                        data-toggle="dropdown"
+                    <button onclick="cekLoginChat()" type="button" id="btnChat" title="Konsultasi"
+                        class="ri-phone-line p-1" data-toggle="dropdown"
                         style=" width:32px; height:30px; outline:none; font-size:14px; border:none;background: none;">
                     </button>
                     <div class="dropdown-menu" id="frameChat"
@@ -5935,19 +6074,29 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <div class="dropleft text-center">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" onclick="pinLocation()" id="btnPin" class="ri-pushpin-line p-1"
+                    <button type="button" onclick="pinLocation()" id="btnPin" title="Laporan / Pengawasan"
+                        class="ri-pushpin-line p-1"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
                 <div class="text-center border-top">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" class="ri-bookmark-line p-1" onclick="surveyLocation()"
+                    <button type="button" class="ri-bookmark-line p-1" title="Survey Perkembangan"
+                        onclick="surveyLocation()"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
                 <div class="text-center border-top">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" id="btnInteractive" class="ri-line-chart-fill p-1"
+                    <button type="button" onclick="usahaLocation()" class="ri-building-2-line p-1"
+                        title="Pendataan Usaha"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" id="btnInteractive" title="Data Interaktif"
+                        class="ri-line-chart-fill p-1"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
