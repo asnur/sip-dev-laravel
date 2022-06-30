@@ -973,9 +973,9 @@ map.on("style.load", function () {
         $("#kordinatSurvey").val(`${coornya.lat},${coornya.lng}`);
         $("#kordinatUsaha").val(`${coornya.lat},${coornya.lng}`);
         $("#refrensikordinatUsaha").text(
-            `${coornya.lat.toString().slice(0, -2)},${coornya.lng
+            `${coornya.lat.toString().slice(0, -4)},${coornya.lng
                 .toString()
-                .slice(0, -3)}`
+                .slice(0, -5)}`
         );
         $("#refrensiGoogleMaps").attr(
             "href",
@@ -5844,10 +5844,10 @@ function editDataUsaha(id) {
                 `${e.kordinat
                     .split(",")[0]
                     .toString()
-                    .slice(0, -2)},${e.kordinat
+                    .slice(0, -4)},${e.kordinat
                     .split(",")[1]
                     .toString()
-                    .slice(0, -2)}`
+                    .slice(0, -5)}`
             );
         },
     });

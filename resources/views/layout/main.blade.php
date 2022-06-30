@@ -332,11 +332,32 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <form id="formUsahaLocation" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Nama Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="nama_usaha" class="w-100" id="namaUsaha"
+                                style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Nama Pemilik <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="pelaku" class="w-100" id="pelakuUsaha"
+                                style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-12">
+                            <label style="font-size: 13px; line-height:0px">Alamat <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                            <textarea class="form-control" name="alamat" id="alamatUsaha" style="font-size: 13px;" rows="5"></textarea>
+                        </div>
+                        <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">Koordinat <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input type="hidden" name="kordinat" class="w-100" id="kordinatUsaha"
                                 style="font-size: 13px; line-height:0px" placeholder="Pilih Titik Lokasi" readonly>
                             <input type="hidden" name="id" class="w-100" id="idUsaha"
@@ -344,35 +365,19 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <a href="#" target="_blank" id="refrensikordinatUsaha"
                                 style="font-size: 13px; line-height:0px">-</a>
                         </div>
-                        <div class="col-md-4">
-                            <label style="font-size: 13px; line-height:0px">Nama Pelaku <sup
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">No Perijinan <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
-                        <div class="col-md-8">
-                            <input type="text" name="pelaku" class="w-100" id="pelakuUsaha"
-                                style="font-size: 13px; line-height:0px" placeholder="Masukan Nama Pelaku">
-                        </div>
-                        <div class="col-md-4">
-                            <label style="font-size: 13px; line-height:0px">Nama Usaha <sup
-                                    class="text-danger font-weight-bold">*</sup></label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" name="nama_usaha" class="w-100" id="namaUsaha"
-                                style="font-size: 13px; line-height:0px" placeholder="Masukan Nama Usaha">
-                        </div>
-                        <div class="col-md-4">
-                            <label style="font-size: 13px; line-height:0px">No Perjanjian <sup
-                                    class="text-danger font-weight-bold">*</sup></label>
-                        </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input type="text" name="no_perjanjian" class="w-100" id="noPerjanjianUsaha"
-                                style="font-size: 13px; line-height:0px" placeholder="Masukan Nomor Perjanjian">
+                                style="font-size: 13px; line-height:0px">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">Sektor Usaha <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <select name="sektor" id="sektorUsaha" class="w-100"
                                 style="font-size: 13px; line-height:0px;">
                                 <option value="Kelautan dan perikanan">Kelautan dan perikanan</option>
@@ -395,31 +400,26 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <option value="Ketenagakerjaan">Ketenagakerjaan</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">Modal Usaha <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <select name="modal" id="modalUsaha" style="font-size: 13px; line-height:0px">
-                                <option value="0 s/d 1M">Mikro</option>
-                                <option value=">1M s/d <=5M">Kecil</option>
-                                <option value=">5M s/d <=10M">Menengah</option>
-                                <option value=">= 10M">Besar</option>
+                                <option value="< Rp 1 Milyar">
+                                    < Rp 1 Milyar</option>
+                                <option value="Rp 1 - 5 Milyar">Rp 1 - 5 Milyar</option>
+                                <option value="Rp 5 - 10 Milyar">Rp 5 - 10 Milyar</option>
+                                <option value="> Rp 10 Milyar">> Rp 10 Milyar</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label style="font-size: 13px; line-height:0px">Jumlah Tenaga <sup
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Jml Tenaga Kerja <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
-                        <div class="col-md-8">
-                            <input type="number" name="jumlah_tenaga" class="w-100" id="jumlahTenagaUsaha"
-                                style="font-size: 13px; line-height:0px" placeholder="Masukan Jumlah Tenaga Kerja">
-                        </div>
-                        <div class="col-12">
-                            <label style="font-size: 13px; line-height:0px">Alamat <sup
-                                    class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" name="alamat" id="alamatUsaha" style="font-size: 13px;"
-                                placeholder="Masukan Alamat Usaha" rows="5"></textarea>
+                        <div class="col-md-7">
+                            <input type="number" min="0" name="jumlah_tenaga" class="w-100"
+                                id="jumlahTenagaUsaha" style="font-size: 13px; line-height:0px">
                         </div>
                         <div class="col-12">
                             <button type="submit" id="submitUsahaLocation" class="btn btn-success mt-3 text-white"
