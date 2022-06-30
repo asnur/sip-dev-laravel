@@ -338,7 +338,7 @@ class SurveyPerkembanganController extends Controller
         $data = DB::connection('pgsql')->select("SELECT DISTINCT i.name FROM image_survey_perkembangan i JOIN survey_perkembangan_wilayah s ON s.id::bigint=i.id_survey WHERE s.transect_zone = '$transect_zone'");
         $list_image = [];
         foreach ($data as $d) {
-            array_push($list_image, 'public/' . $d->name);
+            array_push($list_image, 'public/survey/' . $d->name);
         }
 
         $zipper = new \Madnest\Madzipper\Madzipper;
