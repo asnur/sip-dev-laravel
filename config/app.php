@@ -181,6 +181,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         NahidulHasan\Html2pdf\Html2pdfServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Madnest\Madzipper\MadzipperServiceProvider::class
     ],
 
     /*
@@ -242,7 +243,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Html2Pdf'  => NahidulHasan\Html2pdf\Facades\Pdf::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
+        'Madzipper' => Madnest\Madzipper\Madzipper::class
     ],
 
 ];

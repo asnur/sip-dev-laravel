@@ -15,6 +15,7 @@ use Image;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SurveyPerkembanganController extends Controller
@@ -330,5 +331,18 @@ class SurveyPerkembanganController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
+    }
+
+    public function exportImageSurvey($transect_zone)
+    {
+        $data = DB::connection('pgsql')->select("SELECT DISTINCT i.name FROM image_survey_perkembangan i JOIN survey_perkembangan_wilayah s ON s.id::bigint=i.id_survey WHERE s.transect_zone = '$transect_zone'");
+        $list_image = [];
+        foreach ($data as $d) {
+            array_push($list_image, 'public/' . $d->name);
+        }
+
+        $zipper = new \Madnest\Madzipper\Madzipper;
+        $zipper->make(public_path() . '/survey/' . $transect_zone . '.zip')->add($list_image)->close();
+        return response()->download(public_path() . '/survey/' . $transect_zone . '.zip');
     }
 }

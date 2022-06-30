@@ -267,6 +267,7 @@ Route::get('/detail-data-titik', function () {
 
     return view('detail-data-titik', compact('data'));
 })->name('export-data-detail');
+Route::get('/imageSurvey/{transaction_id}', [SurveyPerkembanganController::class, 'exportImageSurvey'])->name('image-survey');
 
 
 //Get Sektor
