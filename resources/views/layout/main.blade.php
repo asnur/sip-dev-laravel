@@ -5622,7 +5622,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="width: 100%;max-width: 89%;margin-bottom: 0.2rem;margin-left:0.1rem;"
                                         src="{{ asset('assets/gambar/halal.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -10px;">SIHALAL</span></a>
+                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -12px;">SIHALAL</span></a>
                             </div>
 
                         </div>
