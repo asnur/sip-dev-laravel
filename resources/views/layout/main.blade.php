@@ -5511,11 +5511,11 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         aria-labelledby="dropdownMenuButton" style="width: 300px">
                         <div class="row" style="padding: 4% 5% 1% 5%;">
 
-                            <div style="position:relative; left:-7px;"
+                            <div style="position:relative; left:-9px;"
                                 class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 55%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 53%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/prapermohonan.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">PraPermohonan</span></a>
@@ -5533,7 +5533,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 68%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/jakevo.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Jakevo</span></a>
@@ -5542,31 +5542,31 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://oss.go.id" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 68%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/OSS.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">OSS</span></a>
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">OSS</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                    style="width: 100%;max-width: 70%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/pesanajib.png') }}">
-                                <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Pesan AJIB</span></a>
+                                    style="width: 100%;max-width: 68%;margin-bottom: 0.2rem" src="{{ asset('assets/gambar/pesanajib.png') }}">
+                                <span style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">Pesan AJIB</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://simbg.pu.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 71%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 67%;margin-bottom: 1.8%"
                                         src="{{ asset('assets/gambar/simbg.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">SIMBG</span></a>
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -4px;">SIMBG</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 71%;margin-bottom: 0.2rem; margin-right: 0.1rem;"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">JakartaSatu</span></a>
@@ -5590,35 +5590,35 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/dki.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Bank
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">Bank
                                         DKI</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="/dokumen-dasar-dan-panduan" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 60%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 69%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/referensi.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Referensi</span></a>
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">Referensi</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://sppirt.pom.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 70%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/BPOM.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">BPOM</span></a>
+                                        style="font-size: 9pt;margin-top: -6px !important;position: relative;top: -6px;">BPOM</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://ptsp.halal.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 75%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 89%;margin-bottom: 0.2rem;margin-left:0.1rem;"
                                         src="{{ asset('assets/gambar/halal.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -9px;">SIHALAL</span></a>
+                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -10px;">SIHALAL</span></a>
                             </div>
 
                         </div>
