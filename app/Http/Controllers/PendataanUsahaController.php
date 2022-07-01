@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PendataanUsaha;
+use Illuminate\Support\Facades\Auth;
 
 class PendataanUsahaController extends Controller
 {
@@ -34,5 +35,11 @@ class PendataanUsahaController extends Controller
     {
         $pendataanUsaha = PendataanUsaha::find($request->id);
         $pendataanUsaha->delete();
+    }
+
+    public function printUsahaExcel()
+    {
+        $data = PendataanUsaha::where('id_user', Auth::user()->id)->get();
+        return view('print-usaha', compact('data'));
     }
 }

@@ -247,6 +247,7 @@ Route::post('/savePendataanUsaha', [PendataanUsahaController::class, 'savePendat
 Route::post('/getPendataanUsaha', [PendataanUsahaController::class, 'getPendataanUsaha'])->name('pendataan-usaha');
 Route::get('/getPendataanUsaha/{id}', [PendataanUsahaController::class, 'getPendataanUsahaById'])->name('pendataan-usaha');
 Route::post('/deletePendataanUsaha', [PendataanUsahaController::class, 'deletePendataanUsaha'])->name('delete-pendataan-usaha');
+Route::get('/printUsahaExcel', [PendataanUsahaController::class, 'printUsahaExcel'])->name('print-usaha-excel');
 
 //Export Data
 Route::get('/data-jumlah-titik', function () {

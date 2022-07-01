@@ -468,7 +468,24 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             </div>
 
             <div class="mt-5">
-                <span class="font-weight-bold" style="font-size: 12pt">Lokasi yang di Simpan</span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi
+                        </span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="/printUsahaExcel" class="text-primary"
+                            style="
+                position: relative;
+                font-size: 13px;
+                cursor:pointer;
+                top:-4.5px;
+                text-decoration: none;
+            "><i
+                                class="ri-download-cloud-line font-weight-bold"
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
+                    </div>
+                </div>
                 <p align="center" id="messageNoDataUsaha" style="display: none" class="mt-5">Tidak Ada Lokasi Yang
                     di Simpan</p>
                 <div class="mt-2">
