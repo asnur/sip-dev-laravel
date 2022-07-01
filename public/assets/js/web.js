@@ -973,7 +973,7 @@ map.on("style.load", function () {
         $("#kordinatSurvey").val(`${coornya.lat},${coornya.lng}`);
         $("#kordinatUsaha").val(`${coornya.lat},${coornya.lng}`);
         $("#refrensikordinatUsaha").text(
-            `${coornya.lat.toString().slice(0, -4)},${coornya.lng
+            `${coornya.lat.toString().slice(0, -2)},${coornya.lng
                 .toString()
                 .slice(0, -5)}`
         );
@@ -2874,7 +2874,7 @@ function getRadius(e) {
 
 //Cari Wilayah
 
-$("#cari_wilayah, #cari_wilayah_survey").bindWithDelay(
+$("#cari_wilayah, #cari_wilayah_survey, #cari_wilayah_usaha").bindWithDelay(
     "keyup",
     function () {
         var query = $(this).val();

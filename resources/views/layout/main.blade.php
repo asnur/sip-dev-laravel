@@ -318,7 +318,38 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 <span aria-hidden="true">&times;</span>
             </button>
             <span style="font-size: 13pt" class="title-info font-weight-bold">Pendataan Usaha</span>
-            <div class="form mt-5">
+            <div class="form mt-4">
+                <div class="for_web input-group input-group-md my-3">
+                    <input type="search" id="cari_wilayah_usaha"
+                        class="form-control tombol_search py-2 border-right-0 border"
+                        placeholder="Cari nama tempat ..." autocomplete="off" style="font-size: 8pt">
+
+
+                    <!-- Ori -->
+                    <div class="wm-search__dropdown">
+                        <ul class="wm-search__dropdown" role="listbox"></ul>
+                    </div>
+
+                    <!-- Dummy -->
+                    <ul class="wm-search__dropdown" role="listbox">
+
+                    </ul>
+
+
+                    <span class="input-group-append" style="font-size: 8pt">
+                        <button class="btn btn-secondary tombol_search border-left-0 border" style="font-size: 8pt"
+                            type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        {{-- <button class="btn tombol_search border-left-0 border" type="button"
+                                id="polygonDraw">
+                                <i class="ri-shape-line"></i>
+                                <span class="bg-danger p-1 rounded text-white"
+                                    style="font-size: 8px;margin-top: -1rem;
+                                    position: absolute;">BETA</span>
+                            </button> --}}
+                    </span>
+                </div>
                 <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalUsaha"
                     style="font-size: 10pt;" role="alert">
                     <strong>Gagal!</strong> Anda Harus Mengisi Semua Form.
@@ -363,7 +394,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <input type="hidden" name="id" class="w-100" id="idUsaha"
                                 style="font-size: 13px; line-height:0px" placeholder="Pilih Titik Lokasi" readonly>
                             <a href="#" target="_blank" id="refrensikordinatUsaha"
-                                style="font-size: 13px; line-height:0px">-</a>
+                                style="font-size: 12px; line-height:0px">-</a>
                         </div>
                         <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">No Perijinan <sup
