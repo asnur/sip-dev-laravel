@@ -559,7 +559,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                                 <div class="col-md-8">
                                     <span><label id="textglobalidSurvey"
-                                            style="font-size: 12px;line-height:0px;width:110%"
+                                            style="font-size: 12px;line-height:0px;width:120%"
                                             target="_blank">-</label></span><br>
                                     <input type="hidden" name="global_id" class="form-control" id="globalidSurvey"
                                         style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
@@ -810,7 +810,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </div>
                                 <div class="col-md-8">
                                     <span><label id="textglobalidSurveyBulk"
-                                            style="font-size: 12px;line-height:0px;width:110%;"
+                                            style="font-size: 12px;line-height:0px;width:120%;"
                                             target="_blank">-</label></span><br>
                                 </div>
                                 <div class="col-md-4">
