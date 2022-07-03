@@ -1,105 +1,64 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <div class="card-header text-center">
-                        <img src="{{ asset('assets/admin/img/logo_jakpintas.png') }}"
-                            style="width: 46px; margin-top:-10px;">
-                        <h3 class="d-inline" style="font-weight: bold"><label>Jakpintas</label>
-                        </h3>
-                    </div>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
 
-                            <div class="row mb-3">
+<video class="bg_video" autoplay loop muted>
+    <source src="{{ asset('assets/login/bg_video.mp4') }}" type="video/mp4" />
+</video>
 
-                                <div class="col-md-12">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <i class="input-group-text fa fa-envelope"></i>
-                                        </div>
-                                        <input id="email" type="email"
-                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                            placeholder="Masukan Email" value="{{ old('email') }}" required
-                                            autocomplete="email" autofocus>
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
+<div class="container-fluid">
+    <div class="d-flex justify-content-end">
+        <div class="d-flex flex-row mr-3">
+            <div class="p-1 konten_toggle_login" style="display: none">
+                <div class="HideShow letak">
+                    <div class="h-100 d-flex align-items-center justify-content-end">
+                        <div class="row konten text-center">
+                            <!-- konten kiri -->
+                            <div class="col-md-4 text-center isi_konten">
+                                <span class=""><img style="width: 65%" src="{{ asset('assets/login/logo_jakpintas.png') }}" alt="" /></span>
                             </div>
 
-                            <div class="row mb-3">
-
-                                <div class="col-md-12">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <i class="input-group-text fa fa-lock"></i>
-                                        </div>
-                                        <input id="password" type="password" placeholder="Masukan Password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                            <!-- konten kanan -->
+                            <div class="col-md-8 col-xs-12 col-sm-12 login" style="padding-top: 0.8em; padding-bottom: 0.8em">
+                                <form>
+                                    <div class="form-group mt-1">
+                                        <input type="email" class="form-control" id="email" placeholder="Email" style="font-size: 9pt" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password" placeholder="Password" style="font-size: 9pt" />
                                     </div>
 
-                                    {{-- <label for="password"
-                                        class="col-form-label text-md-right">{{ __('Password') }}</label>
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary btn-block" style="font-size: 9pt">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
+                                <div class="text-center text-muted mt-2" style="font-size: 9pt">
+                                    atau
                                 </div>
-                            </div>
 
-                            {{-- <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div> --}}
-
-                            <div class="row mb-0">
-                                <div class="col-md-12 mb-2">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        <i class="fa fa-sign-in-alt"></i> {{ __('Login') }}
-                                    </button>
-                                    {{-- @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif --}}
-                                </div>
-                                <div class="col-md-12">
-                                    <a href="{{ route('login-google') }}" class="btn btn-danger w-100">
-                                        <i class="fab fa-google"></i> {{ __('Login Google') }}
+                                <div class="">
+                                    <a href="#" class="btn custom_btn_masuk mt-2 mb-1 btn-light login_with">
+                                        <img alt="Logo" style="width: 13%; margin-right: 1%" src="{{ asset('assets/login/google_logo.png') }}" class="img-fluid me-3" />
+                                        <span style="font-size: 9pt">Login dengan Gmail</span>
                                     </a>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="mr-4">
+                <button id="btn_toggle_login" type="button" class="btn btn-sm custom_btn_login get_cursor bg-transparent">
+                    <span style="font-size: 9pt">Login</span>
+                </button>
+            </div>
         </div>
     </div>
+</div>
+
+
 @endsection
