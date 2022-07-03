@@ -23,6 +23,8 @@ use App\Http\Controllers\PagePDFController;
 use App\Http\Controllers\SurveyPerkembanganController;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
+use App\Models\ProgresSurvey;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 
@@ -214,6 +216,18 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
         return view('admin/kinerja-petugas-survey', compact('data'));
     })->name('kinerja-petugas-survey');
 });
+
+// tabel kelurahan
+
+Route::get('/progres-perkelurahan', function () {
+    $data =  ProgresSurvey::withCount(['survey' => function ($query) {
+        $query->select(DB::connection('pgsql')->raw('count(distinct(id_sub_blok))'));
+    }])->orderBy('kecamatan')->get();
+
+    // dd($data);
+
+    return view('admin/progres-perkelurahan', compact('data'));
+})->name('progres-perkelurahan');
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
