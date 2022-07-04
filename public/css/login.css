@@ -130,3 +130,7 @@ video {
     background-color: #ea572b !important;
     color: #fff;
 }
+
+.delete_efek_shadow_btn {
+    box-shadow: none !important;
+}

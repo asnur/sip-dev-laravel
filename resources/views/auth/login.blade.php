@@ -57,7 +57,7 @@
 
                                     <div class="">
                                         <a href="{{ route('login-google') }}"
-                                            class="btn custom_btn_masuk mt-2 mb-1 btn-light login_with">
+                                            class="btn custom_btn_masuk mt-2 mb-1 btn-light login_with delete_efek_shadow_btn">
                                             <img alt="Logo" style="width: 13%; margin-right: 1% !important;"
                                                 src="{{ asset('assets/login/google_logo.png') }}"
                                                 class="img-fluid me-3" />
@@ -72,7 +72,7 @@
                 </div>
                 <div class="mr-4">
                     <button id="btn_toggle_login" type="button"
-                        class="btn btn-sm custom_btn_login get_cursor bg-transparent">
+                        class="btn btn-sm custom_btn_login get_cursor bg-transparent delete_efek_shadow_btn">
                         <span style="font-size: 9pt">Login</span>
                     </button>
                 </div>
