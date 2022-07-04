@@ -6062,7 +6062,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
                                 style="min-width: 73px;">
                                 <a class="dropdown-item p-0 text-center" href="#"
-                                    onclick="document.getElementById('logout-form').submit()">
+                                    onclick="document.getElementById('logout-form').submit()"
                                     style="font-size: 12px"><i class="fa fa-sign-out"></i> Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     class="d-none">
