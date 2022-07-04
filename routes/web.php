@@ -47,12 +47,8 @@ use Jenssegers\Agent\Agent;
 // });
 
 Route::get('/', function (Request $request) {
-    // $agent = new Agent();
-    // if ($agent->isMobile() || $agent->isTablet()) {
-    //     return view('block');
-    // }
     return view('layout.main');
-})->name('home');
+})->middleware('auth')->name('home');
 
 
 //KBLI PUSDATIN
