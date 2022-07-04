@@ -12,4 +12,9 @@ class PendataanUsaha extends Model
     protected $table = 'pendataan_usaha';
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public function image()
+    {
+        return $this->hasMany(ImagePendataanUsaha::class, 'id_survey', 'id');
+    }
 }

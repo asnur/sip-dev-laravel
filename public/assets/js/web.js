@@ -35,6 +35,7 @@ var arrPrint = [];
 var files = [];
 var Newfiles = [];
 var filesBulk = [];
+var filesUsaha = [];
 var luasSimulasi;
 var KDH, KLB, NJOP;
 var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
@@ -5889,6 +5890,8 @@ function resetUsaha() {
     $("#alamatUsaha").val("");
     $("#refrensikordinatUsaha").text("-");
     $("#resetUsaha").hide();
+    filesUsaha = [];
+    $("#previewFotoUsaha").html("");
 }
 
 function detailDataSurvey(id) {
@@ -6414,6 +6417,18 @@ const removeItem = (event) => {
     });
 };
 
+const removeItemUsaha = (event) => {
+    $(".btn-remove-usaha").on("click", function (e) {
+        let index = $(this).data("index");
+        // console.log("clicked");
+        if (index !== undefined) {
+            filesUsaha.splice(filesUsaha.indexOf(Newfiles[index]), 1);
+            console.log(index);
+        }
+        $(this).parent().remove();
+    });
+};
+
 const removeFileArray = (event) => {
     console.log(event);
 };
@@ -6499,6 +6514,53 @@ function preview_foto_survey() {
     //         sliderOption("previewFotoSurvey");
     //     }
     // }
+}
+
+function preview_foto_usaha() {
+    let gambarLokasi = $("#gambarLokasiUsaha").get(0).files.length;
+    let countArray = Newfiles.length;
+    if (gambarLokasi > 3) {
+        $("#pesanGagalUsaha").html(
+            `<strong>Gagal!</strong> Foto Tidak Boleh Dari Tiga.`
+        );
+        $("#pesanGagalUsaha").show();
+        $("#gambarLokasiUsaha").val("");
+        setTimeout(function () {
+            $("#pesanGagalUsaha").hide();
+            $("#pesanGagalUsaha").html(
+                `<strong>Gagal!</strong> Anda Harus Mengisi Semua Form.`
+            );
+        }, 3000);
+    } else {
+        for (var i = 0; i < gambarLokasi; i++) {
+            let file = $("#gambarLokasiUsaha").get(0).files[i];
+            new Compressor(file, {
+                quality: 0.3,
+                convertSize: 1000000,
+                success(result) {
+                    filesUsaha.push(result);
+                    Newfiles.push(result);
+                },
+                error(err) {
+                    console.log(err.message);
+                },
+            });
+            let element = ``;
+            element += `
+                <div style="width:33.3%;float:left">
+                <button type="button" class="close btn-remove-usaha" data-index="${countArray++}" style="position: relative;
+                color: red;margin-bottom:-1rem;">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+                <img src="${URL.createObjectURL(
+                    event.target.files[i]
+                )}" class="w-100" style="height:100px;object-fit:cover;">
+                </div>
+            `;
+            $("#previewFotoUsaha").append(element);
+        }
+    }
+    removeItemUsaha();
 }
 
 function compresImageBulk() {
@@ -6692,6 +6754,9 @@ $("#formUsahaLocation").on("submit", function (e) {
             success: function (e) {
                 var id_user = e;
                 form_data.append("id_user", id_user);
+                filesUsaha.forEach((file) => {
+                    form_data.append("foto[]", file, file.name);
+                });
                 $.ajax({
                     url: `${APP_URL}/savePendataanUsaha`,
                     method: "POST",
