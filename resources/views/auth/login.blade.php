@@ -34,7 +34,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="passrowd"
+                                            <input type="password" name="password"
                                                 class="form-control @error('password') is-invalid @enderror" id="password"
                                                 placeholder="Password" style="font-size: 9pt" />
                                             @error('password')
