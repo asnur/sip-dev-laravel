@@ -21,7 +21,7 @@ class PendataanUsahaController extends Controller
 
     public function getPendataanUsaha()
     {
-        $pendataanUsaha = PendataanUsaha::all();
+        $pendataanUsaha = PendataanUsaha::where('user_id', Auth::user()->id)->get();
         return response()->json($pendataanUsaha);
     }
 
