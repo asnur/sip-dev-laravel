@@ -5798,12 +5798,12 @@ function getDataUsaha(id_user) {
                     html += `
                     <div class="col-sm-10"
                     onclick="geocoder.query('${e.kordinat}');editDataUsaha(${e.id},${e.id_user})"
-                    style="cursor: pointer;">
+                    style="cursor: pointer; font-size:10pt">
                     <a class="w-100 usaha-title"
                         style="font-weight: bold;word-break: break-all;
                     white-space: normal; cursor: pointer;font-size:11pt;">${e.nama_usaha}</a><br>
-                    <p class="mt-3" style="font-size:12px;line-height:0;">Pelaku : ${e.pelaku}</p>
-                    <p style="font-size:12px;line-height:0;">No izin: ${e.no_perjanjian}</p>
+                    <p class="mt-3" style="line-height:0;">Pelaku : ${e.pelaku}</p>
+                    <p style="line-height:0;">No izin: ${e.no_perjanjian}</p>
                 </div>
                 <div class="col-sm-2 d-flex align-items-center pl-5">
                     <div class="row">

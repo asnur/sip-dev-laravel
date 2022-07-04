@@ -471,7 +471,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
             <div class="mt-5">
                 <div class="row">
                     <div class="col-md-6">
-                        <span class="font-weight-bold" style="font-size: 12pt">Arsip Lokasi
+                        <span class="font-weight-bold" style="font-size: 14px">Arsip Lokasi
                         </span>
                     </div>
                     <div class="col-md-6 text-right">
