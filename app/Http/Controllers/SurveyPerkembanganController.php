@@ -236,7 +236,7 @@ class SurveyPerkembanganController extends Controller
             'features' => []
         ];
 
-        $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->partner_id)->get();
+        $data = SurveyPerkembangan::with('image')->whereIn('id_user', [Auth::user()->partner_id, Auth::user()->partner_id_2])->get();
 
         foreach ($data as $d) {
             $coor = explode(",", $d->kordinat);
