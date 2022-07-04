@@ -5354,7 +5354,7 @@ function cekLoginChat() {
             // status += e;
             // var id_admin = localStorage.getItem("id_kelurahan");
             // var kelurahan = localStorage.getItem("kelurahan");
-            if (e == 1) {
+            if (e.status == 1) {
                 count += 1;
                 if ($("#boxKonsul").length == 0) {
                     $("#frameChat")
@@ -5560,7 +5560,7 @@ function pinLocation() {
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
         success: function (e) {
-            if (e == 1) {
+            if (e.status == 1) {
                 $.ajax({
                     url: `${APP_URL}/getIdUser`,
                     method: "GET",
@@ -5582,7 +5582,7 @@ function usahaLocation() {
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
         success: function (e) {
-            if (e == 1) {
+            if (e.status == 1) {
                 $.ajax({
                     url: `${APP_URL}/getIdUser`,
                     method: "GET",
@@ -5605,7 +5605,7 @@ function surveyLocation() {
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
         success: function (e) {
-            if (e == 1) {
+            if (e.status == 1) {
                 $.ajax({
                     url: `${APP_URL}/getIdUser`,
                     method: "GET",
