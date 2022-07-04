@@ -397,7 +397,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 12px; line-height:0px">-</a>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px; line-height:0px">No Perijinan <sup
+                            <label style="font-size: 13px; line-height:0px">No Perizinan <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
@@ -445,18 +445,19 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </select>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px; line-height:0px">Jml Tenaga Kerja <sup
+                            <label style="font-size: 13px; line-height:0px">Jumlah Pekerja <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <input type="number" min="0" name="jumlah_tenaga" class="w-100"
-                                id="jumlahTenagaUsaha" style="font-size: 13px; line-height:0px">
+                            <input type="number" min="0" name="jumlah_tenaga" id="jumlahTenagaUsaha"
+                                style="font-size: 13px; line-height:0px; width:116px;">
                         </div>
                         <div class="col-12">
-                            <button type="submit" id="submitUsahaLocation" class="btn btn-success mt-3 text-white"
-                                style="font-size: 13px; cursor: pointer;"><i class="fa fa-paper-plane"></i>
-                                Simpan</button>
                             <center>
+                                <button type="submit" id="submitUsahaLocation"
+                                    class="btn btn-success mt-3 text-white"
+                                    style="font-size: 13px; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                                    Simpan</button>
                                 <div class="spinner-border mt-3" role="status" id="prosesUsaha"
                                     style="display: none;">
                                     <span class="sr-only">Loading...</span>

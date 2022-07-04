@@ -831,3 +831,7 @@ input[type="range"]::-moz-range-progress {
     width: 100%;
     text-align: center;
 }
+
+a.usaha-title:hover {
+    color: gray !important;
+}
