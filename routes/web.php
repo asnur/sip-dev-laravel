@@ -63,10 +63,18 @@ Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenang
 //cek Login Chat
 Route::get('/cekLoginChat', function (Request $request) {
     if (Auth::check()) {
-        return true;
+        $data = [
+            'status' => true,
+            'id' => Auth::user()->id,
+        ];
+        return $data;
     } else {
         $request->session()->put('cek-login', 'login');
-        return false;
+        $data = [
+            'status' => false,
+            'id' => null,
+        ];
+        return $data;
     }
 });
 

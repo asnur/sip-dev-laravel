@@ -186,9 +186,10 @@ $(
 $.ajax({
     url: `${APP_URL}/cekLoginChat`,
     method: "GET",
+    dataType: "json",
     success: function (e) {
-        if (e == 1) {
-            var img = localStorage.getItem("imgProfile");
+        if (e.status == 1) {
+            var img = `${APP_URL}/profile/${e.id}.jpg`;
             $("#btnLogout").attr("src", img);
             $("#profile").show();
             $("#btnLogin").hide();
