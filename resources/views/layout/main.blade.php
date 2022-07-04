@@ -410,7 +410,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         </div>
                         <div class="col-md-7">
                             <select name="sektor" id="sektorUsaha" class="w-100"
-                                style="font-size: 13px; line-height:0px;">
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
                                 <option value="Kelautan dan perikanan">Kelautan dan perikanan</option>
                                 <option value="Pertanian">Pertanian</option>
                                 <option value="Lingkungan hidup dan kehutanan">Lingkungan hidup dan kehutanan</option>
@@ -432,11 +432,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </select>
                         </div>
                         <div class="col-md-5">
-                            <label style="font-size: 13px; line-height:0px">Modal Usaha <sup
+                            <label style="font-size: 13px; line-height:0px;">Modal Usaha <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <select name="modal" id="modalUsaha" style="font-size: 13px; line-height:0px">
+                            <select name="modal" class="w-50" id="modalUsaha"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
                                 <option value="< Rp 1 Milyar">
                                     < Rp 1 Milyar</option>
                                 <option value="Rp 1 - 5 Milyar">Rp 1 - 5 Milyar</option>
@@ -449,8 +450,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
                         <div class="col-md-7">
-                            <input type="number" min="0" name="jumlah_tenaga" id="jumlahTenagaUsaha"
-                                style="font-size: 13px; line-height:0px; width:116px;">
+                            <input type="number" class="w-50" min="0" name="jumlah_tenaga"
+                                id="jumlahTenagaUsaha" style="font-size: 13px; line-height:0px;">
                         </div>
                         <div class="col-12">
                             <center>
@@ -6199,12 +6200,12 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="col-md-12">
                         <select class="w-100" id="optionFilterChoro">
                             <option value="Total Omzet UMKM">(DPMPTSP) Total Omzet UMKM</option>
+                            <option value="Kepadatan Bangunan">(DPMPTSP) Jumlah Bangunan</option>
                             <option value="Pekerjaan">(RBI) Pekerjaan</option>
                             <option value="Pendidikan">(RBI) Pendidikan</option>
                             <option value="Agama">(RBI) Agama</option>
                             <option value="Jumlah Penduduk">(RBI) Jumlah Penduduk</option>
                             <option value="Kepadatan Penduduk">(RBI) Kepadatan Penduduk</option>
-                            <option value="Kepadatan Bangunan">(RBI) Jumlah Bangunan</option>
                             <option value="Data PPAP">(DPPAPP) Kependudukan</option>
                         </select>
                     </div>

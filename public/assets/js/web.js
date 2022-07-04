@@ -5802,7 +5802,7 @@ function getDataUsaha(id_user) {
                     <a class="w-100 usaha-title"
                         style="font-weight: bold;word-break: break-all;
                     white-space: normal; cursor: pointer;font-size:11pt;">${e.nama_usaha}</a><br>
-                    <p class="mt-3" style="line-height:0;">Pelaku : ${e.pelaku}</p>
+                    <p class="mt-3" style="line-height:0;">Nama Pemilik : ${e.pelaku}</p>
                     <p style="line-height:0;">No izin: ${e.no_perjanjian}</p>
                 </div>
                 <div class="col-sm-2 d-flex align-items-center pl-5">
