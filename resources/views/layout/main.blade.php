@@ -6237,7 +6237,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
     {{-- ScreenShoot Map --}}
     <div id="screenshotPlaceholder"></div>
-    <div class="runing-text" data-duplicated='true' data-direction='left'>-</div>
+    <div class="runing-text" data-duplicated='false' data-direction='left'>-</div>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
