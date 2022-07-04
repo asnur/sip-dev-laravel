@@ -1,4 +1,4 @@
-body {
+/* body {
     background: url("https://c4.wallpaperflare.com/wallpaper/702/43/725/jakarta-city-cityscape-wallpaper-preview.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,4 +16,116 @@ body {
 .card-header {
     background: none;
     border: none;
+} */
+
+form {
+    padding: 0 1em;
+}
+
+video {
+    filter: brightness(50%);
+}
+
+.letak {
+    position: relative;
+    top: 25%;
+    left: 16%;
+}
+
+.bg_video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: fill;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.konten {
+    /* width: 35%; */
+    border-radius: 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+    /* margin: 5em auto; */
+    display: flex;
+}
+.isi_konten {
+    background-color: #ea572b;
+    opacity: 0.5;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    padding: 0;
+}
+
+.login {
+    background-color: #fff;
+    opacity: 0.8;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 0;
+}
+
+.custom_form_input {
+    width: 100%;
+    border: 0px solid transparent;
+    border-radius: 0;
+    border-bottom: 1px solid #aaa;
+    padding: 1em 0.5em 0.5em;
+    padding-left: 1em;
+    outline: none;
+    /* margin: 1.5em auto; */
+    /* margin: 0.5em 1.5em 1.5em 1.5em; */
+    margin-top: 1em;
+    transition: all 0.5s ease;
+}
+.custom_form_input:focus {
+    border-bottom-color: #008080;
+    box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
+    border-radius: 4px;
+}
+
+.custom_btn_masuk {
+    transition: all 0.5s ease;
+    /* width: 76%; */
+    border-radius: 30px;
+    color: #008080;
+    font-weight: 600;
+    background-color: #fff;
+    border: 1px solid #008080;
+    /* margin-top: 1.5em;
+        margin-bottom: 1em; */
+}
+.custom_btn_masuk:hover,
+.custom_btn_masuk:focus {
+    background-color: #008080;
+    color: #fff;
+}
+
+.custom_btn_login {
+    transition: all 0.5s ease;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 500;
+    background-color: #fff;
+    border: 1px solid #fff;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    opacity: 0.8;
+    padding-top: 3% !important;
+    padding-left: 40% !important;
+    padding-right: 40% !important;
+    /* padding-bottom: 14% !important; */
+}
+.custom_btn_login:hover,
+.custom_btn_login:focus {
+    background-color: #ea572b !important;
+    color: #fff;
 }
