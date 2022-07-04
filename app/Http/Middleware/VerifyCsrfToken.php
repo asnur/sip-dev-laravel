@@ -19,7 +19,6 @@ class VerifyCsrfToken extends Middleware
         '/detailDataPin',
         '/saveUser',
         '/deleteImage',
-        '/logout',
         '/save_image',
         '/save_wilayah',
         '/save_kordinat',
