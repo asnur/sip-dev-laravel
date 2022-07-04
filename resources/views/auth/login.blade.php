@@ -34,6 +34,7 @@
                                             Login
                                         </button>
                                     </div>
+
                                 </form>
 
                                 <div class="text-center text-muted mt-2" style="font-size: 9pt">
@@ -45,6 +46,8 @@
                                         <img alt="Logo" style="width: 13%; margin-right: 1% !important;" src="{{ asset('assets/login/google_logo.png') }}" class="img-fluid me-3" />
                                         <span style="font-size: 9pt; font-weight:400; color:#000">Login dengan Gmail</span>
                                     </a>
+
+
                                 </div>
                             </div>
                         </div>
