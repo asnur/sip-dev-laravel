@@ -5711,7 +5711,7 @@ function getDataSurvey(id_user) {
                         <div class="row">
                             <div class="col-12 p-1">
                                 <a onclick="deleteDataSurvey(
-                                    ${e.id},
+                                    '${e.id}',
                                     ${id_user}
                                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
