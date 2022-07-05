@@ -5687,7 +5687,7 @@ function getDataSurvey(id_user) {
                     }');geocoder.query('${e.kordinat}');addSourceLayer('${
                         e.kelurahan
                     }');editDataSurvey(
-                        ${e.id},
+                        ${e.id.toString()},
                         ${id_user}
                     )">
                         </div>
@@ -5711,7 +5711,7 @@ function getDataSurvey(id_user) {
                         <div class="row">
                             <div class="col-12 p-1">
                                 <a onclick="deleteDataSurvey(
-                                    '${e.id}',
+                                    '${e.id.toString()}',
                                     ${id_user}
                                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
