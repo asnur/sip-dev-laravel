@@ -5866,11 +5866,12 @@ function editDataUsaha(id) {
                     .toString()
                     .slice(0, -5)}`
             );
+            $("#previewFotoUsaha").html("");
             image.forEach((el) => {
                 let element = ``;
                 element += `
                     <div style="width:33.3%;float:left">
-                    <button type="button" class="close btn-remove-usaha" style="position: relative;
+                    <button type="button" class="close btn-remove-usaha" onclick="deleteImageUsaha(${el.id})" style="position: relative;
                     color: red;margin-bottom:-1rem;">
                             <span aria-hidden="true">&times;</span>
                     </button>
@@ -6095,6 +6096,19 @@ const removeImageSurvey = (id) => {
             // }
             // sliderOption("previewFotoSurvey");
             // removeItem();
+        },
+    });
+};
+
+const deleteImageUsaha = (id) => {
+    $.ajax({
+        url: `${APP_URL}/deleteImageUsaha`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: (e) => {
+            console.log(e);
         },
     });
 };

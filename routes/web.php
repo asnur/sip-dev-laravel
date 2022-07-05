@@ -23,6 +23,7 @@ use App\Http\Controllers\PagePDFController;
 use App\Http\Controllers\PendataanUsahaController;
 use App\Http\Controllers\SektorController;
 use App\Http\Controllers\SurveyPerkembanganController;
+use App\Models\PendataanUsaha;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
 use App\Models\ProgresSurvey;
@@ -266,6 +267,7 @@ Route::post('/getPendataanUsaha', [PendataanUsahaController::class, 'getPendataa
 Route::get('/getPendataanUsaha/{id}', [PendataanUsahaController::class, 'getPendataanUsahaById'])->name('pendataan-usaha');
 Route::post('/deletePendataanUsaha', [PendataanUsahaController::class, 'deletePendataanUsaha'])->name('delete-pendataan-usaha');
 Route::get('/printUsahaExcel', [PendataanUsahaController::class, 'printUsahaExcel'])->name('print-usaha-excel');
+Route::post('/deleteImageUsaha', [PendataanUsahaController::class, 'deleteImageUsaha'])->name('delete-image-usaha');
 
 //Export Data
 Route::get('/data-jumlah-titik', function () {

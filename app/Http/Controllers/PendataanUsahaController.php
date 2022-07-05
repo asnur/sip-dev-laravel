@@ -73,4 +73,11 @@ class PendataanUsahaController extends Controller
         $data = PendataanUsaha::where('id_user', Auth::user()->id)->get();
         return view('print-usaha', compact('data'));
     }
+
+    public function deleteImageUsaha(Request $request)
+    {
+        $image = ImagePendataanUsaha::find($request->id);
+        unlink(public_path() . '/usaha/' . $image->name);
+        $image->delete();
+    }
 }
