@@ -68,19 +68,35 @@
         top: -8rem;
     }
 
+    .data_image_space .slick-prev:before {
+        font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f104";
+
+    }
+
+    .data_image_space .slick-next:before {
+        font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f105";
+        margin-right: -130% !important;
+    }
+
     .data_image_space .slick-list {
         width: 28.8rem !important;
     }
 
     .data_image_space .slick-prev {
-        margin-left: 0.2rem;
+        margin-left: 2rem;
         top: 10rem;
         position: relative;
     }
 
     .data_image_space .slick-next {
         position: relative;
-        left: 29.1rem;
+        left: 26.1rem;
         top: -10rem;
     }
 
@@ -91,6 +107,24 @@
     .data_image_space .slick-next:before {
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
+
+
+    .data_image_space2 .slick-prev:before {
+        font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f104";
+
+    }
+
+    .data_image_space2 .slick-next:before {
+        font-size: 35px !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f105";
+        /* margin-right: -130% !important; */
+    }
+
 
     /* .slick-prev:before,
     .slick-next:before {
@@ -294,9 +328,18 @@ $Roles = '';
 
 
 
-                <div class="card-body responsive_delete_card">
-                    <div style="font-size:40px;" class="h2 m-0 angka_responsive">
-                        {{ count($hasil_jumlah_titik) }}</div>
+                <div style="padding-top: 3%; padding-left: 5%; padding-bottom: 5%;" class="card-body responsive_delete_card">
+
+                    <div class="d-flex flex-column">
+                        <div class="">
+                            <div style="font-size:25px;" class="h2 m-0 angka_responsive">{{ $hasil_jumlah_titik }}</div>
+                        </div>
+                        <div class="">
+                            <div style="font-size:25px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}%</div>
+
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -531,7 +574,7 @@ $Roles = '';
                         <div class="col-md-12 mt-2">
 
 
-                            <div style="max-height:8rem;" class="image_slider_input">
+                            <div style="max-height:8rem;" class="image_slider_input data_image_space2">
 
                                 {{-- <div class="slide_foto"></div> --}}
 
@@ -564,6 +607,13 @@ $Roles = '';
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
                     <h3 class="card-title">Kinerja Petugas Survey</h3>
+
+                    <div class="card-actions" style="margin-top:0.6%;">
+                        <a style="font-weight:400; font-size:12px;" href="{{ route('kinerja-petugas-survey') }}">
+                            Unduh Excel
+                        </a>
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <div style="overflow-x: hidden !important;" class="table-responsive">
@@ -658,7 +708,15 @@ $Roles = '';
                 <div class="card-status-top bg-success"></div>
                 <div class="card-header">
                     <h3 class="card-title">Detil Input Petugas Survey</h3>
+
+                    <div class="card-actions" style="margin-top:0.6%;">
+                        <a style="font-weight:400; font-size:12px;" href="{{ route('detil-petugas-survey') }}">
+                            Unduh Excel
+                        </a>
+                    </div>
+
                 </div>
+
                 <div class="card-body">
                     <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
 
@@ -813,7 +871,7 @@ $Roles = '';
         </div>
     </div>
 
-    {{-- <div style="margin-top: 1rem" class="row-cards">
+    <div style="margin-top: 1rem;" class="row-cards d-none">
         <div class="col-md-12 col-xl-12">
             <div class="card">
                 <div class="card-status-top bg-success"></div>
@@ -829,9 +887,27 @@ $Roles = '';
                             <thead>
                                 <tr class="size_detil" valign="middle">
 
-                                    <th>
+                                    <th class="text-center">
                                         <div style="display: none;" class="lazy_name_kinerja">
-                                            Nama Kelurahan
+                                            Kecamatan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th class="text-center">
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Kelurahan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th class="text-center">
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Total Polygon
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -840,7 +916,7 @@ $Roles = '';
                                     </th>
                                     <th>
                                         <div style="display: none;" class="lazy_name_kinerja">
-                                            Jumlah Sub Blok
+                                            Polygon Tersurvey
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -848,15 +924,6 @@ $Roles = '';
                                         </div>
                                     </th>
                                     <th>
-                                        <div style="display: none;" class="lazy_name_kinerja">
-                                            Jumlah Sub Blok Tersurvey
-                                        </div>
-
-                                        <div class="hide_lazyload_kinerja">
-                                            <div class='skeleton-line'></div>
-                                        </div>
-                                    </th>
-                                    <th colspan="1">
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             &nbsp;&nbsp;&nbsp;&nbsp;Progres
                                         </div>
@@ -865,7 +932,9 @@ $Roles = '';
                                             <div class='skeleton-line'></div>
                                         </div>
                                     </th>
-                                    <th>
+
+                                    <th class="text-center">
+                                        Prosentase
                                     </th>
                                 </tr>
                             </thead>
@@ -873,6 +942,9 @@ $Roles = '';
 
                                 @php
                                 for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
+                                                                    <td>
+                                                                        <div class='skeleton-line'></div>
+                                                                    </td>
                                                                     <td>
                                                                         <div class='skeleton-line'></div>
                                                                     </td>
@@ -897,7 +969,7 @@ $Roles = '';
 
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
     <div style="margin-top: 0.2rem" class="row row-cards">
@@ -957,6 +1029,117 @@ $Roles = '';
 <script type="text/javascript">
     $(document).ready(function() {
 
+        // Kinerja Petugas Survey
+        $.fn.dataTable.pipeline = function(opts1) {
+            // Configuration options
+            var conf = $.extend({
+                    pages: 100, // number of pages to cache
+                    url: 'get-kinerja-petugas', // script url
+                    data: null, // function or object with parameters to send to the server
+                    // matching how `ajax.data` works in DataTables
+                    method: 'GET', // Ajax HTTP method
+                }
+                , opts1
+            );
+
+            // Private variables for storing the cache
+            var cacheLower = -1;
+            var cacheUpper = null;
+            var cacheLastRequest = null;
+            var cacheLastJson = null;
+
+            return function(request, drawCallback, settings) {
+                var ajax = false;
+                var requestStart = request.start;
+                var drawStart = request.start;
+                var requestLength = request.length;
+                var requestEnd = requestStart + requestLength;
+
+                if (settings.clearCache) {
+                    // API requested that the cache be cleared
+                    ajax = true;
+                    settings.clearCache = false;
+                } else if (cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper) {
+                    // outside cached data - need to make a request
+                    ajax = true;
+                } else if (
+                    JSON.stringify(request.order) !== JSON.stringify(cacheLastRequest.order) ||
+                    JSON.stringify(request.columns) !== JSON.stringify(cacheLastRequest.columns) ||
+                    JSON.stringify(request.search) !== JSON.stringify(cacheLastRequest.search)
+                ) {
+                    // properties changed (ordering, columns, searching)
+                    ajax = true;
+                }
+
+                // Store the request for checking next time around
+                cacheLastRequest = $.extend(true, {}, request);
+
+                if (ajax) {
+                    // Need data from the server
+                    if (requestStart < cacheLower) {
+                        requestStart = requestStart - requestLength * (conf.pages - 1);
+
+                        if (requestStart < 0) {
+                            requestStart = 0;
+                        }
+                    }
+
+                    cacheLower = requestStart;
+                    cacheUpper = requestStart + requestLength * conf.pages;
+
+                    request.start = requestStart;
+                    request.length = requestLength * conf.pages;
+
+                    // Provide the same `data` options as DataTables.
+                    if (typeof conf.data === 'function') {
+                        // As a function it is executed with the data object as an arg
+                        // for manipulation. If an object is returned, it is used as the
+                        // data object to submit
+                        var d = conf.data(request);
+                        if (d) {
+                            $.extend(request, d);
+                        }
+                    } else if ($.isPlainObject(conf.data)) {
+                        // As an object, the data given extends the default
+                        $.extend(request, conf.data);
+                    }
+
+                    return $.ajax({
+                        type: conf.method
+                        , url: conf.url
+                        , data: request
+                        , dataType: 'json'
+                        , cache: false
+                        , success: function(json) {
+                            cacheLastJson = $.extend(true, {}, json);
+
+                            if (cacheLower != drawStart) {
+                                json.data.splice(0, drawStart - cacheLower);
+                            }
+                            if (requestLength >= -1) {
+                                json.data.splice(requestLength, json.data.length);
+                            }
+
+                            drawCallback(json);
+                        }
+                    , });
+                } else {
+                    json = $.extend(true, {}, cacheLastJson);
+                    json.draw = request.draw; // Update the echo for each response
+                    json.data.splice(0, requestStart - cacheLower);
+                    json.data.splice(requestLength, json.data.length);
+
+                    drawCallback(json);
+                }
+            };
+        };
+
+        $.fn.dataTable.Api.register('clearPipeline()', function() {
+            return this.iterator('table', function(settings) {
+                settings.clearCache = true;
+            });
+        });
+
         $('#table-surveyer2').DataTable({
 
             "drawCallback": function(settings) {
@@ -966,14 +1149,20 @@ $Roles = '';
 
             processing: false
             , serverSide: true
-            , ajax: "{{ url('/admin/get-kinerja-petugas') }}"
+                // , ajax: "{{ url('/admin/get-kinerja-petugas') }}"
+
+            , ajax: $.fn.dataTable.pipeline({
+                    url: 'get-kinerja-petugas'
+                    , pages: 100, // number of pages to cache
+                })
+
 
             , ordering: true
             , language: {
                 search: "Pencarian:"
             , }
             , order: [
-                [3, "desc"]
+                [4, "desc"]
             , ],
 
             columns: [{
@@ -1023,205 +1212,533 @@ $Roles = '';
 
         });
 
-        $('#table-surveyer3').DataTable({
+        //Detil Input Petugas Survey
 
-            "drawCallback": function(settings) {
-                $(".hide_lazyload_kinerja").hide();
-                $(".lazy_name_kinerja").show();
-            },
-
-            processing: false
-            , serverSide: true
-            , ajax: "{{ url('/admin/get-view-survey') }}"
-            , language: {
-                search: "Pencarian:"
-            , }
-            , ordering: false
-            , sScrollX: "200%"
-            , sScrollXInner: "200%"
-            , responsive: false
-            , order: [
-                [0, "desc"]
-            ],
-
-
-            columns: [{
-                    data: 'petugas'
-                    , name: 'petugas'
+        $.fn.dataTable.pipeline = function(opts2) {
+            // Configuration options
+            var conf = $.extend({
+                    pages: 100, // number of pages to cache
+                    url: 'get-view-survey', // script url
+                    data: null, // function or object with parameters to send to the server
+                    // matching how `ajax.data` works in DataTables
+                    method: 'GET', // Ajax HTTP method
                 }
-                , {
-                    data: 'name_tempat'
-                    , name: 'name_tempat'
-                }
-                , {
-                    data: 'id_sub_blok'
-                    , name: 'id_sub_blok'
-                }, {
-                    data: 'kelurahan'
-                    , name: 'kelurahan'
-                }, {
-                    data: 'kecamatan'
-                    , name: 'kecamatan'
-                }, {
-                    data: 'regional'
-                    , name: 'regional'
-                }, {
-                    data: 'deskripsi_regional'
-                    , name: 'deskripsi_regional'
-                }, {
-                    data: 'neighborhood'
-                    , name: 'neighborhood'
-                }, {
-                    data: 'deskripsi_neighborhood'
-                    , name: 'deskripsi_neighborhood'
-                }, {
-                    data: 'transect_zone'
-                    , name: 'transect_zone'
-                }, {
-                    data: 'deskripsi_transect_zone'
-                    , name: 'deskripsi_transect_zone'
+                , opts2
+            );
+
+            // Private variables for storing the cache
+            var cacheLower = -1;
+            var cacheUpper = null;
+            var cacheLastRequest = null;
+            var cacheLastJson = null;
+
+            return function(request, drawCallback, settings) {
+                var ajax = false;
+                var requestStart = request.start;
+                var drawStart = request.start;
+                var requestLength = request.length;
+                var requestEnd = requestStart + requestLength;
+
+                if (settings.clearCache) {
+                    // API requested that the cache be cleared
+                    ajax = true;
+                    settings.clearCache = false;
+                } else if (cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper) {
+                    // outside cached data - need to make a request
+                    ajax = true;
+                } else if (
+                    JSON.stringify(request.order) !== JSON.stringify(cacheLastRequest.order) ||
+                    JSON.stringify(request.columns) !== JSON.stringify(cacheLastRequest.columns) ||
+                    JSON.stringify(request.search) !== JSON.stringify(cacheLastRequest.search)
+                ) {
+                    // properties changed (ordering, columns, searching)
+                    ajax = true;
                 }
 
-            , ],
+                // Store the request for checking next time around
+                cacheLastRequest = $.extend(true, {}, request);
 
-            columnDefs: [{
-                    orderSequence: ["asc", "desc"]
-                    , targets: [0]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [1]
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [2]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [3]
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [4]
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [5]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [6]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [7]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [8]
-                }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [9]
-                    , className: "text-center"
-                , }, {
-                    orderSequence: ["asc", "desc"]
-                    , targets: [10]
+                if (ajax) {
+                    // Need data from the server
+                    if (requestStart < cacheLower) {
+                        requestStart = requestStart - requestLength * (conf.pages - 1);
+
+                        if (requestStart < 0) {
+                            requestStart = 0;
+                        }
+                    }
+
+                    cacheLower = requestStart;
+                    cacheUpper = requestStart + requestLength * conf.pages;
+
+                    request.start = requestStart;
+                    request.length = requestLength * conf.pages;
+
+                    // Provide the same `data` options as DataTables.
+                    if (typeof conf.data === 'function') {
+                        // As a function it is executed with the data object as an arg
+                        // for manipulation. If an object is returned, it is used as the
+                        // data object to submit
+                        var d = conf.data(request);
+                        if (d) {
+                            $.extend(request, d);
+                        }
+                    } else if ($.isPlainObject(conf.data)) {
+                        // As an object, the data given extends the default
+                        $.extend(request, conf.data);
+                    }
+
+                    return $.ajax({
+                        type: conf.method
+                        , url: conf.url
+                        , data: request
+                        , dataType: 'json'
+                        , cache: false
+                        , success: function(json) {
+                            cacheLastJson = $.extend(true, {}, json);
+
+                            if (cacheLower != drawStart) {
+                                json.data.splice(0, drawStart - cacheLower);
+                            }
+                            if (requestLength >= -1) {
+                                json.data.splice(requestLength, json.data.length);
+                            }
+
+                            drawCallback(json);
+                        }
+                    , });
+                } else {
+                    json = $.extend(true, {}, cacheLastJson);
+                    json.draw = request.draw; // Update the echo for each response
+                    json.data.splice(0, requestStart - cacheLower);
+                    json.data.splice(requestLength, json.data.length);
+
+                    drawCallback(json);
+                }
+            };
+        };
+
+        $.fn.dataTable.Api.register('clearPipeline()', function() {
+            return this.iterator('table', function(settings) {
+                settings.clearCache = true;
+            });
+        });
+
+        $(document).ready(function() {
+            $('#table-surveyer3').DataTable({
+
+                "drawCallback": function(settings) {
+                    $(".hide_lazyload_kinerja").hide();
+                    $(".lazy_name_kinerja").show();
+                },
+
+                processing: false
+                , serverSide: true
+                    // , ajax: "{{ url('/admin/get-view-survey') }}"
+
+                , ajax: $.fn.dataTable.pipeline({
+                        url: 'get-view-survey'
+                        , pages: 100, // number of pages to cache
+                    })
+
+                , language: {
+                    search: "Pencarian:"
                 , }
+                , ordering: false
+                , sScrollX: "250%"
+                , sScrollXInner: "250%"
+                , responsive: false
+                , order: [
+                    [0, "desc"]
+                ],
 
-                , {
-                    width: "7%"
-                    , targets: 0
-                }, {
-                    width: "9%"
-                    , targets: 1
-                }, {
-                    width: "5%"
-                    , targets: 2
-                }, {
-                    width: "7%"
-                    , targets: 3
-                }, {
-                    width: "5%"
-                    , targets: 4
-                }, {
-                    width: "6%"
-                    , targets: 5
-                }, {
-                    width: "7%"
-                    , targets: 7
-                }, {
-                    width: "5%"
-                    , targets: 9
-                }
-            , ],
 
+                columns: [{
+                        data: 'petugas'
+                        , name: 'petugas'
+                    }
+                    , {
+                        data: 'name_tempat'
+                        , name: 'name_tempat'
+                    }
+                    , {
+                        data: 'id_sub_blok'
+                        , name: 'id_sub_blok'
+                    }, {
+                        data: 'kelurahan'
+                        , name: 'kelurahan'
+                    }, {
+                        data: 'kecamatan'
+                        , name: 'kecamatan'
+                    }, {
+                        data: 'regional'
+                        , name: 'regional'
+                    }, {
+                        data: 'deskripsi_regional'
+                        , name: 'deskripsi_regional'
+                    }, {
+                        data: 'neighborhood'
+                        , name: 'neighborhood'
+                    }, {
+                        data: 'deskripsi_neighborhood'
+                        , name: 'deskripsi_neighborhood'
+                    }, {
+                        data: 'transect_zone'
+                        , name: 'transect_zone'
+                    }, {
+                        data: 'deskripsi_transect_zone'
+                        , name: 'deskripsi_transect_zone'
+                    }
+
+                , ],
+
+                columnDefs: [{
+                        orderSequence: ["asc", "desc"]
+                        , targets: [0]
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [1]
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [2]
+                        , className: "text-center"
+
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [3]
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [4]
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [5]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [6]
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [7]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [8]
+                    }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [9]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [10]
+                    , }
+
+                    , {
+                        width: "7%"
+                        , targets: 0
+                    }, {
+                        width: "11%"
+                        , targets: 1
+                    }, {
+                        width: "5%"
+                        , targets: 2
+                    }, {
+                        width: "7%"
+                        , targets: 3
+                    }, {
+                        width: "5%"
+                        , targets: 4
+                    }, {
+                        width: "6%"
+                        , targets: 5
+                    }, {
+                        width: "7%"
+                        , targets: 7
+                    }, {
+                        width: "5%"
+                        , targets: 9
+                    }
+                , ],
+
+            });
         });
 
-        $('#table-surveyer4').DataTable({
 
-            "drawCallback": function(settings) {
-                $(".hide_lazyload_kinerja").hide();
-                $(".lazy_name_kinerja").show();
-            },
 
-            processing: false
-            , serverSide: true
-            , ajax: "{{ url('/admin/get-progres-survey') }}"
+        // Progres Survey Per Kelurahan
 
-            , ordering: false
-            , language: {
-                search: "Pencarian:"
-            , }
-            , order: [
-                [3, "desc"]
-            , ],
-
-            columns: [{
-                    data: 'nama_kel'
-                    , name: 'nama_kel'
-
-                }, {
-                    data: 'jumlah'
-                    , name: 'jumlah'
-
-                }, {
-                    data: 'survey_count'
-                    , name: 'survey_count'
-
-                }, {
-                    data: 'progres'
-                    , name: 'progres'
+        $.fn.dataTable.pipeline = function(opts3) {
+            // Configuration options
+            var conf = $.extend({
+                    pages: 100, // number of pages to cache
+                    url: 'get-progres-survey', // script url
+                    data: null, // function or object with parameters to send to the server
+                    // matching how `ajax.data` works in DataTables
+                    method: 'GET', // Ajax HTTP method
                 }
-                , {
-                    data: 'persen'
-                    , name: 'persen'
+                , opts3
+            );
+
+            // Private variables for storing the cache
+            var cacheLower = -1;
+            var cacheUpper = null;
+            var cacheLastRequest = null;
+            var cacheLastJson = null;
+
+            return function(request, drawCallback, settings) {
+                var ajax = false;
+                var requestStart = request.start;
+                var drawStart = request.start;
+                var requestLength = request.length;
+                var requestEnd = requestStart + requestLength;
+
+                if (settings.clearCache) {
+                    // API requested that the cache be cleared
+                    ajax = true;
+                    settings.clearCache = false;
+                } else if (cacheLower < 0 || requestStart < cacheLower || requestEnd > cacheUpper) {
+                    // outside cached data - need to make a request
+                    ajax = true;
+                } else if (
+                    JSON.stringify(request.order) !== JSON.stringify(cacheLastRequest.order) ||
+                    JSON.stringify(request.columns) !== JSON.stringify(cacheLastRequest.columns) ||
+                    JSON.stringify(request.search) !== JSON.stringify(cacheLastRequest.search)
+                ) {
+                    // properties changed (ordering, columns, searching)
+                    ajax = true;
                 }
-            ],
 
-            columnDefs: [{
-                orderSequence: ["asc", "desc"]
-                , targets: [0]
-                , className: "text-left"
-            , }, {
-                orderSequence: ["asc", "desc"]
-                , targets: [1]
-                , className: "text-center"
-            , }, {
-                orderSequence: ["asc", "desc"]
-                , targets: [2]
-                , className: "text-center"
-            , }, {
-                orderSequence: ["asc", "desc"]
-                , targets: [3]
-                , className: "text-center"
-            , }, ],
+                // Store the request for checking next time around
+                cacheLastRequest = $.extend(true, {}, request);
 
-            // 'rowsGroup': [0]
-            // , 'createdRow': function(row, data, dataIndex) {
-            //     if (data[4] === '') {
-            //         $('th:eq(1)', row).attr('colspan', 2);
-            //         $('th:eq(2)', row).css('display', 'none');
-            //         $('th:eq(3)', row).css('display', 'none');
-            //         $('th:eq(4)', row).css('display', 'none');
-            //     }
-            // }
+                if (ajax) {
+                    // Need data from the server
+                    if (requestStart < cacheLower) {
+                        requestStart = requestStart - requestLength * (conf.pages - 1);
 
+                        if (requestStart < 0) {
+                            requestStart = 0;
+                        }
+                    }
 
+                    cacheLower = requestStart;
+                    cacheUpper = requestStart + requestLength * conf.pages;
+
+                    request.start = requestStart;
+                    request.length = requestLength * conf.pages;
+
+                    // Provide the same `data` options as DataTables.
+                    if (typeof conf.data === 'function') {
+                        // As a function it is executed with the data object as an arg
+                        // for manipulation. If an object is returned, it is used as the
+                        // data object to submit
+                        var d = conf.data(request);
+                        if (d) {
+                            $.extend(request, d);
+                        }
+                    } else if ($.isPlainObject(conf.data)) {
+                        // As an object, the data given extends the default
+                        $.extend(request, conf.data);
+                    }
+
+                    return $.ajax({
+                        type: conf.method
+                        , url: conf.url
+                        , data: request
+                        , dataType: 'json'
+                        , cache: false
+                        , success: function(json) {
+                            cacheLastJson = $.extend(true, {}, json);
+
+                            if (cacheLower != drawStart) {
+                                json.data.splice(0, drawStart - cacheLower);
+                            }
+                            if (requestLength >= -1) {
+                                json.data.splice(requestLength, json.data.length);
+                            }
+
+                            drawCallback(json);
+                        }
+                    , });
+                } else {
+                    json = $.extend(true, {}, cacheLastJson);
+                    json.draw = request.draw; // Update the echo for each response
+                    json.data.splice(0, requestStart - cacheLower);
+                    json.data.splice(requestLength, json.data.length);
+
+                    drawCallback(json);
+                }
+            };
+        };
+
+        $.fn.dataTable.Api.register('clearPipeline()', function() {
+            return this.iterator('table', function(settings) {
+                settings.clearCache = true;
+            });
         });
+
+        $(document).ready(function() {
+            $('#table-surveyer4').DataTable({
+                processing: false
+                , serverSide: true
+                , ajax: $.fn.dataTable.pipeline({
+                        url: 'get-progres-survey'
+                        , pages: 100, // number of pages to cache
+                    })
+
+                , ordering: true
+                , language: {
+                    search: "Pencarian:"
+                , }
+                , order: [
+                    [4, "desc"]
+                , ],
+
+                columns: [{
+                        data: 'nama_kec'
+                        , name: 'nama_kec'
+
+                    }, {
+                        data: 'nama_kel'
+                        , name: 'nama_kel'
+
+                    }, {
+                        data: 'jumlah'
+                        , name: 'jumlah'
+
+                    }, {
+                        data: 'survey_count_null'
+                        , name: 'survey_count_null'
+
+                    }, {
+                        data: 'progres'
+                        , name: 'progres'
+                    }
+                    , {
+                        data: 'persen'
+                        , name: 'persen'
+                    }
+                ],
+
+                columnDefs: [{
+                        orderSequence: ["asc", "desc"]
+                        , targets: [0]
+                        , className: "text-left"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [1]
+                        , className: "text-left"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [2]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [3]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [4]
+                        , className: "text-center"
+                    , }, {
+                        orderSequence: ["asc", "desc"]
+                        , targets: [5]
+                        , className: "text-center"
+                    , }
+
+
+                , ],
+
+
+            });
+        });
+
+        // $('#table-surveyer45').DataTable({
+
+        //     "drawCallback": function(settings) {
+        //         $(".hide_lazyload_kinerja").hide();
+        //         $(".lazy_name_kinerja").show();
+        //     },
+
+        //     processing: false
+        //     , serverSide: true
+        //     , ajax: "{{ url('/admin/get-progres-survey') }}"
+
+        //     , ordering: true
+        //     , language: {
+        //         search: "Pencarian:"
+        //     , }
+        //     , order: [
+        //         [4, "desc"]
+        //     , ],
+
+        //     columns: [{
+        //             data: 'nama_kel'
+        //             , name: 'nama_kel'
+
+        //         }, {
+        //             data: 'jumlah'
+        //             , name: 'jumlah'
+
+        //         }, {
+        //             data: 'survey_count'
+        //             , name: 'survey_count'
+
+        //         }
+        //         , {
+        //             data: 'kelurahan_count'
+        //             , name: 'kelurahan_count'
+
+        //         }, {
+        //             data: 'progres'
+        //             , name: 'progres'
+        //         }
+        //         , {
+        //             data: 'persen'
+        //             , name: 'persen'
+        //         }
+        //     ],
+
+        //     columnDefs: [{
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [0]
+        //             , className: "text-left"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [1]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [2]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [3]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [4]
+        //             , className: "text-center"
+        //         , }, {
+        //             orderSequence: ["asc", "desc"]
+        //             , targets: [5]
+        //             , className: "text-center"
+        //         , }
+
+
+        //     , ],
+
+        //     // 'rowsGroup': [0]
+        //     // , 'createdRow': function(row, data, dataIndex) {
+        //     //     if (data[4] === '') {
+        //     //         $('th:eq(1)', row).attr('colspan', 2);
+        //     //         $('th:eq(2)', row).css('display', 'none');
+        //     //         $('th:eq(3)', row).css('display', 'none');
+        //     //         $('th:eq(4)', row).css('display', 'none');
+        //     //     }
+        //     // }
+
+
+        // });
 
 
     })

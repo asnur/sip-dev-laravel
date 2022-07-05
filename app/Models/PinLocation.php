@@ -9,6 +9,8 @@ class PinLocation extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
+
     protected $table = "pin_location";
 
     public $timestamps = false;

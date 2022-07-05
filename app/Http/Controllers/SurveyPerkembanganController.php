@@ -15,6 +15,7 @@ use Image;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SurveyPerkembanganController extends Controller
@@ -39,6 +40,9 @@ class SurveyPerkembanganController extends Controller
 
     public function saveDataSurvey(Request $request)
     {
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
+        }
         $uid = base64_encode($request->input('id_sublok') . $request->input('name') . $request->input('kelurahan') . $request->input('kecamatan') . $request->input('regional') . $request->input('neighborhood') . $request->input('transect_zone') . $request->input('id_user'));
         $id_fix = explode(",", $request->input('kordinat'));
         $saved = SurveyPerkembangan::create([
@@ -55,6 +59,7 @@ class SurveyPerkembanganController extends Controller
             'transect_zone' => $request->input('transect_zone'),
             'deskripsi_transect_zone' => $request->input('deskripsi_transect_zone'),
             'id_user' => $request->input('id_user'),
+            'global_id' => $request->input('global_id'),
             'uid' => $uid,
         ]);
 
@@ -82,7 +87,10 @@ class SurveyPerkembanganController extends Controller
     public function saveEditDataSurvey(Request $request)
     {
         // dd($request->all());
-        $data = SurveyPerkembangan::find($request->input('id'));
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
+        }
+        $data = SurveyPerkembangan::where('id_baru', (int)$request->input('id'))->get();
         $data->id_sub_blok = $request->input('id_sublok');
         $data->name = $request->input('name');
         $data->kordinat = $request->input('kordinat');
@@ -93,6 +101,8 @@ class SurveyPerkembanganController extends Controller
         $data->neighborhood = $request->input('neighborhood');
         $data->deskripsi_neighborhood = $request->input('deskripsi_neighborhood');
         $data->transect_zone = $request->input('transect_zone');
+        $data->deskripsi_transect_zone = $request->input('deskripsi_transect_zone');
+        $data->global_id = $request->input('global_id');
 
         $data->save();
 
@@ -112,16 +122,18 @@ class SurveyPerkembanganController extends Controller
 
     public function editDataSurvey(Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->find($request->input('id'));
+        $data = SurveyPerkembangan::with('image')->where('id_baru', (int)$request->input('id'))->first();
 
         return $data;
     }
 
     public function deleteDataSurvey(Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->find($request->input('id'));
-
-        if ($data->image != null) {
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
+        }
+        $data = SurveyPerkembangan::with('image')->where('id_baru', (int)$request->input('id'))->first();
+        if (count($data->image) != 0) {
             foreach ($data->image as $img) {
                 unlink(public_path() . '/survey/' . $img->name);
                 $data_image = SurveyPerkembanganImage::find($img->id);
@@ -156,7 +168,7 @@ class SurveyPerkembanganController extends Controller
 
     public function printSurvey(Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
+        $data = SurveyPerkembangan::where('id_user', Auth::user()->id)->get();
         $opciones_ssl = array(
             "ssl" => array(
                 "verify_peer" => false,
@@ -172,6 +184,13 @@ class SurveyPerkembanganController extends Controller
         return $pdf->download('Arsip Survey ' . Auth::user()->name . '.pdf');
     }
 
+    public function printSurveyExcel(Request $request)
+    {
+        $data = SurveyPerkembangan::where('id_user', Auth::user()->id)->get();
+
+        return view('print-excel', compact('data'));
+    }
+
     public function layerSurveyPerkembangan()
     {
         $geojson_format = [
@@ -180,6 +199,44 @@ class SurveyPerkembanganController extends Controller
         ];
 
         $data = SurveyPerkembangan::with('image')->where('id_user', Auth::user()->id)->get();
+
+        foreach ($data as $d) {
+            $coor = explode(",", $d->kordinat);
+            $value_data = [
+                'type' => "Feature",
+                'properties' => [
+                    'name' => $d->name,
+                    'id_sub_blok' => $d->id_sub_blok,
+                    'image' => $d->image,
+                    'kelurahan' => $d->kelurahan,
+                    'kecamatan' => $d->kecamatan,
+                    'regional' => $d->regional,
+                    'deskripsi_regional' => $d->deskripsi_regional,
+                    'neighborhood' => $d->neighborhood,
+                    'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
+                    'transect_zone' => $d->transect_zone,
+                    'deskripsi_transect_zone' => $d->deskripsi_transect_zone,
+                ],
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [(float)$coor[1], (float)$coor[0]]
+                ]
+            ];
+
+            array_push($geojson_format['features'], $value_data);
+        }
+
+        return response()->json($geojson_format);
+    }
+
+    public function layerSurveyPerkembanganPartner()
+    {
+        $geojson_format = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+
+        $data = SurveyPerkembangan::with('image')->whereIn('id_user', [Auth::user()->partner_id, Auth::user()->partner_id_2])->get();
 
         foreach ($data as $d) {
             $coor = explode(",", $d->kordinat);
@@ -250,6 +307,9 @@ class SurveyPerkembanganController extends Controller
 
     public function importExcelSurvey(Request $request)
     {
+        if (Auth::user()->hasRole('CPNS')) {
+            return response()->json(['error' => 'Anda tidak memiliki akses']);
+        }
         $loadExcel = Excel::toArray(new SurveyImport, $request->file('excel'));
         if ($loadExcel[0] == []) {
             return response()->json(['error' => 'Data Tidak Lengkap']);
@@ -271,5 +331,18 @@ class SurveyPerkembanganController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
+    }
+
+    public function exportImageSurvey($transect_zone)
+    {
+        $data = DB::connection('pgsql')->select("SELECT DISTINCT i.name FROM image_survey_perkembangan i JOIN survey_perkembangan_wilayah s ON s.id::bigint=i.id_survey WHERE s.transect_zone = '$transect_zone'");
+        $list_image = [];
+        foreach ($data as $d) {
+            array_push($list_image, public_path() . '/survey/' . $d->name);
+        }
+
+        $zipper = new \Madnest\Madzipper\Madzipper;
+        $zipper->make(public_path() . '/survey/' . $transect_zone . '.zip')->add($list_image)->close();
+        return response()->download(public_path() . '/survey/' . $transect_zone . '.zip');
     }
 }

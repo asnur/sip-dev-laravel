@@ -35,6 +35,7 @@ var arrPrint = [];
 var files = [];
 var Newfiles = [];
 var filesBulk = [];
+var filesUsaha = [];
 var luasSimulasi;
 var KDH, KLB, NJOP;
 var token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg5NTQxMjIsIm5hbWUiOiJhZG1pbiJ9.WwGrJI-Cp_CJivzPuq3YrTOrygJrxO7r1jdx891xY5U`;
@@ -180,15 +181,16 @@ var dsc_tpz = `
     `;
 
 $(
-    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk, #pesanGagalSurveyBulk"
+    "#btn-titik, #btn-print, #pesanGagal, #pesanBerhasil, #pesanBerhasilEdit, #pesanBerhasilHapus, #messageNoData, #profile, #pesanFoto, #pesanGagalPrint, #pesanGagalPrintKBLI, #formPinLocationEdit, #pesanGagalPrintDigitasi, #pesanGagalPrintDigitasiOption, #formSurveyLocationEdit, #pesanBerhasilSurvey, #pesanGagalSurvey, #messageNoDataSurvey, #pesanBerhasilEditSurvey, #pesanBerhasilHapusSurvey, #prosesSurvey, #resetSurey, #prosesSurveyBulk, #pesanGagalSurveyBulk, #pesanGagalUsaha, #pesanBerhasilUsaha, #resetUsaha"
 ).hide();
 
 $.ajax({
     url: `${APP_URL}/cekLoginChat`,
     method: "GET",
+    dataType: "json",
     success: function (e) {
-        if (e == 1) {
-            var img = localStorage.getItem("imgProfile");
+        if (e.status == 1) {
+            var img = `${APP_URL}/profile/${e.id}.jpg`;
             $("#btnLogout").attr("src", img);
             $("#profile").show();
             $("#btnLogin").hide();
@@ -209,6 +211,7 @@ for (var i = 0; i < inputs.length; i++) {
 $(window).on("load", function () {
     localStorage.removeItem("id_kelurahan");
     localStorage.removeItem("opsi");
+    localStorage.removeItem("jenis_data_dppapp");
     localStorage.setItem("simulasi", "");
     localStorage.setItem("direction", 1);
     localStorage.setItem("circleDraw", 0);
@@ -450,7 +453,7 @@ map.addControl(new PitchToggle({ minpitchzoom: 15 }));
 // map.addControl(new CircleToggle({ radius: 1500 }));
 
 $(
-    "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP"
+    "#lokasi-tab, #ketentuan-tab, #poi-tab, #kbli-tab, #cetak-tab, #simulasi-tab, #btnSHP, #simio-tab"
 ).on("click", () => {
     if ($("#enable-direction").prop("checked") == true) {
         $("#enable-direction").trigger("click");
@@ -970,7 +973,17 @@ map.on("style.load", function () {
         }
         $("#kordinatPin").val(`${coornya.lat},${coornya.lng}`);
         $("#kordinatSurvey").val(`${coornya.lat},${coornya.lng}`);
+        $("#kordinatUsaha").val(`${coornya.lat},${coornya.lng}`);
+        $("#refrensikordinatUsaha").text(
+            `${coornya.lat.toString().slice(0, -2)},${coornya.lng
+                .toString()
+                .slice(0, -5)}`
+        );
         $("#refrensiGoogleMaps").attr(
+            "href",
+            `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
+        );
+        $("#refrensikordinatUsaha").attr(
             "href",
             `https://www.google.com/maps/search/%09${coornya.lat},${coornya.lng}`
         );
@@ -1785,9 +1798,13 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
     $("#kelurahanSurvey").val(dt.Kelurahan);
     $("#kecamatanSurvey").val(dt.Kecamatan);
+    $("#kelurahanUsaha").val(dt.Kelurahan);
+    $("#kecamatanUsaha").val(dt.Kecamatan);
     $("#textkelurahanSurvey").text(titleCase(dt.Kelurahan));
+    $("#textKelurahanUsaha").text(titleCase(dt.Kelurahan));
     $("#textkelurahanSurveyBulk").text(titleCase(dt.Kelurahan));
     $("#textkecamatanSurvey").text(titleCase(dt.Kecamatan));
+    $("#textKecamatanUsaha").text(titleCase(dt.Kecamatan));
     $("#textkecamatanSurveyBulk").text(titleCase(dt.Kecamatan));
 
     map.resize();
@@ -1977,6 +1994,15 @@ map.on(clickEvent, "zoning_fill", function (e) {
     $("#textidSubblokSurvey").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
+    $("#idSubbBlokUsaha").val(
+        dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
+    );
+    $("#textIdSubBlokUsaha").text(
+        dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
+    );
+    $("#textglobalidSurvey").text(dt["Global_ID"]);
+    $("#textglobalidSurveyBulk").text(dt["Global_ID"]);
+    $("#globalidSurvey").val(dt["Global_ID"]);
     $("#textidSubblokSurveyBulk").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
@@ -2555,6 +2581,43 @@ function getNJOP(e) {
     });
 }
 
+function getNJOPSurvey(e) {
+    // $("#dtNJOPBot").html("");
+    var htmlPopupLayer = "";
+    $.ajax({
+        url: `${url}/njop`,
+        method: "POST",
+        data: {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        beforeSend: function () {
+            // $('.map-loading').show()
+        },
+        success: function (dt) {
+            const dtResp = JSON.parse(dt);
+            const prop = dtResp.features[0].properties;
+            $("#njopSurvey").html("-");
+            if (dtResp.features != null) {
+                $("#njopSurvey").html(
+                    `Rp ${separatorNum(prop.Min)} - Rp ${separatorNum(
+                        prop.Max
+                    )} per m&sup2;`
+                );
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function (e) {
+            // $('.map-loading').hide()
+        },
+    });
+}
+
 function getPenuruanAirTanah(e) {
     $.ajax({
         url: `${url}/turun`,
@@ -2823,7 +2886,7 @@ function getRadius(e) {
 
 //Cari Wilayah
 
-$("#cari_wilayah, #cari_wilayah_survey").bindWithDelay(
+$("#cari_wilayah, #cari_wilayah_survey, #cari_wilayah_usaha").bindWithDelay(
     "keyup",
     function () {
         var query = $(this).val();
@@ -3008,6 +3071,378 @@ const banjir = (kelurahan, tahun) => {
             });
             addLayers("banjir");
             onOffLayers("banjir");
+        },
+    });
+};
+
+const choroDPPAPP = (category = "jlh_penduduk", kelurahan) => {
+    $.ajax({
+        url: `${url}/ppap`,
+        method: "POST",
+        dataType: "json",
+        data: {
+            jenis: category,
+            kelurahan: kelurahan,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        success: (e) => {
+            if (map.getSource("wilayahppapp")) {
+                map.removeLayer("wilayahppapp_fill");
+                map.removeSource("wilayahppapp");
+            }
+
+            map.addSource("wilayahppapp", {
+                type: "geojson",
+                data: e,
+            });
+
+            let paint;
+            let min, max, average;
+            let data = e.features;
+            let layers;
+            let colors;
+
+            let list_pekerjaan = [
+                {
+                    name: "Tidak Belum Bekerja",
+                    coloumn: "tdk_belum_bekerja",
+                },
+                {
+                    name: "Petani",
+                    coloumn: "petani",
+                },
+                {
+                    name: "Nelayan",
+                    coloumn: "nelayan",
+                },
+                {
+                    name: "Pedagang",
+                    coloumn: "pedagang",
+                },
+                {
+                    name: "Pejabat Negara",
+                    coloumn: "pejabat_negara",
+                },
+                {
+                    name: "PNS TNI Polri",
+                    coloumn: "pns_tni_polri",
+                },
+                {
+                    name: "Pegawai Swasta",
+                    coloumn: "peg_swasta",
+                },
+                {
+                    name: "Wiraswasta",
+                    coloumn: "wiraswasta",
+                },
+                {
+                    name: "Pensuinan",
+                    coloumn: "pensuinan",
+                },
+                {
+                    name: "Pekerja Lepas",
+                    coloumn: "pekerja_lepas",
+                },
+            ];
+
+            let list_pendidikan = [
+                {
+                    name: "Tidak Sekolah",
+                    coloumn: "tdk_belum_sekolah",
+                },
+                {
+                    name: "Masih SD",
+                    coloumn: "masih_sd",
+                },
+                {
+                    name: "Tamat SD",
+                    coloumn: "tamat_sd",
+                },
+                {
+                    name: "Tamat SMP",
+                    coloumn: "tamat_smp",
+                },
+                {
+                    name: "Tamat SMA",
+                    coloumn: "tamat_sma",
+                },
+                {
+                    name: "Tamat D1/D2",
+                    coloumn: "tamat_d1_d2",
+                },
+                {
+                    name: "Tamat D3",
+                    coloumn: "tamat_d3",
+                },
+                {
+                    name: "Tamat D4/Sarjana",
+                    coloumn: "tamat_d4_srjna",
+                },
+                {
+                    name: "Tamat S2",
+                    coloumn: "tamat_s2",
+                },
+                {
+                    name: "Tamat S3",
+                    coloumn: "tamat_s3",
+                },
+                {
+                    name: "Tidak Sekolah Lagi",
+                    coloumn: "tdk_sekolah_lagi",
+                },
+                {
+                    name: "Masih D3",
+                    coloumn: "masih_d3",
+                },
+                {
+                    name: "Masih SMP",
+                    coloumn: "masih_smp",
+                },
+                {
+                    name: "Masih D4/Sarjana",
+                    coloumn: "masih_d4_srjna",
+                },
+                {
+                    name: "Masih SMA",
+                    coloumn: "masih_sm",
+                },
+                {
+                    name: "Masih S2",
+                    coloumn: "masih_s2",
+                },
+                {
+                    name: "Masih D1/D2",
+                    coloumn: "masih_d1_d2",
+                },
+                {
+                    name: "Masih S3",
+                    coloumn: "masih_s3",
+                },
+                {
+                    name: "Tidak Tamat SD",
+                    coloumn: "tdk_tamat_sd",
+                },
+            ];
+
+            let list_resiko_bencana = [
+                {
+                    name: "Rawan Kebakaran",
+                    coloumn: "rmh_rawan_kebakar",
+                },
+                {
+                    name: "Pernah Banjir",
+                    coloumn: "rmh_pernah_banjir",
+                },
+                {
+                    name: "Pernah Kebakar",
+                    coloumn: "rmh_pernah_kebakar",
+                },
+            ];
+
+            min = data
+                .map(function (el) {
+                    return el.properties["Jumlah"];
+                })
+                .reduce(function (prevEl, el) {
+                    return Math.min(prevEl, el);
+                });
+            max = data
+                .map(function (el) {
+                    return el.properties["Jumlah"];
+                })
+                .reduce(function (prevEl, el) {
+                    return Math.max(prevEl, el);
+                });
+            average = Math.ceil((max - min) / 6);
+
+            layers = [
+                `${min} - ${min + average * 1 + 1}`,
+                `${min + average * 1 + 2} - ${min + average * 2 + 1}`,
+                `${min + average * 2 + 2} - ${min + average * 3 + 1}`,
+                `${min + average * 3 + 2} - ${min + average * 4 + 1}`,
+                `${min + average * 4 + 2} - ${min + average * 5 + 1}`,
+                `> ${min + average * 5 + 2}`,
+            ];
+
+            if (list_pekerjaan.some((e) => e.coloumn === category)) {
+                colors = [
+                    "#1cfc03",
+                    "#22eb0c",
+                    "#22db0d",
+                    "#1dbd0b",
+                    "#1aa60a",
+                    "#198f0b",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#1cfc03",
+                    min + average * 2 + 1,
+                    "#22eb0c",
+                    min + average * 3 + 1,
+                    "#22db0d",
+                    min + average * 4 + 1,
+                    "#1dbd0b",
+                    min + average * 5 + 1,
+                    "#1aa60a",
+                    min + average * 6 + 1,
+                    "#198f0b",
+                ];
+            } else if (list_pendidikan.some((e) => e.coloumn === category)) {
+                colors = [
+                    "#254ef5",
+                    "#1e43d6",
+                    "#1a3aba",
+                    "#142f99",
+                    "#10267d",
+                    "#0b1a57",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#254ef5",
+                    min + average * 2 + 1,
+                    "#1e43d6",
+                    min + average * 3 + 1,
+                    "#1a3aba",
+                    min + average * 4 + 1,
+                    "#142f99",
+                    min + average * 5 + 1,
+                    "#10267d",
+                    min + average * 6 + 1,
+                    "#0b1a57",
+                ];
+            } else if (
+                list_resiko_bencana.some((e) => e.coloumn === category)
+            ) {
+                colors = [
+                    "#a90ffc",
+                    "#980ee3",
+                    "#870cc9",
+                    "#740aad",
+                    "#650996",
+                    "#51057a",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#a90ffc",
+                    min + average * 2 + 1,
+                    "#980ee3",
+                    min + average * 3 + 1,
+                    "#870cc9",
+                    min + average * 4 + 1,
+                    "#740aad",
+                    min + average * 5 + 1,
+                    "#650996",
+                    min + average * 6 + 1,
+                    "#51057a",
+                ];
+            } else if (category === "jlh_penduduk") {
+                colors = [
+                    "#f7143e",
+                    "#d61135",
+                    "#b50e2d",
+                    "#990c26",
+                    "#7d091e",
+                    "#690619",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#f7143e",
+                    min + average * 2 + 1,
+                    "#d61135",
+                    min + average * 3 + 1,
+                    "#b50e2d",
+                    min + average * 4 + 1,
+                    "#990c26",
+                    min + average * 5 + 1,
+                    "#7d091e",
+                    min + average * 6 + 1,
+                    "#690619",
+                ];
+            } else if (category === "jlh_rumah") {
+                colors = [
+                    "#0ce8e4",
+                    "#0ac9c6",
+                    "#09adab",
+                    "#068f8d",
+                    "#057876",
+                    "#04615f",
+                ];
+                paint = [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "Jumlah"],
+                    min + average * 1 + 1,
+                    "#0ce8e4",
+                    min + average * 2 + 1,
+                    "#0ac9c6",
+                    min + average * 3 + 1,
+                    "#09adab",
+                    min + average * 4 + 1,
+                    "#068f8d",
+                    min + average * 5 + 1,
+                    "#057876",
+                    min + average * 6 + 1,
+                    "#04615f",
+                ];
+            }
+
+            map.addLayer({
+                id: "wilayahppapp_fill",
+                type: "fill",
+                source: "wilayahppapp",
+                paint: {
+                    "fill-color": paint,
+                    "fill-opacity": 0.7,
+                    "fill-outline-color": "white",
+                },
+                layout: {
+                    visibility: "visible",
+                },
+            });
+
+            const legend = document.getElementById("legends");
+            legend.innerHTML = "";
+
+            map.on("mousemove", ({ point }) => {
+                const states = map.queryRenderedFeatures(point, {
+                    layers: ["wilayahppapp_fill"],
+                });
+
+                document.getElementById("pd").innerHTML = states.length
+                    ? `<div>${states[0].properties.RT}/${
+                          states[0].properties.RW
+                      }</div><p class="mb-0 my-2"><strong class="d-block">Jumlah</strong><span style="font-size:15px;">
+                    ${separatorNum(states[0].properties["Jumlah"])}</span></p>`
+                    : `<p class="mb-0">Arahkan kursor</p>`;
+            });
+
+            layers.forEach((layer, i) => {
+                const color = colors[i];
+                const item = document.createElement("div");
+                const key = document.createElement("span");
+                key.className = "legend-key";
+                key.style.backgroundColor = color;
+
+                const value = document.createElement("span");
+                value.innerHTML = `${layer}`;
+                item.appendChild(key);
+                item.appendChild(value);
+                legend.appendChild(item);
+            });
         },
     });
 };
@@ -3769,7 +4204,7 @@ function addLayers(layer) {
             paint: {
                 "fill-color": ["get", "fill"],
                 "fill-opacity": 1,
-                "fill-outline-color": "white",
+                "fill-outline-color": "black",
             },
             layout: {
                 visibility: "none",
@@ -4076,6 +4511,10 @@ function onOffLayers(layer) {
                 });
             } else {
                 hideLayer("wilayahindex_fill");
+                if (map.getLayer("wilayahppapp_fill")) {
+                    map.removeLayer("wilayahppapp_fill");
+                    map.removeSource("wilayahppapp");
+                }
                 $(".detail_omzet").hide();
                 $(".detail_jumlah").hide();
                 $("#btnInteractive").removeClass("text-primary");
@@ -4926,7 +5365,7 @@ function cekLoginChat() {
             // status += e;
             // var id_admin = localStorage.getItem("id_kelurahan");
             // var kelurahan = localStorage.getItem("kelurahan");
-            if (e == 1) {
+            if (e.status == 1) {
                 count += 1;
                 if ($("#boxKonsul").length == 0) {
                     $("#frameChat")
@@ -5132,7 +5571,7 @@ function pinLocation() {
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
         success: function (e) {
-            if (e == 1) {
+            if (e.status == 1) {
                 $.ajax({
                     url: `${APP_URL}/getIdUser`,
                     method: "GET",
@@ -5149,13 +5588,35 @@ function pinLocation() {
     });
 }
 
+function usahaLocation() {
+    $.ajax({
+        url: `${APP_URL}/cekLoginChat`,
+        method: "GET",
+        success: function (e) {
+            if (e.status == 1) {
+                $.ajax({
+                    url: `${APP_URL}/getIdUser`,
+                    method: "GET",
+                    success: (e) => {
+                        $(".info-usaha-location").show();
+                        getDataUsaha(e);
+                    },
+                });
+            } else {
+                $(".abcRioButtonContentWrapper").trigger("click");
+                localStorage.setItem("opsi", "usaha");
+            }
+        },
+    });
+}
+
 function surveyLocation() {
     resetSurvey();
     $.ajax({
         url: `${APP_URL}/cekLoginChat`,
         method: "GET",
         success: function (e) {
-            if (e == 1) {
+            if (e.status == 1) {
                 $.ajax({
                     url: `${APP_URL}/getIdUser`,
                     method: "GET",
@@ -5183,6 +5644,7 @@ const resetSurvey = () => {
     $("#nameSurvey").val("");
     $("#kordinatSurvey").val("");
     $("#idSubblokSurvey").val("");
+    $("#globalidSurvey").val("");
     $("#kelurahanSurvey").val("");
     $("#kecamatanSurvey").val("");
     $("#regionalSurvey").val("");
@@ -5198,6 +5660,8 @@ const resetSurvey = () => {
     $("#refrensiGoogleMapsBulk").attr("href", "#");
     $("#textidSubblokSurvey").text("-");
     $("#textidSubblokSurveyBulk").text("-");
+    $("#textglobalidSurvey").text("-");
+    $("#textglobalidSurveyBulk").text("-");
     $("#textkelurahanSurvey").text("-");
     $("#textkelurahanSurveyBulk").text("-");
     $("#textkecamatanSurvey").text("-");
@@ -5233,7 +5697,7 @@ function getDataSurvey(id_user) {
                     }');geocoder.query('${e.kordinat}');addSourceLayer('${
                         e.kelurahan
                     }');editDataSurvey(
-                        ${e.id},
+                        ${e.id_baru},
                         ${id_user}
                     )">
                         </div>
@@ -5242,7 +5706,7 @@ function getDataSurvey(id_user) {
                         }');geocoder.query('${e.kordinat}');addSourceLayer('${
                         e.kelurahan
                     }');editDataSurvey(
-                    ${e.id},
+                    ${e.id_baru},
                     ${id_user}
                 )" style="cursor: pointer;">
                             <a style="font-weight: bold;word-break: break-all;
@@ -5257,7 +5721,7 @@ function getDataSurvey(id_user) {
                         <div class="row">
                             <div class="col-12 p-1">
                                 <a onclick="deleteDataSurvey(
-                                    ${e.id},
+                                    ${e.id_baru},
                                     ${id_user}
                                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
@@ -5326,6 +5790,154 @@ function getDataSurvey(id_user) {
             }
         },
     });
+}
+
+function getDataUsaha(id_user) {
+    $.ajax({
+        url: `${APP_URL}/getPendataanUsaha`,
+        method: "POST",
+        data: {
+            id_user: id_user,
+        },
+        dataType: "json",
+        success: function (e) {
+            if (e != "") {
+                $(".list-item-usaha-location").html("");
+                $("#messageNoDataUsaha").hide();
+                let html = "";
+                e.forEach((e) => {
+                    html += `
+                    <div class="col-sm-3">
+                        <img class="w-100" src="/usaha/${
+                            e.image[0] == undefined
+                                ? "not_image.png"
+                                : e.image[0].name
+                        }" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;">
+                    </div>
+                    <div class="col-sm-7"
+                    onclick="geocoder.query('${e.kordinat}');editDataUsaha(${
+                        e.id
+                    },${e.id_user});addSourceLayer('${e.kelurahan}')"
+                    style="cursor: pointer; font-size:10pt">
+                    <a class="w-100 usaha-title"
+                        style="font-weight: bold;word-break: break-all;
+                    white-space: normal; cursor: pointer;font-size:11pt;">${
+                        e.nama_usaha
+                    }</a><br>
+                    <p class="mt-3" style="line-height:0;">Nama Pemilik : ${
+                        e.pelaku
+                    }</p>
+                    <p style="line-height:0;">No izin: ${e.no_perjanjian}</p>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center pl-5">
+                    <div class="row">
+                        <div class="col-12 p-1">
+                            <a onclick="deleteDataUsaha(${e.id},${e.id_user})"
+                                style="cursor:pointer;color:red;font-size: 18px;"><i
+                                    class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+                    `;
+                });
+                $(".list-item-usaha-location").html(html);
+            } else {
+                $(".list-item-usaha-location").html("");
+                $("#messageNoDataUsaha").show();
+            }
+        },
+    });
+}
+
+function editDataUsaha(id) {
+    $("#resetUsaha").show();
+    $.ajax({
+        url: `${APP_URL}/getPendataanUsaha/${id}`,
+        method: "GET",
+        dataType: "json",
+        success: function (e) {
+            let image = e.image;
+            console.log(e);
+            $("#idUsaha").val(e.id);
+            $("#namaUsaha").val(e.nama_usaha);
+            $("#pelakuUsaha").val(e.pelaku);
+            $("#noPerjanjianUsaha").val(e.no_perjanjian);
+            $("#kordinatUsaha").val(e.kordinat);
+            $("#sektorUsaha").val(e.sektor);
+            $("#modalUsaha").val(e.modal);
+            $("#jumlahTenagaUsaha").val(e.jumlah_tenaga);
+            $("#alamatUsaha").val(e.alamat);
+            $("#refrensikordinatUsaha").text(
+                `${e.kordinat
+                    .split(",")[0]
+                    .toString()
+                    .slice(0, -4)},${e.kordinat
+                    .split(",")[1]
+                    .toString()
+                    .slice(0, -5)}`
+            );
+            $("#previewFotoUsaha").html("");
+            image.forEach((el) => {
+                let element = ``;
+                element += `
+                    <div style="width:33.3%;float:left">
+                    <button type="button" class="close btn-remove-usaha" onclick="deleteImageUsaha(${el.id})" style="position: relative;
+                    color: red;margin-bottom:-1rem;">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="/usaha/${el.name}" class="w-100" style="height:100px;object-fit:cover;">
+                    </div>
+                `;
+                $("#previewFotoUsaha").append(element);
+            });
+            removeItemUsaha();
+        },
+    });
+}
+
+function deleteDataUsaha(id, id_user) {
+    $.ajax({
+        url: `${APP_URL}/deletePendataanUsaha`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: function (e) {
+            $("#pesanBerhasilUsaha").html(
+                ` <strong>Berhasil!</strong> Data Berhasil di Hapus.`
+            );
+            $("#pesanBerhasilUsaha").show();
+            setTimeout(function () {
+                $("#pesanBerhasilUsaha").hide();
+                $("#pesanBerhasilUsaha").html(
+                    ` <strong>Berhasil!</strong> Data Berhasil di Simpan.`
+                );
+            });
+            getDataUsaha(id_user);
+        },
+    });
+}
+
+function resetUsaha() {
+    $("#idUsaha").val("");
+    $("#namaUsaha").val("");
+    $("#pelakuUsaha").val("");
+    $("#noPerjanjianUsaha").val("");
+    $("#kordinatUsaha").val("");
+    $("#sektorUsaha").val("");
+    $("#modalUsaha").val("");
+    $("#jumlahTenagaUsaha").val("");
+    $("#alamatUsaha").val("");
+    $("#idSubbBlokUsaha").val("");
+    $("#kelurahanUsaha").val("");
+    $("#kecamatanUsaha").val("");
+    $("#refrensikordinatUsaha").text("-");
+    $("#textIdSubBlokUsaha").text("-");
+    $("#textKelurahanUsaha").text("-");
+    $("#textKecamatanUsaha").text("-");
+    $("#resetUsaha").hide();
+    filesUsaha = [];
+    $("#previewFotoUsaha").html("");
 }
 
 function detailDataSurvey(id) {
@@ -5417,6 +6029,7 @@ function editDataSurvey(id, id_user) {
             id: id,
             id_user: id_user,
         },
+        dataType: "json",
         success: (e) => {
             // for (var i = 0; i < e.image.length; i++) {
             //     $("#previewFotoEdit").append(`
@@ -5504,6 +6117,19 @@ const removeImageSurvey = (id) => {
     });
 };
 
+const deleteImageUsaha = (id) => {
+    $.ajax({
+        url: `${APP_URL}/deleteImageUsaha`,
+        method: "POST",
+        data: {
+            id: id,
+        },
+        success: (e) => {
+            console.log(e);
+        },
+    });
+};
+
 function deleteDataSurvey(id_data, id_user) {
     $.ajax({
         url: `${APP_URL}/deleteDataSurvey`,
@@ -5514,10 +6140,23 @@ function deleteDataSurvey(id_data, id_user) {
         success: (e) => {
             getDataSurvey(id_user);
             getLayerSurveyPerkembangan();
-            $("#pesanBerhasilHapusSurvey").show();
-            setTimeout(function () {
-                $("#pesanBerhasilHapusSurvey").hide();
-            }, 3000);
+            if (e.message == "Anda tidak memiliki akses") {
+                $("#pesanGagalSurvey").html(
+                    `<strong>Gagal!</strong> Anda tidak memiliki akses.`
+                );
+                $("#pesanGagalSurvey").show();
+                setTimeout(function () {
+                    $("#pesanGagalSurvey").hide();
+                    $("#pesanGagalSurvey").html(
+                        `<strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.`
+                    );
+                }, 3000);
+            } else {
+                $("#pesanBerhasilHapusSurvey").show();
+                setTimeout(function () {
+                    $("#pesanBerhasilHapusSurvey").hide();
+                }, 3000);
+            }
         },
     });
 }
@@ -5838,6 +6477,18 @@ const removeItem = (event) => {
     });
 };
 
+const removeItemUsaha = (event) => {
+    $(".btn-remove-usaha").on("click", function (e) {
+        let index = $(this).data("index");
+        // console.log("clicked");
+        if (index !== undefined) {
+            filesUsaha.splice(filesUsaha.indexOf(Newfiles[index]), 1);
+            console.log(index);
+        }
+        $(this).parent().remove();
+    });
+};
+
 const removeFileArray = (event) => {
     console.log(event);
 };
@@ -5923,6 +6574,53 @@ function preview_foto_survey() {
     //         sliderOption("previewFotoSurvey");
     //     }
     // }
+}
+
+function preview_foto_usaha() {
+    let gambarLokasi = $("#gambarLokasiUsaha").get(0).files.length;
+    let countArray = Newfiles.length;
+    if (gambarLokasi > 3) {
+        $("#pesanGagalUsaha").html(
+            `<strong>Gagal!</strong> Foto Tidak Boleh Dari Tiga.`
+        );
+        $("#pesanGagalUsaha").show();
+        $("#gambarLokasiUsaha").val("");
+        setTimeout(function () {
+            $("#pesanGagalUsaha").hide();
+            $("#pesanGagalUsaha").html(
+                `<strong>Gagal!</strong> Anda Harus Mengisi Semua Form.`
+            );
+        }, 3000);
+    } else {
+        for (var i = 0; i < gambarLokasi; i++) {
+            let file = $("#gambarLokasiUsaha").get(0).files[i];
+            new Compressor(file, {
+                quality: 0.3,
+                convertSize: 1000000,
+                success(result) {
+                    filesUsaha.push(result);
+                    Newfiles.push(result);
+                },
+                error(err) {
+                    console.log(err.message);
+                },
+            });
+            let element = ``;
+            element += `
+                <div style="width:33.3%;float:left">
+                <button type="button" class="close btn-remove-usaha" data-index="${countArray++}" style="position: relative;
+                color: red;margin-bottom:-1rem;">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+                <img src="${URL.createObjectURL(
+                    event.target.files[i]
+                )}" class="w-100" style="height:100px;object-fit:cover;">
+                </div>
+            `;
+            $("#previewFotoUsaha").append(element);
+        }
+    }
+    removeItemUsaha();
 }
 
 function compresImageBulk() {
@@ -6065,6 +6763,14 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
                         setTimeout(function () {
                             $("#pesanGagalSurveyBulk").hide();
                         }, 3000);
+                    } else if (e.error == "Anda tidak memiliki akses") {
+                        $("#messageErrorBulk").text(
+                            "Anda tidak memiliki akses"
+                        );
+                        $("#pesanGagalSurveyBulk").show();
+                        setTimeout(function () {
+                            $("#pesanGagalSurveyBulk").hide();
+                        }, 3000);
                     } else {
                         $("#messageErrorBulk").text("Data Tidak Lengkap");
                         $("#pesanGagalSurveyBulk").show();
@@ -6076,6 +6782,90 @@ $("#formSurveyBulkLocation").on("submit", function (e) {
             });
         },
     });
+});
+
+$("#formUsahaLocation").on("submit", function (e) {
+    e.preventDefault();
+    var form_data = new FormData(this);
+    let kordinat = $("#kordinatUsaha").val();
+    let pelaku = $("#pelakuUsaha").val();
+    let namaUsaha = $("#namaUsaha").val();
+    let alamatUsaha = $("#alamatUsaha").val();
+    let no_perjanjian = $("#noPerjanjianUsaha").val();
+    let sektor = $("#sektorUsaha").val();
+    let modal = $("#modalUsaha").val();
+    let jumlah_tenaga = $("#jumlahTenagaUsaha").val();
+    let id_sub_blok = $("#idSubbBlokUsaha").val();
+    let kelurahan = $("#kelurahanUsaha").val();
+    let kecamatan = $("#kecamatanUsaha").val();
+    console.log(
+        kordinat,
+        pelaku,
+        namaUsaha,
+        alamatUsaha,
+        no_perjanjian,
+        sektor,
+        modal,
+        jumlah_tenaga,
+        id_sub_blok,
+        kelurahan,
+        kecamatan
+    );
+
+    if (
+        kordinat !== "" &&
+        pelaku !== "" &&
+        namaUsaha !== "" &&
+        alamatUsaha !== "" &&
+        no_perjanjian !== "" &&
+        sektor !== "" &&
+        modal !== "" &&
+        jumlah_tenaga !== "" &&
+        id_sub_blok !== "" &&
+        kelurahan !== "" &&
+        kecamatan !== ""
+    ) {
+        $("#submitUsahaLocation").hide();
+        $("#prosesUsaha").show();
+        $.ajax({
+            url: `${APP_URL}/getIdUser`,
+            method: "GET",
+            success: function (e) {
+                var id_user = e;
+                form_data.append("id_user", id_user);
+                filesUsaha.forEach((file) => {
+                    form_data.append("foto[]", file, file.name);
+                });
+                $.ajax({
+                    url: `${APP_URL}/savePendataanUsaha`,
+                    method: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    success: function (e) {
+                        $("#submitUsahaLocation").show();
+                        $("#prosesUsaha").hide();
+                        console.log(e);
+                        if ($("#idUsaha").val() == "") {
+                            resetUsaha();
+                        }
+                        getDataUsaha(id_user);
+                        $("#pesanBerhasilUsaha").show();
+                        setTimeout(function () {
+                            $("#pesanBerhasilUsaha").hide();
+                        }, 3000);
+                    },
+                });
+            },
+        });
+    } else {
+        $("#submitUsahaLocation").show();
+        $("#prosesUsaha").hide();
+        $("#pesanGagalUsaha").show();
+        setTimeout(function () {
+            $("#pesanGagalUsaha").hide();
+        }, 3000);
+    }
 });
 
 $("#formSurveyLocation").on("submit", function (e) {
@@ -6132,6 +6922,24 @@ $("#formSurveyLocation").on("submit", function (e) {
                     data: formData,
                     success: function (e) {
                         // console.log(e);
+                        let message = e;
+                        if (message.message == "Anda tidak memiliki akses") {
+                            $("#pesanGagalSurvey").html(
+                                `<strong>Gagal!</strong> Anda tidak memiliki akses.`
+                            );
+                            $("#pesanGagalSurvey").show();
+                            setTimeout(function () {
+                                $("#pesanGagalSurvey").hide();
+                                $("#pesanGagalSurvey").html(
+                                    `<strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.`
+                                );
+                            }, 3000);
+                        } else {
+                            $("#pesanBerhasilSurvey").show();
+                            setTimeout(function () {
+                                $("#pesanBerhasilSurvey").hide();
+                            }, 3000);
+                        }
                         $("#prosesSurvey").hide();
                         $("#submitSurveyLocation").show();
                         if (
@@ -6140,11 +6948,7 @@ $("#formSurveyLocation").on("submit", function (e) {
                         ) {
                             resetSurvey();
                         }
-                        $("#pesanBerhasilSurvey").show();
                         getDataSurvey(id_user);
-                        setTimeout(function () {
-                            $("#pesanBerhasilSurvey").hide();
-                        }, 3000);
                         getLayerSurveyPerkembangan();
                     },
                     error: function (e) {
@@ -6201,10 +7005,10 @@ $("#formPinLocationEdit").on("submit", function (e) {
                         $("#catatanPinEdit").val("");
                         $("#gambarLokasiEdit").val("");
                         $("#previewFotoEdit").html("");
-                        $("#pesanBerhasilEdit").show();
                         $("#formPinLocationEdit").hide();
                         $("#formPinLocation").show();
                         getDataPin(id_user);
+                        $("#pesanBerhasilEdit").show();
                         setTimeout(function () {
                             $("#pesanBerhasilEdit").hide();
                         }, 3000);
@@ -6260,6 +7064,24 @@ $("#formSurveyLocationEdit").on("submit", function (e) {
                     data: formData,
                     success: function (e) {
                         console.log(e);
+                        let message = e;
+                        if (message.error == "Anda tidak memiliki akses") {
+                            $("#pesanGagalSurvey").html(
+                                `<strong>Gagal!</strong> Anda tidak memiliki akses.`
+                            );
+                            $("#pesanGagalSurvey").show();
+                            setTimeout(function () {
+                                $("#pesanGagalSurvey").hide();
+                                $("#pesanGagalSurvey").html(
+                                    `<strong>Gagal!</strong> Periksa kembali semua kolom yang wajib diisi.`
+                                );
+                            }, 3000);
+                        } else {
+                            $("#pesanBerhasilEditSurveyEdit").show();
+                            setTimeout(function () {
+                                $("#pesanBerhasilEditSurveyEdit").hide();
+                            }, 3000);
+                        }
                         $("#kordinatSurveyEdit").val("");
                         $("#idSubblokSurveyEdit").val("");
                         $("#kecamatanSurveyEdit").val("");
@@ -6269,13 +7091,9 @@ $("#formSurveyLocationEdit").on("submit", function (e) {
                         $("#neighborhoodSurveyEdit").val("");
                         $("#deskripsiNeighborhoodSurveyEdit").val("");
                         $("#transectZoneSurveyEdit").val("");
-                        $("#pesanBerhasilEditSurveyEdit").show();
                         // $("#formSurveyLocationEdit").hide();
                         // $("#formSurveyLocation").show();
                         getDataSurvey(id_user);
-                        setTimeout(function () {
-                            $("#pesanBerhasilEditSurveyEdit").hide();
-                        }, 3000);
                     },
                 });
             },
@@ -6326,6 +7144,10 @@ $("#closeInvestasi").on("click", function () {
 
 $("#closePin").on("click", function () {
     $(".info-pin-location").hide();
+});
+
+$("#closeUsahaLocation").on("click", function () {
+    $(".info-usaha-location").hide();
 });
 
 $("#closeSurvey").on("click", function () {
@@ -6994,6 +7816,1411 @@ $("#optionFilterChoro").change(() => {
     </div>
         `);
         sliderRangeKepadatanBangunan();
+    } else if ($("#optionFilterChoro").val() == "Data PPAP") {
+        localStorage.removeItem("jenis_data_dppapp");
+        if (map.getLayer("wilayahindex_fill")) {
+            map.removeLayer("wilayahindex_fill");
+            map.removeSource("wilayahindex");
+        }
+        let point_center_kelurahan = [
+            {
+                kelurahan: "BALE KAMBANG",
+                kordinat: [106.852770167453, -6.28159463356247],
+            },
+            {
+                kelurahan: "KAMPUNG TENGAH",
+                kordinat: [106.866630792338, -6.28961962906629],
+            },
+            {
+                kelurahan: "PINANG RANTI",
+                kordinat: [106.88496932948, -6.29168788121552],
+            },
+            {
+                kelurahan: "KRAMAT JATI",
+                kordinat: [106.870706806921, -6.2741117361314],
+            },
+            {
+                kelurahan: "HALIM PERDANA KUSUMAH",
+                kordinat: [106.893247548343, -6.26590800880412],
+            },
+            {
+                kelurahan: "JATI PULO",
+                kordinat: [106.803822199297, -6.17879024677216],
+            },
+            {
+                kelurahan: "KERENDANG",
+                kordinat: [106.803983753118, -6.15021453588555],
+            },
+            {
+                kelurahan: "PAL MERIAM",
+                kordinat: [106.858974192362, -6.20362318904808],
+            },
+            {
+                kelurahan: "RAWA JATI",
+                kordinat: [106.854652069397, -6.25809567543088],
+            },
+            {
+                kelurahan: "PLUIT",
+                kordinat: [106.786778860067, -6.11356825555952],
+            },
+            {
+                kelurahan: "SLIPI",
+                kordinat: [106.801376592262, -6.1939925487108],
+            },
+            {
+                kelurahan: "ANCOL",
+                kordinat: [106.833788173498, -6.12414317586525],
+            },
+            {
+                kelurahan: "KEAGUNGAN",
+                kordinat: [106.814278138902, -6.15117089568155],
+            },
+            {
+                kelurahan: "CEMPAKA PUTIH TIMUR",
+                kordinat: [106.871749153298, -6.17600021735003],
+            },
+            {
+                kelurahan: "CIBUBUR",
+                kordinat: [106.882315277541, -6.35737461973628],
+            },
+            {
+                kelurahan: "BUNGUR",
+                kordinat: [106.847971506743, -6.17157137781364],
+            },
+            {
+                kelurahan: "BENDUNGAN HILIR",
+                kordinat: [106.80904177713, -6.20863072688788],
+            },
+            {
+                kelurahan: "SERDANG",
+                kordinat: [106.861146497644, -6.15891301427754],
+            },
+            {
+                kelurahan: "KARET KUNINGAN",
+                kordinat: [106.827970245644, -6.22060362931354],
+            },
+            {
+                kelurahan: "GANDARIA SELATAN",
+                kordinat: [106.793010335675, -6.27094372372828],
+            },
+            {
+                kelurahan: "CIPINANG",
+                kordinat: [106.891260774064, -6.2075560828714],
+            },
+            {
+                kelurahan: "CIDENG",
+                kordinat: [106.808310820694, -6.1729803094658],
+            },
+            {
+                kelurahan: "JOHAR BARU",
+                kordinat: [106.857029645221, -6.18569864782619],
+            },
+            {
+                kelurahan: "KAMAL",
+                kordinat: [106.70005348037, -6.10656087716391],
+            },
+            {
+                kelurahan: "JELAMBAR BARU",
+                kordinat: [106.787226994341, -6.14909450796515],
+            },
+            {
+                kelurahan: "GUNTUR",
+                kordinat: [106.833249034146, -6.20794694901622],
+            },
+            {
+                kelurahan: "GUNUNG SAHARI SELATAN",
+                kordinat: [106.844017923919, -6.15934236207373],
+            },
+            {
+                kelurahan: "JEMBATAN BESI",
+                kordinat: [106.797751201794, -6.15186678292615],
+            },
+            {
+                kelurahan: "MANGGA BESAR",
+                kordinat: [106.818306162559, -6.14480014760434],
+            },
+            {
+                kelurahan: "JELAMBAR",
+                kordinat: [106.785762810035, -6.1593992293072],
+            },
+            {
+                kelurahan: "KARET",
+                kordinat: [106.826964737567, -6.21379969219026],
+            },
+            {
+                kelurahan: "KEBON BARU",
+                kordinat: [106.861631544954, -6.23370984627694],
+            },
+            {
+                kelurahan: "KEBON SIRIH",
+                kordinat: [106.830752573211, -6.18508688763716],
+            },
+            {
+                kelurahan: "PALMERAH",
+                kordinat: [106.789488961937, -6.20103876387042],
+            },
+            {
+                kelurahan: "PETOGOGAN",
+                kordinat: [106.811191693718, -6.24319814809799],
+            },
+            {
+                kelurahan: "WARAKAS",
+                kordinat: [106.877782261381, -6.12183006699335],
+            },
+            {
+                kelurahan: "MENTENG ATAS",
+                kordinat: [106.839537225947, -6.21816989049072],
+            },
+            {
+                kelurahan: "PEKOJAN",
+                kordinat: [106.804028794853, -6.13734495563037],
+            },
+            {
+                kelurahan: "SELONG",
+                kordinat: [106.804594510712, -6.23421581529553],
+            },
+            {
+                kelurahan: "PISANGAN TIMUR",
+                kordinat: [106.880134915709, -6.20857627951949],
+            },
+            {
+                kelurahan: "PISANGAN BARU",
+                kordinat: [106.868984142346, -6.21170402077053],
+            },
+            {
+                kelurahan: "RAWA BARAT",
+                kordinat: [106.813139014201, -6.2363621502823],
+            },
+            {
+                kelurahan: "TANAH TINGGI",
+                kordinat: [106.849248693307, -6.17922607326142],
+            },
+            {
+                kelurahan: "SUKABUMI UTARA",
+                kordinat: [106.777634785304, -6.20883629114648],
+            },
+            {
+                kelurahan: "TAMBORA",
+                kordinat: [106.808846207665, -6.14462915712309],
+            },
+            {
+                kelurahan: "SENEN",
+                kordinat: [106.839631642031, -6.17610135315747],
+            },
+            {
+                kelurahan: "CEMPAKA BARU",
+                kordinat: [106.862779174035, -6.16810842497002],
+            },
+            {
+                kelurahan: "CAWANG",
+                kordinat: [106.866895507895, -6.2508803086182],
+            },
+            {
+                kelurahan: "BALI MESTER",
+                kordinat: [106.86636534666, -6.2195453127645],
+            },
+            {
+                kelurahan: "CEGER",
+                kordinat: [106.892392768416, -6.30849411118805],
+            },
+            {
+                kelurahan: "ANGKE",
+                kordinat: [106.795794360571, -6.14552741421886],
+            },
+            {
+                kelurahan: "BUKIT DURI",
+                kordinat: [106.858147238752, -6.2213042733482],
+            },
+            {
+                kelurahan: "CILANDAK TIMUR",
+                kordinat: [106.812764394648, -6.29124715819424],
+            },
+            {
+                kelurahan: "CILANGKAP",
+                kordinat: [106.908866776889, -6.33359108245503],
+            },
+            {
+                kelurahan: "CEMPAKA PUTIH BARAT",
+                kordinat: [106.863845794914, -6.17992983112421],
+            },
+            {
+                kelurahan: "BIDARA CINA",
+                kordinat: [106.86695250674, -6.23537213639289],
+            },
+            {
+                kelurahan: "BAMBU APUS",
+                kordinat: [106.902306165264, -6.31242413412121],
+            },
+            {
+                kelurahan: "BARU",
+                kordinat: [106.847210345023, -6.32392993757224],
+            },
+            {
+                kelurahan: "PETOJO SELATAN",
+                kordinat: [106.816407973239, -6.17477076171228],
+            },
+            {
+                kelurahan: "BANGKA",
+                kordinat: [106.818322386603, -6.26321694333805],
+            },
+            {
+                kelurahan: "BATU AMPAR",
+                kordinat: [106.861052548768, -6.27910071050568],
+            },
+            {
+                kelurahan: "HARAPAN MULIA",
+                kordinat: [106.855866970375, -6.17051259201841],
+            },
+            {
+                kelurahan: "CIPINANG BESAR UTARA",
+                kordinat: [106.87958664141, -6.21863480288697],
+            },
+            {
+                kelurahan: "CENGKARENG BARAT",
+                kordinat: [106.723790997263, -6.13867707610728],
+            },
+            {
+                kelurahan: "BINTARO",
+                kordinat: [106.763618125893, -6.27037303835748],
+            },
+            {
+                kelurahan: "CAKUNG BARAT",
+                kordinat: [106.934686856088, -6.17305116144553],
+            },
+            {
+                kelurahan: "CAKUNG TIMUR",
+                kordinat: [106.955332011345, -6.17100433922291],
+            },
+            {
+                kelurahan: "CIKOKO",
+                kordinat: [106.854279825438, -6.24497535334944],
+            },
+            {
+                kelurahan: "CILANDAK BARAT",
+                kordinat: [106.797156249676, -6.29051429587967],
+            },
+            {
+                kelurahan: "CILILITAN",
+                kordinat: [106.864434633471, -6.26249132254724],
+            },
+            {
+                kelurahan: "CIPINANG CEMPEDAK",
+                kordinat: [106.873471677958, -6.236614803337],
+            },
+            {
+                kelurahan: "CILINCING",
+                kordinat: [106.944874135385, -6.11170184798334],
+            },
+            {
+                kelurahan: "CIPAYUNG",
+                kordinat: [106.893897449408, -6.32905503392006],
+            },
+            {
+                kelurahan: "KEBON MELATI",
+                kordinat: [106.815968239544, -6.1970527198445],
+            },
+            {
+                kelurahan: "CIPEDAK",
+                kordinat: [106.802083997624, -6.35369913538251],
+            },
+            {
+                kelurahan: "CIPETE SELATAN",
+                kordinat: [106.805057303387, -6.27277632781872],
+            },
+            {
+                kelurahan: "GALUR",
+                kordinat: [106.855436303918, -6.17617078785069],
+            },
+            {
+                kelurahan: "GAMBIR",
+                kordinat: [106.826707356245, -6.17638426928023],
+            },
+            {
+                kelurahan: "TOMANG",
+                kordinat: [106.796473965919, -6.17173899669378],
+            },
+            {
+                kelurahan: "GANDARIA UTARA",
+                kordinat: [106.791041341464, -6.25777973040243],
+            },
+            {
+                kelurahan: "SETIA BUDI",
+                kordinat: [106.825837937748, -6.2074199952573],
+            },
+            {
+                kelurahan: "GEDONG",
+                kordinat: [106.859966137258, -6.30147795854981],
+            },
+            {
+                kelurahan: "DURI PULO",
+                kordinat: [106.80458246441, -6.16338079999258],
+            },
+            {
+                kelurahan: "CIPETE UTARA",
+                kordinat: [106.80436442052, -6.26173014025804],
+            },
+            {
+                kelurahan: "DURI SELATAN",
+                kordinat: [106.805013188073, -6.15902781412903],
+            },
+            {
+                kelurahan: "CIPINANG BESAR SELATAN",
+                kordinat: [106.880835476944, -6.22976803272407],
+            },
+            {
+                kelurahan: "DURI UTARA",
+                kordinat: [106.804942282297, -6.15431004452012],
+            },
+            {
+                kelurahan: "CIPINANG MELAYU",
+                kordinat: [106.905831232452, -6.24955628781919],
+            },
+            {
+                kelurahan: "CIPINANG MUARA",
+                kordinat: [106.88922262661, -6.22611690718629],
+            },
+            {
+                kelurahan: "KALI ANYAR",
+                kordinat: [106.79903386743, -6.15769134700794],
+            },
+            {
+                kelurahan: "CIPULIR",
+                kordinat: [106.773155122458, -6.23793520505473],
+            },
+            {
+                kelurahan: "CIKINI",
+                kordinat: [106.839387990622, -6.19144933066517],
+            },
+            {
+                kelurahan: "CIRACAS",
+                kordinat: [106.875316693506, -6.3260630001247],
+            },
+            {
+                kelurahan: "KARANG ANYAR",
+                kordinat: [106.829135431968, -6.15397478137955],
+            },
+            {
+                kelurahan: "DUREN SAWIT",
+                kordinat: [106.915721271092, -6.23328416440598],
+            },
+            {
+                kelurahan: "KAMPUNG BALI",
+                kordinat: [106.816134579909, -6.18518775246783],
+            },
+            {
+                kelurahan: "DUREN TIGA",
+                kordinat: [106.835291283646, -6.25583615503228],
+            },
+            {
+                kelurahan: "GONDANGDIA",
+                kordinat: [106.829435891716, -6.19179611097435],
+            },
+            {
+                kelurahan: "CENGKARENG TIMUR",
+                kordinat: [106.735647170413, -6.14128196438806],
+            },
+            {
+                kelurahan: "GROGOL",
+                kordinat: [106.794325299641, -6.16184680511797],
+            },
+            {
+                kelurahan: "DUKUH",
+                kordinat: [106.877783861843, -6.29589028793787],
+            },
+            {
+                kelurahan: "CIGANJUR",
+                kordinat: [106.808670396577, -6.33635583088517],
+            },
+            {
+                kelurahan: "DURI KEPA",
+                kordinat: [106.773851647269, -6.17607223528842],
+            },
+            {
+                kelurahan: "DURI KOSAMBI",
+                kordinat: [106.719237539067, -6.17001063952574],
+            },
+            {
+                kelurahan: "KALIBARU",
+                kordinat: [106.920143984787, -6.10293345030191],
+            },
+            {
+                kelurahan: "CIJANTUNG",
+                kordinat: [106.858875780337, -6.32157098970938],
+            },
+            {
+                kelurahan: "JOGLO",
+                kordinat: [106.738901514359, -6.21913250943172],
+            },
+            {
+                kelurahan: "KARET SEMANGGI",
+                kordinat: [106.817934330794, -6.22253903163692],
+            },
+            {
+                kelurahan: "KALIBATA",
+                kordinat: [106.837658359856, -6.2633305411815],
+            },
+            {
+                kelurahan: "KALIDERES",
+                kordinat: [106.698785519767, -6.14922780474256],
+            },
+            {
+                kelurahan: "GUNUNG SAHARI UTARA",
+                kordinat: [106.838283316969, -6.14921536977911],
+            },
+            {
+                kelurahan: "KALISARI",
+                kordinat: [106.853038437807, -6.33537780768208],
+            },
+            {
+                kelurahan: "KAMAL MUARA",
+                kordinat: [106.735837814876, -6.1107651443879],
+            },
+            {
+                kelurahan: "GELORA",
+                kordinat: [106.801505339459, -6.21625888260069],
+            },
+            {
+                kelurahan: "GLODOK",
+                kordinat: [106.813214131305, -6.14497746902846],
+            },
+            {
+                kelurahan: "GROGOL SELATAN",
+                kordinat: [106.781449431273, -6.22970438540237],
+            },
+            {
+                kelurahan: "GROGOL UTARA",
+                kordinat: [106.787136887485, -6.2172202114882],
+            },
+            {
+                kelurahan: "JEMBATAN LIMA",
+                kordinat: [106.803792773857, -6.14490519052608],
+            },
+            {
+                kelurahan: "KEBON MANGGIS",
+                kordinat: [106.855346271711, -6.20727473633999],
+            },
+            {
+                kelurahan: "GUNUNG",
+                kordinat: [106.792775126678, -6.23594388650512],
+            },
+            {
+                kelurahan: "KELAPA GADING BARAT",
+                kordinat: [106.895269139883, -6.15552378967254],
+            },
+            {
+                kelurahan: "JAGAKARSA",
+                kordinat: [106.819246663845, -6.32537260793634],
+            },
+            {
+                kelurahan: "JATI PADANG",
+                kordinat: [106.831058031946, -6.28825938435036],
+            },
+            {
+                kelurahan: "KEBON BAWANG",
+                kordinat: [106.889019498519, -6.11937234424829],
+            },
+            {
+                kelurahan: "KELAPA GADING TIMUR",
+                kordinat: [106.90360715134, -6.16839916689042],
+            },
+            {
+                kelurahan: "KARTINI",
+                kordinat: [106.833118085856, -6.1532451786809],
+            },
+            {
+                kelurahan: "JATINEGARA",
+                kordinat: [106.916053416625, -6.20344802566098],
+            },
+            {
+                kelurahan: "KAYU MANIS",
+                kordinat: [106.862213831324, -6.20270408432705],
+            },
+            {
+                kelurahan: "JATI",
+                kordinat: [106.897029023734, -6.19452623737398],
+            },
+            {
+                kelurahan: "JATINEGARA KAUM",
+                kordinat: [106.901457923829, -6.20234834884718],
+            },
+            {
+                kelurahan: "KAPUK",
+                kordinat: [106.754065916163, -6.14218647017166],
+            },
+            {
+                kelurahan: "KAPUK MUARA",
+                kordinat: [106.763305628371, -6.12218961751628],
+            },
+            {
+                kelurahan: "KEDOYA UTARA",
+                kordinat: [106.760988299761, -6.16857000412445],
+            },
+            {
+                kelurahan: "KEBON KELAPA",
+                kordinat: [106.824549974903, -6.1641506144623],
+            },
+            {
+                kelurahan: "KELAPA DUA",
+                kordinat: [106.768725777381, -6.20935190181786],
+            },
+            {
+                kelurahan: "KARET TENGSIN",
+                kordinat: [106.816551514266, -6.20706662486508],
+            },
+            {
+                kelurahan: "KELAPA DUA WETAN",
+                kordinat: [106.882970880301, -6.34112582259438],
+            },
+            {
+                kelurahan: "MELAWAI",
+                kordinat: [106.802246658983, -6.2455926318479],
+            },
+            {
+                kelurahan: "KEMANGGISAN",
+                kordinat: [106.791380301514, -6.18987547785637],
+            },
+            {
+                kelurahan: "KEMAYORAN",
+                kordinat: [106.845383786804, -6.16472147763137],
+            },
+            {
+                kelurahan: "KEMBANGAN SELATAN",
+                kordinat: [106.738584691009, -6.18615808320017],
+            },
+            {
+                kelurahan: "KEMBANGAN UTARA",
+                kordinat: [106.742511600446, -6.17232398437239],
+            },
+            {
+                kelurahan: "KAYU PUTIH",
+                kordinat: [106.883693095322, -6.17940001931571],
+            },
+            {
+                kelurahan: "KEBAGUSAN",
+                kordinat: [106.830942361388, -6.30973492877673],
+            },
+            {
+                kelurahan: "KEBON JERUK",
+                kordinat: [106.772134897526, -6.19500358429678],
+            },
+            {
+                kelurahan: "KEBON KACANG",
+                kordinat: [106.817201945748, -6.19029931602392],
+            },
+            {
+                kelurahan: "KEBON KOSONG",
+                kordinat: [106.853461747615, -6.15819605535884],
+            },
+            {
+                kelurahan: "KOTA BAMBU UTARA",
+                kordinat: [106.803417613565, -6.18356522989228],
+            },
+            {
+                kelurahan: "KEBON PALA",
+                kordinat: [106.877833900441, -6.25571030595755],
+            },
+            {
+                kelurahan: "MANGGA DUA SELATAN",
+                kordinat: [106.828260256841, -6.14207490053543],
+            },
+            {
+                kelurahan: "KEBAYORAN LAMA SELATAN",
+                kordinat: [106.780148484667, -6.25456762190232],
+            },
+            {
+                kelurahan: "KEBAYORAN LAMA UTARA",
+                kordinat: [106.776848724088, -6.24614366603367],
+            },
+            {
+                kelurahan: "KAMPUNG RAWA",
+                kordinat: [106.855513229834, -6.17950356950519],
+            },
+            {
+                kelurahan: "KEDAUNG KALI ANGKE",
+                kordinat: [106.758576015288, -6.15256949605835],
+            },
+            {
+                kelurahan: "KRAMAT",
+                kordinat: [106.846320437487, -6.18348640618221],
+            },
+            {
+                kelurahan: "KEDOYA SELATAN",
+                kordinat: [106.760418286986, -6.18253392848629],
+            },
+            {
+                kelurahan: "KWITANG",
+                kordinat: [106.840193546425, -6.18318376310215],
+            },
+            {
+                kelurahan: "KAMPUNG MELAYU",
+                kordinat: [106.861277596858, -6.21738482050325],
+            },
+            {
+                kelurahan: "KENARI",
+                kordinat: [106.846683472723, -6.19356000257104],
+            },
+            {
+                kelurahan: "MAMPANG PRAPATAN",
+                kordinat: [106.828637163477, -6.24275787977454],
+            },
+            {
+                kelurahan: "MAPHAR",
+                kordinat: [106.821172338109, -6.15601257752805],
+            },
+            {
+                kelurahan: "PEJATEN TIMUR",
+                kordinat: [106.848282310615, -6.2801614064755],
+            },
+            {
+                kelurahan: "MANGGARAI",
+                kordinat: [106.851062911107, -6.2135265709077],
+            },
+            {
+                kelurahan: "MANGGARAI SELATAN",
+                kordinat: [106.848517904195, -6.21996580391261],
+            },
+            {
+                kelurahan: "MARUNDA",
+                kordinat: [106.961284401015, -6.113501852069],
+            },
+            {
+                kelurahan: "MENTENG",
+                kordinat: [106.833920591568, -6.20089669974896],
+            },
+            {
+                kelurahan: "KRUKUT",
+                kordinat: [106.814993668419, -6.15695814026878],
+            },
+            {
+                kelurahan: "KLENDER",
+                kordinat: [106.90813621644, -6.2185124197491],
+            },
+            {
+                kelurahan: "KUNINGAN BARAT",
+                kordinat: [106.822144880409, -6.23595753320787],
+            },
+            {
+                kelurahan: "KOJA",
+                kordinat: [106.899122955021, -6.10577304917311],
+            },
+            {
+                kelurahan: "KOTA BAMBU SELATAN",
+                kordinat: [106.803353901735, -6.18734974845941],
+            },
+            {
+                kelurahan: "KRAMAT PELA",
+                kordinat: [106.792442419077, -6.24472875967881],
+            },
+            {
+                kelurahan: "KUNINGAN TIMUR",
+                kordinat: [106.829512159071, -6.23158607519609],
+            },
+            {
+                kelurahan: "LAGOA",
+                kordinat: [106.910619132986, -6.11399743651156],
+            },
+            {
+                kelurahan: "PENGADEGAN",
+                kordinat: [106.855424162661, -6.24925648705767],
+            },
+            {
+                kelurahan: "LEBAK BULUS",
+                kordinat: [106.77894157624, -6.30112305479764],
+            },
+            {
+                kelurahan: "LENTENG AGUNG",
+                kordinat: [106.836903148115, -6.325664859182],
+            },
+            {
+                kelurahan: "LUBANG BUAYA",
+                kordinat: [106.903528833342, -6.29392173361504],
+            },
+            {
+                kelurahan: "SUMUR BATU",
+                kordinat: [106.871047261908, -6.16349017527244],
+            },
+            {
+                kelurahan: "MAKASAR",
+                kordinat: [106.877033587368, -6.27577224494573],
+            },
+            {
+                kelurahan: "MALAKA JAYA",
+                kordinat: [106.934862424551, -6.22336512218718],
+            },
+            {
+                kelurahan: "MALAKA SARI",
+                kordinat: [106.928425594337, -6.22384422298812],
+            },
+            {
+                kelurahan: "MERUYA UTARA",
+                kordinat: [106.738767789367, -6.1966346418424],
+            },
+            {
+                kelurahan: "UTAN KAYU UTARA",
+                kordinat: [106.868269048953, -6.19550652157989],
+            },
+            {
+                kelurahan: "MUNJUL",
+                kordinat: [106.895677726988, -6.3478093873621],
+            },
+            {
+                kelurahan: "PADEMANGAN BARAT",
+                kordinat: [106.836764588809, -6.13492677792781],
+            },
+            {
+                kelurahan: "PADEMANGAN TIMUR",
+                kordinat: [106.8478070055, -6.14232844070373],
+            },
+            {
+                kelurahan: "PASAR MANGGIS",
+                kordinat: [106.84158253741, -6.21044137484654],
+            },
+            {
+                kelurahan: "PANCORAN",
+                kordinat: [106.840707833002, -6.24744336003884],
+            },
+            {
+                kelurahan: "PASAR MINGGU",
+                kordinat: [106.839363454169, -6.28991922574007],
+            },
+            {
+                kelurahan: "PAPANGGO",
+                kordinat: [106.871108767074, -6.12900617451505],
+            },
+            {
+                kelurahan: "PASAR BARU",
+                kordinat: [106.83448401588, -6.16602947068673],
+            },
+            {
+                kelurahan: "PASEBAN",
+                kordinat: [106.852587250498, -6.19339147493744],
+            },
+            {
+                kelurahan: "PEGADUNGAN",
+                kordinat: [106.702353946773, -6.13275718918478],
+            },
+            {
+                kelurahan: "PULO GADUNG",
+                kordinat: [106.898903551917, -6.18299061865617],
+            },
+            {
+                kelurahan: "PEGANGSAAN",
+                kordinat: [106.848072167268, -6.20196460461354],
+            },
+            {
+                kelurahan: "PETAMBURAN",
+                kordinat: [106.806001685901, -6.19687566275644],
+            },
+            {
+                kelurahan: "PESANGGRAHAN",
+                kordinat: [106.758735300531, -6.25648069940373],
+            },
+            {
+                kelurahan: "PENJARINGAN",
+                kordinat: [106.800073832348, -6.12207730012579],
+            },
+            {
+                kelurahan: "PEGANGSAAN DUA",
+                kordinat: [106.914716882326, -6.16408683226957],
+            },
+            {
+                kelurahan: "PEJAGALAN",
+                kordinat: [106.784827450065, -6.13580658464833],
+            },
+            {
+                kelurahan: "UTAN PANJANG",
+                kordinat: [106.854326221795, -6.16535442511159],
+            },
+            {
+                kelurahan: "PEJATEN BARAT",
+                kordinat: [106.835282547028, -6.27299312637062],
+            },
+            {
+                kelurahan: "PEKAYON",
+                kordinat: [106.864389762062, -6.3449540953624],
+            },
+            {
+                kelurahan: "PELA MAMPANG",
+                kordinat: [106.817148578637, -6.24853909986531],
+            },
+            {
+                kelurahan: "PENGGILINGAN",
+                kordinat: [106.934844236356, -6.20484214733487],
+            },
+            {
+                kelurahan: "PONDOK KOPI",
+                kordinat: [106.942550333377, -6.22696189622745],
+            },
+            {
+                kelurahan: "MENTENG DALAM",
+                kordinat: [106.841246849809, -6.23162384487792],
+            },
+            {
+                kelurahan: "RAWA BUNGA",
+                kordinat: [106.87132709072, -6.21996193024349],
+            },
+            {
+                kelurahan: "MERUYA SELATAN",
+                kordinat: [106.733999371533, -6.20931697452601],
+            },
+            {
+                kelurahan: "ROROTAN",
+                kordinat: [106.955265105271, -6.14532208894883],
+            },
+            {
+                kelurahan: "SEMANAN",
+                kordinat: [106.702426505957, -6.16618015491114],
+            },
+            {
+                kelurahan: "SEMPER BARAT",
+                kordinat: [106.924259592784, -6.12596794345643],
+            },
+            {
+                kelurahan: "SEMPER TIMUR",
+                kordinat: [106.933252382009, -6.12061199121527],
+            },
+            {
+                kelurahan: "PETOJO UTARA",
+                kordinat: [106.815299449664, -6.16535378282879],
+            },
+            {
+                kelurahan: "PETUKANGAN SELATAN",
+                kordinat: [106.753792334275, -6.24331589603664],
+            },
+            {
+                kelurahan: "RAWA BADAK SELATAN",
+                kordinat: [106.898685331939, -6.13230665928947],
+            },
+            {
+                kelurahan: "PETUKANGAN UTARA",
+                kordinat: [106.75101122644, -6.22928815391129],
+            },
+            {
+                kelurahan: "SUKABUMI SELATAN",
+                kordinat: [106.771976700512, -6.22174513532899],
+            },
+            {
+                kelurahan: "RAWAMANGUN",
+                kordinat: [106.88244828357, -6.19590904440279],
+            },
+            {
+                kelurahan: "PINANGSIA",
+                kordinat: [106.815804282372, -6.13708249346776],
+            },
+            {
+                kelurahan: "PULO",
+                kordinat: [106.802045088624, -6.25330997702339],
+            },
+            {
+                kelurahan: "RAWASARI",
+                kordinat: [106.866046508743, -6.19044662797002],
+            },
+            {
+                kelurahan: "PONDOK BAMBU",
+                kordinat: [106.900878416204, -6.23484846645207],
+            },
+            {
+                kelurahan: "ROA MALAKA",
+                kordinat: [106.809469368255, -6.13637449343088],
+            },
+            {
+                kelurahan: "PONDOK KELAPA",
+                kordinat: [106.93188774186, -6.24342401245266],
+            },
+            {
+                kelurahan: "RAWA BUAYA",
+                kordinat: [106.736389150783, -6.16287135549716],
+            },
+            {
+                kelurahan: "PONDOK LABU",
+                kordinat: [106.797027586026, -6.30927443777828],
+            },
+            {
+                kelurahan: "SUNGAI BAMBU",
+                kordinat: [106.886224328238, -6.13074025577404],
+            },
+            {
+                kelurahan: "RAWA BADAK UTARA",
+                kordinat: [106.897893109845, -6.11961275573959],
+            },
+            {
+                kelurahan: "PONDOK PINANG",
+                kordinat: [106.778857408958, -6.27606602673475],
+            },
+            {
+                kelurahan: "PONDOK RANGGON",
+                kordinat: [106.906850499146, -6.35539148390087],
+            },
+            {
+                kelurahan: "PULO GEBANG",
+                kordinat: [106.952955214449, -6.20500706701234],
+            },
+            {
+                kelurahan: "RAGUNAN",
+                kordinat: [106.821238775704, -6.29876136130953],
+            },
+            {
+                kelurahan: "SUSUKAN",
+                kordinat: [106.86884147041, -6.31248140942556],
+            },
+            {
+                kelurahan: "TEGAL PARANG",
+                kordinat: [106.829231264862, -6.24881450103449],
+            },
+            {
+                kelurahan: "RAMBUTAN",
+                kordinat: [106.877746518795, -6.30710134491421],
+            },
+            {
+                kelurahan: "RAWA TERATE",
+                kordinat: [106.920447107467, -6.18447178921686],
+            },
+            {
+                kelurahan: "WIJAYA KUSUMA",
+                kordinat: [106.775908824205, -6.15482146991689],
+            },
+            {
+                kelurahan: "TANAH SEREAL",
+                kordinat: [106.809841852686, -6.15404585485693],
+            },
+            {
+                kelurahan: "SRENGSENG SAWAH",
+                kordinat: [106.824459905671, -6.34839794333306],
+            },
+            {
+                kelurahan: "SUKAPURA",
+                kordinat: [106.927973641205, -6.14796232979686],
+            },
+            {
+                kelurahan: "TEBET BARAT",
+                kordinat: [106.848980166044, -6.23494078590659],
+            },
+            {
+                kelurahan: "TEBET TIMUR",
+                kordinat: [106.855523101862, -6.23381945447945],
+            },
+            {
+                kelurahan: "TEGAL ALUR",
+                kordinat: [106.715919156645, -6.11649816825729],
+            },
+            {
+                kelurahan: "TUGU SELATAN",
+                kordinat: [106.910345437471, -6.13540865683343],
+            },
+            {
+                kelurahan: "TANJUNG DUREN SELATAN",
+                kordinat: [106.788595559928, -6.17935244531923],
+            },
+            {
+                kelurahan: "TUGU UTARA",
+                kordinat: [106.912344292705, -6.12427674562036],
+            },
+            {
+                kelurahan: "TANGKI",
+                kordinat: [106.823136682183, -6.14619713728914],
+            },
+            {
+                kelurahan: "UJUNG MENTENG",
+                kordinat: [106.963344812767, -6.18627604492655],
+            },
+            {
+                kelurahan: "SENAYAN",
+                kordinat: [106.810394817247, -6.22678603215109],
+            },
+            {
+                kelurahan: "ULUJAMI",
+                kordinat: [106.763183489486, -6.23628834828197],
+            },
+            {
+                kelurahan: "SUNTER AGUNG",
+                kordinat: [106.862089053746, -6.13808205169972],
+            },
+            {
+                kelurahan: "SUNTER JAYA",
+                kordinat: [106.876812601473, -6.15135381932835],
+            },
+            {
+                kelurahan: "TAMAN SARI",
+                kordinat: [106.824531240858, -6.15357668400071],
+            },
+            {
+                kelurahan: "TANJUNG BARAT",
+                kordinat: [106.847497282611, -6.30675798193156],
+            },
+            {
+                kelurahan: "TANJUNG DUREN UTARA",
+                kordinat: [106.783272459404, -6.17281865105015],
+            },
+            {
+                kelurahan: "UTAN KAYU SELATAN",
+                kordinat: [106.868934128878, -6.20349581454576],
+            },
+            {
+                kelurahan: "TANJUNG PRIOK",
+                kordinat: [106.879034604041, -6.10897877010519],
+            },
+            {
+                kelurahan: "SETU",
+                kordinat: [106.914809988355, -6.31303631772808],
+            },
+            {
+                kelurahan: "SRENGSENG",
+                kordinat: [106.755277756504, -6.20748107487523],
+            },
+        ];
+
+        let list_pekerjaan = [
+            {
+                name: "Tidak Belum Bekerja",
+                coloumn: "tdk_belum_bekerja",
+            },
+            {
+                name: "Petani",
+                coloumn: "petani",
+            },
+            {
+                name: "Nelayan",
+                coloumn: "nelayan",
+            },
+            {
+                name: "Pedagang",
+                coloumn: "pedagang",
+            },
+            {
+                name: "Pejabat Negara",
+                coloumn: "pejabat_negara",
+            },
+            {
+                name: "PNS TNI Polri",
+                coloumn: "pns_tni_polri",
+            },
+            {
+                name: "Pegawai Swasta",
+                coloumn: "peg_swasta",
+            },
+            {
+                name: "Wiraswasta",
+                coloumn: "wiraswasta",
+            },
+            {
+                name: "Pensuinan",
+                coloumn: "pensuinan",
+            },
+            {
+                name: "Pekerja Lepas",
+                coloumn: "pekerja_lepas",
+            },
+        ];
+
+        let list_pendidikan = [
+            {
+                name: "Tidak Sekolah",
+                coloumn: "tdk_belum_sekolah",
+            },
+            {
+                name: "Masih SD",
+                coloumn: "masih_sd",
+            },
+            {
+                name: "Tamat SD",
+                coloumn: "tamat_sd",
+            },
+            {
+                name: "Tamat SMP",
+                coloumn: "tamat_smp",
+            },
+            {
+                name: "Tamat SMA",
+                coloumn: "tamat_sma",
+            },
+            {
+                name: "Tamat D1/D2",
+                coloumn: "tamat_d1_d2",
+            },
+            {
+                name: "Tamat D3",
+                coloumn: "tamat_d3",
+            },
+            {
+                name: "Tamat D4/Sarjana",
+                coloumn: "tamat_d4_srjna",
+            },
+            {
+                name: "Tamat S2",
+                coloumn: "tamat_s2",
+            },
+            {
+                name: "Tamat S3",
+                coloumn: "tamat_s3",
+            },
+            {
+                name: "Tidak Sekolah Lagi",
+                coloumn: "tdk_sekolah_lagi",
+            },
+            {
+                name: "Masih D3",
+                coloumn: "masih_d3",
+            },
+            {
+                name: "Masih SMP",
+                coloumn: "masih_smp",
+            },
+            {
+                name: "Masih D4/Sarjana",
+                coloumn: "masih_d4_srjna",
+            },
+            {
+                name: "Masih SMA",
+                coloumn: "masih_sm",
+            },
+            {
+                name: "Masih S2",
+                coloumn: "masih_s2",
+            },
+            {
+                name: "Masih D1/D2",
+                coloumn: "masih_d1_d2",
+            },
+            {
+                name: "Masih S3",
+                coloumn: "masih_s3",
+            },
+            {
+                name: "Tidak Tamat SD",
+                coloumn: "tdk_tamat_sd",
+            },
+        ];
+
+        let list_resiko_bencana = [
+            {
+                name: "Rawan Kebakaran",
+                coloumn: "rmh_rawan_kebakar",
+            },
+            {
+                name: "Pernah Banjir",
+                coloumn: "rmh_pernah_banjir",
+            },
+            {
+                name: "Pernah Kebakar",
+                coloumn: "rmh_pernah_kebakar",
+            },
+        ];
+
+        let optionKelurahan = "<option>Pilih Kelurahan...</option>";
+
+        point_center_kelurahan.forEach(function (item, index) {
+            optionKelurahan += `<option value="${item.kordinat[1]},${item.kordinat[0]}/${item.kelurahan}">${item.kelurahan}</option>`;
+        });
+        $("#filterChoro").html("");
+        $("#filterChoro").html(`
+        <div class="row">
+        <div class="col-md-12 mt-1">
+            <span class="text_all font-weight-bold">Kelurahan</span>
+            <select id="selectKelurahan" class="w-100">
+                ${optionKelurahan}
+            </select>
+        </div>
+        <div class="col-md-12 mt-1">
+            <span class="text_all font-weight-bold">Kategori</span>
+            <select id="selectKategori" class="w-100">
+                <option value="">Pilih Kategori...</option>
+                <option value="Jumlah Penduduk">Jumlah Penduduk</option>
+                <option value="Pekerjaan">Pekerjaan</option>
+                <option value="Pendidikan">Pendidikan</option>
+                <option value="Jumlah Rumah">Jumlah Rumah</option>
+                <option value="Resiko Bencana Kebakaran">Resiko Bencana Kebakaran</option>
+            </select>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+            <div id="data_ppap"></div>
+        </div>
+        <div class="col-md-6">
+            <span class="text_all font-weight-bold">Interval</span>
+            <div class="text_all" id="legends">
+
+            </div>
+            </div>
+        <div class="col-md-6">
+            <span class="text_all font-weight-bold">RT/RW</span>
+            <div id="pd">
+                <p></p>
+            </div>
+        </div>
+    </div>
+        `);
+        $("#selectKelurahan").change(function () {
+            let value = $(this).val().split("/");
+            let kordinat = value[0];
+            let kelurahan = value[1];
+            let jenis = localStorage.getItem("jenis_data_dppapp");
+            localStorage.setItem("kelurahan_dppapp", kelurahan);
+            if ($("#selectKategori").val() == "") {
+                localStorage.setItem("jenis_data_dppapp", "jlh_penduduk");
+                $("#selectKategori").val("Jumlah Penduduk").trigger("change");
+            } else {
+                choroDPPAPP(jenis, kelurahan);
+            }
+            geocoder.query(kordinat);
+        });
+
+        $("#selectKategori").change(function () {
+            let value = $(this).val();
+            if (value == "Jumlah Penduduk" || value == "Jumlah Rumah") {
+                // console.log("Disable Chip");
+                if (value == "Jumlah Penduduk") {
+                    choroDPPAPP(
+                        "jlh_penduduk",
+                        localStorage.getItem("kelurahan_dppapp")
+                    );
+                    localStorage.setItem("jenis_data_dppapp", "jlh_penduduk");
+                } else {
+                    choroDPPAPP(
+                        "jlh_rumah",
+                        localStorage.getItem("kelurahan_dppapp")
+                    );
+                    localStorage.setItem("jenis_data_dppapp", "jlh_rumah");
+                }
+                $("#data_ppap").html("");
+            } else if (value == "Pekerjaan") {
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    1
+                ) {
+                    $("#data_ppap").slick("unslick");
+                }
+                $("#data_ppap").html("");
+                let html = "";
+                list_pekerjaan.forEach(function (item, index) {
+                    if (index == 0) {
+                        choroDPPAPP(
+                            item.coloumn,
+                            localStorage.getItem("kelurahan_dppapp")
+                        );
+                        localStorage.setItem("jenis_data_dppapp", item.coloumn);
+                    }
+                    html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                index == 0 ? "active-chip" : ""
+            }" onclick="choroDPPAPP('${item.coloumn}', '${localStorage.getItem(
+                        "kelurahan_dppapp"
+                    )}');localStorage.setItem('jenis_data_dppapp', '${
+                        item.coloumn
+                    }')"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+                });
+                $("#data_ppap").html(html);
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    0
+                ) {
+                    chipOption("data_ppap");
+                }
+                activeButton("data_ppap");
+            } else if (value == "Pendidikan") {
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    1
+                ) {
+                    $("#data_ppap").slick("unslick");
+                }
+                $("#data_ppap").html("");
+                let html = "";
+                list_pendidikan.forEach(function (item, index) {
+                    if (index == 0) {
+                        choroDPPAPP(
+                            item.coloumn,
+                            localStorage.getItem("kelurahan_dppapp")
+                        );
+                        localStorage.setItem("jenis_data_dppapp", item.coloumn);
+                    }
+                    html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                index == 0 ? "active-chip" : ""
+            }" onclick="choroDPPAPP('${item.coloumn}', '${localStorage.getItem(
+                        "kelurahan_dppapp"
+                    )}');localStorage.setItem('jenis_data_dppapp', '${
+                        item.coloumn
+                    }')"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+                });
+                $("#data_ppap").html(html);
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    0
+                ) {
+                    chipOption("data_ppap");
+                }
+                activeButton("data_ppap");
+            } else if (value == "Resiko Bencana Kebakaran") {
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    1
+                ) {
+                    $("#data_ppap").slick("unslick");
+                }
+                $("#data_ppap").html("");
+                let html = "";
+                list_resiko_bencana.forEach(function (item, index) {
+                    if (index == 0) {
+                        choroDPPAPP(
+                            item.coloumn,
+                            localStorage.getItem("kelurahan_dppapp")
+                        );
+                        localStorage.setItem("jenis_data_dppapp", item.coloumn);
+                    }
+                    html += `
+            <div class="mb-1">
+            <button class="btn btn-xs mr-2 ${
+                index == 0 ? "active-chip" : ""
+            }" onclick="choroDPPAPP('${item.coloumn}', '${localStorage.getItem(
+                        "kelurahan_dppapp"
+                    )}');localStorage.setItem('jenis_data_dppapp', '${
+                        item.coloumn
+                    }')"
+                style="background: #fdfffc; border-radius: 30px; box-shadow: none; border:1px #ccc solid; padding:5px;">
+                <div class="container">
+                    <div class="row">
+                        <span class="font-weight-bold" style="margin-top: 2px; font-size:13px;">${
+                            item.name
+                        }</span>
+                    </div>
+                </div>
+            </button>
+            </div>
+            `;
+                });
+                $("#data_ppap").html(html);
+                if (
+                    $("div#data_ppap.slick-initialized.slick-slider").length ==
+                    0
+                ) {
+                    chipOption("data_ppap");
+                }
+                activeButton("data_ppap");
+            }
+        });
     }
 });
 
@@ -7073,6 +9300,11 @@ const getLayerSurveyPerkembangan = () => {
         map.removeLayer("survey_perkembangan");
         map.removeSource("survey_perkembangan_wilayah");
     }
+    if (map.getLayer("survey_perkembangan_partner")) {
+        console.log("loaded layer");
+        map.removeLayer("survey_perkembangan_partner");
+        map.removeSource("survey_perkembangan_wilayah_partner");
+    }
     $.ajax({
         url: `${APP_URL}/layerSurveyPerkembangan`,
         method: "GET",
@@ -7108,6 +9340,7 @@ const getLayerSurveyPerkembangan = () => {
             });
 
             map.on("click", "survey_perkembangan", (e) => {
+                getNJOPSurvey(e);
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
@@ -7195,6 +9428,153 @@ const getLayerSurveyPerkembangan = () => {
                         <div class="col-sm-6">
                             ${dt.transect_zone}
                         </div>
+                        <div class="col-sm-6">
+                            NJOP
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="njopSurvey"></span>
+                        </div>
+                    </div>
+                </div>`;
+
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] +=
+                        e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+                popupSurvey.setLngLat(coordinates).setHTML(content).addTo(map);
+            });
+        },
+    });
+
+    $.ajax({
+        url: `${APP_URL}/layerSurveyPerkembanganPartner`,
+        method: "GET",
+        dataType: "json",
+        success: (res) => {
+            let data = res;
+            console.log(data);
+            map.addSource("survey_perkembangan_wilayah_partner", {
+                type: "geojson",
+                data: data,
+            });
+
+            map.addLayer({
+                id: "survey_perkembangan_partner",
+                type: "circle",
+                source: "survey_perkembangan_wilayah_partner",
+                paint: {
+                    "circle-color": "#e67e22",
+                    "circle-stroke-color": "#ffff00",
+                    "circle-stroke-width": 1,
+                    "circle-radius": 4,
+                    "circle-opacity": 0.8,
+                },
+            });
+
+            map.on("mouseenter", "survey_perkembangan_partner", (e) => {
+                map.getCanvas().style.cursor = "pointer";
+            });
+
+            map.on("mouseleave", "survey_perkembangan_partner", () => {
+                map.getCanvas().style.cursor = "";
+                // popup.remove();
+            });
+
+            map.on("click", "survey_perkembangan_partner", (e) => {
+                getNJOPSurvey(e);
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const dt = e.features[0].properties;
+                console.log(dt);
+                let imageCarousel = ``;
+                let carouselControl = ``;
+                let image = JSON.parse(dt.image);
+                if (image.length == 0) {
+                    imageCarousel = `
+                    <div class="carousel-item active">
+                        <img src="${APP_URL}/survey/not_image.png" class="card-img-top" style="height: 160px;object-fit: cover;">
+                    </div>
+                    `;
+                    carouselControl = ``;
+                } else {
+                    image.forEach((item, index) => {
+                        imageCarousel += `
+                        <div class="carousel-item ${
+                            index == 0 ? "active" : ""
+                        }">
+                        <img src="${APP_URL}/survey/${
+                            item.name
+                        }" class="card-img-top" style="height: 160px;object-fit: cover;">
+                        </div>
+                        `;
+                    });
+                    if (image.length >= 2) {
+                        console.log("carousel enabled");
+                        carouselControl = `
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>`;
+                    }
+                }
+                const content = `<div style="width:300px;">
+                <div class="imgcard-container">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                ${imageCarousel}
+                </div>
+               ${carouselControl}
+            </div>
+
+                </div>
+                <div class="card-body p-2">
+                  <h6 class="mt-0 mb-1 card-title border-bottom font-weight-bold" style="font-size:14px;">${dt.name}</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            ID Sub Blok
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.id_sub_blok}
+                        </div>
+                        <div class="col-sm-6">
+                            Kelurahan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.kelurahan}
+                        </div>
+                        <div class="col-sm-6">
+                            Kecamatan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.kecamatan}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Regional
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.regional}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Lingkungan
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.neighborhood}
+                        </div>
+                        <div class="col-sm-6">
+                            Pola Ruang
+                        </div>
+                        <div class="col-sm-6">
+                            ${dt.transect_zone}
+                        </div>
+                        <div class="col-sm-6">
+                            NJOP
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="njopSurvey"></span>
+                        </div>
                     </div>
                 </div>`;
 
@@ -7209,6 +9589,7 @@ const getLayerSurveyPerkembangan = () => {
 };
 
 map.on("mouseenter", "survey_dot", (e) => {
+    getNJOPSurvey(e);
     map.getCanvas().style.cursor = "pointer";
     const coordinates = e.features[0].geometry.coordinates.slice();
     const dt = e.features[0].properties;
@@ -7295,6 +9676,12 @@ map.on("mouseenter", "survey_dot", (e) => {
             </div>
             <div class="col-sm-6">
                 ${dt.transect_zone}
+            </div>
+            <div class="col-sm-6">
+                NJOP
+            </div>
+            <div class="col-sm-6">
+                <span id="njopSurvey"></span>
             </div>
         </div>
     </div>`;

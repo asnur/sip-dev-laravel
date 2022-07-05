@@ -410,11 +410,8 @@ const selectOption = (name) => {
         slidesToScroll: 1,
         infinite: false,
         arrows: true,
-        // prevArrow:
-        //     '<button style="position:relative; top:10rem; left: -1rem;" class="slide-arrow prev-arrow">Kembali</button>',
-        // nextArrow:
-        //     '<button style="position:relative; top:-10rem; left:29.5rem;" class="slide-arrow next-arrow">Selanjutnya</button>',
-        // variableWidth: true,
+        // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+        // nextArrow: '<button class="slide-arrow next-arrow"></button>',
     });
 };
 
@@ -703,7 +700,7 @@ $(document).ready(function () {
                     });
                 }
 
-                console.log(array.length);
+                // console.log(array.length);
                 if (array.length > 1) {
                     $(".gambar_utama_slider_input ").removeClass(
                         "atur_margin_gambar_utama"
@@ -955,6 +952,15 @@ const filterAnalytics = (periode) => {
         },
     });
 };
+
+$.ajax({
+    url: `/analytics/6`,
+    method: "GET",
+    success: (e) => {
+        $(".inf-pengunjung").text(0);
+        $(".inf-pengunjung").text(e[1].reduce(sum, 0));
+    },
+});
 
 $.ajax({
     url: `/analytics/0`,

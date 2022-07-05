@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TestSurveyPerkembanganImage extends Model
 {
     use HasFactory;
+    protected $connection = 'pgsql';
 
     protected $table = 'test_image_survey_perkembangan';
 

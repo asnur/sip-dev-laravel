@@ -9,6 +9,8 @@ class ProgresSurvey extends Model
 {
     use HasFactory;
 
+    protected $connection = 'pgsql';
+
     protected $table = 'jumlah_sub_blok';
 
     protected $guarded = ['id'];
@@ -18,5 +20,14 @@ class ProgresSurvey extends Model
     public function survey()
     {
         return $this->hasMany(SurveyPerkembangan::class, 'kelurahan', 'kelurahan');
+    }
+
+    public function kelurahan()
+    {
+        return $this->hasMany(SurveyPerkembangan::class, 'kelurahan', 'kelurahan');
+    }
+    public function kecamatan()
+    {
+        return $this->hasMany(SurveyPerkembangan::class, 'kecamatan', 'kecamatan');
     }
 }

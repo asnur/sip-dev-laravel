@@ -13,7 +13,7 @@ class pinLocationController extends Controller
 {
     public function getData($id_user, Request $request)
     {
-        $data = PinLocation::where('user_id', $id_user)->with('image')->orderBy('id', 'DESC')->get();
+        $data = PinLocation::with('image')->where('user_id', (int)$id_user)->orderBy('id', 'DESC')->get();
 
         return $data;
     }

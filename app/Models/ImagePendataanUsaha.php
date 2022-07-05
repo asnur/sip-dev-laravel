@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class imageFavorite extends Model
+class ImagePendataanUsaha extends Model
 {
     use HasFactory;
 
     protected $connection = 'pgsql';
 
-    protected $table = "image_favorites";
+    protected $table = "image_pendataan_usaha";
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'id_lokasi',
-        'name'
-    ];
+    protected $guarded = ['id'];
 }

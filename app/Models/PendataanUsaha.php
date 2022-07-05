@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SurveyPerkembanganImage extends Model
+class PendataanUsaha extends Model
 {
     use HasFactory;
     protected $connection = 'pgsql';
-
-    protected $table = 'image_survey_perkembangan';
-
+    protected $table = 'pendataan_usaha';
     protected $guarded = ['id'];
-
     public $timestamps = false;
+
+    public function image()
+    {
+        return $this->hasMany(ImagePendataanUsaha::class, 'id_survey', 'id');
+    }
 }

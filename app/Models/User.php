@@ -13,11 +13,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    protected $connection = 'pgsql';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+
     protected $fillable = [
         'name',
         'email',

@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class ChFavorite extends Model
 {
     //
+    protected $connection = 'pgsql';
 }

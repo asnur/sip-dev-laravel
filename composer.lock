@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d0026e78787b86f692ab0a706e84ce2",
+    "content-hash": "68a5c427b7da8a1e0f2bf2ffc6b97eeb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2898,6 +2898,67 @@
                 }
             ],
             "time": "2022-05-02T13:50:01+00:00"
+        },
+        {
+            "name": "madnest/madzipper",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/madnest/madzipper.git",
+                "reference": "40d42f13ecbcb3a9bd8847864cdd2ad3afa4bb5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/madnest/madzipper/zipball/40d42f13ecbcb3a9bd8847864cdd2ad3afa4bb5e",
+                "reference": "40d42f13ecbcb3a9bd8847864cdd2ad3afa4bb5e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4.4",
+                "nunomaduro/collision": "^6.0",
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Madnest\\Madzipper\\MadzipperServiceProvider"
+                    ],
+                    "aliases": {
+                        "Madzipper": "Madnest\\Madzipper\\Madzipper"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Madnest\\Madzipper\\": "src/Madnest/Madzipper"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Theimer",
+                    "email": "theimer@madne.st",
+                    "homepage": "https://madne.st",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Wannabe successor of Chumper/Zipper package for Laravel",
+            "support": {
+                "issues": "https://github.com/madnest/madzipper/issues",
+                "source": "https://github.com/madnest/madzipper/tree/v1.2.1"
+            },
+            "time": "2022-05-16T01:31:07+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
