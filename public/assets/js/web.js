@@ -5797,13 +5797,26 @@ function getDataUsaha(id_user) {
                 let html = "";
                 e.forEach((e) => {
                     html += `
-                    <div class="col-sm-10"
-                    onclick="geocoder.query('${e.kordinat}');editDataUsaha(${e.id},${e.id_user})"
+                    <div class="col-sm-3">
+                        <img class="w-100" src="/usaha/${
+                            e.image[0] == undefined
+                                ? "not_image.png"
+                                : e.image[0].name
+                        }" style="border-radius: 10px; height:75px; cursor: pointer; border:1px #ccc solid; object-fit:cover;">
+                    </div>
+                    <div class="col-sm-7"
+                    onclick="geocoder.query('${e.kordinat}');editDataUsaha(${
+                        e.id
+                    },${e.id_user})"
                     style="cursor: pointer; font-size:10pt">
                     <a class="w-100 usaha-title"
                         style="font-weight: bold;word-break: break-all;
-                    white-space: normal; cursor: pointer;font-size:11pt;">${e.nama_usaha}</a><br>
-                    <p class="mt-3" style="line-height:0;">Nama Pemilik : ${e.pelaku}</p>
+                    white-space: normal; cursor: pointer;font-size:11pt;">${
+                        e.nama_usaha
+                    }</a><br>
+                    <p class="mt-3" style="line-height:0;">Nama Pemilik : ${
+                        e.pelaku
+                    }</p>
                     <p style="line-height:0;">No izin: ${e.no_perjanjian}</p>
                 </div>
                 <div class="col-sm-2 d-flex align-items-center pl-5">
@@ -5833,6 +5846,8 @@ function editDataUsaha(id) {
         method: "GET",
         dataType: "json",
         success: function (e) {
+            let image = e.image;
+            console.log(e);
             $("#idUsaha").val(e.id);
             $("#namaUsaha").val(e.nama_usaha);
             $("#pelakuUsaha").val(e.pelaku);
@@ -5851,6 +5866,20 @@ function editDataUsaha(id) {
                     .toString()
                     .slice(0, -5)}`
             );
+            image.forEach((el) => {
+                let element = ``;
+                element += `
+                    <div style="width:33.3%;float:left">
+                    <button type="button" class="close btn-remove-usaha" style="position: relative;
+                    color: red;margin-bottom:-1rem;">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="/usaha/${el.name}" class="w-100" style="height:100px;object-fit:cover;">
+                    </div>
+                `;
+                $("#previewFotoUsaha").append(element);
+            });
+            removeItemUsaha();
         },
     });
 }

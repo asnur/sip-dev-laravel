@@ -51,7 +51,7 @@ class PendataanUsahaController extends Controller
 
     public function getPendataanUsahaById($id)
     {
-        $pendataanUsaha = PendataanUsaha::find($id);
+        $pendataanUsaha = PendataanUsaha::with('image')->find($id);
         return response()->json($pendataanUsaha);
     }
 
