@@ -5687,7 +5687,7 @@ function getDataSurvey(id_user) {
                     }');geocoder.query('${e.kordinat}');addSourceLayer('${
                         e.kelurahan
                     }');editDataSurvey(
-                        ${e.id.toString()},
+                        ${e.id_baru},
                         ${id_user}
                     )">
                         </div>
@@ -5696,7 +5696,7 @@ function getDataSurvey(id_user) {
                         }');geocoder.query('${e.kordinat}');addSourceLayer('${
                         e.kelurahan
                     }');editDataSurvey(
-                    ${e.id},
+                    ${e.id_baru},
                     ${id_user}
                 )" style="cursor: pointer;">
                             <a style="font-weight: bold;word-break: break-all;
@@ -5711,7 +5711,7 @@ function getDataSurvey(id_user) {
                         <div class="row">
                             <div class="col-12 p-1">
                                 <a onclick="deleteDataSurvey(
-                                    '${e.id.toString()}',
+                                    ${e.id_baru},
                                     ${id_user}
                                 )" style="cursor:pointer;color:red;font-size: 18px;"><i class="fa fa-trash"></i></a>
                             </div>
@@ -6013,6 +6013,7 @@ function editDataSurvey(id, id_user) {
             id: id,
             id_user: id_user,
         },
+        dataType: "json",
         success: (e) => {
             // for (var i = 0; i < e.image.length; i++) {
             //     $("#previewFotoEdit").append(`

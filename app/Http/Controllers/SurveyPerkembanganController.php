@@ -90,7 +90,7 @@ class SurveyPerkembanganController extends Controller
         if (Auth::user()->hasRole('CPNS')) {
             return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
         }
-        $data = SurveyPerkembangan::find((string)$request->input('id'));
+        $data = SurveyPerkembangan::where('id_baru', (int)$request->input('id'))->get();
         $data->id_sub_blok = $request->input('id_sublok');
         $data->name = $request->input('name');
         $data->kordinat = $request->input('kordinat');
@@ -122,7 +122,7 @@ class SurveyPerkembanganController extends Controller
 
     public function editDataSurvey(Request $request)
     {
-        $data = SurveyPerkembangan::with('image')->find((string)$request->input('id'));
+        $data = SurveyPerkembangan::with('image')->where('id_baru', (int)$request->input('id'))->first();
 
         return $data;
     }
@@ -132,7 +132,7 @@ class SurveyPerkembanganController extends Controller
         if (Auth::user()->hasRole('CPNS')) {
             return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
         }
-        $data = SurveyPerkembangan::with('image')->find((string)$request->input('id'));
+        $data = SurveyPerkembangan::with('image')->where('id_baru', (int)$request->input('id'))->first();
         if (count($data->image) != 0) {
             foreach ($data->image as $img) {
                 unlink(public_path() . '/survey/' . $img->name);
