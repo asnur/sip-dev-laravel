@@ -1798,9 +1798,13 @@ map.on(clickEvent, "wilayah_fill", function (e) {
 
     $("#kelurahanSurvey").val(dt.Kelurahan);
     $("#kecamatanSurvey").val(dt.Kecamatan);
+    $("#kelurahanUsaha").val(dt.Kelurahan);
+    $("#kecamatanUsaha").val(dt.Kecamatan);
     $("#textkelurahanSurvey").text(titleCase(dt.Kelurahan));
+    $("#textKelurahanUsaha").text(titleCase(dt.Kelurahan));
     $("#textkelurahanSurveyBulk").text(titleCase(dt.Kelurahan));
     $("#textkecamatanSurvey").text(titleCase(dt.Kecamatan));
+    $("#textKecamatanUsaha").text(titleCase(dt.Kecamatan));
     $("#textkecamatanSurveyBulk").text(titleCase(dt.Kecamatan));
 
     map.resize();
@@ -1988,6 +1992,12 @@ map.on(clickEvent, "zoning_fill", function (e) {
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
     $("#textidSubblokSurvey").text(
+        dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
+    );
+    $("#idSubbBlokUsaha").val(
+        dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
+    );
+    $("#textIdSubBlokUsaha").text(
         dt["Kode Blok"] + "." + dt["Sub Blok"] + "." + dt["Sub Zona"]
     );
     $("#textglobalidSurvey").text(dt["Global_ID"]);
@@ -5807,7 +5817,7 @@ function getDataUsaha(id_user) {
                     <div class="col-sm-7"
                     onclick="geocoder.query('${e.kordinat}');editDataUsaha(${
                         e.id
-                    },${e.id_user})"
+                    },${e.id_user});addSourceLayer('${e.kelurahan}')"
                     style="cursor: pointer; font-size:10pt">
                     <a class="w-100 usaha-title"
                         style="font-weight: bold;word-break: break-all;
@@ -5918,7 +5928,13 @@ function resetUsaha() {
     $("#modalUsaha").val("");
     $("#jumlahTenagaUsaha").val("");
     $("#alamatUsaha").val("");
+    $("#idSubbBlokUsaha").val("");
+    $("#kelurahanUsaha").val("");
+    $("#kecamatanUsaha").val("");
     $("#refrensikordinatUsaha").text("-");
+    $("#textIdSubBlokUsaha").text("-");
+    $("#textKelurahanUsaha").text("-");
+    $("#textKecamatanUsaha").text("-");
     $("#resetUsaha").hide();
     filesUsaha = [];
     $("#previewFotoUsaha").html("");
@@ -6779,6 +6795,22 @@ $("#formUsahaLocation").on("submit", function (e) {
     let sektor = $("#sektorUsaha").val();
     let modal = $("#modalUsaha").val();
     let jumlah_tenaga = $("#jumlahTenagaUsaha").val();
+    let id_sub_blok = $("#idSubbBlokUsaha").val();
+    let kelurahan = $("#kelurahanUsaha").val();
+    let kecamatan = $("#kecamatanUsaha").val();
+    console.log(
+        kordinat,
+        pelaku,
+        namaUsaha,
+        alamatUsaha,
+        no_perjanjian,
+        sektor,
+        modal,
+        jumlah_tenaga,
+        id_sub_blok,
+        kelurahan,
+        kecamatan
+    );
 
     if (
         kordinat !== "" &&
@@ -6788,7 +6820,10 @@ $("#formUsahaLocation").on("submit", function (e) {
         no_perjanjian !== "" &&
         sektor !== "" &&
         modal !== "" &&
-        jumlah_tenaga !== ""
+        jumlah_tenaga !== "" &&
+        id_sub_blok !== "" &&
+        kelurahan !== "" &&
+        kecamatan !== ""
     ) {
         $("#submitUsahaLocation").hide();
         $("#prosesUsaha").show();

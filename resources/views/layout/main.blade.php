@@ -413,6 +413,30 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 style="font-size: 12px; line-height:0px">-</a>
                         </div>
                         <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">ID Sub Blok <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="id_sub_blok" id="idSubbBlokUsaha">
+                            <span style="font-size: 13px; line-height:0px" id="textIdSubBlokUsaha">-</span>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Kelurahan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="kelurahan" id="kelurahanUsaha">
+                            <span style="font-size: 13px; line-height:0px" id="textKelurahanUsaha">-</span>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Kecamatan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="kecamatan" id="kecamatanUsaha">
+                            <span style="font-size: 13px; line-height:0px" id="textKecamatanUsaha">-</span>
+                        </div>
+                        <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">No Perizinan <sup
                                     class="text-danger font-weight-bold">*</sup></label>
                         </div>
