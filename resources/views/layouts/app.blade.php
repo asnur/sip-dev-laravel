@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="title" content="Peta Perizinan dan Investasi DKI Jakarta">
+    <meta name="title" content="Peta Perizinan dan Investasi DKI Jakarta">
     <meta name="description"
         content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
     <meta name="og:title" content="Peta Perizinan dan Investasi DKI Jakarta">
@@ -26,8 +26,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-     --}}
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> --}}
     <link href="{{ asset('assets/admin/img/favicon.ico') }}" rel="icon">
 
     <!-- Styles -->
@@ -36,62 +35,55 @@
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
 
-        <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" />
 
     <style type="text/tailwindcss">
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans&display=swap");
 
-      body {
-        font-family: "Montserrat", sans-serif;
-      }
+        body {
+            font-family: "Montserrat", sans-serif;
+        }
 
-      .gradient_card {
-        background: linear-gradient(
-          158deg,
-          rgba(119, 91, 41, 1) 31%,
-          rgba(7, 69, 91, 1) 71%
-        );
-      }
+        .gradient_card {
+            background: linear-gradient(158deg,
+                    rgba(119, 91, 41, 1) 31%,
+                    rgba(7, 69, 91, 1) 71%);
+        }
 
-      .btn_masuk {
-        background: linear-gradient(
-          90deg,
-          rgba(255, 123, 0, 0.9925012241224614) 48%,
-          rgba(247, 148, 29, 1) 63%
-        );
-      }
+        .btn_masuk {
+            background: linear-gradient(90deg,
+                    rgba(255, 123, 0, 0.9925012241224614) 48%,
+                    rgba(247, 148, 29, 1) 63%);
+        }
 
-      .slogan {
-        background-color: #0956c6;
-      }
+        .slogan {
+            background-color: #0956c6;
+        }
 
-      .padding_slogan {
-        padding-bottom: 2%;
-      }
+        .padding_slogan {
+            padding-bottom: 2%;
+        }
 
-      video {
-        filter: brightness(80%);
-      }
+        video {
+            filter: brightness(80%);
+        }
     </style>
 
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            spacing: {
-              13: "3.25rem",
+        tailwind.config = {
+            theme: {
+                extend: {
+                    spacing: {
+                        13: "3.25rem",
+                    },
+                    fontFamily: {
+                        family: ["Family"],
+                    },
+                },
             },
-            fontFamily: {
-              family: ["Family"],
-            },
-          },
-        },
-      };
+        };
     </script>
 
 </head>
@@ -151,22 +143,25 @@
     </div>
     </nav> --}}
 
-    <main>
-        @yield('content')
-    </main>
+        <main>
+            @yield('content')
+        </main>
     </div>
 </body>
 
 
-{{-- <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
 
 
 <script>
-    $("#btn_toggle_login").click(function() {
-        $(".konten_toggle_login").toggle();
-    });
-
-</script> --}}
+    // $("#btn_toggle_login").click(function() {
+    //     $(".konten_toggle_login").toggle();
+    // });
+    $(window).on('load', () => {
+        let index = Math.floor(1 + Math.random() * 5);
+        $("#bg-video").attr('src', `/login-assets/video${index}.mp4`)
+    })
+</script>
 
 </html>
 
