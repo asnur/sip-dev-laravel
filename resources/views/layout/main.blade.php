@@ -470,6 +470,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 id="jumlahTenagaUsaha" style="font-size: 13px; line-height:0px;">
                         </div>
                         <div class="col-12">
+                            <p style="font-size:13px;" class="w-100 mt-2"><sup
+                                    class="text-danger font-weight-bold">*</sup> Wajib di Isi</p>
                             <center>
                                 <button type="submit" id="submitUsahaLocation"
                                     class="btn btn-success mt-3 text-white"
