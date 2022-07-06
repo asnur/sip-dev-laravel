@@ -6072,7 +6072,7 @@ function editDataSurvey(id, id_user) {
             }
             localStorage.setItem("url_survey", `${APP_URL}/saveEditDataSurvey`);
             // $("#formSurveyLocationEdit").show();
-            $("#idSurvey").val(e.id);
+            $("#idSurvey").val(e.id_baru);
             $("#nameSurvey").val(e.name);
             $("#kordinatSurvey").val(e.kordinat);
             $("#idSubblokSurvey").val(e.id_sub_blok);
