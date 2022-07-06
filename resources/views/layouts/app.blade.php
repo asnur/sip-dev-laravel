@@ -6,14 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="title" content="Peta Perizinan dan Investasi DKI Jakarta">
-    <meta name="description"
-        content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
+    <meta name="description" content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
     <meta name="og:title" content="Peta Perizinan dan Investasi DKI Jakarta">
-    <meta name="og:description"
-        content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
+    <meta name="og:description" content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
     <meta name="twitter:title" content="Peta Perizinan dan Investasi DKI Jakarta">
-    <meta name="twitter:description"
-        content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
+    <meta name="twitter:description" content="Peta Perizinan dan Investasi oleh DKI Jakarta bekerja sama dengan DPMPTSP DKI Jakarta ">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -67,7 +64,7 @@
         }
 
         .title_slogan{
-            font-size: 10px
+            font-size: 11px
         }
 
         video {
@@ -80,14 +77,15 @@
             theme: {
                 extend: {
                     spacing: {
-                        13: "3.25rem",
-                    },
-                    fontFamily: {
-                        family: ["Family"],
-                    },
-                },
-            },
-        };
+                        13: "3.25rem"
+                    , }
+                    , fontFamily: {
+                        family: ["Family"]
+                    , }
+                , }
+            , }
+        , };
+
     </script>
 
 </head>
@@ -147,9 +145,9 @@
     </div>
     </nav> --}}
 
-        <main>
-            @yield('content')
-        </main>
+    <main>
+        @yield('content')
+    </main>
     </div>
 </body>
 
@@ -165,6 +163,7 @@
         let index = Math.floor(1 + Math.random() * 5);
         $("#bg-video").attr('src', `/login-assets/video${index}.mp4`)
     })
+
 </script>
 
 </html>
