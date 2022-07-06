@@ -66,6 +66,10 @@
             padding-bottom: 2%;
         }
 
+        .title_slogan{
+            font-size: 10px
+        }
+
         video {
             filter: brightness(80%);
         }

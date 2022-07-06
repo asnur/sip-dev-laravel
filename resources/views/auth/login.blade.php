@@ -75,7 +75,7 @@
                 </form>
             </div>
 
-            <footer class="mt-auto mb-12 text-center text-xs text-center text-gray-300 text-white">
+            <footer class="mt-auto mb-12 text-center text-xs text-gray-300 title_slogan">
                 ©2022 DPMPTSP Pemprov DKI Jakarta
             </footer>
         </div>
