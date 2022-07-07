@@ -513,15 +513,54 @@ $Roles = '';
                                         </div>
                                     </div>
 
+                                    <div class="row" style="margin-top: 2.8%; margin-bottom: 5.2%;">
+
+                                        <div class="col-md-11">
+                                            <div class="card shadow">
+
+                                                <div class="card-body">
+                                                    <div class="form-group mt-2 mb-2">
+
+                                                        <div class="row">
+
+                                                            <div style="margin-left:2.1rem;" class="col-md-11">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" placeholder="Salin Link" aria-label="Recipient's username" aria-describedby="basic-addon2"
+                                                                    id="foo" value="https://www.google.co.id/?hl=id">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary btn_salin" type="button" data-clipboard-target="#foo">Salin</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     {{-- <div class="row-top-footer"></div> --}}
 
-                                    <div style="position: absolute; margin-top:0.2rem" class="">
+
+                                    <div class="">
                                         <a href="{{ route('list_kuesioner') }}" class="btn btn-primary">
                                             Simpan
                                         </a>
                                     </div>
 
-                                    {{-- <div class="row-top-footer"></div> --}}
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            {{-- <div class="row-top-footer"></div> --}}
                         </form>
 
                     </div>
