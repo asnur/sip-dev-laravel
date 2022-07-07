@@ -358,8 +358,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     style="font-size: 10pt;" role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Simpan.
                 </div>
-                <div class="w-100 mt-2" onclick="resetUsaha()" id="resetUsaha"
-                    style="font-size: 12pt; cursor: pointer; text-align:right;"><i class="ri-arrow-left-line"></i>
+                <div class="w-100 mt-2 text-primary" onclick="resetUsaha()" id="resetUsaha"
+                    style="font-size: 12pt; cursor: pointer;"><i class="ri-arrow-left-line"></i> <span
+                        style="
+                    font-size: 13px;
+                    top: -2px;
+                    position: relative;
+                ">Kembali</span>
                 </div>
                 <form id="formUsahaLocation" enctype="multipart/form-data">
                     <div class="row">
@@ -443,6 +448,29 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-7">
                             <input type="text" name="no_perjanjian" class="w-100" id="noPerjanjianUsaha"
                                 style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Badan Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select id="opsiBadanUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Binaan OPD Teknis">Binaan OPD Teknis</option>
+                                <option value="Binaan Jakpreneur">Binaan Jakpreneur</option>
+                                <option value="Binaan Kementerian">Binaan Kementerian</option>
+                                <option value="Non Binaan">Non Binaan</option>
+                            </select>
+                            <select name="badan_usaha" id="badanUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Dinas PPKUKM">Dinas PPKUKM</option>
+                                <option value="Dinas Parekraf">Dinas Parekraf</option>
+                                <option value="Dinas Sosial">Dinas Sosial</option>
+                                <option value="Dinas KPKP">Dinas KPKP</option>
+                                <option value="Dinas Tenaga Kerja">Dinas Tenaga Kerja</option>
+                                <option value="Dinas Transmigrasi dan Energi">Dinas Transmigrasi dan Energi</option>
+                                <option value="Dinas PPAPP">Dinas PPAPP</option>
+                            </select>
                         </div>
                         <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">Sektor Usaha <sup
@@ -594,9 +622,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </button> --}}
                         </span>
                     </div>
-                    <div class="w-100 mt-2" onclick="resetSurvey()"
-                        style="font-size: 12pt; cursor: pointer; text-align:right;" id="resetSurey"><i
-                            class="ri-arrow-left-line"></i></div>
+                    <div class="w-100 mt-2 text-primary" onclick="resetSurvey()"
+                        style="font-size: 12pt; cursor: pointer;" id="resetSurey"><i class="ri-arrow-left-line"></i>
+                        <span
+                            style="
+                        font-size: 13px;
+                        top: -2px;
+                        position: relative;
+                    ">Kembali</span>
+                    </div>
                     <div class="form mt-2">
                         <form id="formSurveyLocation" enctype="multipart/form-data">
                             <div class="row">
