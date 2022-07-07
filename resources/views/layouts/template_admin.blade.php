@@ -639,6 +639,7 @@
 
 
 
+
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
@@ -653,6 +654,13 @@
 
     @if (Request::is('admin/tambahKuesioner'))
         <script src="{{ asset('assets/admin2/js/kuesioner.js') }}"></script>
+
+        {{-- copy txt --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+
+        <script>
+            new ClipboardJS('.btn_salin');
+        </script>
     @endif
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
