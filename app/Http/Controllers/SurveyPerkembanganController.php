@@ -91,7 +91,6 @@ class SurveyPerkembanganController extends Controller
             return response()->json(['status' => 'failed', 'message' => 'Anda tidak memiliki akses']);
         }
         $data = SurveyPerkembangan::where('id_baru', (int)$request->input('id'))->first();
-        var_dump($data, (int)$request->input('id'));
         $data->id_sub_blok = $request->input('id_sublok');
         $data->name = $request->input('name');
         $data->kordinat = $request->input('kordinat');
@@ -115,7 +114,7 @@ class SurveyPerkembanganController extends Controller
 
                 SurveyPerkembanganImage::create([
                     'name' => $name,
-                    'id_survey' => $request->input('id')
+                    'id_survey' => $data->id
                 ]);
             }
         }
