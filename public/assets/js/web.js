@@ -6043,17 +6043,19 @@ function editDataSurvey(id, id_user) {
             // }
             $("#resetSurey").show();
             let html = "";
-            $("#previewFotoSurvey").html("");
-            for (var i = 0; i < e.image.length; i++) {
-                html += `
-            <div class="mr-1 slide">
-                <button type="button" class="close btn-remove-item" onclick="removeImageSurvey(${e.image[i].id})" style="position: relative;
-                color: red;margin-bottom:-1rem;">
-                        <span aria-hidden="true">&times;</span>
-                </button>
-                <img src="/survey/${e.image[i].name}" class="w-100" style="object-fit:cover">
-            </div>
-            `;
+            // $("#previewFotoSurvey").html("");
+            if (e.image.length !== 0) {
+                for (var i = 0; i < e.image.length; i++) {
+                    html += `
+                <div class="mr-1 slide slide-survey">
+                    <button type="button" class="close btn-remove-item" onclick="removeImageSurvey(${e.image[i].id})" style="position: relative;
+                    color: red;margin-bottom:-1rem;">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="/survey/${e.image[i].name}" class="w-100" style="object-fit:cover">
+                </div>
+                `;
+                }
             }
             if (
                 $("div#previewFotoSurvey.slick-initialized.slick-slider")
@@ -6518,7 +6520,7 @@ function preview_foto_survey() {
     for (var i = 0; i < gambarLokasi; i++) {
         let file = $("#gambarLokasiSurvey").get(0).files[i];
         let element = $(`
-            <div class="slide mr-1">
+            <div class="slide slide-survey mr-1">
                 <button type="button" class="close btn-remove-item" data-index="${countArray++}" style="position: relative;
                 color: red;margin-bottom:-1rem;">
                         <span aria-hidden="true">&times;</span>
@@ -6528,10 +6530,12 @@ function preview_foto_survey() {
                 )}" class="w-100">
             </div>
             `);
-        if ($(".slide").length == 0) {
+        if ($(".slide-survey").length == 0) {
             $("#previewFotoSurvey").slick("slickAdd", element);
+            console.log("add first");
         } else {
             $("#previewFotoSurvey").slick("slickAdd", element, 0, true);
+            console.log("add second");
         }
         new Compressor(file, {
             quality: 0.3,
