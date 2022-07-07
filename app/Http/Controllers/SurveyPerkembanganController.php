@@ -216,6 +216,8 @@ class SurveyPerkembanganController extends Controller
                     'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
                     'transect_zone' => $d->transect_zone,
                     'deskripsi_transect_zone' => $d->deskripsi_transect_zone,
+                    'id_baru' => $d->id_baru,
+                    'id_user' => $d->id_user,
                 ],
                 'geometry' => [
                     'type' => 'Point',
@@ -254,6 +256,8 @@ class SurveyPerkembanganController extends Controller
                     'deskripsi_neighborhood' => $d->deskripsi_neighborhood,
                     'transect_zone' => $d->transect_zone,
                     'deskripsi_transect_zone' => $d->deskripsi_transect_zone,
+                    'id_baru' => $d->id_baru,
+                    'id_user' => $d->id_user,
                 ],
                 'geometry' => [
                     'type' => 'Point',

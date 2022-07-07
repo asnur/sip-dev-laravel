@@ -9348,6 +9348,7 @@ const getLayerSurveyPerkembangan = () => {
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
+                editDataSurvey(dt.id_baru, dt.id_user);
                 let imageCarousel = ``;
                 let carouselControl = ``;
                 let image = JSON.parse(dt.image);
@@ -9489,6 +9490,7 @@ const getLayerSurveyPerkembangan = () => {
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
+                editDataSurvey(dt.id_baru, dt.id_user);
                 let imageCarousel = ``;
                 let carouselControl = ``;
                 let image = JSON.parse(dt.image);
