@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex flex-row min-h-screen">
         <div class="w-9/12">
-            <video class="object-fill w-full h-full" src="" id="bg-video" type="video/mp4" autoplay muted loop></video>
+            <video class="object-fill w-full h-full" src="" id="bg-video" type="video/mp4" autoplay muted></video>
         </div>
         <div class="w-3/12 gradient_card">
             <div class="flex flex-col h-screen">
