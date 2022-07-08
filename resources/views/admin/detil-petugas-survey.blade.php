@@ -41,7 +41,7 @@
                 <td>{{ $d->deskripsi_neighborhood }}</td>
                 <td>{{ $d->transect_zone }}</td>
                 <td>{{ $d->deskripsi_transect_zone }}</td>
-                <td>{{ $d->date }}</td>
+                <td>{{ $d->tanggal }}</td>
             </tr>
         @endforeach
     </table>
