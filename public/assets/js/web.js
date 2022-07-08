@@ -637,11 +637,19 @@ $("#polygonDraw").on("click", () => {
 $("#btnSHP").on("click", () => {
     $("#createSHP").addClass("text-primary");
     fillLayerDraw.forEach((e) => {
-        map.setPaintProperty(e, "fill-color", "#fff");
+        if (map.getStyle().sprite.includes("ckp6i54ay22u818lrq15ffcnr")) {
+            map.setPaintProperty(e, "fill-color", "#000");
+        } else {
+            map.setPaintProperty(e, "fill-color", "#fff");
+        }
         map.setPaintProperty(e, "fill-opacity", 0);
     });
     lineLayerDraw.forEach((e) => {
-        map.setPaintProperty(e, "line-color", "#000");
+        if (map.getStyle().sprite.includes("ckp6i54ay22u818lrq15ffcnr")) {
+            map.setPaintProperty(e, "line-color", "#fff");
+        } else {
+            map.setPaintProperty(e, "line-color", "#000");
+        }
         map.setPaintProperty(e, "line-width", 3);
     });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
