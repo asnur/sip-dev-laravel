@@ -584,8 +584,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </li>
                 <li class="nav-item ml-2" role="presentation">
                     <a class="nav-link border" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert <sup
-                            class="text-danger">BETA</sup></a>
+                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert </a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -1505,7 +1504,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="btnSHP" data-toggle="pill" href="#" role="tab"
                                     aria-controls="pills-cetak" aria-selected="false"><i
@@ -6008,6 +6007,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         aria-labelledby="dropdownMenuButton" style="width: 300px">
                         <div class="row" style="padding: 4% 5% 1% 5%;">
 
+                            <div style="position:relative;"
+                                class="col-sm-4 text-center d-flex align-items-center mt-2">
+                                <a href="/admin" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 53%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/dashboard.png') }}">
+                                    <span style="font-size: 9pt;position: relative;top: -1px;">Dashboard</span></a>
+                            </div>
+
                             <div style="position:relative; left:-9px;"
                                 class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
@@ -6226,6 +6234,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" onclick="document.getElementById('btnSHP').click()" title="Buat SHP"
+                        class="ri-file-code-line p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
                 {{-- <button class="btn btn-sm mt-1 ">
                     <div class="container dropleft">
                         <div class="row">
@@ -6267,8 +6282,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Detail Jumlah -->
     <div class="detail_jumlah" style="display: none;">
         <div class="container">
-            <span class="text_all font-weight-bold">Filter Data Interaktif <sup
-                    class="text-danger">BETA</sup></span>
+            <span class="text_all font-weight-bold">Filter Data Interaktif </span>
 
             <div class="text_all">
                 <div class="row">
