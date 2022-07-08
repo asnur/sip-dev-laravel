@@ -1365,15 +1365,13 @@ $Roles = '';
                 columns: [{
                         data: 'petugas'
                         , name: 'petugas'
-                    }, {
+                    },{
                         data: 'tanggal'
                         , name: 'tanggal'
-                    }
-                    , {
+                    },{
                         data: 'name_tempat'
                         , name: 'name_tempat'
-                    }
-                    , {
+                    }, {
                         data: 'id_sub_blok'
                         , name: 'id_sub_blok'
                     }, {
@@ -1410,31 +1408,31 @@ $Roles = '';
                     }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [1]
+                        , className: "text-center"
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [2]
-                        , className: "text-center"
-
                     }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [3]
+                        , className: "text-center"
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [4]
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [5]
-                        , className: "text-center"
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [6]
+                        , className: "text-center"
                     }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [7]
-                        , className: "text-center"
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [8]
+                        , className: "text-center"
                     }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [9]
@@ -1442,32 +1440,43 @@ $Roles = '';
                     , }, {
                         orderSequence: ["asc", "desc"]
                         , targets: [10]
-                    , }
-
-                    , {
+                        , className: "text-center"
+                    , }, {
                         width: "7%"
                         , targets: 0
                     }, {
-                        width: "11%"
+                        width: "5%"
                         , targets: 1
                     }, {
-                        width: "5%"
+                        width: "11%"
                         , targets: 2
                     }, {
-                        width: "7%"
+                        width: "5%"
                         , targets: 3
                     }, {
-                        width: "5%"
+                        width: "7%"
                         , targets: 4
                     }, {
-                        width: "6%"
+                        width: "5%"
                         , targets: 5
                     }, {
-                        width: "7%"
+                        width: "5%"
+                        , targets: 6
+                    },{
+                        width: "15%"
                         , targets: 7
                     }, {
-                        width: "5%"
+                        width: "7%"
+                        , targets: 8
+                    }, {
+                        width: "15%"
                         , targets: 9
+                    },{
+                        width: "5%"
+                        , targets: 10
+                    }, {
+                        width: "15%"
+                        , targets: 11
                     }
                 , ],
 
