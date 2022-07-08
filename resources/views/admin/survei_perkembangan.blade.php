@@ -870,6 +870,9 @@ $Roles = '';
                                                                 <td>
                                                                     <div class='skeleton-line'></div>
                                                                 </td>
+                                                                <td>
+                                                                    <div class='skeleton-line'></div>
+                                                                </td>
                                                                 </tr>" ; } @endphp </tbody>
                     </table>
                 </div>
