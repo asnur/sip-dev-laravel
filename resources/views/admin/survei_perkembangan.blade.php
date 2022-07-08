@@ -586,7 +586,7 @@ $Roles = '';
 
                                 @foreach ($datas as $gi)
                                 <div>
-                                    <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                    <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
                                 </div>
                                 @endforeach
 
