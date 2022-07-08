@@ -30,6 +30,7 @@
         </tr>
         @foreach ($data as $d)
 
+
         <tr>
             <td>{{ $d->petugas }}</td>
             <td>{{ $d->tanggal }}</td>
@@ -44,6 +45,7 @@
             <td>{{ $d->transect_zone }}</td>
             <td>{{ $d->deskripsi_transect_zone }}</td>
         </tr>
+
         @endforeach
     </table>
 </body>
