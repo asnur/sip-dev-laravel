@@ -733,6 +733,15 @@ $Roles = '';
                                 </th>
                                 <th>
                                     <div style="display: none;" class="lazy_name_kinerja">
+                                        Tanggal Input
+                                    </div>
+
+                                    <div class="hide_lazyload_kinerja">
+                                        <div class='skeleton-line'></div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div style="display: none;" class="lazy_name_kinerja">
                                         Nama Lokasi
                                     </div>
 
@@ -1356,6 +1365,9 @@ $Roles = '';
                 columns: [{
                         data: 'petugas'
                         , name: 'petugas'
+                    }, {
+                        data: 'tanggal'
+                        , name: 'tanggal'
                     }
                     , {
                         data: 'name_tempat'
