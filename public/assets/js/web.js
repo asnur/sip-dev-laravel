@@ -641,7 +641,8 @@ $("#btnSHP").on("click", () => {
         map.setPaintProperty(e, "fill-opacity", 0);
     });
     lineLayerDraw.forEach((e) => {
-        map.setPaintProperty(e, "line-color", "#fff");
+        map.setPaintProperty(e, "line-color", "#000");
+        map.setPaintProperty(e, "line-width", 3);
     });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
