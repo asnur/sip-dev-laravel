@@ -29,6 +29,7 @@
             <th>Deskripsi</th>
         </tr>
         @foreach ($data as $d)
+
         <tr>
             <td>{{ $d->petugas }}</td>
             <td>{{ $d->tanggal }}</td>
