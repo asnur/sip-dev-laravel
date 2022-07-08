@@ -365,7 +365,7 @@
                 <div class="row">
                     <div class="col-md-12 mt-2">
 
-                        <div class="image_slider_input">
+                        <div class="image_slider_input_dashboard">
                             @php
                             $no=1;
                             @endphp
@@ -373,7 +373,7 @@
                             @foreach ($get_id as $gi)
 
                             <div>
-                                <img class="img_child img_child_id" data-id="{{$gi->id}}" src="https://jakpintas.dpmptsp-dki.com/mobile/img/{{$gi->foto}}" alt="Image Child">
+                                <img class="img_child img_child_id" data-id="{{$gi->id}}" data-lazy="https://jakpintas.dpmptsp-dki.com/mobile/img/{{$gi->foto}}" alt="Image Child">
                             </div>
 
                             @endforeach
@@ -776,17 +776,16 @@
     //     // , asNavFor: '.image_slider_input'
     // });
 
-    $('.image_slider_input').slick({
-        slidesToShow: 5
+    $('.image_slider_input_dashboard').slick({
+        slidesToShow: 6
+        , lazyLoad: 'ondemand'
         , slidesToScroll: 1
-        , asNavFor: '.gambar_utama_slider_input'
+            // , asNavFor: '.gambar_utama_slider_input'
         , dots: false
         , focusOnSelect: true
         , variableWidth: true
         , infinite: true
         , arrows: true
-
-
     });
 
 </script>

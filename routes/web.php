@@ -13,16 +13,23 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SurveyerController;
 use App\Http\Controllers\RekapSurveyController;
 use App\Models\User;
+use App\Models\ViewDetil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\PagePDFController;
+use App\Http\Controllers\PendataanUsahaController;
+use App\Http\Controllers\SektorController;
 use App\Http\Controllers\SurveyPerkembanganController;
+use App\Models\PendataanUsaha;
 use App\Models\Survey;
 use App\Models\SurveyPerkembangan;
+use App\Models\ProgresSurvey;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
+
 
 
 /*
@@ -41,12 +48,8 @@ use Jenssegers\Agent\Agent;
 // });
 
 Route::get('/', function (Request $request) {
-    // $agent = new Agent();
-    // if ($agent->isMobile() || $agent->isTablet()) {
-    //     return view('block');
-    // }
     return view('layout.main');
-})->name('home');
+})->middleware('auth')->name('home');
 
 
 //KBLI PUSDATIN
@@ -57,10 +60,18 @@ Route::get('/kbli/{subzona}/{kegiatan}/{skala}', [KBLIPusdatin::class, 'kewenang
 //cek Login Chat
 Route::get('/cekLoginChat', function (Request $request) {
     if (Auth::check()) {
-        return true;
+        $data = [
+            'status' => true,
+            'id' => Auth::user()->id,
+        ];
+        return $data;
     } else {
         $request->session()->put('cek-login', 'login');
-        return false;
+        $data = [
+            'status' => false,
+            'id' => null,
+        ];
+        return $data;
     }
 });
 
@@ -190,7 +201,40 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/get-kinerja-petugas', [AdminController::class, 'KinerjaPetugas'])->name('get-kinerja-petugas');
 
     Route::get('/get-progres-survey', [AdminController::class, 'ProgresSurvey'])->name('get-progres-survey');
+
+    Route::get('/peta-survey/{id}', [RekapSurveyController::class, 'petaSurvey'])->name('peta-survey');
+
+    Route::get('/detil-petugas-survey', function () {
+        $data = ViewDetil::select("*")->get();
+
+        return view('admin/detil-petugas-survey', compact('data'));
+    })->name('detil-petugas-survey');
+
+    Route::get('/kinerja-petugas-survey', function () {
+        $data = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
+            'roles',
+            function ($q) {
+                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
+            }
+        )->get();
+
+        // dd($data);
+
+        return view('admin/kinerja-petugas-survey', compact('data'));
+    })->name('kinerja-petugas-survey');
 });
+
+// tabel kelurahan
+
+Route::get('/progres-perkelurahan', function () {
+    $data =  ProgresSurvey::withCount(['survey' => function ($query) {
+        $query->select(DB::connection('pgsql')->raw('count(distinct(id_sub_blok))'));
+    }])->orderBy('kecamatan')->get();
+
+    // dd($data);
+
+    return view('admin/progres-perkelurahan', compact('data'));
+})->name('progres-perkelurahan');
 
 //Analytics Page
 Route::get('/analytics/{periode}', [AnalyticsController::class, 'index']);
@@ -208,12 +252,22 @@ Route::post('/editDataSurvey', [SurveyPerkembanganController::class, 'editDataSu
 Route::post('/deleteDataSurvey', [SurveyPerkembanganController::class, 'deleteDataSurvey'])->name('delete-survey-perkembangan');
 Route::post('/deleteImageSurvey', [SurveyPerkembanganController::class, 'deleteImageSurvey'])->name('delete-image-survey-perkembangan');
 Route::get('/printSurvey', [SurveyPerkembanganController::class, 'printSurvey'])->name('print-survey-perkembangan');
+Route::get('/printSurveyExcel', [SurveyPerkembanganController::class, 'printSurveyExcel'])->name('print-survey-perkembangan');
 Route::get('/layerSurveyPerkembangan', [SurveyPerkembanganController::class, 'layerSurveyPerkembangan'])->name('layer-survey-perkembangan');
+Route::get('/layerSurveyPerkembanganPartner', [SurveyPerkembanganController::class, 'layerSurveyPerkembanganPartner'])->name('layer-survey-perkembanganPartner');
 Route::get('/survey/{kelurahan}', [SurveyPerkembanganController::class, 'surveyKelurahan'])->name('survey-perkembangan-kelurahan');
 Route::post('/importSurvey', [SurveyPerkembanganController::class, 'importExcelSurvey'])->name('import-survey-perkembangan');
 Route::get('/importExcelSurvey', function () {
     return view('importExcelSurvey');
 })->name('export-survey-perkembangan');
+
+//Pendataan Usaha
+Route::post('/savePendataanUsaha', [PendataanUsahaController::class, 'savePendataanUsaha'])->name('pendataan-usaha');
+Route::post('/getPendataanUsaha', [PendataanUsahaController::class, 'getPendataanUsaha'])->name('pendataan-usaha');
+Route::get('/getPendataanUsaha/{id}', [PendataanUsahaController::class, 'getPendataanUsahaById'])->name('pendataan-usaha');
+Route::post('/deletePendataanUsaha', [PendataanUsahaController::class, 'deletePendataanUsaha'])->name('delete-pendataan-usaha');
+Route::get('/printUsahaExcel', [PendataanUsahaController::class, 'printUsahaExcel'])->name('print-usaha-excel');
+Route::post('/deleteImageUsaha', [PendataanUsahaController::class, 'deleteImageUsaha'])->name('delete-image-usaha');
 
 //Export Data
 Route::get('/data-jumlah-titik', function () {
@@ -234,6 +288,15 @@ Route::get('/detail-data-titik', function () {
 
     return view('detail-data-titik', compact('data'));
 })->name('export-data-detail');
+Route::get('/imageSurvey/{transaction_id}', [SurveyPerkembanganController::class, 'exportImageSurvey'])->name('image-survey');
+
+
+//Get Sektor
+Route::get('/sektor/{sektor}', [SektorController::class, 'getData'])->name('get-sektor');
+
+Route::get('/phpinfo', function () {
+    return phpinfo();
+})->name('phpinfo');
 
 //PHP INFO
 // Route::get('/createUserPNS', function () {

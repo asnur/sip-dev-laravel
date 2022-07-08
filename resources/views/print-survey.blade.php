@@ -25,7 +25,6 @@
             margin-bottom: 0px;
             margin-top: 10px;
         }
-
     </style>
 </head>
 
@@ -47,31 +46,7 @@
                     $arr_coor = explode(',', $d->kordinat);
                 @endphp
                 <tr>
-                    <th rowspan="6" style="vertical-align: middle">{{ $no++ }}</th>
-                    <th colspan="6">
-
-                        @foreach ($d->image as $ds)
-                            @if ($item % 4 == 0)
-                                <div class="flex-container w-100" style="display:table;
-                            ">
-                            @endif
-                            @php
-                                $item++;
-                            @endphp
-                            {{-- <p style="float: left">Test</p> --}}
-                            <div class="flex-item w-25" style="display: table-cell;padding:5px;">
-
-                                <img src="https://jakpintas.dpmptsp-dki.com/survey/{{ $ds->name }}"
-                                    style="width: 100%; height:150px; object-fit:cover;object-position:center;">
-                            </div>
-                            @if ($item % 4 == 0)
-                                </div>
-                            @endif
-                        @endforeach
-
-                    </th>
-                </tr>
-                <tr>
+                    <th rowspan="5" style="vertical-align: middle">{{ $no++ }}</th>
                     <th>Nama Tempat</th>
                     <th>Kordinat</th>
                     <th>ID Sub Blok</th>
@@ -92,20 +67,21 @@
                 <tr>
                     <td colspan="6">
                         <p style="line-height:5px" class="font-weight-bold">Pola Regional : {{ $d->regional }}</p>
-                        <p style="line-height:5px">{{ $d->deskripsi_regional }}</p>
+                        <p>{{ $d->deskripsi_regional }}</p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
                         <p style="line-height:5px" class="font-weight-bold">Pola Lingkungan : {{ $d->neighborhood }}
                         </p>
-                        <p style="line-height:5px">{{ $d->deskripsi_neighborhood }}</p>
+                        <p>{{ $d->deskripsi_neighborhood }}</p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <p style="line-height:5px" class="font-weight-bold">Pola Ruangan : {{ $d->transect_zone }}</p>
-                        <p style="line-height:5px">{{ $d->deskripsi_transect_zone }}</p>
+                        <p style="line-height:5px" class="font-weight-bold">Pola Ruangan : {{ $d->transect_zone }}
+                        </p>
+                        <p>{{ $d->deskripsi_transect_zone }}</p>
                     </td>
                 </tr>
             @endforeach

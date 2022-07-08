@@ -312,6 +312,263 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
         </div>
     </div>
 
+    <div class="info-usaha-location">
+        <div class="container p-4">
+            <button type="button" class="close" id="closeUsahaLocation" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span style="font-size: 13pt" class="title-info font-weight-bold">Pendataan Usaha</span>
+            <div class="form mt-4">
+                <div class="for_web input-group input-group-md my-3">
+                    <input type="search" id="cari_wilayah_usaha"
+                        class="form-control tombol_search py-2 border-right-0 border"
+                        placeholder="Cari nama tempat ..." autocomplete="off" style="font-size: 8pt">
+
+
+                    <!-- Ori -->
+                    <div class="wm-search__dropdown">
+                        <ul class="wm-search__dropdown" role="listbox"></ul>
+                    </div>
+
+                    <!-- Dummy -->
+                    <ul class="wm-search__dropdown" role="listbox">
+
+                    </ul>
+
+
+                    <span class="input-group-append" style="font-size: 8pt">
+                        <button class="btn btn-secondary tombol_search border-left-0 border" style="font-size: 8pt"
+                            type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        {{-- <button class="btn tombol_search border-left-0 border" type="button"
+                                id="polygonDraw">
+                                <i class="ri-shape-line"></i>
+                                <span class="bg-danger p-1 rounded text-white"
+                                    style="font-size: 8px;margin-top: -1rem;
+                                    position: absolute;">BETA</span>
+                            </button> --}}
+                    </span>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" id="pesanGagalUsaha"
+                    style="font-size: 10pt;" role="alert">
+                    <strong>Gagal!</strong> Anda Harus Mengisi Semua Form.
+                </div>
+                <div class="alert alert-success alert-dismissible fade show" id="pesanBerhasilUsaha"
+                    style="font-size: 10pt;" role="alert">
+                    <strong>Berhasil!</strong> Data Berhasil di Simpan.
+                </div>
+                <div class="w-100 mt-2 text-primary" onclick="resetUsaha()" id="resetUsaha"
+                    style="font-size: 12pt; cursor: pointer;"><i class="ri-arrow-left-line"></i> <span
+                        style="
+                    font-size: 13px;
+                    top: -2px;
+                    position: relative;
+                ">Kembali</span>
+                </div>
+                <form id="formUsahaLocation" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Nama Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="nama_usaha" class="w-100" id="namaUsaha"
+                                style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Nama Pemilik <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="pelaku" class="w-100" id="pelakuUsaha"
+                                style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-12">
+                            <label class="mt-2 text-primary" for="gambarLokasiUsaha"
+                                style="font-size: 13px;line-height:0px;cursor:pointer;"><i
+                                    class="ri-upload-cloud-line font-weight-bold"
+                                    style="font-size: 20px !important;position:relative;top:4px;"></i>
+                                <span>Unggah
+                                    Foto</span> </label>
+                            <div class="custom-file d-none" style="font-size: 8pt">
+                                <input type="file" accept="image/*" onchange="preview_foto_usaha()"
+                                    multiple="multiple" class="custom-file-input" id="gambarLokasiUsaha">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <div id="previewFotoUsaha">
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label style="font-size: 13px; line-height:0px">Alamat <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                            <textarea class="form-control" name="alamat" id="alamatUsaha" style="font-size: 13px;" rows="5"></textarea>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Koordinat <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="kordinat" class="w-100" id="kordinatUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Pilih Titik Lokasi" readonly>
+                            <input type="hidden" name="id" class="w-100" id="idUsaha"
+                                style="font-size: 13px; line-height:0px" placeholder="Pilih Titik Lokasi" readonly>
+                            <a href="#" target="_blank" id="refrensikordinatUsaha"
+                                style="font-size: 12px; line-height:0px">-</a>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">ID Sub Blok <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="id_sub_blok" id="idSubbBlokUsaha">
+                            <span style="font-size: 13px; line-height:0px" id="textIdSubBlokUsaha">-</span>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Kelurahan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="kelurahan" id="kelurahanUsaha">
+                            <span style="font-size: 13px; line-height:0px" id="textKelurahanUsaha">-</span>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Kecamatan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="hidden" name="kecamatan" id="kecamatanUsaha">
+                            <span style="font-size: 13px; line-height:0px" id="textKecamatanUsaha">-</span>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">No Perizinan <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="no_perjanjian" class="w-100" id="noPerjanjianUsaha"
+                                style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Badan Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select id="opsiBadanUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Binaan OPD Teknis">Binaan OPD Teknis</option>
+                                <option value="Binaan Jakpreneur">Binaan Jakpreneur</option>
+                                <option value="Binaan Kementerian">Binaan Kementerian</option>
+                                <option value="Non Binaan">Non Binaan</option>
+                            </select>
+                            <select name="badan_usaha" id="badanUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Dinas PPKUKM">Dinas PPKUKM</option>
+                                <option value="Dinas Parekraf">Dinas Parekraf</option>
+                                <option value="Dinas Sosial">Dinas Sosial</option>
+                                <option value="Dinas KPKP">Dinas KPKP</option>
+                                <option value="Dinas Tenaga Kerja">Dinas Tenaga Kerja</option>
+                                <option value="Dinas Transmigrasi dan Energi">Dinas Transmigrasi dan Energi</option>
+                                <option value="Dinas PPAPP">Dinas PPAPP</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Sektor Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="sektor" id="sektorUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Kelautan dan perikanan">Kelautan dan perikanan</option>
+                                <option value="Pertanian">Pertanian</option>
+                                <option value="Lingkungan hidup dan kehutanan">Lingkungan hidup dan kehutanan</option>
+                                <option value="Energi dan sumber daya mineral">Energi dan sumber daya mineral</option>
+                                <option value="Ketenaganukliran">Ketenaganukliran</option>
+                                <option value="Perindustrian">Perindustrian</option>
+                                <option value="Perdagangan">Perdagangan</option>
+                                <option value="Pekerjaan umum dan perumahan rakyat">Pekerjaan umum dan perumahan rakyat
+                                </option>
+                                <option value="Transportasi">Transportasi</option>
+                                <option value="Kesehatan, obat, dan makanan">Kesehatan, obat, dan makanan</option>
+                                <option value="Pendidikan dan kebudayaan">Pendidikan dan kebudayaan</option>
+                                <option value="Pariwisata">Pariwisata</option>
+                                <option value="Keagamaan">Keagamaan</option>
+                                <option value="Pos, telekomunikasi, penyiaran, dan sistem dan transaksi elektronik">
+                                    Pos, telekomunikasi, penyiaran, dan sistem dan transaksi elektronik</option>
+                                <option value="Pertahanan dan keamanan">Pertahanan dan keamanan</option>
+                                <option value="Ketenagakerjaan">Ketenagakerjaan</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px;">Modal Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="modal" class="w-50" id="modalUsaha"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="< Rp 1 Milyar">
+                                    < Rp 1 Milyar</option>
+                                <option value="Rp 1 - 5 Milyar">Rp 1 - 5 Milyar</option>
+                                <option value="Rp 5 - 10 Milyar">Rp 5 - 10 Milyar</option>
+                                <option value="> Rp 10 Milyar">> Rp 10 Milyar</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Jumlah Pekerja <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="number" class="w-50" min="0" name="jumlah_tenaga"
+                                id="jumlahTenagaUsaha" style="font-size: 13px; line-height:0px;">
+                        </div>
+                        <div class="col-12">
+                            <p style="font-size:13px;" class="w-100 mt-2"><sup
+                                    class="text-danger font-weight-bold">*</sup> Wajib di Isi</p>
+                            <center>
+                                <button type="submit" id="submitUsahaLocation"
+                                    class="btn btn-success mt-3 text-white"
+                                    style="font-size: 13px; cursor: pointer;"><i class="fa fa-paper-plane"></i>
+                                    Simpan</button>
+                                <div class="spinner-border mt-3" role="status" id="prosesUsaha"
+                                    style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="font-weight-bold" style="font-size: 14px">Arsip Lokasi
+                        </span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="/printUsahaExcel" class="text-primary"
+                            style="
+                position: relative;
+                font-size: 13px;
+                cursor:pointer;
+                top:-4.5px;
+                text-decoration: none;
+            "><i
+                                class="ri-download-cloud-line font-weight-bold"
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Arsip</a>
+                    </div>
+                </div>
+                <p align="center" id="messageNoDataUsaha" style="display: none" class="mt-5">Tidak Ada Lokasi Yang
+                    di Simpan</p>
+                <div class="mt-2">
+                    <div class="row list-item-usaha-location">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="info-survey-location">
         <div class="container p-4">
             <button type="button" class="close" id="closeSurvey" aria-label="Close">
@@ -327,8 +584,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </li>
                 <li class="nav-item ml-2" role="presentation">
                     <a class="nav-link border" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert <sup
-                            class="text-danger">BETA</sup></a>
+                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert </a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -365,9 +621,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </button> --}}
                         </span>
                     </div>
-                    <div class="w-100 mt-2" onclick="resetSurvey()"
-                        style="font-size: 12pt; cursor: pointer; text-align:right;" id="resetSurey"><i
-                            class="ri-arrow-left-line"></i></div>
+                    <div class="w-100 mt-2 text-primary" onclick="resetSurvey()"
+                        style="font-size: 12pt; cursor: pointer;" id="resetSurey"><i class="ri-arrow-left-line"></i>
+                        <span
+                            style="
+                        font-size: 13px;
+                        top: -2px;
+                        position: relative;
+                    ">Kembali</span>
+                    </div>
                     <div class="form mt-2">
                         <form id="formSurveyLocation" enctype="multipart/form-data">
                             <div class="row">
@@ -414,6 +676,16 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                     <span><label id="textidSubblokSurvey" style="font-size: 13px;line-height:0px;"
                                             target="_blank">-</label></span><br>
                                     <input type="hidden" name="id_sublok" class="form-control" id="idSubblokSurvey"
+                                        style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="font-size: 13px;line-height:0px;">Global ID <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><label id="textglobalidSurvey" style="font-size: 12px;width:100%"
+                                            target="_blank">-</label></span><br>
+                                    <input type="hidden" name="global_id" class="form-control" id="globalidSurvey"
                                         style="font-size: 8pt" placeholder="Kode ID Sub Blok" readonly>
                                 </div>
                                 <div class="col-md-4">
@@ -657,6 +929,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                             target="_blank">-</label></span><br>
                                 </div>
                                 <div class="col-md-4">
+                                    <label style="font-size: 13px;line-height:0px;">Global ID <sup
+                                            class="text-danger font-weight-bold">*</sup></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><label id="textglobalidSurveyBulk"
+                                            style="font-size: 12px;line-height:0px;width:120%;"
+                                            target="_blank">-</label></span><br>
+                                </div>
+                                <div class="col-md-4">
                                     <label style="font-size: 13px;line-height:0px;">Kelurahan <sup
                                             class="text-danger font-weight-bold">*</sup></label>
                                 </div>
@@ -722,7 +1003,16 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="col-md-6 text-right">
                         <span class="w-100 d-block font-weight-bold" style="font-size: 25px;"><span
                                 id="JumlahTitikSurvey">0</span></span>
-                        <a href="/printSurvey" class="text-primary"
+                        {{-- <a href="/printSurvey" class="text-primary"
+                            style="
+                        position: relative;
+                        font-size: 13px;
+                        cursor:pointer;
+                        text-decoration: none;
+                    "><i
+                                class="ri-download-cloud-line font-weight-bold"
+                                style="font-size: 20px;position: relative;top: 4px;"></i> Unduh Pdf </a> --}}
+                        <a href="/printSurveyExcel" class="text-primary"
                             style="
                         position: relative;
                         font-size: 13px;
@@ -1067,7 +1357,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <label class="form-check-label text_all" for="banjir_fill">Terdampak
                             Banjir <span class="font_range_input" id="tahunBanjir">2015</span></label>
                         <input type="range" style="height: 6px;" class="form-control-range mt-3 w-75"
-                            id="ControlTahunBanjir" min="2015" max="2020" step="1" value="2015">
+                            id="ControlTahunBanjir" min="2015" max="2020" step="1"
+                            value="2015">
                     </div>
 
                     <div class="form-check sewa_fill d-none">
@@ -1108,7 +1399,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     <div class="form-check investasi_fill d-none">
                         <ul class="list-group list-group-flush">
                             <li class="listgroup-cust d-flex justify-content-between align-items-center text_all">
-                                <input type="radio" name="layer" class="form-check-input" id="investasi_fill">
+                                <input type="radio" name="layer" class="form-check-input"
+                                    id="investasi_fill">
                                 <label class="form-check-label checkbox_left text_checkbox text_all"
                                     for="investasi_fill">Proyek</label>
                             </li>
@@ -1212,7 +1504,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="btnSHP" data-toggle="pill" href="#" role="tab"
                                     aria-controls="pills-cetak" aria-selected="false"><i
@@ -1239,6 +1531,14 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <br>
                                 <label class="size_menu size_menu_mobile">Digitasi</label>
                             </li>
+                            {{-- <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
+                                    data-toggle="pill" href="#pills-simio" role="tab" id="simio-tab"
+                                    aria-selected="false"><i class="ri-money-dollar-circle-line"></i></a>
+
+                                <br>
+                                <label class="size_menu size_menu_mobile">SimIO</label>
+                            </li> --}}
                             <!-- Pending menu pin-->
 
                         </ul>
@@ -1462,7 +1762,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
 
-                            <div class="all-chart">
+                            <div class="all-chart" style="margin-top:-6%;">
                                 <div class="d-flex margin_chart_ekonomi_mobile">
                                     <canvas id="pie-chart" width="70" height="50"></canvas>
                                 </div>
@@ -1475,7 +1775,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             </div>
 
 
-                            <p class="card-title mb-3 mt-3  text-center font-weight-bold judul_utama">Pendapatan
+                            <p class="card-title mb-3 mt-4  text-center font-weight-bold judul_utama">Pendapatan
                                 Rata-Rata Per Bulan</p>
 
 
@@ -1544,7 +1844,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="position:absolute;z-index: -999; display:none"></canvas>
                                 </div>
 
-                                <div class="d-flex margin_chartline_ekonomi_mobile">
+                                <div class="d-flex mt-2 margin_chartline_ekonomi_mobile">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  mt-4">
                                         <canvas id="bar-chart-grouped-info" width="90" height="80"
                                             style="display: none;position:absolute;"></canvas>
@@ -5416,6 +5716,202 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
 
                     </div>
 
+                    <div class="tab-pane " id="pills-simio" role="tabpanel">
+                        <div class="container">
+                            <p class="card-title  mt-2 text-center font-weight-bold judul_utama mb-4">Simulasi IO</p>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Sektor</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <select id="sektorInput" class="w-75">
+                                        <option>Pilih Sektor...</option>
+                                        <option
+                                            value="Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib">
+                                            Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib</option>
+                                        <option value="Industri Pengolahan">Industri Pengolahan</option>
+                                        <option value="Informasi dan Komunikasi">Informasi dan Komunikasi</option>
+                                        <option value="Jasa Kesehatan dan Kegiatan Sosial">Jasa Kesehatan dan Kegiatan
+                                            Sosial</option>
+                                        <option value="Jasa Keuangan dan Asuransi">Jasa Keuangan dan Asuransi</option>
+                                        <option value="Jasa Lainnya">Jasa Lainnya</option>
+                                        <option value="Jasa Pendidikan">Jasa Pendidikan</option>
+                                        <option value="Jasa Perusahaan">Jasa Perusahaan</option>
+                                        <option value="Konstruksi">Konstruksi</option>
+                                        <option value="Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang">
+                                            Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang</option>
+                                        <option value="Pengadaan Listrik dan Gas">Pengadaan Listrik dan Gas</option>
+                                        <option value="Penyediaan Akomodasi dan Makan Minum">Penyediaan Akomodasi dan
+                                            Makan Minum</option>
+                                        <option value="Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor">
+                                            Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor</option>
+                                        <option value="Pertambangan dan Penggalian ">Pertambangan dan Penggalian
+                                        </option>
+                                        <option value="Pertanian, Kehutanan, dan Perikanan">Pertanian, Kehutanan, dan
+                                            Perikanan
+                                        </option>
+                                        <option value="Real Estate">Real Estate
+                                        </option>
+                                        <option value="Transportasi dan Pergudangan ">Transportasi dan Pergudangan
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul mb-5">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text_all">
+                                    <label class="text_all_mobile">Nilai Investasi</label>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text_all">
+                                    <input type="text" placeholder="Masukan Nilai Investasi"
+                                        class="w-75 number-separator" style="font-size: 11px"
+                                        id="sektorInvestasi">
+                                </div>
+                            </div>
+
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Administrasi Pemerintahan, Pertahanan dan Jaminan
+                                        Sosial Wajib</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-adm-ppj">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Industri Pengolahan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-ip">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Informasi dan Komunikasi</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-ik">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Kesehatan dan Kegiatan Sosial</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jkks">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Keuangan dan Asuransi</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jka">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Lainnya</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-js">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Pendidikan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jp">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Jasa Perusahaan</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jpr">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Konstruksi</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-jk">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur
+                                        Ulang</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pasldu">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pengadaan Listrik dan Gas</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-plg">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Penyediaan Akomodasi dan Makan Minum</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pamm">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Perdagangan Besar dan Eceran; Reparasi Mobil dan
+                                        Sepeda Motor</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pbermsm">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pertambangan dan Penggalian </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-perpen">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Pertanian, Kehutanan, dan Perikanan </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-pkp">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Real Estate </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-re">-</p>
+                                </div>
+                            </div>
+                            <div class="d-flex space_judul row_mid_judul">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <label class="text_all_mobile">Transportasi dan Pergudangan </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text_all">
+                                    <p id="sektor-tranper">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
 
                     <!-- PENDING Content Pin,Komen,kbliLokasi,Kalkulator,HBU-->
 
@@ -5511,12 +6007,21 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         aria-labelledby="dropdownMenuButton" style="width: 300px">
                         <div class="row" style="padding: 4% 5% 1% 5%;">
 
-                            <div style="position:relative; left:-7px;"
+                            <div style="position:relative;"
+                                class="col-sm-4 text-center d-flex align-items-center mt-2">
+                                <a href="/admin" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 53%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/dashboard.png') }}">
+                                    <span style="font-size: 9pt;position: relative;top: -1px;">Dashboard</span></a>
+                            </div>
+
+                            <div style="position:relative; left:-9px;"
                                 class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 55%;margin-bottom: 0.2rem"
-                                        src="http://localhost/assets/gambar/prapermohonan.png">
+                                        style="width: 100%;max-width: 53%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/prapermohonan.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">PraPermohonan</span></a>
                             </div>
@@ -5533,7 +6038,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://jakevo.jakarta.go.id/" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 68%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/jakevo.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Jakevo</span></a>
@@ -5542,33 +6047,35 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://oss.go.id" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 68%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/OSS.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">OSS</span></a>
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">OSS</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
-                                <a href="https://dpmptsp-jkt.com" target="_blank"
-                                    style="font-size: 12px;text-decoration:none"
-                                    class="text-dark font-weight-bold"><img
-                                        src="{{ asset('assets/gambar/pesanajib.png') }}" class="w-75">Pesan
-                                    Ajib</a>
+                                <a href="https://dpmptsp-jkt.com" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 70%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/pesanajib.png') }}">
+                                    <span
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Pesan
+                                        AJIB</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://simbg.pu.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 71%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 67%;margin-bottom: 1.8%"
                                         src="{{ asset('assets/gambar/simbg.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">SIMBG</span></a>
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -4px;">SIMBG</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://jakartasatu.jakarta.go.id/" target="_blank"
                                     style="text-decoration:none" class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 71%;margin-bottom: 0.2rem; margin-right: 0.1rem;"
                                         src="{{ asset('assets/gambar/jakarta1_logo.png') }}">
                                     <span
                                         style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">JakartaSatu</span></a>
@@ -5592,35 +6099,35 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                         style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/dki.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Bank
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">Bank
                                         DKI</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="/dokumen-dasar-dan-panduan" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 60%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 69%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/referensi.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">Referensi</span></a>
+                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -5px;">Referensi</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://sppirt.pom.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 67%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 70%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/BPOM.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -5px !important;position: relative;top: -6px;">BPOM</span></a>
+                                        style="font-size: 9pt;margin-top: -6px !important;position: relative;top: -6px;">BPOM</span></a>
                             </div>
 
                             <div class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://ptsp.halal.go.id/" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 75%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 89%;margin-bottom: 0.2rem;margin-left:0.1rem;"
                                         src="{{ asset('assets/gambar/halal.png') }}">
                                     <span
-                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -9px;">SIHALAL</span></a>
+                                        style="font-size: 9pt;margin-top: -8px !important;position: relative;top: -12px;">SIHALAL</span></a>
                             </div>
 
                         </div>
@@ -5639,12 +6146,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right mt-1 p-1" aria-labelledby="btnLogout"
                                 style="min-width: 73px;">
-                                <a class="dropdown-item p-0 text-center" href="#" onclick="signOut()"
+                                <a class="dropdown-item p-0 text-center" href="#"
+                                    onclick="document.getElementById('logout-form').submit()"
                                     style="font-size: 12px"><i class="fa fa-sign-out"></i> Logout</a>
-                                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     class="d-none">
                                     @csrf
-                                </form> --}}
+                                </form>
                             </div>
                         </div>
                         {{-- @endif --}}
@@ -5655,7 +6163,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 style="float: right;margin-right:1.3rem;width:32px;margin-top:2rem; border-radius:5px">
                 <div class="dropdown">
                     <button id="dropdownLayer" data-toggle="dropdown" class="ri-stack-line p-1"
-                        aria-haspopup="true" aria-expanded="false"
+                        aria-haspopup="true" aria-expanded="false" title="Base Map"
                         style="border:none;background:none;width:32px; height:30px; outline:none; font-size:14px">
 
                     </button>
@@ -5690,8 +6198,8 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     </ul>
                 </div>
                 <div class="dropleft text-center border-bottom border-top">
-                    <button onclick="cekLoginChat()" type="button" id="btnChat" class="ri-phone-line p-1"
-                        data-toggle="dropdown"
+                    <button onclick="cekLoginChat()" type="button" id="btnChat" title="Konsultasi"
+                        class="ri-phone-line p-1" data-toggle="dropdown"
                         style=" width:32px; height:30px; outline:none; font-size:14px; border:none;background: none;">
                     </button>
                     <div class="dropdown-menu" id="frameChat"
@@ -5700,19 +6208,36 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <div class="dropleft text-center">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" onclick="pinLocation()" id="btnPin" class="ri-pushpin-line p-1"
+                    <button type="button" onclick="pinLocation()" id="btnPin" title="Laporan / Pengawasan"
+                        class="ri-pushpin-line p-1"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
                 <div class="text-center border-top">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" class="ri-bookmark-line p-1" onclick="surveyLocation()"
+                    <button type="button" class="ri-bookmark-line p-1" title="Survey Perkembangan"
+                        onclick="surveyLocation()"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
                 <div class="text-center border-top">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" id="btnInteractive" class="ri-line-chart-fill p-1"
+                    <button type="button" onclick="usahaLocation()" class="ri-building-2-line p-1"
+                        title="Pendataan Usaha"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button type="button" id="btnInteractive" title="Data Interaktif"
+                        class="ri-line-chart-fill p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button id="createSHP" type="button" onclick="document.getElementById('btnSHP').click()" title="Buat SHP"
+                        class="ri-file-code-line p-1"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
@@ -5757,20 +6282,20 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Detail Jumlah -->
     <div class="detail_jumlah" style="display: none;">
         <div class="container">
-            <span class="text_all font-weight-bold">Filter Data Interaktif <sup
-                    class="text-danger">BETA</sup></span>
+            <span class="text_all font-weight-bold">Filter Data Interaktif </span>
 
             <div class="text_all">
                 <div class="row">
                     <div class="col-md-12">
                         <select class="w-100" id="optionFilterChoro">
-                            <option value="Total Omzet UMKM">Total Omzet UMKM</option>
-                            <option value="Pekerjaan">Pekerjaan</option>
-                            <option value="Pendidikan">Pendidikan</option>
-                            <option value="Agama">Agama</option>
-                            <option value="Jumlah Penduduk">Jumlah Penduduk</option>
-                            <option value="Kepadatan Penduduk">Kepadatan Penduduk</option>
-                            <option value="Kepadatan Bangunan">Kepadatan Bangunan</option>
+                            <option value="Total Omzet UMKM">(DPMPTSP) Total Omzet UMKM</option>
+                            <option value="Kepadatan Bangunan">(DPMPTSP) Jumlah Bangunan</option>
+                            <option value="Pekerjaan">(RBI) Pekerjaan</option>
+                            <option value="Pendidikan">(RBI) Pendidikan</option>
+                            <option value="Agama">(RBI) Agama</option>
+                            <option value="Jumlah Penduduk">(RBI) Jumlah Penduduk</option>
+                            <option value="Kepadatan Penduduk">(RBI) Kepadatan Penduduk</option>
+                            <option value="Data PPAP">(DPPAPP) Kependudukan</option>
                         </select>
                     </div>
                     <div class="col-md-12" id="filterChoro">

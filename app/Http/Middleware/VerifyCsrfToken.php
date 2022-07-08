@@ -19,7 +19,6 @@ class VerifyCsrfToken extends Middleware
         '/detailDataPin',
         '/saveUser',
         '/deleteImage',
-        '/logout',
         '/save_image',
         '/save_wilayah',
         '/save_kordinat',
@@ -44,6 +43,10 @@ class VerifyCsrfToken extends Middleware
         '/deleteDataSurvey',
         '/detailDataSurvey',
         '/deleteImageSurvey',
-        '/importSurvey'
+        '/importSurvey',
+        '/savePendataanUsaha',
+        '/getPendataanUsaha',
+        '/deletePendataanUsaha',
+        '/deleteImageUsaha'
     ];
 }

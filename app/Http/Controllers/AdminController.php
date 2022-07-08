@@ -496,11 +496,25 @@ class AdminController extends Controller
     public function perkembangan_survey()
     {
         // kepake
-        $hasil_jumlah_titik = SurveyPerkembangan::all();
+        // $hasil_jumlah_titik = SurveyPerkembangan::all();
+        // $hasil_jumlah_titik = DB::table('survey_perkembangan_wilayah')->get();
+
+        // $hasil_jumlah_titik = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->count();
+        $hasil_jumlah_titik = SurveyPerkembangan::all()->count();
+
+        // dd($hasil_jumlah_titik);
+
+        $progres_total = $hasil_jumlah_titik / 82988 * 100;
+
+        // dd($progres_total);
+
+        $get_progres_total = number_format((float)$progres_total, 2, '.', '');
 
         $get_today = date('Y-m-d');
 
-        $get_perkembangan_day = DB::table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+        // $get_perkembangan_day = DB::connection('pgsql')->table('survey_perkembangan_wilayah')->where('date', $get_today)->get();
+        $get_perkembangan_day = SurveyPerkembangan::Where('date', $get_today)->get();
+
 
         // dd($get_perkembangan_day->count());
 
@@ -589,15 +603,34 @@ class AdminController extends Controller
         // )->get();
 
         // $checkProgress = ProgresSurvey::withCount('survey')->limit(10)->get();
-        // dd($checkProgress[0]->survey_count / $checkProgress[0]->jumlah * 100);
+        // // dd($checkProgress[0]->survey_count / $checkProgress[0]->jumlah * 100);
+        // // dd($checkProgress[0]->jumlah);
+        // dd($checkProgress[0]->survey_count);
 
-        return view('admin.survei_perkembangan', compact(['get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
+        // $cek =  ProgresSurvey::withCount(['survey' => function ($query) {
+        //     $query->select(DB::raw('count(distinct(kelurahan))'));
+        // }])->get();
+
+        // dd($cek);
+
+        return view('admin.survei_perkembangan', compact(['get_progres_total', 'get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }
 
     public  function viewSurvey()
     {
         $data_survey = ViewDetil::select("*")->get();
-        return Datatables::of($data_survey)->make(true);
+        return Datatables::of($data_survey)
+            ->editColumn('kelurahan', function ($data) {
+                $kel = $data->kelurahan;
+                $get_kel = ucwords(strtolower($kel));
+                return "$get_kel";
+            })
+            ->editColumn('kecamatan', function ($data) {
+                $kec = $data->kecamatan;
+                $get_kec = ucwords(strtolower($kec));
+                return "$get_kec";
+            })
+            ->rawColumns(['kelurahan', 'kecamatan'])->make(true);
 
         // dd($data);
     }
@@ -621,15 +654,50 @@ class AdminController extends Controller
     public  function ProgresSurvey()
     {
 
-        $survey = ProgresSurvey::withCount('survey')->get();
+        // $survey = ProgresSurvey::withCount('survey')->take(10)->get();
+
+        $survey =  ProgresSurvey::withCount(['survey' => function ($query) {
+            $query->select(DB::connection('pgsql')->raw('count(distinct(id_sub_blok))'));
+        }, 'kelurahan', 'kecamatan'])->get();
+
+        // dd($survey);
 
 
         return Datatables::of($survey)
             ->editColumn('progres', function ($data) {
+
+                // $hitung->select(DB::raw('count(distinct(ip))'));
+
                 $progress = $data->survey_count / $data->jumlah * 100;
+
                 return "<div class='progress progress-xs'><div class='progress-bar bg-primary' style='width: $progress%'></div></div>";
             })
-            ->rawColumns(['progres'])->make(true);
+            ->editColumn('persen', function ($data) {
+
+                // $hitung->select(DB::raw('count(distinct(ip))'));
+
+                $progress = $data->survey_count / $data->jumlah * 100;
+
+                $convert = number_format((float)$progress, 2, '.', '');
+
+                return "<span>$convert%</span>";
+            })
+            ->editColumn('nama_kel', function ($data) {
+                $kel = $data->kelurahan;
+                $kalimat = ucwords(strtolower($kel));
+                return "$kalimat";
+            })
+            ->editColumn('nama_kec', function ($data) {
+                $kel = $data->kecamatan;
+                $kalimat = ucwords(strtolower($kel));
+                return "$kalimat";
+            })
+            ->editColumn('survey_count_null', function ($data) {
+
+                $kalimat = '';
+                return "$kalimat";
+            })
+            ->rawColumns(['survey_count_null', 'progres', 'nama_kel', 'nama_kec', 'persen'])->make(true);
 
         // dd($survey);
     }
@@ -649,7 +717,7 @@ class AdminController extends Controller
         //     ->orderBy('survey.id_user', 'Desc')
         //     ->get();
 
-        $tes = SurveyPerkembangan::with('user', 'image')->where('id', $id_data_terbaru)->first();
+        $tes = SurveyPerkembangan::with('user', 'image')->where('id_baru', (int)$id_data_terbaru)->first();
 
 
         // $get_perkembangan =  SurveyPerkembangan::orderBy('id_user', 'Desc')

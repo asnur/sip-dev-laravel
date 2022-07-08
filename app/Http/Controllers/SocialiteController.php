@@ -28,16 +28,16 @@ class SocialiteController extends Controller
         );
         $foto = file_get_contents($user->getAvatar(), false, stream_context_create($arrContextOptions));
         File::put(public_path() . '/profile/' . $authUser->id . '.jpg', $foto);
-        if (Auth::user()->hasRole('admin')) {
-            return redirect('/admin');
-        } else {
-            return redirect('/');
-        }
+        // if (Auth::user()->hasRole('admin')) {
+        //     return redirect('/admin');
+        // } else {
+        return redirect('/');
+        // }
     }
 
     public function findOrCreateUser($user, $provider)
     {
-        $authUser = User::where('provider_id', $user->id)->first();
+        $authUser = User::where('email', $user->email)->first();
         if ($authUser) {
             return $authUser;
         } else {
