@@ -6236,7 +6236,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </div>
                 <div class="text-center border-top">
                     {{-- @if (Auth::check()) --}}
-                    <button type="button" onclick="document.getElementById('btnSHP').click()" title="Buat SHP"
+                    <button id="createSHP" type="button" onclick="document.getElementById('btnSHP').click()" title="Buat SHP"
                         class="ri-file-code-line p-1"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
