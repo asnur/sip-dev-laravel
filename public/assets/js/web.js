@@ -635,9 +635,10 @@ $("#polygonDraw").on("click", () => {
 });
 
 $("#btnSHP").on("click", () => {
+    $("#createSHP").addClass("text-primary");
     fillLayerDraw.forEach((e) => {
         map.setPaintProperty(e, "fill-color", "#fff");
-        map.setPaintProperty(e, "fill-opacity", 1);
+        map.setPaintProperty(e, "fill-opacity", 0);
     });
     lineLayerDraw.forEach((e) => {
         map.setPaintProperty(e, "line-color", "#fff");
@@ -743,6 +744,7 @@ $("body").on("keydown", function (event) {
     if (event.key == "Escape") {
         if (localStorage.getItem("polygonDraw") == 1) {
             $("#closeDigitasi").click();
+            $("#createSHP").removeClass("text-primary");
             draw.deleteAll();
             localStorage.setItem("circleDraw", 0);
             localStorage.setItem("polygonDraw", 0);
