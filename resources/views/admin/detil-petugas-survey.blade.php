@@ -16,7 +16,7 @@
     <table border="1">
         <tr>
             <th>Nama Petugas Ajib</th>
-            <th>Tanggal</th>
+            <th>Tanggal Input</th>
             <th>Nama Lokasi</th>
             <th>ID Sub Blok</th>
             <th>Kelurahan</th>
