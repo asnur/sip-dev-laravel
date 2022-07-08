@@ -733,7 +733,7 @@ $Roles = '';
                                 </th>
                                 <th>
                                     <div style="display: none;" class="lazy_name_kinerja">
-                                        Tanggal
+                                        Tanggal Input
                                     </div>
 
                                     <div class="hide_lazyload_kinerja">
