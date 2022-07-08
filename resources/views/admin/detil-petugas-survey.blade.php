@@ -16,6 +16,7 @@
     <table border="1">
         <tr>
             <th>Nama Petugas Ajib</th>
+            <th>Tanggal Input</th>
             <th>Nama Lokasi</th>
             <th>ID Sub Blok</th>
             <th>Kelurahan</th>
@@ -30,6 +31,7 @@
         @foreach ($data as $d)
         <tr>
             <td>{{ $d->petugas }}</td>
+            <td>{{ $d->tanggal }}</td>
             <td>{{ $d->name_tempat }}</td>
             <td>{{ $d->id_sub_blok }}</td>
             <td>{{ $d->kelurahan }}</td>
