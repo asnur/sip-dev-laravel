@@ -10,8 +10,8 @@
 
 <body>
     @php
-    header('Content-type: application/vnd-ms-excel');
-    header('Content-Disposition: attachment; filename=Detil Input Petugas Survey.xls');
+        header('Content-type: application/vnd-ms-excel');
+        header('Content-Disposition: attachment; filename=Detil Input Petugas Survey.xls');
     @endphp
     <table border="1">
         <tr>
@@ -26,21 +26,23 @@
             <th>Deskripsi</th>
             <th>Pola Ruang</th>
             <th>Deskripsi</th>
+            <th>Tanggal</th>
         </tr>
         @foreach ($data as $d)
-        <tr>
-            <td>{{ $d->petugas }}</td>
-            <td>{{ $d->name_tempat }}</td>
-            <td>{{ $d->id_sub_blok }}</td>
-            <td>{{ $d->kelurahan }}</td>
-            <td>{{ $d->kecamatan }}</td>
-            <td>{{ $d->regional }}</td>
-            <td>{{ $d->deskripsi_regional }}</td>
-            <td>{{ $d->neighborhood }}</td>
-            <td>{{ $d->deskripsi_neighborhood }}</td>
-            <td>{{ $d->transect_zone }}</td>
-            <td>{{ $d->deskripsi_transect_zone }}</td>
-        </tr>
+            <tr>
+                <td>{{ $d->petugas }}</td>
+                <td>{{ $d->name_tempat }}</td>
+                <td>{{ $d->id_sub_blok }}</td>
+                <td>{{ $d->kelurahan }}</td>
+                <td>{{ $d->kecamatan }}</td>
+                <td>{{ $d->regional }}</td>
+                <td>{{ $d->deskripsi_regional }}</td>
+                <td>{{ $d->neighborhood }}</td>
+                <td>{{ $d->deskripsi_neighborhood }}</td>
+                <td>{{ $d->transect_zone }}</td>
+                <td>{{ $d->deskripsi_transect_zone }}</td>
+                <td>{{ $d->date }}</td>
+            </tr>
         @endforeach
     </table>
 </body>
