@@ -358,8 +358,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                     style="font-size: 10pt;" role="alert">
                     <strong>Berhasil!</strong> Data Berhasil di Simpan.
                 </div>
-                <div class="w-100 mt-2" onclick="resetUsaha()" id="resetUsaha"
-                    style="font-size: 12pt; cursor: pointer; text-align:right;"><i class="ri-arrow-left-line"></i>
+                <div class="w-100 mt-2 text-primary" onclick="resetUsaha()" id="resetUsaha"
+                    style="font-size: 12pt; cursor: pointer;"><i class="ri-arrow-left-line"></i> <span
+                        style="
+                    font-size: 13px;
+                    top: -2px;
+                    position: relative;
+                ">Kembali</span>
                 </div>
                 <form id="formUsahaLocation" enctype="multipart/form-data">
                     <div class="row">
@@ -443,6 +448,29 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         <div class="col-md-7">
                             <input type="text" name="no_perjanjian" class="w-100" id="noPerjanjianUsaha"
                                 style="font-size: 13px; line-height:0px">
+                        </div>
+                        <div class="col-md-5">
+                            <label style="font-size: 13px; line-height:0px">Badan Usaha <sup
+                                    class="text-danger font-weight-bold">*</sup></label>
+                        </div>
+                        <div class="col-md-7">
+                            <select id="opsiBadanUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Binaan OPD Teknis">Binaan OPD Teknis</option>
+                                <option value="Binaan Jakpreneur">Binaan Jakpreneur</option>
+                                <option value="Binaan Kementerian">Binaan Kementerian</option>
+                                <option value="Non Binaan">Non Binaan</option>
+                            </select>
+                            <select name="badan_usaha" id="badanUsaha" class="w-100"
+                                style="font-size: 13px; line-height:0px;background:white;border:1px gray solid;">
+                                <option value="Dinas PPKUKM">Dinas PPKUKM</option>
+                                <option value="Dinas Parekraf">Dinas Parekraf</option>
+                                <option value="Dinas Sosial">Dinas Sosial</option>
+                                <option value="Dinas KPKP">Dinas KPKP</option>
+                                <option value="Dinas Tenaga Kerja">Dinas Tenaga Kerja</option>
+                                <option value="Dinas Transmigrasi dan Energi">Dinas Transmigrasi dan Energi</option>
+                                <option value="Dinas PPAPP">Dinas PPAPP</option>
+                            </select>
                         </div>
                         <div class="col-md-5">
                             <label style="font-size: 13px; line-height:0px">Sektor Usaha <sup
@@ -556,8 +584,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                 </li>
                 <li class="nav-item ml-2" role="presentation">
                     <a class="nav-link border" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert <sup
-                            class="text-danger">BETA</sup></a>
+                        role="tab" aria-controls="pills-profile" aria-selected="false">Bulk Insert </a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -594,9 +621,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 </button> --}}
                         </span>
                     </div>
-                    <div class="w-100 mt-2" onclick="resetSurvey()"
-                        style="font-size: 12pt; cursor: pointer; text-align:right;" id="resetSurey"><i
-                            class="ri-arrow-left-line"></i></div>
+                    <div class="w-100 mt-2 text-primary" onclick="resetSurvey()"
+                        style="font-size: 12pt; cursor: pointer;" id="resetSurey"><i class="ri-arrow-left-line"></i>
+                        <span
+                            style="
+                        font-size: 13px;
+                        top: -2px;
+                        position: relative;
+                    ">Kembali</span>
+                    </div>
                     <div class="form mt-2">
                         <form id="formSurveyLocation" enctype="multipart/form-data">
                             <div class="row">
@@ -1471,7 +1504,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 <br>
                                 <label class="size_menu size_menu_mobile">Simlink</label>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none">
                                 <a class="btn btn-outline-primary btn-md tombol_menu padding_icon_navpill"
                                     id="btnSHP" data-toggle="pill" href="#" role="tab"
                                     aria-controls="pills-cetak" aria-selected="false"><i
@@ -5974,6 +6007,15 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         aria-labelledby="dropdownMenuButton" style="width: 300px">
                         <div class="row" style="padding: 4% 5% 1% 5%;">
 
+                            <div style="position:relative;"
+                                class="col-sm-4 text-center d-flex align-items-center mt-2">
+                                <a href="/admin" target="_blank" style="text-decoration:none"
+                                    class="text-dark font-weight-normal"><img
+                                        style="width: 100%;max-width: 53%;margin-bottom: 0.2rem"
+                                        src="{{ asset('assets/gambar/dashboard.png') }}">
+                                    <span style="font-size: 9pt;position: relative;top: -1px;">Dashboard</span></a>
+                            </div>
+
                             <div style="position:relative; left:-9px;"
                                 class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="https://formulir.dpmptsp-dki.com/permohonan-baru" target="_blank"
@@ -6192,6 +6234,13 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
                     </button>
                 </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
+                    <button id="createSHP" type="button" onclick="document.getElementById('btnSHP').click()" title="Buat SHP"
+                        class="ri-file-code-line p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
                 {{-- <button class="btn btn-sm mt-1 ">
                     <div class="container dropleft">
                         <div class="row">
@@ -6233,8 +6282,7 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
     <!-- Detail Jumlah -->
     <div class="detail_jumlah" style="display: none;">
         <div class="container">
-            <span class="text_all font-weight-bold">Filter Data Interaktif <sup
-                    class="text-danger">BETA</sup></span>
+            <span class="text_all font-weight-bold">Filter Data Interaktif </span>
 
             <div class="text_all">
                 <div class="row">

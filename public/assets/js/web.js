@@ -635,12 +635,22 @@ $("#polygonDraw").on("click", () => {
 });
 
 $("#btnSHP").on("click", () => {
+    $("#createSHP").addClass("text-primary");
     fillLayerDraw.forEach((e) => {
-        map.setPaintProperty(e, "fill-color", "#fff");
-        map.setPaintProperty(e, "fill-opacity", 1);
+        if (map.getStyle().sprite.includes("ckp6i54ay22u818lrq15ffcnr")) {
+            map.setPaintProperty(e, "fill-color", "#000");
+        } else {
+            map.setPaintProperty(e, "fill-color", "#fff");
+        }
+        map.setPaintProperty(e, "fill-opacity", 0);
     });
     lineLayerDraw.forEach((e) => {
-        map.setPaintProperty(e, "line-color", "#fff");
+        if (map.getStyle().sprite.includes("ckp6i54ay22u818lrq15ffcnr")) {
+            map.setPaintProperty(e, "line-color", "#fff");
+        } else {
+            map.setPaintProperty(e, "line-color", "#000");
+        }
+        map.setPaintProperty(e, "line-width", 3);
     });
     $(".mapbox-gl-draw_ctrl-draw-btn.mapbox-gl-draw_polygon").click();
     localStorage.setItem("polygonDraw", 1);
@@ -743,6 +753,7 @@ $("body").on("keydown", function (event) {
     if (event.key == "Escape") {
         if (localStorage.getItem("polygonDraw") == 1) {
             $("#closeDigitasi").click();
+            $("#createSHP").removeClass("text-primary");
             draw.deleteAll();
             localStorage.setItem("circleDraw", 0);
             localStorage.setItem("polygonDraw", 0);
@@ -5867,6 +5878,16 @@ function editDataUsaha(id) {
             $("#modalUsaha").val(e.modal);
             $("#jumlahTenagaUsaha").val(e.jumlah_tenaga);
             $("#alamatUsaha").val(e.alamat);
+            if (
+                e.badan_usaha !== "Binaan Jakpreneur" &&
+                e.badan_usaha !== "Binaan Kementerian" &&
+                e.badan_usaha !== "Non Binaan"
+            ) {
+                $("#opsiBadanUsaha").val("Binaan OPD Teknis").trigger("change");
+                $("#badanUsaha").val(e.badan_usaha);
+            } else {
+                $("#opsiBadanUsaha").val(e.badan_usaha).trigger("change");
+            }
             $("#refrensikordinatUsaha").text(
                 `${e.kordinat
                     .split(",")[0]
@@ -5931,6 +5952,8 @@ function resetUsaha() {
     $("#idSubbBlokUsaha").val("");
     $("#kelurahanUsaha").val("");
     $("#kecamatanUsaha").val("");
+    $("#opsiBadanUsaha").val("Binaan OPD Teknis").trigger("change");
+    // $("#badanUsaha").val("")
     $("#refrensikordinatUsaha").text("-");
     $("#textIdSubBlokUsaha").text("-");
     $("#textKelurahanUsaha").text("-");
@@ -9343,12 +9366,12 @@ const getLayerSurveyPerkembangan = () => {
                 // popup.remove();
             });
 
-            map.on("click", "survey_perkembangan", (e) => {
+            map.on("mouseenter", "survey_perkembangan", (e) => {
                 getNJOPSurvey(e);
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
-                editDataSurvey(dt.id_baru, dt.id_user);
+                // editDataSurvey(dt.id_baru, dt.id_user);
                 let imageCarousel = ``;
                 let carouselControl = ``;
                 let image = JSON.parse(dt.image);
@@ -9485,12 +9508,12 @@ const getLayerSurveyPerkembangan = () => {
                 // popup.remove();
             });
 
-            map.on("click", "survey_perkembangan_partner", (e) => {
+            map.on("mouseenter", "survey_perkembangan_partner", (e) => {
                 getNJOPSurvey(e);
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const dt = e.features[0].properties;
                 console.log(dt);
-                editDataSurvey(dt.id_baru, dt.id_user);
+                // editDataSurvey(dt.id_baru, dt.id_user);
                 let imageCarousel = ``;
                 let carouselControl = ``;
                 let image = JSON.parse(dt.image);
@@ -9779,4 +9802,28 @@ setup("fotoSurvey");
 $("#fileExcel").on("change", function (e) {
     var file = e.target.files[0];
     $("#nameFileExcel").text(file.name);
+});
+
+$("#opsiBadanUsaha").on("change", function () {
+    if ($(this).val() !== "Binaan OPD Teknis") {
+        $("#badanUsaha").hide();
+        $("#badanUsaha").html("");
+        $("#badanUsaha").html(
+            `<option value="${$(this).val()}">${$(this).val()}</option>`
+        );
+    } else {
+        $("#badanUsaha").show();
+        $("#badanUsaha").html("");
+        $("#badanUsaha").html(
+            `
+            <option value="Dinas PPKUKM">Dinas PPKUKM</option>
+            <option value="Dinas Parekraf">Dinas Parekraf</option>
+            <option value="Dinas Sosial">Dinas Sosial</option>
+            <option value="Dinas KPKP">Dinas KPKP</option>
+            <option value="Dinas Tenaga Kerja">Dinas Tenaga Kerja</option>
+            <option value="Dinas Transmigrasi dan Energi">Dinas Transmigrasi dan Energi</option>
+            <option value="Dinas PPAPP">Dinas PPAPP</option>
+            `
+        );
+    }
 });

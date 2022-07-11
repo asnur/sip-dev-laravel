@@ -814,9 +814,18 @@ input[type="range"]::-moz-range-progress {
 
 .mapboxgl-popup-close-button {
     z-index: 99999;
-    font-size: 25px;
-    color: red;
-    font-weight: bold;
+    color: black;
+    outline: none;
+    background: #ccc;
+    outline: none;
+}
+
+.mapboxgl-popup-close-button:focus {
+    outline: none;
+}
+
+.mapboxgl-popup-close-button:hover {
+    background: #ccc;
     outline: none;
 }
 

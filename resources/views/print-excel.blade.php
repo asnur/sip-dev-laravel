@@ -28,6 +28,7 @@
             <th>Deskripsi</th>
             <th>Pola Ruang</th>
             <th>Deskripsi</th>
+            <th>Tanggal</th>
         </tr>
         @foreach ($data as $d)
             <tr>
@@ -43,6 +44,7 @@
                 <td>{{ $d->deskripsi_neighborhood }}</td>
                 <td>{{ $d->transect_zone }}</td>
                 <td>{{ $d->deskripsi_transect_zone }}</td>
+                <td>{{ $d->date }}</td>
             </tr>
         @endforeach
     </table>
