@@ -623,7 +623,7 @@ class AdminController extends Controller
 
     public  function viewSurvey()
     {
-        $data_survey = ViewDetil::select("*")->get();
+        $data_survey = ViewDetil::select("*")->orderBy('tanggal', 'Desc')->get();
         return Datatables::of($data_survey)
             ->editColumn('kelurahan', function ($data) {
                 $kel = $data->kelurahan;
