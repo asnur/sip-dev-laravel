@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class AdminController extends Controller
 {
     public function index()
@@ -743,5 +748,54 @@ class AdminController extends Controller
         return response()->json([
             'slide_foto' => $slide_foto,
         ]);
+    }
+
+
+
+    public function ExportExcel($data)
+    {
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '4000M');
+        try {
+            $spreadSheet = new Spreadsheet();
+            $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(20);
+            $spreadSheet->getActiveSheet()->fromArray($data);
+            $Excel_writer = new Xls($spreadSheet);
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="Detil Input Petugas Survey.xls"');
+            header('Cache-Control: max-age=0');
+            ob_end_clean();
+            $Excel_writer->save('php://output');
+            exit();
+        } catch (Exception $e) {
+            return;
+        }
+    }
+
+    function EksporDetilSurvey()
+    {
+
+        $data = ViewDetil::select("*")->get();
+
+        // dd($data);
+
+        $data_array[] = array("Nama Petugas", "Tanggal Input", "Nama Lokasi", "ID Sub Blok", "Kelurahan", "Kecamatan", "Pola Regional", "Deskripsi Regional", "Pola Lingkungan", "Deskripsi Lingkungan", "Pola Ruang", "Deskripsi Ruang");
+        foreach ($data as $data_item) {
+            $data_array[] = array(
+                'Nama Petugas' => $data_item->petugas,
+                'Tanggal Input' => $data_item->tanggal,
+                'Nama Lokasi' => $data_item->name_tempat,
+                'ID Sub Blok' => $data_item->id_sub_blok,
+                'Kelurahan' => $data_item->kelurahan,
+                'Kecamatan' => $data_item->kecamatan,
+                'Pola Regional' => $data_item->regional,
+                'Deskripsi Regional' => $data_item->deskripsi_regional,
+                'Pola Lingkungan' => $data_item->neighborhood,
+                'Deskripsi Lingkungan' => $data_item->deskripsi_neighborhood,
+                'Pola Ruang' => $data_item->transect_zone,
+                'Deskripsi Ruang' => $data_item->deskripsi_transect_zone
+            );
+        }
+        $this->ExportExcel($data_array);
     }
 }
