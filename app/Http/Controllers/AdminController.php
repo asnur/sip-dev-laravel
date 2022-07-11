@@ -758,7 +758,7 @@ class AdminController extends Controller
         ini_set('memory_limit', '4000M');
         try {
             $spreadSheet = new Spreadsheet();
-            $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(20);
+            $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(25);
             $spreadSheet->getActiveSheet()->fromArray($data);
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');
@@ -781,9 +781,10 @@ class AdminController extends Controller
 
         $data_array[] = array("Nama Petugas", "Tanggal Input", "Nama Lokasi", "ID Sub Blok", "Kelurahan", "Kecamatan", "Pola Regional", "Deskripsi Regional", "Pola Lingkungan", "Deskripsi Lingkungan", "Pola Ruang", "Deskripsi Ruang");
         foreach ($data as $data_item) {
+
             $data_array[] = array(
                 'Nama Petugas' => $data_item->petugas,
-                'Tanggal Input' => $data_item->tanggal,
+                'Tanggal Input' => date("d-m-Y", strtotime($data_item->tanggal)),
                 'Nama Lokasi' => $data_item->name_tempat,
                 'ID Sub Blok' => $data_item->id_sub_blok,
                 'Kelurahan' => $data_item->kelurahan,
