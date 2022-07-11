@@ -630,7 +630,12 @@ class AdminController extends Controller
                 $get_kec = ucwords(strtolower($kec));
                 return "$get_kec";
             })
-            ->rawColumns(['kelurahan', 'kecamatan'])->make(true);
+            ->editColumn('tanggal', function ($data) {
+                $tgl = $data->tanggal;
+                $tanggal = date("d-m-Y", strtotime($tgl));
+                return "$tanggal";
+            })
+            ->rawColumns(['kelurahan', 'kecamatan', 'tanggal'])->make(true);
 
         // dd($data);
     }

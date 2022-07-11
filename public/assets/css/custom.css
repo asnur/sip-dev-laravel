@@ -817,6 +817,16 @@ input[type="range"]::-moz-range-progress {
     color: black;
     outline: none;
     background: #ccc;
+    outline: none;
+}
+
+.mapboxgl-popup-close-button:focus {
+    outline: none;
+}
+
+.mapboxgl-popup-close-button:hover {
+    background: #ccc;
+    outline: none;
 }
 
 .font-weight-custom {
