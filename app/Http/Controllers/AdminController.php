@@ -760,6 +760,10 @@ class AdminController extends Controller
             $spreadSheet = new Spreadsheet();
             $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(25);
             $spreadSheet->getActiveSheet()->fromArray($data);
+
+            // $spreadSheet->getActiveSheet()->getStyle('A1:L1')->getFont()->setBold(true);
+            $spreadSheet->getActiveSheet()->getStyle('1:1')->getFont()->setBold(true);
+
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');
             header('Content-Disposition: attachment;filename="Detil Input Petugas Survey.xls"');
@@ -775,7 +779,7 @@ class AdminController extends Controller
     function EksporDetilSurvey()
     {
 
-        $data = ViewDetil::select("*")->get();
+        $data = ViewDetil::select("*")->orderBy('tanggal', 'Desc')->get();
 
         // dd($data);
 
