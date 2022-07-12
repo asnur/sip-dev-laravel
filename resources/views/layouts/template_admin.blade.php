@@ -579,6 +579,7 @@
             cek.getElementsByClassName("group_opsi")[3].style.display = "none";
             console.log(cek.getElementsByClassName(selectOption.value)[0]);
             cek.getElementsByClassName(selectOption.value)[0].style.display = "block";
+            getAllValues()
         }
     </script>
 
@@ -602,6 +603,7 @@
 
     <!-- Page level plugins -->
     <script src="{{ asset('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
 
     <!-- Page level custom scripts -->
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script> --}}

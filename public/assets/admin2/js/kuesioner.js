@@ -195,6 +195,7 @@ function buatRadio(elem, label, checked) {
             label +
             '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
     );
+    action();
 }
 
 // Kirim value ke input
@@ -202,7 +203,9 @@ function Teks(tes) {
     var value = tes.val();
     dpt = tes.parent().find(".auto_input_textarea");
     $(dpt).val(tes.val());
-
+    // setTimeout(function () {
+    //     getAllValues();
+    // }, 1000);
     // console.log(value);
 }
 
@@ -210,6 +213,7 @@ function Teks(tes) {
 $("body").on("click", ".AddButton", function () {
     buatRadio($(this), $("#option").val());
     $("#option").val("");
+    action();
 });
 
 // Tambah Jawaban Dinamis2
@@ -264,6 +268,7 @@ $("body").on("click", ".MultiCentang", function (e) {
     this.parentNode.parentNode.parentNode.getElementsByClassName(
         "txtBox2"
     )[0].value = "";
+    action();
 });
 
 // Start fungsi untuk mengatur pertanyaan di Teks
@@ -347,6 +352,7 @@ $("body").on("click", ".upload_img_close", function (e) {
 // Start fungsi untuk menghapus pada pilihan ganda dan multi centang
 $("body").on("click", "#RemoveButton", function (e) {
     $(this).closest(".hapusOption").remove();
+    getAllValues();
 });
 
 // Start Kuesioner Dinamis
@@ -391,6 +397,7 @@ $(document).ready(function () {
         } else {
             alert("Maksimal " + maxGroup + " Kuesioner.");
         }
+        action();
     });
 
     //remove group
@@ -411,6 +418,7 @@ $(document).ready(function () {
         } else {
             console.log("lebih");
         }
+        getAllValues();
     });
 });
 // End Kuesioner Dinamis
@@ -420,6 +428,7 @@ const getAllValues = () => {
     let title = $("textarea[name='judul']").val();
     let desc = $("textarea[name='deskripsi']").val();
     let values = {
+        _id: localStorage.getItem("oid"),
         title: title,
         description: desc,
         date: date_now,
@@ -446,7 +455,6 @@ const getAllValues = () => {
         } else {
             el_value = $(`.AddGroup:eq(${i})`).find(".jawaban").length - 2;
         }
-        console.log(el_value);
         for (let j = 0; j < el_value; j++) {
             let value = $(`.AddGroup:eq(${i})`).find(`.jawaban:eq(${j})`).val();
             values.questions[i].option.push({ option: value });
@@ -457,22 +465,48 @@ const getAllValues = () => {
 };
 
 const sendData = (data) => {
-    $(".spinner-border").show();
-    $("#btn_submit").hide();
     $.ajax({
         url: "http://localhost:9000/quiz",
         type: "POST",
         data: JSON.stringify(data),
         dataType: "json",
-        async: false,
+        // async: false,
         contentType: "application/json; charset=utf-8",
         success: function (response) {
-            $("#btn_submit").show();
+            console.log(response);
             $("#cardGenerateLink").show();
-            $(".spinner-border").hide();
             $("#generateLink").val(
                 `https://jakpintas.dpmptsp-dki.com/kuesioner/${response}`
             );
         },
     });
 };
+
+$(window).on("load", () => {
+    localStorage.removeItem("oid");
+    $.ajax({
+        url: "http://localhost:9000/oid",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            localStorage.setItem("oid", response);
+        },
+    });
+});
+
+var typingTimer;
+var doneTypingInterval = 1000;
+
+const action = () => {
+    $("body").bindWithDelay(
+        "keyup",
+        "textarea[name='judul'], textarea[name='deskripsi'], [class='remove_textarea_option'], [class='remove_border_textarea_pertanyaan']",
+        function () {
+            getAllValues();
+        },
+        1000
+    );
+};
+
+action();
