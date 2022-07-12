@@ -626,7 +626,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" style="margin-top: 2.8%; margin-bottom: 5.2%;">
+                                        <div class="row" id="cardGenerateLink"
+                                            style="margin-top: 2.8%; margin-bottom: 5.2%;display:none;">
 
                                             <div class="col-md-11">
                                                 <div class="card shadow">
@@ -638,11 +639,11 @@
 
                                                                 <div style="margin-left:2.1rem;" class="col-md-11">
                                                                     <div class="input-group">
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Salin Link"
+                                                                        <input type="text" id="generateLink"
+                                                                            class="form-control" placeholder="Salin Link"
                                                                             aria-label="Recipient's username"
                                                                             aria-describedby="basic-addon2" id="foo"
-                                                                            value="https://www.google.co.id/?hl=id">
+                                                                            value="">
                                                                         <div class="input-group-append">
                                                                             <button
                                                                                 class="btn btn-outline-secondary btn_salin"
@@ -666,7 +667,11 @@
 
 
                                         <div class="">
-                                            <a {{-- href="{{ route('list_kuesioner') }}" --}} onclick="getAllValues()" class="btn btn-primary">
+                                            <div class="spinner-border" role="status" style="display: none">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <a id="btn_submit" {{-- href="{{ route('list_kuesioner') }}" --}} onclick="getAllValues()"
+                                                class="btn btn-primary">
                                                 Simpan
                                             </a>
                                         </div>

@@ -457,6 +457,8 @@ const getAllValues = () => {
 };
 
 const sendData = (data) => {
+    $(".spinner-border").show();
+    $("#btn_submit").hide();
     $.ajax({
         url: "http://localhost:9000/quiz",
         type: "POST",
@@ -465,7 +467,12 @@ const sendData = (data) => {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (response) {
-            console.log(response);
+            $("#btn_submit").show();
+            $("#cardGenerateLink").show();
+            $(".spinner-border").hide();
+            $("#generateLink").val(
+                `https://jakpintas.dpmptsp-dki.com/kuesioner/${response}`
+            );
         },
     });
 };
