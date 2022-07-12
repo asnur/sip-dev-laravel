@@ -752,7 +752,7 @@ class AdminController extends Controller
 
 
 
-    public function ExportExcel($data)
+    public function ExportDetilExcel($data)
     {
         ini_set('max_execution_time', 0);
         ini_set('memory_limit', '4000M');
@@ -776,7 +776,7 @@ class AdminController extends Controller
         }
     }
 
-    function EksporDetilSurvey()
+    function ExportDetilSurvey()
     {
 
         $data = ViewDetil::select("*")->orderBy('tanggal', 'Desc')->get();
@@ -801,6 +801,6 @@ class AdminController extends Controller
                 'Deskripsi Ruang' => $data_item->deskripsi_transect_zone
             );
         }
-        $this->ExportExcel($data_array);
+        $this->ExportDetilExcel($data_array);
     }
 }

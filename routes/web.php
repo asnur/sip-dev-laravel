@@ -204,15 +204,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/peta-survey/{id}', [RekapSurveyController::class, 'petaSurvey'])->name('peta-survey');
 
-    Route::get('/detil-petugas-survey', [AdminController::class, 'EksporDetilSurvey'])->name('detil-petugas-survey');
-
-
-    // Route::get('/detil-petugas-survey', function () {
-
-    //     $data = ViewDetil::select("*")->get();
-
-    //     return view('admin/detil-petugas-survey', compact('data'));
-    // })->name('detil-petugas-survey');
+    Route::get('/detil-petugas-survey', [AdminController::class, 'ExportDetilSurvey'])->name('detil-petugas-survey');
 
     Route::get('/kinerja-petugas-survey', function () {
         $data = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
@@ -221,8 +213,6 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
                 $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
             }
         )->get();
-
-        // dd($data);
 
         return view('admin/kinerja-petugas-survey', compact('data'));
     })->name('kinerja-petugas-survey');
@@ -234,8 +224,6 @@ Route::get('/progres-perkelurahan', function () {
     $data =  ProgresSurvey::withCount(['survey' => function ($query) {
         $query->select(DB::connection('pgsql')->raw('count(distinct(id_sub_blok))'));
     }])->orderBy('kecamatan')->get();
-
-    // dd($data);
 
     return view('admin/progres-perkelurahan', compact('data'));
 })->name('progres-perkelurahan');
