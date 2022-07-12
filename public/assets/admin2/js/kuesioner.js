@@ -473,11 +473,15 @@ const sendData = (data) => {
         // async: false,
         contentType: "application/json; charset=utf-8",
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             $("#cardGenerateLink").show();
             $("#generateLink").val(
                 `https://jakpintas.dpmptsp-dki.com/kuesioner/${response}`
             );
+            $("#liveToast").toast("show");
+            setTimeout(() => {
+                $("#liveToast").toast("hide");
+            }, 1000);
         },
     });
 };
@@ -489,7 +493,7 @@ $(window).on("load", () => {
         type: "GET",
         dataType: "json",
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             localStorage.setItem("oid", response);
         },
     });

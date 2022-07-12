@@ -666,15 +666,15 @@
                                         {{-- <div class="row-top-footer"></div> --}}
 
 
-                                        <div class="">
+                                        {{-- <div class="">
                                             <div class="spinner-border" role="status" style="display: none">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
-                                            <a id="btn_submit" {{-- href="{{ route('list_kuesioner') }}" --}} onclick="getAllValues()"
+                                            <a id="btn_submit" href="{{ route('list_kuesioner') }}" onclick="getAllValues()"
                                                 class="btn btn-primary">
                                                 Simpan
                                             </a>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
 
@@ -690,6 +690,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+            data-delay="2000">
+            <div class="toast-body text-progress-save">
+                Data Berhasil Di Simpan
             </div>
         </div>
     </div>
