@@ -32,13 +32,17 @@
 
 .img_parents {
     width: 29.3rem;
-    /* height: 320px; */
+    height: 19rem;
+}
+
+.img_slide_utama {
+    /* width: 29.3rem; */
     height: 19rem;
 }
 
 .img_parents_utama {
     width: 0 !important;
-    height: 19rem;
+    height: 23rem;
 }
 
 /* .slick-list draggable {

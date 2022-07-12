@@ -5,10 +5,10 @@
         width: 140% !important;
     }
 
-    .gambar_utama_slider_input {
+    /* .gambar_utama_slider_input {
         width: 27rem !important;
         margin-left: 1rem;
-    }
+    } */
 
     /* .teks_size {
         max-height: 5rem;
@@ -62,6 +62,14 @@
 
     /* jgn pindah */
 
+    .slick-prev {
+        left: -22px !important;
+    }
+
+    .slick-next {
+        right: -10px !important;
+    }
+
     .slick-next slick-arrow {
         position: relative;
         left: 29.1rem;
@@ -84,11 +92,11 @@
         margin-right: -130% !important;
     }
 
-    .data_image_space .slick-list {
+    /* .data_image_space .slick-list {
         width: 28.8rem !important;
-    }
+    } */
 
-    .data_image_space .slick-prev {
+    /* .data_image_space .slick-prev {
         margin-left: 2rem;
         top: 10rem;
         position: relative;
@@ -96,9 +104,9 @@
 
     .data_image_space .slick-next {
         position: relative;
-        left: 26.1rem;
+        left: 35.6rem;
         top: -10rem;
-    }
+    } */
 
     .data_image_space .slick-prev:before {
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -373,226 +381,238 @@ $Roles = '';
 
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" style="padding: 0">
 
-                    <div style="max-height: 38em !important;height: 33em !important;" class="row">
+                    <div class="container-fluid px-0">
+                        <div class="row no-gutters">
+                            <div class="col-md-6">
 
-                        <div class="col-md-6 mt-2">
+                                {{-- <span id="gambar_utama_perkembangan">
+                                </span> --}}
 
-                            <div class="gambar_utama_slider_input gambar_utama_slider_input_scale atur_margin_gambar_utama data_image_space">
-                                <span id="gambar_utama_perkembangan">
-                                </span>
-                            </div>
-
-
-                        </div>
-
-                        <div sty class="col-md-6 mt-2">
-
-                            <div class="row">
-                                <div style="width: 40rem; height:2.5rem;" class="col-md-12">
-
-
-                                    <div class="row">
-                                        <div class="col-md-2">
-
-                                            <div id="photo_ajib_perkembangan">
-
-                                            </div>
-
-                                        </div>
-
-                                        <div style="margin-left:-1.3rem;" class="col-md-10 mt-1">
-                                            <div class="text-truncate">
-                                                <span class="h4" id="name_perkembangan">
-                                                </span>
-                                            </div>
-                                            <div class="mt-1">
-                                                <span id="penempatan_perkembangan">
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="teks_height">
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Nama Lokasi <span style="margin-left: 3.7rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="namesurvey">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Koordinat <span style="margin-left: 2.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="kordinat">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">ID Sub Blok <span style="margin-left: 2.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="id_sub_blok">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Kelurahan <span style="margin-left: 2.2rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="kelurahan">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Kecamatan<span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="kecamatan">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Pola Regional <span style="margin-left: 3.5rem;"> </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="regional">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-
-                                    <div class="col-md-5">
-                                        <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="deskripsi_regional">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Pola Lingkungan<span style="margin-left: 3.5rem;"> </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="neighborhood">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-
-                                    <div class="col-md-5">
-                                        <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="deskripsi_neighborhood">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Pola Ruang <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="transect_zone">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="deskripsi_transect_zone">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="row jarak_inmobile">
-                        <div class="col-md-12 mt-2">
-
-
-                            <div style="max-height:8rem;" class="image_slider_input data_image_space2">
-
-                                {{-- <div class="slide_foto"></div> --}}
-
-                                {{-- <div class="gambar_utama_slider_input3">
+                                {{-- <div class="gambar_utama_slider_input gambar_utama_slider_input_scale atur_margin_gambar_utama data_image_space">
+                                    <span id="gambar_utama_perkembangan">
+                                    </span>
                                 </div> --}}
-                                @php
-                                $no = 1;
-                                @endphp
 
-                                @foreach ($datas as $gi)
-                                <div>
-                                    <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                {{-- <span id="gambar_utama_perkembangan">
+                                    </span> --}}
+
+                                <div class="gambar_utama_slider_input gambar_utama_slider_input_scale data_image_space"></div>
+
+
+                            </div>
+
+                            <div sty class="col-md-6 px-4 mt-3">
+
+
+                                <div class="row">
+                                    <div style="width: 40rem; height:2.5rem;" class="col-md-12">
+
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+
+                                                <div id="photo_ajib_perkembangan">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div style="margin-left:-1.3rem;" class="col-md-10 mt-1">
+                                                <div class="text-truncate">
+                                                    <span class="h4" id="name_perkembangan">
+                                                    </span>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <span id="penempatan_perkembangan">
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                 </div>
-                                @endforeach
+
+                                <hr>
+
+                                <div class="teks_height">
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Nama Lokasi <span style="margin-left: 3.7rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="namesurvey">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Koordinat <span style="margin-left: 2.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="kordinat">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">ID Sub Blok <span style="margin-left: 2.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="id_sub_blok">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Kelurahan <span style="margin-left: 2.2rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="kelurahan">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Kecamatan<span style="margin-left: 3.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="kecamatan">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Pola Regional <span style="margin-left: 3.5rem;"> </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="regional">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+
+                                        <div class="col-md-5">
+                                            <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="deskripsi_regional">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Pola Lingkungan<span style="margin-left: 3.5rem;"> </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="neighborhood">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+
+                                        <div class="col-md-5">
+                                            <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="deskripsi_neighborhood">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Pola Ruang <span style="margin-left: 3.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="transect_zone">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row jarak_judul">
+                                        <div class="col-md-5">
+                                            <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
+                                                </span></label>
+                                        </div>
+                                        <div class="col-md-7 jarak_text">
+                                            <div class="col text_data_terbaru">
+                                                <span id="deskripsi_transect_zone">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
 
                             </div>
 
                         </div>
+
+                        <div class="row jarak_inmobile px-4 pb-4">
+                            <div class="col-md-12 mt-2">
+
+
+                                <div style="max-height:8rem;" class="image_slider_input data_image_space2">
+
+                                    {{-- <div class="slide_foto"></div> --}}
+
+                                    {{-- <div class="gambar_utama_slider_input3">
+                                </div> --}}
+                                    @php
+                                    $no = 1;
+                                    @endphp
+
+                                    @foreach ($datas as $gi)
+                                    <div>
+                                        <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                    </div>
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
                     </div>
 
                 </div>
@@ -1369,10 +1389,10 @@ $Roles = '';
                 columns: [{
                         data: 'petugas'
                         , name: 'petugas'
-                    },{
+                    }, {
                         data: 'tanggal'
                         , name: 'tanggal'
-                    },{
+                    }, {
                         data: 'name_tempat'
                         , name: 'name_tempat'
                     }, {
@@ -1466,7 +1486,7 @@ $Roles = '';
                     }, {
                         width: "5%"
                         , targets: 6
-                    },{
+                    }, {
                         width: "15%"
                         , targets: 7
                     }, {
@@ -1475,7 +1495,7 @@ $Roles = '';
                     }, {
                         width: "15%"
                         , targets: 9
-                    },{
+                    }, {
                         width: "5%"
                         , targets: 10
                     }, {

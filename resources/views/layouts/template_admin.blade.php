@@ -74,17 +74,17 @@
                 /* height: 15rem; */
             }
 
-            .atur_margin_gambar_utama {
+            /* .atur_margin_gambar_utama {
                 position: relative;
                 left: -2rem;
                 width: 30.5rem;
                 top: -1.6rem
-            }
+            } */
 
-            .atur_margin_gambar_utama2 {
+            /* .atur_margin_gambar_utama2 {
                 margin-top: -2.7rem !important;
                 margin-left: -1rem !important;
-            }
+            } */
 
             /* .slick-list{
                 position: relative;
