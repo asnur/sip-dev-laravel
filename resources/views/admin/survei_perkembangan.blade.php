@@ -1357,6 +1357,7 @@ $Roles = '';
                     search: "Pencarian:"
                 , }
                 , ordering: false
+                , scrollX: true
                 , sScrollX: "250%"
                 , sScrollXInner: "250%"
                 , responsive: false

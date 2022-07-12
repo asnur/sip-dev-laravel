@@ -74,7 +74,7 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => 'sip-laravel',
+            'schema' => 'survey',
             'sslmode' => 'disable',
         ],
 
