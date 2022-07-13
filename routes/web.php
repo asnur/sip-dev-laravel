@@ -44,12 +44,13 @@ use Jenssegers\Agent\Agent;
 */
 
 
-// Route::get('/', function () {
-// });
+Route::get('/', function () {
+    return view('mobile-kuesioner');
+});
 
-Route::get('/', function (Request $request) {
-    return view('layout.main');
-})->middleware('auth')->name('home');
+// Route::get('/', function (Request $request) {
+//     return view('layout.main');
+// })->middleware('auth')->name('home');
 
 
 //KBLI PUSDATIN
