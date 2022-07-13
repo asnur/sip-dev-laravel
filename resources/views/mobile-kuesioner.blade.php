@@ -208,7 +208,14 @@
                             <div class="gallery"></div>
                         </div> --}}
 
-                        <span id="selected-images"></span>
+                        {{-- <span id="selected-images"></span> --}}
+
+                        <div class="flex justify-center mb-2">
+                            <div>
+                                <img id="frame" src="" style="width: 100%; height:90%;" />
+                            </div>
+                        </div>
+
 
 
                         <div class="flex justify-center items-center w-full">
@@ -222,7 +229,11 @@
                                 </div>
                                 {{-- <input type="file" class="hidden" multiple id="gallery-photo-add" /> --}}
 
-                                <input type="file" class="image-file hidden" multiple="" required="" accept="image/png, image/jpeg">
+                                {{-- <input type="file" class="image-file hidden" multiple="" required="" accept="image/png, image/jpeg"> --}}
+
+                                <input type="file" class="image-file hidden" onchange="preview()" />
+
+
 
 
 
@@ -326,70 +337,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-
-            if (window.File && window.FileList && window.FileReader) {
-                $(".image-file").on("change", function(e) {
-                    var file = e.target.files
-                        , imagefiles = $(".image-file")[0].files;
-                    var i = 0;
-                    $.each(imagefiles, function(index, value) {
-                        var f = file[i];
-                        var fileReader = new FileReader();
-                        fileReader.onload = (function(e) {
+        function preview() {
+            frame.src = URL.createObjectURL(event.target.files[0]);
+        }
 
 
-                            $('<div class="pip col-sm-3 col-4 boxDiv" align="center" style="margin-bottom: 20px;">' +
-                                '<img style="width: 100%; height: 100%;" src="' + e.target.result + '" class="prescriptions">' +
-                                // '<p class="cross-image remove">Remove</p>' +
-                                '<button type="button" class="remove mt-1 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>' +
-                                '<input type="hidden" name="image[]" value="' + e.target.result + '">' +
-                                '<input type="hidden" name="imageName[]" value="' + value.name + '">' +
-                                '</div>').insertAfter("#selected-images");
-                            $(".remove").click(function() {
-                                $(this).parent(".pip").remove();
-                            });
-                        });
-                        fileReader.readAsDataURL(f);
-                        i++;
-                    });
-                });
-            } else {
-                alert("Your browser doesn't support to File API")
-            }
-        });
+        // $(document).ready(function() {
+
+        //     if (window.File && window.FileList && window.FileReader) {
+        //         $(".image-file").on("change", function(e) {
+        //             var file = e.target.files
+        //                 , imagefiles = $(".image-file")[0].files;
+        //             var i = 0;
+        //             $.each(imagefiles, function(index, value) {
+        //                 var f = file[i];
+        //                 var fileReader = new FileReader();
+        //                 fileReader.onload = (function(e) {
+
+
+        //                     $('<div class="pip col-sm-3 col-4 boxDiv" align="center" style="margin-bottom: 20px;">' +
+        //                         '<img style="width: 100%; height: 100%;" src="' + e.target.result + '" class="prescriptions">' +
+        //                         '<button type="button" class="remove mt-1 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</button>' +
+        //                         '<input type="hidden" name="image[]" value="' + e.target.result + '">' +
+        //                         '<input type="hidden" name="imageName[]" value="' + value.name + '">' +
+        //                         '</div>').insertAfter("#selected-images");
+        //                     $(".remove").click(function() {
+        //                         $(this).parent(".pip").remove();
+        //                     });
+        //                 });
+        //                 fileReader.readAsDataURL(f);
+        //                 i++;
+        //             });
+        //         });
+        //     } else {
+        //         alert("Your browser doesn't support to File API")
+        //     }
+        // });
+
+        // $(function() {
+        //     var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        //         if (input.files) {
+        //             var filesAmount = input.files.length;
+
+        //             for (i = 0; i < filesAmount; i++) {
+        //                 var reader = new FileReader();
+        //                 reader.onload = function(event) {
+        //                     $($.parseHTML('<img class="mb-4 drop-shadow-lg">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+
+        //                 }
+
+        //                 reader.readAsDataURL(input.files[i]);
+        //             }
+        //         }
+
+        //     };
+
+        //     $('#gallery-photo-add').on('change', function() {
+        //         imagesPreview(this, 'div.gallery');
+        //     });
+        // });
 
     </script>
-
-
-    <script>
-        $(function() {
-            // Multiple images preview in browser
-            var imagesPreview = function(input, placeToInsertImagePreview) {
-
-                if (input.files) {
-                    var filesAmount = input.files.length;
-
-                    for (i = 0; i < filesAmount; i++) {
-                        var reader = new FileReader();
-                        reader.onload = function(event) {
-                            $($.parseHTML('<img class="mb-4 drop-shadow-lg">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-
-                        }
-
-                        reader.readAsDataURL(input.files[i]);
-                    }
-                }
-
-            };
-
-            $('#gallery-photo-add').on('change', function() {
-                imagesPreview(this, 'div.gallery');
-            });
-        });
-
-    </script>
-
 
 
 </body>
