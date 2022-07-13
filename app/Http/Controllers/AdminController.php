@@ -763,11 +763,6 @@ class AdminController extends Controller
             $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(25);
             $spreadSheet->getActiveSheet()->fromArray($data);
 
-            // $spreadSheet->getActiveSheet()->getStyle('A1:L1')->getFont()->setBold(true);
-            // $spreadSheet->getActiveSheet()->getStyle('1:1')->getFont()->setBold(true);
-
-            // $spreadSheet->getActiveSheet()->getStyle('1:1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-
             $styleArray = [
                 'font' => [
                     'bold' => true,
@@ -796,8 +791,6 @@ class AdminController extends Controller
 
         $data = ViewDetil::select("*")->orderBy('tanggal', 'Desc')->get();
 
-        // dd($data);
-
         $data_array[] = array("Nama Petugas", "Tanggal Input", "Nama Lokasi", "ID Sub Blok", "Kelurahan", "Kecamatan", "Pola Regional", "Deskripsi Regional", "Pola Lingkungan", "Deskripsi Lingkungan", "Pola Ruang", "Deskripsi Ruang");
         foreach ($data as $data_item) {
 
@@ -817,5 +810,65 @@ class AdminController extends Controller
             );
         }
         $this->ExportDetilExcel($data_array);
+    }
+
+
+    public function ExportPetugasExcel($data)
+    {
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '4000M');
+        try {
+            $spreadSheet = new Spreadsheet();
+            $spreadSheet->getActiveSheet()->getDefaultColumnDimension()->setWidth(25);
+            $spreadSheet->getActiveSheet()->fromArray($data);
+
+            $styleArray = [
+                'font' => [
+                    'bold' => true,
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                ],
+            ];
+
+            $spreadSheet->getActiveSheet()->getStyle('1:1')->applyFromArray($styleArray);
+
+            $Excel_writer = new Xls($spreadSheet);
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="Kinerja Petugas Survey.xls"');
+            header('Cache-Control: max-age=0');
+            ob_end_clean();
+            $Excel_writer->save('php://output');
+            exit();
+        } catch (Exception $e) {
+            return;
+        }
+    }
+
+    function ExportPetugasSurvey()
+    {
+
+        $data_kinerja = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
+            'kegiatan',
+            function ($q) {
+                $q->whereHas('kegiatan', function ($q) {
+                    $q->where('nama', 'Survey Perkembangan Wilayah');
+                });
+            }
+        )->get();
+
+
+        $data_array[] = array("Nama Petugas AJIB", "Penempatan", "Role", "Input Hari Ini", "Input Total");
+        foreach ($data_kinerja as $data_item) {
+
+            $data_array[] = array(
+                'Nama Petugas AJIB' => $data_item->name,
+                'Penempatan' =>  $data_item->penempatan,
+                'Role' =>  $data_item->roles[0]->name,
+                'Input Hari Ini' => $data_item->perkembangan_today_count,
+                'Input Total' => $data_item->perkembangan_count,
+            );
+        }
+        $this->ExportPetugasExcel($data_array);
     }
 }
