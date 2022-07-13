@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,15 +21,14 @@
             theme: {
                 extend: {
                     spacing: {
-                        13: "3.25rem"
-                    , }
-                    , fontFamily: {
-                        family: ["Family"]
-                    , }
-                , }
-            , }
-        , };
-
+                        13: "3.25rem",
+                    },
+                    fontFamily: {
+                        family: ["Family"],
+                    },
+                },
+            },
+        };
     </script>
 
     <title>Tailwind</title>
@@ -36,36 +36,36 @@
     <style type="text/tailwindcss">
         @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
-      body {
-        font-family: "Open Sans", sans-serif;
-      }
+        body {
+            font-family: "Open Sans", sans-serif;
+        }
 
-      .judul_text_pertama {
-        font-size: 19px;
-      }
+        .judul_text_pertama {
+            font-size: 19px;
+        }
 
-      .judul_text {
-        font-size: 16px;
-      }
+        .judul_text {
+            font-size: 16px;
+        }
 
-      .text_kata {
-        font-size: 14px;
-      }
+        .text_kata {
+            font-size: 14px;
+        }
 
-      .sejajar_radio_check {
-        margin-top: 0.2rem;
-      }
+        .sejajar_radio_check {
+            margin-top: 0.2rem;
+        }
 
-      .border_judul_utama {
-      border-top: #2563Eb 8.5px solid;
-      }
+        .border_judul_utama {
+            border-top: #2563Eb 8.5px solid;
+        }
 
-      .img_upload{
-        width: 85% !important;
-      }
-
+        .img_upload {
+            width: 85% !important;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="flex flex-col mx-2">
@@ -83,7 +83,8 @@
                         exercitationem consequatur! Iste non voluptatem nostrum ab
                         incidunt ullam temporibus cupiditate in voluptate!</label> --}}
 
-                    <h5 class="mt-2 mb-2 block text-sm font-bold text-gray-900 judul_text_pertama text-justify">Contoh Kuesioner</h5>
+                    <h5 class="mt-2 mb-2 block text-sm font-bold text-gray-900 judul_text_pertama text-justify">Contoh
+                        Kuesioner</h5>
 
 
 
@@ -113,7 +114,9 @@
         <div class="mt-8">
             <div class="container px-4 mx-auto">
                 <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                    <label for="message" class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Apakah cara dosen mengajar dapat meningkatkan minat belajar mahasiswa?</label>
+                    <label for="message"
+                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Apakah cara
+                        dosen mengajar dapat meningkatkan minat belajar mahasiswa?</label>
                     <div class="mt-2">
                         <div>
                             <label class="inline-flex">
@@ -148,7 +151,9 @@
         <div class="mt-8">
             <div class="container px-4 mx-auto">
                 <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                    <label for="message" class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Apakah dosen menguasai materi yang diajarkan pada saat kuliah berlangsung?</label>
+                    <label for="message"
+                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Apakah dosen
+                        menguasai materi yang diajarkan pada saat kuliah berlangsung?</label>
 
 
                     <div class="mt-2">
@@ -185,7 +190,8 @@
         <div class="mt-8">
             <div class="container px-4 mx-auto">
                 <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                    <label for="message" class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Foto</label>
+                    <label for="message"
+                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Foto</label>
                     <div class="my-3">
                         {{-- <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
@@ -212,19 +218,24 @@
 
                         <div class="flex justify-center mb-2">
                             <div>
-                                <img id="frame" src="" style="width: 100%; height:90%;" />
+                                <img id="frame" src="" style="width: 100%; height:90%; display:none" />
                             </div>
                         </div>
 
 
 
                         <div class="flex justify-center items-center w-full">
-                            <label class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer ">
+                            <label
+                                class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer ">
                                 <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                                    <svg class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    <svg class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                        </path>
                                     </svg>
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                            class="font-semibold">Click to upload</span> or drag and drop</p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">PNG atau JPG </p>
                                 </div>
                                 {{-- <input type="file" class="hidden" multiple id="gallery-photo-add" /> --}}
@@ -269,9 +280,13 @@
         <div class="my-8">
             <div class="container px-4 mx-auto">
                 <div class="border rounded-lg shadow-lg px-4 pt-2 pb-5">
-                    <label for="message" class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Riwayat Penyakit</label>
+                    <label for="message"
+                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Riwayat
+                        Penyakit</label>
                     <div class="my-2">
-                        <textarea id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+                        <textarea id="message" rows="5"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Leave a comment..."></textarea>
                     </div>
                 </div>
             </div>
@@ -284,13 +299,15 @@
 
         <div class="mb-3">
             <div class="container px-4 mx-auto">
-                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Simpan</button>
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Simpan</button>
             </div>
         </div>
 
         <div class="mb-3">
             <div class="container px-4 mx-auto">
-                <p class="mb-1 text-slate-500 text_kata text-center">Jangan pernah mengirimkan data pribadi melalui form ini.</p>
+                <p class="mb-1 text-slate-500 text_kata text-center">Jangan pernah mengirimkan data pribadi melalui
+                    form ini.</p>
 
 
 
@@ -334,11 +351,15 @@
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="text/javascript">
         function preview() {
+            frame.style.display = "block";
             frame.src = URL.createObjectURL(event.target.files[0]);
+
         }
 
 
@@ -397,9 +418,9 @@
         //         imagesPreview(this, 'div.gallery');
         //     });
         // });
-
     </script>
 
 
 </body>
+
 </html>
