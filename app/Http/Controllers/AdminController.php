@@ -762,7 +762,20 @@ class AdminController extends Controller
             $spreadSheet->getActiveSheet()->fromArray($data);
 
             // $spreadSheet->getActiveSheet()->getStyle('A1:L1')->getFont()->setBold(true);
-            $spreadSheet->getActiveSheet()->getStyle('1:1')->getFont()->setBold(true);
+            // $spreadSheet->getActiveSheet()->getStyle('1:1')->getFont()->setBold(true);
+
+            // $spreadSheet->getActiveSheet()->getStyle('1:1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
+
+            $styleArray = [
+                'font' => [
+                    'bold' => true,
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                ],
+            ];
+
+            $spreadSheet->getActiveSheet()->getStyle('1:1')->applyFromArray($styleArray);
 
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');

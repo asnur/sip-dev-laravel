@@ -62,21 +62,23 @@
 
     /* jgn pindah */
 
-    .slick-prev {
+    /* .data_image_space .slick-prev {
         left: -22px !important;
     }
 
-    .slick-next {
+    .data_image_space .slick-next {
         right: -10px !important;
-    }
+    } */
 
-    .slick-next slick-arrow {
+    /* .slick-next slick-arrow {
         position: relative;
         left: 29.1rem;
         top: -8rem;
-    }
+    } */
 
     .data_image_space .slick-prev:before {
+        /* left: -22px !important; */
+
         font-size: 35px !important;
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
@@ -85,6 +87,8 @@
     }
 
     .data_image_space .slick-next:before {
+        /* right: -10px !important; */
+
         font-size: 35px !important;
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
