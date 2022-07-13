@@ -206,16 +206,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/detil-petugas-survey', [AdminController::class, 'ExportDetilSurvey'])->name('detil-petugas-survey');
 
-    Route::get('/kinerja-petugas-survey', function () {
-        $data = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
-            'roles',
-            function ($q) {
-                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
-            }
-        )->get();
-
-        return view('admin/kinerja-petugas-survey', compact('data'));
-    })->name('kinerja-petugas-survey');
+    Route::get('/kinerja-petugas-survey', [AdminController::class, 'ExportPetugasSurvey'])->name('kinerja-petugas-survey');
 });
 
 // tabel kelurahan
