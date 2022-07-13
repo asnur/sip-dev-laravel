@@ -93,24 +93,36 @@
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f105";
-        margin-right: -130% !important;
+        /* margin-right: -130% !important; */
     }
 
     /* .data_image_space .slick-list {
         width: 28.8rem !important;
     } */
 
-    /* .data_image_space .slick-prev {
-        margin-left: 2rem;
-        top: 10rem;
-        position: relative;
+    .data_image_space .slick-prev {
+        left: 3%;
     }
 
     .data_image_space .slick-next {
-        position: relative;
-        left: 35.6rem;
-        top: -10rem;
+        right: 3%;
+    }
+
+    /* .data_image_space .slick-slide img{
+        height: 350px !important;
     } */
+
+    div.slick-list.draggable {
+        height: 25rem !important;
+    }
+
+    .data_image_space .slick-slide img {
+        height: 25rem !important;
+    }
+
+
+
+
 
     .data_image_space .slick-prev:before {
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -136,6 +148,10 @@
         content: "\f105";
         /* margin-right: -130% !important; */
     }
+
+
+
+
 
 
     /* .slick-prev:before,

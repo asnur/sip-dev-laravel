@@ -528,12 +528,12 @@ class AdminController extends Controller
         // $pegawai_ajib2 = User::withCount('perkembangan')->get();
 
 
-        $pegawai_ajib2 = User::withCount(['perkembangan'])->with('roles')->whereHas(
-            'roles',
-            function ($q) {
-                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
-            }
-        )->get();
+        $pegawai_ajib2 = User::with(['roles', 'kegiatan'])->whereHas('kegiatan', function ($q) {
+            $q->whereHas('kegiatan', function ($q) {
+                $q->where('nama', 'Survey Perkembangan Wilayah');
+            });
+        })->get();
+
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
@@ -648,9 +648,11 @@ class AdminController extends Controller
     public  function KinerjaPetugas()
     {
         $data_kinerja = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
-            'roles',
+            'kegiatan',
             function ($q) {
-                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
+                $q->whereHas('kegiatan', function ($q) {
+                    $q->where('nama', 'Survey Perkembangan Wilayah');
+                });
             }
         )->get();
 
