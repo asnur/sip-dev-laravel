@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SurveyPerkembanganImage::class, 'id_survey', 'id');
     }
+
+    public function kegiatan()
+    {
+        return $this->hasMany(KegiatanUser::class, 'id_user', 'id');
+    }
 }
