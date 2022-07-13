@@ -44,8 +44,6 @@ use Jenssegers\Agent\Agent;
 */
 
 
-// Route::get('/', function () {
-// });
 
 Route::get('/', function (Request $request) {
     return view('layout.main');
@@ -154,6 +152,10 @@ Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])
 Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/mobile-kuesioner', function () {
+    return view('mobile-kuesioner');
+});
 
 //Admin Page
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
