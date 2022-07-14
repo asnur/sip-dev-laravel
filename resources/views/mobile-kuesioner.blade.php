@@ -31,7 +31,7 @@
         };
     </script>
 
-    <title>Tailwind</title>
+    <title>Kuesioner</title>
 
     <style type="text/tailwindcss">
         @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
@@ -73,7 +73,7 @@
 
 
         {{-- Judul --}}
-        <div class="mt-8">
+        <div class="my-4">
             <div class="container px-4 mx-auto">
 
                 <div class="border_judul_utama border rounded-lg shadow-lg px-4 pt-2 pb-3">
@@ -113,75 +113,30 @@
 
         {{-- Pilihan Ganda --}}
         @foreach ($data['Questions'] as $q)
-            <div class="mt-8">
-                <div class="container px-4 mx-auto">
-                    <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                        <label for="message"
-                            class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">{{ $q['question'] }}</label>
-                        <div class="mt-2">
-                            @foreach ($q['option'] as $o)
-                                <div>
-                                    <label class="inline-flex">
-                                        <input type="{{ $q['type'] }}" class="form-radio mt-0.5" name="radio"
-                                            value="1" />
-                                        <span
-                                            class="ml-2 mb-2 text-gray-700 text_kata text-justify">{{ $o['option'] }}</span>
-                                    </label>
-                                </div>
-                            @endforeach
+            @if ($q['type'] == 'textarea')
+                {{-- Teks --}}
+                <div class="my-4">
+                    <div class="container px-4 mx-auto">
+                        <div class="border rounded-lg shadow-lg px-4 pt-2 pb-5">
+                            <label for="message"
+                                class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">{{ $q['question'] }}</label>
+                            <div class="my-2">
+                                <textarea id="message" name="{{ $q['_id'] }}" rows="5"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Leave a comment..."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-
-        {{-- Multicentang --}}
-        <div class="mt-8">
-            <div class="container px-4 mx-auto">
-                <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                    <label for="message"
-                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Apakah dosen
-                        menguasai materi yang diajarkan pada saat kuliah berlangsung?</label>
-
-
-                    <div class="mt-2">
-                        <div>
-                            <label class="inline-flex">
-                                <input type="checkbox" class="form-radio mt-0.5" name="radio" value="1" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Tidak menguasai</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex">
-                                <input type="checkbox" class="form-radio mt-0.5" name="radio" value="2" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Kurang menguasai</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex">
-                                <input type="checkbox" class="form-radio mt-0.5" name="radio" value="2" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Cukup menguasai</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex">
-                                <input type="checkbox" class="form-radio mt-0.5" name="radio" value="3" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Sangat menguasai</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- Upload gambar --}}
-        <div class="mt-8">
-            <div class="container px-4 mx-auto">
-                <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                    <label for="message"
-                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Foto</label>
-                    <div class="my-3">
-                        {{-- <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            @elseif ($q['type'] == 'file')
+                {{-- Upload gambar --}}
+                <div class="my-4">
+                    <div class="container px-4 mx-auto">
+                        <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
+                            <label for="message"
+                                class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">{{ $q['question'] }}</label>
+                            <div class="my-3">
+                                {{-- <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
                                 <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="True">
                                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -197,53 +152,56 @@
                             </div>
                         </div> --}}
 
-                        {{-- <input type="file" multiple id="gallery-photo-add"> --}}
-                        {{-- <div class="flex justify-center items-center w-full">
+                                {{-- <input type="file" multiple id="gallery-photo-add"> --}}
+                                {{-- <div class="flex justify-center items-center w-full">
                             <div class="gallery"></div>
                         </div> --}}
 
-                        {{-- <span id="selected-images"></span> --}}
+                                {{-- <span id="selected-images"></span> --}}
 
-                        <div class="flex justify-center mb-2">
-                            <div>
-                                <img id="frame" src="" style="width: 100%; height:90%; display:none" />
-                            </div>
-                        </div>
-
-
-
-                        <div class="flex justify-center items-center w-full">
-                            <label
-                                class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer ">
-                                <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                                    <svg class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                        </path>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                            class="font-semibold">Click to upload</span> or drag and drop</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG atau JPG </p>
+                                <div class="flex justify-center mb-2">
+                                    <div>
+                                        <img id="frame" src=""
+                                            style="width: 100%; height:90%; display:none" />
+                                    </div>
                                 </div>
-                                {{-- <input type="file" class="hidden" multiple id="gallery-photo-add" /> --}}
-
-                                {{-- <input type="file" class="image-file hidden" multiple="" required="" accept="image/png, image/jpeg"> --}}
-
-                                <input type="file" class="image-file hidden" onchange="preview()" />
 
 
 
+                                <div class="flex justify-center items-center w-full">
+                                    <label
+                                        class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer ">
+                                        <div class="flex flex-col justify-center items-center pt-5 pb-6">
+                                            <svg class="mb-3 w-10 h-10 text-gray-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                                </path>
+                                            </svg>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                                    class="font-semibold">Click to upload</span> or drag and drop</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">PNG atau JPG </p>
+                                        </div>
+                                        {{-- <input type="file" class="hidden" multiple id="gallery-photo-add" /> --}}
+
+                                        {{-- <input type="file" class="image-file hidden" multiple="" required="" accept="image/png, image/jpeg"> --}}
+
+                                        <input type="file" name="{{ $q['_id'] }}" class="image-file hidden"
+                                            onchange="preview($(this))" />
 
 
-                            </label>
-                        </div>
-
-                        {{-- <div class="gallery"></div> --}}
 
 
 
-                        {{-- <div class="flex">
+                                    </label>
+                                </div>
+
+                                {{-- <div class="gallery"></div> --}}
+
+
+
+                                {{-- <div class="flex">
                             <div class="flex-none w-1/6">
                                 <button class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
                                     <a href="#">
@@ -259,26 +217,36 @@
                         </div> --}}
 
 
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            @else
+                {{-- Radio & Checkbox --}}
+                <div class="my-4">
+                    <div class="container px-4 mx-auto">
+                        <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
+                            <label for="message"
+                                class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">{{ $q['question'] }}</label>
+                            <div class="mt-2">
+                                @foreach ($q['option'] as $o)
+                                    <div>
+                                        <label class="inline-flex">
+                                            <input type="{{ $q['type'] }}" class="form-radio mt-0.5"
+                                                name="{{ $q['_id'] }}" value="{{ $o['option'] }}" />
+                                            <span
+                                                class="ml-2 mb-2 text-gray-700 text_kata text-justify">{{ $o['option'] }}</span>
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
 
-        {{-- Teks --}}
-        <div class="my-8">
-            <div class="container px-4 mx-auto">
-                <div class="border rounded-lg shadow-lg px-4 pt-2 pb-5">
-                    <label for="message"
-                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Riwayat
-                        Penyakit</label>
-                    <div class="my-2">
-                        <textarea id="message" rows="5"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Leave a comment..."></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         {{-- button --}}
         {{-- <div class="container mx-auto">
@@ -287,7 +255,7 @@
 
         <div class="mb-3">
             <div class="container px-4 mx-auto">
-                <button type="button"
+                <button type="button" onclick="$('#foto_kuesioner').submit()"
                     class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Simpan</button>
             </div>
         </div>
@@ -336,21 +304,19 @@
         </div>
     </div>
 
-
+    <form enctype="multipart/form-data" id="foto_kuesioner">
+        <input type="submit" class="hidden" />
+    </form>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"
+        integrity="sha512-VaRptAfSxXFAv+vx33XixtIVT9A/9unb1Q8fp63y1ljF+Sbka+eMJWoDAArdm7jOYuLQHVx5v60TQ+t3EA8weA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="text/javascript">
-        function preview() {
-            frame.style.display = "block";
-            frame.src = URL.createObjectURL(event.target.files[0]);
-
-        }
-
-
         // $(document).ready(function() {
 
         //     if (window.File && window.FileList && window.FileReader) {
@@ -407,7 +373,100 @@
         //     });
         // });
     </script>
+    <script>
+        let APP_URL = {!! json_encode(url('/')) !!}
+        let data = {!! json_encode($data) !!}
+        let user_id = {!! json_encode(Auth::user()->id) !!}
+        let response = {
+            'id_quiz': data._id,
+            'id_user': user_id,
+            'answer': []
+        }
+        let form_data = new FormData($("#foto_kuesioner")[0]);
 
+        //Preview Image and Append to FormData
+        const preview = (el) => {
+            let file = el[0].files[0];
+            form_data.append('foto[]', file, file.name);
+            $(el).parent().parent().parent().find('#frame').attr('src', URL.createObjectURL(file)).css('display',
+                'block');
+        }
+
+        //Get All Values Form
+        const getAllValue = () => {
+            response.answer = []
+            data.Questions.forEach(question => {
+                if (question.type == 'radio') {
+                    let value = [$(`input[name='${question._id}']:checked`).val()]
+                    response.answer.push({
+                        'id_question': question._id,
+                        'type': question.type,
+                        'answer': value
+                    })
+                } else if (question.type == 'checkbox') {
+                    let value = []
+                    $(`input[name='${question._id}']:checked`).each(function() {
+                        value.push($(this).val())
+                    })
+                    response.answer.push({
+                        'id_question': question._id,
+                        'type': question.type,
+                        'answer': value
+                    })
+                } else if (question.type == 'textarea') {
+                    let value = [$(`textarea[name='${question._id}']`).val()]
+                    response.answer.push({
+                        'id_question': question._id,
+                        'type': question.type,
+                        'answer': value
+                    })
+                } else if (question.type == 'file') {
+                    let value = [$(`input[name='${question._id}']`).get(0).files[0].name]
+                    // new Compressor($(`input[name='${question._id}']`).get(0).files[0], {
+                    //     quality: 0.3,
+                    //     convertSize: 1000000,
+                    //     success(result) {
+                    //         form_data.append(`foto[]`, result, result.name)
+                    //     },
+                    //     error(err) {
+                    //         console.log(err.message);
+                    //     },
+                    // });
+                    response.answer.push({
+                        'id_question': question._id,
+                        'type': question.type,
+                        'answer': value
+                    })
+                }
+            })
+        }
+
+        //Submit Form for Send Image and Data
+        $('#foto_kuesioner').on('submit', function(e) {
+            e.preventDefault();
+            getAllValue();
+            $.ajax({
+                url: `${APP_URL}:9000/response`,
+                type: 'POST',
+                data: JSON.stringify(response),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                }
+            })
+            $.ajax({
+                url: `${APP_URL}/file_kuesioner`,
+                type: 'POST',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data)
+                }
+            })
+        })
+    </script>
 
 </body>
 

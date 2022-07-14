@@ -153,12 +153,18 @@ Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallbac
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Kuesioner
 Route::get('/kuesioner/{id}', function ($id) {
     $data = Http::get("http://localhost:9000/quiz/$id")->json();
 
-    // return $data;
-
     return view('mobile-kuesioner', compact('data'));
+});
+Route::post('/file_kuesioner', function (Request $request) {
+    $file = $request->file('foto');
+    foreach ($file as $f) {
+        $f->move(public_path() . '/kuesioner/', $f->getClientOriginalName());
+    }
+    return response()->json(['success' => 'File Uploaded Successfully']);
 });
 
 //Admin Page
