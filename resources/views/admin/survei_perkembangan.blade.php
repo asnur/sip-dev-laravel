@@ -363,7 +363,7 @@ $Roles = '';
 
         <div class="card-body responsive_delete_card">
             <div style="font-size:40px;" class="h2 m-0 inf-pengunjung-harian angka_responsive">
-                <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}</div>
+                <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}%</div>
 
             </div>
         </div>
