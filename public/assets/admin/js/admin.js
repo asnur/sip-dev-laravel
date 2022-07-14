@@ -546,10 +546,10 @@ function dataTebaruPerkembangan() {
 
             var datagambar = "";
             if (array.length == 0) {
-                datagambar += `<div><img class=""  src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
             } else {
                 array.forEach((e) => {
-                    datagambar += `<div><img class=""  src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                    datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                 });
             }
             // console.log(array);
@@ -694,10 +694,10 @@ $(document).ready(function () {
 
                 var datagambar = "";
                 if (array.length == 0) {
-                    datagambar += `<div><img class=""  src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                    datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
                 } else {
                     array.forEach((e) => {
-                        datagambar += `<div><img class=""  src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                        datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                     });
                 }
 
