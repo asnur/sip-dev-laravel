@@ -319,395 +319,380 @@ $Roles = '';
 
                         <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ $hasil_jumlah_titik }}</div>
 
-                        {{-- <div class="d-flex flex-column">
-                            <div class="">
-                                <div style="font-size:25px;" class="h2 m-0 angka_responsive">{{ $hasil_jumlah_titik }}
                     </div>
-                </div>
-                <div class="">
-                    <div style="font-size:25px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}%</div>
 
                 </div>
-            </div> --}}
-
-        </div>
-
-
-    </div>
-
-</div>
-
-<div class="col-md-3">
-    <div class="card responsive_jarak">
-
-        <div class="card-status-top bg-primary"></div>
-
-        <div class="card-header">
-            <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem; color:#206bc4" class="card-title">
-                Prosentase</h3>
-
-            <div class="card-actions">
-                <span class="bg-blue text-white avatar">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-percentage" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <circle cx="17" cy="17" r="1"></circle>
-                        <circle cx="7" cy="7" r="1"></circle>
-                        <line x1="6" y1="18" x2="18" y2="6"></line>
-                    </svg>
-                </span>
 
             </div>
-        </div>
 
+            <div class="col-md-3">
+                <div class="card responsive_jarak">
 
+                    <div class="card-status-top bg-primary"></div>
 
-        <div class="card-body responsive_delete_card">
-            <div style="font-size:40px;" class="h2 m-0 inf-pengunjung-harian angka_responsive">
-                <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}%</div>
+                    <div class="card-header">
+                        <h3 style="font-size: 14px; width: 19rem; margin-top: 0.5rem; color:#206bc4" class="card-title">
+                            Prosentase</h3>
 
-            </div>
-        </div>
-    </div>
+                        <div class="card-actions">
+                            <span class="bg-blue text-white avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-percentage" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="17" cy="17" r="1"></circle>
+                                    <circle cx="7" cy="7" r="1"></circle>
+                                    <line x1="6" y1="18" x2="18" y2="6"></line>
+                                </svg>
+                            </span>
 
-</div>
-
-</div>
-
-
-
-<div class="row-cards">
-    <div class="col-md-12 col-xl-12">
-
-        <div class="card mt-3">
-            <div class="card-status-top bg-danger"></div>
-
-            <div class="card-header card-header-light">
-                <h3 class="card-title">100 Data Input Terbaru</h3>
-
-                <div class="card-actions">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
                         </div>
                     </div>
+
+
+
+                    <div class="card-body responsive_delete_card">
+                        <div style="font-size:40px;" class="h2 m-0 angka_responsive">{{ $get_progres_total }}%</div>
+                    </div>
                 </div>
 
             </div>
 
-            <div class="card-body" style="padding: 0">
+        </div>
 
-                <div class="container-fluid px-0">
-                    <div class="row no-gutters">
-                        <div class="col-md-6">
 
-                            {{-- <span id="gambar_utama_perkembangan">
+
+        <div class="row-cards">
+            <div class="col-md-12 col-xl-12">
+
+                <div class="card mt-3">
+                    <div class="card-status-top bg-danger"></div>
+
+                    <div class="card-header card-header-light">
+                        <h3 class="card-title">100 Data Input Terbaru</h3>
+
+                        <div class="card-actions">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body" style="padding: 0">
+
+                        <div class="container-fluid px-0">
+                            <div class="row no-gutters">
+                                <div class="col-md-6">
+
+                                    {{-- <span id="gambar_utama_perkembangan">
                                 </span> --}}
 
-                            {{-- <div class="gambar_utama_slider_input gambar_utama_slider_input_scale atur_margin_gambar_utama data_image_space">
+                                    {{-- <div class="gambar_utama_slider_input gambar_utama_slider_input_scale atur_margin_gambar_utama data_image_space">
                                     <span id="gambar_utama_perkembangan">
                                     </span>
                                 </div> --}}
 
-                            {{-- <span id="gambar_utama_perkembangan">
+                                    {{-- <span id="gambar_utama_perkembangan">
                                     </span> --}}
 
-                            <div style="border-style: 2px #000 solid" class="gambar_utama_slider_input gambar_utama_slider_input_scale data_image_space"></div>
+                                    <div style="border-style: 2px #000 solid" class="gambar_utama_slider_input gambar_utama_slider_input_scale data_image_space"></div>
 
 
-                        </div>
+                                </div>
 
-                        <div sty class="col-md-6 px-4 mt-3">
-
-
-                            <div class="row">
-                                <div style="width: 40rem; height:2.5rem;" class="col-md-12">
+                                <div sty class="col-md-6 px-4 mt-3">
 
 
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div style="width: 40rem; height:2.5rem;" class="col-md-12">
 
-                                            <div id="photo_ajib_perkembangan">
+
+                                            <div class="row">
+                                                <div class="col-md-2">
+
+                                                    <div id="photo_ajib_perkembangan">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div style="margin-left:-1.3rem;" class="col-md-10 mt-1">
+                                                    <div class="text-truncate">
+                                                        <span class="h4" id="name_perkembangan">
+                                                        </span>
+                                                    </div>
+                                                    <div class="mt-1">
+                                                        <span id="penempatan_perkembangan">
+                                                        </span>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
                                         </div>
+                                    </div>
 
-                                        <div style="margin-left:-1.3rem;" class="col-md-10 mt-1">
-                                            <div class="text-truncate">
-                                                <span class="h4" id="name_perkembangan">
-                                                </span>
+                                    <hr>
+
+                                    <div class="teks_height">
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Nama Lokasi <span style="margin-left: 3.7rem;">
+                                                    </span></label>
                                             </div>
-                                            <div class="mt-1">
-                                                <span id="penempatan_perkembangan">
-                                                </span>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="namesurvey">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Koordinat <span style="margin-left: 2.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="kordinat">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">ID Sub Blok <span style="margin-left: 2.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="id_sub_blok">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Kelurahan <span style="margin-left: 2.2rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="kelurahan">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Kecamatan<span style="margin-left: 3.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="kecamatan">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Pola Regional <span style="margin-left: 3.5rem;"> </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="regional">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+
+                                            <div class="col-md-5">
+                                                <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="deskripsi_regional">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Pola Lingkungan<span style="margin-left: 3.5rem;"> </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="neighborhood">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+
+                                            <div class="col-md-5">
+                                                <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="deskripsi_neighborhood">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Pola Ruang <span style="margin-left: 3.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="transect_zone">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row jarak_judul">
+                                            <div class="col-md-5">
+                                                <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
+                                                    </span></label>
+                                            </div>
+                                            <div class="col-md-7 jarak_text">
+                                                <div class="col text_data_terbaru">
+                                                    <span id="deskripsi_transect_zone">
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
 
+
                                 </div>
+
                             </div>
 
-                            <hr>
-
-                            <div class="teks_height">
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Nama Lokasi <span style="margin-left: 3.7rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="namesurvey">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Koordinat <span style="margin-left: 2.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="kordinat">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">ID Sub Blok <span style="margin-left: 2.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="id_sub_blok">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Kelurahan <span style="margin-left: 2.2rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="kelurahan">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Kecamatan<span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="kecamatan">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Pola Regional <span style="margin-left: 3.5rem;"> </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="regional">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-
-                                    <div class="col-md-5">
-                                        <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="deskripsi_regional">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Pola Lingkungan<span style="margin-left: 3.5rem;"> </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="neighborhood">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-
-                                    <div class="col-md-5">
-                                        <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="deskripsi_neighborhood">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Pola Ruang <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="transect_zone">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row jarak_judul">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Deskripsi <span style="margin-left: 3.5rem;">
-                                            </span></label>
-                                    </div>
-                                    <div class="col-md-7 jarak_text">
-                                        <div class="col text_data_terbaru">
-                                            <span id="deskripsi_transect_zone">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                            <div class="row jarak_inmobile px-4 pb-4">
+                                <div class="col-md-12 mt-2">
 
 
-                        </div>
+                                    <div style="max-height:8rem;" class="image_slider_input data_image_space2">
 
-                    </div>
+                                        {{-- <div class="slide_foto"></div> --}}
 
-                    <div class="row jarak_inmobile px-4 pb-4">
-                        <div class="col-md-12 mt-2">
-
-
-                            <div style="max-height:8rem;" class="image_slider_input data_image_space2">
-
-                                {{-- <div class="slide_foto"></div> --}}
-
-                                {{-- <div class="gambar_utama_slider_input3">
+                                        {{-- <div class="gambar_utama_slider_input3">
                                 </div> --}}
-                                @php
-                                $no = 1;
-                                @endphp
+                                        @php
+                                        $no = 1;
+                                        @endphp
 
-                                @foreach ($datas as $gi)
-                                <div>
-                                    <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                        @foreach ($datas as $gi)
+                                        <div>
+                                            <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                        </div>
+                                        @endforeach
+
+                                    </div>
+
                                 </div>
-                                @endforeach
-
                             </div>
 
+
                         </div>
+
                     </div>
-
-
                 </div>
 
             </div>
         </div>
 
-    </div>
-</div>
+        <div style="margin-top: 1rem" class="row-cards">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-status-top bg-success"></div>
+                    <div class="card-header">
+                        <h3 class="card-title">Kinerja Petugas Survey</h3>
 
-<div style="margin-top: 1rem" class="row-cards">
-    <div class="col-md-12 col-xl-12">
-        <div class="card">
-            <div class="card-status-top bg-success"></div>
-            <div class="card-header">
-                <h3 class="card-title">Kinerja Petugas Survey</h3>
+                        <div class="card-actions" style="margin-top:0.6%;">
+                            <a style="font-weight:400; font-size:12px;" href="{{ route('kinerja-petugas-survey') }}">
+                                Unduh Excel
+                            </a>
+                        </div>
 
-                <div class="card-actions" style="margin-top:0.6%;">
-                    <a style="font-weight:400; font-size:12px;" href="{{ route('kinerja-petugas-survey') }}">
-                        Unduh Excel
-                    </a>
-                </div>
-
-            </div>
-            <div class="card-body">
-                <div style="overflow-x: hidden !important;" class="table-responsive">
-                    <table class="display table table-striped" id="table-surveyer2" style="width: 100%">
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: hidden !important;" class="table-responsive">
+                            <table class="display table table-striped" id="table-surveyer2" style="width: 100%">
 
 
-                        <thead>
-                            <tr class="size_detil text-center" valign="middle">
+                                <thead>
+                                    <tr class="size_detil text-center" valign="middle">
 
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Nama Petugas Ajib
-                                    </div>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Nama Petugas Ajib
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Penempatan
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Penempatan
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Role
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Role
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Input Hari Ini
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Input Hari Ini
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Input Total
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;Input Total
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
 
 
-                            </tr>
-                        </thead>
-                        <tbody>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            @php
-                            for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
+                                    @php
+                                    for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
                                                                     <td>
                                                                         <div class='skeleton-line'></div>
                                                                     </td>
@@ -724,151 +709,151 @@ $Roles = '';
                                                                         <div class='skeleton-line'></div>
                                                                     </td>
                                                                     </tr>" ; } @endphp </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
-
-
-
         </div>
-    </div>
-</div>
 
-<div style="margin-top: 1rem" class="row-cards">
-    <div class="col-md-12 col-xl-12">
-        <div class="card">
-            <div class="card-status-top bg-success"></div>
-            <div class="card-header">
-                <h3 class="card-title">Detil Input Petugas Survey</h3>
+        <div style="margin-top: 1rem" class="row-cards">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-status-top bg-success"></div>
+                    <div class="card-header">
+                        <h3 class="card-title">Detil Input Petugas Survey</h3>
 
-                <div class="card-actions" style="margin-top:0.6%;">
-                    <a style="font-weight:400; font-size:12px;" href="{{ route('detil-petugas-survey') }}">
-                        Unduh Excel
-                    </a>
-                </div>
+                        <div class="card-actions" style="margin-top:0.6%;">
+                            <a style="font-weight:400; font-size:12px;" href="{{ route('detil-petugas-survey') }}">
+                                Unduh Excel
+                            </a>
+                        </div>
 
-            </div>
+                    </div>
 
-            <div class="card-body">
-                <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
+                    <div class="card-body">
+                        <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
 
-                    <thead>
-                        <tr class="size_detil text-center" valign="middle">
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Petugas AJIB
-                                </div>
+                            <thead>
+                                <tr class="size_detil text-center" valign="middle">
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Petugas AJIB
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Tanggal Input
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Tanggal Input
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Nama Lokasi
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Nama Lokasi
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    ID Sub Blok
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            ID Sub Blok
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
 
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Kelurahan
-                                </div>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Kelurahan
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Kecamatan
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Kecamatan
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Pola Regional
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Pola Regional
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Deskripsi
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Deskripsi
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Pola Lingkungan
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Pola Lingkungan
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Deskripsi
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Deskripsi
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Pola Ruang
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Pola Ruang
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                            <th>
-                                <div style="display: none;" class="lazy_name_kinerja">
-                                    Deskripsi
-                                </div>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Deskripsi
+                                        </div>
 
-                                <div class="hide_lazyload_kinerja">
-                                    <div class='skeleton-line'></div>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        @php
-                        for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
+                                @php
+                                for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
                                                                 <td>
                                                                     <div class='skeleton-line'></div>
                                                                 </td>
@@ -906,86 +891,86 @@ $Roles = '';
                                                                     <div class='skeleton-line'></div>
                                                                 </td>
                                                                 </tr>" ; } @endphp </tbody>
-                </table>
+                        </table>
+                    </div>
+
+
+
+                </div>
             </div>
-
-
-
         </div>
-    </div>
-</div>
 
-<div style="margin-top: 1rem;" class="row-cards d-none">
-    <div class="col-md-12 col-xl-12">
-        <div class="card">
-            <div class="card-status-top bg-success"></div>
-            <div class="card-header">
-                <h3 class="card-title">Progres Survey Per Kelurahan</h3>
+        <div style="margin-top: 1rem;" class="row-cards d-none">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-status-top bg-success"></div>
+                    <div class="card-header">
+                        <h3 class="card-title">Progres Survey Per Kelurahan</h3>
 
-            </div>
-            <div class="card-body">
-                <div style="overflow-x: hidden !important;" class="table-responsive">
-                    <table class="display table table-striped" id="table-surveyer4" style="width: 100%">
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow-x: hidden !important;" class="table-responsive">
+                            <table class="display table table-striped" id="table-surveyer4" style="width: 100%">
 
 
-                        <thead>
-                            <tr class="size_detil" valign="middle">
+                                <thead>
+                                    <tr class="size_detil" valign="middle">
 
-                                <th class="text-center">
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Kecamatan
-                                    </div>
+                                        <th class="text-center">
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Kecamatan
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th class="text-center">
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Kelurahan
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th class="text-center">
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Kelurahan
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th class="text-center">
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Total Polygon
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th class="text-center">
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Total Polygon
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        Polygon Tersurvey
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                Polygon Tersurvey
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div style="display: none;" class="lazy_name_kinerja">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Progres
-                                    </div>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div style="display: none;" class="lazy_name_kinerja">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;Progres
+                                            </div>
 
-                                    <div class="hide_lazyload_kinerja">
-                                        <div class='skeleton-line'></div>
-                                    </div>
-                                </th>
+                                            <div class="hide_lazyload_kinerja">
+                                                <div class='skeleton-line'></div>
+                                            </div>
+                                        </th>
 
-                                <th class="text-center">
-                                    Prosentase
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                        <th class="text-center">
+                                            Prosentase
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            @php
-                            for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
+                                    @php
+                                    for ($x = 0; $x <= 9; $x++) { echo "<tr class='hide_lazyload_kinerja'>
                                                                     <td>
                                                                         <div class='skeleton-line'></div>
                                                                     </td>
@@ -1005,68 +990,68 @@ $Roles = '';
                                                                         <div class='skeleton-line'></div>
                                                                     </td>
                                                                     </tr>" ; } @endphp </tbody>
-                    </table>
+                            </table>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
-
-
-
         </div>
-    </div>
-</div>
 
 
-<div style="margin-top: 0.2rem" class="row row-cards">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-status-top bg-primary"></div>
-            <div class="card-body">
-                <div class="d-flex">
-                    <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
-                    <div class="ms-auto">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter: <span class="jumlah_hari"></span> hari</a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                {{-- <a class="dropdown-item" onclick="filterAnalytics(1)">1 Hari</a> --}}
-                                <a class="dropdown-item" onclick="filterAnalytics(7)">7 Hari</a>
-                                <a class="dropdown-item" onclick="filterAnalytics(30)">30 Hari</a>
-                                <a class="dropdown-item" onclick="filterAnalytics(90)">90 Hari</a>
+        <div style="margin-top: 0.2rem" class="row row-cards">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-status-top bg-primary"></div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
+                            <div class="ms-auto">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter: <span class="jumlah_hari"></span> hari</a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        {{-- <a class="dropdown-item" onclick="filterAnalytics(1)">1 Hari</a> --}}
+                                        <a class="dropdown-item" onclick="filterAnalytics(7)">7 Hari</a>
+                                        <a class="dropdown-item" onclick="filterAnalytics(30)">30 Hari</a>
+                                        <a class="dropdown-item" onclick="filterAnalytics(90)">90 Hari</a>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+
+
+
+                        <div style=" position: relative; height: 15rem; width: 100%;">
+                            {{-- <div class="skeleton_chart"></div> --}}
+                            <div class="uk_chart_skeleton skeleton-image"></div>
+                            <canvas class="chart-pengunjung">
+                            </canvas>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
 
 
-                <div style=" position: relative; height: 15rem; width: 100%;">
-                    {{-- <div class="skeleton_chart"></div> --}}
-                    <div class="uk_chart_skeleton skeleton-image"></div>
-                    <canvas class="chart-pengunjung">
-                    </canvas>
+        <div style="margin-top: 1rem" class="row-cards">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-status-top bg-warning"></div>
+                        <h3 class="card-title">Titik Lokasi Survey</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="width: 100%;height:70vh" id="map">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
-
-
-
-<div style="margin-top: 1rem" class="row-cards">
-    <div class="col-md-12 col-xl-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-status-top bg-warning"></div>
-                <h3 class="card-title">Titik Lokasi Survey</h3>
-            </div>
-            <div class="card-body">
-                <div style="width: 100%;height:70vh" id="map">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
 </div>
 
 
