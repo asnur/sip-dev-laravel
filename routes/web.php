@@ -153,8 +153,12 @@ Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallbac
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/mobile-kuesioner', function () {
-    return view('mobile-kuesioner');
+Route::get('/kuesioner/{id}', function ($id) {
+    $data = Http::get("http://localhost:9000/quiz/$id")->json();
+
+    // return $data;
+
+    return view('mobile-kuesioner', compact('data'));
 });
 
 //Admin Page

@@ -83,12 +83,13 @@
                         exercitationem consequatur! Iste non voluptatem nostrum ab
                         incidunt ullam temporibus cupiditate in voluptate!</label> --}}
 
-                    <h5 class="mt-2 mb-2 block text-sm font-bold text-gray-900 judul_text_pertama text-justify">Contoh
-                        Kuesioner</h5>
+                    <h5 class="mt-2 mb-2 block text-sm font-bold text-gray-900 judul_text_pertama text-justify">
+                        {{ $data['title'] }}</h5>
 
 
 
-                    <p class="leading-relaxed mb-1 text-gray-700 text_kata text-justify">Mengisi secara sadar.</p>
+                    <p class="leading-relaxed mb-1 text-gray-700 text_kata text-justify">{{ $data['description'] }}
+                    </p>
 
 
 
@@ -111,41 +112,28 @@
 
 
         {{-- Pilihan Ganda --}}
-        <div class="mt-8">
-            <div class="container px-4 mx-auto">
-                <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
-                    <label for="message"
-                        class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">Apakah cara
-                        dosen mengajar dapat meningkatkan minat belajar mahasiswa?</label>
-                    <div class="mt-2">
-                        <div>
-                            <label class="inline-flex">
-                                <input type="radio" class="form-radio mt-0.5" name="radio" value="1" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Tidak meningkatkan</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex">
-                                <input type="radio" class="form-radio mt-0.5" name="radio" value="2" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Kurang meningkatkan</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex">
-                                <input type="radio" class="form-radio mt-0.5" name="radio" value="2" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Cukup meningkatkan</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex">
-                                <input type="radio" class="form-radio mt-0.5" name="radio" value="3" />
-                                <span class="ml-2 mb-2 text-gray-700 text_kata text-justify">Sangat meningkatkan</span>
-                            </label>
+        @foreach ($data['Questions'] as $q)
+            <div class="mt-8">
+                <div class="container px-4 mx-auto">
+                    <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
+                        <label for="message"
+                            class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">{{ $q['question'] }}</label>
+                        <div class="mt-2">
+                            @foreach ($q['option'] as $o)
+                                <div>
+                                    <label class="inline-flex">
+                                        <input type="{{ $q['type'] }}" class="form-radio mt-0.5" name="radio"
+                                            value="1" />
+                                        <span
+                                            class="ml-2 mb-2 text-gray-700 text_kata text-justify">{{ $o['option'] }}</span>
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
 
         {{-- Multicentang --}}
         <div class="mt-8">
