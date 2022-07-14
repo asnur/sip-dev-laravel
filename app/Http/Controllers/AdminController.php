@@ -498,6 +498,11 @@ class AdminController extends Controller
         return view('admin.isi_kuesioner');
     }
 
+    public function jawaban_kuesioner()
+    {
+        return view('admin.jawaban_kuesioner');
+    }
+
     public function perkembangan_survey()
     {
         // kepake

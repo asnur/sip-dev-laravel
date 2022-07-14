@@ -185,8 +185,12 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/tambahKuesioner', [AdminController::class, 'tambah_kuesioner'])->name('tambah_kuesioner');
     Route::get('/kosongKuesioner', [AdminController::class, 'kosong_kuesioner'])->name('kosong_kuesioner');
     Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
+
+    Route::get('/JawabanKuesioner', [AdminController::class, 'jawaban_kuesioner'])->name('jawaban_kuesioner');
+
     Route::get('/IsiKuesioner', [AdminController::class, 'isi_kuesioner'])->name('isi_kuesioner');
     Route::get('/PerkembanganSurvey', [AdminController::class, 'perkembangan_survey'])->name('perkembangan-survey');
+
 
     Route::get('/fetch-perkembangan', [AdminController::class, 'fetchPerkembangan'])->name('fetch-perkembangan');
 
