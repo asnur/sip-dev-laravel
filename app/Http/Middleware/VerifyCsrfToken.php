@@ -47,6 +47,7 @@ class VerifyCsrfToken extends Middleware
         '/savePendataanUsaha',
         '/getPendataanUsaha',
         '/deletePendataanUsaha',
-        '/deleteImageUsaha'
+        '/deleteImageUsaha',
+        '/file_kuesioner',
     ];
 }

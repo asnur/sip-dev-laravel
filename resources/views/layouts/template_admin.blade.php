@@ -207,9 +207,9 @@
                             <a class="nav-link" href="{{ route('home-admin') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <polyline points="5 12 3 12 12 3 21 12 19 12" />
                                         <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
@@ -301,9 +301,9 @@
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-chart-area-line" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                        class="icon icon-tabler icon-tabler-chart-area-line" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <polyline points="4 19 8 13 12 15 16 10 20 14 20 19 4 19"></polyline>
                                         <polyline points="4 12 7 8 11 10 16 4 20 8"></polyline>
@@ -322,16 +322,17 @@
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-report-analytics" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                        class="icon icon-tabler icon-tabler-report-analytics" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <desc>Download more icon variants from
                                             https://tabler-icons.io/i/report-analytics</desc>
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path
                                             d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
                                         </path>
-                                        <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                                        <rect x="9" y="3" width="6" height="4"
+                                            rx="2"></rect>
                                         <path d="M9 17v-5"></path>
                                         <path d="M12 17v-1"></path>
                                         <path d="M15 17v-3"></path>
@@ -394,7 +395,8 @@
         </aside>
         <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
             <div class="container-xl">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbar-menu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-nav flex-row order-md-last">
@@ -414,9 +416,10 @@
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <a href="#" class="dropdown-item" onclick="logout()">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/logout -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon"
+                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path
                                         d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2">
@@ -478,8 +481,8 @@
                     <div class="form-selectgroup-boxes row mb-3">
                         <div class="col-lg-6">
                             <label class="form-selectgroup-item">
-                                <input type="radio" name="report-type" value="1" class="form-selectgroup-input"
-                                    checked />
+                                <input type="radio" name="report-type" value="1"
+                                    class="form-selectgroup-input" checked />
                                 <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                         <span class="form-selectgroup-check"></span>
@@ -494,7 +497,8 @@
                         </div>
                         <div class="col-lg-6">
                             <label class="form-selectgroup-item">
-                                <input type="radio" name="report-type" value="1" class="form-selectgroup-input" />
+                                <input type="radio" name="report-type" value="1"
+                                    class="form-selectgroup-input" />
                                 <span class="form-selectgroup-label d-flex align-items-center p-3">
                                     <span class="me-3">
                                         <span class="form-selectgroup-check"></span>
@@ -517,7 +521,8 @@
                                     <span class="input-group-text">
                                         https://tabler.io/reports/
                                     </span>
-                                    <input type="text" class="form-control ps-0" value="report-01" autocomplete="off" />
+                                    <input type="text" class="form-control ps-0" value="report-01"
+                                        autocomplete="off" />
                                 </div>
                             </div>
                         </div>
@@ -583,7 +588,7 @@
 
         //  Start fungsi untuk mengatur select/ganti pertanyaan
         $(".group_opsi").hide();
-        $(".pilgan").show();
+        $(".radio").show();
 
         function hideshow(selectOption) {
             get_img = $(selectOption).parents().parents().find(".upload_img_wrap");
@@ -595,8 +600,9 @@
             cek.getElementsByClassName("group_opsi")[1].style.display = "none";
             cek.getElementsByClassName("group_opsi")[2].style.display = "none";
             cek.getElementsByClassName("group_opsi")[3].style.display = "none";
-
+            console.log(cek.getElementsByClassName(selectOption.value)[0]);
             cek.getElementsByClassName(selectOption.value)[0].style.display = "block";
+            getAllValues()
         }
     </script>
 
@@ -620,12 +626,15 @@
 
     <!-- Page level plugins -->
     <script src="{{ asset('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
 
     <!-- Page level custom scripts -->
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script> --}}
 
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
+        var creator = {!! json_encode(Auth::user()->name) !!}
+        var date_now = {!! json_encode(date('Y-m-d')) !!}
     </script>
 
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script> --}}

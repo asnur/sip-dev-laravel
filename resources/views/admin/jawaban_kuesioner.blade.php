@@ -14,6 +14,13 @@ $Roles = '';
 
 </style>
 
+{{-- <script src="https://code.highcharts.com/highcharts.js"></script> --}}
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+{{-- open ekspor --}}
+{{-- <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/accessibility.js"></script> --}}
+
 
 
 <div class="container-xl">
@@ -62,8 +69,10 @@ $Roles = '';
                             </div>
 
                             <div class="row mb-1">
-                                <div class="col-md-6 border border-primary">Lorem ipsum dolor sit, amet adipisicing elit. Doloremque reiciendis porro !</div>
-                                <div class="col-md-6 border border-primary">Lorem ipsum dolor sit amet adipisicing elit. Quam consectetur enim necessitatibus </div>
+                                <div class="col-md-12 border border-primary">
+                                    <div id="quiz_radio_jawaban"></div>
+                                </div>
+                                {{-- <div class="col-md-6 border border-primary">Lorem ipsum dolor sit amet adipisicing elit. Quam consectetur enim necessitatibus </div> --}}
                             </div>
                         </div>
                     </div>
@@ -90,8 +99,13 @@ $Roles = '';
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-md-6 border border-primary">Lorem ipsum dolor sit, amet adipisicing elit. Doloremque reiciendis porro !</div>
-                                <div class="col-md-6 border border-primary">Lorem ipsum dolor sit amet adipisicing elit. Quam consectetur enim necessitatibus </div>
+                                <div class="col-md-12 border border-primary">
+                                    {{-- <div id="quiz_checkbox_jawaban"></div> --}}
+
+                                    <div style=" height: 400px; margin: 0 auto;" id="quiz_checkbox_jawaban"></div>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -196,6 +210,216 @@ $Roles = '';
 
 </div>
 </div>
+
+
+<script>
+    // donat
+
+    // Make monochrome colors
+    // var pieColors = (function() {
+    //     var colors = []
+    //         , base = Highcharts.getOptions().colors[0]
+    //         , i;
+
+    //     for (i = 0; i < 10; i += 1) {
+
+    //         colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
+    //     }
+    //     return colors;
+    // }());
+
+    // Highcharts.chart('quiz_radio_jawaban', {
+
+    //     chart: {
+    //         plotBackgroundColor: null
+    //         , plotBorderWidth: null
+    //         , plotShadow: false
+    //         , type: 'pie'
+    //     }
+    //     , title: {
+    //         text: 'Jawaban Data Radio x'
+    //     }
+    //     , tooltip: {
+    //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    //     }
+    //     , accessibility: {
+    //         point: {
+    //             valueSuffix: '%'
+    //         }
+    //     }
+    //     , plotOptions: {
+    //         pie: {
+    //             allowPointSelect: true
+    //             , cursor: 'pointer'
+    //             , colors: pieColors
+    //             , dataLabels: {
+    //                 enabled: true
+    //                 , format: '<b>{point.name}</b><br>{point.percentage:.1f} %'
+    //                 , distance: -50
+    //                 , filter: {
+    //                     property: 'percentage'
+    //                     , operator: '>'
+    //                     , value: 4
+    //                 }
+    //                 , showInLegend: true
+
+    //             }
+    //         }
+    //     }
+    //     , series: [{
+    //         name: 'Share'
+    //         , data: [{
+    //                 name: 'Chrome'
+    //                 , y: 61.41
+    //             }
+    //             , {
+    //                 name: 'Internet Explorer'
+    //                 , y: 11.84
+    //             }
+    //             , {
+    //                 name: 'Firefox'
+    //                 , y: 10.85
+    //             }
+    //             , {
+    //                 name: 'Edge'
+    //                 , y: 4.67
+    //             }
+    //             , {
+    //                 name: 'Safari'
+    //                 , y: 4.18
+    //             }
+    //             , {
+    //                 name: 'Other'
+    //                 , y: 7.05
+    //             }
+    //         ]
+    //         , credits: {
+    //             enabled: false
+    //         }
+
+    //     }]
+    // });
+
+    Highcharts.chart('quiz_radio_jawaban', {
+        chart: {
+            type: 'pie'
+        }
+        , title: {
+            text: 'Jawaban Data Radio x'
+            , y: 27
+        }
+
+        , accessibility: {
+            announceNewData: {
+                enabled: true
+            }
+            , point: {
+                valueSuffix: '%'
+            }
+        },
+
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true
+                    , format: '{point.name}: {point.y:.f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px;">{series.name}</span><br>'
+            , pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.f}</b> Dari total<br />'
+        },
+
+        series: [{
+            name: "Data Quiz Option"
+            , colorByPoint: true
+            , data: [{
+                    name: "Data Pertama"
+                    , y: 75
+                }
+                , {
+                    name: "Data Kedua"
+                    , y: 25
+                }
+                , {
+                    name: "Data Ketiga"
+                    , y: 25
+                }
+                , {
+                    name: "Data Keempat"
+                    , y: 25
+                }
+            ]
+        }]
+        , credits: {
+            enabled: false
+        }
+    , });
+
+    //BAR
+    Highcharts.chart('quiz_checkbox_jawaban', {
+
+        chart: {
+            type: 'bar'
+            , marginLeft: 70
+        }
+        , title: {
+            text: 'Jawaban Data Checkbox x'
+            , y: 23
+        }
+        , xAxis: {
+            type: 'category'
+            , title: {
+                text: null
+            }
+            , min: 0
+            , max: 4
+            , scrollbar: {
+                enabled: true
+            }
+            , tickLength: 0
+        }
+        , yAxis: {
+            min: 0
+            , max: 1200
+            , title: {
+                text: 'Jumlah'
+                    // , align: 'high'
+                , y: 8
+                // , align: 'right',
+
+            }
+        }
+        , plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        }
+        , legend: {
+            enabled: false
+        }
+        , credits: {
+            enabled: false
+        }
+        , series: [{
+            name: 'Jumlah'
+            , data: [
+                ["Mangga", 1000]
+                , ["Nanas", 575]
+                , ["Jambu", 523]
+                , ["Pisang", 427]
+                , ["Buah Naga", 309]
+                , ["Jeruk", 278]
+                , ["Kiwi", 239]
+            ]
+        }]
+    });
+
+</script>
 
 
 

@@ -44,8 +44,6 @@ use Jenssegers\Agent\Agent;
 */
 
 
-// Route::get('/', function () {
-// });
 
 Route::get('/', function (Request $request) {
     return view('layout.main');
@@ -154,6 +152,20 @@ Route::get('/auth/redirect', [SocialiteController::class, 'redirectToProvider'])
 Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Kuesioner
+Route::get('/kuesioner/{id}', function ($id) {
+    $data = Http::get("https://jakpintas.dpmptsp-dki.com:4000/quiz/$id")->json();
+
+    return view('mobile-kuesioner', compact('data'));
+});
+Route::post('/file_kuesioner', function (Request $request) {
+    $file = $request->file('foto');
+    foreach ($file as $f) {
+        $f->move(public_path() . '/kuesioner/', $f->getClientOriginalName());
+    }
+    return response()->json(['success' => 'File Uploaded Successfully']);
+});
 
 //Admin Page
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {

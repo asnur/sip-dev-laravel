@@ -153,12 +153,13 @@ function saveJawaban(data) {
     findRadio = radio.find("input");
     findMulcen = mulcen.find("input");
 
-    if (data.val() == "koce") {
+    if (data.val() == "checkbox") {
+        radio.html("");
         mulcen.html("");
         findRadio.each(function () {
             label = $(this).val();
             mulcen.append(
-                '<div class="form-check hapusOption"><div class="row"><div class="col-md-11"><input class="form-check-input auto_input_textarea" type="checkbox" name="add_input_dinamis[]" value="' +
+                '<div class="form-check hapusOption"><div class="row"><div class="col-md-11"><input class="form-check-input jawaban auto_input_textarea" type="checkbox" name="add_input_dinamis[]" value="' +
                     label +
                     '" /><textarea class="remove_textarea_option color_active" oninput="Teks($(this)); auto_grow_options(this)">' +
                     label +
@@ -167,10 +168,11 @@ function saveJawaban(data) {
         });
     } else {
         radio.html("");
+        mulcen.html("");
         findMulcen.each(function () {
             label = $(this).val();
             radio.append(
-                '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
+                '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input jawaban opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
                     label +
                     '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option auto_input color_active">' +
                     label +
@@ -187,12 +189,13 @@ function buatRadio(elem, label, checked) {
     var id = label;
 
     $(".hasil_addbtn1").append(
-        '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
+        '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
             label +
             '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option auto_input color_active">' +
             label +
             '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
     );
+    action();
 }
 
 // Kirim value ke input
@@ -200,7 +203,9 @@ function Teks(tes) {
     var value = tes.val();
     dpt = tes.parent().find(".auto_input_textarea");
     $(dpt).val(tes.val());
-
+    // setTimeout(function () {
+    //     getAllValues();
+    // }, 1000);
     // console.log(value);
 }
 
@@ -208,6 +213,7 @@ function Teks(tes) {
 $("body").on("click", ".AddButton", function () {
     buatRadio($(this), $("#option").val());
     $("#option").val("");
+    action();
 });
 
 // Tambah Jawaban Dinamis2
@@ -226,9 +232,7 @@ $("body").on("click", ".AddButton2", function (e) {
 
     button.insertAdjacentHTML(
         "beforeend",
-        '<div class="form-check hapusOption"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban auto_input_textarea" type="radio" name="add_input_dinamis' +
-            counter +
-            '[]" value="' +
+        '<div class="form-check hapusOption"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
             label +
             '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option">' +
             label +
@@ -254,7 +258,7 @@ $("body").on("click", ".MultiCentang", function (e) {
 
     btn2 = button.insertAdjacentHTML(
         "beforeend",
-        ' <div class="form-check hapusOption"><div class="row"><div class="col-md-11"><input class="form-check-input auto_input_textarea" type="checkbox" name="add_input_dinamis[]" value="' +
+        ' <div class="form-check hapusOption"><div class="row"><div class="col-md-11"><input class="form-check-input jawaban auto_input_textarea" type="checkbox" name="add_input_dinamis[]" value="' +
             label +
             '" /><textarea class="remove_textarea_option color_active" oninput="Teks($(this)); auto_grow_options(this)">' +
             label +
@@ -264,6 +268,7 @@ $("body").on("click", ".MultiCentang", function (e) {
     this.parentNode.parentNode.parentNode.getElementsByClassName(
         "txtBox2"
     )[0].value = "";
+    action();
 });
 
 // Start fungsi untuk mengatur pertanyaan di Teks
@@ -347,6 +352,7 @@ $("body").on("click", ".upload_img_close", function (e) {
 // Start fungsi untuk menghapus pada pilihan ganda dan multi centang
 $("body").on("click", "#RemoveButton", function (e) {
     $(this).closest(".hapusOption").remove();
+    getAllValues();
 });
 
 // Start Kuesioner Dinamis
@@ -391,6 +397,7 @@ $(document).ready(function () {
         } else {
             alert("Maksimal " + maxGroup + " Kuesioner.");
         }
+        action();
     });
 
     //remove group
@@ -411,6 +418,99 @@ $(document).ready(function () {
         } else {
             console.log("lebih");
         }
+        getAllValues();
     });
 });
 // End Kuesioner Dinamis
+
+//Get All Values
+const getAllValues = () => {
+    let title = $("textarea[name='judul']").val();
+    let desc = $("textarea[name='deskripsi']").val();
+    let values = {
+        _id: localStorage.getItem("oid"),
+        title: title,
+        description: desc,
+        date: date_now,
+        creator: creator,
+        questions: [],
+    };
+    let group = $(".AddGroup").length;
+    let group_data = [];
+    for (let i = 0; i < group; i++) {
+        let el_value;
+        let option_type = $(`.AddGroup:eq(${i})`)
+            .find('select[name="opsipertanyaan"]')
+            .val();
+        let question = $(`.AddGroup:eq(${i})`)
+            .find(".remove_border_textarea_pertanyaan")
+            .val();
+        values.questions.push({
+            question: question,
+            type: option_type,
+            option: [],
+        });
+        if (option_type == "textarea") {
+            el_value = $(`.AddGroup:eq(${i})`).find(".jawaban").length - 1;
+        } else {
+            el_value = $(`.AddGroup:eq(${i})`).find(".jawaban").length - 2;
+        }
+        for (let j = 0; j < el_value; j++) {
+            let value = $(`.AddGroup:eq(${i})`).find(`.jawaban:eq(${j})`).val();
+            values.questions[i].option.push({ option: value });
+        }
+    }
+
+    sendData(values);
+};
+
+const sendData = (data) => {
+    $.ajax({
+        url: "https://jakpintas.dpmptsp-dki.com:4000/quiz",
+        type: "POST",
+        data: JSON.stringify(data),
+        dataType: "json",
+        // async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            // console.log(response);
+            $("#cardGenerateLink").show();
+            $("#generateLink").val(
+                `https://jakpintas.dpmptsp-dki.com/kuesioner/${response}`
+            );
+            $("#liveToast").toast("show");
+            setTimeout(() => {
+                $("#liveToast").toast("hide");
+            }, 1000);
+        },
+    });
+};
+
+$(window).on("load", () => {
+    localStorage.removeItem("oid");
+    $.ajax({
+        url: "https://jakpintas.dpmptsp-dki.com:4000/oid",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            // console.log(response);
+            localStorage.setItem("oid", response);
+        },
+    });
+});
+
+var typingTimer;
+var doneTypingInterval = 1000;
+
+const action = () => {
+    $("body").bindWithDelay(
+        "keyup",
+        "textarea[name='judul'], textarea[name='deskripsi'], [class='remove_textarea_option'], [class='remove_border_textarea_pertanyaan']",
+        function () {
+            getAllValues();
+        },
+        1000
+    );
+};
+
+action();

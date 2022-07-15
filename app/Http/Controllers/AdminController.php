@@ -779,6 +779,9 @@ class AdminController extends Controller
 
             $spreadSheet->getActiveSheet()->getStyle('1:1')->applyFromArray($styleArray);
 
+            // $spreadSheet->getActiveSheet()->getStyle('B:D:G:I:K')
+            //     ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');
             header('Content-Disposition: attachment;filename="Detil Input Petugas Survey.xls"');
@@ -838,6 +841,9 @@ class AdminController extends Controller
 
             $spreadSheet->getActiveSheet()->getStyle('1:1')->applyFromArray($styleArray);
 
+            $spreadSheet->getActiveSheet()->getStyle('D:F')
+                ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');
             header('Content-Disposition: attachment;filename="Kinerja Petugas Survey.xls"');
@@ -870,8 +876,8 @@ class AdminController extends Controller
                 'Nama Petugas AJIB' => $data_item->name,
                 'Penempatan' =>  $data_item->penempatan,
                 'Role' =>  $data_item->roles[0]->name,
-                'Input Hari Ini' => $data_item->perkembangan_today_count,
-                'Input Total' => $data_item->perkembangan_count,
+                'Input Hari Ini' => (string)$data_item->perkembangan_today_count,
+                'Input Total' => (string)$data_item->perkembangan_count,
             );
         }
         $this->ExportPetugasExcel($data_array);
