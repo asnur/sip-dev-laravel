@@ -88,7 +88,8 @@
 
 
 
-                    <p class="leading-relaxed mb-1 text-gray-700 text_kata text-justify">{{ $data['description'] }}
+                    <p class="leading-relaxed mb-1 text-gray-700 text_kata text-justify text_desc">
+                        {{ $data['description'] }}
                     </p>
 
 
@@ -115,7 +116,7 @@
         @foreach ($data['Questions'] as $q)
             @if ($q['type'] == 'textarea')
                 {{-- Teks --}}
-                <div class="my-4">
+                <div class="my-4 form-response">
                     <div class="container px-4 mx-auto">
                         <div class="border rounded-lg shadow-lg px-4 pt-2 pb-5">
                             <label for="message"
@@ -130,7 +131,7 @@
                 </div>
             @elseif ($q['type'] == 'file')
                 {{-- Upload gambar --}}
-                <div class="my-4">
+                <div class="my-4 form-response">
                     <div class="container px-4 mx-auto">
                         <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
                             <label for="message"
@@ -223,7 +224,7 @@
                 </div>
             @else
                 {{-- Radio & Checkbox --}}
-                <div class="my-4">
+                <div class="my-4 form-response">
                     <div class="container px-4 mx-auto">
                         <div class="border rounded-lg shadow-lg px-4 pt-2 pb-3">
                             <label for="message"
@@ -253,7 +254,7 @@
 
         </div> --}}
 
-        <div class="mb-3">
+        <div class="mb-3 button-form-response">
             <div class="container px-4 mx-auto">
                 <button type="button" onclick="$('#foto_kuesioner').submit()"
                     class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Simpan</button>
@@ -462,6 +463,10 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
+                    $('.form-response').hide();
+                    $('.button-form-response').hide();
+                    $('.judul_text_pertama').text('Terima Kasih Sudah Mengisi Kuesioner');
+                    $('.text_desc').html('<a href="/">Kembali Ke Halaman Utama</a>')
                     console.log(data)
                 }
             })
