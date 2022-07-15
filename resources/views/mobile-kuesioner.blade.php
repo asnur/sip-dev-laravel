@@ -447,7 +447,7 @@
             e.preventDefault();
             getAllValue();
             $.ajax({
-                url: `${APP_URL}:9000/response`,
+                url: `${APP_URL}:4000/response`,
                 type: 'POST',
                 data: JSON.stringify(response),
                 contentType: "application/json; charset=utf-8",

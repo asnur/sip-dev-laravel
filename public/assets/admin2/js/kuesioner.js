@@ -466,7 +466,7 @@ const getAllValues = () => {
 
 const sendData = (data) => {
     $.ajax({
-        url: "http://localhost:9000/quiz",
+        url: "https://jakpintas.dpmptsp-dki.com:4000/quiz",
         type: "POST",
         data: JSON.stringify(data),
         dataType: "json",
@@ -489,7 +489,7 @@ const sendData = (data) => {
 $(window).on("load", () => {
     localStorage.removeItem("oid");
     $.ajax({
-        url: "http://localhost:9000/oid",
+        url: "https://jakpintas.dpmptsp-dki.com:4000/oid",
         type: "GET",
         dataType: "json",
         success: function (response) {

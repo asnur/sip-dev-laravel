@@ -155,7 +155,7 @@ Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallbac
 
 //Kuesioner
 Route::get('/kuesioner/{id}', function ($id) {
-    $data = Http::get("http://localhost:9000/quiz/$id")->json();
+    $data = Http::get("https://jakpintas.dpmptsp-dki.com:4000/quiz/$id")->json();
 
     return view('mobile-kuesioner', compact('data'));
 });
