@@ -514,3 +514,9 @@ const action = () => {
 };
 
 action();
+
+$(".btn_salin").click(function () {
+    var copyText = document.getElementById("generateLink");
+    copyText.select();
+    document.execCommand("copy");
+});

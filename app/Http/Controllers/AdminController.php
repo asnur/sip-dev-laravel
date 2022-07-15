@@ -472,20 +472,16 @@ class AdminController extends Controller
         return $pdf->stream();
     }
 
+    public function kuesioner()
+    {
+        $data = Http::get(env('APP_URL') . ':4000/quiz')->json();
 
-    // public function kuesioner()
-    // {
-    //     return view('admin.kuesioner');
-    // }
+        return view('admin.kuesioner', compact('data'));
+    }
 
     public function tambah_kuesioner()
     {
         return view('admin.tambah_kuesioner');
-    }
-
-    public function kosong_kuesioner()
-    {
-        return view('admin.kosong_kuesioner');
     }
 
     public function list_kuesioner()

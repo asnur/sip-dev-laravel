@@ -365,8 +365,8 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ request()->is('admin/kosongKuesioner') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('kosong_kuesioner') }}">
+                        <li class="nav-item {{ request()->is('admin/kuesioner') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('kuesioner') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -688,11 +688,6 @@
         <script src="{{ asset('assets/admin2/js/kuesioner.js') }}"></script>
 
         {{-- copy txt --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-
-        <script>
-            new ClipboardJS('.btn_salin');
-        </script>
     @endif
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
