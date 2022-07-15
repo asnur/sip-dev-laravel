@@ -5,6 +5,7 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\GrafikChartController;
 use App\Http\Controllers\DigitasiController;
 use App\Http\Controllers\KBLIPusdatin;
+use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
 use App\Http\Controllers\PrintController;
@@ -154,18 +155,9 @@ Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallbac
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Kuesioner
-Route::get('/kuesioner/{id}', function ($id) {
-    $data = Http::get("https://jakpintas.dpmptsp-dki.com:4000/quiz/$id")->json();
-
-    return view('mobile-kuesioner', compact('data'));
-});
-Route::post('/file_kuesioner', function (Request $request) {
-    $file = $request->file('foto');
-    foreach ($file as $f) {
-        $f->move(public_path() . '/kuesioner/', $f->getClientOriginalName());
-    }
-    return response()->json(['success' => 'File Uploaded Successfully']);
-});
+Route::get('/kuesioner/{id}', [KuesionerController::class, 'getKuesioner']);
+Route::post('/file_kuesioner', [KuesionerController::class, 'saveFoto']);
+Route::delete('/kuesioner-delete', [KuesionerController::class, 'deleteKuesioner'])->name('delete-kuesioner');
 
 //Admin Page
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
@@ -194,8 +186,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('Ekspor-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('ekspor-kinerja');
 
     // Route::get('/Kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
+    Route::get('/kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
     Route::get('/tambahKuesioner', [AdminController::class, 'tambah_kuesioner'])->name('tambah_kuesioner');
-    Route::get('/kosongKuesioner', [AdminController::class, 'kosong_kuesioner'])->name('kosong_kuesioner');
     Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
 
     Route::get('/JawabanKuesioner', [AdminController::class, 'jawaban_kuesioner'])->name('jawaban_kuesioner');
