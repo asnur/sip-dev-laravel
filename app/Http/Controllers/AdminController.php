@@ -779,8 +779,16 @@ class AdminController extends Controller
 
             $spreadSheet->getActiveSheet()->getStyle('1:1')->applyFromArray($styleArray);
 
-            // $spreadSheet->getActiveSheet()->getStyle('B:D:G:I:K')
-            //     ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $spreadSheet->getActiveSheet()->getStyle('B')
+                ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $spreadSheet->getActiveSheet()->getStyle('D')
+                ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $spreadSheet->getActiveSheet()->getStyle('G')
+                ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $spreadSheet->getActiveSheet()->getStyle('I')
+                ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $spreadSheet->getActiveSheet()->getStyle('K')
+                ->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');
