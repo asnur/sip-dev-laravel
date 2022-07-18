@@ -437,6 +437,7 @@ const getAllValues = () => {
     };
     let group = $(".AddGroup").length;
     let group_data = [];
+    values.questions = [];
     for (let i = 0; i < group; i++) {
         let el_value;
         let option_type = $(`.AddGroup:eq(${i})`)
@@ -455,11 +456,14 @@ const getAllValues = () => {
         } else {
             el_value = $(`.AddGroup:eq(${i})`).find(".jawaban").length - 2;
         }
+        values.questions[i].option = [];
         for (let j = 0; j < el_value; j++) {
             let value = $(`.AddGroup:eq(${i})`).find(`.jawaban:eq(${j})`).val();
+            console.log(el_value);
             values.questions[i].option.push({ option: value });
         }
     }
+    console.log(values);
 
     sendData(values);
 };
@@ -487,16 +491,21 @@ const sendData = (data) => {
 };
 
 $(window).on("load", () => {
+    let url = window.location.href;
     localStorage.removeItem("oid");
-    $.ajax({
-        url: "https://jakpintas.dpmptsp-dki.com:4000/oid",
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-            // console.log(response);
-            localStorage.setItem("oid", response);
-        },
-    });
+    if (!url.includes("edit")) {
+        $.ajax({
+            url: "https://jakpintas.dpmptsp-dki.com:4000/oid",
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                // console.log(response);
+                localStorage.setItem("oid", response);
+            },
+        });
+    } else {
+        localStorage.setItem("oid", url.split("/")[5]);
+    }
 });
 
 var typingTimer;
