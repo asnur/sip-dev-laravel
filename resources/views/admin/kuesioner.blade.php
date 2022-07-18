@@ -140,12 +140,16 @@
                                             {{ date_ind_format($d['date']) }}</div>
                                     </div>
                                     <div class="col-auto">
-                                        <div class="mt-1">
+                                        <div class="mt-1 d-flex justify-content-between">
+                                            <a href="{{ route('edit_kuesioner', $d['_id']) }}"
+                                                class="btn border-0 btn-sm shadow-none"><i class="fa fa-edit"></i>&nbsp;
+                                                Edit</a>
                                             <form action="{{ route('delete-kuesioner') }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $d['_id'] }}">
-                                                <button type="submit" class="btn border-0 btn-sm" role="button">
+                                                <button type="submit" class="btn border-0 btn-sm shadow-none"
+                                                    role="button">
                                                     <i class="fas fa-trash"></i>&nbsp; Hapus</button>
                                             </form>
                                         </div>

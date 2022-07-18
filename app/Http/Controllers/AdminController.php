@@ -484,6 +484,13 @@ class AdminController extends Controller
         return view('admin.tambah_kuesioner');
     }
 
+    public function edit_kuesioner($id)
+    {
+        $data = Http::get(env('APP_URL') . ':4000/quiz/' . $id)->json();
+        // dd($data);
+        return view('admin.edit_kuesioner', compact('data'));
+    }
+
     public function list_kuesioner()
     {
         return view('admin.list_kuesioner');

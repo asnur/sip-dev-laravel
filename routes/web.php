@@ -188,6 +188,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     // Route::get('/Kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
     Route::get('/kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
     Route::get('/tambahKuesioner', [AdminController::class, 'tambah_kuesioner'])->name('tambah_kuesioner');
+    Route::get('/editKuesioner/{id}', [AdminController::class, 'edit_kuesioner'])->name('edit_kuesioner');
     Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
 
     Route::get('/JawabanKuesioner', [AdminController::class, 'jawaban_kuesioner'])->name('jawaban_kuesioner');
