@@ -137,33 +137,20 @@
                             <label for="message"
                                 class="mt-2 mb-4 block text-sm font-medium text-gray-900 judul_text text-justify">{{ $q['question'] }}</label>
                             <div class="my-3">
-                                {{-- <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                            <div class="space-y-1 text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="True">
-                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <div class="flex text-sm text-gray-600">
-                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" />
-                                    </label>
-                                    <p class="pl-1">or drag and drop</p>
-                                </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                            </div>
-                        </div> --}}
-
-                                {{-- <input type="file" multiple id="gallery-photo-add"> --}}
-                                {{-- <div class="flex justify-center items-center w-full">
-                            <div class="gallery"></div>
-                        </div> --}}
-
-                                {{-- <span id="selected-images"></span> --}}
 
                                 <div class="flex justify-center mb-2">
-                                    <div>
-                                        <img id="frame" src=""
-                                            style="width: 100%; height:90%; display:none" />
+                                    <div class="relative hidden" id="imageUpload">
+                                        <img id="frame" src="" style="width: 100%; height:90%;" />
+                                        <span class="absolute text-2xl text-red-600 top-2 right-2">
+                                            <a href="javascript:void(0)" class="image-close" data-index=""
+                                                onclick="removeImage($(this));">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
 
@@ -384,13 +371,37 @@
             'answer': []
         }
         let form_data = new FormData($("#foto_kuesioner")[0]);
+        let file_foto = [];
+        let file_temp = [];
 
         //Preview Image and Append to FormData
         const preview = (el) => {
             let file = el[0].files[0];
-            form_data.append('foto[]', file, file.name);
-            $(el).parent().parent().parent().find('#frame').attr('src', URL.createObjectURL(file)).css('display',
-                'block');
+            new Compressor(file, {
+                quality: 0.3,
+                convertSize: 1000000,
+                success(result) {
+                    file_foto.push(result);
+                    file_temp.push(result);
+                },
+                error(err) {
+                    console.log(err.message);
+                },
+            });
+            $(el).parent().parent().parent().find('#frame').attr('src', URL.createObjectURL(file));
+            setTimeout(() => {
+                let qty_file = file_temp.length;
+                $(el).parent().parent().parent().find('.image-close').data('index', qty_file);
+                $(el).parent().parent().parent().find('#imageUpload').show();
+            }, 1000);
+        }
+
+        //Remove Image from FormData
+        const removeImage = (el) => {
+            let index = $(el).data('index');
+            file_foto.splice(file_foto.indexOf(file_temp[index]), 1);
+            $(el).parent().parent().parent().find('#frame').attr('src', '');
+            $(el).parent().parent().parent().find('#imageUpload').hide();
         }
 
         //Get All Values Form
@@ -423,16 +434,6 @@
                     })
                 } else if (question.type == 'file') {
                     let value = [$(`input[name='${question._id}']`).get(0).files[0].name]
-                    // new Compressor($(`input[name='${question._id}']`).get(0).files[0], {
-                    //     quality: 0.3,
-                    //     convertSize: 1000000,
-                    //     success(result) {
-                    //         form_data.append(`foto[]`, result, result.name)
-                    //     },
-                    //     error(err) {
-                    //         console.log(err.message);
-                    //     },
-                    // });
                     response.answer.push({
                         'id_question': question._id,
                         'type': question.type,
@@ -455,6 +456,9 @@
                 success: function(data) {
                     console.log(data)
                 }
+            })
+            file_foto.forEach(file => {
+                form_data.append('foto[]', file, file.name);
             })
             $.ajax({
                 url: `${APP_URL}/file_kuesioner`,
