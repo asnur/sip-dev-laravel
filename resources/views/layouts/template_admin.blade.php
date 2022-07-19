@@ -341,22 +341,19 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ request()->is('admin/kosong') ? 'active' : '' }}">
-                            <a class="nav-link" href="#">
+                        <li class="nav-item {{ request()->is('admin/pendataanUsaha') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('pendataan_usaha') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-file-text" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                        <path
-                                            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
-                                        </path>
-                                        <line x1="9" y1="9" x2="10" y2="9"></line>
-                                        <line x1="9" y1="13" x2="15" y2="13"></line>
-                                        <line x1="9" y1="17" x2="15" y2="17"></line>
+                                        <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697"></path>
+                                        <path d="M18 14v4h4"></path>
+                                        <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2"></path>
+                                        <rect x="8" y="3" width="6" height="4" rx="2"></rect>
+                                        <circle cx="18" cy="18" r="4"></circle>
+                                        <path d="M8 11h4"></path>
+                                        <path d="M8 15h3"></path>
                                     </svg>
 
                                 </span>
@@ -740,6 +737,7 @@
         addText();
         dataTebaruRealtime();
         dataTebaruPerkembangan();
+        dataPendataanUsaha();
         // slideFoto();
     </script>
 

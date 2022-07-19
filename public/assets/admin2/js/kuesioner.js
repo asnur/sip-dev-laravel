@@ -165,7 +165,7 @@ function saveJawaban(data) {
                     '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
             );
         });
-    } else {
+    } else 
         radio.html("");
         findMulcen.each(function () {
             label = $(this).val();

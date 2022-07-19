@@ -70,9 +70,11 @@ $Roles = '';
 
                             <div class="row mb-1">
                                 <div class="col-md-12 border border-primary">
-                                    <div id="quiz_radio_jawaban"></div>
+                                    <div class="d-flex justify-content-center">
+                                        <div id="quiz_radio_jawaban"></div>
+                                    </div>
+
                                 </div>
-                                {{-- <div class="col-md-6 border border-primary">Lorem ipsum dolor sit amet adipisicing elit. Quam consectetur enim necessitatibus </div> --}}
                             </div>
                         </div>
                     </div>
@@ -300,63 +302,118 @@ $Roles = '';
     //     }]
     // });
 
+    // Highcharts.chart('quiz_radio_jawaban', {
+    //     chart: {
+    //         type: 'pie'
+    //     }
+    //     , title: {
+    //         text: 'Jawaban Data Radio x'
+    //         , y: 27
+    //     }
+
+    //     , accessibility: {
+    //         announceNewData: {
+    //             enabled: true
+    //         }
+    //         , point: {
+    //             valueSuffix: '%'
+    //         }
+    //     },
+
+    //     plotOptions: {
+    //         series: {
+    //             dataLabels: {
+    //                 enabled: true
+    //                 , format: '{point.name}: {point.y:.f}'
+    //             }
+    //         }
+    //     },
+
+    //     tooltip: {
+    //         headerFormat: '<span style="font-size:11px;">{series.name}</span><br>'
+    //         , pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.f}</b> Dari total<br />'
+    //     },
+
+    //     series: [{
+    //         name: "Data Quiz Option"
+    //         , colorByPoint: true
+    //         , data: [{
+    //                 name: "Data Pertama"
+    //                 , y: 75
+    //             }
+    //             , {
+    //                 name: "Data Kedua"
+    //                 , y: 25
+    //             }
+    //             , {
+    //                 name: "Data Ketiga"
+    //                 , y: 25
+    //             }
+    //             , {
+    //                 name: "Data Keempat"
+    //                 , y: 25
+    //             }
+    //         ]
+    //     }]
+    //     , credits: {
+    //         enabled: false
+    //     }
+    // , });
+
     Highcharts.chart('quiz_radio_jawaban', {
         chart: {
             type: 'pie'
+            , height: 400
+            , width: 500
         }
-        , title: {
-            text: 'Jawaban Data Radio x'
-            , y: 27
-        }
-
-        , accessibility: {
-            announceNewData: {
-                enabled: true
-            }
-            , point: {
-                valueSuffix: '%'
-            }
-        },
-
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true
-                    , format: '{point.name}: {point.y:.f}'
-                }
-            }
-        },
-
-        tooltip: {
-            headerFormat: '<span style="font-size:11px;">{series.name}</span><br>'
-            , pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.f}</b> Dari total<br />'
-        },
-
-        series: [{
-            name: "Data Quiz Option"
-            , colorByPoint: true
-            , data: [{
-                    name: "Data Pertama"
-                    , y: 75
-                }
-                , {
-                    name: "Data Kedua"
-                    , y: 25
-                }
-                , {
-                    name: "Data Ketiga"
-                    , y: 25
-                }
-                , {
-                    name: "Data Keempat"
-                    , y: 25
-                }
-            ]
-        }]
         , credits: {
             enabled: false
         }
+        , colors: [
+            '#5485BC', '#AA8C30', '#5C9384', '#981A37', '#FCB319', '#86A033', '#614931', '#00526F', '#594266', '#cb6828', '#aaaaab', '#a89375'
+        ]
+        , title: {
+            text: null
+        }
+        , plotOptions: {
+            pie: {
+                allowPointSelect: true
+                , cursor: 'pointer'
+                , showInLegend: true
+                , dataLabels: {
+                    enabled: false
+                    , formatter: function() {
+                        return this.percentage.toFixed(2) + '%';
+                    }
+                }
+            }
+        }
+        , legend: {
+            enabled: true
+            , layout: 'vertical'
+            , align: 'right'
+            , width: 200
+            , verticalAlign: 'middle'
+            , useHTML: true
+            , labelFormatter: function() {
+                return '<div style="text-align: left; width:130px;float:left;">' + this.name + '</div><div style="width:40px; float:left;text-align:right;">' + this.y + '%</div>';
+            }
+        }
+        , series: [{
+            type: 'pie'
+            , dataLabels: {
+
+            }
+            , data: [
+                ['Domestic Equity', 38.5]
+                , ['International Equity', 26.85]
+                , ['Other', 15.70]
+                , ['Cash and Equivalents', 10.48]
+                , ['Fixed Income', 8.48]
+            ]
+        }]
     , });
+
 
     //BAR
     Highcharts.chart('quiz_checkbox_jawaban', {

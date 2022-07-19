@@ -97,7 +97,7 @@ class AdminController extends Controller
         //     ->orderBy('survey_perkembangan_wilayah.id_user', 'Desc')
         //     ->get();
 
-        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id_baru', 'DESC')->take(5)->get();
+        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id_baru', 'DESC')->limit(1)->get();
 
         // dd($perkembangan_surver);
 
