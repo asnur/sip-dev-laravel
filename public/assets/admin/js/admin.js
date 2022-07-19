@@ -903,9 +903,9 @@ const filterAnalytics = (periode) => {
                     maintainAspectRatio: false,
                     layout: {
                         padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
+                            left: 0,
+                            right: 0,
+                            top: 0,
                             bottom: 0,
                         },
                     },
@@ -994,4 +994,119 @@ if (arrURL[5] == undefined) {
         // 10 * 60 * 1000;
         // mnt * detik * ms
     }, 600000);
+}
+
+// Pendataan Usaha
+
+function dataPendataanUsaha() {
+    $.ajax({
+        url: `/admin/get-pendataan-usaha`,
+        method: "GET",
+        dataType: "json",
+
+        beforeSend: function () {
+            $("#no_perjanjian").html('<div class="skeleton-heading"></div>');
+            $("#kordinat").html('<div class="skeleton-heading"></div>');
+            $("#sektor").html('<div class="skeleton-heading"></div>');
+            $("#modal").html('<div class="skeleton-heading"></div>');
+            $("#jumlah_tenaga").html('<div class="skeleton-heading"></div>');
+            $("#alamat").html('<div class="skeleton-heading"></div>');
+            $("#id_sub_blok").html('<div class="skeleton-heading"></div>');
+            $("#kelurahan").html('<div class="skeleton-heading"></div>');
+            $("#kecamatan").html('<div class="skeleton-heading"></div>');
+            $("#badan_usaha").html('<div class="skeleton-heading"></div>');
+        },
+
+        success: function (e) {
+            // console.log(e.perkembangan);
+
+            let data = e.data_usaha[0];
+
+            // console.log(data);
+
+            // $.each(e.perkembangan, function (key, data) {
+            // console.log(e.perkembangan[0]);
+
+            $("#nama_usaha").html(data.nama_usaha);
+
+            $("#kordinat").html(
+                `<a class="font-weight-bold" style="text-decoration:none;" href="https://www.google.com/maps/search/%09${data.kordinat}" target="_blank">${data.kordinat}</a>`
+            );
+
+            $("#pelaku").html(data.pelaku);
+            $("#no_perjanjian").html(data.no_perjanjian);
+            $("#sektor").html(data.sektor);
+            $("#modal").html(data.modal);
+            $("#jumlah_tenaga").html(data.jumlah_tenaga);
+            $("#alamat").html(data.alamat);
+            $("#id_sub_blok").html(data.id_sub_blok);
+
+            let kel = String(data.kelurahan);
+            let hasil_kelurahan = kapital(kel);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kelurahan").html(hasil_kelurahan);
+
+            let kec = String(data.kecamatan);
+            let hasil_kecamatan = kapital(kec);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kecamatan").html(hasil_kecamatan);
+
+            $("#badan_usaha").html(data.badan_usaha);
+
+            // $("#penempatan_perkembangan").html(
+            //     "<div'>AJIB " + result3 + "</div>"
+            // );
+
+            // $("#kordinat").html(
+            //     `<a class="font-weight-bold" style="text-decoration:none;" href="https://www.google.com/maps/search/%09${data.kordinat}" target="_blank">${data.kordinat}</a>`
+            // );
+
+            // $("#id_sub_blok").html(data.id_sub_blok);
+
+            // $("#regional").html(data.regional);
+            // $("#deskripsi_regional").html(data.deskripsi_regional);
+            // $("#neighborhood").html(data.neighborhood);
+            // $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
+            // $("#transect_zone").html(data.transect_zone);
+            // $("#deskripsi_transect_zone").html(data.deskripsi_transect_zone);
+
+            // $("#photo_ajib_perkembangan").html(
+            //     '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
+            //         data.user.avatar +
+            //         '") }}" alt="Petugas Ajib" /></span>'
+            // );
+
+            // array = data.image;
+
+            // var datagambar = "";
+            // if (array.length == 0) {
+            //     datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+            // } else {
+            //     array.forEach((e) => {
+            //         datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+            //     });
+            // }
+
+            // $(".gambar_utama_slider_input").html(datagambar);
+            // selectOption(".gambar_utama_slider_input");
+        },
+    });
 }

@@ -510,7 +510,8 @@ $hide = 'style="display:none"';
                                                                         {{-- ini hanya dihide, semua main fungsi
                                                                         diappend --}}
 
-                                                                        <div class="form-check hide_textarea">
+                                                                        <div class="form-check hide_textarea"
+                                                                            style="display: none">
 
                                                                             <div class="row">
 
@@ -556,15 +557,16 @@ $hide = 'style="display:none"';
                                                                 </div>
 
                                                                 {{-- Multi Centang --}}
-                                                                <div class="group_opsi checkbox mt-1">
+                                                                <div class="group_opsi checkbox mt-1"
+                                                                    style="display: none">
                                                                     <div style="margin-left: 1.2rem;" class="col-sm-10">
 
                                                                         <div class="hasil_mulcen"></div>
 
                                                                         {{-- ini hanya dihide, semua main fungsi
                                                                         diappend --}}
-                                                                        <div
-                                                                            class="form-check hapusOption hide_textarea">
+                                                                        <div class="form-check hapusOption hide_textarea"
+                                                                            style="display: none">
                                                                             <div class="row">
 
                                                                                 <div class="col-md-7">
@@ -607,7 +609,7 @@ $hide = 'style="display:none"';
                                                                 </div>
 
                                                                 {{-- Teks --}}
-                                                                <div class="group_opsi textarea">
+                                                                <div class="group_opsi textarea" style="display: none">
                                                                     <div class="col-sm-10">
 
                                                                         <div class="form-check"></div>
@@ -640,7 +642,7 @@ $hide = 'style="display:none"';
                                                                 </div>
 
                                                                 {{-- Gambar3 --}}
-                                                                <div class="group_opsi file">
+                                                                <div class="group_opsi file" style="display: none">
                                                                     <div class="col-sm-10">
 
 

@@ -191,7 +191,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/editKuesioner/{id}', [AdminController::class, 'edit_kuesioner'])->name('edit_kuesioner');
     Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
 
-    Route::get('/JawabanKuesioner', [AdminController::class, 'jawaban_kuesioner'])->name('jawaban_kuesioner');
+    Route::get('/jawaban/{id}', [AdminController::class, 'jawaban_kuesioner'])->name('jawaban_kuesioner');
 
     Route::get('/IsiKuesioner', [AdminController::class, 'isi_kuesioner'])->name('isi_kuesioner');
     Route::get('/PerkembanganSurvey', [AdminController::class, 'perkembangan_survey'])->name('perkembangan-survey');
@@ -216,6 +216,11 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/detil-petugas-survey', [AdminController::class, 'ExportDetilSurvey'])->name('detil-petugas-survey');
 
     Route::get('/kinerja-petugas-survey', [AdminController::class, 'ExportPetugasSurvey'])->name('kinerja-petugas-survey');
+
+    // Pendataan Usaha
+    Route::get('/pendataanUsaha', [PendataanUsahaController::class, 'PendataanUsaha'])->name('pendataan_usaha');
+
+    Route::get('/get-pendataan-usaha', [PendataanUsahaController::class, 'GetDataPendataanUsaha'])->name('get-pendataan-usaha');
 });
 
 // tabel kelurahan

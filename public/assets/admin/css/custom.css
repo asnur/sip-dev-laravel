@@ -64,6 +64,16 @@
     cursor: pointer;
 }
 
+.img_child_survey {
+    /* width: 150px;
+    height: 100px; */
+    width: 11rem;
+    height: 7rem;
+    /* padding: 7% 11% 0 0; */
+    padding-right: 4%;
+    cursor: pointer;
+}
+
 /* make button larger and change their positions */
 .slick-prev,
 .slick-next {

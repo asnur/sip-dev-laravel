@@ -17,8 +17,10 @@ class KuesionerController extends Controller
     public function saveFoto(Request $request)
     {
         $file = $request->file('foto');
-        foreach ($file as $f) {
-            $f->move(public_path() . '/kuesioner/', $f->getClientOriginalName());
+        if ($request->hasFile('foto')) {
+            foreach ($file as $f) {
+                $f->move(public_path() . '/kuesioner/', $f->getClientOriginalName());
+            }
         }
         return response()->json(['success' => 'File Uploaded Successfully']);
     }

@@ -166,20 +166,18 @@ function saveJawaban(data) {
                     '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
             );
         });
-    } else {
-        radio.html("");
-        mulcen.html("");
-        findMulcen.each(function () {
-            label = $(this).val();
-            radio.append(
-                '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input jawaban opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
-                    label +
-                    '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option auto_input color_active">' +
-                    label +
-                    '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
-            );
-        });
-    }
+    } else radio.html("");
+    mulcen.html("");
+    findMulcen.each(function () {
+        label = $(this).val();
+        radio.append(
+            '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input jawaban opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
+                label +
+                '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option auto_input color_active">' +
+                label +
+                '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
+        );
+    });
 }
 
 //Start Fungsi untuk menambahkan pilihan ganda
@@ -188,13 +186,18 @@ var counter = 0;
 function buatRadio(elem, label, checked) {
     var id = label;
 
-    $(".hasil_addbtn1").append(
-        '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
-            label +
-            '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option auto_input color_active">' +
-            label +
-            '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
-    );
+    $(elem)
+        .parent()
+        .parent()
+        .parent()
+        .find(".hasil_addbtn1")
+        .append(
+            '<div class="form-check hapusOption jawa"><div class="row"><div class="col-md-11"><input class="form-check-input opsi_jawaban jawaban auto_input_textarea" type="radio" name="add_input_dinamis[]" value="' +
+                label +
+                '" /><textarea oninput="Teks($(this)); auto_grow_options(this)" placeholder="Opsi Jawaban" class="remove_textarea_option auto_input color_active">' +
+                label +
+                '</textarea></div><div class="col-md-1" style="position: absolute; margin: 8px 10px 10px 45rem";><a href="javascript:void(0)" id="RemoveButton"><i style="color: black" class="material-icons">clear</i></a></div></div></div>'
+        );
     action();
 }
 
@@ -402,7 +405,7 @@ $(document).ready(function () {
 
     //remove group
     $("body").on("click", ".remove", function () {
-        $(this).parents(".sebaris_hapus").remove();
+        $(this).parents(".sebaris_hapus").parent().parent().remove();
         // console.log(this);
 
         element = $(".sebaris_hapus");

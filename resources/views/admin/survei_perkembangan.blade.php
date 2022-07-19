@@ -34,6 +34,46 @@
     /* jgn pindah */
     .dataTables_length {
         margin-bottom: 0.5rem;
+        margin-left: 1.5%;
+    }
+
+    #table-surveyer2_filter {
+        margin-right: 1.5% !important;
+    }
+
+    #table-surveyer2_length {
+        margin-bottom: 0.5rem !important;
+        margin-left: 1.3% !important;
+    }
+
+    #table-surveyer2_info {
+        margin-left: 1.5% !important;
+        margin-top: 0.6% !important;
+    }
+
+    #table-surveyer2_paginate {
+        margin-right: 1.5% !important;
+        margin-top: 1.5% !important;
+    }
+
+
+    #table-surveyer3_length {
+        margin-bottom: 0.5rem !important;
+        margin-left: 1.3% !important;
+    }
+
+    #table-surveyer3_filter {
+        margin-right: 1.5% !important;
+    }
+
+    #table-surveyer3_info {
+        margin-left: 1.5% !important;
+        margin-top: 1.5% !important;
+    }
+
+    #table-surveyer3_paginate {
+        margin-right: 1.5% !important;
+        margin-top: 2.4% !important;
     }
 
     .read-more-show {
@@ -112,9 +152,10 @@
         height: 350px !important;
     } */
 
-    div.slick-list.draggable {
+    /* atur arrow slider */
+    /* div.slick-list.draggable {
         height: 25rem !important;
-    }
+    } */
 
     .data_image_space .slick-slide img {
         height: 26vw !important;
@@ -133,6 +174,7 @@
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
+    /* slider kecil */
 
     .data_image_space2 .slick-prev:before {
         font-size: 35px !important;
@@ -149,6 +191,15 @@
         content: "\f105";
         /* margin-right: -130% !important; */
     }
+
+    .data_image_space2 .slick-prev {
+        left: 1% !important;
+    }
+
+    .data_image_space2 .slick-next {
+        right: 1% !important;
+    }
+
 
 
 
@@ -400,7 +451,7 @@ $Roles = '';
 
                                 </div>
 
-                                <div sty class="col-md-6 px-4 mt-3">
+                                <div sty class="col-md-6 mt-3">
 
 
                                     <div class="row">
@@ -584,7 +635,7 @@ $Roles = '';
 
                             </div>
 
-                            <div class="row jarak_inmobile px-4 pb-4">
+                            <div class="row jarak_inmobile pb-4 pt-4" style="padding-left: 0.6%;">
                                 <div class="col-md-12 mt-2">
 
 
@@ -600,7 +651,7 @@ $Roles = '';
 
                                         @foreach ($datas as $gi)
                                         <div>
-                                            <img class="img_child img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                            <img class="img_child_survey img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
                                         </div>
                                         @endforeach
 
@@ -622,7 +673,7 @@ $Roles = '';
             <div class="col-md-12 col-xl-12">
                 <div class="card">
                     <div class="card-status-top bg-success"></div>
-                    <div class="card-header">
+                    <div class="card-header" style="padding-left: 0.6%;">
                         <h3 class="card-title">Kinerja Petugas Survey</h3>
 
                         <div class="card-actions" style="margin-top:0.6%;">
@@ -632,7 +683,7 @@ $Roles = '';
                         </div>
 
                     </div>
-                    <div class="card-body">
+                    <div class="card-body px-0">
                         <div style="overflow-x: hidden !important;" class="table-responsive">
                             <table class="display table table-striped" id="table-surveyer2" style="width: 100%">
 
@@ -723,9 +774,8 @@ $Roles = '';
             <div class="col-md-12 col-xl-12">
                 <div class="card">
                     <div class="card-status-top bg-success"></div>
-                    <div class="card-header">
+                    <div class="card-header" style="padding-left:0.6%;">
                         <h3 class="card-title">Detil Input Petugas Survey</h3>
-
                         <div class="card-actions" style="margin-top:0.6%;">
                             <a style="font-weight:400; font-size:12px;" href="{{ route('detil-petugas-survey') }}">
                                 Unduh Excel
@@ -734,7 +784,7 @@ $Roles = '';
 
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body px-0">
                         <table class="display table table-striped" id="table-surveyer3" style="width: 100%">
 
                             <thead>
@@ -1005,17 +1055,22 @@ $Roles = '';
             <div class="col-12">
                 <div class="card">
                     <div class="card-status-top bg-primary"></div>
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
-                            <div class="ms-auto">
+                    <div class="card-body px-0 py-0">
+                        <div style="margin-left: 1.5%; margin-right: 1%;" class="d-flex">
+
+                            <div class="card-header px-0">
+                                <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
+                            </div>
+
+
+                            <div class="ms-auto mt-3">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter: <span class="jumlah_hari"></span> hari</a>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         {{-- <a class="dropdown-item" onclick="filterAnalytics(1)">1 Hari</a> --}}
-                                        <a class="dropdown-item" onclick="filterAnalytics(7)">7 Hari</a>
-                                        <a class="dropdown-item" onclick="filterAnalytics(30)">30 Hari</a>
-                                        <a class="dropdown-item" onclick="filterAnalytics(90)">90 Hari</a>
+                                        <a class="dropdown-item tujuh_hari" onclick="filterAnalytics(7)">7 Hari</a>
+                                        <a class="dropdown-item tigapuluh_hari" onclick="filterAnalytics(30)">30 Hari</a>
+                                        <a class="dropdown-item sembilanpuluh_hari" onclick="filterAnalytics(90)">90 Hari</a>
                                     </div>
                                 </div>
                             </div>
@@ -1023,10 +1078,9 @@ $Roles = '';
 
 
 
-                        <div style=" position: relative; height: 15rem; width: 100%;">
-                            {{-- <div class="skeleton_chart"></div> --}}
-                            <div class="uk_chart_skeleton skeleton-image"></div>
-                            <canvas class="chart-pengunjung">
+                        <div style="position: relative; height: 25em; width: 100%;">
+                            <div class="uk_chart_skeleton skeleton-image w-100 h-full"></div>
+                            <canvas class="px-2 chart-pengunjung">
                             </canvas>
                         </div>
                     </div>
@@ -1043,9 +1097,12 @@ $Roles = '';
                         <div class="card-status-top bg-warning"></div>
                         <h3 class="card-title">Titik Lokasi Survey</h3>
                     </div>
-                    <div class="card-body">
-                        <div style="width: 100%;height:70vh" id="map">
+                    <div class="card-body p-0">
+                        {{-- <div style="width: 100%;height:70vh" id="map">
+                        </div> --}}
+                        <div class="w-100" id="map" style="height: 70vh">
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -97,7 +97,7 @@ class AdminController extends Controller
         //     ->orderBy('survey_perkembangan_wilayah.id_user', 'Desc')
         //     ->get();
 
-        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id_baru', 'DESC')->take(5)->get();
+        $perkembangan_surver = SurveyPerkembangan::with(['user', 'image'])->orderBy('id_baru', 'DESC')->limit(1)->get();
 
         // dd($perkembangan_surver);
 
@@ -501,9 +501,12 @@ class AdminController extends Controller
         return view('admin.isi_kuesioner');
     }
 
-    public function jawaban_kuesioner()
+    public function jawaban_kuesioner($id)
     {
-        return view('admin.jawaban_kuesioner');
+        $quiz = Http::get(env('APP_URL') . ':4000/quiz/' . $id)->json();
+        $response = Http::get(env('APP_URL') . ':4000/response/' . $id)->json();
+        // return $data;
+        return view('admin.jawaban_kuesioner', compact('quiz', 'response'));
     }
 
     public function perkembangan_survey()
