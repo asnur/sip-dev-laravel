@@ -501,9 +501,12 @@ class AdminController extends Controller
         return view('admin.isi_kuesioner');
     }
 
-    public function jawaban_kuesioner()
+    public function jawaban_kuesioner($id)
     {
-        return view('admin.jawaban_kuesioner');
+        $quiz = Http::get(env('APP_URL') . ':4000/quiz/' . $id)->json();
+        $response = Http::get(env('APP_URL') . ':4000/response/' . $id)->json();
+        // return $data;
+        return view('admin.jawaban_kuesioner', compact('quiz', 'response'));
     }
 
     public function perkembangan_survey()
