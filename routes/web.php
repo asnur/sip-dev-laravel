@@ -5,6 +5,7 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\GrafikChartController;
 use App\Http\Controllers\DigitasiController;
 use App\Http\Controllers\KBLIPusdatin;
+use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\pinLocationController;
 use App\Http\Controllers\PrintController;
@@ -44,8 +45,6 @@ use Jenssegers\Agent\Agent;
 */
 
 
-// Route::get('/', function () {
-// });
 
 Route::get('/', function (Request $request) {
     return view('layout.main');
@@ -155,6 +154,11 @@ Route::get('/auth/callback', [SocialiteController::class, 'handleProviderCallbac
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Kuesioner
+Route::get('/kuesioner/{id}', [KuesionerController::class, 'getKuesioner']);
+Route::post('/file_kuesioner', [KuesionerController::class, 'saveFoto']);
+Route::delete('/kuesioner-delete', [KuesionerController::class, 'deleteKuesioner'])->name('delete-kuesioner');
+
 //Admin Page
 Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home-admin');
@@ -182,11 +186,16 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('Ekspor-Kinerja/{kelurahan?}', [AdminController::class, 'pdf_kinerja'])->name('ekspor-kinerja');
 
     // Route::get('/Kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
+    Route::get('/kuesioner', [AdminController::class, 'kuesioner'])->name('kuesioner');
     Route::get('/tambahKuesioner', [AdminController::class, 'tambah_kuesioner'])->name('tambah_kuesioner');
-    Route::get('/kosongKuesioner', [AdminController::class, 'kosong_kuesioner'])->name('kosong_kuesioner');
+    Route::get('/editKuesioner/{id}', [AdminController::class, 'edit_kuesioner'])->name('edit_kuesioner');
     Route::get('/listKuesioner', [AdminController::class, 'list_kuesioner'])->name('list_kuesioner');
+
+    Route::get('/jawaban/{id}', [AdminController::class, 'jawaban_kuesioner'])->name('jawaban_kuesioner');
+
     Route::get('/IsiKuesioner', [AdminController::class, 'isi_kuesioner'])->name('isi_kuesioner');
     Route::get('/PerkembanganSurvey', [AdminController::class, 'perkembangan_survey'])->name('perkembangan-survey');
+
 
     Route::get('/fetch-perkembangan', [AdminController::class, 'fetchPerkembangan'])->name('fetch-perkembangan');
 
@@ -204,24 +213,14 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/peta-survey/{id}', [RekapSurveyController::class, 'petaSurvey'])->name('peta-survey');
 
-    Route::get('/detil-petugas-survey', function () {
-        $data = ViewDetil::select("*")->get();
+    Route::get('/detil-petugas-survey', [AdminController::class, 'ExportDetilSurvey'])->name('detil-petugas-survey');
 
-        return view('admin/detil-petugas-survey', compact('data'));
-    })->name('detil-petugas-survey');
+    Route::get('/kinerja-petugas-survey', [AdminController::class, 'ExportPetugasSurvey'])->name('kinerja-petugas-survey');
 
-    Route::get('/kinerja-petugas-survey', function () {
-        $data = User::withCount(['perkembangan', 'perkembangan_today'])->with('roles')->whereHas(
-            'roles',
-            function ($q) {
-                $q->whereIn('name', ['ajib-kecamatan', 'CPNS']);
-            }
-        )->get();
+    // Pendataan Usaha
+    Route::get('/pendataanUsaha', [PendataanUsahaController::class, 'PendataanUsaha'])->name('pendataan_usaha');
 
-        // dd($data);
-
-        return view('admin/kinerja-petugas-survey', compact('data'));
-    })->name('kinerja-petugas-survey');
+    Route::get('/get-pendataan-usaha', [PendataanUsahaController::class, 'GetDataPendataanUsaha'])->name('get-pendataan-usaha');
 });
 
 // tabel kelurahan
@@ -230,8 +229,6 @@ Route::get('/progres-perkelurahan', function () {
     $data =  ProgresSurvey::withCount(['survey' => function ($query) {
         $query->select(DB::connection('pgsql')->raw('count(distinct(id_sub_blok))'));
     }])->orderBy('kecamatan')->get();
-
-    // dd($data);
 
     return view('admin/progres-perkelurahan', compact('data'));
 })->name('progres-perkelurahan');

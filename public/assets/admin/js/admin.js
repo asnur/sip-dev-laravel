@@ -275,7 +275,7 @@ function dataTebaruRealtime() {
                 $("#solusi").html(data.solusi);
 
                 $(".gambar_utama_slider_input2").html(
-                    '<img class="img_parents" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/mobile/img/' +
+                    '<img class="" style="border-radius:5px;" src="https://jakpintas.dpmptsp-dki.com/mobile/img/' +
                         data.foto +
                         '" /> '
                 );
@@ -407,6 +407,7 @@ $(document).ready(function () {
 const selectOption = (name) => {
     $(name).slick({
         slidesToShow: 1,
+        variableWidth: true,
         slidesToScroll: 1,
         infinite: false,
         arrows: true,
@@ -451,7 +452,7 @@ function dataTebaruPerkembangan() {
                 '<div class="skeleton-heading"></div>'
             );
             $("#gambar_utama_perkembangan").html(
-                ' <div style="width: 28.8rem;height: 300px; object-fit: cover;" class="skeleton-image"></div>'
+                ' <div style="object-fit: cover;" class="skeleton-image"></div>'
             );
             $("#photo_ajib_perkembangan").html(
                 '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
@@ -545,10 +546,10 @@ function dataTebaruPerkembangan() {
 
             var datagambar = "";
             if (array.length == 0) {
-                datagambar += `<div><img class="img_parents" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
             } else {
                 array.forEach((e) => {
-                    datagambar += `<div><img class="img_parents" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                    datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                 });
             }
             // console.log(array);
@@ -599,7 +600,7 @@ $(document).ready(function () {
                 );
 
                 $("#gambar_utama_perkembangan").html(
-                    ' <div style="width: 28.8rem ;height: 300px; object-fit: cover;" class="skeleton-image"></div>'
+                    ' <div style="object-fit: cover;" class="skeleton-image"></div>'
                 );
                 $("#photo_ajib_perkembangan").html(
                     '<div style="width: 3rem; height:3.5rem;" class="skeleton-image">'
@@ -693,10 +694,10 @@ $(document).ready(function () {
 
                 var datagambar = "";
                 if (array.length == 0) {
-                    datagambar += `<div><img class="img_parents" object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+                    datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
                 } else {
                     array.forEach((e) => {
-                        datagambar += `<div><img class="img_parents" object-fit: cover;" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+                        datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
                     });
                 }
 
@@ -866,7 +867,11 @@ const filterAnalytics = (periode) => {
             $(".skeleton-image").hide();
 
             var ctx = document.getElementsByClassName("chart-pengunjung");
-            var myLineChart = new Chart(ctx, {
+
+            if (window.myLineChart) {
+                window.myLineChart.destroy();
+            }
+            window.myLineChart = new Chart(ctx, {
                 type: "line",
                 data: {
                     labels: e[0],
@@ -902,9 +907,9 @@ const filterAnalytics = (periode) => {
                     maintainAspectRatio: false,
                     layout: {
                         padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
+                            left: 0,
+                            right: 0,
+                            top: 0,
                             bottom: 0,
                         },
                     },
@@ -927,12 +932,14 @@ const filterAnalytics = (periode) => {
                         yAxes: [
                             {
                                 ticks: {
-                                    maxTicksLimit: 5,
-                                    padding: 10,
-                                    // Include a dollar sign in the ticks
-                                    callback: function (value, index, values) {
-                                        return number_format(value);
-                                    },
+                                    beginAtZero: true,
+                                    stepSize: 10,
+                                    // maxTicksLimit: 5,
+                                    // padding: 10,
+                                    // // Include a dollar sign in the ticks
+                                    // callback: function (value, index, values) {
+                                    //     return number_format(value);
+                                    // },
                                 },
                                 gridLines: {
                                     color: "rgb(234, 236, 244)",
@@ -949,6 +956,90 @@ const filterAnalytics = (periode) => {
                     },
                 },
             });
+
+            // var myLineChart = new Chart(ctx, {
+            //     type: "line",
+            //     data: {
+            //         labels: e[0],
+            //         datasets: [
+            //             {
+            //                 label: "Jumlah",
+            //                 lineTension: 0.3,
+            //                 backgroundColor: "rgba(78, 115, 223, 0.05)",
+            //                 borderColor: "rgba(78, 115, 223, 1)",
+            //                 pointRadius: 3,
+            //                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
+            //                 pointBorderColor: "rgba(78, 115, 223, 1)",
+            //                 pointHoverRadius: 3,
+            //                 pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+            //                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+            //                 pointHitRadius: 10,
+            //                 pointBorderWidth: 2,
+            //                 data: e[1],
+            //             },
+            //         ],
+            //     },
+            //     options: {
+            //         tooltips: {
+            //             backgroundColor: "#FAFAFA",
+            //             borderColor: "#206bc4",
+            //             borderWidth: 1,
+            //             titleFontColor: "black",
+            //             titleFontStyle: "normal",
+            //             displayColors: false,
+            //             bodyFontColor: "black",
+            //         },
+
+            //         maintainAspectRatio: false,
+            //         layout: {
+            //             padding: {
+            //                 left: 0,
+            //                 right: 0,
+            //                 top: 0,
+            //                 bottom: 0,
+            //             },
+            //         },
+            //         scales: {
+            //             xAxes: [
+            //                 {
+            //                     time: {
+            //                         unit: "date",
+            //                     },
+            //                     gridLines: {
+            //                         display: false,
+            //                         drawBorder: false,
+            //                     },
+            //                     ticks: {
+            //                         // maxTicksLimit: 7,
+            //                         display: false,
+            //                     },
+            //                 },
+            //             ],
+            //             yAxes: [
+            //                 {
+            //                     ticks: {
+            //                         maxTicksLimit: 5,
+            //                         padding: 10,
+            //                         // Include a dollar sign in the ticks
+            //                         callback: function (value, index, values) {
+            //                             return number_format(value);
+            //                         },
+            //                     },
+            //                     gridLines: {
+            //                         color: "rgb(234, 236, 244)",
+            //                         zeroLineColor: "rgb(234, 236, 244)",
+            //                         drawBorder: false,
+            //                         borderDash: [2],
+            //                         zeroLineBorderDash: [2],
+            //                     },
+            //                 },
+            //             ],
+            //         },
+            //         legend: {
+            //             display: false,
+            //         },
+            //     },
+            // });
         },
     });
 };
@@ -993,4 +1084,119 @@ if (arrURL[5] == undefined) {
         // 10 * 60 * 1000;
         // mnt * detik * ms
     }, 600000);
+}
+
+// Pendataan Usaha
+
+function dataPendataanUsaha() {
+    $.ajax({
+        url: `/admin/get-pendataan-usaha`,
+        method: "GET",
+        dataType: "json",
+
+        beforeSend: function () {
+            $("#no_perjanjian").html('<div class="skeleton-heading"></div>');
+            $("#kordinat").html('<div class="skeleton-heading"></div>');
+            $("#sektor").html('<div class="skeleton-heading"></div>');
+            $("#modal").html('<div class="skeleton-heading"></div>');
+            $("#jumlah_tenaga").html('<div class="skeleton-heading"></div>');
+            $("#alamat").html('<div class="skeleton-heading"></div>');
+            $("#id_sub_blok").html('<div class="skeleton-heading"></div>');
+            $("#kelurahan").html('<div class="skeleton-heading"></div>');
+            $("#kecamatan").html('<div class="skeleton-heading"></div>');
+            $("#badan_usaha").html('<div class="skeleton-heading"></div>');
+        },
+
+        success: function (e) {
+            // console.log(e.perkembangan);
+
+            let data = e.data_usaha[0];
+
+            // console.log(data);
+
+            // $.each(e.perkembangan, function (key, data) {
+            // console.log(e.perkembangan[0]);
+
+            $("#nama_usaha").html(data.nama_usaha);
+
+            $("#kordinat").html(
+                `<a class="font-weight-bold" style="text-decoration:none;" href="https://www.google.com/maps/search/%09${data.kordinat}" target="_blank">${data.kordinat}</a>`
+            );
+
+            $("#pelaku").html(data.pelaku);
+            $("#no_perjanjian").html(data.no_perjanjian);
+            $("#sektor").html(data.sektor);
+            $("#modal").html(data.modal);
+            $("#jumlah_tenaga").html(data.jumlah_tenaga);
+            $("#alamat").html(data.alamat);
+            $("#id_sub_blok").html(data.id_sub_blok);
+
+            let kel = String(data.kelurahan);
+            let hasil_kelurahan = kapital(kel);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kelurahan").html(hasil_kelurahan);
+
+            let kec = String(data.kecamatan);
+            let hasil_kecamatan = kapital(kec);
+
+            function kapital(str) {
+                return str.replace(/\w\S*/g, function (txt) {
+                    return (
+                        txt.charAt(0).toUpperCase() +
+                        txt.substr(1).toLowerCase()
+                    );
+                });
+            }
+
+            $("#kecamatan").html(hasil_kecamatan);
+
+            $("#badan_usaha").html(data.badan_usaha);
+
+            // $("#penempatan_perkembangan").html(
+            //     "<div'>AJIB " + result3 + "</div>"
+            // );
+
+            // $("#kordinat").html(
+            //     `<a class="font-weight-bold" style="text-decoration:none;" href="https://www.google.com/maps/search/%09${data.kordinat}" target="_blank">${data.kordinat}</a>`
+            // );
+
+            // $("#id_sub_blok").html(data.id_sub_blok);
+
+            // $("#regional").html(data.regional);
+            // $("#deskripsi_regional").html(data.deskripsi_regional);
+            // $("#neighborhood").html(data.neighborhood);
+            // $("#deskripsi_neighborhood").html(data.deskripsi_neighborhood);
+            // $("#transect_zone").html(data.transect_zone);
+            // $("#deskripsi_transect_zone").html(data.deskripsi_transect_zone);
+
+            // $("#photo_ajib_perkembangan").html(
+            //     '<span><img style="width: 3rem; height:3.5rem; border-radius: 5px;" src="https://jakpintas.dpmptsp-dki.com/photo_ajib/' +
+            //         data.user.avatar +
+            //         '") }}" alt="Petugas Ajib" /></span>'
+            // );
+
+            // array = data.image;
+
+            // var datagambar = "";
+            // if (array.length == 0) {
+            //     datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/not_image.png" alt="First slide"></div>`;
+            // } else {
+            //     array.forEach((e) => {
+            //         datagambar += `<div><img class="" src="https://jakpintas.dpmptsp-dki.com/survey/${e.name}" alt="First slide"></div>`;
+            //     });
+            // }
+
+            // $(".gambar_utama_slider_input").html(datagambar);
+            // selectOption(".gambar_utama_slider_input");
+        },
+    });
 }

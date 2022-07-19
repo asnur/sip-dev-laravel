@@ -6011,9 +6011,9 @@ $option_simulasi = ['Rumah Mewah', 'Rumah Biasa', 'Apartemen', 'Rumah Susun', 'A
                                 class="col-sm-4 text-center d-flex align-items-center mt-2">
                                 <a href="/admin" target="_blank" style="text-decoration:none"
                                     class="text-dark font-weight-normal"><img
-                                        style="width: 100%;max-width: 53%;margin-bottom: 0.2rem"
+                                        style="width: 100%;max-width: 64%;margin-bottom: 0.2rem"
                                         src="{{ asset('assets/gambar/dashboard.png') }}">
-                                    <span style="font-size: 9pt;position: relative;top: -1px;">Dashboard</span></a>
+                                    <span style="font-size: 9pt;position: relative;top: -6px;">Dashboard</span></a>
                             </div>
 
                             <div style="position:relative; left:-9px;"
