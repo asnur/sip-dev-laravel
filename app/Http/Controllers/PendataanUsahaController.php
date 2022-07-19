@@ -80,4 +80,23 @@ class PendataanUsahaController extends Controller
         unlink(public_path() . '/usaha/' . $image->name);
         $image->delete();
     }
+
+
+    // Admin Pendataan
+    public function PendataanUsaha()
+    {
+        return view('admin.pendataan_usaha');
+    }
+
+    public function GetDataPendataanUsaha()
+    {
+        // $pendataan_usaha = PendataanUsaha::with('image')->orderBy('id', 'DESC')->limit(1)->get();
+        $pendataan_usaha = PendataanUsaha::with('image')->orderBy('id', 'ASC')->limit(1)->get();
+
+        // dd($pendataan_usaha);
+
+        return response()->json([
+            'data_usaha' => $pendataan_usaha,
+        ]);
+    }
 }
