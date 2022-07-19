@@ -542,7 +542,7 @@ class AdminController extends Controller
 
         // $datas = SurveyPerkembangan::with('image')->get();
 
-        $datas = SurveyPerkembangan::orderBy('id_baru', 'DESC')->take(100)->get();
+        $datas = SurveyPerkembangan::with('image')->orderBy('id_baru', 'DESC')->take(100)->get();
         // $kelurahan = Survey::orderBy('kelurahan', 'DESC')->get()->whereNotNull('kelurahan')->groupBy('kelurahan');
 
 
@@ -621,7 +621,7 @@ class AdminController extends Controller
         //     $query->select(DB::raw('count(distinct(kelurahan))'));
         // }])->get();
 
-        // dd($cek);
+        // dd($datas);
 
         return view('admin.survei_perkembangan', compact(['get_progres_total', 'get_perkembangan_day', 'hasil_jumlah_titik', 'pegawai_ajib2', 'get_id', 'datas']));
     }

@@ -38,7 +38,7 @@
     }
 
     #table-surveyer2_filter {
-        margin-right: 1.5% !important;
+        margin-right: 2.2% !important;
     }
 
     #table-surveyer2_length {
@@ -52,7 +52,7 @@
     }
 
     #table-surveyer2_paginate {
-        margin-right: 1.5% !important;
+        margin-right: 1.4% !important;
         margin-top: 1.5% !important;
     }
 
@@ -63,7 +63,7 @@
     }
 
     #table-surveyer3_filter {
-        margin-right: 1.5% !important;
+        margin-right: 2.3% !important;
     }
 
     #table-surveyer3_info {
@@ -72,7 +72,7 @@
     }
 
     #table-surveyer3_paginate {
-        margin-right: 1.5% !important;
+        margin-right: 1.4% !important;
         margin-top: 2.4% !important;
     }
 
@@ -119,7 +119,7 @@
     .data_image_space .slick-prev:before {
         /* left: -22px !important; */
 
-        font-size: 35px !important;
+        font-size: 30px !important;
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f104";
@@ -129,7 +129,7 @@
     .data_image_space .slick-next:before {
         /* right: -10px !important; */
 
-        font-size: 35px !important;
+        font-size: 30px !important;
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         content: "\f105";
@@ -197,8 +197,14 @@
     }
 
     .data_image_space2 .slick-next {
-        right: 1% !important;
+        right: 1.6% !important;
     }
+
+    .data_image_space2 .slick-prev,
+    .slick-next {
+        top: 43.6% !important;
+    }
+
 
 
 
@@ -225,6 +231,10 @@
     .progress.progress-xs {
         position: relative;
         top: 0.4rem;
+    }
+
+    .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+        margin: 20rem 50% 0 0 !important;
     }
 
 </style>
@@ -645,13 +655,10 @@ $Roles = '';
 
                                         {{-- <div class="gambar_utama_slider_input3">
                                 </div> --}}
-                                        @php
-                                        $no = 1;
-                                        @endphp
 
                                         @foreach ($datas as $gi)
                                         <div>
-                                            <img class="img_child_survey img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}" alt="Image Child">
+                                            <img class="img_child_survey img_child_id_perkembangan del_class_image" data-id="{{ $gi->id_baru }}" data-lazy="https://jakpintas.dpmptsp-dki.com/survey/{{ count($gi->image) == 0 ? 'not_image.png' : $gi->image[0]->name }}">
                                         </div>
                                         @endforeach
 
@@ -676,7 +683,7 @@ $Roles = '';
                     <div class="card-header" style="padding-left: 0.6%;">
                         <h3 class="card-title">Kinerja Petugas Survey</h3>
 
-                        <div class="card-actions" style="margin-top:0.6%;">
+                        <div class="card-actions" style="margin-top:0.6%;  margin-right:-0.2%;">
                             <a style="font-weight:400; font-size:12px;" href="{{ route('kinerja-petugas-survey') }}">
                                 Unduh Excel
                             </a>
@@ -776,7 +783,7 @@ $Roles = '';
                     <div class="card-status-top bg-success"></div>
                     <div class="card-header" style="padding-left:0.6%;">
                         <h3 class="card-title">Detil Input Petugas Survey</h3>
-                        <div class="card-actions" style="margin-top:0.6%;">
+                        <div class="card-actions" style="margin-top:0.6%; margin-right:-0.2%;">
                             <a style="font-weight:400; font-size:12px;" href="{{ route('detil-petugas-survey') }}">
                                 Unduh Excel
                             </a>
@@ -1058,7 +1065,8 @@ $Roles = '';
                     <div class="card-body px-0 py-0">
                         <div style="margin-left: 1.5%; margin-right: 1%;" class="d-flex">
 
-                            <div class="card-header px-0">
+
+                            <div class="card-header px-0" style="border-style: none; margin-left:-0.9%">
                                 <h3 class="card-title">Trafik Pengunjung Harian Selama <span class="jumlah_hari">0</span> Hari Terakhir</h3>
                             </div>
 
@@ -1093,10 +1101,16 @@ $Roles = '';
         <div style="margin-top: 1rem" class="row-cards">
             <div class="col-md-12 col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    {{-- <div class="card-header">
                         <div class="card-status-top bg-warning"></div>
                         <h3 class="card-title">Titik Lokasi Survey</h3>
+                    </div> --}}
+
+                    <div class="card-header" style="padding-left: 0.6%;">
+                        <h3 class="card-title">Kinerja Petugas Survey</h3>
                     </div>
+
+
                     <div class="card-body p-0">
                         {{-- <div style="width: 100%;height:70vh" id="map">
                         </div> --}}
