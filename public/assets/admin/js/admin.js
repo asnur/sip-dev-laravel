@@ -867,7 +867,11 @@ const filterAnalytics = (periode) => {
             $(".skeleton-image").hide();
 
             var ctx = document.getElementsByClassName("chart-pengunjung");
-            var myLineChart = new Chart(ctx, {
+
+            if (window.myLineChart) {
+                window.myLineChart.destroy();
+            }
+            window.myLineChart = new Chart(ctx, {
                 type: "line",
                 data: {
                     labels: e[0],
@@ -928,12 +932,14 @@ const filterAnalytics = (periode) => {
                         yAxes: [
                             {
                                 ticks: {
-                                    maxTicksLimit: 5,
-                                    padding: 10,
-                                    // Include a dollar sign in the ticks
-                                    callback: function (value, index, values) {
-                                        return number_format(value);
-                                    },
+                                    beginAtZero: true,
+                                    stepSize: 10,
+                                    // maxTicksLimit: 5,
+                                    // padding: 10,
+                                    // // Include a dollar sign in the ticks
+                                    // callback: function (value, index, values) {
+                                    //     return number_format(value);
+                                    // },
                                 },
                                 gridLines: {
                                     color: "rgb(234, 236, 244)",
@@ -950,6 +956,90 @@ const filterAnalytics = (periode) => {
                     },
                 },
             });
+
+            // var myLineChart = new Chart(ctx, {
+            //     type: "line",
+            //     data: {
+            //         labels: e[0],
+            //         datasets: [
+            //             {
+            //                 label: "Jumlah",
+            //                 lineTension: 0.3,
+            //                 backgroundColor: "rgba(78, 115, 223, 0.05)",
+            //                 borderColor: "rgba(78, 115, 223, 1)",
+            //                 pointRadius: 3,
+            //                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
+            //                 pointBorderColor: "rgba(78, 115, 223, 1)",
+            //                 pointHoverRadius: 3,
+            //                 pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+            //                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+            //                 pointHitRadius: 10,
+            //                 pointBorderWidth: 2,
+            //                 data: e[1],
+            //             },
+            //         ],
+            //     },
+            //     options: {
+            //         tooltips: {
+            //             backgroundColor: "#FAFAFA",
+            //             borderColor: "#206bc4",
+            //             borderWidth: 1,
+            //             titleFontColor: "black",
+            //             titleFontStyle: "normal",
+            //             displayColors: false,
+            //             bodyFontColor: "black",
+            //         },
+
+            //         maintainAspectRatio: false,
+            //         layout: {
+            //             padding: {
+            //                 left: 0,
+            //                 right: 0,
+            //                 top: 0,
+            //                 bottom: 0,
+            //             },
+            //         },
+            //         scales: {
+            //             xAxes: [
+            //                 {
+            //                     time: {
+            //                         unit: "date",
+            //                     },
+            //                     gridLines: {
+            //                         display: false,
+            //                         drawBorder: false,
+            //                     },
+            //                     ticks: {
+            //                         // maxTicksLimit: 7,
+            //                         display: false,
+            //                     },
+            //                 },
+            //             ],
+            //             yAxes: [
+            //                 {
+            //                     ticks: {
+            //                         maxTicksLimit: 5,
+            //                         padding: 10,
+            //                         // Include a dollar sign in the ticks
+            //                         callback: function (value, index, values) {
+            //                             return number_format(value);
+            //                         },
+            //                     },
+            //                     gridLines: {
+            //                         color: "rgb(234, 236, 244)",
+            //                         zeroLineColor: "rgb(234, 236, 244)",
+            //                         drawBorder: false,
+            //                         borderDash: [2],
+            //                         zeroLineBorderDash: [2],
+            //                     },
+            //                 },
+            //             ],
+            //         },
+            //         legend: {
+            //             display: false,
+            //         },
+            //     },
+            // });
         },
     });
 };
