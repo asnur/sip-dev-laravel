@@ -472,20 +472,23 @@ class AdminController extends Controller
         return $pdf->stream();
     }
 
+    public function kuesioner()
+    {
+        $data = Http::get(env('APP_URL') . ':4000/quiz')->json();
 
-    // public function kuesioner()
-    // {
-    //     return view('admin.kuesioner');
-    // }
+        return view('admin.kuesioner', compact('data'));
+    }
 
     public function tambah_kuesioner()
     {
         return view('admin.tambah_kuesioner');
     }
 
-    public function kosong_kuesioner()
+    public function edit_kuesioner($id)
     {
-        return view('admin.kosong_kuesioner');
+        $data = Http::get(env('APP_URL') . ':4000/quiz/' . $id)->json();
+        // dd($data);
+        return view('admin.edit_kuesioner', compact('data'));
     }
 
     public function list_kuesioner()
@@ -498,9 +501,12 @@ class AdminController extends Controller
         return view('admin.isi_kuesioner');
     }
 
-    public function jawaban_kuesioner()
+    public function jawaban_kuesioner($id)
     {
-        return view('admin.jawaban_kuesioner');
+        $quiz = Http::get(env('APP_URL') . ':4000/quiz/' . $id)->json();
+        $response = Http::get(env('APP_URL') . ':4000/response/' . $id)->json();
+        // return $data;
+        return view('admin.jawaban_kuesioner', compact('quiz', 'response'));
     }
 
     public function perkembangan_survey()

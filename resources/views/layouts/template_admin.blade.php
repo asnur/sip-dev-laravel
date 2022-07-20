@@ -50,7 +50,8 @@
     <link href="{{ asset('assets/admin2/css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/admin2/css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/admin2/css/tabler-vendors.min.css') }}" rel="stylesheet" />
-    {{-- <link href="{{ asset('assets/admin2/css/demo.min.css') }}" rel="stylesheet" /> --}}
+    {{--
+    <link href="{{ asset('assets/admin2/css/demo.min.css') }}" rel="stylesheet" /> --}}
 
     {{-- For Kuesioner --}}
     <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
@@ -59,48 +60,48 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @if (Request::is('admin/tambahKuesioner'))
-        <link href="{{ asset('assets/admin2/css/kuesioner.css') }}" rel="stylesheet" />
+    @if (Request::is('admin/tambahKuesioner') or Request::is('admin/editKuesioner/*'))
+    <link href="{{ asset('assets/admin2/css/kuesioner.css') }}" rel="stylesheet" />
     @endif
 
     @if (Request::is('admin/PerkembanganSurvey'))
-        <style>
-            .mapboxgl-popup-content {
-                padding: 0;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                /* max-height: 15rem; */
-                overflow: hidden;
-                width: 14rem;
-                /* height: 15rem; */
-            }
+    <style>
+        .mapboxgl-popup-content {
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* max-height: 15rem; */
+            overflow: hidden;
+            width: 14rem;
+            /* height: 15rem; */
+        }
 
-            /* .atur_margin_gambar_utama {
+        /* .atur_margin_gambar_utama {
                 position: relative;
                 left: -2rem;
                 width: 30.5rem;
                 top: -1.6rem
             } */
 
-            /* .atur_margin_gambar_utama2 {
+        /* .atur_margin_gambar_utama2 {
                 margin-top: -2.7rem !important;
                 margin-left: -1rem !important;
             } */
 
-            /* .slick-list{
+        /* .slick-list{
                 position: relative;
                 top: -2.7rem;
                 left: -2rem;
             } */
 
-            .mapboxgl-popup-close-button {
-                background-color: #fff !important;
-            }
+        .mapboxgl-popup-close-button {
+            background-color: #fff !important;
+        }
 
-            .mapboxgl-popup-close-button:focus-visible {
-                /* background-color: #fff !important; */
-                outline: none;
-            }
-        </style>
+        .mapboxgl-popup-close-button:focus-visible {
+            /* background-color: #fff !important; */
+            outline: none;
+        }
+    </style>
     @endif
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -121,8 +122,8 @@
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark">
                     <a href="#">
-                        <img width="70px" src="{{ asset('assets/admin2/img/logo_jakpintas.png') }}"
-                            alt="Logo Jakpintas" class="" />
+                        <img width="70px" src="{{ asset('assets/admin2/img/logo_jakpintas.png') }}" alt="Logo Jakpintas"
+                            class="" />
                     </a>
                     {{-- <div style="margin-right: 1rem; margin-left: 1rem;" class="">JAKPINTAS</div> --}}
                 </h1>
@@ -131,43 +132,60 @@
                         <div class="btn-list">
                             <a href="https://github.com/tabler/tabler" class="btn" target="_blank" rel="noreferrer">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-github" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+                                    <path
+                                        d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
                                 </svg>
                                 Source code
                             </a>
                             <a href="https://github.com/sponsors/codecalm" class="btn" target="_blank" rel="noreferrer">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                                    <path
+                                        d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                                 </svg>
                                 Sponsor
                             </a>
                         </div>
                     </div>
-                    <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                    <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
                         <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
                         </svg>
                     </a>
-                    <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                    <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
                         <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <circle cx="12" cy="12" r="4" />
-                            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                            <path
+                                d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
                         </svg>
                     </a>
                     <div class="nav-item dropdown d-none d-md-flex me-3">
-                        <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                        <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
+                            aria-label="Show notifications">
                             <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                                <path
+                                    d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
                                 <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                             </svg>
                             <span class="badge bg-red"></span>
@@ -184,8 +202,10 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                            <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
+                            aria-label="Open user menu">
+                            <span class="avatar avatar-sm"
+                                style="background-image: url(./static/avatars/000m.jpg)"></span>
                             <div class="d-none d-xl-block ps-2">
                                 <div>Paweł Kuna</div>
                                 <div class="mt-1 small text-muted">UI Designer</div>
@@ -207,9 +227,9 @@
                             <a class="nav-link" href="{{ route('home-admin') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <polyline points="5 12 3 12 12 3 21 12 19 12" />
                                         <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
@@ -225,11 +245,17 @@
                         </div> --}}
 
                         {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                                data-bs-auto-close="false" role="button" aria-expanded="false">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-settings" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
+                                        <path
+                                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                                        </path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -246,31 +272,36 @@
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
                                         <a class="dropdown-item" href="{{ route('user') }}">
-                        User
-                        </a>
-                </div>
-            </div>
-    </div>
-    </li> --}}
+                                            User
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li> --}}
 
                         {{-- <li class="nav-item {{ (request()->is('admin/user')) ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('user') }}">
-        <span class="nav-link-icon d-md-none d-lg-inline-block">
-            <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-            </svg>
+                            <a class="nav-link" href="{{ route('user') }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-settings" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                                        </path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
 
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <polyline points="9 11 12 14 20 6" />
-            <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
-            </svg>
-        </span>
-        <span class="nav-link-title">Pengaturan Akses</span>
-    </a>
-    </li> --}}
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="9 11 12 14 20 6" />
+                                    <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Pengaturan Akses</span>
+                            </a>
+                        </li> --}}
 
                         <li class="nav-item {{ request()->is('admin/pegawaiAjib') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('pegawai') }}">
@@ -361,8 +392,8 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ request()->is('admin/kosongKuesioner') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('kosong_kuesioner') }}">
+                        <li class="nav-item {{ request()->is('admin/kuesioner') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('kuesioner') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -558,9 +589,9 @@
                     </a>
                     <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
@@ -575,12 +606,14 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
 
     <script>
-        // hide btn
-        $(".hide_textarea").hide();
+        @if (!Request::is('admin/editKuesioner/*'))
+            // hide btn
+            $(".hide_textarea").hide();
 
-        //  Start fungsi untuk mengatur select/ganti pertanyaan
-        $(".group_opsi").hide();
-        $(".pilgan").show();
+            //  Start fungsi untuk mengatur select/ganti pertanyaan
+            $(".group_opsi").hide();
+            $(".radio").show();
+        @endif
 
         function hideshow(selectOption) {
             get_img = $(selectOption).parents().parents().find(".upload_img_wrap");
@@ -592,8 +625,9 @@
             cek.getElementsByClassName("group_opsi")[1].style.display = "none";
             cek.getElementsByClassName("group_opsi")[2].style.display = "none";
             cek.getElementsByClassName("group_opsi")[3].style.display = "none";
-
+            console.log(cek.getElementsByClassName(selectOption.value)[0]);
             cek.getElementsByClassName(selectOption.value)[0].style.display = "block";
+            getAllValues()
         }
     </script>
 
@@ -617,12 +651,15 @@
 
     <!-- Page level plugins -->
     <script src="{{ asset('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
 
     <!-- Page level custom scripts -->
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script> --}}
 
     <script>
         var APP_URL = {!! json_encode(url('/')) !!}
+        var creator = {!! json_encode(Auth::user()->name) !!}
+        var date_now = {!! json_encode(date('Y-m-d')) !!}
     </script>
 
     {{-- <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script> --}}
@@ -664,23 +701,18 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     @if (Request::is('admin'))
-        <script src="{{ asset('assets/admin/js/monitoringMap.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/monitoringMap.js') }}"></script>
     @endif
 
     @if (Request::is('admin/PerkembanganSurvey'))
-        <script src="{{ asset('assets/admin/js/rekapSurveyMap.js') }}"></script>
-        {{-- <script src="{{ asset('assets/admin/js/RekapSurvey.js') }}"></script> --}}
+    <script src="{{ asset('assets/admin/js/rekapSurveyMap.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/js/RekapSurvey.js') }}"></script> --}}
     @endif
 
-    @if (Request::is('admin/tambahKuesioner'))
-        <script src="{{ asset('assets/admin2/js/kuesioner.js') }}"></script>
+    @if (Request::is('admin/tambahKuesioner') or Request::is('admin/editKuesioner/*'))
+    <script src="{{ asset('assets/admin2/js/kuesioner.js') }}"></script>
 
-        {{-- copy txt --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-
-        <script>
-            new ClipboardJS('.btn_salin');
-        </script>
+    {{-- copy txt --}}
     @endif
 
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
