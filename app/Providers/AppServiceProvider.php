@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        config('app.timezone', 'Asia/Jakarta');
+        config('app.locale', 'id');
     }
 }
