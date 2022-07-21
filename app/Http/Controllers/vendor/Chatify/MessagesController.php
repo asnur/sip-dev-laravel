@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\vendor\Chatify;
 
-date_default_timezone_set('Asia/Jakarta');
-
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Response;
@@ -163,7 +161,6 @@ class MessagesController extends Controller
                         'old_name' => $attachment_title,
                     ],
                 ) : null,
-                'created_at' => date('Y-m-d H:i:s')
             ]);
 
             // fetch message to send it with the response
