@@ -6236,7 +6236,7 @@ Bintang 3 ke atas', 'Gedung Peribadatan', 'Perpustakaan', 'Bar', 'Perkumpulan So
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    {{-- <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script> --}}
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js">
     </script>
@@ -6248,7 +6248,7 @@ Bintang 3 ke atas', 'Gedung Peribadatan', 'Perpustakaan', 'Bar', 'Perkumpulan So
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    {{-- <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script> --}}
     {{-- @if (isMobileDevice())
     <script src="{{ asset('assets/js/mobile.js') }}"></script>
     @else --}}
