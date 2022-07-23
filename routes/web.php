@@ -295,6 +295,12 @@ Route::get('/phpinfo', function () {
     return phpinfo();
 })->name('phpinfo');
 
+//Testing Time
+Route::get('/time', function () {
+    // date_default_timezone_set('Asia/Jakarta');
+    return date('Y-m-d H:i:s');
+});
+
 //PHP INFO
 // Route::get('/createUserPNS', function () {
 //     $data = array(

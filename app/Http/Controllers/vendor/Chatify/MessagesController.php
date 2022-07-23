@@ -155,10 +155,12 @@ class MessagesController extends Controller
                 'from_id' => Auth::user()->id,
                 'to_id' => $request['id'],
                 'body' => trim(htmlentities($request['message'])),
-                'attachment' => ($attachment) ? json_encode((object)[
-                    'new_name' => $attachment,
-                    'old_name' => $attachment_title,
-                ]) : null,
+                'attachment' => ($attachment) ? json_encode(
+                    (object)[
+                        'new_name' => $attachment,
+                        'old_name' => $attachment_title,
+                    ],
+                ) : null,
             ]);
 
             // fetch message to send it with the response
