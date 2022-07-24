@@ -493,7 +493,7 @@ Route::get('/createUser', function () {
     // dd($data);
     foreach ($data as $d) {
         // echo $d['val0'] . '-' . $d['val1'] . '<br>';
-        $user = User::where('email', $d['val3'])->first();
+        $user = User::where('email', strtolower($d['val3']))->first();
         if (!$user) {
             $data = User::create([
                 'name' => $d['val0'],
