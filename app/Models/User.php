@@ -27,7 +27,8 @@ class User extends Authenticatable
         'password',
         'provider',
         'provider_id',
-        'penempatan'
+        'penempatan',
+        'jabatan',
     ];
 
     /**

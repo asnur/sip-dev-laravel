@@ -494,22 +494,24 @@ Route::get('/createUser', function () {
     foreach ($data as $d) {
         // echo $d['val0'] . '-' . $d['val1'] . '<br>';
         $user = User::where('email', strtolower($d['val3']))->first();
-        if (!$user) {
-            $data = User::create([
-                'name' => $d['val0'],
-                'penempatan' => $d['val1'],
-                'jabatan' => $d['val2'],
-                'email' => strtolower($d['val3']),
-                'provider' => 'google',
-            ]);
-            $data->assignRole('user');
-            $kegiatan =   KegiatanUser::where('id_user', $data->id)->first();
-            if (!$kegiatan) {
-                KegiatanUser::create([
-                    'id_user' => $data->id,
-                    'id_kegiatan' => 2,
-                ]);
-            }
-        }
+        $user->jabatan = $d['val2'];
+        $user->save();
+        // if (!$user) {
+        //     $data = User::create([
+        //         'name' => $d['val0'],
+        //         'penempatan' => $d['val1'],
+        //         'jabatan' => $d['val2'],
+        //         'email' => strtolower($d['val3']),
+        //         'provider' => 'google',
+        //     ]);
+        //     $data->assignRole('user');
+        //     $kegiatan =   KegiatanUser::where('id_user', $data->id)->first();
+        //     if (!$kegiatan) {
+        //         KegiatanUser::create([
+        //             'id_user' => $data->id,
+        //             'id_kegiatan' => 2,
+        //         ]);
+        //     }
+        // }
     }
 });
