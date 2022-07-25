@@ -886,6 +886,7 @@ class AdminController extends Controller
             }
         )->get();
 
+        // dd($data_kinerja);
 
         $data_array[] = array("Nama Petugas AJIB", "Penempatan", "Role", "Input Hari Ini", "Input Total");
         foreach ($data_kinerja as $data_item) {

@@ -493,23 +493,23 @@ const sendData = (data) => {
     });
 };
 
-$(window).on("load", () => {
-    let url = window.location.href;
-    localStorage.removeItem("oid");
-    if (!url.includes("edit")) {
-        $.ajax({
-            url: "https://jakpintas.dpmptsp-dki.com:4000/oid",
-            type: "GET",
-            dataType: "json",
-            success: function (response) {
-                // console.log(response);
-                localStorage.setItem("oid", response);
-            },
-        });
-    } else {
-        localStorage.setItem("oid", url.split("/")[5]);
-    }
-});
+// $(window).on("load", () => {
+//     let url = window.location.href;
+//     localStorage.removeItem("oid");
+//     if (!url.includes("edit")) {
+//         $.ajax({
+//             url: "https://jakpintas.dpmptsp-dki.com:4000/oid",
+//             type: "GET",
+//             dataType: "json",
+//             success: function (response) {
+//                 // console.log(response);
+//                 localStorage.setItem("oid", response);
+//             },
+//         });
+//     } else {
+//         localStorage.setItem("oid", url.split("/")[5]);
+//     }
+// });
 
 var typingTimer;
 var doneTypingInterval = 1000;
@@ -525,7 +525,9 @@ const action = () => {
     );
 };
 
-action();
+if (window.location.href.split("/")[4] !== "jawaban") {
+    action();
+}
 
 $(".btn_salin").click(function () {
     var copyText = document.getElementById("generateLink");
