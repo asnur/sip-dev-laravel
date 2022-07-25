@@ -294,6 +294,16 @@ $Roles = '';
 
                                     <th>
                                         <div style="display: none;" class="lazy_name_kinerja">
+                                            Kegiatan
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
                                             Penempatan
                                         </div>
 

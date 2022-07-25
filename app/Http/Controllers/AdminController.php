@@ -297,7 +297,7 @@ class AdminController extends Controller
 
                     // return (string) view('admin.role_pegawai', compact(['role', 'user']));
                 })->addColumn('kegiatan', function (User $user) {
-                    return $user->kegiatan->kegiatan->nama;
+                    return $user->kegiatan[0]->kegiatan->nama;
                 })
                 ->rawColumns(['aksi', 'roles', 'kegiatan'])
                 ->make(true);
