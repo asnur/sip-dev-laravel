@@ -13,7 +13,6 @@ $Roles = '';
     .dataTables_filter {
         display: none;
     }
-
 </style>
 
 <div class="container-xl">
@@ -28,7 +27,8 @@ $Roles = '';
                     </div>
 
                     <div class="hide_lazyload_kinerja">
-                        <div style="width: 11.1rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                        <div style="width: 11.1rem; height:1.8rem; border-radius:2px position: relative;"
+                            class="skeleton-image"></div>
                     </div>
 
 
@@ -41,7 +41,9 @@ $Roles = '';
                     <div style="display: none;" class="lazy_name_kinerja">
                         <button class="btn btn-primary d-none d-sm-inline-block" onclick="create()">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -51,12 +53,16 @@ $Roles = '';
                     </div>
 
                     <div class="hide_lazyload_kinerja">
-                        <div style="width: 11.1rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                        <div style="width: 11.1rem; height:1.8rem; border-radius:2px position: relative;"
+                            class="skeleton-image"></div>
                     </div>
 
-                    {{-- <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                    {{-- <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
+                        data-bs-target="#modal-report" aria-label="Create new report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -70,7 +76,8 @@ $Roles = '';
     {{-- modal add --}}
     <form action="{{ route('add-pegawai') }}" method="POST">
         @csrf
-        <div class="modal modal-blur fade" id="modalAddUsers" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="modalEditAddLabel">
+        <div class="modal modal-blur fade" id="modalAddUsers" tabindex="-1" role="dialog" aria-hidden="true"
+            aria-labelledby="modalEditAddLabel">
 
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 
@@ -86,19 +93,22 @@ $Roles = '';
 
                                     <div class="mb-3">
                                         <label class="form-label">Nama</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukan Nama User">
+                                        <input type="text" class="form-control" name="name" id="name"
+                                            placeholder="Masukan Nama User">
 
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">E-mail</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukan Email User">
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            placeholder="Masukan Email User">
 
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Masukan Password User">
+                                        <input type="password" class="form-control" name="password" id="password"
+                                            placeholder="Masukan Password User">
 
                                     </div>
 
@@ -121,7 +131,8 @@ $Roles = '';
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn me-auto btn-primary" data-bs-dismiss="modal" onclick="add_modal()">Kirim</button>
+                        <button type="submit" class="btn me-auto btn-primary" data-bs-dismiss="modal"
+                            onclick="add_modal()">Kirim</button>
                         <button type="button" class="btn" data-bs-dismiss="modal">Batal</button>
                     </div>
                 </div>
@@ -136,7 +147,8 @@ $Roles = '';
     <form action="{{ route('update-pegawai') }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="modal modal-blur fade" id="modalEditUsers" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="modalEditUserLabel">
+        <div class="modal modal-blur fade" id="modalEditUsers" tabindex="-1" role="dialog" aria-hidden="true"
+            aria-labelledby="modalEditUserLabel">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 
                 <div class="modal-content">
@@ -151,12 +163,14 @@ $Roles = '';
                                 <div class="mb-3">
                                     <label class="form-label">Nama</label>
                                     <input type="hidden" class="form-control" name="id" id="idUser">
-                                    <input type="text" class="form-control" name="name" id="namaUser" placeholder="Masukan Nama User">
+                                    <input type="text" class="form-control" name="name" id="namaUser"
+                                        placeholder="Masukan Nama User">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">E-mail</label>
-                                    <input class="form-control" name="email" type="email" placeholder="Masukan Email User" id="emailUser">
+                                    <input class="form-control" name="email" type="email"
+                                        placeholder="Masukan Email User" id="emailUser">
                                 </div>
 
                                 <div class="mb-3">
@@ -207,7 +221,8 @@ $Roles = '';
                                 Daftar Pegawai AJIB
                             </div>
                             <div class="hide_lazyload_kinerja">
-                                <div style="width: 10rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                                <div style="width: 10rem; height:1.8rem; border-radius:2px position: relative;"
+                                    class="skeleton-image"></div>
                             </div>
                         </h3>
                     </div>
@@ -219,13 +234,15 @@ $Roles = '';
 
                             <div class="col-md-6">
                                 <div class="hide_lazyload_kinerja">
-                                    <div style="width: 10rem; height:1.8rem; border-radius:2px position: relative;" class="skeleton-image"></div>
+                                    <div style="width: 10rem; height:1.8rem; border-radius:2px position: relative;"
+                                        class="skeleton-image"></div>
                                 </div>
                             </div>
 
                             <div class="col-md-6 ">
                                 <div class="hide_lazyload_kinerja">
-                                    <div style="width: 12.7rem; height:1.8rem; position: relative; left:17rem;" class="skeleton-image"></div>
+                                    <div style="width: 12.7rem; height:1.8rem; position: relative; left:17rem;"
+                                        class="skeleton-image"></div>
                                 </div>
                             </div>
 
@@ -258,6 +275,16 @@ $Roles = '';
                                     <th>
                                         <div style="display: none;" class="lazy_name_kinerja">
                                             Role
+                                        </div>
+
+                                        <div class="hide_lazyload_kinerja">
+                                            <div class='skeleton-line'></div>
+                                        </div>
+                                    </th>
+
+                                    <th>
+                                        <div style="display: none;" class="lazy_name_kinerja">
+                                            Jabatan
                                         </div>
 
                                         <div class="hide_lazyload_kinerja">
@@ -398,6 +425,16 @@ $Roles = '';
                 {
                     data: 'roles'
                     , name: 'roles'
+                },
+
+                {
+                    data: 'jabatan'
+                    , name: 'jabatan'
+                },
+
+                {
+                    data: 'kegiatan'
+                    , name: 'kegiatan'
                 },
 
                 {

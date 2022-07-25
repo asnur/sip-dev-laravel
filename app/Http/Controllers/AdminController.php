@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KegiatanUser;
 use App\Models\Tracking;
 use App\Models\Survey;
 use App\Models\User;
@@ -233,9 +234,10 @@ class AdminController extends Controller
         // $pegawai = User::latest()->get();
 
         if ($request->ajax()) {
-
             $data =
-                User::select(['id', 'name', 'email', 'penempatan'])->with('roles');
+                User::select(['id', 'name', 'email', 'jabatan', 'penempatan'])->with('roles', 'kegiatan.kegiatan')->whereIn('id', function ($q) {
+                    $q->select('id_user')->from(with(new KegiatanUser)->getTable());
+                });
             return Datatables::eloquent($data)
                 ->addIndexColumn()
                 ->addColumn('aksi', function (User $row) {
@@ -294,8 +296,10 @@ class AdminController extends Controller
 
 
                     // return (string) view('admin.role_pegawai', compact(['role', 'user']));
+                })->addColumn('kegiatan', function (User $user) {
+                    return $user->kegiatan->kegiatan->nama;
                 })
-                ->rawColumns(['aksi', 'roles'])
+                ->rawColumns(['aksi', 'roles', 'kegiatan'])
                 ->make(true);
         }
 
