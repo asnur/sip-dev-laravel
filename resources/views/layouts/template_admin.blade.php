@@ -60,7 +60,7 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @if (Request::is('admin/tambahKuesioner') or Request::is('admin/editKuesioner/*'))
+    @if (Request::is('admin/tambahKuesioner') or Request::is('admin/editKuesioner/*') or Request::is('admin/jawaban/*'))
     <link href="{{ asset('assets/admin2/css/kuesioner.css') }}" rel="stylesheet" />
     @endif
 
@@ -606,7 +606,7 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
 
     <script>
-        @if (!Request::is('admin/editKuesioner/*'))
+        @if (!Request::is('admin/editKuesioner/*') && !Request::is('admin/jawaban/*'))
             // hide btn
             $(".hide_textarea").hide();
 
@@ -709,7 +709,7 @@
     {{-- <script src="{{ asset('assets/admin/js/RekapSurvey.js') }}"></script> --}}
     @endif
 
-    @if (Request::is('admin/tambahKuesioner') or Request::is('admin/editKuesioner/*'))
+    @if (Request::is('admin/tambahKuesioner') or Request::is('admin/editKuesioner/*') or Request::is('admin/jawaban/*'))
     <script src="{{ asset('assets/admin2/js/kuesioner.js') }}"></script>
 
     {{-- copy txt --}}
