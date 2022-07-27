@@ -686,7 +686,7 @@
     <script>
         let user_id = parseInt("{!! Auth::user()->id !!}")
         console.log(user_id);
-        let socket = io("ws://jakpintas.dpmptsp-dki.com:3500", {
+        let socket = io("wss://jakpintas.dpmptsp-dki.com:3500", {
         transports: ["websocket"],
         });
 
