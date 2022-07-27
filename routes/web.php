@@ -50,6 +50,11 @@ Route::get('/', function (Request $request) {
     return view('layout.main');
 })->middleware('auth')->name('home');
 
+// Chating
+
+Route::get('/chating-pendataan-usaha', [PendataanUsahaController::class, 'ChatingPendataanUsaha'])->name('chating-pendataan-usaha');
+
+
 
 //KBLI PUSDATIN
 Route::get('/kbli/{subzona}', [KBLIPusdatin::class, 'kegiatan']);
