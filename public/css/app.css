@@ -838,6 +838,12 @@ video {
 .w-80 {
   width: 20rem;
 }
+.w-60 {
+  width: 15rem;
+}
+.w-72 {
+  width: 18rem;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -1340,6 +1346,10 @@ video {
 .text-red-900 {
   --tw-text-opacity: 1;
   color: rgb(127 29 29 / var(--tw-text-opacity));
+}
+.text-zinc-700 {
+  --tw-text-opacity: 1;
+  color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;

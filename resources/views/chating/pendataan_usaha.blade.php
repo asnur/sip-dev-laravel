@@ -31,6 +31,7 @@
             bg-white">
             <div>
 
+
                 <img class="h-16 sm:mx-0 inline-flex items-center" src="{{ asset('assets/gambar/logo_jakpintas2.png') }}">
 
                 <p class="text-2xl text-[#5a6474]  inline-flex items-center font-semibold ">
@@ -46,14 +47,13 @@
     </header>
 
 
-
     <div class="container py-5 px-5 ">
         <div class="flex flex-row h-full">
 
-            <div class="basis-3/12  border-red-500">
+            <div class="basis-3/12">
 
 
-                <div class="tabs border-red-400">
+                <div class="tabs ">
                     <div class="tab-hide-show">
                         <div class="relative">
 
@@ -68,9 +68,10 @@
                                         <polyline points="6 9 12 15 18 9">
                                         </polyline>
                                     </svg>
+
                                 </div>
 
-                                <span class="text-[#5a6474] text-base tracking-wide font-semibold  border-blue-500">Sektor</span>
+                                <span class="text-[#5a6474] text-base tracking-wide font-semibold  ">Sektor</span>
 
 
                             </div>
@@ -79,7 +80,7 @@
                                 <div class="text-grey-darkest py-3">
                                     <ul class="pl-4">
                                         <li class="pb-2">
-                                            <div class=" sm:flex sm:items-center">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
@@ -94,7 +95,7 @@
                                         </li>
 
                                         <li class="pb-2">
-                                            <div class=" sm:flex sm:items-center">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
@@ -103,6 +104,201 @@
 
                                                 <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
                                                     Pertanian
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Lingkungan hidup dan kehutanan
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Energi dan sumber daya mineral
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Ketenaganukliran
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Perindustrian
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Perdagangan
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Pekerjaan umum dan perumahan rakyat
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Transportasi
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Kesehatan, obat, dan makanan
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Pendidikan dan kebudayaan
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Pariwisata
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Keagamaan
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2 w-72">
+                                                    Pos, telekomunikasi, penyiaran, dan sistem dan transaksi elektronik
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Pertahanan dan keamanan
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        <li class="pb-2">
+                                            <div class=" sm:flex sm:items-center cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2">
+                                                    Ketenagakerjaan
                                                 </div>
                                             </div>
 
@@ -118,11 +314,11 @@
 
             </div>
 
-            <div class="basis-6/12  px-2 border-red-500 ">
+            <div class="basis-6/12  px-2  ">
 
                 <div class="rounded-lg h-full " style="background-image: url('{{ asset('assets/bg4.png') }}');">
 
-                    <div class="flex flex-col border-blue-400 ">
+                    <div class="flex flex-col ">
 
                         <div class="flex-grow h-full flex flex-col pt-2">
 
@@ -130,9 +326,10 @@
 
                                 <div class="overflow-y-scroll h-5/6">
 
+                                    {{-- penerima --}}
                                     <div class="w-9/12 px-3 py-2">
 
-                                        <div class="flex items-start  border-red-500">
+                                        <div class="flex items-start  ">
 
                                             <img class="mx-2 w-10 h-10 rounded-full shadow-lg" src="{{ asset('assets/person.jpg') }}" alt="">
 
@@ -146,32 +343,28 @@
                                         </div>
                                     </div>
 
+                                    {{-- pengirim --}}
                                     <div class="flex justify-end pt-7 ">
 
-                                        <div class="flex items-start w-9/12  border-red-500 px-4">
+                                        <div class="flex items-start w-9/12   px-4">
 
                                             <img class="mx-2 w-10 h-10 rounded-full shadow-lg" src="{{ asset('assets/person.jpg') }}" alt="">
 
                                             <div class="px-3 py-1 bg-green-500  rounded-lg shadow-lg">
-
                                                 <div class="text-sm font-medium text-white">
                                                     Fahmi
                                                 </div>
-                                                <div class="text-xs text-zinc-7 00 mt-1 mb-1 py-1 bg-green-400 rounded-md border-l-4 border-green-700 px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus harum, ratione exercitationem autem ut earum quasi soluta et deserunt quam quidem mollitia a quae esse adipisci id illum labore iste!</div>
-
-
-
-
-
-
+                                                <div class="text-xs text-zinc-700 mt-1 mb-1 py-1 bg-green-400 rounded-md border-l-4 border-green-700 px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus harum, ratione exercitationem autem ut earum quasi soluta et deserunt quam quidem mollitia a quae esse adipisci id illum labore iste!</div>
+                                                <div class="text-xs text-zinc-700 py-1">saya reply</div>
                                             </div>
 
                                         </div>
                                     </div>
 
+                                    {{-- pengirim --}}
                                     <div class="flex justify-end pt-7 ">
 
-                                        <div class="flex items-start w-9/12  border-red-500 px-4">
+                                        <div class="flex items-start w-9/12   px-4">
 
                                             <img class="mx-2 w-10 h-10 rounded-full shadow-lg" src="{{ asset('assets/person.jpg') }}" alt="">
 
@@ -180,7 +373,7 @@
                                                 <div class="text-sm font-medium text-white">
                                                     Fahmi
                                                 </div>
-                                                <div class="text-xs text-zinc-7 py-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus harum, ratione exercitationem autem ut earum quasi soluta et deserunt quam quidem mollitia a quae esse adipisci id illum labore iste!</div>
+                                                <div class="text-xs text-zinc-700 py-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus harum, ratione exercitationem autem ut earum quasi soluta et deserunt quam quidem mollitia a quae esse adipisci id illum labore iste!</div>
 
 
                                             </div>
@@ -188,7 +381,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="w-9/12  px-3 pt-7  border-red-500">
+                                    {{-- send file --}}
+                                    <div class="w-9/12  px-3 pt-7  ">
 
 
                                         <div class="flex items-start ">
@@ -225,7 +419,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="w-9/12  px-3 pt-7  border-red-500">
+                                    {{-- send image --}}
+                                    <div class="w-9/12  px-3 pt-7  ">
 
 
                                         <div class="flex items-start ">
@@ -259,8 +454,9 @@
 
                                 <input type="text" placeholder="ketikan pesan disini" class="flex-grow focus:outline-none">
 
-                            </div>
 
+
+                            </div>
 
 
                         </div>
@@ -278,12 +474,14 @@
 
             </div>
 
-            <div class="basis-3/12  px-2 border-red-500 ">
+            <div class="basis-3/12  px-2 ">
                 <div class="bg-white rounded-lg h-full">
 
-                    <div class="flex flex-col border-red-400">
+
+                    <div class="flex flex-col ">
 
                         {{-- pencarian teks --}}
+
 
                         <div class="flex flex-col  pt-4 px-4">
                             <div class=" sm:flex sm:items-center mb-2">
@@ -356,6 +554,7 @@
                     </div>
 
 
+
                     <div class="overflow-y-auto py-4 px-3 bg-blue-100 rounded hidden" id="konten_hideshow_dokumen">
                         <ul class="space-y-2">
                             <li>
@@ -404,6 +603,7 @@
 
         $("#btn_hideshow_dokumen").click(function() {
             $("#konten_hideshow_dokumen").toggle();
+
         });
 
     </script>
