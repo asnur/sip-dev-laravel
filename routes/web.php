@@ -52,7 +52,7 @@ Route::get('/', function (Request $request) {
 
 // Chating
 
-Route::get('/chating-pendataan-usaha', [PendataanUsahaController::class, 'ChatingPendataanUsaha'])->name('chating-pendataan-usaha');
+Route::get('/chating-pendataan-usaha', [PendataanUsahaController::class, 'ChatingPendataanUsaha'])->middleware('auth')->name('chating-pendataan-usaha');
 
 
 
