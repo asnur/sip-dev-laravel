@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tab-hide-show {
+    overflow: hidden;
+}
+.tab-content {
+    max-height: 0;
+    transition: all 0.5s;
+}
+input:checked + .tab-judul .tab-icon svg {
+    transform: rotate(280deg);
+    stroke: #5a6474;
+}
+input:checked + .tab-judul::after {
+    transform: rotate(90deg);
+}
+input:checked ~ .tab-content {
+    max-height: 100vh;
+}
+
+#link_upload {
+    text-decoration: none;
+}
+#upload_file {
+    display: none;
+}

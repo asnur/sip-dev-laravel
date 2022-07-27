@@ -99,4 +99,12 @@ class PendataanUsahaController extends Controller
             'data_usaha' => $pendataan_usaha,
         ]);
     }
+
+
+    // Chating Pendataan Usaha
+
+    public function ChatingPendataanUsaha()
+    {
+        return view('chating.pendataan_usaha');
+    }
 }
