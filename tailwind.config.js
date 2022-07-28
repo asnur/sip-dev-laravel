@@ -5,10 +5,14 @@ module.exports = {
     purge: ["./resources/**/*.blade.php", "./resources/**/*.js"],
     darkMode: false,
     theme: {
-        extend: {},
+        extend: {
+            padding: {
+                "5px": "5px",
+            },
+        },
     },
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [require("tailwind-scrollbar")],
 };
