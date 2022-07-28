@@ -686,7 +686,7 @@
     <script>
         let user_id = parseInt("{!! Auth::user()->id !!}")
         console.log(user_id);
-        let socket = io("wss://jakpintas.dpmptsp-dki.com:3500", {
+        let socket = io("ws://localhost:3500", {
         transports: ["websocket"],
         });
 
@@ -698,7 +698,7 @@
         //Select Sector
         const select_sector = (sector) =>{
             localStorage.setItem("room", sector);
-            $("#room-sector").text(sector);
+            // $("#room-sector").text(sector);
             socket.emit("selectRoom", sector, (data)=>{
                 let html = '';
                 if (data !== null) {
