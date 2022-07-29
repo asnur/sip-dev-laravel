@@ -2,15 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: "Segoe UI";
+    height: 100vh !important;
+    overflow-y: inherit;
+}
+
+/* custom scroll bar */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+}
+
 .tab-hide-show {
     overflow: hidden;
 }
 .tab-content {
     max-height: 0;
-    transition: all 0.5s;
+    /* transition: all 0.5s; */
 }
 input:checked + .tab-judul .tab-icon svg {
-    transform: rotate(280deg);
+    /* transform: rotate(280deg); */
     stroke: #5a6474;
 }
 input:checked + .tab-judul::after {
