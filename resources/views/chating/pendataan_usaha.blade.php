@@ -549,7 +549,22 @@
         let search = $(this).val();
         let html = '';
         if (search.length > 0) {
-            socket.emit('searchMessage', search, (data)=>{
+            let query = '';
+            // console.log(search.split(' '));
+            let keyword = search.split(' ');
+            if (keyword.length > 1) {
+                query = 'WHERE (';
+                for (let i = 0; i < keyword.length; i++) {
+                    query += 'c.message LIKE "%' + keyword[i] + '%"';
+                    if (i < keyword.length - 1) {
+                        query += ' OR ';
+                    }
+                }
+                query += ')';
+            } else {
+                query = 'WHERE c.message LIKE "%' + search + '%"';
+            }
+            socket.emit('searchMessage', query, (data)=>{
                 if (data !== null) {
                     let result = data.reduce((r,a)=>{
                         r[a.room] = [...r[a.room] || [], a];
