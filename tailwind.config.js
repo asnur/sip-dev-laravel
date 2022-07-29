@@ -9,7 +9,7 @@ module.exports = {
             padding: {
                 "5px": "5px",
             }
-        },
+        }
     },
     variants: {
         extend: {},
