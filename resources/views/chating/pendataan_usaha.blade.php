@@ -540,7 +540,7 @@
                             <div class=" sm:flex sm:items-center mb-2">
                                 <input
                                     class="border-2 w-full rounded-md border-gray-300 bg-white h-10 px-5 text-sm focus:outline-none"
-                                    type="search" name="search" placeholder="Search">
+                                    type="search" name="search" placeholder="Search" id="searchMessage">
                                 <div class="cursor-pointer" id="btn_hideshow_dokumen">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black"
                                         viewBox="0 0 20 20" fill="currentColor">
@@ -552,45 +552,10 @@
                         </div>
 
                         {{-- riwayat pencarian teks --}}
-                        <div class="py-5 px-5 ">
-
-                            <div class=" sm:flex sm:items-center mb-2">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                        <div class="py-5 px-5 " id="result-search">
 
 
-                                <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2" id="room-sector">
-                                    Kelautan Dan Perikanan
-                                </div>
-                            </div>
-
-                            <div class="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg " role="alert">
-                                <div class="flex flex-row">
-
-                                    <div class="flex items-start w-12/12 text-gray-700 bg-gray-100  rounded-lg">
-
-                                        <img class="w-8 h-8 rounded-full" src="{{ asset('assets/gambar/people.png') }}"
-                                            alt="">
-                                        <div class="px-4">
-                                            <div class="text-sm">
-                                                Fahmi <span class="px-1 text-xs">Rabu, 27 Juli 2020</span>
-                                            </div>
-
-                                            <div class="text-xs text-gray-400">Lorem ipsum dolor sit amet consectetur
-                                                adipisicing elit. Necessitatibus harum, ratione exercitationem autem ut
-                                                earum quasi soluta et deserunt quam quidem mollitia a quae esse adipisci
-                                                id illum labore iste!</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
+                            {{--
                             <div class="py-5">
                                 <div class="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg " role="alert">
                                     <div class="flex flex-row">
@@ -614,7 +579,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> --}}
 
 
                         </div>
@@ -663,6 +628,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="{{ asset('assets/js/bindWithDelay.js') }}"></script>
 
 
     {{-- Component Scripts --}}
@@ -694,6 +660,59 @@
         socket.on('connect', function() {
             console.log('connected');
         })
+
+        //Search Message
+        $('#searchMessage').bindWithDelay('keyup', function(){
+            let search = $(this).val();
+            if (search.length > 0) {
+                socket.emit('searchMessage', search, (data)=>{
+                    let result = data.reduce((r,a)=>{
+                        r[a.room] = [...r[a.room] || [], a];
+                        return r;
+                    }, []);
+                    let html = `
+                    <div class=" sm:flex sm:items-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 1w-4 text-gray-500"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z"
+                                clip-rule="evenodd" />
+                        </svg>
+                            <div class="text-base tracking-wide text-[#5a6474] font-semibold ml-2" id="room-sector">
+                                Kelautan Dan Perikanan
+                            </div>
+                    </div>
+
+                    <div class="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg " role="alert">
+                        <div class="flex flex-row">
+
+                            <div class="flex items-start w-12/12 text-gray-700 bg-gray-100  rounded-lg">
+
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('assets/gambar/people.png') }}"
+                                    alt="">
+                                <div class="px-4">
+                                    <div class="text-sm">
+                                        Fahmi <span class="px-1 text-xs">Rabu, 27 Juli 2020</span>
+                                    </div>
+
+                                    <div class="text-xs text-gray-400">Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Necessitatibus harum, ratione exercitationem autem ut
+                                        earum quasi soluta et deserunt quam quidem mollitia a quae esse adipisci
+                                        id illum labore iste!</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+`
+                    console.log(result[0]);
+                    result.forEach((v)=>{
+                        console.log(v);
+                    })
+                });
+            }
+                
+        }, 1000)
 
         //Select Sector
         const select_sector = (sector) =>{
