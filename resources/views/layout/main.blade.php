@@ -6139,6 +6139,12 @@ Bintang 3 ke atas', 'Gedung Peribadatan', 'Perpustakaan', 'Bar', 'Perkumpulan So
                 </div>
                 <div class="text-center border-top">
                     {{-- @if (Auth::check()) --}}
+                    <button type="button" onclick="window.open('/chating-pendataan-usaha')" title="Konsultasi Usaha" class="ri-message-line p-1"
+                        style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
+                    </button>
+                </div>
+                <div class="text-center border-top">
+                    {{-- @if (Auth::check()) --}}
                     <button id="createSHP" type="button" onclick="document.getElementById('btnSHP').click()"
                         title="Buat SHP" class="ri-file-code-line p-1"
                         style="width:32px; height:30px; outline:none; font-size:14px; border:none; background: none;">
